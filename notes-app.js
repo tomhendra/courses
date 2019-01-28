@@ -8,13 +8,14 @@ renderNotes(notes, filters)
 
 // Listen for Create Note button click 
 document.querySelector('#create-note').addEventListener('click', function (e) {
+    const id = uuidv4()
     notes.push({
-        id: uuidv4(),
+        id: id,
         title: '',
         body: ''
     })
     saveNotes(notes)
-    renderNotes(notes, filters)
+    location.assign(`/edit.html#${id}`)
 })
 
 // Listen for Search Text input & render notes again once user interacts with input
