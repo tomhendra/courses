@@ -26,6 +26,7 @@ document.querySelector('#hide-completed').addEventListener('change', function (e
 document.querySelector("#add-todo").addEventListener('submit', function (e) {
     e.preventDefault()
     todos.push({
+        id: uuidv4(),
         text: e.target.elements.todoText.value,
         completed: false
     })
