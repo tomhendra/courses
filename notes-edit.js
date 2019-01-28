@@ -2,10 +2,10 @@ const titleEl = document.querySelector('#note-title')
 const bodyEl = document.querySelector('#note-body')
 const removeEl = document.querySelector('#remove-note')
 const noteId = location.hash.substring(1)
-const notes = getSavedNotes()
+let notes = getSavedNotes()
 
 // Get note object from array with ID matching noteID & assign to note variable
-const note = notes.find(function (note) {
+let note = notes.find(function (note) {
     return note.id === noteId
 })
 // redirect to index if not found
@@ -13,15 +13,17 @@ if (note === undefined) {
     location.assign('/index.html')
 }
 
-// Populate note title input with content & modify with new input
+// Populate input elements with data
 titleEl.value = note.title
+bodyEl.value = note.body
+
+// Modify note title with new input & save
 titleEl.addEventListener('input', function (e) {
     note.title = e.target.value
     saveNotes(notes)
 })
 
-// Populate note body textarea with content & modify with new input
-bodyEl.value = note.body
+// Modify note body with new input from textarea & save
 bodyEl.addEventListener('input', function (e) {
     note.body = e.target.value
     saveNotes(notes)
@@ -32,4 +34,19 @@ removeEl.addEventListener('click', function () {
     removeNote(note.id)
     saveNotes(notes)
     location.assign('/index.html')
+})
+
+// Update duplicate tabs / windows using storage event listener -- REFACTOR DRY CODE LATER
+window.addEventListener('storage', function (e) {
+    if (e.key === 'notes') {
+        JSON.parse(e.newValue)
+        note = notes.find(function (note) {
+            return note.id === noteId
+        })
+        if (note === undefined) {
+            location.assign('/index.html')
+        }
+        titleEl.value = note.title
+        bodyEl.value = note.body        
+    }
 })
