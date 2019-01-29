@@ -6,9 +6,7 @@ const noteId = location.hash.substring(1)
 let notes = getSavedNotes()
 
 // Get note object from array with ID matching noteID & assign to note variable
-let note = notes.find((note) => {
-    return note.id === noteId
-})
+let note = notes.find((note) => note.id === noteId)
 // redirect to index if not found
 if (note === undefined) {
     location.assign('/index.html')
