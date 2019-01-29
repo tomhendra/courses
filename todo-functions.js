@@ -9,8 +9,9 @@ const getSavedTodos = () => {
 }
 
 // Save todos to localStorage
-const saveTodos = (todos) => localStorage.setItem('todos', JSON.stringify(todos))
-
+const saveTodos = (todos) => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+}
 // Toggle todo completed based on given id
 const toggleTodo = (id) => {
     const todo = todos.find((todo) => todo.id === id)
