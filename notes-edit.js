@@ -8,7 +8,7 @@ let notes = getSavedNotes()
 // Get note object from array with ID matching noteID & assign to note variable
 let note = notes.find((note) => note.id === noteId)
 // redirect to index if not found
-if (note === undefined) {
+if (!note) {
     location.assign('/index.html')
 }
 
@@ -45,7 +45,7 @@ window.addEventListener('storage', (e) => {
     if (e.key === 'notes') {
         JSON.parse(e.newValue)
         note = notes.find((note) => note.id === noteId)
-        if (note === undefined) {
+        if (!note) {
             location.assign('/index.html')
         }
         titleEl.value = note.title
