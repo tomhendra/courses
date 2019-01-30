@@ -30,15 +30,3 @@ Hangman.prototype.makeGuess = function (guess) {
         this.remainingGuesses--
     }
 }
-
-// Testing, testing, 123
-const game1 = new Hangman('beer', 2)
-console.log(game1.getPuzzle())
-console.log(game1.remainingGuesses())
-
-window.addEventListener('keypress', (e) => {
-    const guess = String.fromCharCode(e.charCode)
-    game1.makeGuess(guess)
-    console.log(game1.getPuzzle())
-    console.log(game1.remainingGuesses())
-})
