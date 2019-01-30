@@ -23,22 +23,22 @@ Hangman.prototype.makeGuess = function (guess) {
     guess = guess.toLowerCase()
     const isUnique = !this.guessedLetters.includes(guess)
     const isBadGuess = !this.word.includes(guess)
-
-        if (isUnique) {
-            this.guessedLetters.push(guess)
-        }
-        if (isUnique && isBadGuess) {
-            this.remainingGuesses--
-        }
+    if (isUnique) {
+        this.guessedLetters.push(guess)
     }
+    if (isUnique && isBadGuess) {
+        this.remainingGuesses--
+    }
+}
 
 // Testing, testing, 123
 const game1 = new Hangman('beer', 2)
-game1.makeGuess('b')
-game1.makeGuess('e')
-game1.makeGuess('z')
 console.log(game1.getPuzzle())
+console.log(game1.remainingGuesses())
 
-const game2 = new Hangman('Bacon baguette', 4)
-game2.makeGuess('b')
-console.log(game2.getPuzzle())
+window.addEventListener('keypress', (e) => {
+    const guess = String.fromCharCode(e.charCode)
+    game1.makeGuess(guess)
+    console.log(game1.getPuzzle())
+    console.log(game1.remainingGuesses())
+})
