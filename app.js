@@ -13,11 +13,9 @@ window.addEventListener('keypress', (e) => {
     guessesEl.textContent = game1.statusMessage
 })
 
-// Callback to get puzzle data via requests.js 
-getPuzzle((error, puzzle) => {
-    if (error) {
-        console.log(`Error: ${error}`)
-    } else {
-        console.log(puzzle)
-    }
+// Promise to get puzzle data via requests.js 
+getPuzzle('3').then((puzzle) => {
+    console.log(puzzle)
+}, (error) => {
+    console.log(`Error: ${error}`)
 })
