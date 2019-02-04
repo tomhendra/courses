@@ -7,8 +7,6 @@ const filters = {
     hideCompleted: false
 }
 
-renderTodos(todos, filters)
-
 // Call function once so something appears on page load
 renderTodos(todos, filters)
 
@@ -18,21 +16,25 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
     renderTodos(todos, filters)
 })
 
+// ADD --- Add todo to the list & re-render 
+document.querySelector('#add-todo').addEventListener('submit', (e) => {
+    const text = e.target.elements.todoText.value
+    e.preventDefault()
+
+    if (text.length > 0) {
+        todos.push({
+            id: uuidv4(),
+            text,
+            completed: false
+        })
+        saveTodos(todos)
+        renderTodos(todos, filters)
+        e.target.elements.todoText.value = ''
+    }
+})
+
 // HIDE --- Listen for change to checkbox
 document.querySelector('#hide-completed').addEventListener('change', (e) => {
     filters.hideCompleted = e.target.checked
     renderTodos(todos, filters)
-})
-
-// ADD --- Add todo to the list & re-render 
-document.querySelector("#add-todo").addEventListener('submit', (e) => {
-    e.preventDefault()
-    todos.push({
-        id: uuidv4(),
-        text: e.target.elements.todoText.value,
-        completed: false
-    })
-    saveTodos(todos)
-    renderTodos(todos, filters)
-    e.target.elements.todoText.value = ''
 })
