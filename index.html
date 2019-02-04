@@ -2,6 +2,8 @@
 
 <html>
     <head>
+        <title>Notes App</title>
+        <link href="/images/favicon.png" rel="icon">
         <link href="styles/styles.css" rel="stylesheet">
     </head>
     <body>
@@ -20,9 +22,11 @@
                     <option value="alphabetical">Sort alphabetically</option>
                 </select>
             </div>
+            <div class="container">
+                <div id="notes"></div>
+                <button id="create-note" class="button">Create Note</button>
+            </div>
         </div>
-        <div id="notes"></div>
-        <button id="create-note">Create Note</button>
         <script src="/scripts/uuid-gen.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
         <script src="/scripts/notes-functions.js"></script>
