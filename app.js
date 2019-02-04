@@ -16,6 +16,6 @@ window.addEventListener('keypress', (e) => {
 // Promise to get puzzle data via requests.js 
 getPuzzle('3').then((puzzle) => {
     console.log(puzzle)
-}, (error) => {
-    console.log(`Error: ${error}`)
+}).catch((err) => {
+    console.log(`Error: ${err}`)
 })
