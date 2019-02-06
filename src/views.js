@@ -1,48 +1,19 @@
-'use strict'
+import { getTodos, toggleTodo, removeTodo } from './todos'
+import { getFilters } from './filters'
 
-// Fetch existing todos from local storage
-const getSavedTodos = () => {
-    const todosJSON = localStorage.getItem('todos')
-    try {
-        return todosJSON ? JSON.parse(todosJSON) : []
-    } catch (e) {
-        return []
-    }
-}
-
-// Save todos to localStorage
-const saveTodos = (todos) => {
-    localStorage.setItem('todos', JSON.stringify(todos))
-}
-// Toggle todo completed based on given id
-const toggleTodo = (id) => {
-    const todo = todos.find((todo) => todo.id === id)
-    if (todo) {
-        todo.completed = !todo.completed
-    }
-}
-
-// Remove a todo based on given id
-const removeTodo = (id) => {
-    const todoIndex = todos.findIndex((todo) => todo.id === id)
-    if (todoIndex > -1) {
-        todos.splice(todoIndex, 1)
-    }
-}
-
-const renderTodos = (todos, filters) => {
+// renderTodos
+const renderTodos = () => {
     // Create new array of todos based on text input & checkbox
     const todoEl = document.querySelector('#todo-list')
-    const filteredTodos = todos.filter((todo) => {
+    const filters = getFilters()
+    const filteredTodos = getTodos().filter((todo) => {
         const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLocaleLowerCase())
         const hideCompletedMatch = !filters.hideCompleted || !todo.completed
         return searchTextMatch && hideCompletedMatch
     })
-
     // Create new array of incomplete todos from filtered list
     const incompleteTodos = filteredTodos.filter((todo) => !todo.completed)
 
-    // Clear todos before displaying filtered list
     todoEl.innerHTML = ''
 
     // Display summary of uncompleted todos
@@ -59,7 +30,7 @@ const renderTodos = (todos, filters) => {
     }
 }
 
-// Get the DOM elements for an individual todo
+// generateTodoDOM
 const generateTodoDom = (todo) => {
     const todoEl = document.createElement('label')
     const containerEl = document.createElement('div')
@@ -73,8 +44,7 @@ const generateTodoDom = (todo) => {
     containerEl.appendChild(checkbox)
     checkbox.addEventListener('change', () => {
         toggleTodo(todo.id)
-        saveTodos(todos)
-        renderTodos(todos, filters)
+        renderTodos()
     })
 
     // Setup text span
@@ -92,14 +62,13 @@ const generateTodoDom = (todo) => {
     todoEl.appendChild(removeButton)
     removeButton.addEventListener('click', () => {
         removeTodo(todo.id)
-        saveTodos(todos)
-        renderTodos(todos, filters)
+        renderTodos()
     })
 
     return todoEl
 }
 
-// Get the DOM elements for list summary
+// generateSummaryDOM
 const generateSummaryDOM = (incompleteTodos) => {
     const summary = document.createElement('h2')
     const plural = incompleteTodos.length === 1 ? '' : 's'
@@ -107,4 +76,5 @@ const generateSummaryDOM = (incompleteTodos) => {
     summary.textContent = `You have ${incompleteTodos.length} todo${plural} left.`
     return summary
 }
- 
+
+export { renderTodos }
