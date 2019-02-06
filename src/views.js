@@ -5,10 +5,10 @@ import { getFilters } from './filters'
 const renderTodos = () => {
     // Create new array of todos based on text input & checkbox
     const todoEl = document.querySelector('#todo-list')
-    const filters = getFilters()
+    const { searchText, hideCompleted } = getFilters()
     const filteredTodos = getTodos().filter((todo) => {
-        const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLocaleLowerCase())
-        const hideCompletedMatch = !filters.hideCompleted || !todo.completed
+        const searchTextMatch = todo.text.toLowerCase().includes(searchText.toLocaleLowerCase())
+        const hideCompletedMatch = !hideCompleted || !todo.completed
         return searchTextMatch && hideCompletedMatch
     })
     // Create new array of incomplete todos from filtered list
