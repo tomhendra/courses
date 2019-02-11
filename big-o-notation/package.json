@@ -2,7 +2,7 @@
   "name": "algorithms-data-structures-masterclass",
   "version": "1.0.0",
   "description": "",
-  "main": "input.js",
+  "main": "index.js",
   "scripts": {
     "dev-server": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
