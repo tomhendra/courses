@@ -80,3 +80,13 @@ const double = (arr) => {
         newArr.push(2 * arr[i])
     }
 }
+
+// ------------------ LOGARITHMS ------------------
+// the inverse of exponents (to power of)
+// Rule of thumb....
+// the logarithm of a number roughly measures the number of times you can divide that number by 2 before you get a value that's <= 1
+// e.g. 8 -- 8 / 2 = 4 ... 4 / 2 = 2 ... 2 / 2 = 1 ... so the value of log 8 is 3
+// e.g. 25 -- 25 / 2 = 12.5 ... 12.5 / 2 = 6.25 ... 6.25 / 2 = 3.125 ... 3.125 / 2 = 1.5625 ... 1.5625 / 2 = 0.78125 ... so the value of log 25 is 4.64 (ish)
+// 1. certain searching algorithms have logarithmic time complexity
+// 2. efficient sorting algorithms involve logarithms
+// 3. recursion sometimes involves logarithmic space complexity
