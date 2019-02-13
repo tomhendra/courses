@@ -28,22 +28,28 @@
 // 3. explore examples with empty inputs
 // 4. explore examples with invalid inputs
 
-// example --- write a function which takes in a string and returns counts of each character in the string
-// --------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
+// challenge --- write a function which takes in a string and returns counts of each character in the string
+// ----------------------------------------------------------------------------------------------------------
 
 // 1. start with simple examples
 // charCount('aaaa') // questions: all alphabet in output object?
-/* {
+/* 
+{
     a: 4
-} */
+} 
+*/
+
 // charCount('Hello hi') // questions: uppercase letters same as lowercase? space handling?
-/* {
+/* 
+{
     h: 2,
     e: 1,
     i: 1,
     l: 2,
     o: 1
-} */
+} 
+*/
 
 // 2. progress to more complex examples
 // charCount('your PIN number is 1234') // questions: numbers in output? special characters?
@@ -80,8 +86,6 @@
 // - explicitly write down the steps you need to take (can even bounce steps off interviewer; you might get a hint!)
 // forces you to think about code before you write it, & helps to catch any lingering conceptual issues or misunderstandings before diving in & having to worry about detail
 
-// example --- write a function which takes in a string and returns counts of each character in the string
-
 /* 
 const charCount = (str) => {
     // do something
@@ -104,7 +108,6 @@ const charCount = (str) => {
 // [4] SOLVE/SIMPLIFY
 // ===================
 // if there is something you are less comfortable with, leave it until the end and say out loud " I can't remember how to do xyz" e.g. check if alphanumeric....
-
 /*
 const charCount = (str) => {
     // make object to return at end
@@ -125,6 +128,7 @@ const charCount = (str) => {
     return result
 }
 */
+
 // ask the interviewer if you get stuck on something - can they make a suggestion? - this demonstrates problem solving ability
 
 // =========================
@@ -154,6 +158,7 @@ const charCount = (str) => {
     return obj
 }
 */
+
 // using charCodeAt & simple booleans is more efficient than regex
 const isAlphaNumeric = (char) => {
     const code = char.charCodeAt(0)
