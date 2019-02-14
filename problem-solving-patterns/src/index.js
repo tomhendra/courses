@@ -32,7 +32,7 @@ same([1,2,1], [4,4,1]) // false - must be same frequency
 */
 
 // naive solution = O(n^2)
-const same = (arr1, arr2) => {
+const sameMeh = (arr1, arr2) => {
     if (arr1.length !== arr2.length){
         return false;
     }
@@ -47,10 +47,8 @@ const same = (arr1, arr2) => {
     return true;
 }
 
-same([1,2,3,2], [9,1,4,4])
-
 // refactored solution = O(n)
-const sameRefactored = (arr1, arr2) => {
+const same = (arr1, arr2) => {
     if (arr1.length !== arr2.length) {
         return false;
     }
@@ -58,6 +56,9 @@ const sameRefactored = (arr1, arr2) => {
     let frequencyCounter2 = {}
     for (let val of arr1) {
         frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
+        // interesting syntax using || as 'default operator'....
+        // https://stackoverflow.com/questions/3804304/please-explain-var-myvalue-myinput-value-0-to-me
+        // https://stackoverflow.com/questions/2100758/javascript-or-variable-assignment-explanation
     }
     for (let val of arr2) {
         frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1        
@@ -72,15 +73,17 @@ const sameRefactored = (arr1, arr2) => {
     }
     return true
 }
-
-sameRefactored([1,2,3,2,5], [9,1,4,4,11])
+// test cases
+console.log('Frequency counters: challenge 1')
+console.log(same([1,2,3,2,5], [9,1,4,4,11]))
+console.log(same([1,2,3,2], [9,1,4,4]))
 
 // ----------------------------------------------------------------------------------------------------------
 // challenge 2 --- given two strings, write a function to determine if the second string is an anagram of 
 // the first. An anagram is word, phrase or name formed by rearranging the letters of another.
 // ----------------------------------------------------------------------------------------------------------
-// My solution (3 for loops)
-const validAnagram = (str1, str2) => {
+// my solution (3 for loops)
+const validAnagramMeh = (str1, str2) => {
     if (str1.length !== str2.length) {
         return false
     }
@@ -99,14 +102,9 @@ const validAnagram = (str1, str2) => {
     }
     return true
 }
-console.log(validAnagram('','')) // true
-console.log(validAnagram('aaz', 'zza')) // false
-console.log(validAnagram('anagram', 'nagaram')) // true
-console.log(validAnagram('rat', 'car')) // false
-console.log(validAnagram('awesome', 'awsom')) // false
 
-// Tutor's solution (2 for loops)
-const validAnagram2 = (first, second) => {
+// tutor's solution (2 for loops)
+const validAnagram = (first, second) => {
     if (first.length !== second.length) {
       return false;
     }
@@ -132,3 +130,78 @@ const validAnagram2 = (first, second) => {
   
     return true;
   }
+// test cases
+console.log('Frequency counters: challenge 2')
+console.log(validAnagram('','')) // true
+console.log(validAnagram('aaz', 'zza')) // false
+console.log(validAnagram('anagram', 'nagaram')) // true
+console.log(validAnagram('rat', 'car')) // false
+console.log(validAnagram('awesome', 'awsom')) // false
+
+// ======================
+// [2] MULTIPLE POINTERS
+// ======================
+// - creating pointers or values that correspond to an index or position & move towards the beginning, end or middle based on a certain condition
+// - more loosely defined than frequency counters
+// - VERY efficient for solving problems with minimal space complexity
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge 1 --- write a function called sumZero which accepts a sorted array of integers. The function 
+// should find the first pair where the sum is 0. Return an array that includes both values that sum to 0 or
+// undefined if a pair does not exist.
+// ----------------------------------------------------------------------------------------------------------
+// naive solution = time complexity O(n^2) & space complexity O(1)
+const sumZeroMeh = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i+1; j < arr.length; j++) {
+            if (arr[i] + arr[j] === 0) {
+                return [arr[i], arr[j]];
+            }
+        }
+    }
+}
+
+// refactored solution = time complexity O(n) & space complexity O(1)
+const sumZero = (arr) => {
+    let left = 0
+    let right = arr.length - 1
+    while (left < right) {
+        let sum = arr[left] + arr[right]
+        if (sum === 0) {
+            return [arr[left], arr[right]]
+        } else if (sum > 0) {
+            right--
+        } else {
+            left++
+        }
+    }
+}
+// test cases
+console.log('Multiple pointers: challenge 1')
+console.log(sumZero([-3,-2,-1,0,1,2,3])) // [-3, 3]
+console.log(sumZero([-2,0,1,3])) // undefined
+console.log(sumZero([1,2,3])) // undefined
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge 2 --- write a function called countUniqueValues which accepts a sorted array, and counts the 
+// unique values in an array. There can be negative numbers in the array, but it will always be sorted.
+// ----------------------------------------------------------------------------------------------------------
+// solution = time complexity O(n) & space complexity O(n)
+const countUniqueValues = (arr) => {
+    if (arr.length === 0) return 0
+    let i = 0
+    for (let j = 1; j < arr.length; j++) {
+        if (arr[i] !== arr[j]) {
+            i++
+            arr[i] = arr[j]
+        }
+    }
+    return i + 1
+}
+
+// test cases
+console.log('Multiple pointers: challenge 2')
+console.log(countUniqueValues([1,1,1,1,1,2])) // 2
+console.log(countUniqueValues([1,2,3,4,4,4,7,7,12,12,13])) // 7
+console.log(countUniqueValues([])) // 0
+console.log(countUniqueValues([-2,-1,-1,0,1])) // 4
