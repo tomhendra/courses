@@ -24,15 +24,8 @@
 // every value in the array has it's corresponding value squared in the second array. The frequency of 
 // values must be the same.
 // ----------------------------------------------------------------------------------------------------------
-// test cases:
-/*
-same([1,2,3], [4,1,9]) // true
-same([1,2,3], [1,9]) // false
-same([1,2,1], [4,4,1]) // false - must be same frequency
-*/
-
 // naive solution = O(n^2)
-const sameMeh = (arr1, arr2) => {
+const sameNaive = (arr1, arr2) => {
     if (arr1.length !== arr2.length){
         return false;
     }
@@ -46,7 +39,6 @@ const sameMeh = (arr1, arr2) => {
     }
     return true;
 }
-
 // refactored solution = O(n)
 const same = (arr1, arr2) => {
     if (arr1.length !== arr2.length) {
@@ -75,15 +67,16 @@ const same = (arr1, arr2) => {
 }
 // test cases
 console.log('Frequency counters: challenge 1')
-console.log(same([1,2,3,2,5], [9,1,4,4,11]))
-console.log(same([1,2,3,2], [9,1,4,4]))
+console.log(same([1,2,3], [4,1,9])) // true
+console.log(same([1,2,3], [1,9])) // false
+console.log(same([1,2,1], [4,4,1])) // false - must be same frequency
 
 // ----------------------------------------------------------------------------------------------------------
 // challenge 2 --- given two strings, write a function to determine if the second string is an anagram of 
 // the first. An anagram is word, phrase or name formed by rearranging the letters of another.
 // ----------------------------------------------------------------------------------------------------------
 // my solution (3 for loops)
-const validAnagramMeh = (str1, str2) => {
+const validAnagramNaive = (str1, str2) => {
     if (str1.length !== str2.length) {
         return false
     }
@@ -102,7 +95,6 @@ const validAnagramMeh = (str1, str2) => {
     }
     return true
 }
-
 // tutor's solution (2 for loops)
 const validAnagram = (first, second) => {
     if (first.length !== second.length) {
@@ -151,7 +143,7 @@ console.log(validAnagram('awesome', 'awsom')) // false
 // undefined if a pair does not exist.
 // ----------------------------------------------------------------------------------------------------------
 // naive solution = time complexity O(n^2) & space complexity O(1)
-const sumZeroMeh = (arr) => {
+const sumZeroNaive = (arr) => {
     for (let i = 0; i < arr.length; i++) {
         for (let j = i+1; j < arr.length; j++) {
             if (arr[i] + arr[j] === 0) {
@@ -160,7 +152,6 @@ const sumZeroMeh = (arr) => {
         }
     }
 }
-
 // refactored solution = time complexity O(n) & space complexity O(1)
 const sumZero = (arr) => {
     let left = 0
@@ -198,7 +189,6 @@ const countUniqueValues = (arr) => {
     }
     return i + 1
 }
-
 // test cases
 console.log('Multiple pointers: challenge 2')
 console.log(countUniqueValues([1,1,1,1,1,2])) // 2
@@ -214,11 +204,11 @@ console.log(countUniqueValues([-2,-1,-1,0,1])) // 4
 // - very useful for keeping track of a subset of data in an array/string etc.
 
 // ----------------------------------------------------------------------------------------------------------
-// challenge 1 --- write a function called maxSubarraySum which accepts an array fo integers and a number 
+// challenge --- write a function called maxSubarraySum which accepts an array fo integers and a number 
 // called n. The function should calculate the maximum sum of n consecutive elements in the array.
 // ----------------------------------------------------------------------------------------------------------
 // naive solution = time complexity O(n^2)
-const maxSubarraySumMeh = (arr, num) => {
+const maxSubarraySumNaive = (arr, num) => {
     if (num > arr.length) {
       return null;
     }
@@ -234,7 +224,6 @@ const maxSubarraySumMeh = (arr, num) => {
     }
     return max;
   }
-
 // refactored solution = time complexity O(n)
 const maxSubarraySum = (arr, num) => {
     let maxSum = 0;
@@ -251,9 +240,55 @@ const maxSubarraySum = (arr, num) => {
     return maxSum;
   }
 // test cases
-console.log('Sliding window: challenge 1')
+console.log('Sliding window: challenge')
 console.log(maxSubarraySum([1,2,5,2,8,1,5],2)) // 10
 console.log(maxSubarraySum([1,2,5,2,8,1,5,],4)) // 17
 console.log(maxSubarraySum([4,2,1,6],1)) // 6
 console.log(maxSubarraySum([4,2,1,6,2],4)) // 13
 console.log(maxSubarraySum([],4)) // null
+
+// =====================
+// [4] DIVIDE & CONQUER
+// =====================
+// - dividing a dataset into smaller chunks and then repeating a process with a subset of data
+// - can tremendously decrease time complexity
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge --- given a sorted array of integers, write a function called search, that accepts a value
+// and returns the index where the value passed to the function is located. If not found, return -1.
+// ----------------------------------------------------------------------------------------------------------
+// naive solution = time complexity O(n)
+const searchNaive = (arr, val) => {
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i] === val) {
+            return i
+        }
+    }
+    return -1
+}
+// refactored solution = Log(n) - Binary search
+const search = (array, val) => {
+    let min = 0
+    let max = array.length - 1
+
+    while (min <= max) {
+        let middle = Math.floor((min + max) / 2)
+        let currentElement = array[middle]
+
+        if (array[middle] < val) {
+            min = middle + 1
+        }
+        else if (array[middle] > val) {
+            max = middle - 1
+        }
+        else {
+            return middle
+        }
+    }
+    return -1
+}
+// test cases
+console.log('Divide & conquer: challenge')
+console.log(search([1,2,3,4,5,6],4)) // 3
+console.log(search([1,2,3,4,5,6],6)) // 5
+console.log(search([1,2,3,4,5,6],11)) // -1
