@@ -205,3 +205,55 @@ console.log(countUniqueValues([1,1,1,1,1,2])) // 2
 console.log(countUniqueValues([1,2,3,4,4,4,7,7,12,12,13])) // 7
 console.log(countUniqueValues([])) // 0
 console.log(countUniqueValues([-2,-1,-1,0,1])) // 4
+
+// ====================
+// [3] SLIDING WINDOW
+// ====================
+// - creating a window which can either be an array or number from one position to another
+// - depending on the condition the window either increases or closes (and a new window is created)
+// - very useful for keeping track of a subset of data in an array/string etc.
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge 1 --- write a function called maxSubarraySum which accepts an array fo integers and a number 
+// called n. The function should calculate the maximum sum of n consecutive elements in the array.
+// ----------------------------------------------------------------------------------------------------------
+// naive solution = time complexity O(n^2)
+const maxSubarraySumMeh = (arr, num) => {
+    if (num > arr.length) {
+      return null;
+    }
+    let max = -Infinity;
+    for (let i = 0; i < arr.length - num + 1; i++) {
+      let temp = 0;
+      for (let j = 0; j < num; j++) {
+        temp += arr[i + j];
+      }
+      if (temp > max) {
+        max = temp;
+      }
+    }
+    return max;
+  }
+
+// refactored solution = time complexity O(n)
+const maxSubarraySum = (arr, num) => {
+    let maxSum = 0;
+    let tempSum = 0;
+    if (arr.length < num) return null;
+    for (let i = 0; i < num; i++) {
+      maxSum += arr[i];
+    }
+    tempSum = maxSum;
+    for (let i = num; i < arr.length; i++) {
+      tempSum = tempSum - arr[i - num] + arr[i];
+      maxSum = Math.max(maxSum, tempSum);
+    }
+    return maxSum;
+  }
+// test cases
+console.log('Sliding window: challenge 1')
+console.log(maxSubarraySum([1,2,5,2,8,1,5],2)) // 10
+console.log(maxSubarraySum([1,2,5,2,8,1,5,],4)) // 17
+console.log(maxSubarraySum([4,2,1,6],1)) // 6
+console.log(maxSubarraySum([4,2,1,6,2],4)) // 13
+console.log(maxSubarraySum([],4)) // null
