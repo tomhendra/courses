@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------------------------------------
-// challenge --- write a function called sameFrequency. Given 2 positive integers, find out if the numbers
+// challenge 1 --- write a function called sameFrequency. Given 2 positive integers, find out if the numbers
 // have the same frequency of digits.
 // ----------------------------------------------------------------------------------------------------------
 const sameFrequency = (num1, num2) => {
@@ -33,3 +33,26 @@ console.log(sameFrequency(182,281)) // true
 console.log(sameFrequency(34,14)) // false
 console.log(sameFrequency(3589578,5879385)) // true
 console.log(sameFrequency(22,222)) // false
+// ----------------------------------------------------------------------------------------------------------
+// challenge 2 --- write a function called areThereDuplicates which accepts a variable number of arguments,
+// and checks whether there are duplicates amongst the arguments passed in. 
+// ----------------------------------------------------------------------------------------------------------
+const areThereDuplicates = (...arr) => {
+    arr.sort((a,b) => a > b)
+    let start = 0;
+    let next = 1;
+    while (next < arr.length) {
+      if(args[start] === args[next]) {
+          return true
+      }
+      start++
+      next++
+    }
+    return false
+}
+// one liner solution: return new Set(arguments).size !== arguments.length
+// test cases
+console.log('Frequency counter / multiple pointers challenge: areThereDuplicates')
+console.log(areThereDuplicates(1,2,3)) // false
+console.log(areThereDuplicates(1,2,2)) // true
+console.log(areThereDuplicates('a', 'b', 'c', 'a')) // true
