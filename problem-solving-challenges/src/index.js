@@ -90,6 +90,7 @@ console.log(averagePair([],4)) // false
 // challenge 4 --- write a function called isSubsequence which takes in 2 strings and checks whether the
 // characters from the first string form a subsequence of the characters in the second string.
 // ----------------------------------------------------------------------------------------------------------
+// multiple pointers solution
 const isSubsequence = (str1, str2) => {
     let i = 0;
     let j = 0;
@@ -107,3 +108,70 @@ console.log(isSubsequence('hello', 'hello world')) // true
 console.log(isSubsequence('sing', 'sting')) // true
 console.log(isSubsequence('abc', 'abracadabra')) // true
 console.log(isSubsequence('abc', 'acb')) // false
+// ----------------------------------------------------------------------------------------------------------
+// challenge 5 --- write a function called maxSubarraySum which takes in an array of integers and a number,
+// and finds the maximum sum of a subarray with the length of the number passed to the function.
+// ----------------------------------------------------------------------------------------------------------
+const maxSubarraySum = (arr, num) => {
+    if (arr.length < num) return null
+ 
+    let total = 0;
+    for (let i = 0; i < num; i++) {
+       total += arr[i]
+    }
+    let currentTotal = total;
+    for (let i = num; i < arr.length; i++) {
+       currentTotal += arr[i] - arr[i-num]
+       total = Math.max(total, currentTotal)
+    }
+    return total;
+}
+// test cases
+console.log('Sliding window challenge: maxSubarraySum')
+console.log(maxSubarraySum([100,200,300,400],2)) // 700
+console.log(maxSubarraySum([1,4,2,10,23,3,1,0,20],4)) // 39
+console.log(maxSubarraySum([-3,4,0,-2,6,1],2)) // 5
+console.log(maxSubarraySum([3,-2,7,-4,1,-1,4,-2,1],2)) // 5
+console.log(maxSubarraySum([2,3],3)) // null
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge 6 --- write a function called minSubarrayLen which takes in an array of integers and an integer,
+// and returns the minimal length of a contiguous subarray of which the sum is greater or equal to the 
+// passed to the function. If there isn't one, return 0.
+// ----------------------------------------------------------------------------------------------------------
+const minSubarrayLen = (arr, int) => {
+    let total = 0;
+    let start = 0;
+    let end = 0;
+    let minLen = Infinity;
+   
+    while (start < arr.length) {
+      // if current window doesn't add up to the given sum then 
+          // move the window to right
+      if (total < sum && end < arr.length) {
+        total += arr[end];
+              end++;
+      }
+      // if current window adds up to at least the sum given then
+          // we can shrink the window 
+      else if (total >= sum) {
+        minLen = Math.min(minLen, end-start)
+              total -= arr[start]
+              start++
+      } 
+      // current total less than required total but we reach the end, need this or else we'll be in an infinite loop 
+      else {
+        break
+      }
+    }
+    return minLen === Infinity ? 0 : minLen
+}
+// test cases
+console.log('Sliding window challenge: minSubarrayLen')
+console.log(minSubarrayLen([2,3,12,4,3],7)) // 2, because [4,3] is the smallest subarray
+console.log(minSubarrayLen([2,1,6,5,4],9)) // 2, because [5,4] is the smallest subarray
+console.log(minSubarrayLen([3,1,7,11,2,9,8,21,62,33,19],52)) // 1, because [62] is greater than 52
+console.log(minSubarrayLen([1,4,16,22,5,7,8,9,10],39)) // 3
+console.log(minSubarrayLen([1,4,16,22,5,7,8,9,10],55)) // 5
+console.log(minSubarrayLen([4,3,3,8,1,2,3],11)) // 2
+console.log(minSubarrayLen([1,4,16,22,5,7,8,9,10],95)) // 0

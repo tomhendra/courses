@@ -204,7 +204,7 @@ console.log(countUniqueValues([-2,-1,-1,0,1])) // 4
 // - very useful for keeping track of a subset of data in an array/string etc.
 
 // ----------------------------------------------------------------------------------------------------------
-// challenge --- write a function called maxSubarraySum which accepts an array fo integers and a number 
+// challenge --- write a function called maxSubarraySum which accepts an array of integers and a number 
 // called n. The function should calculate the maximum sum of n consecutive elements in the array.
 // ----------------------------------------------------------------------------------------------------------
 // naive solution = time complexity O(n^2)
