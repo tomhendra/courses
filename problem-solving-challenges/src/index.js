@@ -179,21 +179,23 @@ console.log(minSubarrayLen([1,4,16,22,5,7,8,9,10],95)) // 0
 // coding exercise 9 --- write a function called findLongestSubstring which accepts a string and returns the 
 // length of of the longest substring with all distinct characters.
 // ----------------------------------------------------------------------------------------------------------
-let longest = 0
-let seen = {}
-let start = 0
-
-for (let i = 0; i < str.length; i++) {
-  let char = str[i]
-  if (seen[char]) {
-    start = Math.max(start, seen[char])
-  }
-  // index - beginning of substring + 1 (to include current in count)
-  longest = Math.max(longest, i - start + 1);
-  // store the index of the next char so as to not double count
-  seen[char] = i + 1;
+const findLongestSubstring = (str) => {
+    let longest = 0
+    let seen = {}
+    let start = 0
+    
+    for (let i = 0; i < str.length; i++) {
+      let char = str[i]
+      if (seen[char]) {
+        start = Math.max(start, seen[char])
+      }
+      // index - beginning of substring + 1 (to include current in count)
+      longest = Math.max(longest, i - start + 1);
+      // store the index of the next char so as to not double count
+      seen[char] = i + 1;
+    }
+    return longest;
 }
-return longest;
 // test cases
 console.log('Sliding window code exercise: findLongestSubstring')
 console.log(findLongestSubstring('')) // 0
