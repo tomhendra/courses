@@ -38,7 +38,7 @@ wakeUp()
 // ----------------------------------------------------------------------------------------------------------
 // example 1
 // ----------------------------------------------------------------------------------------------------------
-// Iterative version
+// iterative version
 function countDownIterative(num) {
     for (var i = num; i > 0; i--) {
         console.log(i)
@@ -46,7 +46,7 @@ function countDownIterative(num) {
     console.log("All done!")
 }
 
-// Recursive version
+// recursive version
 function countDown(num) {
     if (num <= 0) {
         console.log("All done!")
@@ -70,7 +70,7 @@ function sumRange(num) {
 // ----------------------------------------------------------------------------------------------------------
 // example 3
 // ----------------------------------------------------------------------------------------------------------
-// Iterative version
+// iterative version
 function factorialIterative (num) {
     let total = 1
     for (let i = num; i > 1; i--) {
@@ -79,9 +79,44 @@ function factorialIterative (num) {
     return total;
 }
 
-// Recursive version
+// recursive version
 function factorial(num){
     if (num === 1) return 1
     return num * factorial(num-1)
 }
 factorial(5)
+
+// where things go wrong
+// - no base case / wrong base case
+// - forgetting to return or returning the wring thing
+// - stack overflow!
+
+// ========================
+// HELPER METHOD RECURSION
+// ========================
+// - common design pattern with 2 functions
+// - outer function which is not recursive & an inner function which is recursive
+// - useful when compiling an array 
+
+// demonstration
+function collectOddValues(arr){
+    
+    let result = [];
+
+    function helper(helperInput) {
+        if(helperInput.length === 0) {
+            return;
+        }
+        
+        if(helperInput[0] % 2 !== 0) {
+            result.push(helperInput[0])
+        }
+        
+        helper(helperInput.slice(1))
+    }
+    
+    helper(arr)
+
+    return result;
+}
+collectOddValues([1,2,3,4,5,6,7,8,9])
