@@ -34,6 +34,7 @@ console.log(sameFrequency(182,281)) // true
 console.log(sameFrequency(34,14)) // false
 console.log(sameFrequency(3589578,5879385)) // true
 console.log(sameFrequency(22,222)) // false
+
 // ----------------------------------------------------------------------------------------------------------
 // coding exercise 4 --- write a function called areThereDuplicates which accepts a variable number of arguments,
 // and checks whether there are duplicates amongst the arguments passed in. 
@@ -86,6 +87,7 @@ console.log(averagePair([1,2,3],2.5)) // true
 console.log(averagePair([1,3,3,5,6,7,10,12,19],8)) // true
 console.log(averagePair([-1,0,3,4,5,6],4.1)) // false
 console.log(averagePair([],4)) // false
+
 // ----------------------------------------------------------------------------------------------------------
 // coding exercise 6 --- write a function called isSubsequence which takes in 2 strings and checks whether the
 // characters from the first string form a subsequence of the characters in the second string.
@@ -108,6 +110,7 @@ console.log(isSubsequence('hello', 'hello world')) // true
 console.log(isSubsequence('sing', 'sting')) // true
 console.log(isSubsequence('abc', 'abracadabra')) // true
 console.log(isSubsequence('abc', 'acb')) // false
+
 // ----------------------------------------------------------------------------------------------------------
 // coding exercise 7 --- write a function called maxSubarraySum which takes in an array of integers and a number,
 // and finds the maximum sum of a subarray with the length of the number passed to the function.
@@ -175,6 +178,7 @@ console.log(minSubarrayLen([1,4,16,22,5,7,8,9,10],39)) // 3
 console.log(minSubarrayLen([1,4,16,22,5,7,8,9,10],55)) // 5
 console.log(minSubarrayLen([4,3,3,8,1,2,3],11)) // 2
 console.log(minSubarrayLen([1,4,16,22,5,7,8,9,10],95)) // 0
+
 // ----------------------------------------------------------------------------------------------------------
 // coding exercise 9 --- write a function called findLongestSubstring which accepts a string and returns the 
 // length of of the longest substring with all distinct characters.
