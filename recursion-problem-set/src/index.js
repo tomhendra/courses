@@ -27,7 +27,7 @@ console.log(power(2,4)) // 16
 // 4 * 3 * 2 * 1 = 24. factorial zero (0!) is always 1.
 // ----------------------------------------------------------------------------------------------------------
 const factorial = (num) => {
-    if (num === 0) return 1
+    if (num <= 1) return 1
     return num * factorial(num-1)
 }
 
@@ -37,3 +37,16 @@ console.log(factorial(1)) // 1
 console.log(factorial(2)) // 2
 console.log(factorial(4)) // 24
 console.log(factorial(7)) // 5040
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge 3 --- write a function called productOfArray which takes in an array of numbers and returns 
+// them all.
+// ----------------------------------------------------------------------------------------------------------
+const productOfArray = (arr) => {
+    if (arr.length === 0) return 1
+    return arr[0] * productOfArray(arr.slice(1))
+}
+// test cases
+console.log('Challenge 3: productOfArray')
+console.log(productOfArray([1,2,3])) // 6
+console.log(productOfArray([1,2,3,10])) // 60
