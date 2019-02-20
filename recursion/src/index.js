@@ -25,7 +25,7 @@ function wakeUp() {
     eatBreakfast()
     console.log("Ok ready to go to work!")
 }
-
+console.log('Wake up example')
 wakeUp()
 
 // - when writing recursive functions, we keep pushing new functions onto the call stack
@@ -56,6 +56,7 @@ function countDown(num) {
     num--
     countDown(num)
 }
+console.log('Countdown example')
 countDown(3)
 
 // ----------------------------------------------------------------------------------------------------------
@@ -65,7 +66,8 @@ function sumRange(num) {
     if (num === 1) return 1
     return num + sumRange(num-1)
  }
- sumRange(4)
+ console.log('sumRange example')
+ console.log(sumRange(4))
 
 // ----------------------------------------------------------------------------------------------------------
 // example 3
@@ -84,9 +86,12 @@ function factorial(num){
     if (num === 1) return 1
     return num * factorial(num-1)
 }
-factorial(5)
+console.log('Factorial example')
+console.log(factorial(5))
 
-// where things go wrong
+// ----------------------------------------------------------------------------------------------------------
+// where things go wrong!
+// ----------------------------------------------------------------------------------------------------------
 // - no base case / wrong base case
 // - forgetting to return or returning the wring thing
 // - stack overflow!
@@ -98,7 +103,6 @@ factorial(5)
 // - outer function which is not recursive & an inner function which is recursive
 // - useful when compiling an array 
 
-// demonstration
 function collectOddValues(arr){
     
     let result = [];
@@ -119,4 +123,41 @@ function collectOddValues(arr){
 
     return result;
 }
-collectOddValues([1,2,3,4,5,6,7,8,9])
+console.log('Helper method recursion')
+console.log(collectOddValues([1,2,3,4,5,6,7,8,9]))
+
+// ================
+// PURE RECURSION
+// ================
+// - fully self-contained
+// - for arrays, use methods like slice, the spread operator, and concat that make copies of arrays so you don't mutate them
+// - since strings are immutable so need to use methods like slice, substr or substring to make copies of strings
+// - to make copies of objects use Object.assign or the spread operator
+
+function collectOddValuesPure(arr) {
+    let newArr = []
+    
+    if(arr.length === 0) {
+        return newArr;
+    }
+        
+    if(arr[0] % 2 !== 0) {
+        newArr.push(arr[0])
+    }
+        
+    newArr = newArr.concat(collectOddValues(arr.slice(1)))
+    return newArr
+}
+console.log('Pure recursion')
+console.log(collectOddValuesPure([1,2,3,4,5]))
+// newArr = [1].concat(collectOddValues([2,3,4,5])) // waiting for return value
+//     newArr = [].concat(collectOddValues([3,4,5])) // waiting for return value
+//     |    newArr = [3].concat(collectOddValues([4,5])) // waiting for return value
+//     |    |    newArr = [].concat(collectOddValues([5])) // waiting for return value
+//     |    |    |   newArr = [5].concat(collectOddValues([])) // waiting for return value
+//     |    |    |   |    returns []
+//     |    |    |   returns [5].concat([]) // [5]
+//     |    |    returns [].concat[5] // [5]
+//     |    returns [3].concat[5] // [3,5]
+//     returns [].concat[3,5] // [3,5]
+// returns [1].concat[3,5] // [1,3,5]
