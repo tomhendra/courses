@@ -50,3 +50,16 @@ const productOfArray = (arr) => {
 console.log('Challenge 3: productOfArray')
 console.log(productOfArray([1,2,3])) // 6
 console.log(productOfArray([1,2,3,10])) // 60
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge 4 --- write a function called recursiveRange which accepts a number and adds up all the numbers 
+// from 0 to the number passed into the function.
+// ----------------------------------------------------------------------------------------------------------
+const recursiveRange = (num) => {
+    if (num === 1) return 1
+    return num + recursiveRange(num-1)
+}
+// test cases
+console.log('Challenge 4: recursiveRange')
+console.log(recursiveRange(6)) // 21
+console.log(recursiveRange(10)) // 55
