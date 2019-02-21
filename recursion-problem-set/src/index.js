@@ -56,7 +56,7 @@ console.log(productOfArray([1,2,3,10])) // 60
 // from 0 to the number passed into the function.
 // ----------------------------------------------------------------------------------------------------------
 const recursiveRange = (num) => {
-    if (num === 1) return 1
+    if (num === 0) return 0
     return num + recursiveRange(num-1)
 }
 // test cases
@@ -70,8 +70,8 @@ console.log(recursiveRange(10)) // 55
 // starts with 1 & 1, and where every number thereafter is equal to the sum of the previous two numbers.
 // ----------------------------------------------------------------------------------------------------------
 const fib = (n) => {
-    if (n == 0 || n == 1)  return n;
-    return fib(n - 1) + fib(n - 2);
+    if (n <= 2)  return 1;
+    return fib(n-1) + fib(n-2);
 }
 // test cases
 console.log('Challenge 4: fib')
