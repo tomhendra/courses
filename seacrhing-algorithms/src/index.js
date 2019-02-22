@@ -57,7 +57,7 @@ console.log(binarySearch([1,2,3,4,5],6)) // -1
 // ====================
 // NAIVE STRING SEARCH
 // ====================
-// - examples
+// - example
 const stringSearch = (long, short) => {
     let count = 0
     for (let i = 0; i < long.length; i++) {
@@ -68,5 +68,5 @@ const stringSearch = (long, short) => {
     }
     return count;
 }
-console.log('Short string search')
+console.log('Naive string search')
 console.log(stringSearch('hello harry potter', 'pot'))
