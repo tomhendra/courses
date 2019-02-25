@@ -63,7 +63,7 @@ const bubbleSort = (arr) => {
 // - similar to bubble sort, but instead of placing large values into sorted position, it places small values into position
 // - finds the minimum by comparing all values in the array and places the minimum at the beginning after comparing all values
 // legacy version (non ES2015 syntax) = O(n^2)
-function selectionSort(arr) {
+const selectionSort = (arr) => {
     for (var i = 0; i < arr.length; i++) {
         var lowest = i;
         for (var j = i + 1; j < arr.length; j++) {
@@ -83,7 +83,7 @@ function selectionSort(arr) {
 }
 
 // ES2015 version = O(n^2)
-function selectionSortNew(arr) {
+const selectionSortNew = (arr) => {
   const swap = (arr, idx1, idx2) =>
     ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]);
 
@@ -104,3 +104,22 @@ console.log('Selection sort')
 console.log(selectionSort([0,2,34,22,10,19,17]))
 console.log('Selection sort ES2015')
 console.log(selectionSortNew([0,2,34,22,10,19,17]))
+
+// ===============
+// INSERTION SORT
+// ===============
+// - builds up sort by gradually creating a larger left half which is always sorted
+// O(n^2) worst case
+const insertionSort = (arr) => {
+	var currentVal;
+    for (var i = 1; i < arr.length; i++) {
+        currentVal = arr[i];
+        for (var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+            arr[j+1] = arr[j]
+        }
+        arr[j+1] = currentVal;
+    }
+    return arr;
+}
+console.log('Insertion sort')
+console.log(insertionSort([2,1,9,76,4]))
