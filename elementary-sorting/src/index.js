@@ -123,3 +123,20 @@ const insertionSort = (arr) => {
 }
 console.log('Insertion sort')
 console.log(insertionSort([2,1,9,76,4]))
+
+// ========
+// SUMMARY 
+// ========
+// - for nearly sorted data, bubble and insertion sort perform well 
+// - selection sort is poor performance, but easy to understand!
+// - insertion sort ood for online data i.e. continuously sorted
+//
+//                  | time complexity | time complexity | time complexity | space         |
+//                  | (best)          | (average)       | (worst)         | complexity    |
+// ----------------------------------------------------------------------------------------
+// bubble sort      |      O(n)       |      O(n^2)     |      O(n^2)     |      O(1)     |
+// ----------------------------------------------------------------------------------------
+// insertion sort   |      O(n)       |      O(n^2)     |      O(n^2)     |      O(1)     |
+// ----------------------------------------------------------------------------------------
+// selection sort   |      O(n^2)     |      O(n^2)     |      O(n^2)     |      O(1)     |
+// ----------------------------------------------------------------------------------------
