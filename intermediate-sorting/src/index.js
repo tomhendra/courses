@@ -69,11 +69,11 @@ const mergeSort = (arr) => {
 console.log('Merge sort part 2')
 console.log(mergeSort([42,7,2,1,67,24,12,3])) // [1,2,3,7,12,24,47,67]
 
-//                  | time complexity | time complexity | space         |
-//                  | (best)          | (worst)         | complexity    |
-// ----------------------------------------------------------------------
-// merge sort       |   O(n log n)    |   O(n log n)    |      O(n)     |
-// ----------------------------------------------------------------------
+//                  | time complexity | time complexity | space          |
+//                  | (best)          | (worst)         | complexity     |
+// -----------------------------------------------------------------------
+// merge sort       |   O(n log n)    |   O(n log n)    |      O(n)      |
+// -----------------------------------------------------------------------
 
 // ===========
 // QUICK SORT
@@ -150,6 +150,36 @@ const pivotNaive = (arr, start=0, end=arr.length+1) => {
     console.log(arr)
     return swapIdx;
   }
-  // test cases
-  console.log('Quick sort - pivot')
-  console.log(pivot([4,8,2,1,5,7,6,3]))
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode - quickSort
+// - call the pivot helper on the array 
+// - when the helper returns the updated pivot index, recursively call the pivot helper on the subarray to 
+//   the left of that index, and the subarray to the right of that index
+// ----------------------------------------------------------------------------------------------------------
+const quickSort = (arr, left = 0, right = arr.length -1) => {
+    if (left < right) {
+        let pivotIndex = pivot(arr, left, right) //3
+        //left
+        quickSort(arr,left,pivotIndex-1);
+        //right
+        quickSort(arr,pivotIndex+1,right);
+      }
+     return arr;
+} 
+console.log('Quick sort')
+console.log(quickSort([100,-3,2,4,6,9,1,2,5,3,23]))
+// [4,6,9,1,2,5,3]
+// [3,2,1,4,6,9,5]
+//        4
+//  3,2,1    6,9,5
+//      3      6
+//  2,1      5  9
+//    2
+//  1
+
+//                  | time complexity | time complexity | space          |
+//                  | (best)          | (worst)         | complexity     |
+// -----------------------------------------------------------------------
+// quick sort       |   O(n log n)    |     O(n^2)      |   O(n log n)   |
+// -----------------------------------------------------------------------
