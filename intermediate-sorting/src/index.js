@@ -243,5 +243,6 @@ console.log(radixSort([23,345,5467,12,2345,9852])) // [12,23,345,2345,5467,9852]
 //                  | time complexity | time complexity | time complexity | space          |
 //                  | (best)          | (average)       | (worst)         | complexity     |
 // -----------------------------------------------------------------------------------------
-// radix sort       |      O(nk)      |      O(nk)      |      O(nk)      |    O(n + K)    |
+// radix sort       |      O(nk)      |      O(nk)      |      O(nk)      |    O(n + k)    |
 // -----------------------------------------------------------------------------------------
+// NB: k = number of digits (word size)
