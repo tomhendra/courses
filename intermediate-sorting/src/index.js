@@ -183,3 +183,65 @@ console.log(quickSort([100,-3,2,4,6,9,1,2,5,3,23]))
 // -----------------------------------------------------------------------------------------
 // quick sort       |   O(n log n)    |     O(n^2)      |   O(n log n)   |     O(log n)    |
 // -----------------------------------------------------------------------------------------
+
+// ===========
+// RADIX SORT
+// ===========
+// - a special sorting algorithm that doesn't work on comparison (everything up until this point have been comparison algorithms)
+// - works on lists of numbers
+// - integer sort, much faster than comparisons!
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge notes - helper function
+// - in order to implement radix sort, it is useful to build a few helper functions first
+// - getDigit(num, place) - returns the digit in 'num' at the given 'place' value 
+// ----------------------------------------------------------------------------------------------------------
+const getDigit = (num, i) => {
+    return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
+  }
+  
+const digitCount = (num) => {
+    if (num === 0) return 1;
+    return Math.floor(Math.log10(Math.abs(num))) + 1;
+  }
+  
+const mostDigits = (nums) => {
+    let maxDigits = 0;
+    for (let i = 0; i < nums.length; i++) {
+      maxDigits = Math.max(maxDigits, digitCount(nums[i]));
+    }
+    return maxDigits;
+  }
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode - radixSort
+// - define a function hat accepts a list if numbers
+// - figure out how many digits the largest number has 
+// - loop from k = 0 up to this largest number of digits
+// - for each iteration of the loop:
+//     - create buckets or each digit (0 - 9)
+//     - place each number in the corresponding bucket based on its kth digit
+// - replace the existing array with values in our buckets, starting with 0 and going up to 9
+// - return list at end
+// ----------------------------------------------------------------------------------------------------------
+const radixSort = (nums) => {
+    let maxDigitCount = mostDigits(nums);
+    for (let k = 0; k < maxDigitCount; k++) {
+        let digitBuckets = Array.from({length: 10}, () => []);
+        for (let i = 0; i < nums.length; i++){
+            let digit = getDigit(nums[i],k);
+            digitBuckets[digit].push(nums[i]);
+        }
+        nums = [].concat(...digitBuckets);
+    }
+    return nums;
+}
+// test cases
+console.log('Radix sort')
+console.log(radixSort([23,345,5467,12,2345,9852])) // [12,23,345,2345,5467,9852]
+
+//                  | time complexity | time complexity | time complexity | space          |
+//                  | (best)          | (average)       | (worst)         | complexity     |
+// -----------------------------------------------------------------------------------------
+// radix sort       |      O(nk)      |      O(nk)      |      O(nk)      |    O(n + K)    |
+// -----------------------------------------------------------------------------------------
