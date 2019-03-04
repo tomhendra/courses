@@ -95,6 +95,28 @@ class SinglyLinkedList {
         }
         return oldHead;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- unshift
+// - this function should accept a value
+// - create a new node using the value passed to the function
+// - if there is no head property on the list, set the head and tail to be the newly created node
+// - otherwise set the newly created node's next property to be the current head property on the list
+// - set the head property on the list to be that newly created node
+// - increment the length of the list by 1
+// - return the linked list
+// ----------------------------------------------------------------------------------------------------------
+    unshift(val) {
+        var newNode = new Node(val)
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
 }
 let list = new SinglyLinkedList()
 list.push('hello')
@@ -103,4 +125,5 @@ list.push('!!')
 list.push('hello again')
 list.pop()
 list.shift()
+list.unshift('introduction')
 console.log(list)
