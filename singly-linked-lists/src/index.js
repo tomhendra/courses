@@ -16,16 +16,6 @@
 //     - insertion and deletion can be expensive
 //     - can quickly be accessed at a specific index
 
-// ----------------------------------------------------------------------------------------------------------
-// challenge pseudocode -- push
-// - the function should accept a value
-// - create a new node using the value passed to the function
-// - if there is no head property on the list, set the head and tail to be the newly created node
-// - otherwise set the next property on the tail to be the new node and set the tail property on the list to 
-//   be the newly created node
-// - increment the length by 1
-// - return the linked list
-// ----------------------------------------------------------------------------------------------------------
 class Node {
     constructor(val) {
         this.val = val;
@@ -39,6 +29,16 @@ class SinglyLinkedList {
         this.tail = null;
         this.length = 0;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- push
+// - the function should accept a value
+// - create a new node using the value passed to the function
+// - if there is no head property on the list, set the head and tail to be the newly created node
+// - otherwise set the next property on the tail to be the new node and set the tail property on the list to 
+//   be the newly created node
+// - increment the length by 1
+// - return the linked list
+// ----------------------------------------------------------------------------------------------------------
     push(val) {
         var newNode = new Node(val);
         if(!this.head) {
@@ -51,8 +51,36 @@ class SinglyLinkedList {
         this.length++;
         return this;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- pop
+// - if there are no nodes on the list, return undefined
+// - loop through the entire list until you reach the tail
+// - set the property of the 2nd to last node to be null
+// - set the tail to be the 2nd to last node
+// - decrement the length of the list by 1
+// - return the value of the node removed
+// ----------------------------------------------------------------------------------------------------------
+    pop() {
+        if (!this.head) return undefined;
+        var current = this.head;
+        var newTail = current;
+        while (current.next) {
+            newTail = current;
+            current = current.next;
+        }
+        this.tail = newTail;
+        this.tail.next = null;
+        this.length--;
+        if (this.length === 0) {
+            this.head = null;
+            this.tail = null;
+        }
+        return current;
+    }
 }
 let list = new SinglyLinkedList()
 list.push('hello')
 list.push('goodbye')
+list.push('!!')
+list.push('hello again')
 console.log(list)
