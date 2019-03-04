@@ -77,10 +77,30 @@ class SinglyLinkedList {
         }
         return current;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- shift
+// - if there are no nodes on the list, return undefined
+// - store the current head property in a variable
+// - set the head property to be the current head's next property
+// - decrement the length by 1
+// - return the value of the node removed
+// ----------------------------------------------------------------------------------------------------------
+    shift() {
+        if (!this.head) return undefined;
+        var oldHead = this.head;
+        this.head = oldHead.next;
+        this.length--;
+        if (this.length === 0) {
+            this.tail = null;
+        }
+        return oldHead;
+    }
 }
 let list = new SinglyLinkedList()
 list.push('hello')
 list.push('goodbye')
 list.push('!!')
 list.push('hello again')
+list.pop()
+list.shift()
 console.log(list)
