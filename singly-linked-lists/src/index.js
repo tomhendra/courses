@@ -133,6 +133,22 @@ class SinglyLinkedList {
         }
         return current;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- set
+// - this function should accept an index and a value
+// - use the get method to find the specific node
+// - if the node is not found return false
+// - if the node is found, set the value of that node to be the value passed to the function and return true
+// ----------------------------------------------------------------------------------------------------------
+    set(index, val) {
+        var foundNode = this.get(index);
+        if (foundNode) {
+            foundNode.val = val;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 let list = new SinglyLinkedList()
 list.push('hello')
@@ -143,5 +159,6 @@ list.push('<3')
 list.pop()
 list.shift()
 list.unshift('beginning')
+list.set(3, ':(')
 console.log(list)
 console.log(list.get(3))
