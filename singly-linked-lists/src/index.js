@@ -149,6 +149,30 @@ class SinglyLinkedList {
             return false;
         }
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- insert
+// - this function should accept an index and a value
+// - if the index is less than zero or greater than the length, return false
+// - if the index is the same as the length, push a new node to the end of the list
+// - if the index is 0, unshift a new node to the start of the list
+// - otherwise, using the get method, access the node at the index -1
+// - set the next property on that node to be the new node
+// - set the next property on the new node to be the previous next
+// - increment the length
+// ----------------------------------------------------------------------------------------------------------
+    insert(index, val) {
+        if (index < 0 || index > this.length) return false;
+        if (index === this.length) return !!this.push(val); // !! "bang bang" double negation operator coerces to boolean...interesting! 
+        if (index === 0) return !!this.unshift(val);
+        
+        var newNode = new Node(val)
+        var preNode = this.get(index - 1);
+        var temp = preNode.next;
+        preNode.next = newNode;
+        newNode.next = temp;
+        this.length++;
+        return true;
+    }
 }
 let list = new SinglyLinkedList()
 list.push('hello')
@@ -156,9 +180,7 @@ list.push('goodbye')
 list.push('!!')
 list.push(':)')
 list.push('<3')
-list.pop()
-list.shift()
-list.unshift('beginning')
-list.set(3, ':(')
+console.log(list.insert(3, ':D'))
 console.log(list)
 console.log(list.get(3))
+console.log(list.get(4))
