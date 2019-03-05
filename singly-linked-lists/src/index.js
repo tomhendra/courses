@@ -117,13 +117,31 @@ class SinglyLinkedList {
         this.length++;
         return this;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- get
+// - this function should accept an index
+// - if the index is less than zero or greater than or equal to the length of the list, return null
+// - loop through the list until you reach the index and return the node at that specific index
+// ----------------------------------------------------------------------------------------------------------
+    get(index) {
+        if (index < 0 || index >= this.length) return null;
+        var counter = 0;
+        var current = this.head;
+        while (counter !== index) {
+            current = current.next;
+            counter++;
+        }
+        return current;
+    }
 }
 let list = new SinglyLinkedList()
 list.push('hello')
 list.push('goodbye')
 list.push('!!')
-list.push('hello again')
+list.push(':)')
+list.push('<3')
 list.pop()
 list.shift()
-list.unshift('introduction')
+list.unshift('beginning')
 console.log(list)
+console.log(list.get(3))
