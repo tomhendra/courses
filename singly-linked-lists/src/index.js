@@ -164,7 +164,7 @@ class SinglyLinkedList {
         if (index < 0 || index > this.length) return false;
         if (index === this.length) return !!this.push(val); // !! "bang bang" double negation operator coerces to boolean...interesting! 
         if (index === 0) return !!this.unshift(val);
-        
+
         var newNode = new Node(val)
         var preNode = this.get(index - 1);
         var temp = preNode.next;
@@ -173,6 +173,27 @@ class SinglyLinkedList {
         this.length++;
         return true;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- remove
+// - this function should accept an index
+// - if the index is less than zero or greater than or equal to the length, return undefined
+// - if the index is the same as the length -1, pop
+// - if the index is 0, shift
+// - otherwise, using the get method, access the node at the index -1
+// - set the next property on that node to be the next of the next node
+// - decrement the length
+// - return the value of the node removed
+// ----------------------------------------------------------------------------------------------------------
+    remove(index) {
+        if (index < 0 || index >= this.length) return undefined;
+        if (index === this.length -1) return !!this.pop();
+        if (index === 0) return !!this.shift();
+        var preNode = this.get(index -1);
+        var removed = preNode.next;
+        preNode.next = removed.next;
+        this.length--;
+        return removed;
+    }
 }
 let list = new SinglyLinkedList()
 list.push('hello')
@@ -180,7 +201,7 @@ list.push('goodbye')
 list.push('!!')
 list.push(':)')
 list.push('<3')
-console.log(list.insert(3, ':D'))
+console.log(list.remove(3))
 console.log(list)
 console.log(list.get(3))
 console.log(list.get(4))
