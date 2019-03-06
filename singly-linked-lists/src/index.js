@@ -236,3 +236,13 @@ console.log(list.get(1))
 console.log(list.get(2))
 console.log(list.get(3))
 console.log(list.get(4))
+
+// -----------------------------------------------------------------------------------------
+//                     | insertion      | removal        | searching      | access         |
+// -----------------------------------------------------------------------------------------
+// singly linked lists |      O(1)      |  O(1) OR O(n)  |      O(n)      |      O(n)      |
+// -----------------------------------------------------------------------------------------
+
+// - singly linked lists are an excellent alternative to arrays when insertion and deletion at the beginning are frequently required
+// - arrays contain a built in index whereas linked lists do not
+// - the idea of a list data structure that consists of nodes is the foundation for other data structures like stacks and queues
