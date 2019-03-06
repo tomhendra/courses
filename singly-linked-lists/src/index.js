@@ -194,6 +194,34 @@ class SinglyLinkedList {
         this.length--;
         return removed;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- reverse
+// - swap the head and the tail
+// - create a variable called next
+// - create a variable called prev
+// - create a variable called node/current and initialize it to the head property
+// - loop through the list
+// - set next to be the next property on whatever node/current is
+// - set the next property on the node/current to whatever prev is
+// - set prev to be the value of the node/current variable
+// - set the node/current variable to be the value of the next variable
+// - return the list
+// ----------------------------------------------------------------------------------------------------------
+    reverse() {
+        var node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        var next = null;
+        var prev = null;
+
+        for (var i = 0; i < this.length; i++) {
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+        return this;
+    }
 }
 let list = new SinglyLinkedList()
 list.push('hello')
@@ -201,7 +229,10 @@ list.push('goodbye')
 list.push('!!')
 list.push(':)')
 list.push('<3')
-console.log(list.remove(3))
+list.reverse()
 console.log(list)
+console.log(list.get(0))
+console.log(list.get(1))
+console.log(list.get(2))
 console.log(list.get(3))
 console.log(list.get(4))
