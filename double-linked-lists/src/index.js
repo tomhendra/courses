@@ -89,6 +89,31 @@ class DoublyLinkedList {
         this.length--;
         return oldHead;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- unshift
+// - this function should accept a value
+// - create a new node using the value passed to the function
+// - if there is no head property on the list, set the head and tail to be the newly created node
+// - otherwise...
+//     - set the prev property on the head of the list to be the new node
+//     - set the next property on the new node to be the head property
+//     - update the head to be the new node
+// - increment the length of the list by 1
+// - return the linked list
+// ----------------------------------------------------------------------------------------------------------
+    unshift(val) {
+        var newNode = new Node(val)
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
 }
 let list = new DoublyLinkedList()
 list.push('hello')
@@ -96,5 +121,5 @@ list.push('goodbye')
 list.push('!!')
 list.push(':)')
 list.push('<3')
-list.shift()
+list.unshift('uhm, well')
 console.log(list)
