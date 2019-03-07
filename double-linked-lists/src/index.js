@@ -114,6 +114,37 @@ class DoublyLinkedList {
         this.length++;
         return this;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- get
+// - this function should accept an index
+// - if the index is less than zero or greater than or equal to the length of the list, return null
+// - if the index is less than or equal to half the length of the list...
+//     - loop through the list starting from the head and loop towards the middle
+//     - return the node once it is found
+// - if the index is greater than half the length of the list...
+//     - loop through the list starting from the tail and loop towards the middle
+//     - return the node once it is found
+// ----------------------------------------------------------------------------------------------------------
+    get(index) {
+        if (index < 0 || index >= this.length) return null;
+        var counter, current;
+        if (index <= this.length / 2) {
+            counter = 0;
+            current = this.head;
+            while (counter !== index) {
+                current = current.next;
+                counter++;
+            }
+        } else {
+            counter = this.length -1;
+            current = this.tail;
+            while (counter !== index) {
+                current = current.prev;
+                counter--;
+            }
+        }
+        return current;
+    }
 }
 let list = new DoublyLinkedList()
 list.push('hello')
@@ -121,5 +152,5 @@ list.push('goodbye')
 list.push('!!')
 list.push(':)')
 list.push('<3')
-list.unshift('uhm, well')
 console.log(list)
+console.log(list.get(3))
