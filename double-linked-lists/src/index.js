@@ -64,6 +64,31 @@ class DoublyLinkedList {
         this.length--;
         return poppedNode;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- shift
+// - if there are no nodes on the list, return undefined
+// - store the current head property in a variable oldHead
+// - if the length is 1, set the head and tail to be null
+// - update the head to be the next of the oldHead
+// - set the head's prev property to null
+// - set the oldHead's next to null
+// - decrement the length by 1
+// - return the value of the node removed
+// ----------------------------------------------------------------------------------------------------------
+    shift() {
+        if (!this.head) return undefined;
+        var oldHead = this.head;
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = oldHead.next;
+            this.head.prev = null;
+            oldHead.next = null;
+        }
+        this.length--;
+        return oldHead;
+    }
 }
 let list = new DoublyLinkedList()
 list.push('hello')
@@ -71,5 +96,5 @@ list.push('goodbye')
 list.push('!!')
 list.push(':)')
 list.push('<3')
-list.pop()
+list.shift()
 console.log(list)
