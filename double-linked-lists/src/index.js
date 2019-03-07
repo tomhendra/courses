@@ -39,6 +39,31 @@ class DoublyLinkedList {
         this.length++;
         return this;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- pop
+// - if there are no nodes on the list, return undefined
+// - store the current tail in a variable to return later
+// - if the length is 1, set the head and tail to be null
+// - update the tail to be the previous node
+// - set the newTail's next to null
+// - set the oldTail's prev to null
+// - decrement the length of the list by 1
+// - return the value removed
+// ----------------------------------------------------------------------------------------------------------
+    pop() {
+        if (!this.head) return undefined;
+        var poppedNode = this.tail;
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.tail = poppedNode.prev;
+            this.tail.next = null;
+            poppedNode.prev = null;
+        }
+        this.length--;
+        return poppedNode;
+    }
 }
 let list = new DoublyLinkedList()
 list.push('hello')
@@ -46,4 +71,5 @@ list.push('goodbye')
 list.push('!!')
 list.push(':)')
 list.push('<3')
+list.pop()
 console.log(list)
