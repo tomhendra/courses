@@ -163,6 +163,31 @@ class DoublyLinkedList {
             return false;
         }
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- insert
+// - this function should accept an index and a value
+// - if the index is less than zero or greater than the length, return false
+// - if the index is 0, unshift
+// - if the index is the same as the length, push 
+// - otherwise, using the get method, access the node at the index -1
+// - set the next and prev property on the correct nodes to link everything together
+// - increment the length
+// - return true
+// ----------------------------------------------------------------------------------------------------------
+    insert(index, val) {
+        if (index < 0 || index > this.length) return false;
+        if (index === 0) return !!this.unshift(val);
+        if (index === this.length) return !!this.push(val); // bang bang!! :)
+
+        var newNode = new Node(val)
+        var beforeNode = this.get(index - 1);
+        var afterNode = beforeNode.next;
+        beforeNode.next = newNode;
+        newNode.next = afterNode;
+        newNode.prev = beforeNode;
+        this.length++;
+        return true;
+    }
 }
 let list = new DoublyLinkedList()
 list.push('hello')
@@ -170,6 +195,6 @@ list.push('goodbye')
 list.push('!!')
 list.push(':)')
 list.push('<3')
-list.set(3, '(00)')
+list.insert(4, '(00)')
 console.log(list)
 console.log(list.get(3))
