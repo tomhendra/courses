@@ -182,9 +182,9 @@ class DoublyLinkedList {
         var newNode = new Node(val)
         var beforeNode = this.get(index - 1);
         var afterNode = beforeNode.next;
-        beforeNode.next = newNode;
-        newNode.next = afterNode;
-        newNode.prev = beforeNode;
+
+        beforeNode.next = newNode, newNode.prev = beforeNode;
+        newNode.next = afterNode, afterNode.prev = newNode;
         this.length++;
         return true;
     }
