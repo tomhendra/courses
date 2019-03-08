@@ -145,6 +145,24 @@ class DoublyLinkedList {
         }
         return current;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- set
+// - this function should accept an index and a value
+// - create a variable which is the result of the get method at the index passed to the function
+//     - if the get method returns a valid node, set the value of that node to be the value passed to the 
+//       function
+//     - return true
+// - otherwise return false
+// ----------------------------------------------------------------------------------------------------------
+    set(index, val) {
+        var foundNode = this.get(index);
+        if (foundNode) {
+            foundNode.val = val;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 let list = new DoublyLinkedList()
 list.push('hello')
@@ -152,5 +170,6 @@ list.push('goodbye')
 list.push('!!')
 list.push(':)')
 list.push('<3')
+list.set(3, '(00)')
 console.log(list)
 console.log(list.get(3))
