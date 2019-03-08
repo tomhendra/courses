@@ -188,6 +188,31 @@ class DoublyLinkedList {
         this.length++;
         return true;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- remove
+// - this function should accept an index
+// - if the index is less than zero or greater than or equal to the length, return undefined
+// - if the index is 0, shift
+// - if the index is the same as the length -1, pop
+// - otherwise, using the get method to retrieve he item to be removed
+// - update the next and prev properties to remove the found node from the list
+// - set the next and prev properties on the found node to null
+// - decrement the length
+// - return the node removed
+// ----------------------------------------------------------------------------------------------------------
+    remove(index) {
+        if (index < 0 || index >= this.length) return undefined;
+        if (index === 0) return !!this.shift();
+        if (index === this.length -1) return !!this.pop();
+
+        var removedNode = this.get(index);
+        removedNode.prev.next = removedNode.next;
+        removedNode.next.prev = removedNode.prev;
+        removedNode.prev = null;
+        removedNode.next = null;
+        this.length--;
+        return removedNode;
+    }
 }
 let list = new DoublyLinkedList()
 list.push('hello')
@@ -195,6 +220,5 @@ list.push('goodbye')
 list.push('!!')
 list.push(':)')
 list.push('<3')
-list.insert(4, '(00)')
+list.remove(3)
 console.log(list)
-console.log(list.get(3))
