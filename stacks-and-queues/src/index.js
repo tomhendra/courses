@@ -1,4 +1,7 @@
 // - both stacks & queues are both abstract data structures
+// =======
+// STACKS
+// =======
 // - stacks need to abide by a LIFO principle
 // - LIFO: Last In First Out -- the last element added to the stack will be the first element removed from the stack
 // - where are stacks used? 
@@ -82,3 +85,58 @@ console.log(stack)
 // - stacks are a LIFO data structure where the last value in is always the first one out
 // - stacks are used to handle function invocations (the call stack), or operations like undo / redo, and for routing (remember pages you have visited and go back/forward) plus much more!
 // - they are not a built in data structure in JavaScript but are relatively simple to implement
+
+// =======
+// QUEUES
+// =======
+// - data structure used to enqueue & dequeue data
+// - queues need to abide by a FIFO principle
+// - FIFO: First In First Out -- the first element added to the stack will be the first element removed from the queue
+// - where are queues used? 
+//     - background tasks
+//     - uploading resources
+//     - printing / task processing
+// - using arrays means having to combine unshift and pop or push and unshift, i.e. re-indexing, so using a custom class is best if performance is a concern
+
+// singly linked list implementation -- adds to the end and removes from the beginning to ensure constant time of O(1)
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class Queue {
+    constructor() {
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- enqueue 
+// - this function accepts some value
+// - create a new node using that value passed to the function
+// - if there are no nodes in the queue, set this node to be the first and last property of the queue
+// - otherwise, set the next property on the current last to be that node, and then set the last property of 
+//   the queue to be that node
+// - increment the size of the queue by 1
+// ----------------------------------------------------------------------------------------------------------
+    enqueue(val) {
+        var newNode = new Node(val);
+        if (!this.first){
+            this.first = newNode;
+            this.last = newNode;
+        } else {
+            this.last.next = newNode;
+            this.last = newNode;
+        }
+        return ++this.size;
+    }
+}
+var queue = new Queue()
+queue.enqueue('hello')
+queue.enqueue('goodbye')
+queue.enqueue('!!')
+queue.enqueue(':)')
+queue.enqueue('<3')
+console.log(queue)
