@@ -72,3 +72,13 @@ stack.push(':)')
 stack.push('<3')
 stack.pop()
 console.log(stack)
+
+// ---------------------------------------------------------------------------------
+//             | insertion      | removal        | searching      | access         |
+// ---------------------------------------------------------------------------------
+// stacks      |      O(1)      |      O(1)      |      O(n)      |      O(n)      |
+// ---------------------------------------------------------------------------------
+
+// - stacks are a LIFO data structure where the last value in is always the first one out
+// - stacks are used to handle function invocations (the call stack), or operations like undo / redo, and for routing (remember pages you have visited and go back/forward) plus much more!
+// - they are not a built in data structure in JavaScript but are relatively simple to implement
