@@ -132,6 +132,27 @@ class Queue {
         }
         return ++this.size;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- dequeue 
+// - if there is no first property, just return null
+// - store the first property in a variable
+// - see if the first is the same as the last (check if there is only 1 node). If so, set the first and last 
+//   to be null
+// - if there is more than 1 node, set the first property to be the next property of first 
+// - decrement the size by 1
+// - return the value of the node dequeued
+// ----------------------------------------------------------------------------------------------------------
+    dequeue() {
+        if (!this.first) return null;
+
+        var temp = this.first;
+        if (this.first === this.last) {
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size--;
+        return temp.value;
+    }
 }
 var queue = new Queue()
 queue.enqueue('hello')
@@ -139,4 +160,5 @@ queue.enqueue('goodbye')
 queue.enqueue('!!')
 queue.enqueue(':)')
 queue.enqueue('<3')
+queue.dequeue()
 console.log(queue)
