@@ -44,6 +44,25 @@ class Stack {
         }
         return ++this.size;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- pop
+// - if there are no nodes in the stack, return null
+// - create a temporary variable to store the first property on the stack
+// - if there is only 1 node, set the first and last property to be null
+// - f there is more than one node, set the first property to be the next property on the current first
+// - decrement size by 1
+// - return value of removed node
+// ----------------------------------------------------------------------------------------------------------
+    pop() {
+        if (!this.first) return null;
+        var temp = this.first;
+        if (this.first === this.last) {
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size--;
+        return temp.value;
+    }
 }
 var stack = new Stack
 stack.push('hello')
@@ -51,4 +70,5 @@ stack.push('goodbye')
 stack.push('!!')
 stack.push(':)')
 stack.push('<3')
+stack.pop()
 console.log(stack)
