@@ -12,7 +12,7 @@
 // - there is more than one way of implementing a stack
 
 // singly linked list implementation -- adds and removes from the beginning to ensure constant time of O(1)
-class Node {
+class StackNode {
     constructor(value) {
         this.value = value;
         this.next = null;
@@ -36,7 +36,7 @@ class Stack {
 // - return the size
 // ----------------------------------------------------------------------------------------------------------
     push(val) {
-        var newNode = new Node(val);
+        var newNode = new StackNode(val);
         if (!this.first) {
             this.first = newNode;
             this.last = newNode;
@@ -99,7 +99,7 @@ console.log(stack)
 // - using arrays means having to combine unshift and pop or push and unshift, i.e. re-indexing, so using a custom class is best if performance is a concern
 
 // singly linked list implementation -- adds to the end and removes from the beginning to ensure constant time of O(1)
-class Node {
+class QueueNode {
     constructor(value) {
         this.value = value;
         this.next = null;
@@ -122,7 +122,7 @@ class Queue {
 // - increment the size of the queue by 1
 // ----------------------------------------------------------------------------------------------------------
     enqueue(val) {
-        var newNode = new Node(val);
+        var newNode = new QueueNode(val);
         if (!this.first){
             this.first = newNode;
             this.last = newNode;
