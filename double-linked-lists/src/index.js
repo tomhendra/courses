@@ -213,6 +213,35 @@ class DoublyLinkedList {
         this.length--;
         return removedNode;
     }
+// ----------------------------------------------------------------------------------------------------------
+// (coding exercises 26-33 were repeats of the methods within this class above)
+// coding exercise 34 -- reverse (pseudocode taken from SLL)
+// - swap the head and the tail
+// - create a variable called next
+// - create a variable called prev
+// - create a variable called node/current and initialize it to the head property
+// - loop through the list
+// - set next to be the next property on whatever node/current is
+// - set the next property on the node/current to whatever prev is
+// - set prev to be the value of the node/current variable
+// - set the node/current variable to be the value of the next variable
+// - return the list
+// ----------------------------------------------------------------------------------------------------------
+    reverse() {
+        var node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        var next = null;
+        var prev = null;
+
+        for (var i = 0; i < this.length; i++) {
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+        return this;
+    }
 }
 let list = new DoublyLinkedList()
 list.push('hello')
@@ -221,4 +250,16 @@ list.push('!!')
 list.push(':)')
 list.push('<3')
 list.remove(3)
+list.reverse()
 console.log(list)
+
+// -----------------------------------------------------------------------------------------
+//                     | insertion      | removal        | searching      | access         |
+// -----------------------------------------------------------------------------------------
+// doubly linked lists |      O(1)      |      O(1)      |      O(n)      |      O(n)      |
+// -----------------------------------------------------------------------------------------
+
+// - technically searching is O(n/2) but still simplifies to O(n) !
+// - doubly linked lists are almost identical to singly linked lists except there is an additional pointer to previous nodes
+// - better than singly linked lists or finding nodes and can be done in half the time
+// - however, they do take up more memory considering the extra pointer
