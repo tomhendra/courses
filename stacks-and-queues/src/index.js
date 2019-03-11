@@ -162,3 +162,13 @@ queue.enqueue(':)')
 queue.enqueue('<3')
 queue.dequeue()
 console.log(queue)
+
+// ---------------------------------------------------------------------------------
+//             | insertion      | removal        | searching      | access         |
+// ---------------------------------------------------------------------------------
+// queues      |      O(1)      |      O(1)      |      O(n)      |      O(n)      |
+// ---------------------------------------------------------------------------------
+
+// - queues are a FIFO data structure, all elements are first in first out
+// - queues are useful for processing tasks and are foundational for more complex data structures
+// - insertion and Removal can be done in O(1)
