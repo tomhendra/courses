@@ -53,10 +53,55 @@ class BinarySearchTree {
     constructor() {
         this.root = null;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- insert
+// - create a new node
+// - starting at the root
+//     - check if there is a root, if not - the root now becomes that new node
+//     - if there is a root, check if the value of the new node is greater than or less than the root value
+//     - if it is greater
+//          - check if there is a node to the right
+//               - if there is, move to that node and repeat these steps
+//               - if there is not, add that node as the right property
+//     - if it is less
+//          - check if there is a node to the left
+//               - if there is, move to that node and repeat these steps
+//               - if there is not, add that node as the left property
+// - return tree
+// ----------------------------------------------------------------------------------------------------------
+    insert(value) {
+        var newNode = new Node(value);
+        if (this.root === null) {
+            this.root = newNode;
+            return this;
+        }
+        var current = this.root;
+        while (true) {
+            if (value === current.value) return undefined;
+            if (value < current.value) {
+                if (current.left === null) {
+                    current.left = newNode;
+                    return this;
+                }
+                current = current.left;
+            } else {
+                if (current.right === null) {
+                    current.right = newNode;
+                    return this;
+                } 
+                current = current.right;
+            }
+        }
+    }
 }
 
 var tree = new BinarySearchTree()
-tree.root = new Node(10)
-tree.root.right = new Node(15)
-tree.root.left = new Node(7)
-tree.root.left.right = new Node(9)
+tree.insert(50)
+tree.insert(40)
+tree.insert(30)
+tree.insert(45)
+tree.insert(25)
+tree.insert(65)
+tree.insert(78)
+tree.insert(99)
+console.log(tree)
