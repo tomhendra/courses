@@ -93,6 +93,38 @@ class BinarySearchTree {
             }
         }
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- search
+//  - starting at the root
+// - check if there is a root, if not - we're done searching!
+// - if there is a root, check if the value of the node is the value we are looking for. If we found it, 
+//   we're done!
+// - if not, check to see if the value is greater than or less than the value of the root
+// - if it is greater 
+//     - check to see if there is a node to the right
+//         - if there is, move to that node and repeat these steps
+//         - if there is not, we're done searching!
+// - if it is less
+//     - check to see if there is a node to the left
+//         - if there is, move to that node and repeat these steps
+//         - if there is not, we're done searching!
+// ----------------------------------------------------------------------------------------------------------
+    find(value) {
+        if (this.root === null) return false;
+        var current = this.root;
+        var found = false;
+        while (current && !found) {
+            if (value < current.value) {
+                current = current.left;
+            } else if (value > current.value) {
+                current = current.right;
+            } else {
+                found = true;
+            }
+        }
+        if (!found) return undefined;
+        return current;
+    }
 }
 
 var tree = new BinarySearchTree()
@@ -104,4 +136,6 @@ tree.insert(25)
 tree.insert(65)
 tree.insert(78)
 tree.insert(99)
+var search = tree.find(30)
 console.log(tree)
+console.log(search)
