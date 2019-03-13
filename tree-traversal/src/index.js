@@ -135,6 +135,28 @@ class BinarySearchTree {
         traverse(current);
         return data;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- DFS InOrder -- traverses entire left, then visits node, then traverses entire right
+// - create a variable to store the values of nodes visited
+// - create a variable called current & store the root of the BST in it
+// - write a helper function called traverse which accepts a node
+//     - if the node has a left property, call the helper function with the left property on the node
+//     - push the value of the node to the variable that stores the values
+//     - if the node has a right property, call the helper function with the right property on the node
+// - invoke the helper function with the current variable
+// - return the variable that stores the values
+// ----------------------------------------------------------------------------------------------------------
+    DFSInOrder() {
+        var data = [],
+            current = this.root;
+        var traverse = (node) => {
+            if (node.left) traverse(node.left);
+            data.push(node.value);
+            if (node.right) traverse(node.right);
+        }
+        traverse(current);
+        return data;
+    }
 }
 var tree = new BinarySearchTree()
 tree.insert(10)
@@ -143,6 +165,6 @@ tree.insert(15)
 tree.insert(3)
 tree.insert(8)
 tree.insert(20)
-var dfs = tree.DFSPostOrder()
+var dfs = tree.DFSInOrder()
 console.log(tree)
 console.log(dfs)
