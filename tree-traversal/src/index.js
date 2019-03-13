@@ -113,6 +113,28 @@ class BinarySearchTree {
         traverse(current);
         return data;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- DFS PostOrder -- explores all children before visiting nodes, with root being last
+// - create a variable to store the values of nodes visited
+// - create a variable called current & store the root of the BST in it
+// - write a helper function called traverse which accepts a node
+//     - if the node has a left property, call the helper function with the left property on the node
+//     - if the node has a right property, call the helper function with the right property on the node
+//     - push the value of the node to the variable that stores the values
+// - invoke the helper function with the current variable
+// - return the variable that stores the values
+// ----------------------------------------------------------------------------------------------------------
+    DFSPostOrder() {
+        var data = [],
+            current = this.root;
+        var traverse = (node) => {
+            if (node.left) traverse(node.left);
+            if (node.right) traverse(node.right);
+            data.push(node.value);
+        }
+        traverse(current);
+        return data;
+    }
 }
 var tree = new BinarySearchTree()
 tree.insert(10)
@@ -121,6 +143,6 @@ tree.insert(15)
 tree.insert(3)
 tree.insert(8)
 tree.insert(20)
-var dfs = tree.DFSPreOrder()
+var dfs = tree.DFSPostOrder()
 console.log(tree)
 console.log(dfs)
