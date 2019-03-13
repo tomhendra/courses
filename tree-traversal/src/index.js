@@ -168,3 +168,10 @@ tree.insert(20)
 var dfs = tree.DFSInOrder()
 console.log(tree)
 console.log(dfs)
+
+// - BFS or DFS -- which is better?
+// - time complexity is always the same
+// - if the tree is very wide, DFS would be better for space complexity
+// - if the tree is very narrow, BFS would be better for space complexity
+// - DFS InOrder is useful for retrieving ordered data
+// - DFS PreOrder is useful if you want to reconstruct or duplicate a tree in the same order it was before
