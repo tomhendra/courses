@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-    entry: ['babel-polyfill', './src/index.js'],
+    entry: ['@babel/polyfill', './src/index.js'],
     output: {
         path: path.resolve(__dirname, 'public/scripts'),
         filename: 'bundle.js'
@@ -13,7 +13,8 @@ module.exports = {
             use: {
                 loader: 'babel-loader',
                 options: {
-                    presets: ['env']
+                    presets: ['@babel/env'],
+                    plugins: ['@babel/proposal-object-rest-spread']
                 }
             }
         }]
