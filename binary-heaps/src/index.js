@@ -64,7 +64,7 @@ class MaxBinaryHeap {
 //     - keep looping and swapping until neither child is larger than the element
 //     - return the old root 
 // ----------------------------------------------------------------------------------------------------------
-    extractMax() {
+    extractMax() { 
         const max = this.values[0];
         const end = this.values.pop();
         if (this.values.length > 0) {
@@ -85,7 +85,7 @@ class MaxBinaryHeap {
 
             if (leftChildIdx < length) {
                 leftChild = this.values[leftChildIdx];
-                if (leftChild < element) {
+                if (leftChild > element) {
                     swap = leftChildIdx;
                 }
             }
@@ -114,5 +114,100 @@ heap.insert(18);
 heap.insert(27);
 heap.insert(12);
 heap.insert(55);
-console.log(heap.extractMax());
+heap.extractMax();
 console.log(heap);
+
+// ===============
+// PRIORITY QUEUE
+// ===============
+// - data structure where each element has a priority 
+// - elements with higher priorities are served before elements with lower priorities
+// - value doesn't matter - the heap is constructed using priority
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- priority queue
+// - write a MIN binary heap - lower number means higher priority
+// - each Node has a val and a priority.  Use the priority to build the heap
+// - enqueue method accepts a value and priority, makes a new node, and puts it in the right spot based off 
+//   of its priority
+// - dequeue method removes root element, returns it, and rearranges heap using priority
+// ----------------------------------------------------------------------------------------------------------
+
+class Node {
+    constructor(value, priority) {
+        this.value = value;
+        this.priority = priority;
+    }
+}
+class PriorityQueue {
+    constructor() {
+        this.values = [];
+    }
+    enqueue(value, priority) {
+        let newNode = new Node(value, priority);
+        this.values.push(newNode);
+        this.bubbleUp();
+    }
+    bubbleUp() {
+        let index = this.values.length -1;
+        const element = this.values[index];
+        while (index > 0) {
+            let parentIndex = Math.floor((index-1)/2);
+            let parentElement = this.values[parentIndex];
+            if (element.priority >= parentElement.priority) break;
+            this.values[parentIndex] = element;
+            this.values[index] = parentElement;
+            index = parentIndex;
+        }
+    }
+    dequeue() { 
+        const min = this.values[0];
+        const end = this.values.pop();
+        if (this.values.length > 0) {
+            this.values[0] = end;
+            this.bubbleDown();
+        }
+        return min;
+    }
+    bubbleDown() { 
+        let idx = 0;
+        const length = this.values.length;
+        const element = this.values[0];
+        while (true) {
+            let leftChildIdx = 2 * idx + 1;
+            let rightChildIdx = 2 * idx + 2;
+            let leftChild, rightChild;
+            let swap = null;
+
+            if (leftChildIdx < length) {
+                leftChild = this.values[leftChildIdx];
+                if (leftChild.priority < element.priority) {
+                    swap = leftChildIdx;
+                }
+            }
+            if (rightChildIdx < length) {
+                rightChild = this.values[rightChildIdx];
+                if (
+                    (swap === null && rightChild.priority < element.priority) || 
+                    (swap !== null && rightChild.priority < leftChild.priority)
+                ) {
+                    swap = rightChildIdx;
+                }
+            }
+            if (swap === null) break;
+            this.values[idx] = this.values[swap];
+            this.values[swap] = element;
+            idx = swap;
+        }
+    }
+}
+
+let admissions = new PriorityQueue();
+admissions.enqueue('missing limb', 1);
+admissions.enqueue('swallowed golf ball', 2);
+admissions.enqueue('broken fingernail', 50);
+admissions.enqueue('paper cut', 30);
+admissions.enqueue('hamster glued to foot', 5);
+admissions.enqueue('finger stuck up nose', 10);
+admissions.dequeue();
+console.log(admissions);
