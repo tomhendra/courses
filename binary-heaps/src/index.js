@@ -13,10 +13,12 @@
 // - each node can at most only have two children
 // - there is no order to the left or right, as with a binary search tree
 // - in a max binary heap, the parent is greater than the children, but there are no guarantees between sibling nodes
+// - in a min binary heap, the parent is less than than the children, but there are no guarantees between sibling nodes
 // - a binary heap is as compact as possible. all the children of each node are as full as they can be nd left children are filled out first
 // - no implied order between siblings - no relationship!
 // - binary heaps are used to implement priority queues, which are very commonly used data structures
 // - they are also used quite frequently for graph traversal
+// - with just a little bit of maths, we can represent heaps using arrays!
 
 class MaxBinaryHeap {
     constructor() {
@@ -211,3 +213,9 @@ admissions.enqueue('hamster glued to foot', 5);
 admissions.enqueue('finger stuck up nose', 10);
 admissions.dequeue();
 console.log(admissions);
+
+// --------------------------------------------------------------------
+//                   | insertion      | deletion      | search        |
+// --------------------------------------------------------------------
+// binary heaps      |    O(log n)    |    O(log n)   |     O(n)      |
+// --------------------------------------------------------------------
