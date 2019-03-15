@@ -135,6 +135,7 @@ class HashTable {
         }
         return keysArr;
     }
+
     values() {
         let valuesArr = [];
         for (let i = 0; i < this.keyMap.length; i++) {
@@ -159,3 +160,11 @@ class HashTable {
   ht.set("mediumvioletred","#C71585")
   ht.set("plum","#DDA0DD")
   console.log(ht);
+
+// ----------------------------------------------------------------------
+//                   | insertion      | deletion       | access         |
+// ----------------------------------------------------------------------
+// hash tables       |      O(1)      |      O(1)      |      O(1)      |
+// ----------------------------------------------------------------------
+// - comes down to how good the hash function is -- fast and distributes evenly
+// - a poor hash could be O(n)!
