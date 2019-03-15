@@ -25,3 +25,18 @@
 //     - fast (i.e. constant time)
 //     - doesn't cluster outputs  specific indices, but distributes uniformly
 //     - deterministic (same input yields same output)
+
+// basic hash function that works on strings only
+function hash (key, arrayLen) {
+    let total = 0;
+    for (let char of key) {
+      // map "a" to 1, "b" to 2, "c" to 3, etc.
+      let value = char.charCodeAt(0) - 96 // -96 gives alphabetical order of char
+      total = (total + value) % arrayLen; // using modulo ensures returned index is within specified array length
+    }
+    return total;
+  }
+
+  hash("pink", 10) // 0
+  hash("orange", 10) // 7
+  hash("cyan", 10) // 3
