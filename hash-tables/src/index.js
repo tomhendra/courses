@@ -73,7 +73,7 @@ function hash (key, arrayLen) {
 //     - unlike with separate chaining, this allows us to store  single key-value at each index
 
 class HashTable {
-    constructor(size=4) {
+    constructor(size=53) {
       this.keyMap = new Array(size);
     }
   
@@ -100,9 +100,27 @@ class HashTable {
         }
         this.keyMap[index].push([key, value]);
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- get
+// - accepts a key
+// - hashes the key
+// - retrieves the key-value pair in the hash table array
+// - of they key isn't found, return undefined
+// ----------------------------------------------------------------------------------------------------------
+    get(key) {
+        let index = this._hash(key);
+        if (this.keyMap[index]) {
+            for (let i = 0; i < this.keyMap[index].length; i++) {
+                if (this.keyMap[index][i][0] === key) {
+                return this.keyMap[index][i][1];
+                }
+            }
+        }
+        return undefined;
+    }
   }
 
-  let ht = new HashTable(17);
+  let ht = new HashTable();
   ht.set("maroon","#800000")
   ht.set("yellow","#FFFF00")
   ht.set("olive","#808000")
