@@ -27,7 +27,7 @@
 //     - deterministic (same input yields same output)
 
 // basic hash function that works on strings only
-function hash (key, arrayLen) {
+function hashSimple (key, arrayLen) {
     let total = 0;
     for (let char of key) {
       // map "a" to 1, "b" to 2, "c" to 3, etc.
@@ -37,6 +37,26 @@ function hash (key, arrayLen) {
     return total;
   }
 
-  hash("pink", 10) // 0
-  hash("orange", 10) // 7
-  hash("cyan", 10) // 3
+  hashSimple("pink", 10) // 0
+  hashSimple("orange", 10) // 7
+  hashSimple("cyan", 10) // 3
+
+// - refining our hash functions - there are problems:
+//     - only hashes strings
+//     - not constant time - linear in key length
+//     - could be a little more random
+function hash (key, arrayLen) {
+    let total = 0;
+    let WEIRD_PRIME = 31;
+    for (let i = 0; i < Math.min(key.length, 100); i++) { // whichever is smaller between key length & first 100 chars will be what is looped
+      let char = key[i];
+      let value = char.charCodeAt(0) - 96
+      total = (total * WEIRD_PRIME + value) % arrayLen;
+    }
+    return total;
+  }
+// - why prime numbers? it's complicated!
+//     - the prime number is useful in spreading out the keys more uniformly 
+//     - it's also helpful if the array being added to has a prime length
+//     - you don't need to know why (the maths is complicated!) 
+// - use an array length that is prime to avoid collisions!
