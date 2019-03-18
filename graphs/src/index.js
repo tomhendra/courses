@@ -99,13 +99,33 @@ class Graph {
             v => v !== vertex1
         );
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- removing a vertex
+// - this function should accept a vertex to remove
+// - the function should loop as long as there are ny other vertices in the adjacency list for that vertex
+// - inside of the loop call the removeEdge method with the vertex being removed nd any values in the 
+//   adjacency list for that vertex
+// - delete the key in the adjacency list for that vertex
+// - don't worry about handling errors / invalid vertices
+// ----------------------------------------------------------------------------------------------------------
+    removeVertex(vertex) {
+        while (this.adjacencyList[vertex].length) {
+            const adjacentVertex = this.adjacencyList[vertex].pop();
+            this.removeEdge(vertex, adjacentVertex);
+        }
+        delete this.adjacencyList[vertex];
+    }
 }
 let graph = new Graph;
 graph.addVertex("Salamanca");
 graph.addVertex("Malaga");
 graph.addVertex("Sevilla");
+graph.addVertex("Cordoba");
+graph.addVertex("Granada");
 graph.addEdge("Salamanca", "Malaga");
 graph.addEdge("Salamanca", "Sevilla");
-graph.addEdge("Malaga", "Sevilla");
-graph.removeEdge("Malaga", "Sevilla");
+graph.addEdge("Cordoba", "Sevilla");
+graph.addEdge("Granada", "Salamanca");
+graph.addEdge("Granada", "Malaga");
+graph.removeVertex("Salamanca");
 console.log(graph);
