@@ -73,7 +73,21 @@ class Graph {
     addVertex(vertex) {
         if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- adding an edge
+// - this function should accept two vertices, we can call them vertex1 and vertex2
+// - the function should find in the adjacency list the key of vertex1 and push vertex2 to the array
+// - the function should find in the adjacency list the key of vertex2 and push vertex1 to the array
+// - don't worry about handling errors / invalid vertices
+// ----------------------------------------------------------------------------------------------------------
+    addEdge(vertex1, vertex2) {
+        this.adjacencyList[vertex1].push(vertex2);
+        this.adjacencyList[vertex2].push(vertex1);
+    }
 }
 let graph = new Graph;
 graph.addVertex("Salamanca");
+graph.addVertex("Malaga");
+graph.addVertex("Sevilla");
+graph.addEdge("Salamanca", "Malaga");
 console.log(graph);
