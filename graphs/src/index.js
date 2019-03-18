@@ -59,3 +59,21 @@
 //   can be slower to lookup |  faster to lookup        |
 //   specific edge           |  specific edge           |
 // ------------------------------------------------------
+
+// - implementation: undirected graph using an adjacency list
+class Graph {
+    constructor() {
+        this.adjacencyList = {}
+    }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- adding a vertex
+// - write a method called addVertex which accepts a name of a vertex
+// - it should add a key to the adjacency list with the name of the vertex nd set its value as an empty array
+// ----------------------------------------------------------------------------------------------------------
+    addVertex(vertex) {
+        if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+    }
+}
+let graph = new Graph;
+graph.addVertex("Salamanca");
+console.log(graph);
