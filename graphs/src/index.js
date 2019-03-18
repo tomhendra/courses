@@ -84,10 +84,28 @@ class Graph {
         this.adjacencyList[vertex1].push(vertex2);
         this.adjacencyList[vertex2].push(vertex1);
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- removing an edge
+// - this function should accept two vertices, we can call them vertex1 and vertex2
+// - the function should reassign the key of vertex1 to be an array that does not contain vertex 2
+// - the function should reassign the key of vertex2 to be an array that does not contain vertex 1
+// - don't worry about handling errors / invalid vertices
+// ----------------------------------------------------------------------------------------------------------
+    removeEdge(vertex1, vertex2) {
+        this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
+            v => v !== vertex2
+        );
+        this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
+            v => v !== vertex1
+        );
+    }
 }
 let graph = new Graph;
 graph.addVertex("Salamanca");
 graph.addVertex("Malaga");
 graph.addVertex("Sevilla");
 graph.addEdge("Salamanca", "Malaga");
+graph.addEdge("Salamanca", "Sevilla");
+graph.addEdge("Malaga", "Sevilla");
+graph.removeEdge("Malaga", "Sevilla");
 console.log(graph);
