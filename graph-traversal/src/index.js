@@ -132,6 +132,38 @@ class Graph {
         }
         return result;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- BFS
+// - the function should accept a starting vertex
+// - create a queue (can use array) and place the starting vertex in it
+// - create an array to store the nodes visited
+// - create an object to store nodes visited
+// - mark the starting vertex as visited
+// - loop as long as there is anything in the queue
+// - remove the first vertex from the queue and push it into the array that stores nodes visited
+// - loop over each vertex in the adjacency list for the vertex you are visiting.
+// - if it is not inside the object that stores nodes visited, mark it as visited and enqueue that vertex
+// - once you have finished looping, return the array of visited nodes
+// ----------------------------------------------------------------------------------------------------------
+    breadthFirst(start) {
+        const queue = [start];
+        const result = [];
+        const visited = {};
+        let currentVertex;
+
+        visited[start] = true;
+        while (queue.length) {
+            currentVertex = queue.shift();
+            result.push(currentVertex);
+            this.adjacencyList[currentVertex].forEach(neighbour => {
+                if (!visited[neighbour]) {
+                    visited[neighbour] = true;
+                    queue.push(neighbour)
+                }
+            })
+        }
+        return result;
+    }
 }
 const g = new Graph
 g.addVertex("A")
@@ -151,3 +183,4 @@ g.addEdge("E","F")
 console.log(g)
 console.log(g.depthFirstRecursive("A"))
 console.log(g.depthFirstIterative("A"))
+console.log(g.breadthFirst("A"))
