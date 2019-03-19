@@ -14,6 +14,9 @@
 //         - GPS navigation 
 //         - solving mazes
 //         - AI (shortest path to win a game)
+//
+// BFS - explore as far as possible down one branch before "backtracking"
+// DFS - visit neighbors at current depth first!
 
 // ----------------------------------------------------------------------------------------------------------
 // the following code is copied from the graphs section, to provide a graph data structure to work with
@@ -54,7 +57,7 @@ class Graph {
 //     - if neighbour is not visited
 //         - recursively call DFS on neighbour
 //
-// challenge pseudocode -- DFS recursive
+// challenge pseudocode -- DFS recursive (detailed)
 // - the function should accept a starting node
 // - create a list to store the result that will return at the very end
 // - create an object to store the visited vertices
@@ -83,6 +86,52 @@ class Graph {
         }) (start);
         return result;
     }
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- DFS iterative (simple)
+// - DFS-iterative(start):
+//     - let S be a stack
+//     - S.push(start)
+//     - while S is not empty
+//         - vertex = S.pop()
+//         - if vertex is not labeled as discovered:
+//             - visit vertex (add to result list)
+//             - label vertex as discovered
+//             - for each of vertex's neighbours, N do 
+//                 - S.push(N)
+//
+// challenge pseudocode -- DFS iterative (detailed)
+// - the function should accept a starting node
+// - create a stack to help use keep track of vertices (use a list/array)
+// - create a list to store the end result, to be returned at the very end
+// - create an object to store visited vertices
+// - add the starting vertex to the stack, and mark it visited
+// - while the stack has something in it:
+//     - pop the next vertex from the stack
+//     - add it to the result list
+//     - if that vertex hasn't been visited yet:
+//         - ​mark it as visited
+//         - push all of its neighbors into the stack
+// - return the result array
+// ----------------------------------------------------------------------------------------------------------
+    depthFirstIterative(start) {
+        const stack = [start];
+        const result = [];
+        const visited = {};
+        let currentVertex;
+
+        visited[start] = true;
+        while (stack.length) {
+            currentVertex = stack.pop();
+            result.push(currentVertex);
+            this.adjacencyList[currentVertex].forEach(neighbour => {
+                if (!visited[neighbour]) {
+                    visited[neighbour] = true;
+                    stack.push(neighbour)
+                }
+            })
+        }
+        return result;
+    }
 }
 const g = new Graph
 g.addVertex("A")
@@ -101,3 +150,4 @@ g.addEdge("D","F")
 g.addEdge("E","F")
 console.log(g)
 console.log(g.depthFirstRecursive("A"))
+console.log(g.depthFirstIterative("A"))
