@@ -19,22 +19,78 @@
 //      the starting node
 // - 4. if the new total distance to a node is less than the previous total, we store the new shorter distance for that node
 
-// priority queue setup:
+// ----------------------------------------------------------------------------------------------------------
+// optimization by using the priority queue from binary heaps section previously covered, which is much 
+// faster than a naive version using an array
+// ----------------------------------------------------------------------------------------------------------
+class Node {
+    constructor(value, priority) {
+        this.value = value;
+        this.priority = priority;
+    }
+}
 class PriorityQueue {
     constructor() {
-      this.values = [];
+        this.values = [];
     }
-    enqueue(val, priority) {
-      this.values.push({val, priority});
-      this.sort();
-    };
-    dequeue() {
-      return this.values.shift();
-    };
-    sort() { // notice we are sorting which is O(N * log(N))
-      this.values.sort((a, b) => a.priority - b.priority);
-    };
-  }
+    enqueue(value, priority) {
+        let newNode = new Node(value, priority);
+        this.values.push(newNode);
+        this.bubbleUp();
+    }
+    bubbleUp() {
+        let index = this.values.length -1;
+        const element = this.values[index];
+        while (index > 0) {
+            let parentIndex = Math.floor((index-1)/2);
+            let parentElement = this.values[parentIndex];
+            if (element.priority >= parentElement.priority) break;
+            this.values[parentIndex] = element;
+            this.values[index] = parentElement;
+            index = parentIndex;
+        }
+    }
+    dequeue() { 
+        const min = this.values[0];
+        const end = this.values.pop();
+        if (this.values.length > 0) {
+            this.values[0] = end;
+            this.bubbleDown();
+        }
+        return min;
+    }
+    bubbleDown() { 
+        let idx = 0;
+        const length = this.values.length;
+        const element = this.values[0];
+        while (true) {
+            let leftChildIdx = 2 * idx + 1;
+            let rightChildIdx = 2 * idx + 2;
+            let leftChild, rightChild;
+            let swap = null;
+
+            if (leftChildIdx < length) {
+                leftChild = this.values[leftChildIdx];
+                if (leftChild.priority < element.priority) {
+                    swap = leftChildIdx;
+                }
+            }
+            if (rightChildIdx < length) {
+                rightChild = this.values[rightChildIdx];
+                if (
+                    (swap === null && rightChild.priority < element.priority) || 
+                    (swap !== null && rightChild.priority < leftChild.priority)
+                ) {
+                    swap = rightChildIdx;
+                }
+            }
+            if (swap === null) break;
+            this.values[idx] = this.values[swap];
+            this.values[swap] = element;
+            idx = swap;
+        }
+    }
+}
 
 class WeightedGraph {
     constructor() {
@@ -86,7 +142,7 @@ class WeightedGraph {
         }
         // as long as there is something to visit
         while (nodes.values.length){
-            smallest = nodes.dequeue().val;
+            smallest = nodes.dequeue().value;
             if (smallest === finish) {
                 //WE ARE DONE
                 //BUILD UP PATH TO RETURN AT END
