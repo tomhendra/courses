@@ -21,8 +21,24 @@
 // - fib(1) = 1
 // - fib(2) = 1
 // ----------------------------------------------------------------------------------------------------------
-const fib = (n) => {
+const fibPlain = (n) => {
     if (n <= 2) return 1;
     return fib(n-1) + fib(n-2);
 }
-console.log(fib(10))
+console.log(fibPlain(10));
+// - plain recursion solution is O(2^n) - exponential! - very bad!
+// - repeats calculations again and again and again...
+
+// - enter dynamic programming: using past knowledge to make solving a future problem easier
+// - one strategy is called memoization
+//     - storing the results of expensive function calls and returning the cached result when the same inputs occur again
+// - fibonacci memoized solution:
+const fib = (n, memo=[]) => {
+    if (memo[n] !== undefined) return memo[n];
+    if (n <= 2) return 1;
+    var res = fib(n-1, memo) + fib(n-2, memo);
+    memo[n] = res;
+    return res;
+  }
+  console.log(fib(100));
+  // - memoized solution is O(n) - MUCH better!
