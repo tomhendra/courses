@@ -23,22 +23,36 @@
 // ----------------------------------------------------------------------------------------------------------
 const fibPlain = (n) => {
     if (n <= 2) return 1;
-    return fib(n-1) + fib(n-2);
+    return fibPlain(n-1) + fibPlain(n-2);
 }
 console.log(fibPlain(10));
 // - plain recursion solution is O(2^n) - exponential! - very bad!
 // - repeats calculations again and again and again...
-
+// ----------------------------------------------------------------------------------------------------------
 // - enter dynamic programming: using past knowledge to make solving a future problem easier
-// - one strategy is called memoization
+// - one strategy is called memoization - bottom-down implementation
 //     - storing the results of expensive function calls and returning the cached result when the same inputs occur again
 // - fibonacci memoized solution:
-const fib = (n, memo=[]) => {
+const fibMemo = (n, memo=[]) => {
     if (memo[n] !== undefined) return memo[n];
     if (n <= 2) return 1;
-    var res = fib(n-1, memo) + fib(n-2, memo);
+    var res = fibMemo(n-1, memo) + fibMemo(n-2, memo);
     memo[n] = res;
     return res;
   }
-  console.log(fib(100));
-  // - memoized solution is O(n) - MUCH better!
+  console.log(fibMemo(100));
+// - memoized solution is O(n) - MUCH better!
+// ----------------------------------------------------------------------------------------------------------
+// - tabulation - bottom-up implementation
+//     - storing the result of a previous result in a "table" (usually an array)
+//     - usually done using iteration
+//     - better space complexity can be achieved using tabulation
+const fibTab = (n) => {
+    if (n <= 2) return 1;
+    var fibNums = [0,1,1];
+    for (var i = 3; i <= n; i++) {
+        fibNums[i] = fibNums[i-1] + fibNums[i-2];
+    }
+    return fibNums;
+}
+// - tabulated solution is time complexity O(n), but has better space complexity than memoized solution
