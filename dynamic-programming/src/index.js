@@ -14,3 +14,15 @@
 //
 // - optimal substructure
 //     - a problem is said to have optimal substructure if an optimal solution can be constructed from optimal solutions of its subproblems
+
+// ----------------------------------------------------------------------------------------------------------
+// challenge pseudocode -- fibonacci sequence - plain recursion
+// - fib(n) = fib(n-1) + fib(n-2)
+// - fib(1) = 1
+// - fib(2) = 1
+// ----------------------------------------------------------------------------------------------------------
+const fib = (n) => {
+    if (n <= 2) return 1;
+    return fib(n-1) + fib(n-2);
+}
+console.log(fib(10))
