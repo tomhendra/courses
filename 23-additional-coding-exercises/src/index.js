@@ -39,7 +39,13 @@ class SinglyLinkedList {
     rotate(val) {
         var node;
         if (val > this.length || val === 0) return this;
-        if (val < 0) val = val + this.length;
+        // adding this.length to val allows for negative numbers, as you can only iterate one way
+        // the following values of val arrive at the same result (as good old pen and paper showed!)
+        // 1 and -4
+        // 2 and -3
+        // 3 and -2
+        // 4 and -1
+        if (val < 0) val = val + this.length; 
         for (let i = 0; i < val; i++) {
             node = this.head;
             this.head = this.head.next;
@@ -50,10 +56,10 @@ class SinglyLinkedList {
         return this;
     }
 }
-const list = new SinglyLinkedList
-list.push(1).push(2).push(3).push(4).push(5)
-list.rotate(-2)
-console.log(list)
+// const list = new SinglyLinkedList
+// list.push(1).push(2).push(3).push(4).push(5)
+// list.rotate(-2)
+// console.log(list)
 
 // ----------------------------------------------------------------------------------------------------------
 // coding exercise 40 is a repeat of the set method covered in SLL section
@@ -63,7 +69,6 @@ console.log(list)
 // the array.
 // time complexity: O(log n)
 // ----------------------------------------------------------------------------------------------------------
-
 function countZeroes(array) {
     let min = 0
     let max = array.length - 1
@@ -78,8 +83,28 @@ function countZeroes(array) {
     }
     return zeroes;
 }
-
 // console.log(countZeroes([1,1,1,1,0,0])) // 2
 // console.log(countZeroes([1,0,0,0,0])) // 4
 // console.log(countZeroes([0,0,0])) // 3
 // console.log(countZeroes([1,1,1,1])) // 0
+
+// ----------------------------------------------------------------------------------------------------------
+// coding exercise 42 --- divide & conquer - sortedFrequency
+// given a sorted array and a number, write a function which counts the occurrences of number in the array
+// ----------------------------------------------------------------------------------------------------------
+function sortedFrequency(array, num) {
+    let result = 0;
+    const getFrequency = (arr) => {
+        if (arr.length > 1) {
+            let middle = Math.floor(arr.length / 2);
+            return getFrequency(arr.slice(0,middle)) + getFrequency(arr.slice(middle));
+        }
+        if (arr.length === 1 && arr[0] === num) result++;
+    }
+    getFrequency(array);
+    return !result ? -1 : result;
+}
+console.log(sortedFrequency([1,1,2,2,2,2,3],2)) // 4
+console.log(sortedFrequency([1,1,2,2,2,2,3],3)) // 1
+console.log(sortedFrequency([1,1,2,2,2,2,3],1)) // 2
+console.log(sortedFrequency([1,1,2,2,2,2,3],4)) // -1
