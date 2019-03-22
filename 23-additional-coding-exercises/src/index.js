@@ -37,11 +37,22 @@ class SinglyLinkedList {
         return this;
     }
     rotate(val) {
-        
+        var node;
+        if (val > this.length || val === 0) return this;
+        if (val < 0) val = val + this.length;
+        for (let i = 0; i < val; i++) {
+            node = this.head;
+            this.head = this.head.next;
+            this.tail.next = node;
+            this.tail = node;
+            this.tail.next = null;
+        }
+        return this;
     }
 }
 const list = new SinglyLinkedList
 list.push(1).push(2).push(3).push(4).push(5)
+list.rotate(-2)
 console.log(list)
 
 // ----------------------------------------------------------------------------------------------------------
@@ -56,14 +67,16 @@ console.log(list)
 function countZeroes(array) {
     let min = 0
     let max = array.length - 1
-    let zeros = 0
+    let zeroes = 0
 
     while (min <= max) {
         if (array[min] === 1) min++;
-        if (array[max] === 0) zeros++;
-        max--;
+        if (array[max] === 0) {
+            zeroes++;
+            max--;
+        }
     }
-    return zeros;
+    return zeroes;
 }
 
 // console.log(countZeroes([1,1,1,1,0,0])) // 2
