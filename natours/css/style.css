@@ -1,195 +1,178 @@
-/*
-COLORS:
-
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
-
-*/
-
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-}
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
 
 html {
-    font-size: 62.5% /*  sets root font size as 10px (16px default = 16 / 10 * 100) to make life easier calculating rem. bad practice to specify px explicitly as user can't change font size */
-}
+  font-size: 62.5%; }
 
 body {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.7;
-    color: #777;
-    padding: 3rem; /* adds 30px 'frame' to body */
-    box-sizing: border-box; /* best practice to add box-sizing to body and use inherit on universal selector, to assist with plugins which may rely on this property */
-}
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  padding: 3rem;
+  /* adds 30px 'frame' to body */
+  box-sizing: border-box;
+  /* best practice to add box-sizing to body and use inherit on universal selector, to assist with plugins which may rely on this property */ }
 
 .header {
-    height: 95vh;
-    background-image: linear-gradient( /* gradient always on top of image for overlay */
-        to right bottom, 
-        rgba(126, 213, 111, 0.8), 
-        rgba(40, 180, 131, 0.8)), 
-        url(../img/hero.jpg);
-    background-size: cover;
-    background-position: top;
-    position: relative; /* enables absolute positioning of the logo container */
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* clip path using polygon coordinates x y -- research more! */
-}
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  /* enables absolute positioning of the logo container */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /* clip path using polygon coordinates x y -- research more! */ }
 
 .header__logo-box {
-    position: absolute; /* parent element must be set to relative for absolute positioning to work */
-    top: 4rem; /* position relative to parent element */
-    left: 4rem;
-}
+  position: absolute;
+  /* parent element must be set to relative for absolute positioning to work */
+  top: 4rem;
+  /* position relative to parent element */
+  left: 4rem; }
 
 .header__logo {
-    height: 3.5rem; /* always better to control height of elements so width can be automatically adjusted */
-}
+  height: 3.5rem;
+  /* always better to control height of elements so width can be automatically adjusted */ }
 
 .header__text-box {
-    position: absolute;
-    top: 40%; 
-    left: 50%;
-    transform: translate(-50%, -50%); /* centers div - transforms by 50% of the text-box element's height and width */
-    text-align: center; /* centers button */
-}
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* centers div - transforms by 50% of the text-box element's height and width */
+  text-align: center;
+  /* centers button */ }
 
 .heading-primary {
-    color: #fff;
-    text-transform: uppercase;
-    backface-visibility: hidden; /* because this entire element is being animated due to its children animations, this trick fixes any wobbles in the animation that may occur */
-    margin-bottom: 6rem; /* pushes button down */
-}
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /* because this entire element is being animated due to its children animations, this trick fixes any wobbles in the animation that may occur */
+  margin-bottom: 6rem;
+  /* pushes button down */ }
 
 .heading-primary--main {
-    display: block; /* span elements are inline by default. block elements occupy all space available and create line breaks */
-    font-size: 6rem;
-    font-weight: 700;
-    letter-spacing: 3.5rem;
-    /* 2 animation properties that are required for an animation to work...  */
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    /* other essentials...  */
-    animation-timing-function: ease-out;
-    /*
+  display: block;
+  /* span elements are inline by default. block elements occupy all space available and create line breaks */
+  font-size: 6rem;
+  font-weight: 700;
+  letter-spacing: 3.5rem;
+  /* 2 animation properties that are required for an animation to work...  */
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  /* other essentials...  */
+  animation-timing-function: ease-out;
+  /*
     animation-delay: 3s; 
     animation-iteration-count: 3;
-    */
-}
+    */ }
 
 .heading-primary--sub {
-    display: block;
-    font-size: 2rem;
-    font-weight: 400;
-    letter-spacing: 1.75rem;
-    animation: moveInRight 1s ease-out; /* shorthand notation for animation properties using keyframes */
-}
+  display: block;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 1.75rem;
+  animation: moveInRight 1s ease-out;
+  /* shorthand notation for animation properties using keyframes */ }
 
 /* it's best to only ever animate two properties, to ensure acceptable browser performance. 
    1: opacity
    2: transform 
    -- these are what browsers are optimized for... */
-@keyframes moveInLeft { 
-    0% {
-        opacity: 0;
-        transform: translateX(-10rem);
-    }
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
 
-    80% {
-        transform: translateX(1rem);
-    }
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes moveInRight { 
-    0% {
-        opacity: 0;
-        transform: translateX(10rem);
-    }
-
-    80% {
-        transform: translateX(-1rem);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(0);
-    }
-}
-
-@keyframes moveInBottom { 
-    0% {
-        opacity: 0;
-        transform: translateY(3rem);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(0);
-    }
-}
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
 .btn:link,
-.btn:visited { /* pseudo class: to style elements under a special condition */
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 1.5rem 4rem;
-    display: inline-block; /* inline-block is treated as if it were text, so can be aligned as such in the parent element */
-    border-radius: 10rem;
-    transition: all .2s; /* shorthand - must be on the initial state */
-    position: relative; /* allows btn::after pseudo element to have absolute positioning */
-    font-size: 1.6rem;
-}
+.btn:visited {
+  /* pseudo class: to style elements under a special condition */
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  /* inline-block is treated as if it were text, so can be aligned as such in the parent element */
+  border-radius: 10rem;
+  transition: all .2s;
+  /* shorthand - must be on the initial state */
+  position: relative;
+  /* allows btn::after pseudo element to have absolute positioning */
+  font-size: 1.6rem; }
 
 .btn:hover {
-    transform: translateY(-0.3rem);
-    box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
-}
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
 
-.btn:active { /* click state */
-    transform: translateY(-1px);
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
-
-}
+.btn:active {
+  /* click state */
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
 
 .btn--white {
-    background-color: #fff;
-    color: #777;
-}
+  background-color: #fff;
+  color: #777; }
 
 .btn::after {
-    content: ""; /* content property must always be present, even if empty, otherwise after pseudo element won't appear */
-    display: inline-block; /* display property also necessary */
-    height: 100%; /* ensures same size as btn */
-    width: 100%; /* ensures same size as btn */
-    border-radius: 100px; /* ensures same border-radius as btn */
-    position: absolute; /* ensures same position as btn */
-    top: 0; /* ensures same position as btn */
-    left: 0; /* ensures same position as btn */
-    z-index: -1; /* keeps behind original */
-    transition: all .4s; /* activates scale & fade */
-}
+  content: "";
+  /* content property must always be present, even if empty, otherwise after pseudo element won't appear */
+  display: inline-block;
+  /* display property also necessary */
+  height: 100%;
+  /* ensures same size as btn */
+  width: 100%;
+  /* ensures same size as btn */
+  border-radius: 100px;
+  /* ensures same border-radius as btn */
+  position: absolute;
+  /* ensures same position as btn */
+  top: 0;
+  /* ensures same position as btn */
+  left: 0;
+  /* ensures same position as btn */
+  z-index: -1;
+  /* keeps behind original */
+  transition: all .4s;
+  /* activates scale & fade */ }
 
 .btn--white::after {
-    background-color: #fff; /* ensures same colour as btn */
-}
+  background-color: #fff;
+  /* ensures same colour as btn */ }
 
 .btn:hover::after {
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
-}
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0; }
 
 .btn--animated {
-    animation: moveInBottom .5s ease-out .75s; /* last value is delay */
-    animation-fill-mode: backwards; /* automatically applies the styles specified at 0% before the animation starts */
-}
+  animation: moveInBottom .5s ease-out .75s;
+  /* last value is delay */
+  animation-fill-mode: backwards;
+  /* automatically applies the styles specified at 0% before the animation starts */ }
