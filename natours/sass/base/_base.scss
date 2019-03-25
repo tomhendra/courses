@@ -1,0 +1,16 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5% // defines what 1ren is: sets root font size as 10px (16px browser default = 16 / 10 * 100) to make life easier calculating rem. bad practice to specify px explicitly as user can't change font size
+}
+
+body {
+    padding: 3rem; // adds 30px 'frame' to body
+    box-sizing: border-box; // best practice to add box-sizing to body and use inherit on universal selector, to assist with plugins which may rely on this property
+}

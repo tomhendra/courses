@@ -1,0 +1,36 @@
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color:$color-grey-dark;
+}
+
+.heading-primary {
+    color: $color-white;
+    text-transform: uppercase;
+    backface-visibility: hidden; // because this entire element is being animated due to its children animations, this trick fixes any wobbles in the animation that may occur
+    margin-bottom: 6rem; // pushes button down
+
+    &--main {
+        display: block; // span elements are inline by default. block elements occupy all space available and create line breaks
+        font-size: 6rem;
+        font-weight: 700;
+        letter-spacing: 3.5rem;
+        // 2 animation properties that are required for an animation to work...
+        animation-name: moveInLeft;
+        animation-duration: 1s;
+        // other essentials...
+        animation-timing-function: ease-out;
+        // animation-delay: 3s; 
+        // animation-iteration-count: 3;
+    }
+    
+    &--sub {
+        display: block;
+        font-size: 2rem;
+        font-weight: 400;
+        letter-spacing: 1.75rem;
+        animation: moveInRight 1s ease-out; // shorthand notation for animation properties using keyframes
+    }
+}
