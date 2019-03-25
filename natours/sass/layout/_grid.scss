@@ -1,6 +1,5 @@
 .row {
     max-width: $grid-width;
-    background-color: #eee;
     margin: 0 auto;
 
     &:not(:last-child) { // 'not' pseudo-class selects everything but what is specified
@@ -10,7 +9,6 @@
     @include clearfix;
 
     [class^="col-"] { // attribute selector - ^ means to start with something (like with regex in JS)
-        background-color: orangered;
         float: left;
 
         &:not(:last-child) {
