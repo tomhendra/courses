@@ -1,4 +1,5 @@
 .btn {
+    &,
     &:link,
     &:visited { // pseudo class: to style elements under a special condition
         font-size: $default-font-size;
@@ -9,6 +10,10 @@
         border-radius: 10rem;
         transition: all .2s; // shorthand - must be on the initial state
         position: relative; // allows btn::after pseudo element to have absolute positioning
+
+        // change for <button> element
+        border: none;
+        cursor: pointer;
     }
     
     &:hover {
@@ -20,14 +25,16 @@
         }
     }
     
-    &:active { /* click state */
+    &:active, // click state
+    &:focus { 
+        outline: none;
         transform: translateY(-1px);
         box-shadow: 0 .5rem 1rem rgba($color-black,.2); 
     }
     
     &--white {
         background-color: $color-white;
-        color: $color-grey-dark;
+        color: $color-grey-dark-1;
         &::after {
             background-color: $color-white; // ensures same colour as btn
         }
