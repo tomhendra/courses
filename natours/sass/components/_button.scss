@@ -32,6 +32,14 @@
             background-color: $color-white; // ensures same colour as btn
         }
     }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+        &::after {
+            background-color: $color-primary; // ensures same colour as btn
+        }
+    }
     
     &::after {
         content: ""; // content property must always be present, even if empty, otherwise after pseudo element won't appear
