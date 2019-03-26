@@ -8,6 +8,7 @@
     background-size: cover;
     background-position: top;
     position: relative; // enables absolute positioning of the logo container
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); // vendor prefix always before 
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); // clip path using polygon coordinates x y -- research more!
 
     &__logo-box {
