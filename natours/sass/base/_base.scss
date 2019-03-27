@@ -7,7 +7,15 @@
 }
 
 html {
-    font-size: 62.5% // defines what 1ren is: sets root font size as 10px (16px browser default = 16 / 10 * 100) to make life easier calculating rem. bad practice to specify px explicitly as user can't change font size
+    font-size: 62.5%; // defines what 1ren is: sets root font size as 10px (16px browser default = 16 / 10 * 100) to make life easier calculating rem. bad practice to specify px explicitly as user can't change font size
+
+    @include respond-phone {
+        font-size: 50%;
+    }
+
+    @include respond(phone) {
+        font-size: 50%;
+    }
 }
 
 body {
