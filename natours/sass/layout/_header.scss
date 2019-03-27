@@ -11,6 +11,11 @@
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); // vendor prefix always before 
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); // clip path using polygon coordinates x y -- research more!
 
+    @include respond(phone) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
+
     &__logo-box {
         position: absolute; // parent element must be set to relative for absolute positioning to work
         top: 4rem; // position relative to parent element
