@@ -5,13 +5,14 @@ MEDIA QUERY MANAGER
 900 - 1200px:   Tablet landscape
 1200 - 1800px:  [Default styles apply]
 > 1800px:       Large desktop
-*/
-/*
+
 $breakpoint argument choices:
 - phone
 - tab-port
 - tab-land
 - desktop-large
+
+ORDER: base + typography ==> general layout + grid ==> page layout ==> components
 */
 @keyframes moveInLeft {
   0% {
@@ -50,12 +51,15 @@ $breakpoint argument choices:
 
 html {
   font-size: 62.5%; }
-  @media (max-width: 600px) {
+  @media (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media (max-width: 56.35em) {
     html {
       font-size: 50%; } }
-  @media (max-width: 37.5em) {
+  @media (min-width: 112.5em) {
     html {
-      font-size: 50%; } }
+      font-size: 75%; } }
 
 body {
   padding: 3rem;

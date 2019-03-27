@@ -26,6 +26,8 @@ $breakpoint argument choices:
 - tab-port
 - tab-land
 - desktop-large
+
+ORDER: base + typography ==> general layout + grid ==> page layout ==> components
 */
 
 // ems used as a more accessible approach if user sets font size in the browser. Rem units shouldn't be used for media queries
