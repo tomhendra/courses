@@ -23,6 +23,10 @@ html {
 }
 
 body {
-    padding: 3rem; // adds 30px 'frame' to body
     box-sizing: border-box; // best practice to add box-sizing to body and use inherit on universal selector, to assist with plugins which may rely on this property
+    padding: 3rem; // adds 30px 'frame' to body
+
+    @include respond(tab-port) { 
+        padding: 0;
+    }
 }
