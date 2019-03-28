@@ -43,8 +43,10 @@
 
         @include respond(phone) {
             width: 100%;
-            display: inline-block;
+            height: 18rem;
+            display: block;
             padding: 0;
+            overflow: hidden;
         }
     }
 
@@ -71,8 +73,8 @@
         width: 100%;
 
         @include respond(phone) {
-            width: 48%;
-            display: inline-block;
+            width: 50%;
+            float: left;
         }
     }
 
