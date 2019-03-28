@@ -336,7 +336,17 @@
         
         <footer class="footer">
             <div class="footer__logo-box">
-                <img src="img/logo-green-2x.png" alt="Full logo" class="footer__logo">
+
+                <!-- <picture> element allows for multiple image sources to be specified -->
+                <picture class="footer__logo"> 
+                    <!-- art direction -- swapping image for a different version depending on media query specified -->
+                    <!-- density switching -- allowing the browser to select different resolution image for high res displays -->
+                    <source srcset="img/logo-green-small-1x.png, img/logo-green-small-2x.png 2x" 
+                            media="(max-width: 37.5rem)"> 
+                        <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo">  
+
+                </picture>
+
             </div>
             <div class="row">
                 <div class="col-1-of-2">
