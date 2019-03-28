@@ -15,9 +15,9 @@
         height: 95vh;
     }
 
-    @media (min-resolution: 192dpi) and (min-width: 37.5em),
-           (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), // for Safari
-           (min-width: 125em) { // if resolution is higher than 192dpi & over 600px or >= 2000px use higher res image
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+        only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), // for Safari
+        only screen and (min-width: 125em) { // if resolution is higher than 192dpi & over 600px or >= 2000px use higher res image
         background-image: linear-gradient(
             to right bottom, 
             rgba($color-primary-light, 0.8),

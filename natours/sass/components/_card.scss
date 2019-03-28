@@ -158,7 +158,9 @@
 
 
     
-    @include respond(tab-port) {
+    // @include respond(tab-port) 
+    @media only screen and (max-width: 56.35em),
+           only screen and (hover: none) { // media query to identify touch devices
         // FUNCTIONALITY
         height: auto;
         border-radius: 3px;
