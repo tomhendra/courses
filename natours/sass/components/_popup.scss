@@ -23,11 +23,29 @@
         opacity: 0;
         transform: translate(-50%, -50%) scale(.25); // can't use mixin absCenter because only one transform allowed on element
         transition: all .5s .2s; // last value delay, allows black background to appear first then white popup box
+
+        @include respond(phone) {
+            display: block;
+        }
     }
 
     &__left {
         width: 33.333333%;
         display: table-cell;
+
+        @include respond(tab-land) {
+            padding: 5rem;
+        }
+
+        @include respond(tab-port) {
+            padding: 11rem 5rem;
+        }
+
+        @include respond(phone) {
+            width: 100%;
+            display: inline-block;
+            padding: 0;
+        }
     }
 
     &__right {
@@ -35,11 +53,27 @@
         display: table-cell;
         vertical-align: middle;
         padding: 3rem 5rem;
+
+        @include respond(tab-land) {
+            padding: 4rem 6rem 4rem 0;
+        }
+
+        @include respond(phone) {
+            width: 100%;
+            display: inline-block;
+            padding: 4rem 6rem 4rem 6rem;
+            text-align: center;
+        }
     }
 
     &__img {
         display: block;
         width: 100%;
+
+        @include respond(phone) {
+            width: 48%;
+            display: inline-block;
+        }
     }
 
     &__text {
@@ -57,6 +91,11 @@
         -ms-hyphens: auto;
         -webkit-hyphens: auto;
         hyphens: auto; // only works if language is specified in <html>
+
+        @include respond(phone) {
+            -moz-column-count: 1;
+            column-count: 1;
+        }
     }
 
     // OPEN STATES
