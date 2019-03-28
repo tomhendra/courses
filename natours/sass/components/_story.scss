@@ -20,16 +20,21 @@
     }
 
     &__shape {
+
         width: 15rem;
         height: 15rem;
         float: left; // to make the rest of the content float around the element
-        -webkit-shape-outside: circle(50% at 50% 50%);
-        shape-outside: circle(50% at 50% 50%); // size of circle + position of circle -- radius 50% = half the width and height of the parent element. position 50% 50% (horizontal / vertical) for center. Only works if element is floated & has defined dimensions.
-        -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%);
         transform: translateX(-3rem) skewX(12deg); // cannot have more than one transform properties on an element, so direct child selector doesn't work - it is overridden by the translateX(-3rem)
-        position: relative;
         overflow: hidden;
+        border-radius: 50%;
+
+        @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            -webkit-shape-outside: circle(50% at 50% 50%); 
+            shape-outside: circle(50% at 50% 50%); // size of circle + position of circle -- radius 50% = half the width and height of the parent element. position 50% 50% (horizontal / vertical) for center. Only works if element is floated & has defined dimensions.
+            border-radius: none;
+        }
 
         @include respond(phone) {
             transform: translateX(-3rem) skewX(0);
