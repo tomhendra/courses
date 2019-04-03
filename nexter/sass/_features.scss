@@ -2,15 +2,27 @@
     grid-column: center-start / center-end;
 
     margin: 15rem 0;
-
-    display: grid;
-    // grid-template-columns: repeat(3, 1fr);
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    grid-gap: 6rem;
-    align-items: flex-start;
+    // progressive enhancement...
+    @supports(display: grid) {
+        display: grid;
+        //grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+        grid-gap: 6rem;
+        align-items: start;
+    }
 }
 
+
 .feature {
+    // progressive enhancement...
+    float: left;
+    width: 33.3333%;
+    margin-bottom: 6rem;
+
+    @supports(display: grid) {
+        width: auto;
+        margin-bottom: 0;
+    }
 
     display: grid;
     grid-template-columns: min-content 1fr;
@@ -26,7 +38,6 @@
     }
 
     &__text {
-        font-size: 1.7em;
+        font-size: 1.7rem;
     }
-
 }
