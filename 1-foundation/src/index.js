@@ -1,5 +1,13 @@
-// Exercise 1: Fix This Code
-// This recursive function creates a stack overflow. How can you fix this code by still keeping the recursive call around, but only adding something that you have learned in this section to not cause this stack overflow.
+// ======================
+// JAVASCRIPT FOUNDATION
+// ======================
+
+// ----------------------------------------------------------------------------------------------------------
+// Exercise 1 -- Fix This Code
+// This recursive function creates a stack overflow. How can you fix this code by still keeping the 
+// recursive call around, but only adding something that you have learned in this section to not cause this 
+// stack overflow.
+// ----------------------------------------------------------------------------------------------------------
 
 // fill array with 60000 elements
 /* 
