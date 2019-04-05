@@ -4,9 +4,6 @@
 
 // ----------------------------------------------------------------------------------------------------------
 // Exercise 1 -- Fix This Code
-// This recursive function creates a stack overflow. How can you fix this code by still keeping the 
-// recursive call around, but only adding something that you have learned in this section to not cause this 
-// stack overflow.
 // ----------------------------------------------------------------------------------------------------------
 
 // fill array with 60000 elements
@@ -36,3 +33,16 @@ function removeItemsFromList() {
 };
  
 removeItemsFromList();
+
+// ----------------------------------------------------------------------------------------------------------
+// Exercise: call(), apply()
+// How would you implement this:
+// ----------------------------------------------------------------------------------------------------------
+
+const array = [1,2,3];
+ 
+function getMaxNumber(arr) {
+    return Math.max.apply(null, arr);  
+}
+ 
+getMaxNumber(array) // should return 3
