@@ -42,3 +42,18 @@ change(number, string, obj1, obj2);
 console.log(number); // 100
 console.log(string); // 'Jay'
 console.log(obj1.value); // 'c'
+
+// ----------------------------------------------------------------------------------------------------------
+// Exercise 3 --- Type coercion
+// JS can be weird when it comes to type coercion. Try to guess what the output for each of the lines 
+// below are:
+// ----------------------------------------------------------------------------------------------------------
+false == ""  // true
+false == []  // true
+false == {}  // false
+"" == 0 // true
+"" == [] // true
+"" == {} // false
+0 == [] // true
+0 == {} // false      
+0 == null // false
