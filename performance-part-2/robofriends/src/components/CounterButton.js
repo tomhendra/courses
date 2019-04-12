@@ -11,12 +11,13 @@ class CounterButton extends PureComponent {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.count !== nextState.count) {
-            return true;
-        }
-        return false;
-    }
+    // Using Component instead of PureComponent...
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if (this.state.count !== nextState.count) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     updateCount = () => {
         this.setState(state => {
