@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+        onSearchChange: (event: React.SyntheticEvent<HTMLInputElement>) => dispatch(setSearchField(event.target.value)),
         onRequestRobots: () => dispatch(requestRobots())
     }
 }
@@ -34,8 +34,8 @@ interface IAppState {
     searchfield: string;
 }
 
-class App extends Component {
-    render() {
+class App extends Component<IAppProps, IAppState> {
+    render(): JSX.Element {
        return <MainPage {...this.props} />
     }
 }

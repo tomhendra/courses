@@ -9,7 +9,6 @@ import {
 
 import configureMockStore from 'redux-mock-store';
 import thunkMiddleware from 'redux-thunk';
-import fetchMock from 'fetch-mock';
 const mockStore = configureMockStore([thunkMiddleware]);
 
 describe('actions', () => {
