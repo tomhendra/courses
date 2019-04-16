@@ -4,10 +4,6 @@
   "private": true,
   "homepage": "https://tomhendra.github.io/course--complete-senior-web-developer",
   "dependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/node": "^11.13.4",
-    "@types/react": "^16.8.13",
-    "@types/react-dom": "^16.8.4",
     "gh-pages": "^2.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -16,8 +12,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "tachyons": "^4.11.1",
-    "typescript": "^3.4.3"
+    "tachyons": "^4.11.1"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -37,9 +32,14 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.4",
+    "@types/react": "^16.8.13",
+    "@types/react-dom": "^16.8.4",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "fetch-mock": "^7.3.1",
-    "redux-mock-store": "^1.5.3"
+    "redux-mock-store": "^1.5.3",
+    "typescript": "^3.4.3"
   }
 }
