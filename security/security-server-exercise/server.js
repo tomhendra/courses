@@ -12,13 +12,13 @@ app.use(helmet())
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-  res.cookie('session', '1', { httpOnly: true }) // prevents cookies being accessed by client side scripting
-  res.cookie('session', '1', { secure: true }) // ensures cookies only sent over HTTPS connections
+  // res.cookie('session', '1', { httpOnly: true }) // prevents cookies being accessed by client side scripting
+  // res.cookie('session', '1', { secure: true }) // ensures cookies only sent over HTTPS connections
 
-  // set Content Security Policy headers...
-  res.set({
-    'Content-Security-Policy': "script-src 'self' 'https://apis.google.com'"
-  })
+  // // set Content Security Policy headers... (Helmet does this automatically)
+  // res.set({
+  //   'Content-Security-Policy': "script-src 'self' 'https://apis.google.com'"
+  // })
   res.send('Hello World!')
 })
 app.post('/secret', (req, res) => {
