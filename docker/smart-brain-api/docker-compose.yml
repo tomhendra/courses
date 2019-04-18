@@ -1,11 +1,31 @@
 version: '3.7'
 
 services:
+  # Backend API
   smart-brain-api:
     container_name: backend
-    # image: node:11.14.0-stretch
+    # can use default image from Docker Hub instead of build e.g. image: node:11.14.0-stretch
     build: ./
     command: npm start
     working_dir: /usr/src/smart-brain-api
+    environment:
+      POSTGRES_URI: postgres://tomh:secret@postgres:5342/smart-brain-docker
+    links:
+      - postgres
     ports:
       - "3000:3000"
+    # volumes allows access to the host file system so Docker container can listen to file changes
+    volumes:
+      - ./:/usr/src/smart-brain-api
+
+  # Postgres
+  postgres:
+    # container_name: postgres -  not needed as container name is already set
+    image: postgres
+    environment:
+      POSTGRES_USER: tomh
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: smart-brain-docker
+      POSTGRES_HOST: postgres 
+    ports:
+      - "5432:5432"
