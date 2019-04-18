@@ -21,11 +21,11 @@ services:
   # Postgres
   postgres:
     # container_name: postgres -  not needed as container name is already set
-    image: postgres
+    build: ./postgres
     environment:
       POSTGRES_USER: tomh
       POSTGRES_PASSWORD: secret
       POSTGRES_DB: smart-brain-docker
-      POSTGRES_HOST: postgres 
+      POSTGRES_HOST: postgres
     ports:
       - "5432:5432"
