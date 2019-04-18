@@ -9,9 +9,7 @@ services:
     command: npm start
     working_dir: /usr/src/smart-brain-api
     environment:
-      POSTGRES_URI: postgres://tomh:secret@postgres:5342/smart-brain-docker
-    links:
-      - postgres
+      POSTGRES_URI: postgres://tomh:secret@postgres:5432/smart-brain-docker
     ports:
       - "3000:3000"
     # volumes allows access to the host file system so Docker container can listen to file changes
