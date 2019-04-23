@@ -25,8 +25,14 @@ const handleSignin = (db, bcrypt, req, res) => {
     .catch(err => Promise.reject('wrong credentials'))
 }
 
-const getAuthTokenId = () => {
-  console.log('Auth OK')
+const getAuthTokenId = (req, res) => {
+  const { authorization } = req.headers;
+  return redisClient.get(authorization, (err, reply) => {
+    if (err || !reply) {
+      return res.status(400).json('Unauthorized');
+    }
+    return res.json({id: reply})
+  })
 }
 
 const signToken = (email) => {
@@ -35,16 +41,24 @@ const signToken = (email) => {
 
 }
 
+const setToken = (key, value) => {
+  return Promise.resolve(redisClient.set(key, value))
+}
+
 const createSessions = (user) => {
   // JWT token, return user data
   const { email, id  } = user;
   const token = signToken(email);
-  return { success: 'true', userId: id, token }
+  return setToken(token, id)
+    .then(() => { 
+      return { success: 'true', userId: id, token } 
+    })
+    .catch(console.log)
 }
 
 const signinAuthentication = (db, bcrypt) => (req, res) => {
   const { authorization } = req.headers;
-  return authorization ? getAuthTokenId() : 
+  return authorization ? getAuthTokenId(req, res) : 
     handleSignin(db, bcrypt, req, res)
     .then(data => {
       return data.id && data.email ? createSessions(data) : Promise.reject(data)
