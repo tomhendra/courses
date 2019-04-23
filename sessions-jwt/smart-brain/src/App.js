@@ -28,7 +28,7 @@ const initialState = {
   input: '',
   imageUrl: '',
   boxes: [],
-  route: 'home',
+  route: 'signin',
   isSignedIn: false,
   isProfileOpen: false,
   user: {
@@ -53,13 +53,26 @@ class App extends Component {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': token // 'Bearer ' + token - read more!
+          'Authorization': token
         }
       })
         .then(resp => resp.json())
         .then(data => {
           if (data && data.id) {
-            console.log('success we need to get user profile')
+            fetch(`http://localhost:3000/profile/${data.id}`, {
+              method: 'get',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+              }
+            })
+            .then(resp => resp.json())
+            .then(user => {
+              if (user && user.email) {
+                this.loadUser(user);
+                this.onRouteChange('home');
+              }
+            })
           }
         })
         .catch(console.log)
