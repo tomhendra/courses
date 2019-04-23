@@ -18,7 +18,8 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.14.2",
     "morgan": "^1.9.1",
-    "pg": "^7.4.0"
+    "pg": "^7.4.0",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "nodemon": "^1.12.7"
