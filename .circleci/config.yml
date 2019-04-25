@@ -16,18 +16,9 @@ jobs:
       - run: echo "testing stuff"
       - run: cd CI-CD/robofriends/ && npm install
       - run: CI=true cd CI-CD/robofriends && npm test
-  hithere:
-    docker:
-      - image: circleci/node:11.14.0-stretch
-    steps:
-      - checkout
-      - run: echo "hi there!"
 workflows:
   version: 2
   build_test_and_lint:
     jobs:
       - build
-      - hithere
-      - test:
-        requires:
-          - hithere
+      - test
