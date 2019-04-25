@@ -6,16 +6,16 @@ jobs:
     steps:
       - checkout # check out the code in the project directory
       - run: echo "npm installing"
-      - run: cd ci-cd/robofriends/ && npm install
-      - run: CI=true cd ci-cd/robofriends && npm run build
+      - run: cd CI-CD/robofriends/ && npm install
+      - run: CI=true cd CI-CD/robofriends && npm run build
   test:
     docker:
       - image: circleci/node:11.14.0-stretch
     steps:
       - checkout
       - run: echo "testing stuff"
-      - run: cd ci-cd/robofriends/ && npm install
-      - run: CI=true cd ci-cd/robofriends && npm test
+      - run: cd CI-CD/robofriends/ && npm install
+      - run: CI=true cd CI-CD/robofriends && npm test
   hithere:
     docker:
       - image: circleci/node:11.14.0-stretch
