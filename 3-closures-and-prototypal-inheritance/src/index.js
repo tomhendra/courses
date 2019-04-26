@@ -30,3 +30,13 @@ function sing(person) {
 }
 
 letPerson({level: 'user', name: 'Tim'}, sing)
+
+// ----------------------------------------------------------------------------------------------------------
+// Exercise 1 -- Higher Order Functions: multiplyBy
+// ----------------------------------------------------------------------------------------------------------
+
+const multiplyBy = (num1) => (num2) => num1 * num2;
+
+const multiplyByTwo = multiplyBy(2);
+console.log(multiplyByTwo(10));
+console.log(multiplyByTwo(20));
