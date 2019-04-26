@@ -7,6 +7,7 @@
 // How would you compare two objects if they are pointing to a different location in memory but still have 
 // the same properties?
 // ----------------------------------------------------------------------------------------------------------
+
 var user1 = {name : "nerd", org: "dev"};
 var user2 = {name : "nerd", org: "dev"};
 // var eq = user1 == user2;
@@ -14,9 +15,11 @@ var user2 = {name : "nerd", org: "dev"};
 var eq = JSON.stringify(user1) === JSON.stringify(user2) ? true : false;
 console.log(eq);
 
+
 // ----------------------------------------------------------------------------------------------------------
 // Exercise 2 --- Pass By Reference
 // ----------------------------------------------------------------------------------------------------------
+
 const number = 100
 const string = "Jay"
 let obj1 = {
@@ -43,11 +46,13 @@ console.log(number); // 100
 console.log(string); // 'Jay'
 console.log(obj1.value); // 'c'
 
+
 // ----------------------------------------------------------------------------------------------------------
 // Exercise 3 --- Type coercion
 // JS can be weird when it comes to type coercion. Try to guess what the output for each of the lines 
 // below are:
 // ----------------------------------------------------------------------------------------------------------
+
 false == ""  // true
 false == []  // true
 false == {}  // false
