@@ -40,3 +40,38 @@ const multiplyBy = (num1) => (num2) => num1 * num2;
 const multiplyByTwo = multiplyBy(2);
 console.log(multiplyByTwo(10));
 console.log(multiplyByTwo(20));
+
+// ----------------------------------------------------------------------------------------------------------
+// Closures
+// ----------------------------------------------------------------------------------------------------------
+
+function a() {
+    let grandpa = 'grandpa'
+    return function b() {
+      let father = 'father'
+      return function c() {
+        let son = 'son'
+        return `${grandpa} > ${father} > ${son}`
+      }
+    }
+  }
+  
+  a()
+  
+  //closures and higher order function
+  function boo(string) {
+    return function(name) {
+      return function(name2) {
+        console.log(`${string} ${name} ${name2}`)
+      }
+    }
+  }
+  
+  const boo2 = (string) => (name) => (name2) => console.log(`${string} ${name} ${name2}`)
+  
+  boo('hi')('john')('tanya');
+  
+  // AHH! HOW DOES IT REMEMBER THIS 5 years from now?
+  booString = boo2('sing');
+  booStringName = booString('John');
+  booStringNameName2 = booStringName('tanya')
