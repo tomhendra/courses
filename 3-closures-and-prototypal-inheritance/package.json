@@ -1,10 +1,10 @@
 {
-  "name": "advanced-javascript-concepts",
-  "version": "0.0.0",
+  "name": "boilerplate-simple",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-server": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development --open 'Google Chrome'",
     "build": "webpack --mode production"
   },
   "author": "Tom Hendra",
@@ -16,8 +16,8 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
     "babel-loader": "^8.0.5",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1",
     "webpack-dev-server": "^3.2.1"
   }
 }
