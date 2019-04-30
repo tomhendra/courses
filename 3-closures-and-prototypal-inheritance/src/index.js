@@ -129,7 +129,7 @@ const ww3 = makeNuclearButton();
 ww3.totalPeaceTime()
 
 // ----------------------------------------------------------------------------------------------------------
-// Closures exercise
+// Exercise -- Closures 2
 // ----------------------------------------------------------------------------------------------------------
 
 let view;
@@ -152,3 +152,25 @@ start();
 start();
 start();
 console.log(view)
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Exercise -- Closures 3
+// ----------------------------------------------------------------------------------------------------------
+
+// const array = [1,2,3,4];
+// for(let i=0; i < array.length; i++) {
+//   setTimeout(function(){
+//     console.log('I am at index ' + array[i])
+//   }, 3000)
+// }
+
+
+const array = [1,2,3,4];
+for(var i=0; i < array.length; i++) {
+  (function(closureI) {
+    setTimeout(function(){
+      console.log('I am at index ' + array[closureI])
+    }, 3000)
+  })(i)
+}
