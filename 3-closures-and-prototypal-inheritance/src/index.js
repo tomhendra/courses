@@ -219,3 +219,8 @@ Object.prototype
 multiplyBy5.__proto__.__proto__.__proto__
 typeof Object
 typeof {}
+
+// Create our own prototypes:
+var human = {mortal: true}
+var socrates = Object.create(human);
+human.isPrototypeOf(socrates); // true
