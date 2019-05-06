@@ -14,16 +14,16 @@
 // ----------------------------------------------------------------------------------------------------------
 
 // factory function make/create
-// function createElf(name, weapon) {
-//     //we can also have closures here to hide properties from being changed.
-//     return {
-//       name: name,
-//       weapon: weapon,
-//       attack() {
-//         return 'attack with ' + weapon
-//       }
-//     }
-//   }
+function createElf(name, weapon) {
+    //we can also have closures here to hide properties from being changed.
+    return {
+      name: name,
+      weapon: weapon,
+      attack() {
+        return 'attack with ' + weapon
+      }
+    }
+  }
 
 // modified to avoid attack method being stored in multiple spaces in memory for multiple elf instances
   const elfFunctions = {
@@ -41,6 +41,32 @@
   
   const sam = createElf('Sam', 'bow');
   const peter = createElf('Peter', 'bow');
+  sam.attack()
+  peter.attack()
 
+
+// ----------------------------------------------------------------------------------------------------------
+// Constructor functions
+// - Uses 'new' keyword to create object instances - automatically returns object and creates constructor
+// - All constructor functions should start with capital letter to let other devs know the 'new' keyword 
+//   must be used
+// - 'new' keyword points 'this' to execution context just created for the calling object, instead of the 
+//    window object
+// ----------------------------------------------------------------------------------------------------------
+
+function Elf(name, weapon) {
+    // The ONLY way to add properties to a constructor function is to use the 'this' keyword
+    this.name = name;
+    this.weapon = weapon;
+  }
+  
+  // one space in memory used for method using prototype
+  // although all functions have the prototype property, only constructor functions have a use for it
+  Elf.prototype.attack = function() { 
+    return 'attack with ' + this.weapon
+  }
+
+  const sam = new Elf('Sam', 'bow');
+  const peter = new Elf('Peter', 'bow');
   sam.attack()
   peter.attack()
