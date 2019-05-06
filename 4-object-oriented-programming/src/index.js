@@ -193,3 +193,49 @@ console.log(Character.prototype.isPrototypeOf(Ogre.prototype)) // true
 // better way to check prototype links is with instanceof...
 console.log(houseElf instanceof Elf) // true
 console.log(houseElf instanceof Character) // true
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Four pillars of OOP:
+// 1) Encapsulation
+//    - organising things into boxes that are related to one another so they can interact
+// 2) Abstraction
+//    - hiding complexity from users.
+// 3) Inheritance
+//    - avoid DRY code & save memory space by having shared methods
+// 4) Polymorphism
+//    - ability to call the same method on different objects & each object responding in a different way
+// ----------------------------------------------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Exercise -- polymorphism
+// - extend the Character class to have a Queen class.
+// - create a new instance with the queen having (name, weapon, type). Type includes: 'hearts', 'clubs', 
+//   'spades', 'diamonds'
+// - console.log the attack() method in Character class AND return another string: 'I am the Victoria 
+//    of hearts, now bow down to me! 
+// ----------------------------------------------------------------------------------------------------------
+class CharacterTwo {
+    constructor(name, weapon) {
+      this.name = name;
+      this.weapon = weapon;
+    }
+    attack() {
+      return 'attack with ' + this.weapon
+    }
+}
+
+class Queen extends CharacterTwo {
+    constructor(name, weapon, type) {
+        super(name, weapon);
+        this.type = type;
+    }
+    attack() {
+        console.log(super.attack());
+        return `I am ${this.name} of ${this.type}, now bow down to me!`
+      }
+}
+
+const victoria = new Queen('Victoria', 'army', 'hearts');
+console.log(victoria.attack());
