@@ -148,6 +148,10 @@ person4.hi()
 
 // ----------------------------------------------------------------------------------------------------------
 // Inheritance
+// - instances are when we use the new keyword we create a new instance of a class
+// - inheritance is when we use the extends keyword to inherit something from a higher class
+// - inheritance doesn't copy functionality in JavaScript. It links up the prototype chain using prototypal 
+//   inheritance
 // ----------------------------------------------------------------------------------------------------------
 
 class Character {
@@ -183,3 +187,9 @@ const houseElf = new Elf('Dolby', 'cloth', 'house')
 //houseElf.makeFort() // error
 const shrek = new Ogre('Shrek', 'club', 'green')
 shrek.makeFort()
+
+console.log(Ogre.prototype.isPrototypeOf(shrek)) // true
+console.log(Character.prototype.isPrototypeOf(Ogre.prototype)) // true
+// better way to check prototype links is with instanceof...
+console.log(houseElf instanceof Elf) // true
+console.log(houseElf instanceof Character) // true
