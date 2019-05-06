@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------------------------------------------------
 
 // factory function make/create
-function createElf(name, weapon) {
+function createElf1(name, weapon) {
     //we can also have closures here to hide properties from being changed.
     return {
       name: name,
@@ -39,10 +39,10 @@ function createElf(name, weapon) {
     return newElf
   }
   
-  const sam = createElf('Sam', 'bow');
-  const peter = createElf('Peter', 'bow');
-  sam.attack()
-  peter.attack()
+  const tom = createElf('Tom', 'bow');
+  const parker = createElf('Parker', 'bow');
+  tom.attack()
+  parker.attack()
 
 
 // ----------------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ function createElf(name, weapon) {
 //    window object
 // ----------------------------------------------------------------------------------------------------------
 
-function Elf(name, weapon) {
+function MarshElf(name, weapon) {
     // The ONLY way to add properties to a constructor function is to use the 'this' keyword
     this.name = name;
     this.weapon = weapon;
@@ -62,12 +62,12 @@ function Elf(name, weapon) {
   
   // one space in memory used for method using prototype
   // although all functions have the prototype property, only constructor functions have a use for it
-  Elf.prototype.attack = function() { 
+  MarshElf.prototype.attack = function() { 
     return 'attack with ' + this.weapon
   }
 
-  const sam = new Elf('Sam', 'bow');
-  const peter = new Elf('Peter', 'bow');
+  const sam = new MarshElf('Sam', 'bow');
+  const peter = new MarshElf('Peter', 'bow');
   sam.attack()
   peter.attack()
 
@@ -79,7 +79,7 @@ function Elf(name, weapon) {
 // - classes AKA pseudoclassical inheritance
 // ----------------------------------------------------------------------------------------------------------
 
-class Elf {
+class WoodElf {
     constructor(name, weapon) {
       this.name = name;
       this.weapon = weapon;
@@ -89,9 +89,9 @@ class Elf {
     }
   }
   
-  const fiona = new Elf('Fiona', 'ninja stars');
-  console.log(fiona instanceof Elf) // 
-  const ben = new Elf('Ben', 'bow');
+  const fiona = new WoodElf('Fiona', 'ninja stars');
+  console.log(fiona instanceof WoodElf) // 
+  const ben = new WoodElf('Ben', 'bow');
   fiona.attack()
 
 
@@ -114,7 +114,7 @@ const person = {
     name: 'Karen',
     age: 40,
     hi() {
-      console.log('hi' + this.name)
+      console.log('hi ' + this.name)
     }
 }
 
@@ -125,7 +125,7 @@ const person3 = {
     name: 'Karen',
     age: 40,
     hi: function() {
-      console.log('hi' + this.setTimeout)
+      console.log('hi ' + this.setTimeout)
     }.bind(window)
 }
   
@@ -144,3 +144,42 @@ const person4 = {
 }
   
 person4.hi()
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Inheritance
+// ----------------------------------------------------------------------------------------------------------
+
+class Character {
+    constructor(name, weapon) {
+        this.name = name;
+        this.weapon = weapon;
+    }
+    attack() {
+        return 'attack with ' + this.weapon
+    }
+}
+
+class Elf extends Character { // extend and assign __proto__ to superclass of Character
+    constructor(name, weapon, type) {
+        // console.log('what am i?', this); // gives an error before calling super()
+        super(name, weapon) // call superclass (Character)
+        console.log('what am i?', this);
+        this.type = type;
+    }
+}
+
+class Ogre extends Character {
+    constructor(name, weapon, color) {
+        super(name, weapon);
+        this.color = color;
+    }
+    makeFort() { // this is like extending our prototype.
+        return 'strongest fort in the world made'
+    }
+}
+
+const houseElf = new Elf('Dolby', 'cloth', 'house')
+//houseElf.makeFort() // error
+const shrek = new Ogre('Shrek', 'club', 'green')
+shrek.makeFort()
