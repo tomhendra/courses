@@ -93,3 +93,54 @@ class Elf {
   console.log(fiona instanceof Elf) // 
   const ben = new Elf('Ben', 'bow');
   fiona.attack()
+
+
+// ----------------------------------------------------------------------------------------------------------
+// this keyword review
+// - this - 4 ways...
+// ----------------------------------------------------------------------------------------------------------
+
+// new binding -- assign this to instantiated object
+function Person(name, age) {
+    this.name = name;
+    this.age =age;
+    console.log(this);
+}
+  
+const person1 = new Person('Xavier', 55)
+  
+// implicit binding -- most common
+const person = {
+    name: 'Karen',
+    age: 40,
+    hi() {
+      console.log('hi' + this.name)
+    }
+}
+
+person.hi()
+  
+//explicit binding -- dictate exactly what this should refer to
+const person3 = {
+    name: 'Karen',
+    age: 40,
+    hi: function() {
+      console.log('hi' + this.setTimeout)
+    }.bind(window)
+}
+  
+person3.hi()
+  
+// arrow functions -- forces normal behaviour of dynamically scoped this to be lexically scoped
+const person4 = {
+    name: 'Karen',
+    age: 40,
+    hi: function() {
+      var inner = () => {
+        console.log('hi ' + this.name)
+      }
+      return inner()
+    }
+}
+  
+person4.hi()
