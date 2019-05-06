@@ -32,7 +32,7 @@ function createElf(name, weapon) {
     }
   }
   function createElf(name, weapon) {
-    //Object.create creates __proto__ link
+    //Object.create creates __proto__ link -- pure prototypal inheritance 
     newElf = Object.create(elfFunctions)
     newElf.name = name;
     newElf.weapon = weapon
@@ -70,3 +70,26 @@ function Elf(name, weapon) {
   const peter = new Elf('Peter', 'bow');
   sam.attack()
   peter.attack()
+
+
+// ----------------------------------------------------------------------------------------------------------
+// ES6 Classes
+// - syntactic sugar to simulate classes, using prototypal inheritance under the hood 
+// - classes in JavaScript are still objects, just like everything else.
+// - classes AKA pseudoclassical inheritance
+// ----------------------------------------------------------------------------------------------------------
+
+class Elf {
+    constructor(name, weapon) {
+      this.name = name;
+      this.weapon = weapon;
+    }
+    attack() {
+      return 'attack with ' + this.weapon
+    }
+  }
+  
+  const fiona = new Elf('Fiona', 'ninja stars');
+  console.log(fiona instanceof Elf) // 
+  const ben = new Elf('Ben', 'bow');
+  fiona.attack()
