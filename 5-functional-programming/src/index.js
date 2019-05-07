@@ -139,7 +139,7 @@ function notGood() {
 // ----------------------------------------------------------------------------------------------------------
 
 // imperative
-for (i = 0; i < 1000; i++) {
+for (i = 0; i < 9; i++) {
     console.log(i);
 }
 
@@ -246,6 +246,7 @@ function addTo80(n) {
   let cache = {};
   function memoizeAddTo80(n) {
     if (n in cache) {
+      console.log('cached data')
       return cache[n];
     } else {
       console.log('long time');
@@ -265,6 +266,7 @@ function addTo80(n) {
     let cache = {}; // closure
     return function(n) {
       if (n in cache) {
+        console.log('cached data')
         return cache[n];
       } else {
         console.log('long time');
@@ -280,4 +282,34 @@ function addTo80(n) {
   // console.log(cache)
   // console.log('-----------')
   console.log(2, memoized(6))
-  
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Compose & pipe
+// - composition is the idea that any sort of data transformation should be obvious
+// - a system design principal that deals with relationships of components
+// - provides components that can be selected and assembled in various combinations based on users' specific 
+//   requirements
+// - pipe is the same as compose but goes from left to right instead of right to left
+// ----------------------------------------------------------------------------------------------------------
+
+// fn1(fn2(fn3(50)));
+
+// compose(fn1, fn2, fn3)(50) // right to left
+// pipe(fn3, fn2, fn1)(50) // left to right
+
+const compose = (f1, f2) => (data) => f1(f2(data))
+const pipe = (f1, f2) => (data) => f2(f1(data))
+const multiplyBy3AndAbsolute = compose((num) => num*3, Math.abs)
+console.log(multiplyBy3AndAbsolute(-50))
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Arity
+// - simply means the number of arguments a function takes
+// - usually good practice -- the fewer number of parameters there are in a function, the easier it is to 
+//   use that function
+// - fewer parameters makes functions more flexible -- can use things like currying, compose, pipe
+// - rule of thumb is to use no more than one or two parameters
+// - fewer parameters helps make functions more reusable when using the functional programming paradigm
+// ----------------------------------------------------------------------------------------------------------
