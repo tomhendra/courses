@@ -18,7 +18,7 @@
 //   Pure Functions
 
 // ----------------------------------------------------------------------------------------------------------
-// Exercise -- Amazon shopping
+// Exercise -- Amazon shopping: Part 1
 // Implement a cart feature:
 //   1. Add items to cart.
 //   2. Add 3% tax to item in cart
@@ -101,3 +101,69 @@ function multiplyByTwo(arr) {
   // map automatically returns new array
   return arr.map(item => item * 2)
 }
+
+
+// ----------------------------------------------------------------------------------------------------------
+// - a perfect function should:
+//   1. do 1 task only
+//   2. should have a return statement -- every function should return something
+//   3. should be pure
+//   4. immutable state
+//   5. no shared state, always return a new copy
+//   6. composable
+//   7. predictable
+// ----------------------------------------------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Idempotence
+// - a function that always does what we expect it to do, even though it us not pure
+// ----------------------------------------------------------------------------------------------------------
+
+function notGood() {
+    return Math.random()
+    // new Date();
+  }
+  
+  function good() {
+    return 5
+  }
+  
+  Math.abs(Math.abs(10))
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Imperative vs Declarative
+// - imperative code tells the machine what to do and how to do it
+// - declarative code tells the machine what to do and what should happen
+// ----------------------------------------------------------------------------------------------------------
+
+// imperative
+for (i = 0; i < 1000; i++) {
+    console.log(i);
+}
+
+// declarative
+[1,2,3,4,5,6,7,8].forEach(item => console.log(item));
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Immutability
+// - not changing the data. Not changing the state
+// - instead making copies of the state and returning new versions of the state
+// ----------------------------------------------------------------------------------------------------------
+
+const obj = {name: 'Tom'}
+
+function clone(obj) {
+  return {...obj}; // this is pure
+}
+
+function updateName(obj) {
+  const obj2 = clone(obj);
+  obj2.name = 'Maria'
+  return obj2
+}
+
+const updatedObj = updateName(obj)
+console.log(obj, updatedObj)
