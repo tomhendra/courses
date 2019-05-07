@@ -179,6 +179,8 @@ console.log(obj, updatedObj)
 // - closures are a mechanism for containing state 
 // - closure is created whenever a function accesses a variable defined outside of the immediate function 
 //   scope; the parent.
+// - variable accessible to inner function even after the enclosing function has finished running
+// - can use closures to create data privacy - used a lot in FP for this reason
 // ----------------------------------------------------------------------------------------------------------
 
 //HOF
@@ -199,3 +201,31 @@ const getCounter = closure()
 getCounter()
 getCounter()
 getCounter()
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Currying
+// - the technique of translating the evaluation of a function that takes multiple arguments, into evaluating
+//   a sequence of functions, each with a single argument
+// - can create multiple utility functions
+// ----------------------------------------------------------------------------------------------------------
+
+const multiply = (a, b) => a * b
+const curriedMultiply = (a) => (b) => a * b
+
+curriedMultiply(5)(20)
+const multiplyBy5 = curriedMultiply(5) // remembers that 5 was used as first parameter
+multiplyBy5(20)
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Partial application
+// - the process of producing a function with a smaller number of parameters
+// - taking a function, applying some if its arguments into the function so it remembers its parameters, 
+//   then uses closures to later on be called with all the rest of the arguments
+// - currying expects one argument at a time, partial application expects remaining arguments on second call
+// ----------------------------------------------------------------------------------------------------------
+
+const multiply = (a, b, c) => a * b * c
+const partialMultiplyBy5 = multiply.bind(null, 5) // using bind as a way to pass an argument
+partialMultiplyBy5(10, 20)
