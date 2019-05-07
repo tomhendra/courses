@@ -167,3 +167,35 @@ function updateName(obj) {
 
 const updatedObj = updateName(obj)
 console.log(obj, updatedObj)
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Review - HOF & Closure
+// - functions are first class citizens, allowing HOFs and Closure
+// - HOFs do one of two things: 
+//   1. takes one or more functions as arguments
+//   2. returns function as output -- callback function
+
+// - closures are a mechanism for containing state 
+// - closure is created whenever a function accesses a variable defined outside of the immediate function 
+//   scope; the parent.
+// ----------------------------------------------------------------------------------------------------------
+
+//HOF
+const hof = (fn) => fn(5);
+hof(function a(x) { 
+    return x
+})
+
+//Closure
+const closure = function() {
+  let count = 55;
+  return function getCounter() {
+    return count;
+  }
+}
+
+const getCounter = closure()
+getCounter()
+getCounter()
+getCounter()
