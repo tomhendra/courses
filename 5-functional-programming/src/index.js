@@ -6,6 +6,7 @@
 // - each part of code concerns itself with the one thing it is good at
 // - keeps data & behaviour separate rather then grouping them together (as with OOP)
 // - all objects created in FP are immutable
+// - works well for distributed systems & parallelism 
 
 // - Goals are the same as OOP:
 //   - clear & understandable
@@ -16,57 +17,6 @@
 
 // - rather than 4 pillars of OOP (encapsulation, abstraction, inheritance & polymorphism) FP relies on one: 
 //   Pure Functions
-
-// ----------------------------------------------------------------------------------------------------------
-// Exercise -- Amazon shopping: Part 1
-// Implement a cart feature:
-//   1. Add items to cart.
-//   2. Add 3% tax to item in cart
-//   3. Buy item: cart --> purchases
-//   4. Empty cart
-// Bonus:
-//   accept refunds.
-//   Track user history.
-// ----------------------------------------------------------------------------------------------------------
-
-const user = {
-    name: 'Kim',
-    active: true,
-    cart: [],
-    purchases: []
-}
-
-const item = {
-    name: 'socks',
-    price: 7.95
-}
-
-const addToCart = (user, item) => {
-    user.cart.push(item);
-}
-
-const addTax = (user) => {
-    user.cart.forEach(item => {
-        item.price = (item.price * 1.03).toFixed(2)
-    })
-}
-
-const buyItems = (user) => {
-    const cartItems = user.cart;
-    user.cart = [];
-    user.purchases.push(cartItems);
-}
-
-const emptyCart = (user) => {
-    user.cart = [];
-}
-
-addToCart(user, item)
-console.log(user)
-addTax(user)
-console.log(user)
-buyItems(user)
-console.log(user)
 
 
 // ----------------------------------------------------------------------------------------------------------
@@ -298,9 +248,9 @@ function addTo80(n) {
 // compose(fn1, fn2, fn3)(50) // right to left
 // pipe(fn3, fn2, fn1)(50) // left to right
 
-const compose = (f1, f2) => (data) => f1(f2(data))
-const pipe = (f1, f2) => (data) => f2(f1(data))
-const multiplyBy3AndAbsolute = compose((num) => num*3, Math.abs)
+const composer = (f1, f2) => (data) => f1(f2(data))
+const piper = (f1, f2) => (data) => f2(f1(data))
+const multiplyBy3AndAbsolute = composer((num) => num*3, Math.abs)
 console.log(multiplyBy3AndAbsolute(-50))
 
 
@@ -313,3 +263,73 @@ console.log(multiplyBy3AndAbsolute(-50))
 // - rule of thumb is to use no more than one or two parameters
 // - fewer parameters helps make functions more reusable when using the functional programming paradigm
 // ----------------------------------------------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Exercise -- Amazon shopping
+// Implement a cart feature:
+//   1. Add items to cart.
+//   2. Add 3% tax to item in cart
+//   3. Buy item: cart --> purchases
+//   4. Empty cart
+// Bonus:
+//   accept refunds.
+//   Track user history.
+// ----------------------------------------------------------------------------------------------------------
+
+const user = {
+  name: 'Kim',
+  active: true,
+  cart: [],
+  purchases: []
+}
+
+const history1 = [];
+const compose = (f, g) => (...args) => f(g(...args))
+const pipe = (f, g) => (...args) => g(f(...args))
+const purchaseItem  = (...fns) => fns.reduce(compose);
+const purchaseItem2  = (...fns) => fns.reduce(pipe);
+
+// purchaseItem(
+//   emptyUserCart,
+//   buyItem,
+//   applyTaxToItems,
+//   addItemToCart
+// )(user, {name: 'laptop', price: 50})
+
+const test = purchaseItem2(
+  addItemToCart,
+  applyTaxToItems,
+  buyItem,
+  emptyUserCart,
+)(user, {name: 'laptop', price: 60})
+console.log(test)
+
+function addItemToCart(user, item) {
+  history1.push(user)
+  const updatedCart = user.cart.concat(item)
+  return Object.assign({}, user, {cart: updatedCart});
+}
+
+function applyTaxToItems(user) {
+  history1.push(user)
+  const {cart} = user;
+  const taxRate = 1.3;
+  const updatedCart = cart.map(item => {
+    return {
+      name: item.name,
+      price: item.price*taxRate
+    }
+  })
+  return Object.assign({}, user, { cart: updatedCart });
+}
+
+function buyItem(user) {
+  history1.push(user)
+  const itemsInCart = user.cart;
+  return Object.assign({}, user, { purchases: itemsInCart });
+}
+function emptyUserCart(user) {
+  history1.push(user)
+  return Object.assign({}, user, { cart: [] });
+}
