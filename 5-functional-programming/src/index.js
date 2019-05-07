@@ -8,7 +8,7 @@
 // - all objects created in FP are immutable
 
 // - Goals are the same as OOP:
-//   - clear * understandable
+//   - clear & understandable
 //   - easy to extend
 //   - easy to maintain
 //   - memory efficient
@@ -19,16 +19,14 @@
 
 // ----------------------------------------------------------------------------------------------------------
 // Exercise -- Amazon shopping
-
 // Implement a cart feature:
-// 1. Add items to cart.
-// 2. Add 3% tax to item in cart
-// 3. Buy item: cart --> purchases
-// 4. Empty cart
-
-//Bonus:
-// accept refunds.
-// Track user history.
+//   1. Add items to cart.
+//   2. Add 3% tax to item in cart
+//   3. Buy item: cart --> purchases
+//   4. Empty cart
+// Bonus:
+//   accept refunds.
+//   Track user history.
 // ----------------------------------------------------------------------------------------------------------
 
 const user = {
@@ -69,3 +67,37 @@ addTax(user)
 console.log(user)
 buyItems(user)
 console.log(user)
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Pure functions
+// - two main points:
+//   1. a function always has to return the same output given the same input -- Referential transparency
+//   2. a function cannot modify anything outside of itself  
+// - makes functions very easy to test and very easy to compose
+// - avoids bugs - no mutations, no shared state
+// ----------------------------------------------------------------------------------------------------------
+
+//Side effects:
+const array = [1,2,3];
+function mutateArray(arr) {
+  arr.pop()
+}
+function mutateArray2(arr) {
+  arr.forEach(item => arr.push(1
+  ))
+}
+//The order of the function calls will matter.
+mutateArray(array)
+mutateArray2(array)
+
+// map and concat methods can fix this issue of mutation
+function removeLastItem(arr) {
+  const newArray = [].concat(arr);
+  newArray.pop();
+  return newArray;
+}
+function multiplyByTwo(arr) {
+  // map automatically returns new array
+  return arr.map(item => item * 2)
+}
