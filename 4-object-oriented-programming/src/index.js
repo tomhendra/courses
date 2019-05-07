@@ -6,7 +6,12 @@
 // - OOP: Bringing together the data and behaviour in a single location, makes it easier to understand how programs work
 // - FP: Data & behaviour are distinctly different things and should be kept separate for clarity
 // - It's not about OOP vs FP... Using both paradigms in unison makes for beautiful programs! :)
-
+// - Goals:
+//   - clear * understandable
+//   - easy to extend
+//   - easy to maintain
+//   - memory efficient
+//   - DRY
 
 // ----------------------------------------------------------------------------------------------------------
 // Factory functions
