@@ -1,0 +1,1 @@
+console.log('%c Connected to /scripts/script.js ', 'background: black; border: 1px solid yellow; color: yellow; padding: 3px');
