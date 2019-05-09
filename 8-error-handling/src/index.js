@@ -96,3 +96,37 @@ const asyncError = async function() {
 }
 asyncError()
 
+
+// ----------------------------------------------------------------------------------------------------------
+// Extending errors
+// - can customize the Error object
+// - useful for not returning the entire error and revealing information about the system 
+//   e.g. full stack trace
+// - avoids revealing exploits to hackers & bad actors
+// - reusable too
+// ----------------------------------------------------------------------------------------------------------
+
+class AuthenticationError extends Error {
+    constructor(message) {
+      super(message)
+      this.name = 'ValidationError'
+      this.message = message
+    }
+  }
+  class PermissionError extends Error {
+    constructor(message) {
+      super(message)
+      this.name = 'PermissionError'
+      this.message = message
+      this.favouriteSnack = 'grapes'
+    }
+  }
+  class DatabaseError extends Error {
+    constructor(message) {
+      super(message)
+      this.name = 'DatabaseError'
+      this.message = message
+    }
+  }
+  
+  throw new PermissionError('A permission error')
