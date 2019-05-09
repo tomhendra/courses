@@ -221,3 +221,14 @@ async function sequence() {
 sequence().then(console.log)
 parallel().then(console.log)
 race().then(console.log)
+
+// ----------------------------------------------------------------------------------------------------------
+// Threads, concurrency & parallelism
+// - although JS is single threaded, with async we can do things in the background
+// - async tasks are performed by browser / node in different background threads
+// - browser has web workers which perform tasks in background
+// - web worker is a JS program running on a different thread in parallel to the main thread
+// - just like browser creates a new thread for new tab
+// - web workers communicate through messages but don't have access to all browser web API's functionality
+// - multi-core cpu machines allow for parallelism -- execute different threads at the same time
+// ----------------------------------------------------------------------------------------------------------
