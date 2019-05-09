@@ -10,8 +10,8 @@
 
 // ----------------------------------------------------------------------------------------------------------
 // Promises
-// - a promise (ES6) is an object that may produce a single value sometime in the future -- either a resolved value, 
-//   or a reason that it's not resolved (rejected)
+// - a promise (ES6) is an object that may produce a single value sometime in the future -- either a 
+//   resolved value, or a reason that it's not resolved (rejected)
 // - a promise may be in one of three possible states: 
 //   1. fulfilled (resolved)
 //   2. rejected
@@ -61,8 +61,58 @@ const urls = [
     'https://jsonplaceholder.typicode.com/albums'
 ]
 
-Promise.all(urls.map(url => {
-    return fetch(url).then(resp => resp.json())
-})).then(results => {
-    console.log(results)
-}).catch(() => console.log('API Error'))
+Promise.all(urls.map(url => 
+    fetch(url).then(resp => resp.json())
+)).then(array => {
+    console.log('users', array[0])
+    console.log('posts', array[1])
+    console.log('albums', array[2])
+}).catch(() => console.log('Error'))
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Async Await
+// - part of ES8 and built on top of promises
+// - async function returns a promise, but makes code easier to read (syntactic sugar)
+// - goal is to make asynchronous code look synchronous
+// - await keyword says "pause this function until I have something for you"
+// - 
+// ----------------------------------------------------------------------------------------------------------
+
+// using fetch function (which is a promise)
+fetch('https://jsonplaceholder.typicode.com/users')
+    .then(resp => resp.json())
+    .then(results => {
+        console.log(results)
+    })
+
+// Async
+async function fetchUsers() {
+    const resp = await fetch('https://jsonplaceholder.typicode.com/users');
+    const data = await resp.json();
+    console.log(data);
+}
+fetchUsers()
+
+// real world example
+const urls2 = [
+    'https://jsonplaceholder.typicode.com/users',
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/albums'
+]
+
+const getData = async function() {
+    try {
+    // ES6 destructuring
+    const [ users, posts, albums ] = await Promise.all(urls2.map(url => 
+        fetch(url).then(resp => resp.json())
+    ))
+    console.log('users', users)
+    console.log('posts', posts)
+    console.log('albums', albums)
+    }
+    catch(err) {
+        console.log('Error', err)
+    }
+}
+getData()
