@@ -71,12 +71,11 @@ Promise.all(urls.map(url =>
 
 
 // ----------------------------------------------------------------------------------------------------------
-// Async Await
+// Async Await (ES8)
 // - part of ES8 and built on top of promises
 // - async function returns a promise, but makes code easier to read (syntactic sugar)
 // - goal is to make asynchronous code look synchronous
 // - await keyword says "pause this function until I have something for you"
-// - 
 // ----------------------------------------------------------------------------------------------------------
 
 // using fetch function (which is a promise)
@@ -116,3 +115,49 @@ const getData = async function() {
     }
 }
 getData()
+
+
+// ----------------------------------------------------------------------------------------------------------
+// ES9 (2018)
+// ----------------------------------------------------------------------------------------------------------
+
+// object spread operator extends ES6 spread operator
+const animals = {
+    tiger: 23,
+    lion: 5,
+    monkey: 2,
+    bird: 40
+}
+
+const { tiger, ...rest } = animals // destructuring to retrieve properties from animals using rest operator
+console.log(tiger) // tiger
+console.log(rest) // lion, monkey & bird
+
+// finally - always called whether resolve or reject
+Promise.all(urls.map(url => 
+    fetch(url).then(resp => resp.json())
+)).then(array => {
+    throw Error
+    console.log('users', array[0])
+    console.log('posts', array[1])
+    console.log('albums', array[2])
+})
+.catch(err => console.log('Error', err))
+.finally(() => console.log('Extra')) // finally is good to run code no matter what the result of the promise
+
+// for await of -- iterator allowing to loop through multiple promises
+// - takes each item from an array of promises that returns to us in the correct order the responses
+const urls3 = [
+    'https://jsonplaceholder.typicode.com/users',
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/albums'
+]
+
+const getData2 = async function() {
+    const arrayOfPromises = urls3.map(url => fetch(url));
+    for await (let request of arrayOfPromises) {
+        const data = await request.json();
+        console.log(data)
+    }
+}
+getData2()
