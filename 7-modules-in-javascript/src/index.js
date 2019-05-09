@@ -48,3 +48,24 @@ console.log(fightModule.fight('ron', 'hagrid'))
 // to fix these issues two solutions came about:
 // 1. CommonJS (& browserify)
 // 2. AMD (asynchronous module definition) (& require js)
+
+
+// ----------------------------------------------------------------------------------------------------------
+// ES6 Modules
+// - native JavaScript support for modules
+// ----------------------------------------------------------------------------------------------------------
+
+const harry = 'potter'
+const voldemort = 'He who must not be named'
+
+// named export
+export function fight2(char1, char2) {
+    const attack1 = Math.floor(Math.random() * char1.length);
+    const attack2 = Math.floor(Math.random() * char2.length);
+    return attack1 > attack2 ? `${char1} wins` : `${char2} wins`
+}
+// import { fight } from 'script'
+
+// default export
+export default fight2;
+// import fight from 'script'
