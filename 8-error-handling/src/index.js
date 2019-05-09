@@ -39,6 +39,7 @@ let error3 = new ReferenceError(message);
 
 // ----------------------------------------------------------------------------------------------------------
 // Try / catch
+// - only works with synchronous code
 // ----------------------------------------------------------------------------------------------------------
 
 function fail() {
@@ -54,4 +55,44 @@ function fail() {
     console.log('never going to get here'); // not reachable
   }
   fail();
-  
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Async error handling
+// - uses catch() method
+// ----------------------------------------------------------------------------------------------------------
+
+// using Promises -- if no catch method is used, the program can silently fail!
+Promise.resolve('asyncfail')
+    .then(response => {
+        console.log(response)
+        throw new Error('#1 fail')
+    })
+    .then(response => {
+        console.log(response)
+    })
+    .catch(err => {
+        console.error('error', err.message)
+    })
+    .then(response => {
+        console.log('hi am I still needed?', response)
+        return 'done'
+    })
+    .catch(err => {
+        console.error(err)
+        return 'failed'
+    })
+
+// using async await
+const asyncError = async function() {
+    try {
+        await Promise.resolve('oopsie #1')
+        await Promise.reject('oopsie #2')
+    } catch (err) {
+        console.error(err)
+    }
+
+    console.log('This is still good!')
+}
+asyncError()
+
