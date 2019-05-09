@@ -161,3 +161,26 @@ const getData2 = async function() {
     }
 }
 getData2()
+
+
+// ----------------------------------------------------------------------------------------------------------
+// Job queue
+// - ES6 update to JavaScript runtime
+// - Event loop changed to accommodate promises 
+// - callback queue AKA task queue behaviour was changed after promises allowed a native way to handle 
+//   async code
+// - ECMAScript decided another queue was needed alongside web API's callback queue -- the job queue AKA 
+//   microtask queue
+// - job queue has higher priority than callback queue
+// - event loop now checks job queue before looking at callback queue 
+// ----------------------------------------------------------------------------------------------------------
+
+// callback queue / task queue
+setTimeout(()=>{console.log('1', 'is the loneliest number')}, 0)
+setTimeout(()=>{console.log('2', 'can be as bad as one')}, 10)
+
+//2 -- job queue / microtask queue
+Promise.resolve('hi').then((data)=> console.log('2', data))
+
+//3
+console.log('3','is a crowd')
