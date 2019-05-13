@@ -34,8 +34,11 @@ const render = () => {
       <p>{app.options.length}</p>
       <button onClick={onRemoveAll}>Remove All</button>
       <ol>
-        <li>Item one</li>
-        <li>Item two</li>
+        {
+          app.options.map((option) => {
+            return <li key={option}>{option}</li>
+          })
+        }
       </ol>
       <form onSubmit={onFormSubmit}> {/* should not be called, just reference function */} 
         <input type="text" name="option"/>
