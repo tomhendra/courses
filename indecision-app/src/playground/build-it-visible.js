@@ -1,29 +1,42 @@
-"use strict";
 
-var app = {
+const app = {
   title: 'Visibility Toggle',
   toggle: false,
   details: 'here are some details'
 };
 
-var showDetails = function showDetails() {
-  app.toggle = !app.toggle;
+const showDetails = () => {
+  app.toggle = !app.toggle
   render();
-};
+}
 
-var render = function render() {
-  var jsx = React.createElement("div", null, React.createElement("h1", null, app.title), React.createElement("button", {
-    onClick: showDetails
-  }, app.toggle ? 'Hide details' : 'Show details'), app.toggle && React.createElement("p", null, app.details));
+const render = () => {
+  const jsx = (
+    <div>
+      <h1>{app.title}</h1>
+      <button onClick={showDetails}>
+        {app.toggle ? 'Hide details' : 'Show details'}
+      </button>
+      {app.toggle && (
+        <p>{app.details}</p>
+      )}
+    </div>
+  );
+
   ReactDOM.render(jsx, document.getElementById('app'));
-};
+}
 
-render(); // teacher solution
+render();
+
+
+// teacher solution
 // let visibility = false;
+
 // const toggleVisibility = () => {
 //   visibility = !visibility;
 //   render();
 // };
+
 // const render = () => {
 //   const jsx = (
 //     <div>
@@ -38,6 +51,8 @@ render(); // teacher solution
 //       )}
 //     </div>
 //   );
+
 //   ReactDOM.render(jsx, document.getElementById('app'));
 // };
+
 // render();
