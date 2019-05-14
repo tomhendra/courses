@@ -32,7 +32,15 @@ function (_React$Component) {
   _createClass(IndecisionApp, [{
     key: "render",
     value: function render() {
-      return React.createElement("div", null, React.createElement(Header, null), React.createElement(Action, null), React.createElement(Options, null), React.createElement(AddOption, null));
+      var title = 'Indecision';
+      var subTitle = 'Put your life in the hands of a computer';
+      var options = ['Thing one', 'Thing two', 'Thing four'];
+      return React.createElement("div", null, React.createElement(Header, {
+        title: title,
+        subTitle: subTitle
+      }), React.createElement(Action, null), React.createElement(Options, {
+        options: options
+      }), React.createElement(AddOption, null));
     }
   }]);
 
@@ -53,7 +61,7 @@ function (_React$Component2) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
-      return React.createElement("div", null, React.createElement("h1", null, "Indecision"), React.createElement("h2", null, "Put your life in the hands of a computer"));
+      return React.createElement("div", null, React.createElement("h1", null, this.props.title), React.createElement("h2", null, this.props.subTitle));
     }
   }]);
 
@@ -95,7 +103,13 @@ function (_React$Component4) {
   _createClass(Options, [{
     key: "render",
     value: function render() {
-      return React.createElement(Option, null);
+      return React.createElement("div", null, // when creating an array of JSX we have to define a key on each
+      this.props.options.map(function (option) {
+        return React.createElement(Option, {
+          key: option,
+          optionText: option
+        });
+      }));
     }
   }]);
 
@@ -116,7 +130,7 @@ function (_React$Component5) {
   _createClass(Option, [{
     key: "render",
     value: function render() {
-      return React.createElement("div", null, "Options component here");
+      return React.createElement("div", null, "Option: ", this.props.optionText);
     }
   }]);
 
