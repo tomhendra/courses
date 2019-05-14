@@ -80,9 +80,16 @@ function (_React$Component3) {
   }
 
   _createClass(Action, [{
+    key: "handlePick",
+    value: function handlePick() {
+      alert('handlePick');
+    }
+  }, {
     key: "render",
     value: function render() {
-      return React.createElement("div", null, React.createElement("button", null, "What should I do?"));
+      return React.createElement("div", null, React.createElement("button", {
+        onClick: this.handlePick
+      }, "What should I do?"));
     }
   }]);
 
@@ -101,9 +108,16 @@ function (_React$Component4) {
   }
 
   _createClass(Options, [{
+    key: "HandleRemoveAll",
+    value: function HandleRemoveAll() {
+      alert('HandleRemoveAll');
+    }
+  }, {
     key: "render",
     value: function render() {
-      return React.createElement("div", null, // when creating an array of JSX we have to define a key on each
+      return React.createElement("div", null, React.createElement("button", {
+        onClick: this.HandleRemoveAll
+      }, "Remove All"), // when creating an array of JSX we have to define a key on each
       this.props.options.map(function (option) {
         return React.createElement(Option, {
           key: option,
@@ -149,9 +163,26 @@ function (_React$Component6) {
   }
 
   _createClass(AddOption, [{
+    key: "handleAddOption",
+    value: function handleAddOption(e) {
+      e.preventDefault(); // prevents full page refresh default behaviour
+
+      var option = e.target.elements.option.value.trim();
+
+      if (option) {
+        alert(option);
+        e.target.elements.option.value = '';
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      return React.createElement("div", null, "Add option component here");
+      return React.createElement("div", null, React.createElement("form", {
+        onSubmit: this.handleAddOption
+      }, React.createElement("input", {
+        type: "text",
+        name: "option"
+      }), React.createElement("button", null, "Add Option")));
     }
   }]);
 
