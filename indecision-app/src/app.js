@@ -43,9 +43,10 @@ class Options extends React.Component {
   // event handlers lose the this context. Bind() can be used in render() but is expensive, so override of the constructor is used
   // constructor function for React components gets called with props object
   // must call super with props to ensure access to this.props
+  // correct context is set when component is initialized rather than each time it renders
   constructor(props) { 
     super(props);
-    this.HandleRemoveAll = this.HandleRemoveAll.bind(this); // correct context is always set
+    this.HandleRemoveAll = this.HandleRemoveAll.bind(this); 
   }
   HandleRemoveAll() {
     console.log(this.props.options);

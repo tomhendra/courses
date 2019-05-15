@@ -104,14 +104,14 @@ function (_React$Component4) {
   // event handlers lose the this context. Bind() can be used in render() but is expensive, so override of the constructor is used
   // constructor function for React components gets called with props object
   // must call super with props to ensure access to this.props
+  // correct context is set when component is initialized rather than each time it renders
   function Options(props) {
     var _this;
 
     _classCallCheck(this, Options);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Options).call(this, props));
-    _this.HandleRemoveAll = _this.HandleRemoveAll.bind(_assertThisInitialized(_this)); // correct context is always set
-
+    _this.HandleRemoveAll = _this.HandleRemoveAll.bind(_assertThisInitialized(_this));
     return _this;
   }
 
