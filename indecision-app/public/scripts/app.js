@@ -101,16 +101,24 @@ var Options =
 function (_React$Component4) {
   _inherits(Options, _React$Component4);
 
-  function Options() {
+  // event handlers lose the this context. Bind() can be used in render() but is expensive, so override of the constructor is used
+  // constructor function for React components gets called with props object
+  // must call super with props to ensure access to this.props
+  function Options(props) {
+    var _this;
+
     _classCallCheck(this, Options);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Options).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Options).call(this, props));
+    _this.HandleRemoveAll = _this.HandleRemoveAll.bind(_assertThisInitialized(_this)); // correct context is always set
+
+    return _this;
   }
 
   _createClass(Options, [{
     key: "HandleRemoveAll",
     value: function HandleRemoveAll() {
-      alert('HandleRemoveAll');
+      console.log(this.props.options);
     }
   }, {
     key: "render",
