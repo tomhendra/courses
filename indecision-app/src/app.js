@@ -1,3 +1,10 @@
+// Component state
+// 1. setup default state object
+// 2. component is rendered with default state values (implicit)
+// 3. change state based on an event
+// 4. component re-rendered using new state values (implicit)
+// 5. start again at 3.
+
 class IndecisionApp extends React.Component {
   render() {
     const title = 'Indecision';
