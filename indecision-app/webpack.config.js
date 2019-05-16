@@ -15,7 +15,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: ['@babel/proposal-object-rest-spread'],
+            plugins: ['@babel/plugin-proposal-class-properties']
           },
         },
       },
@@ -23,7 +23,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
-    publicPath: '/scripts/',
+    publicPath: '/scripts/'
   },
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map'
 };
