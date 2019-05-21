@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: ['@babel/polyfill', './src/playground/destructuring.js'],
+  entry: ['@babel/polyfill', './src/playground/redux-101.js'],
   output: {
     path: path.resolve(__dirname, 'public/scripts'),
     filename: 'bundle.js',
