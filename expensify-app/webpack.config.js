@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: ['@babel/polyfill', './src/playground/hoc.js'],
+  entry: ['@babel/polyfill', './src/app.js'],
   output: {
     path: path.resolve(__dirname, 'public/scripts'),
     filename: 'bundle.js',
