@@ -1,20 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ExpenseListItem from './ExpenseListItem';
+import selectExpenses from './../selectors/expenses';
 
 // regular unconnected component
 const ExpenseList = (props) => (
   <div>
     <h1>Expense List</h1>
-    {props.filters.text}
-    {props.expenses.length}
+    {/* destructuring props from object using {...expense} */}
+    {props.expenses.map(expense => <ExpenseListItem {...expense} key={expense.id} />)}
   </div>
 );
 
 // functions to define what we want to pull from the store
 const mapStateToProps = (state) => {
   return {
-    expenses: state.expenses,
-    filters: state.filters
+    expenses: selectExpenses(state.expenses, state.filters)
   };
 };
 
