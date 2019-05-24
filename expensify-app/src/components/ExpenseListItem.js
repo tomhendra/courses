@@ -2,9 +2,9 @@ import React from 'react';
 
 const ExpenseListItem = ({ description, amount, createdAt }) => (
   <div>
-    <h3>Description: {description}</h3>
-    <p>Amount: &euro;{amount}</p>
-    <p>Date created: {createdAt}</p>
+    <h3>{description}</h3>
+    <p>Amount: &euro;{amount} | Date created: {createdAt}</p>
+    <button>Remove</button>
   </div>
 );
 
