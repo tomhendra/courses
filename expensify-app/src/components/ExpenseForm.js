@@ -78,6 +78,7 @@ export default class ExpenseForm extends React.Component {
             onDateChange={this.onDateChange}
             focused={this.state.calendarFocused}
             onFocusChange={this.onFocusChange}
+            id={this.props.expense.id}
             numberOfMonths={1}
             isOutsideRange={() => false}
           />
