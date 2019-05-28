@@ -5,5 +5,6 @@ import Header from '../../components/Header';
 
 test('Should render Header correctly', () => {
   const wrapper = shallow(<Header />);
-  expect(toJSON(wrapper)).toMatchSnapshot();
+  expect(wrapper).toMatchSnapshot();
+  // expect(toJSON(wrapper)).toMatchSnapshot();
 });

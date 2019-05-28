@@ -4,11 +4,16 @@ import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from './../selectors/expenses';
 
 // regular unconnected component
-const ExpenseList = (props) => (
+export const ExpenseList = (props) => (
   <div>
-    <h1>Expense List</h1>
+    {
+      props.expenses.length === 0 ? (
+        <p>No expenses</p>
+      ) : (
+        props.expenses.map(expense => <ExpenseListItem {...expense} key={expense.id} />)
+      )
+    }
     {/* destructuring props from object using {...expense} */}
-    {props.expenses.map(expense => <ExpenseListItem {...expense} key={expense.id} />)}
   </div>
 );
 
