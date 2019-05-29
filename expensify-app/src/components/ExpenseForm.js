@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
 
 export default class ExpenseForm extends React.Component {
@@ -78,7 +77,7 @@ export default class ExpenseForm extends React.Component {
             onDateChange={this.onDateChange}
             focused={this.state.calendarFocused}
             onFocusChange={this.onFocusChange}
-            id={this.props.expense.id}
+            id={"expenseDatePicker"}            
             numberOfMonths={1}
             isOutsideRange={() => false}
           />
