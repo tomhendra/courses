@@ -77,7 +77,7 @@ export default class ExpenseForm extends React.Component {
             onDateChange={this.onDateChange}
             focused={this.state.calendarFocused}
             onFocusChange={this.onFocusChange}
-            id={"expenseDatePicker"}            
+            id={"date_picker"}            
             numberOfMonths={1}
             isOutsideRange={() => false}
           />
