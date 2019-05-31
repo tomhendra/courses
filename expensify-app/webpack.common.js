@@ -10,8 +10,8 @@ module.exports = {
   mode: 'development',
   entry: ['@babel/polyfill', './src/app.js'],
   output: {
-    filename: '[name].[hash].js',
-    path: path.resolve(__dirname, 'public')
+    filename: './scripts/[name].[hash].js',
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [{
@@ -32,9 +32,7 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          name: '[name].[hash].[ext]',
-          outputPath: './images/',
-          publicPath: './images/'
+          name: './images/[name].[hash].[ext]'
         }
       }]
     },
@@ -43,9 +41,7 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]',
-          outputPath: './fonts/',
-          publicPath: './fonts/'
+          name: './fonts/[name].[ext]'
         }
       }]
     },
@@ -106,12 +102,12 @@ module.exports = {
       defaultAttribute: 'defer'
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
-      chunkFilename: '[id].css'
+      filename: './styles/[name].[hash].css',
+      chunkFilename: './css/[id].css'
     })
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, 'public'),
-    historyApiFallback: true,  // serves up index.html in the public folder every time there is a 404
+    contentBase: path.resolve(__dirname, 'dist'),
+    historyApiFallback: true,  // serves up index.html in the dist folder every time there is a 404
   }
 };
