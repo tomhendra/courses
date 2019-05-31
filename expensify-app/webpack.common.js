@@ -107,7 +107,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'dist/'),
     historyApiFallback: true,  // serves up index.html in the dist folder every time there is a 404
   }
 };
