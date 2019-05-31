@@ -33,8 +33,8 @@ module.exports = {
         loader: 'file-loader',
         options: {
           name: '[name].[hash].[ext]',
-          outputPath: 'images/',
-          publicPath: 'images/'
+          outputPath: './images/',
+          publicPath: './images/'
         }
       }]
     },
@@ -44,8 +44,8 @@ module.exports = {
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
-          outputPath: 'fonts/',
-          publicPath: 'fonts/'
+          outputPath: './fonts/',
+          publicPath: './fonts/'
         }
       }]
     },
@@ -109,5 +109,9 @@ module.exports = {
       filename: '[name].[hash].css',
       chunkFilename: '[id].css'
     })
-  ]
+  ],
+  devServer: {
+    contentBase: path.resolve(__dirname, 'public'),
+    historyApiFallback: true,  // serves up index.html in the public folder every time there is a 404
+  }
 };

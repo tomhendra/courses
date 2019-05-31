@@ -6,3 +6,4 @@ git add - Add files to the staging area
 git commit - Creates a new commit with files from staging area
 git log - View recent commits
 
+git subtree push --prefix expensify-app heroku master - push to Heroku
