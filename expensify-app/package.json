@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A expenses tracking app",
   "scripts": {
-    "serve": "live-server dist/",
+    "serve": "live-server public/",
     "start": "webpack-dev-server --open 'Google Chrome' --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "test": "jest --config=jest.config.json"
@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
+    "express": "^4.17.1",
     "lazysizes": "^4.1.8",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
