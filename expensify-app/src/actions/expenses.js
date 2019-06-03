@@ -1,4 +1,5 @@
 import uuid from 'uuid';
+import database from '../firebase/firebase';
 
 // -- without firebase
 // component calls action generator
@@ -7,7 +8,7 @@ import uuid from 'uuid';
 // reducer updates redux store 
 // (reducer takes in app’s current state + action, and produces the altered state based on the contents of the action)
 
-// -- with firebase
+// -- with firebase & redux-thunk
 // component calls action generator
 // action generator returns FUNCTION 
 // component dispatches FUNCTION (with middleware)
@@ -15,23 +16,33 @@ import uuid from 'uuid';
 // (function has the ability to dispatch other actions and do whatever it wants) 
 
 // ADD_EXPENSE
-export const addExpense = (
-  {
-    description = '',
-    note = '',
-    amount = 0,
-    createdAt = 0
-  } = {}
-) => ({
+export const addExpense = (expense) => ({
   type: 'ADD_EXPENSE',
-  expense: {
-    id: uuid(),
-    description,
-    note,
-    amount,
-    createdAt
-  }
+  expense
 });
+
+// REDUX-THUNK ASYNC >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// redux-thunk allows function to be returned...
+export const startAddExpense = (expenseData = {}) => {
+  return (dispatch) => {
+    // destructure into variables...
+    const { 
+      description = '',
+      note = '',
+      amount = 0,
+      createdAt = 0
+    } = expenseData;
+    // assign destructured values to expenses variable...
+    const expense = { description, note, amount, createdAt }
+    // asynchronously push to firebase... then update redux store with firebase
+    database.ref('expenses').push(expense).then((ref) => {
+      dispatch(addExpense({
+        id: ref.key,
+        ...expense
+      }))
+    });
+  };
+};
 
 // REMOVE_EXPENSE
 export const removeExpense = ({ id } = {}) => ({
