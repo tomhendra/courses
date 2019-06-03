@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
+import './firebase/firebase';
 
 import './fonts/SourceSansPro-Regular.ttf';
 import 'normalize.css/normalize.css';
