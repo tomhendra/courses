@@ -35,7 +35,7 @@ export const startAddExpense = (expenseData = {}) => {
     // assign destructured values to expenses variable...
     const expense = { description, note, amount, createdAt }
     // asynchronously push to firebase... then update redux store with firebase
-    database.ref('expenses').push(expense).then((ref) => {
+    return database.ref('expenses').push(expense).then((ref) => {
       dispatch(addExpense({
         id: ref.key,
         ...expense
