@@ -2,10 +2,8 @@
 
 exports[`Should render login page correctly 1`] = `
 <div>
-  <form>
-    <button>
-      Login
-    </button>
-  </form>
+  <button>
+    Login
+  </button>
 </div>
 `;
