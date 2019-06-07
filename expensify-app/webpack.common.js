@@ -111,7 +111,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: './styles/[name].[hash].css',
-      chunkFilename: './css/[id].css'
+      chunkFilename: './styles/[id].css'
     }),
     new webpack.DefinePlugin({
       'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
@@ -124,7 +124,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist/'),
+    // contentBase: path.resolve(__dirname, 'dist/'),
     historyApiFallback: true,  // serves up index.html in the dist folder every time there is a 404
   }
 };

@@ -15,11 +15,10 @@
 
 html {
   font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 body {
-  background: #282a36;
-  color: #f7f7fb;
   font-family: 'SourceSansPro-Regular', Fallback, 'Helvetica', 'Arial', sans-serif;
   font-size: $m-size;
 }
