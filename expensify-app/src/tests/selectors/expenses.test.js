@@ -1,4 +1,4 @@
-import selectExpenses from '../../selectors/expenses';
+import selectExpenses from '../../redux/selectors/expenses';
 import moment from 'moment';
 import expenses from '../fixtures/expenses';
 

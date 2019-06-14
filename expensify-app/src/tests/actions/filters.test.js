@@ -1,4 +1,4 @@
-import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../../actions/filters';
+import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../../redux/actions/filters';
 import moment from 'moment';
 
 test('Should generate set start date action object', () => {

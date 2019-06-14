@@ -1,4 +1,4 @@
- import { login, logout } from '../../actions/auth';
+ import { login, logout } from '../../redux/actions/auth';
 
  test('Should generate login action object', () => {
   const action = login('123abc');

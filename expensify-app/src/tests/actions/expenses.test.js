@@ -9,7 +9,7 @@ import {
   setExpenses, 
   startSetExpenses, 
   startRemoveExpense
-} from '../../actions/expenses';
+} from '../../redux/actions/expenses';
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 

@@ -7,9 +7,8 @@ module.exports = function(api) {
       {
         targets: {
           esmodules: true,
-        },
-        useBuiltIns: 'usage',
-      },
+        }
+      }
     ],
     '@babel/preset-react',
   ];

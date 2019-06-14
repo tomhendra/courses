@@ -1,4 +1,4 @@
-import getExpensesTotal from '../../selectors/expenses-total';
+import getExpensesTotal from '../../redux/selectors/expenses-total';
 import expenses from '../fixtures/expenses';
 
 test('Should return 0 if no expenses', () => {

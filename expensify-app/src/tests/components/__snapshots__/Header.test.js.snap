@@ -17,9 +17,7 @@ exports[`Should render Header correctly 1`] = `
   >
     Create Expense
   </NavLink>
-  <button
-    onClick={[MockFunction]}
-  >
+  <button>
     Logout
   </button>
 </header>

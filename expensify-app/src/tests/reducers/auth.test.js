@@ -1,4 +1,4 @@
-import authReducer from '../../reducers/auth';
+import authReducer from '../../redux/reducers/auth';
 
 test('should set uid for login', () => {
   const action = {

@@ -1,4 +1,4 @@
-import expensesReducer from '../../reducers/expenses';
+import expensesReducer from '../../redux/reducers/expenses';
 import expenses from '../fixtures/expenses';
 
 test('Should set default state', () => {
