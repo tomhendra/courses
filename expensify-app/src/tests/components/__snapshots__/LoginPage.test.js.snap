@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Should render login page correctly 1`] = `
-<div>
+<div
+  className="box-layout"
+>
   <button>
     Login
   </button>

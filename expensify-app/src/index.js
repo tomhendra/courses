@@ -1,17 +1,17 @@
-require('offline-plugin/runtime').install();
-
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
-import configureStore from './store/configureStore';
-import { startSetExpenses } from './actions/expenses';
-import { login, logout } from './actions/auth';
+import configureStore from './redux/store/configureStore';
+import { startSetExpenses } from './redux/actions/expenses';
+import { login, logout } from './redux/actions/auth';
 import { firebase } from './firebase/firebase';
 
-import './fonts/SourceSansPro-Regular.ttf';
 import 'normalize.css/normalize.css';
-import './styles/styles.scss';
+import 'react-dates/lib/css/_datepicker.css';
+import './assets/styles';
 
 const store = configureStore();
 const jsx = (

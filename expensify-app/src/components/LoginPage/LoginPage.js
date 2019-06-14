@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startLogin } from '../actions/auth';
+import { startLogin } from '../../redux/actions/auth';
+
+import style from './LoginPage.scss';
 
 export const LoginPage = ({ startLogin }) => (
-  <div className="box-layout">
+  <div className={style['box-layout']}>
     <button onClick={startLogin}>Login</button>
   </div>
 );

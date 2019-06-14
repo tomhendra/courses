@@ -1,4 +1,4 @@
-import database from '../firebase/firebase';
+import database from '../../firebase/firebase';
 
 // -- without firebase
 // component calls action generator
