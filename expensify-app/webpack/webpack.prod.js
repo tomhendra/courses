@@ -63,9 +63,9 @@ module.exports = {
         ]
       },
       {
+        // vendor css rule
         test: /node_modules\/.*\.css$/,
         use: [
-          //  extracts CSS into separate files & creates a CSS file per JS file which contains CSS
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
@@ -76,6 +76,7 @@ module.exports = {
         ]
       },
       {
+        // css modules rule
         test: /\.scss/,
         exclude: /node_modules/,
         use: [

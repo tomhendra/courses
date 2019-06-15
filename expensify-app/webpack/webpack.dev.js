@@ -33,10 +33,10 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           // 3. creates style nodes from JS strings; outputs CSS into <style> tags
-          'style-loader', 
+          'style-loader',
           {
             // 2. translates CSS into CommonJS; parses the CSS into JavaScript and resolves any dependencies.
-            loader: 'css-loader', 
+            loader: 'css-loader',
             options: {
               sourceMap: true,
               modules: true,
