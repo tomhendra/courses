@@ -12,21 +12,6 @@ module.exports = {
   module: {
     rules: [
       {
-        // vendor css rule
-        test: /node_modules\/.*\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
-      },
-      {
         // css modules rule
         test: /\.scss/,
         // loaders are executed from right to left (bottom-to-top)
@@ -47,6 +32,21 @@ module.exports = {
           // 1. compiles Sass to CSS, using Node Sass by default
           'sass-loader',
         ]
+      },
+      {
+        // vendor css rule
+        test: /node_modules\/.*\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/,

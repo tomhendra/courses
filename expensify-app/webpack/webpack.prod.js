@@ -63,19 +63,6 @@ module.exports = {
         ]
       },
       {
-        // vendor css rule
-        test: /node_modules\/.*\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: false
-            }
-          }
-        ]
-      },
-      {
         // css modules rule
         test: /\.scss/,
         exclude: /node_modules/,
@@ -92,6 +79,19 @@ module.exports = {
             }
           },
           'sass-loader',
+        ]
+      },
+      {
+        // vendor css rule
+        test: /node_modules\/.*\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: false
+            }
+          }
         ]
       },
       {
