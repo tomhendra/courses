@@ -25,5 +25,5 @@ global.navigator = {
 };
 
 dotenv.config({
-  path: '.env/.env.test'
+  path: '.env.test'
 });

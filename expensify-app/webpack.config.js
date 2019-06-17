@@ -10,7 +10,7 @@ const envs = {
 let env = envs[process.env.NODE_ENV || 'development'];
 
 if (env !== 'prod') {
-  require('dotenv').config({ path: `.env/.env.${env}` });
+  require('dotenv').config({ path: `.env.${env}` });
   env = 'dev';
 } 
 

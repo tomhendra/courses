@@ -22,7 +22,7 @@ Temporary Items
 .serverless/
 
 # environmental variables
-.env/
+.env*
 
 # Test
 coverage
