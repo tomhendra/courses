@@ -66,7 +66,9 @@ module.exports = {
     // enable gzip compression for everything served
     compress: true,
     // enable Hot Module Replacement (HMR) feature
-    hot: true
+    hot: true,
+    // redirects to index.html on server request for page
+    historyApiFallback: true
   },
   plugins: [
     // HMR allows all kinds of modules to be updated at runtime without the need for a full refresh

@@ -1,4 +1,4 @@
-@import '../../assets/styles/base/settings';
+@import './src/assets/styles/base/settings';
 
 .box-layout {
   background: url('../../assets/images/bg.jpg');
@@ -23,7 +23,7 @@
   line-height: 1;
 }
 
-.button-login {
+.button {
   background: $blue;
   border: none;
   color: white;

@@ -9,7 +9,7 @@ export const LoginPage = ({ startLogin }) => (
     <div className={style['box-layout__box']}>
       <h1 className={style['box-layout__title']}>Expensify</h1>
       <p>It's time to get your expenses under control</p>
-      <button className={style['button-login']} onClick={startLogin}>Login with Google</button>
+      <button className={style['button']} onClick={startLogin}>Login with Google</button>
     </div>
   </div>
 );
