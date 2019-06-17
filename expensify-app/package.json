@@ -19,8 +19,8 @@
   "license": "ISC",
   "private": false,
   "engines": {
-    "node": ">=8",
-    "npm": ">=3"
+    "node": ">=12",
+    "npm": ">=6"
   },
   "dependencies": {
     "@babel/plugin-transform-react-constant-elements": "7.2.0",
