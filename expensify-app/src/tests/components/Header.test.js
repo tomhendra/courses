@@ -2,19 +2,15 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Header } from '../../components/Header';
 
-let startLogout, wrapper;
 
-// reuse spies & wrappers throughout test cases
-beforeEach(() => {
-  startLogout = jest.fn();
-  wrapper = shallow(<Header startLogout={startLogout} />);
-});
-
-test('Should render Header correctly', () => {
+test('should render Header correctly', () => {
+  const wrapper = shallow(<Header startLogout={() => { }} />);
   expect(wrapper).toMatchSnapshot();
 });
 
-test('Should call startLogout on button click', () => {
+test('should call startLogout on button click', () => {
+  const startLogout = jest.fn();
+  const wrapper = shallow(<Header startLogout={startLogout} />);
   wrapper.find('button').simulate('click');
-  expect(startLogout).toHaveBeenCalled()
+  expect(startLogout).toHaveBeenCalled();
 });
