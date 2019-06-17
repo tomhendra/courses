@@ -4,14 +4,6 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 const paths = require('./paths');
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
-if (process.env.NODE_ENV === 'test') {
-  require('dotenv').config({ path: '.env/.env.test' });
-} else if (process.env.NODE_ENV === 'development') {
-  require('dotenv').config({ path: '.env/.env.dev' });
-}
-
 module.exports = {
   entry: paths.entryPath,
   module: {
