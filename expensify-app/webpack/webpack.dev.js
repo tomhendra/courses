@@ -79,16 +79,6 @@ module.exports = {
   plugins: [
     // HMR allows all kinds of modules to be updated at runtime without the need for a full refresh
     new webpack.HotModuleReplacementPlugin(),
-    // define firebase auth with environmental variables using process.env
-    new webpack.DefinePlugin({
-      'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
-      'process.env.FIREBASE_AUTH_DOMAIN': JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
-      'process.env.FIREBASE_DATABASE_URL': JSON.stringify(process.env.FIREBASE_DATABASE_URL),
-      'process.env.FIREBASE_PROJECT_ID': JSON.stringify(process.env.FIREBASE_PROJECT_ID),
-      'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
-      'process.env.FIREBASE_MESSAGING_SENDER': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER),
-      'process.env.FIREBASE_APP_ID': JSON.stringify(process.env.FIREBASE_APP_ID)
-    })
   ],
   // lighter weight source map for dev - more efficient to use inline since webpack will have less file to resolve and read
   devtool: 'inline-source-map'
