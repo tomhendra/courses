@@ -71,7 +71,7 @@ module.exports = {
   plugins: [
     // HMR allows all kinds of modules to be updated at runtime without the need for a full refresh
     new webpack.HotModuleReplacementPlugin(),
-        // define firebase auth with environmental variables using process.env
+    // define firebase auth with environmental variables using process.env
     new webpack.DefinePlugin({
       'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
       'process.env.FIREBASE_AUTH_DOMAIN': JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
