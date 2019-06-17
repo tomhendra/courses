@@ -134,13 +134,22 @@ module.exports = {
   plugins: [
     // clears dist folder on new build
     new CleanWebpackPlugin(),
+    // Converts images to the WebP format while also keeping the original files
+    new ImageminWebpWebpackPlugin(),
     //  extracts CSS into separate files & creates a CSS file per JS file which contains CSS
     new MiniCssExtractPlugin({
       filename: `${paths.cssDir}/[name].[hash].css`,
       chunkFilename: `${paths.cssDir}/[name].[hash].css`
     }),
-    // Converts images to the WebP format while also keeping the original files
-    new ImageminWebpWebpackPlugin()
+    new webpack.DefinePlugin({
+      'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
+      'process.env.FIREBASE_AUTH_DOMAIN': JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
+      'process.env.FIREBASE_DATABASE_URL': JSON.stringify(process.env.FIREBASE_DATABASE_URL),
+      'process.env.FIREBASE_PROJECT_ID': JSON.stringify(process.env.FIREBASE_PROJECT_ID),
+      'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
+      'process.env.FIREBASE_MESSAGING_SENDER': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER),
+      'process.env.FIREBASE_APP_ID': JSON.stringify(process.env.FIREBASE_APP_ID)
+    })
   ],
   // full, separated source map for production - will not be served unless requested
   devtool: 'source-map'
