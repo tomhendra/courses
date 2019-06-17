@@ -7,7 +7,7 @@
     "build:dev": "cross-env NODE_ENV=production webpack",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json --watchAll --coverage",
     "start": "node server/server.js",
-    "build": "webpack -p --env production",
+    "build": "webpack",
     "heroku-postbuild": "npm run build"
   },
   "repository": {
