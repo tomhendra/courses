@@ -18,10 +18,6 @@
   "author": "Tom Hendra",
   "license": "ISC",
   "private": false,
-  "engines": {
-    "node": ">=12",
-    "npm": ">=6"
-  },
   "dependencies": {
     "@babel/plugin-transform-react-constant-elements": "7.2.0",
     "@babel/plugin-transform-react-inline-elements": "7.2.0",
