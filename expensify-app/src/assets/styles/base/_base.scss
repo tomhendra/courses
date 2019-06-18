@@ -1,18 +1,3 @@
-//! import google fonts
-// @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-
-//! import a custom font below
-@font-face {
-  font-family: 'SourceSansPro-Regular';
-  font-display: fallback;
-  font-weight: normal;
-  font-style: normal;
-  src:
-    local('Source Sans Pro'), /* Checks if font is on users computer */
-    local('SourceSansPro-Regular'), /* Checks if font is on users computer */
-    url('/src/fonts/SourceSansPro-Regular.ttf') format('ttf'), 
-}
-
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -20,7 +5,7 @@ html {
 
 body {
   color: $dark-grey;
-  font-family: 'SourceSansPro-Regular', Fallback, 'Helvetica', 'Arial', sans-serif;
+  font-family: 'SourceSansPro', Fallback, 'Helvetica', 'Arial', sans-serif;
   font-size: $m-size;
   line-height: 1.6;
 }
