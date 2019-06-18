@@ -24,3 +24,15 @@
     margin: 0 $s-size 0 0;
   }
 }
+
+.text-input {
+  border: 1px solid #cacccd;
+  height: 50px;
+  padding: $s-size;
+  font-size: $font-size-large;
+  font-weight: 400;
+}
+
+.select {
+  @extend .text-input;
+}

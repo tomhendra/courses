@@ -3,6 +3,8 @@ import moment from 'moment';
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 
+import style from './ExpenseForm.scss';
+
 export default class ExpenseForm extends React.Component {
   constructor(props) {
     super(props);
@@ -63,12 +65,14 @@ export default class ExpenseForm extends React.Component {
             type="text"
             placeholder="Description"
             autoFocus
+            className={style['text-input']}
             value={this.state.description}
             onChange={this.onDescriptionChange}
           />
           <input 
             type="text"
             placeholder="Amount"
+            className={style['text-input']}
             value={this.state.amount}
             onChange={this.onAmountChange}
           />
@@ -83,6 +87,7 @@ export default class ExpenseForm extends React.Component {
           />
           <textarea
             placeholder="Add a note for your expense (optional)"
+            className={style['textarea']}
             value={this.state.note}
             onChange={this.onNoteChange}
           >
