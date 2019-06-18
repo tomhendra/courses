@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ExpenseForm from './ExpenseForm/ExpenseForm';
-import { startEditExpense, startRemoveExpense } from '../redux/actions/expenses';
+import ExpenseForm from '../ExpenseForm/ExpenseForm';
+import { startEditExpense, startRemoveExpense } from '../../redux/actions/expenses';
+
+import style from './EditExpensePage.scss';
 
 export class EditExpensePage extends React.Component {
   onSubmit = (expense) => {
@@ -11,18 +13,27 @@ export class EditExpensePage extends React.Component {
   onRemove = () => {
     this.props.startRemoveExpense({ id: this.props.expense.id });
     this.props.history.push('/');
- }
- render() {
-   return (
-    <div>
-      <ExpenseForm
-        expense={this.props.expense}
-        onSubmit={this.onSubmit}
-      />
-      <button onClick={this.onRemove}>Remove</button>
-    </div>
-   );
- }
+  }
+  render() {
+    return (
+      <div>
+        <div className={style['page-header']}>
+          <div className={style['content-container']}>
+            <div className={style['page-header__title']}>
+              <h1>Edit expense</h1>
+            </div>
+          </div>
+        </div>
+        <div className={style['content-container']}>
+          <ExpenseForm
+            expense={this.props.expense}
+            onSubmit={this.onSubmit}
+          />
+          <button className={style['button--secondary']} onClick={this.onRemove}>Remove Expense</button>
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state, props) => ({
