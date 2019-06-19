@@ -3,10 +3,10 @@ import { Router, Route, Switch } from 'react-router-dom';
 // import createHistory from 'history/createBrowserHistory';
 import { createBrowserHistory } from 'history';
 import LoginPage from '../components/LoginPage/LoginPage';
-import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
+import ExpenseDashboardPage from '../components/ExpenseDashboardPage/ExpenseDashboardPage';
 import AddExpensePage from '../components/AddExpensePage/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage/EditExpensePage';
-import NotFoundPage from '../components/NotFoundPage';
+import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
