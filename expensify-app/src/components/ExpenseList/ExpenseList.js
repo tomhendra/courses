@@ -1,19 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ExpenseListItem from './ExpenseListItem';
-import selectExpenses from '../redux/selectors/expenses';
+import ExpenseListItem from '../ExpenseListItem/ExpenseListItem';
+import selectExpenses from '../../redux/selectors/expenses';
+
+import style from './ExpenseList.scss';
 
 // regular unconnected component
 export const ExpenseList = (props) => (
-  <div>
+  <div className={style['content-container']}>
+    <div className={style['list-header']}>
+      <div className={style['show-for-mobile']}>Expenses</div>
+      <div className={style['show-for-desktop']}>Expense</div>
+      <div className={style['show-for-desktop']}>Amount</div>
+    </div>
+    <div className={style['list-body']}>
     {
       props.expenses.length === 0 ? (
-        <p>No expenses</p>
+        <div className={style['list-item--message']}>
+          <span>No expenses</span>
+        </div>
       ) : (
           props.expenses.map(expense => <ExpenseListItem key={expense.id} {...expense} />)
-        )
+      )
     }
-    {/* destructuring props from object using {...expense} */}
+    </div>
+
   </div>
 );
 
