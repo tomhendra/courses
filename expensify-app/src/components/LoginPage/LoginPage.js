@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { startLogin } from '../../redux/actions/auth';
 
+import '../../assets/images/bg.jpg';
 import style from './LoginPage.scss';
 
 export const LoginPage = ({ startLogin }) => (
