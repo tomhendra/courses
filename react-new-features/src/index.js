@@ -12,35 +12,43 @@ import * as serviceWorker from './serviceWorker';
 
 // useEffect is similar to a combination of componentDidMount & componentDidUpdate
 // runs once immediately (mount) and again when state or props change
+// can call useEffect as many times as needed in any given component 
+// (componentDidMount in class based components could only be called once)
+// second argument (dependency array) specifies which effects should be monitored
+// passing an empty dependency arry means useEffect will only run once, as there are no dependencies to depend on! (a complete mirror of componentDidMount)
+// 2nd argument is optional but it is good practice to be explicit about what effects useEffect depends on
 
-// const App = (props) => {  
+const App = (props) => {  
 
-//   const [count, setCount] = useState(props.count)
-//   const [text, setText] = useState('test')
+  const [count, setCount] = useState(props.count)
+  const [text, setText] = useState('test')
 
-//   useEffect(() => {
-//     console.log('useEffect ran')
-//     document.title = count
-//   })
+  useEffect(() => {
+    console.log('This should ony run once')
+  }, [])
 
-//   return (
-//     <div>
-//       <p>The current {text || 'count' } is {count}</p>
-//       <button onClick={() => setCount(count + 1)}>+1</button>
-//       <button onClick={() => setCount(count - 1)}>-1</button>
-//       <button onClick={() => setCount(props.count)}>Reset</button>
-//       <input value={text} onChange={(e) => setText(e.target.value)}/>
-//     </div>
-//   );
-// }
+  useEffect(() => {
+    console.log('useEffect ran')
+    document.title = count
+  }, [count])
 
-// App.defaultProps = {
-//   count: 0
-// }
+  return (
+    <div>
+      <p>The current {text || 'count' } is {count}</p>
+      <button onClick={() => setCount(count + 1)}>+1</button>
+      <button onClick={() => setCount(count - 1)}>-1</button>
+      <button onClick={() => setCount(props.count)}>Reset</button>
+      <input value={text} onChange={(e) => setText(e.target.value)}/>
+    </div>
+  );
+}
+
+App.defaultProps = {
+  count: 0
+}
 
 const NoteApp = () => {
-  const notesData = JSON.parse(localStorage.getItem('notes'));
-  const [notes, setNotes] = useState(notesData || [])
+  const [notes, setNotes] = useState([])
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
@@ -59,8 +67,14 @@ const NoteApp = () => {
   }
 
   useEffect(() => {
+    const notesData = JSON.parse(localStorage.getItem('notes'));
+    notesData && setNotes(notesData)
+  }, [])
+
+  useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes))
-  })
+  }, [notes])
+
 
   return (
     <div>
