@@ -1,45 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
-// useState built-in hook can manipulate state without having to use class based components
-// state doesn't have to be an object
-// can call useState as many times as needed in any given component
-// when using useState you completely replace previous state (as opposed to merging with objects)
-// returns an array of 2 things:
-// 1. current state 
-// 2. a function to change the state
-
-// useEffect is similar to a combination of componentDidMount & componentDidUpdate
-// runs once immediately (mount) and again when state or props change
-// can call useEffect as many times as needed in any given component 
-// (componentDidMount in class based components could only be called once)
-// second argument (dependency array) specifies which effects should be monitored
-// passing an empty dependency arry means useEffect will only run once, as there are no dependencies to depend on! (a complete mirror of componentDidMount)
-// 2nd argument is optional but it is good practice to be explicit about what effects useEffect depends on
+const notesReducer = (state, action) => {
+  switch(action.type) {
+    case 'POPULATE_NOTES':
+      return action.notes
+    case 'ADD_NOTE':
+      return [
+        ...state,
+        { title: action.title, body: action.body }
+      ]
+    case 'REMOVE_NOTE':
+      return state.filter(note => note.title !== action.title)
+    default: 
+      return state
+  }
+}
 
 const NoteApp = () => {
-  const [notes, setNotes] = useState([])
+  // const [notes, setNotes] = useState([])
+  const [notes, dispatch] = useReducer(notesReducer, [])
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
   const addNote = (e) => {
     e.preventDefault()
-    setNotes([
-      ...notes,
-      { title, body }
-    ])
+    dispatch({
+      type: 'ADD_NOTE',
+      title,
+      body
+    })
     setTitle('')
     setBody('')
   }
 
   const removeNote = (title) => {
-    setNotes(notes.filter(note => note.title !== title))
+    dispatch({
+      type: 'REMOVE_NOTE',
+      title
+    })
   }
 
   useEffect(() => {
-    const notesData = JSON.parse(localStorage.getItem('notes'));
-    notesData && setNotes(notesData)
+    const notes = JSON.parse(localStorage.getItem('notes'));
+    if (notes) {
+      dispatch({
+        type: 'POPULATE_NOTES',
+        notes
+      })
+    } 
   }, [])
 
   useEffect(() => {
@@ -69,7 +79,6 @@ const NoteApp = () => {
 const Note = ({ note, removeNote }) => {
   useEffect(() => {
     console.log('setting up effect...')
-    // clean up function returned from within function passed to useEffect 
     return () => {
       console.log('Cleaning up effect...')
     }
@@ -87,7 +96,5 @@ const Note = ({ note, removeNote }) => {
 
 ReactDOM.render(<NoteApp />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+
 serviceWorker.unregister();
