@@ -3,20 +3,25 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
 // useState built-in hook can manipulate state without having to use class based components
+// state doesn't have to be an object
+// can call useState as many times as needed in any given component
+// when using useState you completely replace previous state (as opposed to merging with objects)
 // returns an array of 2 things:
 // 1. current state 
 // 2. a function to change the state
 
 const App = (props) => {  
 
-  let [count, setCount] = useState(props.count)
+  const [count, setCount] = useState(props.count)
+  const [text, setText] = useState('test')
 
   return (
     <div>
-      <p>The current count is {count}</p>
+      <p>The current {text || 'count' } is {count}</p>
       <button onClick={() => setCount(count + 1)}>+1</button>
       <button onClick={() => setCount(count - 1)}>-1</button>
       <button onClick={() => setCount(props.count)}>Reset</button>
+      <input value={text} onChange={(e) => setText(e.target.value)}/>
     </div>
   );
 }
