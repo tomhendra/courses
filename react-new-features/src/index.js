@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
@@ -10,10 +10,18 @@ import * as serviceWorker from './serviceWorker';
 // 1. current state 
 // 2. a function to change the state
 
+// useEffect is similar to a combination of componentDidMount & componentDidUpdate
+// runs once immediately (mount) and again when state or props change
+
 // const App = (props) => {  
 
 //   const [count, setCount] = useState(props.count)
 //   const [text, setText] = useState('test')
+
+//   useEffect(() => {
+//     console.log('useEffect ran')
+//     document.title = count
+//   })
 
 //   return (
 //     <div>
@@ -31,7 +39,8 @@ import * as serviceWorker from './serviceWorker';
 // }
 
 const NoteApp = () => {
-  const [notes, setNotes] = useState([])
+  const notesData = JSON.parse(localStorage.getItem('notes'));
+  const [notes, setNotes] = useState(notesData || [])
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
@@ -48,6 +57,10 @@ const NoteApp = () => {
   const removeNote = (title) => {
     setNotes(notes.filter(note => note.title !== title))
   }
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes))
+  })
 
   return (
     <div>
