@@ -1,22 +1,17 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import notesReducer from '../reducers/notes';
 import NoteList from './NoteList';
 import AddNoteForm from './AddNoteForm';
 
 const NoteApp = () => {
   const [notes, dispatch] = useReducer(notesReducer, [])
-  const [title, setTitle] = useState('')
-  const [body, setBody] = useState('')
 
   const addNote = (e) => {
-    e.preventDefault()
     dispatch({
       type: 'ADD_NOTE',
       title,
       body
     })
-    setTitle('')
-    setBody('')
   }
 
   const removeNote = (title) => {
@@ -45,7 +40,7 @@ const NoteApp = () => {
       <h1>Notes</h1>
       <NoteList notes={notes} removeNote={removeNote} />
       <p>Add note</p>
-      <AddNoteForm />
+      <AddNoteForm  />
     </div>
   )
 }
