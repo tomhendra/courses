@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-const addNoteForm = ( {addNote, title, body } ) => {
+const AddNoteForm = ({ dispatch }) => {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
@@ -16,12 +16,15 @@ const addNoteForm = ( {addNote, title, body } ) => {
   }
 
   return (
-    <form onSubmit={addNote}>
-    <input value={title} onChange={(e) => setTitle(e.target.value)} />
-    <textarea value={body} onChange={(e) => setBody(e.target.value)}></textarea>
-    <button>Add note</button>
-  </form>
+    <div>
+      <p>Add note</p>
+      <form onSubmit={addNote}>
+        <input value={title} onChange={(e) => setTitle(e.target.value)} />
+        <textarea value={body} onChange={(e) => setBody(e.target.value)}></textarea>
+        <button>Add note</button>
+      </form>
+    </div>
   )
 }
 
-export { addNoteForm as default }
+export { AddNoteForm as default }

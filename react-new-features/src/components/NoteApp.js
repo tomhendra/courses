@@ -6,14 +6,6 @@ import AddNoteForm from './AddNoteForm';
 const NoteApp = () => {
   const [notes, dispatch] = useReducer(notesReducer, [])
 
-  const addNote = (e) => {
-    dispatch({
-      type: 'ADD_NOTE',
-      title,
-      body
-    })
-  }
-
   const removeNote = (title) => {
     dispatch({
       type: 'REMOVE_NOTE',
@@ -39,8 +31,7 @@ const NoteApp = () => {
     <div>
       <h1>Notes</h1>
       <NoteList notes={notes} removeNote={removeNote} />
-      <p>Add note</p>
-      <AddNoteForm  />
+      <AddNoteForm dispatch={dispatch} />
     </div>
   )
 }
