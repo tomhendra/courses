@@ -1,0 +1,197 @@
+/************************* Global Styles *************************/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#wrapper {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 80%;
+    margin: 0 auto;
+}
+
+html,
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h3 {
+    font-size: 2.5em;
+    line-height: 1.1;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+h5 {
+    font-size: 1.5em;
+    line-height: 1.1;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-weight: 400;
+    font-size: 1.2em;
+    line-height: 1.7;
+    margin-bottom: 5px;
+}
+
+code {
+    font-family: 'Source Code Pro', monospace;
+    margin: 0 2px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px #ddd;
+    white-space: nowrap;
+    font-size: .75em;
+    font-weight: 500;
+}
+
+table {
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 40px;
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+
+tr {
+    box-shadow: 0 0 0 1px #eee;
+}
+
+th,
+td {
+    text-align: left;
+    vertical-align: baseline;
+    padding: 20px;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+}
+
+
+a:link {
+    color: #444;
+}
+
+a:visited {
+    color: #888;
+}
+
+a:focus {
+    color: #04f;
+}
+
+a:hover {
+    color: #04f;
+}
+
+a:active {
+    color: #1af;
+}
+
+/************************* Navigation *************************/
+
+.main-nav {
+    grid-area: 1/1/3/2;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-nav header {
+    font-size: 1.2em;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.main-nav ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.main-nav ul li {
+    margin: 8px;
+}
+
+.nav-link {
+    text-decoration: none;
+}
+
+/************************* Main Section  *************************/
+
+.main-doc {
+    grid-area: 1/2/2/4;
+    margin-top: 100px;
+}
+
+.main-section {
+    margin-bottom: 80px;
+}
+
+.main-section ul {
+    /* margin-left: 40px; */
+    margin-top: 20px;
+}
+
+
+.main-heading {
+    font-size: 3.5em;
+    font-weight: 1000;
+    line-height: 1.1;
+    margin-bottom: 40px;
+}
+
+.lead {
+    font-size: 2em;
+    line-height: 1.4;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) { 
+
+    #wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        width: 95%;
+    }
+
+    .main-nav {
+        grid-area: 1/1/2/3;
+        position: relative;
+        text-align: center;
+    }
+
+    .main-doc {
+        grid-area: 2/1/3/3;
+    }
+
+    table {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    th,
+    td {
+    padding: 10px;
+    }
+
+    h3 {
+        font-size: 2em;
+    }
+    
+    h5 {
+        font-size: 1.3em;
+    }
+ }

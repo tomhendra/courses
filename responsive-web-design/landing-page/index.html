@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-------------- Hero -------------------------->
+    <section id="header" class="header">
+      <img class="massive-carrot-mob" src="https://res.cloudinary.com/tomhendra/image/upload/v1537470789/CodePen/FreeCodeCamp%20Projects/Landing%20Page/massive-carrot-mob.svg"
+        alt="massive carrot background">
+      <img class="massive-carrot-tab" src="https://res.cloudinary.com/tomhendra/image/upload/v1537598142/CodePen/FreeCodeCamp%20Projects/Landing%20Page/massive-carrot-tab.svg"
+        alt="massive carrot background">
+      <img class="massive-carrot-hd" src="https://res.cloudinary.com/tomhendra/image/upload/v1537597071/CodePen/FreeCodeCamp%20Projects/Landing%20Page/massive-carrot-hd.svg"
+        alt="massive carrot background">
+      <!-------------- Navigation ----------------->
+      <nav id="nav-bar" class="nav-bar">
+        <a href="#">
+          <img id="header-img" class="nav-logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1537466222/CodePen/FreeCodeCamp%20Projects/Landing%20Page/vegbox-logo.svg"
+            alt="Veg Box Logo">
+        </a>
+        <ul class="nav-main">
+          <li><a href="#header" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#pricing" class="nav-link">Pricing</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <!-------------- Header Content -------------->
+      <div class="header-grid">
+        <div class="heading-main">
+          <h1>Fresh,<br>Local,<br>Healthy Veg.</h1>
+          <p class="heading-tagline">Delivered to your doorstep.</p>
+        </div>
+        <p class="signup-tagline">Signup now to receive your first box for free!</p>
+        <form id="form" class="header-form" method="GET" action="https://www.freecodecamp.com/email-submit">
+          <input name="email" id="email" class="email-input" required placeholder="your-email@example.com" type="email"
+            required>
+          <input type="submit" id="submit" class="btn-start" value="Get Started"></input>
+        </form>
+      </div>
+    </section>
+    <!-------------- Features ------------------->
+    <section id="about" class="features">
+      <div class="feature-tile">
+        <i class="feature-icon fab fa-envira"></i>
+        <h5 class="feature-heading">Locally Grown</h5>
+        <p class="feature-text">All of our vegetables are grown by selected farmers as close to your home
+          as
+          possible.</p>
+        <button class="feature-btn">Read More</button>
+      </div>
+      <div class="feature-tile">
+        <i class="feature-icon fas fa-shipping-fast"></i>
+        <h5 class="feature-heading">Super Fresh</h5>
+        <p class="feature-text">We ship your order straight away to ensure our vegetables are delivered
+          fresh &
+          nutritious.</p>
+        <button class="feature-btn">Read More</button>
+      </div>
+      <div class="feature-tile">
+        <i class="feature-icon fas fa-award"></i>
+        <h5 class="feature-heading">Award Winning</h5>
+        <p class="feature-text">Don&#39;t just take our word for it. Find out why we are rated better than the
+          competition.</p>
+        <button class="feature-btn">Read More</button>
+      </div>
+    </section>
+    <!-------------- Video ------------------->
+    <section class="video-container">
+      <video id="video" autoplay loop class="veg-video" src="https://res.cloudinary.com/tomhendra/video/upload/v1537508717/CodePen/FreeCodeCamp%20Projects/Landing%20Page/veg-video.mov"></video>
+      <h2 class="video-heading">Cook Fresh,<br>Be Healthy.</h2>
+    </section>
+    <!-------------- Options ------------------->
+    <section id="pricing" class="options">
+      <div class="option-tile">
+        <img class="option-icon" src="https://res.cloudinary.com/tomhendra/image/upload/v1537466222/CodePen/FreeCodeCamp%20Projects/Landing%20Page/vegbox-logo.svg">
+        <h5 class="option-heading">Healthy Box</h5>
+        <div class="option-cost">&pound;12</div>
+        <p class="option-text">Our basic box with a variety of tasty classics.</p>
+        <button class="option-btn">Select & Customise</button>
+      </div>
+      <div class="option-tile">
+        <img class="option-icon" src="https://res.cloudinary.com/tomhendra/image/upload/v1537466222/CodePen/FreeCodeCamp%20Projects/Landing%20Page/vegbox-logo.svg">
+        <h5 class="option-heading">Organic Box</h5>
+        <div class="option-cost">&pound;16</div>
+        <p class="option-text">Organic goodness packed full of natural nutrition.</p>
+        <button class="option-btn">Select & Customise</button>
+      </div>
+      <div class="option-tile">
+        <img class="option-icon" src="https://res.cloudinary.com/tomhendra/image/upload/v1537466222/CodePen/FreeCodeCamp%20Projects/Landing%20Page/vegbox-logo.svg">
+        <h5 class="option-heading">Superfood Box</h5>
+        <div class="option-cost">&pound;20</div>
+        <p class="option-text">The finest superfoods for wellbeing connoisseurs.</p>
+        <button class="option-btn">Select & Customise</button>
+      </div>
+    </section>
+    <!-------------- Footer ------------------->
+    <footer id="contact" class="footer">
+      <div class="footer-social">
+        <i class="social-icon fab fa-facebook-square"></i>
+        <i class="social-icon fab fa-twitter-square"></i>
+        <i class="social-icon fab fa-instagram"></i>
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li>Privacy</li>
+          <li class="spacer"> &verbar;</li>
+          <li>Terms</li>
+          <li class="spacer"> &verbar;</li>
+          <li> Contact</li>
+        </ul>
+        <p class="copyright">&copy;Tom Hendra 2018</p>
+      </div>
+
+    </footer>
+  </div>
+</body>
+<script src="js/main.js"></script>
+
+</html>

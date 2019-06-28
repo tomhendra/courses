@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>FreeCodeCamp Survey Form</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <h1 id="title" class="title">Client Feedback Form</h1>
+    <p id="description" class="description">Your opinion is very important to us, to help improve our service.</p>
+    <div class="form-wrapper">
+      <form id="survey-form" class="survey-form" method="GET" action="https://crossorigin.me/https://freecodecamp.com">
+        <label id="url-label" class="info-label" for="url">Website Address: </label>
+        <input autofocus name="client_url" id="url" class="info-input" placeholder="Enter your website address" type="url" required>
+        <label id="name-label" class="info-label" for="name">Name: </label>
+        <input name="client_name" id="name" class="info-input" placeholder="Enter your Name" type="text" required>
+        <label id="email-label" class="info-label" for="email">Email: </label>
+        <input name="client_email" id="email" class="info-input" required placeholder="Enter your Email" type="email" required>
+        <fieldset class="quality-fieldset">
+          <legend>Overall, how would you rate the quality of work done on your project?</legend>
+          <div class="quality">
+            <p>Aesthetics:</p>
+            <ul id="quality-aesthetics" class="quality-list">
+              <li class="radio">
+                <label for="aesthetics-1">1</label>
+                <input name="quality_aesthetics" id="aesthetics-1" value="1" type="radio">
+              </li>
+              <li class="radio">
+                <label for="aesthetics-2">2</label>
+                <input name="quality_aesthetics" id="aesthetics-2" value="2" type="radio">
+              </li>
+              <li class="radio">
+                <label for="aesthetics-3">3</label>
+                <input name="quality_aesthetics" id="aesthetics-3" value="3" type="radio">
+              </li>
+              <li class="radio">
+                <label for="aesthetics-4">4</label>
+                <input name="quality_aesthetics" id="aesthetics-4" value="4" type="radio">
+              </li>
+              <li class="radio">
+                <label for="aesthetics-5">5</label>
+                <input name="quality_aesthetics" id="aesthetics-5" value="5" type="radio">
+              </li>
+            </ul>
+            <p>Design:</p>
+            <ul id="quality-design" class="quality-list">
+              <li class="radio">
+                <label for="design-1">1</label>
+                <input name="quality_design" id="design-1" value="1" type="radio">
+              </li>
+              <li class="radio">
+                <label for="design-2">2</label>
+                <input name="quality_design" id="design-2" value="2" type="radio">
+              </li>
+              <li class="radio">
+                <label for="design-3">3</label>
+                <input name="quality_design" id="design-3" value="3" type="radio">
+              </li>
+              <li class="radio">
+                <label for="design-4">4</label>
+                <input name="quality_design" id="design-4" value="4" type="radio">
+              </li>
+              <li class="radio">
+                <label for="design-5">5</label>
+                <input name="quality_design" id="design-5" value="5" type="radio">
+              </li>
+            </ul>
+            <p>Navigation:</p>
+            <ul id="quality-navigation" class="quality-list">
+              <li class="radio">
+                <label for="navigation-1">1</label>
+                <input name="quality_navigation" id="navigation-1" value="1" type="radio">
+              </li>
+              <li class="radio">
+                <label for="navigation-1">2</label>
+                <input name="quality_navigation" id="navigation-2" value="2" type="radio">
+              </li>
+              <li class="radio">
+                <label for="navigation-1">3</label>
+                <input name="quality_navigation" id="navigation-3" value="3" type="radio">
+              </li>
+              <li class="radio">
+                <label for="navigation-1">4</label>
+                <input name="quality_navigation" id="navigation-4" value="4" type="radio">
+              </li>
+              <li class="radio">
+                <label for="navigation-1">5</label>
+                <input name="quality_navigation" id="navigation-5" value="5" type="radio">
+              </li>
+            </ul>
+            <p>Usability:</p>
+            <ul id="quality-usability" class="quality-list">
+              <li class="radio">
+                <label for="usability-1">1</label>
+                <input name="quality_usability" id="usability-1" value="1" type="radio">
+              </li>
+              <li class="radio">
+                <label for="usability-2">2</label>
+                <input name="quality_usability" id="usability-2" value="2" type="radio">
+              </li>
+              <li class="radio">
+                <label for="usability-3">3</label>
+                <input name="quality_usability" id="usability-3" value="3" type="radio">
+              </li>
+              <li class="radio">
+                <label for="usability-4">4</label>
+                <input name="quality_usability" id="usability-4" value="4" type="radio">
+              </li>
+              <li class="radio">
+                <label for="usability-5">5</label>
+                <input name="quality_usability" id="usability-5" value="5" type="radio">
+              </li>
+            </ul>
+            <p>Simplicity:</p>
+            <ul id="quality-simplicity" class="quality-list">
+              <li class="radio">
+                <label for="simplicity-1">1</label>
+                <input name="quality_simplicity" id="simplicity-1" value="1" type="radio">
+              </li>
+              <li class="radio">
+                <label for="simplicity-2">2</label>
+                <input name="quality_simplicity" id="simplicity-2" value="2" type="radio">
+              </li>
+              <li class="radio">
+                <label for="simplicity-3">3</label>
+                <input name="quality_simplicity" id="simplicity-3" value="3" type="radio">
+              </li>
+              <li class="radio">
+                <label for="simplicity-4">4</label>
+                <input name="quality_simplicity" id="simplicity-4" value="4" type="radio">
+              </li>
+              <li class="radio">
+                <label for="simplicity-5">5</label>
+                <input name="quality_simplicity" id="simplicity-5" value="5" type="radio">
+              </li>
+            </ul>
+          </div>
+        </fieldset>
+        <label class="info-label" for="dropdown">How well does the website meet your needs?</label>
+        <select id="dropdown" class="info-input" name="client_needs">
+          <option disabled value>Select an option</option>
+          <option value="1">Not at all</option>
+          <option value="2">Slightly</option>
+          <option value="3">Moderately</option>
+          <option value="4">Very</option>
+          <option value="5">Extremely</option>
+        </select>
+        <label class="info-label" for="time">How would you rate the amount of time it took us to complete?</label>
+        <select id="time" class="info-input" name="client_time">
+          <option disabled value>Select an option</option>
+          <option value="1">Unsatisfactory</option>
+          <option value="2">Poor</option>
+          <option value="3">Fair</option>
+          <option value="4">Good</option>
+          <option value="5">Excellent</option>
+        </select>
+        <label class="info-label" for="time">How would you rate the quality and speed of our correspondence?</label>
+        <select id="time" class="info-input" name="client_time">
+          <option disabled value>Select an option</option>
+          <option value="1">Unsatisfactory</option>
+          <option value="2">Poor</option>
+          <option value="3">Fair</option>
+          <option value="4">Good</option>
+          <option value="5">Excellent</option>
+        </select>
+        <label id="number-label" class="info-label" for="recommend">On a scale of 1-10 how likely would you be to
+          recommend our services?</label>
+        <input type="number" name="client_recommend" id="number" class="info-input" min="1" max="10" placeholder="Enter a number between 1 and 10">
+        <fieldset class="improvement-fieldset">
+          <legend>Which areas could we improve upon? (Check all that apply)</legend>
+          <div class="improvement">
+          <ul id="improvements" class="improvement-list">
+            <li class="checkbox">
+              <label for="improvements-1">Planning</label>
+              <input name="client_improvements" id="improvements-1" value="1" type="checkbox">
+            </li>
+            <li class="checkbox">
+              <label for="improvements-2">Organisation</label>
+              <input name="client_improvements" id="improvements-2" value="2" type="checkbox">
+            </li>
+            <li class="checkbox">
+              <label for="improvements-3">Project management</label>
+              <input name="client_improvements" id="improvements-3" value="3" type="checkbox">
+            </li>
+            <li class="checkbox">
+              <label for="improvements-4">Communication</label>
+              <input name="client_improvements" vid="improvements-4" value="4" type="checkbox">
+            </li>
+            <li class="checkbox">
+              <label for="improvements-5">Transparancy</label>
+              <input name="client_improvements" id="improvements-5" value="5" type="checkbox">
+            </li>
+            <li class="checkbox">
+              <label for="improvements-6">Design Mockups</label>
+              <input name="client_improvements" id="improvements-6" value="6" type="checkbox">
+            </li>
+            <li class="checkbox">
+              <label for="improvements-7">Development time</label>
+              <input name="client_improvements" id="improvements-7" value="7" type="checkbox">
+            </li>
+            <li class="checkbox">
+              <label for="improvements-8">Website quality</label>
+              <input name="client_improvements" id="improvements-8" value="8" type="checkbox">
+            </li>
+            <li class="checkbox">
+              <label for="improvements-9">Customer Service</label>
+              <input name="client_improvements" id="improvements-9" value="9" type="checkbox">
+            </li>
+            <li class="checkbox">
+              <label for="improvements-10">Customer Training</label>
+              <input name="client_improvements" id="improvements-10" value="10" type="checkbox">
+            </li>
+            <li class="checkbox">
+              <label for="improvements-11">Customer Aftercare</label>
+              <input name="client_improvements" id="improvements-11" value="11" type="checkbox">
+            </li>
+          </ul>
+        </div>
+        </fieldset>
+        <label for="suggestions">Please let us know of any suggestions to improve our services.</label>
+        <textarea id="suggestions" class="comments" name="client_suggestions" placeholder="Enter your suggestions here..."></textarea>
+        <label for="testimonial">If you would care to submit a testamonial, please do so here.</label>
+        <textarea id="testimonal" class="comments" name="client_testimonal" placeholder="Enter your testimonal here..."></textarea>
+        <div class="button">
+          <button type="submit" id="submit" class="submit">SUBMIT</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+</html>
