@@ -12,9 +12,16 @@ class Carousel extends React.Component {
     if (media.length) {
       photos = media.map(({ large }) => large);
     }
-
     return { photos };
   }
+
+  // event listeners and functions being passed to children should always use arrow functions to ensure 'this' is correctly bound
+  handleIndexClick = event => {
+    this.setState({
+      // unary operator + coerces string from DOM to a number !!
+      active: +event.target.dataset.index
+    });
+  };
 
   render() {
     const { photos, active } = this.state;
@@ -30,7 +37,7 @@ class Carousel extends React.Component {
               onClick={this.handleIndexClick}
               data-index={index}
               src={photo}
-              className={index === active ? "acrive" : ""}
+              className={index === active ? "active" : ""}
               alt="animal thumbnail"
             />
           ))}
