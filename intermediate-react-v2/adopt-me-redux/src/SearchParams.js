@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import pet, { ANIMALS } from "@frontendmasters/pet";
+import { connect } from "react-redux";
 import Results from "./Results";
 import useDropdown from "./useDropdown";
 import ThemeContext from "./ThemeContext";
 
-const SearchParams = () => {
+const SearchParams = props => {
   const [location, setLocation] = useState("Seattle, WA");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
   const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
   const [pets, setPets] = useState([]);
-  const [theme, setTheme] = useContext(ThemeContext);
 
   async function requestPets() {
     const { animals } = await pet.animals({
-      location,
+      location: props.location,
       breed,
       type: animal
     });
