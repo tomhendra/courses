@@ -1,12 +1,22 @@
 import React from "react";
+import { Photo } from "@frontendmasters/pet";
 
-class Carousel extends React.Component {
-  state = {
+interface IProps {
+  media: Photo[];
+}
+
+interface IState {
+  active: number;
+  photos: string[];
+}
+
+class Carousel extends React.Component<IProps, IState> {
+  public state = {
     photos: [],
     active: 0
   };
 
-  static getDerivedStateFromProps({ media }) {
+  public static getDerivedStateFromProps({ media }: IProps) {
     let photos = ["http://placecorgi.com/600/600"];
 
     if (media.length) {
@@ -16,14 +26,19 @@ class Carousel extends React.Component {
   }
 
   // event listeners and functions being passed to children should always use arrow functions to ensure 'this' is correctly bound
-  handleIndexClick = event => {
-    this.setState({
-      // unary operator + coerces string from DOM to a number !!
-      active: +event.target.dataset.index
-    });
+  public handleIndexClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (!(event.target instanceof HTMLElement)) {
+      return;
+    }
+    if (event.target.dataset.index) {
+      this.setState({
+        // unary operator + coerces string from DOM to a number !!
+        active: +event.target.dataset.index
+      });
+    }
   };
 
-  render() {
+  public render() {
     const { photos, active } = this.state;
 
     return (
@@ -31,7 +46,6 @@ class Carousel extends React.Component {
         <img src={photos[active]} alt="animal" />
         <div className="carousel-smaller">
           {photos.map((photo, index) => (
-            // eslint-disable-next-line
             <img
               key={photo}
               onClick={this.handleIndexClick}
