@@ -1,7 +1,7 @@
 import React from 'react'
 import {renderToggle, fireEvent} from '../../test/utils'
-import Usage from '../exercises-final/09'
-// import Usage from '../exercises/09'
+// import Usage from '../exercises-final/09'
+import Usage from '../exercises/09'
 
 test('renders a toggle component', () => {
   const handleToggle = jest.fn()
@@ -95,8 +95,8 @@ test('can click too much', () => {
 /*
 http://ws.kcd.im/?ws=react%20patterns&e=09&em=tom.hendra%40outlook.com
 */
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+test('I submitted my elaboration and feedback', () => {
+  const submitted = true // change this when you've submitted!
   expect(submitted).toBe(true)
 })
 ////////////////////////////////
