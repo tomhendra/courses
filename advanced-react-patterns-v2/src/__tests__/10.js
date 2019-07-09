@@ -5,8 +5,8 @@ import {
 } from 'react-dom/test-utils'
 import chalk from 'chalk'
 import {fireEvent, renderToggle} from '../../test/utils'
-import Usage, {Toggle} from '../exercises-final/10'
-// import Usage, {Toggle} from '../exercises/10'
+// import Usage, {Toggle} from '../exercises-final/10'
+import Usage, {Toggle} from '../exercises/10'
 
 const findToggleInstances = rootInstance =>
   findAllInRenderedTree(rootInstance, c =>
@@ -71,8 +71,8 @@ test('toggle can still be uncontrolled', () => {
 /*
 http://ws.kcd.im/?ws=react%20patterns&e=10-primer&em=tom.hendra%40outlook.com
 */
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+test('I submitted my elaboration and feedback', () => {
+  const submitted = true // change this when you've submitted!
   expect(submitted).toBe(true)
 })
 ////////////////////////////////
