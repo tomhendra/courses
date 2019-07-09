@@ -3,9 +3,15 @@ import React, {Fragment} from 'react'
 import {Switch} from '../switch'
 
 // 🐨 create your React context here with React.createContext
-
+const ToggleContext = React.createContext({
+  on: false,
+  toggle: () => {},
+  reset: () => {},
+  getTogglerProps: () => {},
+})
 class Toggle extends React.Component {
   // 🐨 expose the ToggleContext.Consumer as a static property of Toggle here.
+  static Consumer = ToggleContext.Consumer
   state = {on: false}
   toggle = () =>
     this.setState(
@@ -14,17 +20,19 @@ class Toggle extends React.Component {
     )
   render() {
     // 🐨 replace this with rendering the ToggleContext.Provider
-    return this.props.children({
-      on: this.state.on,
-      toggle: this.toggle,
-    })
+    return (
+      <ToggleContext.Provider
+        value={{on: this.state.on, toggle: this.toggle}}
+        {...this.props}
+      />
+    )
   }
 }
 
 // 💯 Extra credit: Add a custom Consumer that validates the
 // ToggleContext.Consumer is rendered within a provider
 //
-// 💯 Extra credit: avoid unecessary re-renders by only updating the value when
+// 💯 Extra credit: avoid unnecessary re-renders by only updating the value when
 // state changes
 //
 // 💯 Extra credit: support render props as well
