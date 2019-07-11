@@ -34,7 +34,7 @@ test('calls onSubmit with the username and password when submitted', async () =>
   // fill out form elements with your fake post
   title.value = 'I like rolos'
   content.value = '...more than life itself'
-  tags.value = 'rolos free beer'
+  tags.value = 'rolos, free, beer'
 
   //////////////////////////// Act ////////////////////////////
   // submit form
