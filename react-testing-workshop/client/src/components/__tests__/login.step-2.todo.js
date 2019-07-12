@@ -1,9 +1,9 @@
 // using helpful utilities
-import React from 'react'
+import React, {Simulate} from 'react'
 import ReactDOM from 'react-dom'
 // 🐨 you'll need these:
-// import {generate} from 'til-client-test-utils'
-// import {render, fireEvent} from 'react-testing-library'
+import {generate} from 'til-client-test-utils'
+import {render, fireEvent} from 'react-testing-library'
 
 // note that til-client-test-utils is found in `client/test/til-client-test-utils`
 // note also that the client/test/setup-test-framework.js file takes care of
@@ -13,29 +13,26 @@ import Login from '../login'
 test('calls onSubmit with the username and password when submitted', () => {
   // Arrange
   // 🐨 use generate.loginForm() here instead of assigning fakeUser to an object
-  const fakeUser = {username: 'chucknorris', password: '(╯°□°）╯︵ ┻━┻'}
+  const fakeUser = generate.loginForm()
   const handleSubmit = jest.fn()
   // 🐨 use: render(<Login onSubmit={handleSubmit} />)
   // It'll give you back an object with
   // `getByLabelText` and `getByText` functions
   // so you don't need a div anymore!
-  // 💰 const {getByLabelText, getByText} = render(<Login onSubmit={handleSubmit} />)
-  const div = document.createElement('div')
-  ReactDOM.render(<Login onSubmit={handleSubmit} />, div)
+  const {getByLabelText, getByText} = render(<Login onSubmit={handleSubmit} />)
 
-  const inputs = div.querySelectorAll('input')
-  const usernameNode = inputs[0]
-  const passwordNode = inputs[1]
-  const formNode = div.querySelector('form')
-  const submitButtonNode = div.querySelector('button')
+  const usernameNode = getByLabelText(/username/i)
+  const passwordNode = getByLabelText(/password/i)
+  const submitButtonNode = getByText(/submit/i)
 
   usernameNode.value = fakeUser.username
   passwordNode.value = fakeUser.password
 
   // Act
   // 🐨 Use fireEvent.click(submitButtonNode) instead of these two lines
-  const event = new window.Event('submit')
-  formNode.dispatchEvent(event)
+  usernameNode.value = fakeUser.username
+  passwordNode.value = fakeUser.password
+  fireEvent.click(submitButtonNode)
 
   // Assert
   expect(handleSubmit).toHaveBeenCalledTimes(1)
