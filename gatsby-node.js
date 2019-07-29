@@ -1,10 +1,18 @@
+const path = require('path');
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
+  // Destructure the createPage function from the actions object
+  const { createPage } = actions;
+
   const result = await graphql(`
     query {
       allMdx {
-        nodes {
-          frontmatter {
-            slug
+        edges {
+          node {
+            id
+            frontmatter {
+              slug
+            }
           }
         }
       }
@@ -12,18 +20,20 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   `);
 
   if (result.errors) {
-    reporter.panic('failed to create posts', result.errors);
+    reporter.panic('🚨  ERROR: Loading "createPages" query', result.errors);
   }
 
-  const posts = result.data.allMdx.nodes;
+  // Create blog post pages.
+  const posts = result.data.allMdx.edges;
 
-  posts.forEach(post => {
-    actions.createPage({
-      path: post.frontmatter.slug,
-      component: require.resolve('./src/templates/post.js'),
-      context: {
-        slug: post.frontmatter.slug,
-      },
+  posts.forEach(({ node }, index) => {
+    createPage({
+      path: node.frontmatter.slug,
+      // This component will wrap our MDX content
+      component: path.resolve(`./src/templates/post.js`),
+      // We can use the values in this context in
+      // our page layout component
+      context: { id: node.id },
     });
   });
 };
