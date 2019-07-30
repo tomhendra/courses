@@ -56,7 +56,7 @@ const Hero = () => {
       <TextBox>
         <h1>Frontend Masters + Gatsby &hearts;</h1>
         <p>
-          Hello from Malaga <Link to={/about/}>Learn about me &rarr;</Link>
+          Hello from Malaga <Link to={'/about/'}>Learn about me &rarr;</Link>
         </p>
       </TextBox>
     </ImageBackground>
