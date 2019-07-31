@@ -42,5 +42,11 @@ module.exports = {
         path: `${__dirname}/content/images/`,
       },
     },
+    {
+      resolve: 'gatsby-source-instagram',
+      options: {
+        username: 'tomhendra',
+      },
+    },
   ],
 };
