@@ -15,6 +15,17 @@ module.exports = {
         defaultLayouts: {
           default: require.resolve('./src/components/layout.js'),
         },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 500,
+            },
+          },
+        ],
+        // plugins added to resolve adding padding issue:
+        // https://github.com/gatsbyjs/gatsby/issues/15486#issuecomment-510153237
+        plugins: [`gatsby-remark-images`],
       },
     },
     {
