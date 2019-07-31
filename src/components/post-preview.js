@@ -17,7 +17,7 @@ const PostPreview = ({ post }) => (
     `}
   >
     <Link
-      to={post.slug}
+      to={`/${post.slug}`}
       css={css`
         margin: 1rem 1rem 0 0;
         width: 100px;
@@ -35,10 +35,10 @@ const PostPreview = ({ post }) => (
     </Link>
     <div>
       <h3>
-        <Link to={post.slug}>{post.title}</Link>
+        <Link to={`/${post.slug}`}>{post.title}</Link>
       </h3>
       <p>{post.excerpt}</p>
-      <ReadLink to={post.slug}>read this post &rarr;</ReadLink>
+      <ReadLink to={`/${post.slug}`}>read this post &rarr;</ReadLink>
     </div>
   </article>
 );
