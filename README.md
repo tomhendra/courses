@@ -10,32 +10,32 @@ I have been learning web development full-time since August 2018, and prior to t
 
 ## Index of courses
 
-1)  **[FreeCodeCamp](free-code-camp)**
-    Basic tuition with projects to build. Great for beginners. 
+1.  **[FreeCodeCamp](free-code-camp)**.
+Basic tuition with projects to build. Great for beginners. 
 
-2)  **[The Modern JavaScript Bootcamp](udemy--modern-javascript-bootcamp)**
-    Excellent course with Andrew Mead. This made JavaScript start to 'click' for me. Andrew is a gifted teacher.
+2.  **[The Modern JavaScript Bootcamp](udemy--modern-javascript-bootcamp)**.
+Excellent course with Andrew Mead. This made JavaScript start to 'click' for me. Andrew is a gifted teacher.
 
-3)  **[JavaScript Algorithms and Data Structures Masterclass](udemy--algorithms-and-data-structures)**
-    Concious of being in competition with CS graduates, I took 2 months getting stuck into this course with Colt Steele.
+3.  **[JavaScript Algorithms and Data Structures Masterclass](udemy--algorithms-and-data-structures)**.
+Concious of being in competition with CS graduates, I took 2 months getting stuck into this course with Colt Steele.
 
-4) **[Advanced CSS & Sass](udemy--advanced-css-and-sass)**
-    A very important subject to grasp. This course goes in-depth and teaches some great tricks & techniques.
+4. **[Advanced CSS & Sass](udemy--advanced-css-and-sass)**.
+A very important subject to grasp. This course goes in-depth and teaches some great tricks & techniques.
 
-5) **[The Complete Junior to Senior Web Developer Roadmap](udemy--complete-junior-to-senior-web-developer)**
-    I took this course to get a high level understanding of product development as a whole. 
+5. **[The Complete Junior to Senior Web Developer Roadmap](udemy--complete-junior-to-senior-web-developer)**.
+I took this course to get a high level understanding of product development as a whole. 
 
-6) **[Advanced JavaScript Concepts](udemy--advanced-javascript-concepts)**
-    Deeper into JavaScript, another fantastic course. Andrei Neagoie is an excellent teacher. 
+6. **[Advanced JavaScript Concepts](udemy--advanced-javascript-concepts)**
+Deeper into JavaScript, another fantastic course. Andrei Neagoie is an excellent teacher. 
 
-7) **[The Complete React Web Developer Course (with Redux)](udemy--complete-react-web-developer)**
-    Only after having a reasonable level of JavaScript under my hat did I start to explore what I always had in mind, React. This course was still taught using class based components with hooks as an add-on. Important for understanding pre-hooks code bases that still use an class-based approach. The course is being updated, after which I will retake it. 
+7. **[The Complete React Web Developer Course (with Redux)](udemy--complete-react-web-developer)**.
+Only after having a reasonable level of JavaScript under my hat did I start to explore what I always had in mind, React. This course was still taught using class based components with hooks as a course extra. Important for understanding pre-hooks code bases that still use a class-based approach. The course currently is being updated, after which I will retake it. 
 
-8) **[Introduction to Gatsby](frontend-masters--gatsby-intro)**
-    Frontend Masters is more for the intermediate courses. Taught by industry experts it gives me great confidence in the material being delivered. This course my Jason Lengstorf (of Gatsby at the time of recording) gives a great intro. I used this is as a starting point to create my portfolio website. 
+8. **[Introduction to Gatsby](frontend-masters--gatsby-intro)**
+Frontend Masters is for intermediate & advanced courses. Taught by industry experts the platform gives me great confidence in the material being delivered. This course my Jason Lengstorf (of Gatsby at the time of recording) was a great intro. I used this is as a starting point to create my portfolio website. 
 
- 9) **[Frontend Masters React Learning Path](frontend-masters--react)**
-    Stepping up my React skills. The learning path is a collection of courses recommended by Frontend Masters. 
+9. **[Frontend Masters React Learning Path](frontend-masters--react)**.
+Stepping up my React skills. The learning path is a collection of courses recommended by Frontend Masters. 
 
- 10) **[Frontend Masters Design to Code Learning Path & CSS Subject Path](frontend-masters--design-to-code)**
-    Apps should look nice. This collection of courses dives deep into CSS. There is some crossover in the two paths, so they are being merged into one here. 
+10. **[Frontend Masters Design to Code Learning Path & CSS Subject Path](frontend-masters--design-to-code)**.
+This collection of courses dives deep into CSS. There is some crossover in the two paths, so they are being merged into one here. 
