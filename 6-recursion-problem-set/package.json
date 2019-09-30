@@ -1,0 +1,23 @@
+{
+  "name": "recursion-problem-set",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev-server": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "Tom Hendra",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "7.3.3",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
+  }
+}

@@ -9,7 +9,7 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
-# Laravel 4 specific
+# Laravel 4 specificf
 bootstrap/compiled.php
 app/storage/
 
@@ -131,6 +131,10 @@ typings/
 .dynamodb/
 
 ### VisualStudioCode ###
+<<<<<<< HEAD
+=======
+.vscode
+>>>>>>> udemy--algorithms-and-data-structures/master
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
