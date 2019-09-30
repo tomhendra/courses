@@ -1,0 +1,94 @@
+.btn {
+    &,
+    &:link,
+    &:visited { // pseudo class: to style elements under a special condition
+        font-size: $default-font-size;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block; // inline-block is treated as if it were text, so can be aligned as such in the parent element
+        border-radius: 10rem;
+        transition: all .2s; // shorthand - must be on the initial state
+        position: relative; // allows btn::after pseudo element to have absolute positioning
+
+        // change for <button> element
+        border: none;
+        cursor: pointer;
+    }
+    
+    &:hover {
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black,.2);
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    
+    &:active, // click state
+    &:focus { 
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2); 
+    }
+    
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark-1;
+        &::after {
+            background-color: $color-white; // ensures same colour as btn
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+        &::after {
+            background-color: $color-primary; // ensures same colour as btn
+        }
+    }
+    
+    &::after {
+        content: ""; // content property must always be present, even if empty, otherwise after pseudo element won't appear
+        display: inline-block; // display property also necessary
+        height: 100%; // ensures same size as btn
+        width: 100%; // ensures same size as btn
+        border-radius: 100px; // ensures same border-radius as btn
+        position: absolute; // ensures same position as btn
+        top: 0; // ensures same position as btn
+        left: 0; // ensures same position as btn
+        z-index: -1; // keeps behind original
+        transition: all .4s; // activates scale & fade
+    }
+    
+    &--animated {
+        animation: moveInBottom .5s ease-out .75s; // last value is delay
+        animation-fill-mode: backwards; // automatically applies the styles specified at 0% before the animation starts
+    }
+}
+
+.btn-text {
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: 3px 8px;
+        transition: all .2s;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black,.15);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+        transform: translateY(0);
+
+    }
+}

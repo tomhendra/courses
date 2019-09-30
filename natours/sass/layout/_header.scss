@@ -1,0 +1,49 @@
+.header {
+    height: 85vh;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)),
+        url(../img/hero-small.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative; // enables absolute positioning of the logo container
+    
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        height: 95vh;
+    }
+
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+        only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), // for Safari
+        only screen and (min-width: 125em) { // if resolution is higher than 192dpi & over 600px or >= 2000px use higher res image
+        background-image: linear-gradient(
+            to right bottom, 
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)), 
+            url(../img/hero.jpg);
+    }
+    
+    @include respond(phone) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
+
+    &__logo-box {
+        position: absolute; // parent element must be set to relative for absolute positioning to work
+        top: 4rem; // position relative to parent element
+        left: 4rem;
+    }
+    &__logo {
+        height: 3.5rem; // always better to control height of elements so width can be automatically adjusted
+    }
+    
+    &__text-box {
+        position: absolute;
+        top: 40%; 
+        left: 50%;
+        transform: translate(-50%, -50%); // centers div - transforms by 50% of the text-box element's height and width
+        text-align: center; // centers button
+    }
+}

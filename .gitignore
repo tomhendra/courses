@@ -9,7 +9,7 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
-# Laravel 4 specificf
+# Laravel 4 specific
 bootstrap/compiled.php
 app/storage/
 
@@ -132,9 +132,13 @@ typings/
 
 ### VisualStudioCode ###
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 .vscode
 >>>>>>> udemy--algorithms-and-data-structures/master
+=======
+.vscode
+>>>>>>> udemy--advanced-css-and-sass/master
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -150,3 +154,8 @@ typings/
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
 package-lock.json
+<<<<<<< HEAD
+=======
+advanced-css-slides.pdf
+exercise-files
+>>>>>>> udemy--advanced-css-and-sass/master
