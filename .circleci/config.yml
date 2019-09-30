@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  build:
+    docker: # use the docker executor type; machine and macos executors are also supported
+      - image: circleci/node:11.14.0-stretch # the primary container, where your job's commands are run
+    steps:
+      - checkout # check out the code in the project directory
+      - run: echo "npm installing"
+      - run: cd CI-CD/robofriends/ && npm install
+      - run: CI=true cd CI-CD/robofriends && npm run build
+  test:
+    docker:
+      - image: circleci/node:11.14.0-stretch
+    steps:
+      - checkout
+      - run: echo "testing stuff"
+      - run: cd CI-CD/robofriends/ && npm install
+      - run: CI=true cd CI-CD/robofriends && npm test
+workflows:
+  version: 2
+  build_test_and_lint:
+    jobs:
+      - build
+      - test

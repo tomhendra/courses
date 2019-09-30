@@ -1,0 +1,35 @@
+{
+  "name": "facerecognitionbrain",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-particles-js": "^2.1.0",
+    "react-scripts": "^3.0.0",
+    "react-tilt": "^0.1.4",
+    "reactstrap": "^8.0.0",
+    "tachyons": "^4.9.0",
+    "typescript": "^3.4.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
