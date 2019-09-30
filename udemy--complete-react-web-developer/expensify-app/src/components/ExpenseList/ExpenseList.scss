@@ -1,0 +1,52 @@
+@import './src/assets/styles/base/settings';
+
+.content-container {
+  margin: 0 auto;
+  max-width: 80rem;
+  padding: 0 $m-size;
+}
+
+.show-for-mobile {
+  @media (min-width: $desktop-breakpoint) {
+    display: none;
+  }
+}
+
+.show-for-desktop {
+  @media (max-width: $desktop-breakpoint - 0.1rem) {
+    display: none;
+  }
+}
+
+.list-header {
+  background: $off-white;
+  border: 1px solid darken($off-white, 7%);
+  color: $grey;
+  display: flex;
+  justify-content: space-between;
+  padding: $s-size $m-size;
+}
+
+.list-item--message {
+  align-items: center;
+  border: 1px solid darken($off-white, 7%);
+  border-top: none;
+  color: $grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: $m-size;
+  text-decoration: none;
+
+  @media (min-width: $desktop-breakpoint) {
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+.list-body {
+  margin-bottom: $m-size;
+  @media (min-width: $desktop-breakpoint) {
+    margin-bottom: $l-size;
+  }
+}

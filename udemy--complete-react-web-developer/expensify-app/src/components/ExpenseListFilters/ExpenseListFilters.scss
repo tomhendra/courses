@@ -1,0 +1,38 @@
+@import './src/assets/styles/base/settings';
+
+.content-container {
+  margin: 0 auto;
+  max-width: 80rem;
+  padding: 0 $m-size;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $m-size;
+
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    margin-bottom: $l-size;
+  }
+}
+
+.input-group__item {
+  margin-bottom: $s-size;
+
+  @media (min-width: $desktop-breakpoint) {
+    margin: 0 $s-size 0 0;
+  }
+}
+
+.text-input {
+  border: 1px solid #cacccd;
+  height: 50px;
+  padding: $s-size;
+  font-size: $font-size-large;
+  font-weight: 400;
+}
+
+.select {
+  @extend .text-input;
+}

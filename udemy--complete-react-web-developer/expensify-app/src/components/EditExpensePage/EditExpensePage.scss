@@ -1,0 +1,33 @@
+@import './src/assets/styles/base/settings';
+
+.page-header {
+  background: $off-white;
+  margin-bottom: $l-size;
+  padding: $l-size 0;
+}
+
+.page-header__title {
+  font-weight: 400;
+  margin: 0;
+  span {
+    font-weight: 700;
+  }
+}
+
+.content-container {
+  margin: 0 auto;
+  max-width: 80rem;
+  padding: 0 $m-size;
+}
+
+.button--secondary {
+  background: #888;
+  border: none;
+  color: white;
+  display: inline-block;
+  font-size: $font-size-large;
+  line-height: 1;
+  font-weight: 300;
+  padding: $s-size;
+  text-decoration: none;
+}
