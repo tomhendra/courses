@@ -1,0 +1,116 @@
+* {
+    box-sizing: border-box;
+    /* padding: 0;
+    margin: 0; */
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+.container {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    color: #1f088a;
+    box-shadow: -1px 3px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: #ffffff;
+    background: linear-gradient(45deg, #3010cb 39%,#ff3366 100%);
+}
+
+.form-wrapper {
+    padding: 2em;
+    font-size: 0.85em;
+}
+
+.survey-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+    text-align: right;
+}
+
+.info-label {
+    margin-top: 0.5em;
+}
+
+.info-input {
+    width: 50%;
+    height: 3em;
+}
+
+.quality-fieldset {
+    grid-area: 4/1/5/3;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding-top: 1.75em;
+}
+
+.quality-fieldset legend {
+    text-align: center;
+}
+
+.quality {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.quality-list {
+    text-align: left;
+}
+
+.improvement-fieldset {
+    grid-area: 9/1/10/3;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding-top: 1.75em;
+}
+
+.improvement-fieldset legend {
+    text-align: center;
+}
+
+.improvement {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.radio {
+    display: inline;  
+}
+
+.checkbox {
+    list-style: none;
+    margin-right: -1.75em;
+}
+
+.comments {
+    width: 70%;
+    height: 5em;
+}
+
+.button {
+    grid-area: 12/2/13/3;
+    text-align: left;
+}
+
+.submit {
+    width: 25%;
+    padding: 1em;
+    color: #ffffff;
+    background: linear-gradient(45deg, #3010cb 39%,#ff3366 100%);
+    border: none;
+    border-radius: 30px;
+    margin-top: 1.5em;
+}

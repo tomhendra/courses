@@ -1,0 +1,504 @@
+/************************* Global Styles *************************/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+#wrapper {
+  position: relative;
+}
+
+/************************* Navigation *************************/
+
+.nav-bar {
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.nav-logo {
+  display: inline-block;
+  width: 40px;
+}
+
+.nav-logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-main {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.nav-main li {
+  margin: 8px;
+}
+
+.nav-main li a:hover {
+  color: #0b476d;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.scrolled {
+  background-color: #78be97;
+  box-shadow: -1px 0px 3px 0 rgba(0, 0, 0, .1);
+  transition: 0.7s;
+  z-index: 2;
+}
+
+/************************* Heaader *************************/
+
+.header {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(209deg, #78be97, #cef19e);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.massive-carrot-mob {
+  width: 100%;
+}
+
+.massive-carrot-tab {
+  width: 100%;
+  display: none;
+}
+
+.massive-carrot-hd {
+  width: 95%;
+  display: none;
+}
+
+.header-grid {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  display: grid;
+  grid-template-rows: repeat(15, 1fr);
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 5px;
+}
+
+.heading-main {
+  grid-area: 4/2/8/8;
+}
+
+.heading-main h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+.heading-tagline {
+  font-size: 17px;
+  font-weight: 600;
+  color: #398689;
+  margin-top: 1em;
+}
+
+.signup-tagline {
+  grid-area: 11/2/12/8;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0b476d;
+}
+
+.header-form {
+  grid-area: 12/2/15/8;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.email-input {
+  grid-area: 1/1/3/3;
+  height: 43px;
+  border-radius: 8px;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: inset 0px 1px 3px 1px rgba(0, 0, 0, 0.08);
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.email-input::placeholder {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  color: #78be97;
+}
+
+.btn-start {
+  grid-area: 3/2/5/3;
+  height: 35px;
+  border: none;
+  border-radius: 8px;
+  background-color: #0b476d;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/************************* Features *************************/
+
+.features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.feature-tile {
+  width: 250px;
+  border-radius: 8px;
+  background-color: rgba(206, 241, 158, 0.35);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.feature-icon {
+  font-size: 65px;
+  color: #a7dda7;
+  margin-top: 25px;
+}
+
+.feature-heading {
+  font-size: 20px;
+  font-weight: 600;
+  color: #78be97;
+  margin-top: 15px;
+}
+
+.feature-text {
+  width: 209px;
+  font-size: 12px;
+  color: #398689;
+  margin: 0 auto;
+  margin-top: 8px;
+}
+
+.feature-btn {
+  width: 88px;
+  height: 27px;
+  border: none;
+  border-radius: 8px;
+  background-color: #398689;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+/************************* Video *************************/
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.video-container video {
+  width: 100%;
+  display: block;
+}
+
+.video-container:before {
+  content: "";
+  position: absolute;
+  background: rgba(206, 241, 158, 0.4);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.video-heading {
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  margin: auto;
+  color: #ffffff;
+  font-size: 2em;
+  font-weight: 600;
+  text-align: center;
+}
+
+/************************* Options *************************/
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.option-tile {
+  width: 230px;
+  height: 230px;
+  border-radius: 8px;
+  background-color: rgba(167, 221, 167, 0.26);
+  border: solid 2px #398689;
+  text-align: center;
+  margin-bottom: 51px;
+}
+
+.option-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: #78be97;
+  padding: 3px;
+  margin-top: 27px;
+}
+
+.option-heading {
+  font-size: 20px;
+  font-weight: 600;
+  color: #78be97;
+  margin-top: 7px;
+}
+
+.option-cost {
+  font-size: 26px;
+  font-weight: 600;
+  color: #398689;
+  margin-top: 7px;
+}
+
+.option-text {
+  font-size: 14px;
+  text-align: center;
+  color: #398689;
+  margin: 0 auto;
+  margin-top: 7px;
+  width: 172px;
+}
+
+.option-btn {
+  width: 163px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background-color: #0b476d;
+  color: #ffffff;
+  font-size: 13px;
+  margin-top: 34px;
+}
+
+/************************* Footer *************************/
+
+.footer {
+  width: 100%;
+  height: 172px;
+  background-image: linear-gradient(to bottom, #cef19e, #a7dda7);
+  text-align: center;
+  color: #ffffff;
+  margin-top: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-social {
+  width: 220px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 43px;
+}
+
+.social-icon {
+  font-size: 2.5em;
+}
+
+.footer-links {
+  width: 173px;
+  margin-top: 31px;
+}
+
+.footer-links ul {
+  width: 173px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.spacer {
+  margin: 0 5px 0 5px;
+}
+
+.copyright {
+  font-size: 12px;
+  margin-top: 13px;
+}
+
+/* ======================== Media query: TABLET  ======================== */
+
+@media screen and (min-width: 768px) {
+
+  /************************* Navigation  *************************/
+
+  .nav-bar {
+    font-size: 18px;
+  }
+
+  .nav-logo {
+    width: 60px;
+  }
+
+  .nav-main {
+    margin-right: 18px;
+  }
+
+  /************************* Header  *************************/
+
+  .massive-carrot-mob {
+    display: none;
+  }
+
+  .massive-carrot-tab {
+    display: inline;
+  }
+
+  .heading-main {
+    grid-area: 5/3/9/8;
+  }
+
+  .heading-main h1 {
+    font-size: 64px;
+    line-height: 1.08;
+  }
+
+  .heading-tagline {
+    font-size: 30px;
+  }
+
+  .signup-tagline {
+    grid-area: 12/3/13/8;
+    font-size: 18px;
+  }
+
+  .header-form {
+    grid-area: 13/3/14/8;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .email-input {
+    grid-area: 1/1/2/3;
+    margin-top: -20px;
+  }
+
+  .email-input::placeholder {
+    font-size: 14px;
+  }
+
+  .btn-start {
+    grid-area: 1/3/2/4;
+    height: 43px;
+    font-size: 14px;
+    margin-top: -20px;
+  }
+
+  /************************* Features *************************/
+
+  .features {
+    flex-direction: row;
+    justify-content: space-around;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .feature-tile {
+    width: 227px;
+    margin-bottom: 50px;
+  }
+
+  /************************* Video *************************/
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .video-heading {
+    top: 40%;
+    font-size: 3em;
+  }
+
+  /************************* Options *************************/
+
+  .options {
+    flex-direction: row;
+    justify-content: space-around;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+/* ======================== Media query: LAPTOP MDPI  ======================== */
+
+@media screen and (min-width: 1280px) {
+  
+    /************************* Header  *************************/
+  
+    .massive-carrot-mob {
+      display: none;
+    }
+  
+    .massive-carrot-tab {
+      display: none;
+    }
+
+    .massive-carrot-hd {
+      display: inline;
+    }
+  
+    .heading-main h1 {
+      font-size: 72px;
+    }
+
+    .signup-tagline {
+      grid-area: 12/3/13/6;
+    }
+  
+    .header-form {
+      grid-area: 13/3/14/6;
+    }
+  
+    .btn-start {
+      width: 95px;
+    }
+}

@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro">
+</head>
+
+<body>
+  <div id="wrapper">
+    <!----------------------------------- Navigation ----------------------------------->
+    <nav id="navbar" class="main-nav">
+      <header>Framer X Docs</header>
+      <ul>
+        <a class="nav-link" href="#Docs">
+          <li>Docs</li>
+        </a>
+        <a class="nav-link" href="#Canvas">
+          <li>Canvas</li>
+        </a>
+        <a class="nav-link" href="#Tools">
+          <li>Tools</li>
+        </a>
+        <a class="nav-link" href="#Properties">
+          <li>Properties</li>
+        </a>
+        <a class="nav-link" href="#Preview">
+          <li>Preview</li>
+        </a>
+        <a class="nav-link" href="#Live_Preview">
+          <li>Live Preview</li>
+        </a>
+        <a class="nav-link" href="#Components">
+          <li>Components</li>
+        </a>
+        <a class="nav-link" href="#Overides">
+          <li>Overides</li>
+        </a>
+        <a class="nav-link" href="#Store">
+          <li>Store</li>
+        </a>
+        <a class="nav-link" href="#Shortcuts">
+          <li>Shortcuts</li>
+        </a>
+      </ul>
+    </nav>
+    <main id="main-doc" class="main-doc">
+      <section class="main-section" id="Docs">
+        <header class="main-heading">Docs</header>
+        <p class="lead">Welcome to Framer X. Learn all about the new tools, components, store, code and more.
+        </p>
+        <h3>Introduction</h3>
+        <p>Framer X is both the most easy and most advanced design tool. We think a subset of more advanced users will
+          build components for everyone else, so the majority of users won’t write code, but visually compose
+          interfaces with components built by others through the store. But if you enjoy writing code, Framer X will be
+          the best environment to do so and we encourage everyone to explore it.</p>
+        <p>The idea behind Framer X is not to generate code for you, but instead to use the code you (or someone else)
+          wrote. Auto-generated code almost never ends up in production, so it’s better to have a tool that can use
+          code that you already have. If you already have React components built, they should work in Framer X with
+          minimal effort. That said, everything you draw in Framer is a React component and exportable to jsx, html or
+          static assets if you need it.</p>
+        <h4>Use Cases</h4>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                <strong>Use Case</strong>
+              </th>
+              <th>Description</th>
+              <th>Topics</th>
+            </tr>
+            <tr>
+              <td>
+                <strong>Wireframing</strong>
+              </td>
+              <td>Quickly visualize an interactive idea, layout, user flow and information architecture.</td>
+              <td>Interface, Canvas, Layout</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Visual Design</strong>
+              </td>
+              <td>Explore styling options for layouts, create icons and artwork and produce high-res assets for
+                production with pixel level control.</td>
+              <td>Drawing, Import, Export</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Interactive</strong>
+              </td>
+              <td>Quickly turn visual parts into a prototype with navigation, different screens, advanced scrolling and
+                some interactive components. All without code.</td>
+              <td>Preview, Interactive, Design Components, Store, Sharing</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Expert Interactive</strong>
+              </td>
+              <td>Create real products, invent your own interactions with state, data, physics, user input and combine
+                with any other JavaScript out there.</td>
+              <td>Code Components, Interactive, Code Functions, Code Library</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Design Infrastructure</strong>
+              </td>
+              <td>Build and manage from components to entire design systems for teams, scale them to large
+                organizations, integrate with production.</td>
+              <td>Store, Code</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="main-section" id="Canvas">
+        <header class="main-heading">Canvas</header>
+        <p class="lead">Your Canvas is ground zero for experimenting with concepts and designing flows. Draw directly
+          on the canvas or insert device frames. Use these docs to learn the basics of our interface and features.</p>
+        <p>The Framer X interface will be familiar to most, with a large canvas, device preview, and full-featured
+          toolkit. Like many of the other graphic design tools, Framer X offers the same insertable shapes and text,
+          all easily styled using the properties panel. You can draw directly on the canvas, import vector assets, or
+          even set up a series of Frames to create a multi-screen app flow. Designing on the canvas works great for
+          smaller interactions, but we recommend using frames for complex and responsive app flows.</p>
+        <h3>Navigation</h3>
+        <h5>Pan</h5>
+        <p>When working on the canvas, you can use the
+          <strong>Pan tool</strong>
+          to quickly pan over your canvas. Select the Pan tool or hold down
+          <code>space</code>, then click and drag to pan in any&nbsp;direction.</p>
+        <h5>Zoom</h5>
+        <p>You can use the Zoom tool (or use the shorthand
+          <code>Z</code>) to quickly zoom in-and-out of anything that is on your canvas. You can zoom out as far as 10%
+          (to get a great overview of all your Frames) or zoom in all the way up to 3200% to focus on the nitty-gritty.</p>
+        <h5>Direct Selection</h5>
+        <p>You can easily select any layer on the Canvas by simply clicking on them. Often, you know exactly which
+          layer you want to select. In those cases, you can simply hold
+          <code>CMD</code>
+          while you make your selection so that you are able to directly select that nested Frame.</p>
+        <h5>Resize</h5>
+        <p>The four handles around any layer can also be used to resize the layer. Select a handle and drag to resize.
+          Hold down the
+          <code>Shift</code>
+          key and it will resize it by proportion, keeping the height and width at the same ratio. Hold down the
+          <code>Option</code>
+          key to resize both sides, either vertically, horizontally or all sides.</p>
+        <h5>Rotation</h5>
+        <p>When your cursor hovers just outside of one of the four handles of your Frame or Shape you will be able to
+          rotate the object. Alternatively, you can use the Rotation property within the properties panel.</p>
+        <h5>Radius</h5>
+        <p>By clicking on the circle located near the top-left corner of a Frame or Shape you can adjust the radius.
+          Drag it to the center or from it to customize. Alternatively, you can use the Radius property within the
+          properties panel.</p>
+        <p class="lead">Framer X supports the Sketch Plugin from Framer Studio. This means you can easily copy your
+          artboards from Sketch and paste them in Framer X.
+        </p>
+        <p>Here’s an overview of the specific features and tools included in this plugin.</p>
+
+        <table>
+          <tr>
+            <th>Supported</th>
+            <th>Not Supported</th>
+          </tr>
+          <tr>
+            <td>Artboards</td>
+            <td>Nested Symbols</td>
+          </tr>
+          <tr>
+            <td>Groups</td>
+            <td>Stroke Settings</td>
+          </tr>
+          <tr>
+            <td>Shapes</td>
+            <td>Masked Layers</td>
+          </tr>
+          <tr>
+            <td>Text Layers</td>
+            <td>Image Fill</td>
+          </tr>
+          <tr>
+            <td>Paths</td>
+            <td>Radial Gradients</td>
+          </tr>
+          <tr>
+            <td>Boolean Operations</td>
+            <td>Angular Gradients</td>
+          </tr>
+          <tr>
+            <td>Symbols</td>
+            <td></td>
+          </tr>
+        </table>
+        <h3>Export</h3>
+        <p>Exporting works exactly as you’d expect. You can create multiple exports for a single frame or shape to
+          cater to multiple resolutions. Simply select a layer and hit export in the bottom right corner of Framer.
+          Select one of the pre-made presets or add your own. Adding a suffix to the preset will append this to your
+          file name. Clicking the suffix dropdown allows you to save assets to organized folders.</p>
+        <table>
+          <tr>
+            <th>Formats</th>
+            <th>Sizes</th>
+          </tr>
+          <tr>
+            <td>PNG</td>
+            <td>.5x</td>
+          </tr>
+          <tr>
+            <td>JPG</td>
+            <td>1x</td>
+          </tr>
+          <tr>
+            <td>PDF</td>
+            <td>1.5x</td>
+          </tr>
+          <tr>
+            <td>WEBP</td>
+            <td>2x</td>
+          </tr>
+          <tr>
+            <td>SVG</td>
+            <td>3x</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>4x</td>
+          </tr>
+        </table>
+        <h5>CSS &amp; SVG</h5>
+        <p>Right-click a layer and select Copy CSS to copy the CSS values or Copy SVG to copy the SVG values of the
+          selected layer to your clipboard. Then paste perfectly formatted CSS or SVG code directly in your favorite
+          editor to speed up your development workflow.</p>
+        <h5>Copy Image</h5>
+        <p>Framer X allows for quick exporting just by right-clicking on a layer. Select Copy Image or hit
+          <code>CMD C</code>
+          to copy the selected item to your clipboard. You can paste to any app that supports pasting images, easily
+          add your exports to documents, create quick mockups, or gather feedback in chat apps.</p>
+        <h5>Presets</h5>
+        <p>Framer X has a few pre-loaded exporting presets. The iOS and Android presets contain all of the
+          platform-specific sizes you’ll need for development. You can always add your own custom preset by hitting “<b>+</b>”
+          in the export panel.</p>
+        <table>
+          <tr>
+            <th>iOS</th>
+            <th>Android</th>
+          </tr>
+          <tr>
+            <td>1x</td>
+            <td>1x</td>
+          </tr>
+          <tr>
+            <td>2x</td>
+            <td>1.5x</td>
+          </tr>
+          <tr>
+            <td>3x</td>
+            <td>2x</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>3x</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>4x</td>
+          </tr>
+        </table>
+      </section>
+      <section class="main-section" id="Tools">
+        <header class="main-heading">Tools</header>
+        <p class="lead">Design adaptive interfaces, draw detailed icons and illustrations or build simple multi-screen
+          prototypes.</p>
+        <h3>Layout</h3>
+        <p>Where Framer X starts to feel different is in the focus and power of its layout design feature set. Our
+          layout tools have been developed specifically for interface design. It intuitively guesses hierarchy and
+          layout constraints, making for a much more efficient flow when it comes to responsive design work.</p>
+        <h5>Frames</h5>
+        <p>Create layouts that are responsive to any screen size with our Frames tool, which includes presets for
+          desktop, iOS, and Android.</p>
+        <p>To insert a Frame, click the Frames icon on the top left corner of Framer X, or press
+          <strong>F</strong>
+          to insert a frame even faster. In the properties panel on the right, you’ll notice a list of pre-set Frames
+          that correspond with the most popular devices and screen dimensions. To create a custom Frame, select the
+          Frames tool and then click and drag on the Canvas.</p>
+        <p>Frames aren’t limited to a fixed width and height, but are instead dependent on the device you select. Draw
+          a frame within a frame to pin it to a side and set hierarchy automatically. Frames even adapt when you
+          resize, all while keeping UI elements like buttons, cards, and tab bars completely intact. When one or more
+          frames are already on your canvas, Framer automatically guesses where your next frame should be placed.</p>
+        <p>
+          <strong>Frame Positioning</strong>
+        </p>
+        <p>When you place a new frame (child) on top of another frame (parent), Framer recognizes its placement and
+          uses smart positioning to determine its anchoring in relation to the parent frame and the child frame. This
+          vastly increases the efficiency of a typical design workflow. If you do need to change the anchor points at
+          any time, you can manually do so using the positioning tool in the properties panel.</p>
+        <h5>Stacks</h5>
+        <p>To take layouts a step further, we now have a brand new
+          <strong>Stack</strong>
+          tool. Stacks are especially good for expressing truly fluid layouts, because it can automate things such as
+          distribution and alignment. You can use the Stack tool by pressing
+          <strong>S</strong>
+          and then by making a selection on top of all the items that need to be placed within. Release and voila:
+          Everything is now automatically aligned and distributed. You can further customize your Stack by using the
+          properties panel. If you want to change the way the elements are distributed or if you want to adjust the gap
+          and padding.</p>
+        <p>
+          <strong>Distribution</strong>
+        </p>
+        <p>Automatic distribution of your items is where the Stack tool really shines. Say you have a menu and you wish
+          to replace the order of the items in there. When your menu is wrapped within a Stack, you can simply click
+          and drag items to move them around.</p>
+        <p>
+          <strong>Nesting</strong>
+        </p>
+        <p>You can even nest multiple stacks inside of a larger stack. Once grouped, you can re-arrange items within
+          each individual stack but also within the larger grouped stack.
+        </p>
+        <h3>Interactive</h3>
+        <h5>Link Tool</h5>
+        <p>The Link tool allows you to create connections between screens. You can activate the tool by hitting <code>L</code>,
+          while having a Frame selected. This will display an arrow, following your cursor, which you can drop on any
+          other Frame to link the two. Clicking on the first Frame will now trigger a transition to the second.</p>
+        <p>The Link tool also comes with a wide variety of options that you can choose from. There are different
+          transitions that you can pick from to get your flow working just the way you want it to.</p>
+        <p>
+          <strong>Default transitions</strong>
+        </p>
+        <ul>
+          <li>Push (Default)</li>
+          <li>Overlay</li>
+          <li>Modal</li>
+          <li>Instant</li>
+          <li>Flip</li>
+        </ul>
+        <h5>Scroll Tool</h5>
+        <p>The Scroll tool allows you to create scrollable areas. Once created, you can link this to any Frame, which
+          will mirror the content inside of your scroll area. Make an update in the Frame and it will be reflected in
+          your scrollable area immediately.</p>
+        <p>The Scroll tool also lets you choose which directions you can use your scrolling:
+          <strong>horizontally</strong>,
+          <strong>vertically</strong>
+          or
+          <strong>both</strong>. When choosing "both", you can also lock the direction to prevent diagonal scrolling.
+          You can also select the mouse wheel to be turned on or off, so that you can perfectly simulate a mobile
+          experience.</p>
+        <h3>Drawing</h3>
+        <p>In Framer X, we make a distinction between graphics and interactive tools. To use the Path tool or any
+          Shapes, you will first need to head to the Drawing section in the Tools panel and select Graphic (or hit
+          <strong>G</strong>
+          at any time). This Graphics tool acts as a container for all your visual artwork. Once you draw a Graphic
+          container on the canvas, you’ll notice that your Drawing toolkit appears in the top left corner of your
+          canvas.</p>
+        <h5>Path Tool</h5>
+        <p>To start using the Path tool, first use the Graphics tool to draw a container on the canvas. You’ll notice
+          that a set of Drawing tools now appear in the top left corner, along with a Path tool. Our Path tool features
+          everything that you want and need. When drawing icons, you’ll often rely on geometric shapes as the
+          foundation of your glyph. The Path tool helps you along the way. While drawing or editing a path, we’ll
+          suggest the calculated center point for you—so you can quickly find and snap to these points along your
+          segment.</p>
+        <p>Our Path tool also helps you define diagonal lines because continuing along the exact angle of a previous
+          segment is tricky. The tool does the hard work for you—once your cursor comes close enough, we’ll lock your
+          angle for you, so you can draw perfectly aligned icons and illustrations.</p>
+        <p>
+          <strong>Curve Bending</strong>
+        </p>
+        <p>Curve Bending uses synchronized anchor points to guide you closer to your desired curvature, allowing for
+          more advanced illustration work. This is especially helpful if you’re departing from geometric shapes and
+          moving toward freeform drawing. Click and drag any anchor point to bend and twist the path into more organic
+          forms.</p>
+        <h5>Shapes</h5>
+        <p>To find and use Shapes, first use the Graphics tool to draw a container on the canvas. A set of Drawing
+          tools will now appear in the top left corner. Insert rectangles, ovals, polygons, and stars, then use them as
+          a starting point for more advanced shapes. Shortcuts: Type
+          <strong>R</strong>
+          for rectangle,
+          <strong>O</strong>
+          for oval, and
+          <strong>P</strong>
+          for polygon. Double-click to edit and customize completely, and use boolean operations to add, subtract,
+          intersect, and exclude shapes.</p>
+        <p>If you want shapes to act upon layout rules like any other layer, you can wrap them in a Frame by selecting
+          the shape and pressing
+          <strong>Enter</strong>. This way the Frame will act like a smart container to the shape.</p>
+        <h5>Boolean Operations</h5>
+        <p>Our boolean operations support functions to add, subtract, intersect, exclude and join shapes. This will let
+          you create more complex shape with ease. When selecting a shape, you’ll find our Boolean Operations options
+          at the top of the properties panel. Select two shapes, select an option and click again to toggle.</p>
+      </section>
+      <section class="main-section" id="Properties">
+        <header class="main-heading">Properties</header>
+        <p class="lead">Style elements of your layers like size, radius, fill, multiple shadows, gradients and effects.
+          Use the alignment tools and live simulation to accurately position layers for instant responsiveness.</p>
+        <p>On the right side of the design canvas, you’ll find a properties panel. Much like any other graphics tool,
+          it contains all the tools you need to style the properties of a particular layer. At the top of the panel is
+          a series of align tool options. Use them to smartly position your layers within the frame and in relation to
+          each other.</p>
+        <h3>Frames</h3>
+        <p>There are two types of Frames in Framer X. Canvas-level frames and nested frames. Canvas-level frames behave
+          like screens: you can select preset devices, customize its orientation and more. They get a white background
+          color by default.</p>
+        <p>
+          If you add another Frame within, it will get a semi-transparent blue background color. This is how you can
+          differentiate nested Frames from canvas-level Frames.</p>
+        <p>There are four types of Frame properties:</p>
+        <ul>
+          <li>
+            <strong>Layout</strong>: Constraints, Simulation
+          </li>
+          <li>
+            <strong>Generic</strong>: Opacity, Radius, Rotation, etc
+          </li>
+          <li>
+            <strong>Interactive</strong>: Link, Code
+          </li>
+          <li>
+            <strong>Styling</strong>: Fill, Shadows, Blur, etc
+          </li>
+        </ul>
+        <h3>Text</h3>
+        <p>In Framer, text is added as a layer with some smart properties of its own. A text layer will align logically
+          based on where it is placed on the parent frame. For example, a text layer placed on the left side of a
+          navigation bar will immediately left align and anchor there, no matter how the parent layer or frame is
+          resized or scaled. You can alter the constraints of this automatic alignment at any time by selecting the
+          text layer and using the positioning tool in the properties panel.</p>
+        <p>
+          <strong>Resizing Text</strong>
+        </p>
+        <p>Text layers have two modes that affect their size:
+          <strong>"Auto"</strong>
+          and
+          <strong>"Fixed"</strong>. When set to "Auto", the width and height of the text layer will adjust acoording to
+          the content and size of the text itself and can be adjusted via custom controls in the properties panel. When
+          set to "Fixed", the size of the text box can be manually adjusted.</p>
+        <h3>Styling</h3>
+        <p>To view the styling properties of your layers, you can select one or more layers in the layer list or
+          highlight them directly on your canvas. Framer contains all of the styling properties you would expect from a
+          modern design tool.</p>
+        <p>
+          <strong>Gradients</strong>
+        </p>
+        <p>
+          Gradients in Framer are based on the
+          <a href="https://medium.com/@patrickbrosset/do-you-really-understand-css-linear-gradients-631d9a895caf">CSS
+            Model</a>. This means our gradients are simple—an angle and two color stops. Resizing a layer will not
+          impact the gradients because it will stay true to its angle and automatically adapt to the layer size.
+        </p>
+        <p>
+          <strong>Borders</strong>
+        </p>
+        <p>
+          Borders lets you add a border around any layer you create in Framer. You can control the color, width, and
+          style of the border. Because Framer is web based, you’ll be able to set border styling and individual border
+          size for the top, right, bottom, and left of the layer.
+        </p>
+        <p>
+          <strong>Multiple Shadows</strong>
+        </p>
+        <p>
+          Multiple Shadows allow you to add more than one shadow to your desired layer. From outer to inner shadows,
+          you can stack a combination of as many shadows as you want and customize them individually. Or right-click on
+          any shadow and select
+          <strong>Duplicate</strong>
+          to speed up your workflow. In Framer X, you can even animate individual shadows.</p>
+        <p>
+          <strong>Effects</strong>
+        </p>
+        <p>
+          Effects in Framer adds an extra set of styling capabilites, including blending modes to blend layers and
+          colors, object blur to blur an entire object, or background blur to blur the layers behind it. There are also
+          filters like Contrast, Grayscale, Hue Rotate, Invert, Saturate and Sepia, for enhanced photo editing.</p>
+      </section>
+      <section class="main-section" id="Preview">
+        <header class="main-heading">Preview</header>
+        <p class="lead">Framer X includes a standalone Preview window which allows you to see an accurate and live
+          representation of anything that you are creating.</p>
+        <p>You can open the preview window by clicking on the play icon in the toolbar, or by hitting
+          <code>CMD</code>
+          +
+          <code>P</code>
+          with a frame selected. The preview window in Framer X always mirrors your current selection, which means you
+          can quickly skip to specific states of your design.</p>
+        <h3>Devices</h3>
+        <p>
+          When you create a Frame you can choose from a wide selection of preset devices, which is located in your
+          properties panel under Device. Once a Device is selected, your Frame will automatically resize to the desired
+          device its dimensions. The Preview window will then also automatically adjust itself and will, when in
+          presentation mode, show your designs on the selected device for a perfect representation.
+        </p>
+        <h3>Options</h3>
+        <h5>Toggle Cursor</h5>
+        <p>By default the cursor is turned off while using your prototype in Preview mode. You can quickly turn this on
+          by selecting Toggle Cursor. This will then turn on the touch indicator. Click on the menu icon in the
+          top-right, select "Toggle Cursor" or hit
+          <code>CMD + Shift + C</code>.</p>
+        <h5>Toggle Hand</h5>
+        <p>To get an accurate feeling of how your prototype would look in the hands of someone else, you can switch on
+          the Toggle Hand feature and simulate it perfectly. Click on the menu icon in the top-right, select "Toggle
+          Hand" or hit
+          <code>CMD + Shift + H</code>.
+        </p>
+        <h5>Rotate Device</h5>
+        <p>Previewing a design and want to quickly switch from landscape to portrait-view? Select Rotate Device and
+          your device (and design) will be altered accordingly.
+        </p>
+        <h5>Keep On Top</h5>
+        <p>Select Keep On Top if you want to cement the preview window stuck in the top corner of your window. This
+          will let you continue with your design while always having the preview in sight (You can kind of compare this
+          to Safari it's Picture-in-Picture mode).
+        </p>
+      </section>
+      <section class="main-section" id="Live_Preview">
+        <header class="main-heading">Live Preview</header>
+        <h5>Keep On Top</h5>
+        <p>Select Keep On Top if you want to cement the preview window stuck in the top corner of your window. This
+          will let you continue with your design while always having the preview in sight (You can kind of compare this
+          to Safari it's Picture-in-Picture mode).
+        </p>
+        <p>To start the live preview, click on the mobile phone icon in the top-right corner. Click <strong>"Start
+            Preview"</strong> from within the popover. This will start the live server. From here on out, you can
+          either scan the QR code with the Camera app on your iOS device, or click "Open in Browser" to preview in your
+          browser.</p>
+
+        <p>You can also share this link with others, and they will be able to follow along with all of your changes.
+          They’ll see your visual edits as they occur, plus they will be able to interact with your prototype.</p>
+
+        <table>
+          <tr>
+            <th>
+              <strong>Topic</strong>
+            </th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>
+              <strong>Live</strong>
+            </td>
+            <td>The remote preview updates with your changes in real-time, ideal for designing on-device interactions.</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Shareable</strong>
+            </td>
+            <td>The generated link can be shared with anyone, working on any (corporate) network from anywhere in the
+              world.</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Security</strong>
+            </td>
+            <td>The generated link will automatically become inaccessible once your project is closed or if you stop
+              the live preview manually. None of your project files are stored, everything is served from your
+              computer.</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Mobile</strong>
+            </td>
+            <td>Simply scan the QR code with the Camera app to open the project.</td>
+          </tr>
+        </table>
+        <h3>Notes</h3>
+        <p>Find a list of known issues below.</p>
+        <table>
+          <tr>
+            <th>
+              <strong>Issue</strong>
+            </th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>
+              <strong>Performance</strong>
+            </td>
+            <td>If you have Low Power Mode enabled on iOS, the animations will be throttled to 30FPS.</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Previewing Experience</strong>
+            </td>
+            <td>The generated link will automatically become inaccessible once your project is closed or if you stop
+              the live preview manually. None of your project files are stored, everything is served from your
+              computer.</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Fonts</strong>
+            </td>
+            <td>You’ll only be able to preview typefaces that are installed locally on your mobile device (system
+              fonts).</td>
+          </tr>
+        </table>
+      </section>
+      <section class="main-section" id="Components">
+        <header class="main-heading">Components</header>
+        <p class="lead">
+          Components are reusable, interactive building blocks that you can compose into larger ones to make up entire
+          screens, interfaces and apps.
+        </p>
+        <p>In most other graphics tools, components are visual — a picture of a button, slider or toggle. The big
+          difference is that in Framer X, components can be interactive. They scroll, click, move and handle input, all
+          backed by the popular React JavaScript framework for building interfaces.</p>
+        <p>To create a new component, you can navigate to the Components panel and click the
+          <strong>New Component</strong>
+          button located at the bottom. You can create two types of components: Design and Code. A design component is
+          created by selecting an element on your canvas. A code component is created from scratch, and you’ll be
+          presented with a new
+          <code>.tsx</code>
+          file.
+        </p>
+        <h3>Design</h3>
+        <p>First, give your design component a unique name in the Layer Panel. Then, right click on the layer and
+          select
+          <code>Create Design Component</code>. You can also create new design components from selection by hitting
+          <code>CMD + K</code>.
+        </p>
+        <p>The design components you see in the panel are referred to as a
+          <strong>master</strong>
+          components. All of your own master components live on the canvas: removing them from the canvas will also
+          remove them from the Components panel. If you paste, duplicate or drag a component from the panel to the
+          canvas, you’ll create an
+          <strong>instance</strong>
+          of that component. All changes made to the master will be reflected within each instance. You can still
+          override the properties of any single instance and customize things like color, opacity and radius, or layout
+          options like position and size. Don’t like the end result? Right-click and hit
+          <strong>Reset Overrides</strong>
+          to revert styling back to match the master component.</p>
+        <h3>Code</h3>
+        <p>Interactive components are code components, written in
+          <a href="https://reactjs.org/" target="_blank">React</a>. You can also render plain HTML elements, and style
+          them with CSS, so setting up your first code component is easier than it may sound. In our documentation, we
+          assume a basic knowledge of HTML/CSS/Javascript. For a refresher or more information, please read React’s
+          <a href="https://reactjs.org/docs/getting-started.html">Getting&nbsp;Started</a>
+          guide.
+        </p>
+        <p>
+          <strong>React</strong>
+        </p>
+        <p>React components use JSX, an HTML-like markup language. Below you’ll find a very basic example of a React
+          component. Notice how the
+          <code>render()</code>
+          method returns something very close to plain HTML and CSS. As you learn, we highly recommend to check out the
+          official
+          <a href="https://reactjs.org/" target="_blank">React</a>
+          documentation.</p>
+        <h5>Creation</h5>
+        <p>To create a new code component, head to the Components panel in the left menu bar and click select
+          <code>New Component</code>. Then, select
+          <code>from Code</code>, pick a name (no spaces) and click
+          <code>Create and Edit</code>.</p>
+        <p>Framer X relies on an external editor for writing code so if you have a code editor installed, it should
+          automatically open. If you don’t, any editor will work, though we strongly suggest downloading one that
+          supports TypeScript (for auto-complete). We recommend
+          <a href="https://code.visualstudio.com/" target="_blank">VSCode by Microsoft</a>
+          with the optional
+          <a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode" target="_blank">Prettier
+            extension</a>
+          installed so your code is always formatted consistently. Now, when you open up the code editor, you will see
+          the code powering the component, including "hello world" displayed in purple text.
+          <p>Dragging the same component onto the canvas will make each one an instance of the original code component,
+            no matter where you position them on the canvas. Every time you make a change to the CSS styling or text in
+            the code editor, your saved changes will be reflected across the master and all its instances.</p>
+          <h5>Canvas</h5>
+          <p>Interactive components like scrolling and click handlers don’t animate on the canvas to avoid distracting
+            you from the functional aspects of layout design. But you can test your interactive components at any time
+            by hitting the Play icon to open the Preview window.</p>
+          <p>
+            <strong>Layout and Sizing</strong>
+          </p>
+          <p>Every component rendered on the canvas or Preview is wrapped in a frame so they have the same layout rules
+            as anything else on the canvas. Both the width and height are passed to the code component as props so you
+            can use them.</p>
+          <h5>Displaying Canvas Elements</h5>
+          <p>Because the code determines the contents of code components, you cannot directly edit code component
+            contents on the canvas. But often you'd like a code component to display something else from your canvas.
+            For example, a Card component could render an image with some overlay that is somewhere else on your
+            canvas. You can accomplish this in two ways.</p>
+          <p>
+            <strong>Using props.children</strong>
+          </p>
+          <p>React props are basically the attributes for a component to display, and one of those is a list of
+            children, or it's contents (like in the DOM or you see in the layer panel). Normally these are determined
+            from your code, but in Framer you can set any Frame on your canvas as children for your component. Let's
+            look at an example.</p>
+          <p>Framer detects you are using the props.children property in your render method and automatically adds a
+            connector to each instance of the component on your canvas (a purple dot on the right side, like the scroll
+            tool). You can drag a connection from this connector to any Frame on the canvas and it will use it as its
+            children to render.</p>
+          <p>
+            <strong>Using canvas imports</strong>
+          </p>
+          <p>You can easily import and use any named design component. The example below assumes you have a design
+            component named
+            <code>Row</code>.</p>
+          <h5>Custom Properties</h5>
+          <p>Code components become exponentially more powerful when they use
+            <code>propertyControls</code>, which allows you to customize the user interface of your component, directly
+            within our properties panel.</p>
+          <p>The only thing you have to do is add a static propertyControls method to your class with a descriptor. It
+            will use defaultProps for the defaults and try to type check your descriptors if you added type annotations
+            for your props.</p>
+          <p>
+            <strong>Available Controls</strong>
+          </p>
+          <p>Controls can be described by specifying one of the following types.</p>
+          <ul>
+            <li>Boolean</li>
+            <li>Number</li>
+            <li>String</li>
+            <li>Color</li>
+            <li>Image</li>
+            <li>File</li>
+            <li>Enum</li>
+            <li>SegmentedEnum</li>
+            <li>FusedNumber</li>
+          </ul>
+          <h5>Boolean Control</h5>
+          <p>Booleans use a segmented control. The segment titles are <code>True</code> and <code>False</code> by
+            default but these can be overridden using the <code>enabledTitle</code> and <code>disabledTitle</code>.</p>
+          <h5>Number Control</h5>
+          <p>Number controls are displayed using an input field and a slider. The <code>min</code> and <code>max</code>
+            values can be specified to constraint the output. The default step size is 1. When a step size smaller then
+            1 is entered, the output will be floats. When the unit type is set to %, the input field will display 10 as
+            10%.</p>
+          <h5>String Control</h5>
+          <p>String controls are displayed using a single line input field. A placeholder value can be set when needed.</p>
+          <h5>Color Control</h5>
+          <p>Color controls are displayed using a color picker popover and a number input for the alpha.</p>
+          <h5>Image Control</h5>
+          <p>Image controls are displayed using an image picker that shows a small preview. The component receives an
+            absolute URL during rendering.</p>
+          <h5>File Control</h5>
+          <p>File controls are displayed using a file picker that shows the file name after selecting a file. The
+            component receives an absolute URL during rendering. The <code>allowedFileTypes</code> is an array
+            containing all allowed file types, like so: <code>["json", "obj", "collada"]</code>.</p>
+          <h5>Enum Control</h5>
+          <p>An enum control displays a pop-up button with a fixed set of string values. The optionTitles can be set to
+            have nicely formatted values for in the UI.</p>
+          <h5>Segmented Enum Control</h5>
+          <p>A segmented enum control is displayed using a segmented control. Since a segmented control has limited
+            space this only works for a tiny set of string values.</p>
+          <h5>Fused Number Control</h5>
+          <p>The fused number control is specifically created for <code>border-radius</code>, <code>border-width</code>,
+            and <code>padding</code>. It allows setting a numeric value by either using a single input or by using four
+            seperate number inputs. The user can switch from a 1 input to 4 by toggling a boolean.</p>
+          <h5>Hiding Controls</h5>
+          <p>Controls can be hidden by implementing the hidden function on the property description. The function
+            receives an object containing the set properties and returns a boolean. In the following example we hide
+            the the <code>inCall</code> boolean control when the connected property is <code>false</code>.</p>
+      </section>
+      <section class="main-section" id="Overides">
+        <header class="main-heading">Overides</header>
+        <p class="lead">Add animations and interactions to any Frame with Code Overrides, and build entire projects
+          with state to communicate between different components.</p>
+        <p>Code overrides are simple JavaScript functions that facilitate communication between components. You can
+          write them yourself and apply to any Frame or Component on your canvas. These functions allow you to override
+          styling properties like opacity and fill — but they also allow for interactivity and animation.</p>
+        <p>Code overrides can live in any code file in your project. They get discovered as they use the Override type
+          specifier (see example below). You can apply any code override to any Frame (or Component) on the canvas from
+          the properties panel under “Code”.</p>
+        <p>See a simple example below. This will reset the color of a Frame to red, regardless of the background you
+          set on the canvas.</p>
+        <h3>Events</h3>
+        <p>For anything interactive, you need events. Events are “things that happen” like a click, tap, swipe, but
+          also video ended or device rotated. They consist of a type and a handler with code that needs to be run when
+          the event happens. Because you can’t set event handler from the interface in Framer X (today), you need to
+          set them with a code override. Event types in Framer follow the same style as in JavaScript (or React) like
+          onClick, onTap, onScroll, etc.</p>
+        <p>Let’s create a very simple event handler that logs a message to the console with console.log when you click
+          it.</p>
+        <p>Apply the code override to any Frame on the canvas and click it in the preview. If you open the preview
+          console (right bottom icon in the main window) you will see multiple “Hello” messages (in the Console tab).</p>
+        <h3>Animations</h3>
+        <p>The Framer JavaScript Library comes with a set of advanced animation helpers for high performant accelerated
+          graphics that work well with Framer X. They work very well with overrides to animate any Frame on your
+          canvas.</p>
+        <p>After we import the right parts from the Framer Library, we create a new Animatable number called scaleValue
+          with a default value of 1. We use this value to set the scale property initially, and we animate it with a
+          spring curve after a click.</p>
+        <p>You can also separate the animation from the click event so you can click on one Frame and animate another.
+          Just connect the scaleUp code override to one of the Frames so it sets the scale property to the scaleValue
+          value. Connect the other Frame to scaleButton, which animates the scaleValue on a click.</p>
+      </section>
+      <section class="main-section" id="Store">
+        <header class="main-heading">Store</header>
+        <p class="lead">Framer X includes an in-app store, containing packages created by thousands of designers and
+          engineers from the Framer community.</p>
+        <p>Any design or code component can be packaged and published to the store. Packages can contain a variety of
+          components: from complete interactive design systems to media players to image generators and so much more.</p>
+        <h3>Installing</h3>
+        <p>By default, the store shows you all of our
+          <strong>Featured</strong>
+          packages. Click on a thumbnail to navigate to its detail page. From here, you can install the package with a
+          single click. After installing, the components from the package will appear in the Components panel.</p>
+        <h3>Updating</h3>
+        <p>When a package you’ve installed is updated by its author, you’ll be notified within the status bar. In the
+          bottom-left corner, the amount of updates is shown. Clicking it will bring you to the
+          <strong>Installed</strong>
+          tab of the store. This is where you can manage your packages: browse, update, and un-install any package
+          within your project.
+        </p>
+        <h3>Publishing</h3>
+        <p>If you’ve created design and/or code components you’d like to share with the community, you can navigate to
+          the store to publish it. On the bottom of the sidebar, you can click
+          <strong>Publish Package</strong>
+          to start publishing it. It‘ll often prompt you to save your document first. Then, you’ll be presented by the
+          detail page of your package.</p>
+        </p>
+        <p>
+          <strong>Artwork &amp; Descriptions</strong>
+        </p>
+        <p>To differentiate your package from others, you can add the following assets: a thumbnail, a banner and a
+          description of the package contents and features.</p>
+        <p>
+          <strong>Readme</strong>
+        </p>
+        <p>You can write package descriptions within the
+          <code>README.md</code>
+          file. This is a markdown file, so you can add titles, subtitles, lists, tables and links.</p>
+      </section>
+      <section class="main-section" id="Shortcuts">
+        <header class="main-heading">Shortcuts</header>
+        <h2>Shortcuts</h2>
+        <p class="lead">Become a Framer X pro—speed up your workflow with these shortcuts for tools, canvas and more.</p>
+
+        <div class="shortcuts">
+          <table>
+            <tr>
+              <th>Tools</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>
+                <code>F</code>
+              </td>
+              <td>
+                Frame</td>
+            </tr>
+            <tr>
+              <td>
+                <code>U</code>
+              </td>
+              <td>Rounded</td>
+            </tr>
+            <tr>
+              <td>
+                <code>T</code>
+              </td>
+              <td>Text</td>
+            </tr>
+            <tr>
+              <td>
+                <code>S</code>
+              </td>
+              <td>
+                Stack
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>L</code>
+              </td>
+              <td>
+                Link
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <code>G</code>
+              </td>
+              <td>
+                Graphic</td>
+            </tr>
+
+            <tr>
+              <td>
+                <code>Z</code>
+              </td>
+              <td>Zoom</td>
+            </tr>
+            <tr>
+              <td>
+                <code>Space</code>
+                <code>Drag</code>
+              </td>
+              <td>
+                Pan Canvas</td>
+            </tr>
+          </table>
+
+          <table>
+            <tr>
+              <th>Drawing Mode</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>
+                <code>R</code>
+              </td>
+              <td>
+                Rectangle</td>
+            </tr>
+            <tr>
+              <td>
+                <code>O</code>
+              </td>
+              <td>
+                Oval</td>
+            </tr>
+            <tr>
+              <td>
+                <code>V</code>
+              </td>
+              <td>Vector</td>
+            </tr>
+          </table>
+
+          <table>
+            <tr>
+              <th>Canvas</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>-</code>
+              </td>
+              <td>
+                Zoom in</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>+</code>
+              </td>
+              <td>
+                Zoom Out</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>0</code>
+              </td>
+              <td>
+                Actual Size</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>1</code>
+              </td>
+              <td>
+                Center Canvas</td>
+            </tr>
+          </table>
+
+          <table>
+            <tr>
+              <th>Editing</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>Arrows</code>
+              </td>
+              <td>
+                Object Size</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⇧</code>
+                <code>⌘</code>
+                <code>Arrows</code>
+              </td>
+              <td>
+                Object Size by 10</td>
+            </tr>
+            <tr>
+              <td>
+                <code>0</code>
+                <code>9</code>
+              </td>
+              <td>
+                Opacity</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌥</code>
+              </td>
+              <td>
+                Show Distance</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>D</code>
+              </td>
+              <td>
+                Duplicate In Place</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌥</code>
+                <code>Drag</code>
+              </td>
+              <td>
+                Duplicate Selected Object</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌥</code>
+                <code>⌘</code>
+                <code>C</code>
+              </td>
+              <td>
+                Copy Style</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌥</code>
+                <code>⌘</code>
+                <code>V</code>
+              </td>
+              <td>
+                Patse Style</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌃</code>
+                <code>C</code>
+              </td>
+              <td>
+                Color Picker</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>A</code>
+              </td>
+              <td>
+                Select All Layers</td>
+            </tr>
+          </table>
+
+          <table>
+            <tr>
+              <th>Arranging</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>
+                <code>⌥</code>
+                <code>⌘</code>
+                <code>↑</code>
+              </td>
+              <td>
+                Bring Forward</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌥</code>
+                <code>⌘</code>
+                <code>↓</code>
+              </td>
+              <td>
+                Send Backward</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>;</code>
+              </td>
+              <td>
+                Hide Selection</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>L</code>
+              </td>
+              <td>
+                Lock / Unlock Selection</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>Enter</code>
+              </td>
+              <td>
+                Add Frame</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>Delete</code>
+              </td>
+              <td>
+                Remove Frame / Stack</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>G</code>
+              </td>
+              <td>
+                Group Shapes</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>⇧</code>
+                <code>G</code>
+              </td>
+              <td>
+                Ungroup Shapes</td>
+            </tr>
+          </table>
+
+          <table>
+            <tr>
+              <th>Text</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>B</code>
+              </td>
+              <td>
+                Bold</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>I</code>
+              </td>
+              <td>
+                Italic</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>U</code>
+              </td>
+              <td>
+                Underline</td>
+            </tr>
+            <tr>
+              <td>
+                <code>⌘</code>
+                <code>T</code>
+              </td>
+              <td>
+                Change Font</td>
+            </tr>
+          </table>
+      </section>
+    </main>
+  </div>
+
+</body>
+
+</html>
