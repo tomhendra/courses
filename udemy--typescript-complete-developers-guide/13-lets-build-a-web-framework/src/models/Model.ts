@@ -33,11 +33,15 @@ export class Model<T extends HasId> {
     get on() {
     return this.events.on;
   }
+
+  !! cannot use shorthand if initializing properties inline
+  inside constructor, because the initialization will take place 
+  after the method definition.
   */
-  on = this.events.on;
-
+  get on() {
+    return this.events.on;
+  }
   trigger = this.events.trigger;
-
   get = this.attributes.get;
 
   set(update: T): void {
