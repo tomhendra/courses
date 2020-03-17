@@ -6,7 +6,7 @@ interface HasId {
 // generic constraint 'T extends HasId' to ensure whatever data is passed to save() has an id property.
 export class Sync<T extends HasId> {
   constructor(public rootUrl: string) {}
-
+  // fetch returns a promise that will eventually resolve with date
   fetch(id: number): AxiosPromise {
     return axios.get(`${this.rootUrl}/${id}`);
   }
