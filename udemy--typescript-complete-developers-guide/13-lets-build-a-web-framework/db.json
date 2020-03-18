@@ -2,13 +2,18 @@
   "users": [
     {
       "name": "Harold Pumbiffer",
-      "age": 155,
+      "age": 57,
       "id": 1
     },
     {
-      "name": "NAME",
+      "name": "Marjory Cuffbubble",
       "age": 45,
       "id": 2
+    },
+    {
+      "name": "Rupert Piddlewod",
+      "age": 95,
+      "id": 3
     }
   ]
 }
