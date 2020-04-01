@@ -37,6 +37,9 @@ I have been learning web development full-time since August 2018, and prior to t
 9.  **[TypeScript: The Complete Developer's Guide 2020](udemy--typescript-complete-developers-guide)**.
     An in depth course on using TypeScript with Stephen Grider. TypeScript is a valuable skill for catching errors during development, and this course goes in depth with 24.5 hours of video content.
 
+10. **[Learning to Learn: Efficient Learning](udemy--learning-to-learn)**.
+    A course to better retain information from the courses I am take in the future.
+
 In Progress. **[Frontend Masters React Learning Path](frontend-masters--react)**.
 
 In Progress. **[Frontend Masters Design to Code Learning Path](frontend-masters--design-to-code)**.
