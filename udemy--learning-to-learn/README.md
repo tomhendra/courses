@@ -21,20 +21,32 @@ The course has four main sections:
 
 ## 1. Principles
 
-// key takeaway in one sentence - add this at the end
+Useful principles & guidelines to being a self-motivated learner.
 
-Learning vs Winning the system:
-
+- Learning vs Winning the system: Being smart doesn't automatically lead to success.
 - Shift focus from getting the best result (good grades, promotion) to a long-term learning mindset.
 - Reference: [The Lesson to Unlearn](http://paulgraham.com/lesson.html)
 - Being an efficient learner is great, but to succeed you need drive & persistence.
+- Embrace obstacles. If it is hard then you are progressing, nobody is successful from the start.
+- The dip: There will be times when you feel you'll never 'get it'. Push through those times.
+- Compound learning: Learn in small bites, rather than all day sessions.
+- Failures don't count against us. People remember us for where we are now, not what we were when we failed.
+- The more failures we have, the more feedback we have to improve.
+- Choice vs chore: Shift focus on learning from "I must to" to "I want to" in order to grow.
+- Use frames to change view / perspective. Instead of "I can't do this", think "I am improving at this".
+- Pareto principle: 80/20 rule. Eliminate from 100% until you reach the 20% which will give 80% of results.
+- What are the critical skills that will give you the 80% of results. Focus on those.
+- Skill stacking: 3 approaches to career strategy:
+  1. Curiosity. Innate ambition to learn continuously.
+  2. Value learning above all else. Choose a job where everyone is smarter than you, over high salary.
+  3. Gathering and combining skills in a unique way.
+- The most valuable skills to stack are ones that are compatible, but different enough to make you stand out.
+- Monitor the things in life that make you happy. You will learn more effectively when you're happy.
+- Identify Happiness factors and keep them in check every few months.
+- Your productivity time: Learn in the time of the day you are productive.
+- Self-learning paradigm: Using everything on this list so far, find your motivation from within.
 
-Principle:
-
-- Add notes to remember key takeaways
-- Add notes to remember key takeaways
-
-## 2. Pillars
+## 2. Lies
 
 // key takeaway in one sentence - add this at the end
 
@@ -48,7 +60,7 @@ Principle:
 - Add notes to remember key takeaways
 - Add notes to remember key takeaways
 
-## 3. Lies
+## 3. Pillars
 
 // key takeaway in one sentence - add this at the end
 
