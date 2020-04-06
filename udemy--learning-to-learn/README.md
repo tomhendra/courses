@@ -25,7 +25,6 @@ Useful principles & guidelines to being a self-motivated learner.
 
 - Learning vs Winning the system: Being smart doesn't automatically lead to success.
 - Shift focus from getting the best result (good grades, promotion) to a long-term learning mindset.
-- Reference: [The Lesson to Unlearn](http://paulgraham.com/lesson.html)
 - Being an efficient learner is great, but to succeed you need drive & persistence.
 - Embrace obstacles. If it is hard then you are progressing, nobody is successful from the start.
 - The dip: There will be times when you feel you'll never 'get it'. Push through those times.
@@ -73,12 +72,31 @@ Popular myths debunked.
 
 ## 3. Pillars
 
+Four pillars of foundations for implementing learning techniques.
+
+1. Everything is a game:
+   - Allows 2 things to happen in our minds
+   - 1. Growth mindset: Talent / intelligence aren't just gifts, they can be learned with effort and strategy.
+   - 2. Locus of control: To improve skills we need to accept responsibility that we control outcomes, rather than blaming external factors when things go unfavourably.
+2. Feynman technique:
+   - In order to really know a topic, you need to be able to teach it.
+   - Bring down a concept to its basic level.
+   - Being able to explain a topic in simple terms is the best way to learn.
+3. Trunk based knowledge:
+   - In order to be successful, we need to start at the trunk before we get to the leaves.
+   - Start with the principles, the fundamentals, before moving to more detailed topics.
+4. Efficiency trumps grit:
+   - Being busy is seen as a good thing in society, but in reality it means you lack time management skills.
+   - By using the right strategies and methods, & learning the right topics, you are learning efficiently.
+
+## 4. Science
+
 // key takeaway in one sentence - add this at the end
 
 - Add notes to remember key takeaways
 - Add notes to remember key takeaways
 
-## 4. Techniques
+## 5. Techniques
 
 // key takeaway in one sentence - add this at the end
 
