@@ -48,12 +48,27 @@ Useful principles & guidelines to being a self-motivated learner.
 
 ## 2. Lies
 
-// key takeaway in one sentence - add this at the end
+Popular myths debunked.
 
-Principle:
-
-- Add notes to remember key takeaways
-- Add notes to remember key takeaways
+- Follow your passion:
+  - Learning a valuable skill, getting smarter & gaining recognition makes a career enjoyable.
+  - You don't have to be passionate about it, you just need to have an interest in it.
+  - Creativity, control and impact combined with a valuable skill set makes the passion arise.
+  - Craftsman mindset: How can I improve and offer something uniquely valuable. Work hard, get good.
+- You can avoid risk:
+  - To achieve success, learn to tolerate and enjoy taking risks.
+  - When you notice butterflies in your stomach, you are stretching your boundaries. Embrace them.
+  - View risks as challenges to look forward to.
+  - You need risk to make exceptional discoveries or leaps in skill.
+- Trust this one person:
+  - Don't believe leaders alone.
+  - Look at unique sources and combine opinions.
+  - Don't get all your information from one source.
+- 10,000 hours rule:
+  - Practice matters, but the 10,000 hour rule has been debunked.
+  - Truth is that there are more factors to consider.
+  - Everyone has advantages and disadvantages.
+  - Efficient learning is better than hard learning.
 
 Principle:
 
