@@ -57,34 +57,23 @@ Popular myths debunked.
   - Craftsman mindset: How can I improve and offer something uniquely valuable. Work hard, get good.
 - You can avoid risk:
   - To achieve success, learn to tolerate and enjoy taking risks.
-  - When you notice butterflies in your stomach, you are stretching your boundaries. Embrace them.
+  - When you notice butterflies in your stomach, you are doing something worthwhile. Embrace them.
   - View risks as challenges to look forward to.
   - You need risk to make exceptional discoveries or leaps in skill.
 - Trust this one person:
   - Don't believe leaders alone.
   - Look at unique sources and combine opinions.
   - Don't get all your information from one source.
+  - Form your own opinions and thoughts.
 - 10,000 hours rule:
   - Practice matters, but the 10,000 hour rule has been debunked.
   - Truth is that there are more factors to consider.
   - Everyone has advantages and disadvantages.
   - Efficient learning is better than hard learning.
 
-Principle:
-
-- Add notes to remember key takeaways
-- Add notes to remember key takeaways
-
 ## 3. Pillars
 
 // key takeaway in one sentence - add this at the end
-
-Principle:
-
-- Add notes to remember key takeaways
-- Add notes to remember key takeaways
-
-Principle:
 
 - Add notes to remember key takeaways
 - Add notes to remember key takeaways
@@ -92,13 +81,6 @@ Principle:
 ## 4. Techniques
 
 // key takeaway in one sentence - add this at the end
-
-Principle:
-
-- Add notes to remember key takeaways
-- Add notes to remember key takeaways
-
-Principle:
 
 - Add notes to remember key takeaways
 - Add notes to remember key takeaways
