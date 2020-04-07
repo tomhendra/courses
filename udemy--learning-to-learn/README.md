@@ -93,8 +93,23 @@ Four pillars of foundations for implementing learning techniques.
 
 // key takeaway in one sentence - add this at the end
 
-- Add notes to remember key takeaways
-- Add notes to remember key takeaways
+- Focus vs Diffuse Learning: Efficient learning is accomplished by moving between both modes.
+- Multitasking is usually a bad strategy, and causes dual tsk interference where cognitive efficiency depletes.
+- Sleep is extremely important for long term learning. Flushes toxins and forms new neural connections.
+- Brain training strengthens the connections (synapses) between brain cells (neurons).
+- Physical exercise is very important for encouraging diffuse mode of thinking.
+- Feedback is integral to learning, both positive and negative, however criticism is more effective, and immediate feedback is best.
+- Procrastination: everyone has to deal with it. The key is to manage emotion rather than time.
+- To overcome procrastination you need to make a start on the task; take the the first step.
+- Long & short term memory: Long term memory is where fundamental principles are stored, formed my practising and repeating.
+- Short term / working memory generally consists of 4 chunks of information. Spaced repetition used to ensure memory is transformed into long term by strengthening synapses.
+- Active vs passive learning: Active engagement is more effective than passive learning.
+- Passively watching videos creates illusion of competence.
+- Need to practise what you have learned through actually doing. Retrieval is better than re-reading.
+- Intrinsic motivation comes from within, what we want to do. Extrinsic motivation come from outside of us.
+- Three factors for intrinsic drive: Autonomy, Mastery, Purpose.
+- Small steps for goals eliminate fear of failure.
+- S.M.A.R.T. Specific, Measurable, Attainable, Relevant, Time-bound
 
 ## 5. Techniques
 
