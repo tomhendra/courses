@@ -4,7 +4,7 @@
 <p>Notes from the course.</p>
 </div>
 
-## Introduction
+# Introduction
 
 This course aims to teach you how to be an efficient learner. As recommended in the course, notes should be taken throughout to solidify retention of the topics covered. This a **[Udemy course](https://www.udemy.com/course/learning-to-learn-efficient-learning-zero-to-mastery/)**. by Andrei Neagoie
 
@@ -19,7 +19,7 @@ The course has four main sections:
 
 **[Here is the link to the full course roadmap](https://coggle.it/diagram/Xe6iV4XedHQFQQOJ/t/%F0%9F%94%A5-efficient-learning-zero-to-mastery-blueprint-%F0%9F%94%A5/5b1fdfcfdfe6e65371ac91bceb8826e905aa80e6a3e5612383710eaef9390944)**
 
-## 1. Principles
+# 1. Principles
 
 Useful principles & guidelines to being a self-motivated learner.
 
@@ -45,39 +45,39 @@ Useful principles & guidelines to being a self-motivated learner.
 - Your productivity time: Learn in the time of the day you are productive.
 - Self-learning paradigm: Using everything on this list so far, find your motivation from within.
 
-## 2. Lies
+# 2. Lies
 
 Popular myths debunked.
 
-# - Follow your passion:
+### - Follow your passion:
 
 - Learning a valuable skill, getting smarter & gaining recognition makes a career enjoyable.
 - You don't have to be passionate about it, you just need to have an interest in it.
 - Creativity, control and impact combined with a valuable skill set makes the passion arise.
 - Craftsman mindset: How can I improve and offer something uniquely valuable. Work hard, get good.
 
-# - You can avoid risk:
+### - You can avoid risk:
 
 - To achieve success, learn to tolerate and enjoy taking risks.
 - When you notice butterflies in your stomach, you are doing something worthwhile. Embrace them.
 - View risks as challenges to look forward to.
 - You need risk to make exceptional discoveries or leaps in skill.
 
-# - Trust this one person:
+### - Trust this one person:
 
 - Don't believe leaders alone.
 - Look at unique sources and combine opinions.
 - Don't get all your information from one source.
 - Form your own opinions and thoughts.
 
-# - 10,000 hours rule:
+### - 10,000 hours rule:
 
 - Practice matters, but the 10,000 hour rule has been debunked.
 - Truth is that there are more factors to consider.
 - Everyone has advantages and disadvantages.
 - Efficient learning is better than hard learning.
 
-## 3. Pillars
+# 3. Pillars
 
 Four pillars of foundations for implementing learning techniques.
 
@@ -96,7 +96,7 @@ Four pillars of foundations for implementing learning techniques.
    - Being busy is seen as a good thing in society, but in reality it means you lack time management skills.
    - By using the right strategies and methods, & learning the right topics, you are learning efficiently.
 
-## 4. Science
+# 4. Science
 
 The science on which efficient learning foundations are based.
 
@@ -132,11 +132,11 @@ The science on which efficient learning foundations are based.
 - Have an endpoint: Establish a time to finish a focussed learning session.
 - Be bored: Allows diffuse mode to happen.
 
-## 5. Techniques
+# 5. Techniques
 
 Proven techniques for efficient learning.
 
-# 1. Pomodoro technique
+### 1. Pomodoro technique
 
 - 25 mins of focused continuous work followed by 5 mins of rest in diffuse mode.
 - Always start with the task that you least want to do, or the hardest.
@@ -151,14 +151,14 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 5.  If you have fewer than four checkmarks, take a short break (3–5 minutes), then go to step 2.
 6.  After four pomodoros, take a longer break (15–30 minutes), reset your checkmark count to zero, then go to step 1.
 
-# 2. Chunk the subject
+### 2. Chunk the subject
 
 - Combine smaller pieces of information to gain knowledge of a subject.
 - A popular method for cracking particular algorithm challenges is the [Divide and Conquer](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm) method.
 - Break down larger complex things into simpler chunks.
 - Write 1 page to summarize everything in a subject. If it doesn't fit on one side of paper, you haven't chunked enough.
 
-# 3. Spaced repetition
+### 3. Spaced repetition
 
 - The only way to create long term memories.
 - Used varied techniques for spaced repetition
