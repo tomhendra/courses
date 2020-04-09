@@ -91,7 +91,7 @@ Four pillars of foundations for implementing learning techniques.
 
 ## 4. Science
 
-// key takeaway in one sentence - add this at the end
+The science on which learning principles aforementioned are based.
 
 - Focus vs Diffuse Learning: Efficient learning is accomplished by moving between both modes.
 - Multitasking is usually a bad strategy, and causes dual tsk interference where cognitive efficiency depletes.
@@ -105,11 +105,25 @@ Four pillars of foundations for implementing learning techniques.
 - Short term / working memory generally consists of 4 chunks of information. Spaced repetition used to ensure memory is transformed into long term by strengthening synapses.
 - Active vs passive learning: Active engagement is more effective than passive learning.
 - Passively watching videos creates illusion of competence.
-- Need to practise what you have learned through actually doing. Retrieval is better than re-reading.
+- Need to practice what you have learned through actually doing. Retrieval is better than re-reading.
 - Intrinsic motivation comes from within, what we want to do. Extrinsic motivation come from outside of us.
 - Three factors for intrinsic drive: Autonomy, Mastery, Purpose.
 - Small steps for goals eliminate fear of failure.
 - S.M.A.R.T. Specific, Measurable, Attainable, Relevant, Time-bound
+- It pays not to be busy: Healthy leisurely time is crucial. Taking breaks means more efficient learning.
+- Chunking: Combine chunks of knowledge (bottom up learning). The connections between chunks (top down learning) combined with the chunks themselves, create knowledge.
+- How to solve problems: 2 ways: Within focus mode & within diffuse mode (intuition).
+- Deliberate practice: Pushing past the perceived limit once plateau us reached. Concentrate on things just outside of your abilities.
+- Four things required:
+  - 1. Specific goals
+  - 2. Intense focus
+  - 3. Immediate feedback
+  - 4. Frequent discomfort
+- Spaced repetition: Best way to strengthen the synaptic neurons, create long term memory.
+- Energy saving with habits: Not having to focus on something saves energy.
+- We remember things better in an adventurous state, when doing something new or experimenting.
+- Have an endpoint: Establish a time to finish a focussed learning session.
+- Be bored: Allows diffuse mode to happen.
 
 ## 5. Techniques
 
