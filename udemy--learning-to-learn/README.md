@@ -4,7 +4,7 @@
 <p>Notes from the course.</p>
 </div>
 
-# Introduction
+## Introduction
 
 This course aims to teach you how to be an efficient learner. As recommended in the course, notes should be taken throughout to solidify retention of the topics covered. This a **[Udemy course](https://www.udemy.com/course/learning-to-learn-efficient-learning-zero-to-mastery/)**. by Andrei Neagoie
 
@@ -19,7 +19,7 @@ The course has four main sections:
 
 **[Here is the link to the full course roadmap](https://coggle.it/diagram/Xe6iV4XedHQFQQOJ/t/%F0%9F%94%A5-efficient-learning-zero-to-mastery-blueprint-%F0%9F%94%A5/5b1fdfcfdfe6e65371ac91bceb8826e905aa80e6a3e5612383710eaef9390944)**
 
-# 1. Principles
+## 1. Principles
 
 Useful principles & guidelines to being a self-motivated learner.
 
@@ -45,7 +45,7 @@ Useful principles & guidelines to being a self-motivated learner.
 - Your productivity time: Learn in the time of the day you are productive.
 - Self-learning paradigm: Using everything on this list so far, find your motivation from within.
 
-# 2. Lies
+## 2. Lies
 
 Popular myths debunked.
 
@@ -77,7 +77,7 @@ Popular myths debunked.
 - Everyone has advantages and disadvantages.
 - Efficient learning is better than hard learning.
 
-# 3. Pillars
+## 3. Pillars
 
 Four pillars of foundations for implementing learning techniques.
 
@@ -96,7 +96,7 @@ Four pillars of foundations for implementing learning techniques.
    - Being busy is seen as a good thing in society, but in reality it means you lack time management skills.
    - By using the right strategies and methods, & learning the right topics, you are learning efficiently.
 
-# 4. Science
+## 4. Science
 
 The science on which efficient learning foundations are based.
 
@@ -122,17 +122,17 @@ The science on which efficient learning foundations are based.
 - How to solve problems: 2 ways: Within focus mode & within diffuse mode (intuition).
 - Deliberate practice: Pushing past the perceived limit once plateau us reached. Concentrate on things just outside of your abilities.
 - Four things required:
-  - 1. Specific goals
-  - 2. Intense focus
-  - 3. Immediate feedback
-  - 4. Frequent discomfort
+  1. Specific goals
+  2. Intense focus
+  3. Immediate feedback
+  4. Frequent discomfort
 - Spaced repetition: Best way to strengthen the synaptic neurons, create long term memory.
 - Energy saving with habits: Not having to focus on something saves energy.
 - We remember things better in an adventurous state, when doing something new or experimenting.
 - Have an endpoint: Establish a time to finish a focussed learning session.
 - Be bored: Allows diffuse mode to happen.
 
-# 5. Techniques
+## 5. Techniques
 
 Proven techniques for efficient learning.
 
