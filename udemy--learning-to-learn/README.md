@@ -49,26 +49,33 @@ Useful principles & guidelines to being a self-motivated learner.
 
 Popular myths debunked.
 
-- Follow your passion:
-  - Learning a valuable skill, getting smarter & gaining recognition makes a career enjoyable.
-  - You don't have to be passionate about it, you just need to have an interest in it.
-  - Creativity, control and impact combined with a valuable skill set makes the passion arise.
-  - Craftsman mindset: How can I improve and offer something uniquely valuable. Work hard, get good.
-- You can avoid risk:
-  - To achieve success, learn to tolerate and enjoy taking risks.
-  - When you notice butterflies in your stomach, you are doing something worthwhile. Embrace them.
-  - View risks as challenges to look forward to.
-  - You need risk to make exceptional discoveries or leaps in skill.
-- Trust this one person:
-  - Don't believe leaders alone.
-  - Look at unique sources and combine opinions.
-  - Don't get all your information from one source.
-  - Form your own opinions and thoughts.
-- 10,000 hours rule:
-  - Practice matters, but the 10,000 hour rule has been debunked.
-  - Truth is that there are more factors to consider.
-  - Everyone has advantages and disadvantages.
-  - Efficient learning is better than hard learning.
+# - Follow your passion:
+
+- Learning a valuable skill, getting smarter & gaining recognition makes a career enjoyable.
+- You don't have to be passionate about it, you just need to have an interest in it.
+- Creativity, control and impact combined with a valuable skill set makes the passion arise.
+- Craftsman mindset: How can I improve and offer something uniquely valuable. Work hard, get good.
+
+# - You can avoid risk:
+
+- To achieve success, learn to tolerate and enjoy taking risks.
+- When you notice butterflies in your stomach, you are doing something worthwhile. Embrace them.
+- View risks as challenges to look forward to.
+- You need risk to make exceptional discoveries or leaps in skill.
+
+# - Trust this one person:
+
+- Don't believe leaders alone.
+- Look at unique sources and combine opinions.
+- Don't get all your information from one source.
+- Form your own opinions and thoughts.
+
+# - 10,000 hours rule:
+
+- Practice matters, but the 10,000 hour rule has been debunked.
+- Truth is that there are more factors to consider.
+- Everyone has advantages and disadvantages.
+- Efficient learning is better than hard learning.
 
 ## 3. Pillars
 
@@ -91,7 +98,7 @@ Four pillars of foundations for implementing learning techniques.
 
 ## 4. Science
 
-The science on which learning principles aforementioned are based.
+The science on which efficient learning foundations are based.
 
 - Focus vs Diffuse Learning: Efficient learning is accomplished by moving between both modes.
 - Multitasking is usually a bad strategy, and causes dual tsk interference where cognitive efficiency depletes.
@@ -127,7 +134,35 @@ The science on which learning principles aforementioned are based.
 
 ## 5. Techniques
 
-// key takeaway in one sentence - add this at the end
+Proven techniques for efficient learning.
 
-- Add notes to remember key takeaways
-- Add notes to remember key takeaways
+# 1. Pomodoro technique
+
+- 25 mins of focused continuous work followed by 5 mins of rest in diffuse mode.
+- Always start with the task that you least want to do, or the hardest.
+- Helps with procrastination.
+
+According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), there are six steps:
+
+1.  Decide on the task to be done.
+2.  Set the pomodoro timer (traditionally to 25 minutes).
+3.  Work on the task.
+4.  End work when the timer rings and put a checkmark on a piece of paper.
+5.  If you have fewer than four checkmarks, take a short break (3–5 minutes), then go to step 2.
+6.  After four pomodoros, take a longer break (15–30 minutes), reset your checkmark count to zero, then go to step 1.
+
+# 2. Chunk the subject
+
+- Combine smaller pieces of information to gain knowledge of a subject.
+- A popular method for cracking particular algorithm challenges is the [Divide and Conquer](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm) method.
+- Break down larger complex things into simpler chunks.
+- Write 1 page to summarize everything in a subject. If it doesn't fit on one side of paper, you haven't chunked enough.
+
+# 3. Spaced repetition
+
+- The only way to create long term memories.
+- Used varied techniques for spaced repetition
+- Repetitive over-learning can cause the [forgetting curve](https://en.wikipedia.org/wiki/Forgetting_curve)
+- Recalling and retrieving information causes reconciliation which strengthens the neural synapses (connections)
+- This is why the Feynman technique works so well.
+- Diagrams are a good way to enhance spaced repetition.
