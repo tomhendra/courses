@@ -219,7 +219,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
   3. attractive: Is the outcome attractive to us?
   4. satisfying: Does this habit reward us?
 
-- Build consistency: [Don't break the chain]('https://www.writersstore.com/dont-break-the-chain-jerry-seinfeld/)
+- Build consistency: [Don't break the chain](https://www.writersstore.com/dont-break-the-chain-jerry-seinfeld/)
 
 ### 10. System vs Goals
 
@@ -241,7 +241,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 
 ### 12. Method of Loci
 
-- AKA Method of place. [Wikipaedia]('https://en.wikipedia.org/wiki/Method_of_loci')
+- AKA Method of place. [Wikipaedia](https://en.wikipedia.org/wiki/Method_of_loci)
 - Memory enhancement technique using visualization.
 - By associations with spacial visualization & stories you can efficiently recall information.
 
@@ -251,3 +251,43 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Use the 80/20 rule to prioritise the most important topics to learn.
 - Ask yourself: “Is this the best use of my time?“ - “Is this the most critical piece of information?”
 - Remove the unnecessary.
+- Focus on the 20% of the highest quality, most important.
+- Just as important to select as it is to remove.
+
+### 14. Parkinson's Law
+
+- Parkinson’s law is the adage that “work expands so as to fill the time available for its completion”. It is sometimes applied to the growth of bureaucracy in an organization. [Wiki](https://en.wikipedia.org/wiki/Parkinson%27s_law)
+- By using small systems and goals with specific deadlines, it forces us to work within constrained time frame.
+
+### 15. Deep Work
+
+- Deep intensely focused, highly engaged work or practice.
+- No distractions to push your cognitive abilities to their limit.
+- Deep work is the ability to focus without distraction on a cognitively demanding task.
+- Shallow work is non-cognitively demanding, logistical-style work, often performed while distracted.
+
+### 16. Stakes & Rewards
+
+- Focus on small rewards to stay motivated.
+- What happens when you don't achieve your goal? Stakes need to be on the line.
+- Hold yourself accountable.
+- Stakes are the things that we lose by not achieving our goal.
+
+### 17. Concepts vs Facts
+
+- Concepts are more important than facts.
+- Facts are easy to Google, concepts need to be learned.
+- Recalling something is more effective than repeating something.
+- Concepts are high level topics that give you context of what you learn.
+- Facts are cheap, anyone can learn them.
+- Successful people have concepts to connect the chinks of knowledge to form a novel solution.
+- Foundations and principles are important (trunk based knowledge) to form connections of chunks.
+- Always ask why to connect the dots.
+- Feynman technique is important to explain concepts, and leads to true understanding of a topic.
+
+### 18. Test Yourself
+
+- Without practice you will never progress.
+- Summarize after learning a topic, recalling information.
+- What are the key takeaways? Quiz yourself.
+- Creates immediate feedback.
