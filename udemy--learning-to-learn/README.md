@@ -136,7 +136,7 @@ The science on which efficient learning foundations are based.
 
 Proven techniques for efficient learning.
 
-### 1. Pomodoro technique
+### 1. Pomodoro Technique
 
 - 25 mins of focused continuous work followed by 5 mins of rest in diffuse mode.
 - Always start with the task that you least want to do, or the hardest.
@@ -151,14 +151,14 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 5.  If you have fewer than four checkmarks, take a short break (3–5 minutes), then go to step 2.
 6.  After four pomodoros, take a longer break (15–30 minutes), reset your checkmark count to zero, then go to step 1.
 
-### 2. Chunk the subject
+### 2. Chunk the Subject
 
 - Combine smaller pieces of information to gain knowledge of a subject.
 - A popular method for cracking particular algorithm challenges is the [Divide and Conquer](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm) method.
 - Break down larger complex things into simpler chunks.
 - Write 1 page to summarize everything in a subject. If it doesn't fit on one side of paper, you haven't chunked enough.
 
-### 3. Spaced repetition
+### 3. Spaced Repetition
 
 - The only way to create long term memories.
 - Used varied techniques for spaced repetition
@@ -166,3 +166,88 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Recalling and retrieving information causes reconciliation which strengthens the neural synapses (connections)
 - This is why the Feynman technique works so well.
 - Diagrams are a good way to enhance spaced repetition.
+
+### 4. Deliberate Practice
+
+- The idea is to avoid the easy stuff, and take on challenging projects.
+- Put yourself in situations that challenge you all the time.
+- Use focus time daily.
+- Push yourself to the edge of your ability, be uncomfortable.
+- Always seek immediate feedback.
+- Record progress & measure it.
+
+### 5. Create a Roadmap
+
+- Mastering a subject requires connections between chunks to be understood.
+- Prepare, plan, create a curriculum and execute it.
+- Select high quality resources to learn from.
+- Focus on industry leaders and what they say.
+- What are the most important topics?
+- What type of results do I want to feel recognized and respected?
+
+### 6. Interleaving
+
+- Technique to use different problems and sessions to learn something.
+- Variety is important.
+- Form knowledge from multiple perspectives.
+
+### 7. Einstellung
+
+- Einstellung Effect: a rigid mindset that prevents you from expanding your horizons.
+- Once you are no longer a beginner, you stop taking feedback as much.
+- Constantly explore new ideas to prevent Einstellung effect.
+- Sometimes what you learned previously may not be right. Always be open to new concepts.
+- What is option C? - You thought of options A and B, but might there be another way?
+
+### 8. Importance of Community
+
+- If you don't have a community you will be at a disadvantage.
+- Community can provide feedback, find blind spots.
+- Motivation from others learning the same thing.
+- Accountability from others.
+- Be surrounded by people who excel you and propel you to be better.
+
+### 9. Habits
+
+- Habits are automatic and don't require concentration, therefore save energy
+- The habit loop: 1. Cue (trigger), 2. Routine (ritual) 3. Reward, 4. Belief
+- Better to use habits rather than willpower, which is depletable.
+- Four laws of behaviour change:
+
+  1. obvious: Is the habit obvious, with roapdmap, clear goal.
+  2. easy: Is it easy as possible to form this habit?
+  3. attractive: Is the outcome attractive to us?
+  4. satisfying: Does this habit reward us?
+
+- Build consistency: [Don't break the chain]('https://www.writersstore.com/dont-break-the-chain-jerry-seinfeld/)
+
+### 10. System vs Goals
+
+- Systems are better than goals.
+- Success in life usually comes from skills obtained, but also luck.
+- Systems can become habits.
+- Goal is a rigid objective, system is a way to do something regularly with the expectation of improvement.
+- Systems allow us to be flexible and adapt to luck events.
+- Goals better for shorter term, systems better for longer term.
+
+### 11. Power of the Senses
+
+- Imagery, metaphors, analogies, stories: all help greatly in recall.
+- Visual memory and sensual memory help us form strong synapses.
+- Adding an emotional element strengthens further.
+- Seek new experiences outside of learning to stimulate brain.
+- Learn in locations that stimulate your senses.
+- Make your study area stimulate your senses.
+
+### 12. Method of Loci
+
+- AKA Method of place. [Wikipaedia]('https://en.wikipedia.org/wiki/Method_of_loci')
+- Memory enhancement technique using visualization.
+- By associations with spacial visualization & stories you can efficiently recall information.
+
+### 13. Pareto Principle
+
+- Core 20% gets 80% of results.
+- Use the 80/20 rule to prioritise the most important topics to learn.
+- Ask yourself: “Is this the best use of my time?“ - “Is this the most critical piece of information?”
+- Remove the unnecessary.
