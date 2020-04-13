@@ -13,9 +13,10 @@ The course starts with an introduction to a fun technique, memory palace, where 
 The course has four main sections:
 
 1. Principles
-2. Pillars
-3. Lies
-4. Techniques.
+2. Lies
+3. Pillars
+4. Science
+5. Techniques.
 
 **[Here is the link to the full course roadmap](https://coggle.it/diagram/Xe6iV4XedHQFQQOJ/t/%F0%9F%94%A5-efficient-learning-zero-to-mastery-blueprint-%F0%9F%94%A5/5b1fdfcfdfe6e65371ac91bceb8826e905aa80e6a3e5612383710eaef9390944)**
 
@@ -241,7 +242,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 
 ### 12. Method of Loci
 
-- AKA Method of place. [Wikipaedia](https://en.wikipedia.org/wiki/Method_of_loci)
+- AKA Method of place. [Wikipedia](https://en.wikipedia.org/wiki/Method_of_loci)
 - Memory enhancement technique using visualization.
 - By associations with spacial visualization & stories you can efficiently recall information.
 
