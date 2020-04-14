@@ -102,7 +102,7 @@ Four pillars of foundations for implementing learning techniques.
 The science on which efficient learning foundations are based.
 
 - Focus vs Diffuse Learning: Efficient learning is accomplished by moving between both modes.
-- Multitasking is usually a bad strategy, and causes dual tsk interference where cognitive efficiency depletes.
+- Multitasking is usually a bad strategy, and causes dual task interference where cognitive efficiency depletes.
 - Sleep is extremely important for long term learning. Flushes toxins and forms new neural connections.
 - Brain training strengthens the connections (synapses) between brain cells (neurons).
 - Physical exercise is very important for encouraging diffuse mode of thinking.
@@ -183,7 +183,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Prepare, plan, create a curriculum and execute it.
 - Select high quality resources to learn from.
 - Focus on industry leaders and what they say.
-- What are the most important topics?
+- What are the most important topics?a
 - What type of results do I want to feel recognized and respected?
 
 ### 6. Interleaving
@@ -215,7 +215,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Better to use habits rather than willpower, which is depletable.
 - Four laws of behaviour change:
 
-  1. obvious: Is the habit obvious, with roapdmap, clear goal.
+  1. obvious: Is the habit obvious, with roadmap, clear goal.
   2. easy: Is it easy as possible to form this habit?
   3. attractive: Is the outcome attractive to us?
   4. satisfying: Does this habit reward us?
@@ -258,7 +258,6 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 ### 14. Parkinson's Law
 
 - Parkinson’s law is the adage that “work expands so as to fill the time available for its completion”. It is sometimes applied to the growth of bureaucracy in an organization. [Wiki](https://en.wikipedia.org/wiki/Parkinson%27s_law)
-- By using small systems and goals with specific deadlines, it forces us to work within constrained time frame.
 
 ### 15. Deep Work
 
@@ -281,7 +280,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Recalling something is more effective than repeating something.
 - Concepts are high level topics that give you context of what you learn.
 - Facts are cheap, anyone can learn them.
-- Successful people have concepts to connect the chinks of knowledge to form a novel solution.
+- Successful people have concepts to connect the chunks of knowledge to form a novel solution.
 - Foundations and principles are important (trunk based knowledge) to form connections of chunks.
 - Always ask why to connect the dots.
 - Feynman technique is important to explain concepts, and leads to true understanding of a topic.
