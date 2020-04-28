@@ -110,3 +110,22 @@ few minutes to chat on Thursday about what you guys are doing?
 Thanks,
 Yourname
 Your website or any public profile link
+
+### Where to finds jobs
+
+- Development is highly in demand, so there are a tonne of resources.
+- The better you get at engineering, the easier it will be to find work.
+- Resources:
+  - LinkedIn
+  - [Hackernews who is hiring?](https://www.google.com/search?client=firefox-b-d&q=hackernews+who+is+hiring)
+  - [AngelList](https://angel.co/jobs)
+  - [Design Modo](https://designmodo.com/jobs/)
+  - [Remote List](https://www.remotelist.pw/)
+  - [Remote Only](https://remoteonly.io/)
+  - [We Work Remotely](https://weworkremotely.com/)
+  - [Remote OK](https://remoteok.io/)
+  - [Meetup](https://www.meetup.com/): great way to network for referrals.
+  - Google e.g. site:linkedin.com \$companyName recruiter
+  - [Hired](https://hired.com/), [Triplebyte](https://triplebyte.com/), [Whitetruffle](https://whitetruffle.com/): code quiz sites
+- job hunting is a numbers game. for 2% hit rate, apply to 50 companies.
+- Blindly applying to companies is much less efficient than targeting directly i.e. eventual referral.
