@@ -24,14 +24,31 @@ Key takeaway to write at the end
 - If you applying to 100 jobs and only getting one interview, you're probably doing something wrong.
 - Should not take any more than a week to set yourself up for applying to jobs.
 
+### Resumes
+
 - Resumes are scanned in 10 seconds by recruiters and are simply a way to get interviews.
 - Spend no longer than a day on your resume.
 - Have words and characteristics from job posts you want to apply for on the resume.
-- Make the resume personal to each job you apply to so you have the employer's names on resume.
+- Make the resume personal to each job you apply to so you have the company name on resume.
 - Use online tools to generate well designed resume. Your time is better spent writing code!
 - Companies often use algorithms to search for keywords from the job listing.
 - key points for resume:
   - should be one page only.
   - Should only contain relevant skills, using keywords from job description.
-  - Should be personalized for each application. ONe of the biggest mistakes.
-  - should be an online link, portfolio or GitHub etc.
+  - Should be personalized for each application. One of the biggest mistakes is not doing so.
+  - should be an online link to portfolio or GitHub etc.
+- Resume cheat sheet:
+  ✅ Use a pre-designed resume template
+  ✅ Make the resume fit on 1 page
+  ✅ Include words from job description
+  ✅ Include company name you are applying to
+  ✅ Does your first item on your resume reflect what they are looking for?
+  ✅ Experience titles demonstrate value
+  ✅ Do you have an online link?
+  ✅ Remove the word “I”
+  ✅ No buzzwords describing how great you are
+  ✅ Are you using Action words?
+  ✅ Measure everything in terms of impact, don’t just describe your responsibilities
+  ✅ Technical Knowledge/Skills should include what they are looking for. Only show years if it is impressive
+  ✅ Include only sections/items that are impressive: Experience, Projects, Education, Technical Skills
+  ✅ No typos or bad grammar
