@@ -52,3 +52,14 @@ Key takeaway to write at the end
   ✅ Technical Knowledge/Skills should include what they are looking for. Only show years if it is impressive
   ✅ Include only sections/items that are impressive: Experience, Projects, Education, Technical Skills
   ✅ No typos or bad grammar
+
+### What if I lack experience?
+
+- Apply to jobs that you are under-qualified for.
+- Job postings are designed to weed out the weak candidates.
+- If you are applying to a job that you are 100% qualified for, how will you grow?
+- You can demonstrate experience without having a past job by having 3 of the below:
+  - GitHub: Make commits. Contribute to open source.
+  - Website: Doesn't need to be complicated.
+  - 1-2 big projects: Big, challenging projects much better than numerous simple ones.
+  - Blog
