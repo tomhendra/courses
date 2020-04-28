@@ -74,3 +74,11 @@ Key takeaway to write at the end
   - 3. Include keywords recruiters are looking for from the jobs you are applying for.
   - 4. Try to get recommendations from people to rank higher in recruiters' search results.
   - 5. LinkedIn allows us to target companies and contact people directly at a company you want to work for.
+
+### Portfolio
+
+- A way to showcase your big projects.
+- Allows you to demonstrate your value.
+- Projects inside portfolio are more important than the portfolio itself.
+- Can be simple, as long as it's fast and looks nice.
+- Add to ZTM job board once it's done.
