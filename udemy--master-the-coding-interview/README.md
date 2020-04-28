@@ -129,3 +129,24 @@ Your website or any public profile link
   - [Hired](https://hired.com/), [Triplebyte](https://triplebyte.com/), [Whitetruffle](https://whitetruffle.com/): code quiz sites
 - job hunting is a numbers game. for 2% hit rate, apply to 50 companies.
 - Blindly applying to companies is much less efficient than targeting directly i.e. eventual referral.
+
+### When to start applying for jobs
+
+- Short answer is -- Apply now! Use it as practice.
+- Interviews shouldn't be looked at like win or lose, more they are a skill to be developed.
+- The more interviews you take, the better you will become at taking them.
+- If you are applying to a job where you check all the boxes is a bad thing for growth.
+- Job description is a guideline for what work you will be doing, rather than what you have done in the past.
+- Do you know the fundamental building blocks of computer science?
+- Have and can you build big projects on your own?
+- Hiring developers and engineers are more than just technical knowledge.
+- If you never ask the answer is always "no"!
+
+### Summary
+
+- Don't apply to 1000 positions online just sending resume everywhere, like most people.
+- Pick 5-10 companies you want to work for, and fully target and focus on applying to them.
+- Increase chances of interview by setting up all points covered here over a week.
+- Focus on the projects to talk about in interview.
+- Contact directly and get referrals rather than applying anonymously.
+- The focus is on quality over quantity.
