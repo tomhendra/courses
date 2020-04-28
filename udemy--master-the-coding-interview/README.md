@@ -63,3 +63,14 @@ Key takeaway to write at the end
   - Website: Doesn't need to be complicated.
   - 1-2 big projects: Big, challenging projects much better than numerous simple ones.
   - Blog
+
+### LinkedIn
+
+- If you craft things well enough, you will get lots of recruiters' contact.
+- Should be similar to your resume.
+- Recruiters usually search LinkedIn for keywords.
+  - 1. Apply for jobs through LinkedIn.
+  - 2. Update your profile every week on LinkedIn to show up in recruiter's feed, as updated profile.
+  - 3. Include keywords recruiters are looking for from the jobs you are applying for.
+  - 4. Try to get recommendations from people to rank higher in recruiters' search results.
+  - 5. LinkedIn allows us to target companies and contact people directly at a company you want to work for.
