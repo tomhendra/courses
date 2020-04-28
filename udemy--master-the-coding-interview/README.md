@@ -82,3 +82,31 @@ Key takeaway to write at the end
 - Projects inside portfolio are more important than the portfolio itself.
 - Can be simple, as long as it's fast and looks nice.
 - Add to ZTM job board once it's done.
+
+### Email
+
+- Applying for a job through a company's website or job board is not the best way to apply.
+- Employee referral has proven to be the best way to get an interview.
+- The most obvious method is to apply to places where friends and colleagues can refer you.
+- Use LinkedIn to find people to send direct messages to.
+- Use tools to find people's email addresses.
+- Target people who are gatekeepers.
+- Most big companies have incentives for referring someone.
+- Doesn't have to be online only, meetups and hackathons work too.
+- Nothing beats a referral.
+- Rather than sending a resume, send a link to your portfolio and directly ask if you can come in for an interview. Ask the head of HR if you wish.
+- Message lead developers or CTO and let them know you are interested in working for their company, would like to be where they are professionally. But don't ask for a job directly, rather ask whether they can meet for coffee to talk about themselves, and perhaps you can learn from them and find a referral.
+- Message CEO or president directly for smaller companies.
+- sample message:
+
+Hey $BOB,
+I saw your presentation at $CONFERENCE last year on Youtube (rr point to some work they have done).
+Great stuff; loved what you did with $FOO, in particular
+$COMMENT_PROVING_YOU_KNOW_WHAT_YOU'RE_TALKING_ABOUT.
+I'm also a $FOO developer. I noticed that your company is hiring
+or $ROLE. I’d love to be a part of your team. Do you have a
+few minutes to chat on Thursday about what you guys are doing?
+
+Thanks,
+Yourname
+Your website or any public profile link
