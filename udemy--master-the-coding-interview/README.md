@@ -178,4 +178,4 @@ Your website or any public profile link
 - Big O concerns us with how many steps are in a function.
 - Scalability defined by the size of the input (n) compared to the number of operations that increase.
 - O(n) is linear time, and probably the most common notation, where the number of operations increases proportionally with the number of inputs.
--
+- O(1) is constant time. The number of operations remains constant regardless of the input size.
