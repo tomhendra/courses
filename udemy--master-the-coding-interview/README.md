@@ -8,6 +8,12 @@
 
 This is a **[Udemy course](https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/)**. by Andrei Neagoie.
 
+The JavaScript files are run with [parcel](https://parceljs.org/getting_started.html):
+
+```sh
+parcel index.html
+```
+
 The introduction explains that the course is made up of two main parts.
 
 - 1. Non-technical aspects of interviews.
@@ -15,7 +21,7 @@ The introduction explains that the course is made up of two main parts.
 
 ## Getting More Interviews
 
-Key takeaway to write at the end
+How to ensure you get more interviews through using the best channels and tactics.
 
 - Being great at anything won't get you a job without getting an interview.
 - The more interviews you get, the better your chances are to get a great job.
@@ -150,3 +156,18 @@ Your website or any public profile link
 - Focus on the projects to talk about in interview.
 - Contact directly and get referrals rather than applying anonymously.
 - The focus is on quality over quantity.
+
+## Big O
+
+.......\$summary.......
+
+- One of the most important topics for software engineering.
+- A concept that will always be relevant and make you a better engineer.
+- You won't get by any of the big company's interviews without knowing big O.
+- Full name is big o asymptotic analysis.
+- Big O helps us tell how well a problem is solved.
+- Two main things to define good code:
+  - 1. Readability: Clean, easy to follow.
+  - 2. Scalable: Big O allows us to measure.
+- The "runtime" is how much time it takes to run through a function or task.
+- Big O measures the performance of code.

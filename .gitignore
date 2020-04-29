@@ -107,6 +107,7 @@ typings/
 .yarn-integrity
 
 # parcel-bundler cache (https://parceljs.org/)
+dist/
 .cache
 
 # next.js build output
