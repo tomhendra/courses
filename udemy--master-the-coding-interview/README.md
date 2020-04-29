@@ -171,3 +171,11 @@ Your website or any public profile link
   - 2. Scalable: Big O allows us to measure.
 - The "runtime" is how much time it takes to run through a function or task.
 - Big O measures the performance of code.
+- Code runs at different speeds depending on the computer it's running on.
+- Big O notation is the language we use to talk about how long an algorithm takes to run: algorithmic efficiency.
+- Defines how well code will run regardless of the machine that's running it.
+- The less that the function slows down with scale, the better the code is.
+- Big O concerns us with how many steps are in a function.
+- Scalability defined by the size of the input (n) compared to the number of operations that increase.
+- O(n) is linear time, and probably the most common notation, where the number of operations increases proportionally with the number of inputs.
+-

@@ -14,15 +14,17 @@ const everyone = [
 
 const large = new Array(10000).fill('nemo');
 
+// O(n) --> Linear time
+// O(1) --> as the number of inputs increase...
+// O(100) --> the number of operations increase...
+// O(100000) --> at the same / linear rate.
+
 function findNemo(array) {
-  let t0 = performance.now();
   for (let i = 0; i < array.length; i++) {
     if (array[i] === 'nemo') {
       console.log('Found Nemo!');
     }
   }
-  let t1 = performance.now();
-  console.log(`Call to findNemo took ${t1 - t0} milliseconds.`);
 }
 
 findNemo(large);
