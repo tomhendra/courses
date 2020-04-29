@@ -179,3 +179,13 @@ Your website or any public profile link
 - Scalability defined by the size of the input (n) compared to the number of operations that increase.
 - O(n) is linear time, and probably the most common notation, where the number of operations increases proportionally with the number of inputs.
 - O(1) is constant time. The number of operations remains constant regardless of the input size.
+- Big O rule book:
+  - 1. Worst case
+    - when calculating big O we always calculate the worst case.
+  - 2. Remove constants
+    - we only care about input for scalability. Trim out constants.
+  - 3. Different terms for inputs.
+    - When two more than one input is given to correct notation should be applied.
+    - Easy rule of thumb is that any functions that occur in the same indentation would be O(a + b) and any nested functions would be O(a \* b) i.e. O(n^2) quadratic time.
+  - 4. Drop non-dominants
+    - The most significant term should be what defines big O e.g. O(n + n^2) would become O(n^2)

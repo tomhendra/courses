@@ -22,6 +22,7 @@ function findNemo(array) {
   for (let i = 0; i < array.length; i++) {
     if (array[i] === 'nemo') {
       console.log('Found Nemo!');
+      break; // break out of loop once Nemo is found, but doesn't affect big O (worst case)
     }
   }
 }
@@ -39,3 +40,43 @@ function findFirstTwoBoxes(boxes) {
   console.log(boxes[0]); // O(1)
   console.log(boxes[1]); // O(1)
 }
+
+// O(n + x)
+function compressBoxesTwice(boxes, boxes2) {
+  boxes.forEach(function (box) {
+    console.log(box);
+  });
+
+  boxes2.forEach(function (box) {
+    console.log(box);
+  });
+}
+
+// Log all pairs of array: O(n^2) --> quadratic time
+const boxes = ['a', 'b', 'c', 'd', 'e'];
+function logAllPairsOfArray(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length; j++) {
+      console.log(array[i], array[j]);
+    }
+  }
+}
+
+logAllPairsOfArray(boxes);
+
+// this would be O(n + n^2) but we drop the non-dominant terms, so it becomes O
+function printAllNumbersThenAllPairSums(numbers) {
+  console.log('these are the numbers:'); // O(n)
+  numbers.forEach(function (number) {
+    console.log(number);
+  });
+
+  console.log('and these are their sums:'); // O(n^2)
+  numbers.forEach(function (firstNumber) {
+    numbers.forEach(function (secondNumber) {
+      console.log(firstNumber + secondNumber);
+    });
+  });
+}
+
+printAllNumbersThenAllPairSums([1, 2, 3, 4, 5]);
