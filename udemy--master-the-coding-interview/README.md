@@ -189,3 +189,6 @@ Your website or any public profile link
     - Easy rule of thumb is that any functions that occur in the same indentation would be O(a + b) and any nested functions would be O(a \* b) i.e. O(n^2) quadratic time.
   - 4. Drop non-dominants
     - The most significant term should be what defines big O e.g. O(n + n^2) would become O(n^2)
+- To write scalable code means thinking long term, what could happen in the future.
+- Everything has a cost to it.
+- O(n!) is factorial time, and the most expensive. Nested loop for every input there is!
