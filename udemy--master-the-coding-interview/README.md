@@ -192,3 +192,11 @@ Your website or any public profile link
 - To write scalable code means thinking long term, what could happen in the future.
 - Everything has a cost to it.
 - O(n!) is factorial time, and the most expensive. Nested loop for every input there is!
+- for scalable code there are two things we need to consider:
+  - 1. Speed: How fast is the runtime - time complexity.
+  - 2. Memory: How much RAM does the code require - space complexity.
+- Which code is best can be answered with the three pillars of code:
+  - **1. Readable.**
+  - **2. Speed.**
+  - **3. Memory.**
+- There is usually a trade-off for any solution between speed and memory.
