@@ -159,7 +159,7 @@ Your website or any public profile link
 
 ## Big O
 
-.......\$summary.......
+A paradigm to describe time and space complexity of code in a worst case scenario to encourage more efficient code.
 
 - One of the most important topics for software engineering.
 - A concept that will always be relevant and make you a better engineer.
