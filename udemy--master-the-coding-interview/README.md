@@ -196,7 +196,18 @@ Your website or any public profile link
   - 1. Speed: How fast is the runtime - time complexity.
   - 2. Memory: How much RAM does the code require - space complexity.
 - Which code is best can be answered with the three pillars of code:
-  - **1. Readable.**
-  - **2. Speed.**
-  - **3. Memory.**
+  - **1. Readable**
+  - **2. Speed**
+  - **3. Memory**
 - There is usually a trade-off for any solution between speed and memory.
+- When a program executes it has two ways to remember things:
+  - 1. Heap: usually where we store variables.
+  - 2. Stack: where we keep track of function calls.
+- Space complexity is caused by:
+  - 1. Variables
+  - 2. Data structures
+  - 3. Function calls
+  - 4. Allocations
+- One of the biggest gotchyas is that we don't count the space of inputs.
+- We only have control over what happens inside of the function, so input space is ignored.
+- We look at whether we are adding space inside the function.

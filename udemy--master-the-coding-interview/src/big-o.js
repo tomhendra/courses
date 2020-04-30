@@ -80,3 +80,24 @@ function printAllNumbersThenAllPairSums(numbers) {
 }
 
 printAllNumbersThenAllPairSums([1, 2, 3, 4, 5]);
+
+// #1 Space complexity O(1)
+function boooo(n) {
+  for (let i = 0; i < n; i++) {
+    console.log('booooo');
+  }
+}
+
+boooo(23);
+
+// #2 Space complexity O(n)
+function arrayOfHiNTimes(n) {
+  var hiArray = [];
+  for (let i = 0; i < n; i++) {
+    hiArray[i] = 'hi';
+  }
+  console.log(hiArray);
+  return hiArray;
+}
+
+arrayOfHiNTimes(6);
