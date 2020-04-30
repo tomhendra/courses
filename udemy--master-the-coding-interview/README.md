@@ -159,7 +159,7 @@ Your website or any public profile link
 
 ## Big O
 
-A paradigm to describe time and space complexity of code in a worst case scenario to encourage more efficient code.
+A paradigm to classify code according to how runtime or space requirements grow as the input size grows.
 
 - One of the most important topics for software engineering.
 - A concept that will always be relevant and make you a better engineer.
@@ -211,3 +211,32 @@ A paradigm to describe time and space complexity of code in a worst case scenari
 - One of the biggest gotchyas is that we don't count the space of inputs.
 - We only have control over what happens inside of the function, so input space is ignored.
 - We look at whether we are adding space inside the function.
+
+## How to solve coding problems.
+
+----- \$summary -----
+
+- An interview is a way for the company to find out whether you can solve problems.
+- If you can solve problems then you are valuable.
+- It's not the smartest interviewer that gets hired, it's the one who can solve the company's problems.
+- It's not necessarily about the solution to the problem in interview, it's about the thought process.
+- Companies are looking for four things:
+  1. Analytical skills
+  2. Coding skills
+  3. Technical skills
+  4. Communication skills
+- In order to solve coding problems in interview we need to know the following:
+- **Data structures:**
+  - Arrays
+  - Stacks
+  - Queues
+  - Linked Lists
+  - Trees
+  - Tries
+  - Graphs
+  - Hash Tables
+- **Algorithms:**
+  - Sorting
+  - Dynamic programming
+  - BFS & DFS
+  - Recursion
