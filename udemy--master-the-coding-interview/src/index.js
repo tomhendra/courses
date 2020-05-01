@@ -1,1 +1,2 @@
-require('./big-o');
+// require('./big-o');
+require('./how-to-solve-coding-problems');
