@@ -214,7 +214,7 @@ A paradigm to classify code according to how runtime or space requirements grow 
 
 ## How to solve coding problems.
 
------ \$summary -----
+How to approach problems and solve them in the optimal way for interviews.
 
 - An interview is a way for the company to find out whether you can solve problems.
 - If you can solve problems then you are valuable.
