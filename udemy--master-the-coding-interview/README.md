@@ -244,3 +244,6 @@ A paradigm to classify code according to how runtime or space requirements grow 
 - Always think out loud and explain your approach, even if you think you know the answer, allowing the interviewer opportunity to steer you if needed to ensure you understand the problem correctly.
 - Communicating a naive / brute force solution first, often O(n^2), shows you are thinking clearly about the problem.
 - Thinking in small logical steps is much better than trying a more complicated solution straight away.
+- Don't try to solve the problem fast.
+- Don't try to memorize problems, instead practice fundamentals to tackle any problem.
+- The assumption is that some people solve problems better than others, but in reality like anything you can train.
