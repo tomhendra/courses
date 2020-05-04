@@ -247,3 +247,12 @@ How to approach problems and solve them in the optimal way for interviews.
 - Don't try to solve the problem fast.
 - Don't try to memorize problems, instead practice fundamentals to tackle any problem.
 - The assumption is that some people solve problems better than others, but in reality like anything you can train.
+
+## Data structures
+
+----- \$summary -----
+
+- A data structure is a collection of values
+- Algorithms are the steps or processes that we put into place to manipulate the values in data structures
+- A person who knows how data structures & algorithms can write great programs.
+- Data structures & algorithms are timeless, and can be applied to any language or problem.
