@@ -282,3 +282,21 @@ How to approach problems and solve them in the optimal way for interviews.
   - Searching; find the location of a data item if it exists in a certain collection.
   - Sorting: sorting data.
   - Access: how do we access data.
+
+### Arrays
+
+- Sometimes called lists.
+- Organize data sequentially in memory (contiguous).
+- Probably the simplest and most widely used data structure.
+- Smallest footprint of any data structure.
+
+  - lookup: O(1)
+  - append: O(1) or worst case O(n) based on reallocation of memory
+  - insert: O(n)
+  - delete: O(n)
+
+- Two types of arrays: Static and dynamic
+- Static arrays are fixed in size - need to specify the number of elements ahead of time.
+- Arrays are allocated in adjacent blocks of memory when created, but there is no way to guarantee that later adding to the array will use more adjacent blocks. Static arrays solve this problem.
+- Dynamic arrays allow us to copy and rebuild an array at a new location in memory, with more memory if required.
+- JavaScript arrays work like dynamic arrays and automatically allocate memory.
