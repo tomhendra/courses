@@ -252,7 +252,33 @@ How to approach problems and solve them in the optimal way for interviews.
 
 ----- \$summary -----
 
-- A data structure is a collection of values
+- A data structure is a collection of values used to organize data.
+- Values can have relationships between them and functions applied to them.
+- Each data structure is good and is specialized for its own thing.
 - Algorithms are the steps or processes that we put into place to manipulate the values in data structures
 - A person who knows how data structures & algorithms can write great programs.
 - Data structures & algorithms are timeless, and can be applied to any language or problem.
+- There is always a tradeoff between readability, memory and speed (3 pillars).
+- Two parts to understanding data structures:
+  - 1. How to build
+  - 2. How to use - most important!
+- In order to understand data structures we need to look at how computers work at the fundamental level.
+- Computer needs to be able to keep track for variables which are stored in RAM.
+- RAM is much faster than persistent storage for CPU access.
+- RAM has numbered address which each hold 8 bits (1 byte).
+- CPU connects to memory controller which reads and writes from RAM.
+- Bits can be accessed at any random address instantly.
+- Programs can run faster when accessing memory addresses that are close to one another.
+- CPU cache optimizes further by storing recently accessed data from memory.
+- You can define the way you interact with data and how it is arranged in RAM.
+- Some data structures are organized next to each other and some are apart, and each have different pros and cons on access and write.
+- Our goal is to minimize the operation that the COP needs to do to read and write information.
+- That's why data structures are so powerful, because we can think on the the low level about how data structures affect the process of our computers.
+- Each data structure performs operations differently.
+- Operations on data structures:
+  - Insertion: add a new data item in a given collection of items.
+  - Deletion: remove data.
+  - Traversal: access each data item exactly once so that it can be processed.
+  - Searching; find the location of a data item if it exists in a certain collection.
+  - Sorting: sorting data.
+  - Access: how do we access data.
