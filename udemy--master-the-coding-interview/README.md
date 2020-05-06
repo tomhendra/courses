@@ -301,3 +301,5 @@ How to approach problems and solve them in the optimal way for interviews.
 - Dynamic arrays allow us to copy and rebuild an array at a new location in memory, with more memory if required.
 - JavaScript arrays work like dynamic arrays and automatically allocate memory.
 - We can create our own data structures, any we want from scratch.
+- **Top tip:** Treat and string questions in interviews like array questions. Strings are simply an array of characters. Convert into array, perform operations, return as string!
+-
