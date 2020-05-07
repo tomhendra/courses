@@ -250,7 +250,7 @@ How to approach problems and solve them in the optimal way for interviews.
 
 ## Data structures
 
------ \$summary -----
+How to organize, format and store collections of data values, the relationships among them, and the functions or operations that can be applied to the data.
 
 - A data structure is a collection of values used to organize data.
 - Values can have relationships between them and functions applied to them.
@@ -310,3 +310,18 @@ How to approach problems and solve them in the optimal way for interviews.
   - Slow inserts
   - Slow deletes
   - Fixed size (with static arrays)
+
+### Hash tables
+
+- AKA hash maps, maps, unordered maps, dictionaries, objects depending on language.
+- Objects in JavaScript are a type of hash table.
+- Seen a lot in databases and caches.
+- Made up of key: value pairs.
+- A hash function is simply a function that generates a value of fixed length for each input that it receives.
+- Hash functions are one way, it's practically impossible to retrieve input.
+- A hash function is **idempotent** - always produces the same output when provided with a certain input.
+- Hash functions are optimized to be very fast for the purpose of hash tables.
+- Some hash functions are very slow e.g. SHA-256 for encryption.
+- In hash tables, the key is passed into the hash function, then the outputted hash is mapped to a memory address where the data is stored.
+- Usually time complexity of O(1) - constant time
+-
