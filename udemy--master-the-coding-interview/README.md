@@ -324,4 +324,16 @@ How to organize, format and store collections of data values, the relationships 
 - Some hash functions are very slow e.g. SHA-256 for encryption.
 - In hash tables, the key is passed into the hash function, then the outputted hash is mapped to a memory address where the data is stored.
 - Usually time complexity of O(1) - constant time
--
+
+  - lookup: O(1) - or can be O(n) due to hash collisions.
+  - insert: O(1)
+  - delete: O(1)
+  - search: O(1)
+
+- Hash collision occurs when the same address space is allocated for more than one entry based on the hash output.
+- This results in the 'bucket' which stores key / value pair having overflow entries.
+- Theoretically due to collision read / write can be O(n/k) (O(n) simplified) where k is the size of the hash table.
+- Many ways to deal with hash collisions - see [Wiki](https://en.wikipedia.org/wiki/Hash_table).
+- in JavaScript ES6 the Map() object allows you to save any data type as the key, instead of only strings pre-ES6.
+- Another benefit of Map is is that it maintains insertion order.
+- ES6 Set() in JS stores only keys, no values.
