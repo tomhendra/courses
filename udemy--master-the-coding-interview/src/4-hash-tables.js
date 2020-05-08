@@ -109,6 +109,7 @@ function firstRecurringCharacter2(input) {
 // more readable
 function firstRecurringCharacter3(input) {
   const set = new Set();
+
   return input.find((element) => {
     if (set.has(element)) return true;
     set.add(element);
@@ -117,3 +118,4 @@ function firstRecurringCharacter3(input) {
 
 console.log(firstRecurringCharacter3([2, 5, 1, 2, 3, 5, 1, 2, 4]));
 console.log(firstRecurringCharacter3([2, 5, 5, 2, 3, 5, 1, 2, 4]));
+console.log(firstRecurringCharacter3([1, 2, 3, 4, 5, 6, 7, 8, 9]));
