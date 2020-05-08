@@ -48,11 +48,23 @@ class HashTable {
     }
     return undefined;
   }
+
+  keys() {
+    const keysArray = [];
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i]) {
+        keysArray.push(this.data[i][0][0]);
+      }
+    }
+    return keysArray;
+  }
 }
 
 const myHashTable = new HashTable(50);
 myHashTable.set('grapes', 10000);
 myHashTable.set('apples', 9);
+myHashTable.set('oranges', 900);
+myHashTable.keys();
 console.log(myHashTable.data);
 console.log(myHashTable.get('grapes'));
 console.log(myHashTable.get('apples'));
