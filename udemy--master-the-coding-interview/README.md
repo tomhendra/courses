@@ -349,3 +349,20 @@ How to organize, format and store collections of data values, the relationships 
   - Unordered
   - Slow key iteration
   - Collisions
+
+### Linked lists
+
+- Two types to be covered: singly and doubly linked lists
+- A singly linked list contains a set of node, each containing two elements: a value and a pointer to the next node.
+- There is a head and tail node to indicate beginning and end of the list.
+- Linked lists are null terminated, i.e. tail node points to null.
+- In arrays each item is indexed. In linked lists you start at the head and traverse the list - O(n).
+- Memory addresses are not sequential, so unable to take advantage of caching systems for speed advantage.
+- Traversing linked lists is usually slower than iterating through array items.
+- However inserts into the middle of linked lists is faster than in an array.
+
+  - Prepend: O(1)
+  - Append: O(1)
+  - Lookup: O(n)
+  - Insert: O(n)
+  - Delete: O(n)
