@@ -79,7 +79,12 @@ console.log(myHashTable.get('apples'));
 // Given an array = [2,3,4,5]:
 // It should return undefined
 
-// Naive approach -- O(n^2)
+// Bonus... What if we had this:
+// [2,5,5,2,3,5,1,2,4]
+// return 5 because the pairs are before 2,2
+
+// Naive approach -- O(n^2) time complexity
+// space complexity O(1)
 function firstRecurringCharacter(input) {
   for (let i = 0; i < input.length; i++) {
     for (let j = i + 1; j < input.length; j++) {
@@ -91,9 +96,8 @@ function firstRecurringCharacter(input) {
   return undefined;
 }
 
-// Bonus... What if we had this:
-// [2,5,5,2,3,5,1,2,4]
-// return 5 because the pairs are before 2,2
+// Better approach -- O(n) time complexity
+// space complexity O(n)
 function firstRecurringCharacter2(input) {
   let map = {};
   for (let i = 0; i < input.length; i++) {
@@ -106,7 +110,8 @@ function firstRecurringCharacter2(input) {
   return undefined;
 }
 
-// more readable
+// more readable -- O(n) time complexity
+// space complexity O(n)
 function firstRecurringCharacter3(input) {
   const set = new Set();
 

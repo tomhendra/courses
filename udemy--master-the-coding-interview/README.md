@@ -344,6 +344,8 @@ How to organize, format and store collections of data values, the relationships 
   - Fast lookup
   - Fast insert
   - Fast delete
+  - Flexible keys
 - Thee bad:
-  - No concept of order
+  - Unordered
+  - Slow key iteration
   - Collisions
