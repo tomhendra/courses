@@ -366,3 +366,7 @@ How to organize, format and store collections of data values, the relationships 
   - Lookup: O(n)
   - Insert: O(n)
   - Delete: O(n)
+
+- A pointer is a reference to another place in memory.
+- Because JS is garbage collected (memory is managed automatically) pointers are deleted when data is deleted.
+-
