@@ -369,4 +369,7 @@ How to organize, format and store collections of data values, the relationships 
 
 - A pointer is a reference to another place in memory.
 - Because JS is garbage collected (memory is managed automatically) pointers are deleted when data is deleted.
--
+- Doubly linked lists exactly the same as singly linked lists, but have additional pointer to previous node.
+- Doubly linked lists allow us to traverse backwards.
+- Lookup can technically be O(n / 2).
+- The downside is that we may need to hold an additional block of memory.
