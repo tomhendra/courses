@@ -200,7 +200,7 @@ class DoublyLinkedList {
   remove(index) {
     if (index < 0 || index >= this.length) return undefined;
 
-    let removedNode = this.get(index);
+    let removedNode = this.traverseToIndex(index);
     removedNode.prev.next = removedNode.next;
     removedNode.next.prev = removedNode.prev;
     removedNode.prev = null;
