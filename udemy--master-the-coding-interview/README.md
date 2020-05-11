@@ -373,3 +373,23 @@ How to organize, format and store collections of data values, the relationships 
 - Doubly linked lists allow us to traverse backwards.
 - Lookup can technically be O(n / 2).
 - The downside is that we may need to hold an additional block of memory.
+- Interviewers love to ask questions about linked lists because it requires a lot of information to be held in your head, and you have to think about the steps.
+- Don't memorize the implementation, learn to think about the steps.
+- Singly vs Doubly:
+  - Singly is simpler
+  - Singly requires less memory
+  - Singly can't be traversed in reverse.
+  - Singly for insertion & deletion and not much searching
+  - Doubly for searching and deletion of previous nodes
+  - Doubly fairy complex, and requires more memory.
+- Most of the time in interviews singly linked lists are asked about.
+- Reversing a linked list is a very popular question, and probably the hardest concept to grasp in this entire course!
+- The good:
+  - Fast insert
+  - Fast delete
+  - Ordered
+  - Flexible size
+- Thee bad:
+  - Unordered
+  - Slow lookup
+  - More memory
