@@ -393,3 +393,29 @@ How to organize, format and store collections of data values, the relationships 
   - Unordered
   - Slow lookup
   - More memory
+
+### Stacks & queues.
+
+- Both linear data structures allowing sequential traversal.
+- No random access, usually only the first and last elements.
+- Having a limited ability on certain data structures can be an advantage.
+- By limiting what a user can do it gives control to use only efficient operations.
+
+- Stacks:
+
+  - Lookup: O(n)
+  - Pop: O(1)
+  - Push: O(1)
+  - Peek: O(1)
+
+- Queues:
+
+  - Lookup: O(n)
+  - Enqueue: O(1)
+  - Dequeue: O(1)
+  - Peek: O(1)
+
+- Stacks are LIFO (last in first out).
+- Queues are FIFO (first in first out).
+- Arrays have cache locality for technically faster access when items are next to each other, whereas linked list memory addresses are scattered. Linked lists however have more dynamic memory, whereas static arrays would need to reallocate memory when capacity is reached. Stacks could be implemented with either depending on the situation.
+- Queues should never be implemented with arrays since queue / dequeue would require reindexing.
