@@ -419,3 +419,10 @@ How to organize, format and store collections of data values, the relationships 
 - Queues are FIFO (first in first out).
 - Arrays have cache locality for technically faster access when items are next to each other, whereas linked list memory addresses are scattered. Linked lists however have more dynamic memory, whereas static arrays would need to reallocate memory when capacity is reached. Stacks could be implemented with either depending on the situation.
 - Queues should never be implemented with arrays since queue / dequeue would require reindexing.
+- One of the most common interview questions is to implement a queue using stacks.
+- The good:
+  - Fast operations
+  - Fast peek
+  - Ordered
+- Thee bad:
+  - Slow lookup
