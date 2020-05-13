@@ -43,7 +43,29 @@ class Stack {
   }
 }
 
-const myStack = new Stack();
+// Building our own stack -- array
+class StackArr {
+  constructor() {
+    this.array = [];
+  }
+  peek() {
+    if (this.array.length) {
+      return this.array[this.array.length - 1];
+    } else {
+      console.error('No data in stack.');
+    }
+  }
+  push(value) {
+    this.array.push(value);
+    return this;
+  }
+  pop() {
+    this.array.pop();
+    return this;
+  }
+}
+
+const myStack = new StackArr();
 myStack.push('Google');
 myStack.push('Amazon');
 myStack.push('Apple');
