@@ -438,3 +438,34 @@ How to organize, format and store collections of data values, the relationships 
 - Examples of a tree: DOM, AST.
 - Linked list is technically a type of tree, albeit with a single path.
 - A node can only point to a child.
+
+#### Binary tree
+
+- Each node can only have either 0, 1 or 2 children, and each child can only have 1 parent.
+- Each node represents a certain state.
+- A perfect binary tree node has either 0 or 2 children, and all leaf nodes full all the way to the bottom.
+- A full binary tree node simply has either 0 or 2 children but never 1.
+- A perfect binary tree is very efficient and desirable, and has two important properties:
+
+  - 1. Number of total nodes on each level doubles as we move down the tree.
+  - 2. Number of nodes on the last level is equal to the sum of the number of all other nodes + 1. Because of the efficiency in traversal by not visiting each node, O(log n) can be applied.
+
+  - lookup: O(log n)
+  - insert: O(log n)
+  - delete: O(log n)
+
+- [O(log n) explained](https://medium.com/better-programming/a-gentle-explanation-of-logarithmic-time-complexity-79842728a702)
+
+#### Binary search tree
+
+- Great for searching and comparing things.
+- Preserves relationships between nodes.
+
+  - Rules:
+  - 1. All child node values in the tree to the right of the root node must be greater than the current node value.
+  - 2. A node can only have up to 2 children.
+
+- If binary search tree is unbalanced, lookup, insert & delete can become O(n) where every node requires traversal.
+- Ideally we want to balance our search tree to ensure optimum performance.
+- Algorithms help us to create balanced trees e.g. AVL trees and Red Black trees.
+-
