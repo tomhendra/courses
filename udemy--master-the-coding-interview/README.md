@@ -426,3 +426,15 @@ How to organize, format and store collections of data values, the relationships 
   - Ordered
 - Thee bad:
   - Slow lookup
+
+### Trees
+
+- Have a hierarchical structure, as opposed to arrays or link lists which are linear.
+- Usually starts with a root node and every child descends from the root.
+- Every child of a node descends from only one parent.
+- A unidirectional parent-child relationship between nodes.
+- Leaf nodes are the end of a tree data structure.
+- Can have subtrees.
+- Examples of a tree: DOM, AST.
+- Linked list is technically a type of tree, albeit with a single path.
+- A node can only point to a child.
