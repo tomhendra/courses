@@ -468,4 +468,9 @@ How to organize, format and store collections of data values, the relationships 
 - If binary search tree is unbalanced, lookup, insert & delete can become O(n) where every node requires traversal.
 - Ideally we want to balance our search tree to ensure optimum performance.
 - Algorithms help us to create balanced trees e.g. AVL trees and Red Black trees.
--
+- The good:
+  - Better than O(n)
+  - Ordered
+  - Flexible size
+- Thee bad:
+  - No O(1) operations

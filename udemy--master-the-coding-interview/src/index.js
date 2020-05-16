@@ -3,4 +3,5 @@
 // require('./3-arrays');
 // require('./4-hash-tables');
 // require('./5-linked-lists');
-require('./6-stacks-and-queues.js');
+// require('./6-stacks-and-queues');
+require('./7-trees');
