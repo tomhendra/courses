@@ -439,7 +439,7 @@ How to organize, format and store collections of data values, the relationships 
 - Linked list is technically a type of tree, albeit with a single path.
 - A node can only point to a child.
 
-#### Binary tree
+#### Binary trees
 
 - Each node can only have either 0, 1 or 2 children, and each child can only have 1 parent.
 - Each node represents a certain state.
@@ -456,7 +456,7 @@ How to organize, format and store collections of data values, the relationships 
 
 - [O(log n) explained](https://medium.com/better-programming/a-gentle-explanation-of-logarithmic-time-complexity-79842728a702)
 
-#### Binary search tree
+#### Binary search trees
 
 - Great for searching and comparing things.
 - Preserves relationships between nodes.
@@ -480,7 +480,7 @@ How to organize, format and store collections of data values, the relationships 
   - 1. AVL Tree
   - 2. Red / Black Tree
 
-#### Binary heap
+#### Binary heaps
 
 - Type of tree where every child belongs to a parent node which has a greater priority or value.
 - Max heap is where root node is the greatest.
@@ -497,7 +497,7 @@ How to organize, format and store collections of data values, the relationships 
 - Because value are always added LTR, binary heaps are always balanced automatically, and are very compact and memory efficient for this reason.
 - Priority queues have elements which have different priorities.
 
-#### Trie
+#### Tries
 
 - A specialized tree used for searching, most often text.
 - Most cases can outperform BST, hash tables, and most other data structures discussed so far.
