@@ -503,3 +503,13 @@ How to organize, format and store collections of data values, the relationships 
 - Most cases can outperform BST, hash tables, and most other data structures discussed so far.
 - Allow you to know if a word or part of a word exists in a body of text.
 - AKA prefix tree.
+
+### Graphs
+
+- Graphs are one of the most useful and used data structures used to represent real world data.
+- A set of values that are related in a pair-wise fashion.
+- Each item is called a node or a vertex, connected with edges.
+- Certain characteristics are used to describe graphs:
+  - Directed (one way) vs undirected (bi-directional).
+  - Weighted (info in edges) vs unweighted.
+  - Cyclic vs Acyclic
