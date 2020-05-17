@@ -496,3 +496,10 @@ How to organize, format and store collections of data values, the relationships 
 - Heaps add value on the tree in order from left to right, then bubbles up of the priority order isn't right.
 - Because value are always added LTR, binary heaps are always balanced automatically, and are very compact and memory efficient for this reason.
 - Priority queues have elements which have different priorities.
+
+#### Trie
+
+- A specialized tree used for searching, most often text.
+- Most cases can outperform BST, hash tables, and most other data structures discussed so far.
+- Allow you to know if a word or part of a word exists in a body of text.
+- AKA prefix tree.
