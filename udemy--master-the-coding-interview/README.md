@@ -472,5 +472,27 @@ How to organize, format and store collections of data values, the relationships 
   - Better than O(n)
   - Ordered
   - Flexible size
-- Thee bad:
+- The bad:
+
   - No O(1) operations
+
+- Usually in production it is best to have a balanced search tree. Two popular types of trees for this purpose:
+  - 1. AVL Tree
+  - 2. Red / Black Tree
+
+#### Binary heap
+
+- Type of tree where every child belongs to a parent node which has a greater priority or value.
+- Max heap is where root node is the greatest.
+- Min heap id where root node is the smallest.
+- Every node on the top level has a greater value than every node on the next level down.
+- Good for when there is an order, particularly for priority queues.
+
+  - lookup: O(n)
+  - insert: O(log n)
+  - delete: O(log n)
+
+- Slower lookup than BST because it's less ordered. left / right can be any value as long as it is less than the top value.
+- Heaps add value on the tree in order from left to right, then bubbles up of the priority order isn't right.
+- Because value are always added LTR, binary heaps are always balanced automatically, and are very compact and memory efficient for this reason.
+- Priority queues have elements which have different priorities.
