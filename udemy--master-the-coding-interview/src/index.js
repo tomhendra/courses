@@ -4,4 +4,5 @@
 // require('./4-hash-tables');
 // require('./5-linked-lists');
 // require('./6-stacks-and-queues');
-require('./7-trees');
+// require('./7-trees');
+require('./8-graphs');

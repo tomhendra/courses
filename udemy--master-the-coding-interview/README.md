@@ -467,18 +467,15 @@ How to organize, format and store collections of data values, the relationships 
 
 - If binary search tree is unbalanced, lookup, insert & delete can become O(n) where every node requires traversal.
 - Ideally we want to balance our search tree to ensure optimum performance.
-- Algorithms help us to create balanced trees e.g. AVL trees and Red Black trees.
+- Usually in production it is best to have a balanced search tree. Two popular types of trees for this purpose:
+  - 1. AVL Tree
+  - 2. Red / Black Tree
 - The good:
   - Better than O(n)
   - Ordered
   - Flexible size
 - The bad:
-
   - No O(1) operations
-
-- Usually in production it is best to have a balanced search tree. Two popular types of trees for this purpose:
-  - 1. AVL Tree
-  - 2. Red / Black Tree
 
 #### Binary heaps
 
@@ -513,3 +510,13 @@ How to organize, format and store collections of data values, the relationships 
   - Directed (one way) vs undirected (bi-directional).
   - Weighted (info in edges) vs unweighted.
   - Cyclic vs Acyclic
+- Graphs are built on top of other data structures.
+- Three ways to think about building graphs:
+  - 1. Edge list
+  - 2. Adjacency list
+  - 3. Adjacency matrix
+- When it comes to interviews, other data structures are more popular than graphs.
+- The good:
+  - Relationships
+- The bad:
+  - Scaling is hard
