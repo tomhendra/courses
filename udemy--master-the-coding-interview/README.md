@@ -520,3 +520,18 @@ How to organize, format and store collections of data values, the relationships 
   - Relationships
 - The bad:
   - Scaling is hard
+
+## Algorithms
+
+- Algorithms are just functions that programmers write.
+- Simply steps in a process to take desired actions in a computer program.
+- Algorithms allow us to use data structures to perform actions on data.
+- Data structures + algorithms = computer programs.
+- Scalability of code is important as companies get larger.
+- By learning these four topics we are able to do the majority of the scaling we need to improve our programs.
+  - 1. Sorting
+  - 2. Dynamic programming
+  - 3. BFS & DFS
+  - 4. Recursion
+- Some algorithms allow us to simplify our big O complexity to smaller time complexity.
+- Used everywhere in large companies because they deal with large amounts of data.
