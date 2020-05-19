@@ -535,3 +535,17 @@ How to organize, format and store collections of data values, the relationships 
   - 4. Recursion
 - Some algorithms allow us to simplify our big O complexity to smaller time complexity.
 - Used everywhere in large companies because they deal with large amounts of data.
+
+### Recursion
+
+- Recursion is a concept, not an algorithm.
+- One of the most popular topics in interviews.
+- A function that refers to itself inside of the function.
+- Really good for tasks that have repeated subtasks to do.
+- Not that complex as long as you practice a little bit.
+- If there is no way to stop a recursive call, stack overflow can happen where memory runs out.
+- Every recursive function needs a base case / stop point.
+- Recursive functions have two paths:
+  - 1. Call the function again and run it (recursive call).
+  - 2. Stop calling the function, there is nothing more to search for (base case).
+-
