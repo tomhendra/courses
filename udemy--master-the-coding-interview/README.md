@@ -548,4 +548,23 @@ How to organize, format and store collections of data values, the relationships 
 - Recursive functions have two paths:
   - 1. Call the function again and run it (recursive call).
   - 2. Stop calling the function, there is nothing more to search for (base case).
--
+- Anything that can be implemented recursively, can be implemented iteratively.
+- Recursion is not always the best approach. A good engineer uses the right solution for the particular problem.
+- The good:
+  - DRY code
+  - Readability
+- The bad:
+  - Large stack
+
+#### When to use recursion
+
+- A good rule -- when you are working with data structures which you are not sure how deep they are.
+- Tail call optimization allows recursions to be called without increasing the call stack.
+- For traversing trees or graphs (BFS / DFS) recursion is better than iterative.
+- Recursion can be preferred for certain sorting.
+- Whenever we are using a tree or converting something into a tree, consider recursion.
+- 3 rules to follow for when a recursive problem presents itself in interview:
+  - 1. Divided into a number of subproblems that are smaller instances of the same problem.
+  - 2. Each instance of the subproblem is identical in nature.
+  - 3. The solutions of each subproblem can be combined to solve the problem at hand.
+- Divide & conquer using recursion.
