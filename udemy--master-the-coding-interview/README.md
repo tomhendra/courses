@@ -576,3 +576,8 @@ How to organize, format and store collections of data values, the relationships 
 - Big companies need custom sorting methods to reduce expense.
 - You need to be able to decide which sorting algorithm is most appropriate for the given problem.
 - As more data needs to be handled, sorting and searching are two of the biggest problems to be solved in CS.
+- The problem with JS sort() method is that numbers are converted to strings and sorted by unicode.
+- Also language specific characters e.g. á confuses sorting further (can use localeCompare()).
+- You don't need to write a sorting algorithm from scratch. Usually frameworks are used.
+- There is always big O tradeoffs.
+- Certain types of sorting algorithms are more efficient for certain situations: [Demo](https://www.toptal.com/developers/sorting-algorithms)
