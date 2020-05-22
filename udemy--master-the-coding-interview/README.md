@@ -581,3 +581,10 @@ How to organize, format and store collections of data values, the relationships 
 - You don't need to write a sorting algorithm from scratch. Usually frameworks are used.
 - There is always big O tradeoffs.
 - Certain types of sorting algorithms are more efficient for certain situations: [Demo](https://www.toptal.com/developers/sorting-algorithms)
+- Elementary sorting algorithms are basic: Bubble sort, Insertion sort & Selection sort.
+- More complex sorting algorithms are usually more efficient than elementary. They include Merge sort & Quick sort.
+
+#### Bubble sort
+
+- One of the simplest but least efficient sorting algorithms: O(n^2) time complexity.
+-

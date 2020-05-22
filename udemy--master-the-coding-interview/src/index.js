@@ -6,4 +6,5 @@
 // require('./6-stacks-and-queues');
 // require('./7-trees');
 // require('./8-graphs');
-require('./9-recursion');
+// require('./9-recursion');
+require('./10-sorting');
