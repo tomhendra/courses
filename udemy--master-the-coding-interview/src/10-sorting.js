@@ -1,43 +1,43 @@
 document.getElementById('section').append('Algorithms: Sorting');
 
-// Bubble sort
 const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
 
-function bubbleSort(arr) {
-  for (let i = arr.length; i > 0; i--) {
-    for (let j = 0; j < i - 1; j++) {
-      // console.log(arr, arr[j], arr[j + 1]);
-      if (arr[j] > arr[j + 1]) {
-        // swap!
-        const temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
+// Bubble sort
+function bubbleSort(array) {
+  const length = array.length;
+  for (let i = 0; i < length; i++) {
+    for (let j = 0; j < length; j++) {
+      if (array[j] > array[j + 1]) {
+        //Swap the numbers
+        let temp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = temp;
       }
     }
   }
-  return arr;
 }
 
-// ES2015 version = O(n) linear time best case
-function bubbleSortOptimized(arr) {
-  let noSwaps;
-  const swap = (arr, idx1, idx2) => {
-    [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
-  };
+// bubbleSortOptimized(numbers);
+// console.log(numbers);
 
-  for (let i = arr.length; i > 0; i--) {
-    noSwaps = true;
-    for (let j = 0; j < i - 1; j++) {
-      // console.log(arr, arr[j], arr[j + 1]);
-      if (arr[j] > arr[j + 1]) {
-        swap(arr, j, j + 1);
-        noSwaps = false;
+// Selection sort
+function selectionSort(array) {
+  const length = array.length;
+  for (let i = 0; i < length; i++) {
+    // set current index as minimum
+    let min = i;
+    let temp = array[i];
+    for (let j = i + 1; j < length; j++) {
+      if (array[j] < array[min]) {
+        //update minimum if current is lower that what we had previously
+        min = j;
       }
     }
-    if (noSwaps) break;
+    array[i] = array[min];
+    array[min] = temp;
   }
-  return arr;
+  return array;
 }
 
-bubbleSortOptimized(numbers);
+selectionSort(numbers);
 console.log(numbers);

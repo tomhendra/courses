@@ -587,4 +587,8 @@ How to organize, format and store collections of data values, the relationships 
 #### Bubble sort
 
 - One of the simplest but least efficient sorting algorithms: O(n^2) time complexity.
--
+
+#### Selection sort
+
+- Finds the minimum by comparing all values in the array and places the minimum at the beginning after comparing all values.
+- O(n^2) time complexity.
