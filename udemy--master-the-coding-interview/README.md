@@ -568,3 +568,11 @@ How to organize, format and store collections of data values, the relationships 
   - 2. Each instance of the subproblem is identical in nature.
   - 3. The solutions of each subproblem can be combined to solve the problem at hand.
 - Divide & conquer using recursion.
+
+### Sorting
+
+- Sorting is really important in interviews.
+- Sorting is not important when it comes to small input data, but is very important as data grows larger.
+- Big companies need custom sorting methods to reduce expense.
+- You need to be able to decide which sorting algorithm is most appropriate for the given problem.
+- As more data needs to be handled, sorting and searching are two of the biggest problems to be solved in CS.
