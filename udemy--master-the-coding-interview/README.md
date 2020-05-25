@@ -592,3 +592,10 @@ How to organize, format and store collections of data values, the relationships 
 
 - Finds the minimum by comparing all values in the array and places the minimum at the beginning after comparing all values.
 - O(n^2) time complexity.
+
+#### Insertion sort
+
+- Not the most efficient algorithm, but there are cases where it is extremely fast.
+- Useful for times when the list is almost sorted.
+- Performs well with small datasets.
+- Best case scenario is O(n) linear time.
