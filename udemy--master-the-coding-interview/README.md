@@ -599,3 +599,10 @@ How to organize, format and store collections of data values, the relationships 
 - Useful for times when the list is almost sorted.
 - Performs well with small datasets.
 - Best case scenario is O(n) linear time.
+
+#### Merge sort
+
+- Use divide & conquer.
+- Much more efficient than elementary sorting algorithms.
+- Usually O(n log n).
+- One of the most efficient ways you can sort a list.
