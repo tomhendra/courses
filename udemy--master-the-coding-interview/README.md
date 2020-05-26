@@ -602,7 +602,15 @@ How to organize, format and store collections of data values, the relationships 
 
 #### Merge sort
 
-- Use divide & conquer.
+- Uses divide & conquer.
 - Much more efficient than elementary sorting algorithms.
 - Usually O(n log n).
 - One of the most efficient ways you can sort a list.
+
+#### Quick sort
+
+- Uses divide & conquer.
+- Uses a pivoting technique & breaks a list into smaller lists.
+- More complex to understand than merge sort.
+- Quick sort (and merge sort) are the most commonly used sorting algorithms.
+- Usually O(n log n).
