@@ -614,3 +614,13 @@ How to organize, format and store collections of data values, the relationships 
 - More complex to understand than merge sort.
 - Quick sort (and merge sort) are the most commonly used sorting algorithms.
 - Usually O(n log n).
+
+#### Which sort is best?
+
+- Insertion sort should be used with only a few items. It input is small and nearly sorted.
+- Bubble sort - never used in production. For educational purposes only.
+- Selection sort - most likely used for educational purposes, as bubble sort.
+- Merge sort is great because of divide & conquer. Always guaranteed to be O(n log n), even worst case. But space complexity is expensive.
+- Quick sort - better than merge sort for space complexity, but worst case time complexity O(n^2).
+- Mathematically it is impossible to beat time complexity of O(n log n) for comparison sort.
+- Non-comparison sort can beat O(n log n) -- Counting sort, Radix sort. But only work with integers in a small range.
