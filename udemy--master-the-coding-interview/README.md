@@ -617,7 +617,7 @@ How to organize, format and store collections of data values, the relationships 
 
 #### Which sort is best?
 
-- Insertion sort should be used with only a few items. It input is small and nearly sorted.
+- Insertion sort should be used with only a few items. If input is small and nearly sorted.
 - Bubble sort - never used in production. For educational purposes only.
 - Selection sort - most likely used for educational purposes, as bubble sort.
 - Merge sort is great because of divide & conquer. Always guaranteed to be O(n log n), even worst case. But space complexity is expensive.
