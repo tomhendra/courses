@@ -642,3 +642,12 @@ How to organize, format and store collections of data values, the relationships 
 - If a list is sorted, we can use divide & conquer to improve on O(n).
 - Storing data in a tree is more efficient to perform search on.
 - O(log n) time complexity by using a binary search tree as data structure.
+
+#### Graph & Tree traversal
+
+- 'Traversal' and 'search' terms are often used interchangeably.
+- Traversals visit every node, so O(n) linear time.
+- Two options for traversal: Breadth First Search (BFS), and Depth First Search (DFS).
+- For both graphs and trees the time complexity is the same.
+- The main benefit of putting complex data into trees or graphs is to enable O(log n) search.
+- Also insert and delete is faster.
