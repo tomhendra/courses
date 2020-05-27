@@ -624,3 +624,15 @@ How to organize, format and store collections of data values, the relationships 
 - Quick sort - better than merge sort for space complexity, but worst case time complexity O(n^2).
 - Mathematically it is impossible to beat time complexity of O(n log n) for comparison sort.
 - Non-comparison sort can beat O(n log n) -- Counting sort, Radix sort. But only work with integers in a small range.
+
+### Searching
+
+- Searching is something that is used frequently.
+- A big part of application development.
+- As more data accumulates it is important to know how to perform fast searches.
+
+#### Linear search
+
+- AKA sequential search is a method of finding a target value in a list.
+- Sequentially checks each element in the list until the target value is found.
+- Linear time O(n) is not that fastest searching algorithm.
