@@ -636,3 +636,9 @@ How to organize, format and store collections of data values, the relationships 
 - AKA sequential search is a method of finding a target value in a list.
 - Sequentially checks each element in the list until the target value is found.
 - Linear time O(n) is not that fastest searching algorithm.
+
+#### Binary search
+
+- If a list is sorted, we can use divide & conquer to improve on O(n).
+- Storing data in a tree is more efficient to perform search on.
+- O(log n) time complexity by using a binary search tree as data structure.
