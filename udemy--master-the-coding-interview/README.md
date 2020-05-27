@@ -651,3 +651,23 @@ How to organize, format and store collections of data values, the relationships 
 - For both graphs and trees the time complexity is the same.
 - The main benefit of putting complex data into trees or graphs is to enable O(log n) search.
 - Also insert and delete is faster.
+
+#### Breadth First Search (BFS)
+
+- Start with the root node, then move left to right across subsequent levels.
+- Keep going until you find the node you are looking for or the tree ends.
+- BFS uses additional memory because it is necessary to track the child nodes of all nodes on a given level.
+
+#### Depth First Search (DFS)
+
+- Follows one branch of the tree down as many levels as possible, until target node is found or end is reached.
+- When the search cannot continue it moves to the nearest ancestor with an unexplored child.
+- Has a lower memory requirement than BFS because it is not necessary to store all child pointers at each level.
+
+#### BFS vs DFS
+
+- Time complexity is the same -- O(n).
+- BFS: Good for shortest path, because we always start with th e root node then search the closest nodes first.
+- BFS: Requires more memory than DFS.
+- BFS: If there is additional information on the target node, and the node is likely to be in the upper level of the tree, BFS is good.
+- DFS: Uses less memory, but can be slower if the tree has many levels.
