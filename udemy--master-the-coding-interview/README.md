@@ -663,6 +663,10 @@ How to organize, format and store collections of data values, the relationships 
 - Follows one branch of the tree down as many levels as possible, until target node is found or end is reached.
 - When the search cannot continue it moves to the nearest ancestor with an unexplored child.
 - Has a lower memory requirement than BFS because it is not necessary to store all child pointers at each level.
+- Three types of traversal:
+  - InOrder: Nodes from left to right
+  - PreOrder: Nodes from left to right, starting with root node and respecting ancestors.
+  - PostOrder: Nodes from left to right, starting with bottom, then moving upwards towards parent nodes.
 
 #### BFS vs DFS
 

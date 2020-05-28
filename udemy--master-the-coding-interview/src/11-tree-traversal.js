@@ -1,4 +1,6 @@
-document.getElementById('section').append('Algorithms: Searching');
+document
+  .getElementById('section')
+  .append('Algorithms: Searching by Tree Traversal');
 
 // Built in searching methods all linear searches -- O(n) tome complexity
 const beasts = ['Centaur', 'Godzilla', 'Mosura', 'Minotaur', 'Hydra', 'Nessie'];
@@ -185,6 +187,18 @@ class BinarySearchTree {
     if (currentNode.right) queue.push(currentNode.right);
     return this.breadthFirstSearchRecursive(queue, list);
   }
+
+  dfsInOrder() {
+    return traverseInOrder(this.root, []);
+  }
+
+  dfsPreOrder() {
+    return traversePreOrder(this.root, []);
+  }
+
+  dfsPostOrder() {
+    return traversePostOrder(this.root, []);
+  }
 }
 
 function traverse(node) {
@@ -192,6 +206,30 @@ function traverse(node) {
   tree.left = node.left === null ? null : traverse(node.left);
   tree.right = node.right === null ? null : traverse(node.right);
   return tree;
+}
+
+function traverseInOrder(node, list) {
+  console.log('visited: ', node.value);
+  if (node.left) traverseInOrder(node.left, list);
+  list.push(node.value);
+  if (node.right) traverseInOrder(node.right, list);
+  return list;
+}
+
+function traversePreOrder(node, list) {
+  console.log('visited: ', node.value);
+  list.push(node.value);
+  if (node.left) traversePreOrder(node.left, list);
+  if (node.right) traversePreOrder(node.right, list);
+  return list;
+}
+
+function traversePostOrder(node, list) {
+  console.log('visited: ', node.value);
+  if (node.left) traversePostOrder(node.left, list);
+  if (node.right) traversePostOrder(node.right, list);
+  list.push(node.value);
+  return list;
 }
 
 const tree = new BinarySearchTree();
@@ -211,14 +249,36 @@ tree.insert(35);
 tree.insert(34);
 tree.insert(36);
 
-// VisualGo: 20,15,10,5,11,18,16,19,30,25,24,26,35,34,36
-
-console.log(tree.lookup(18));
-console.log(traverse(tree.root));
-console.log(tree.breadthFirstSearch());
-console.log(tree.breadthFirstSearchRecursive([tree.root], []));
+// VisualGo input: 20,15,10,5,11,18,16,19,30,25,24,26,35,34,36
 
 //               20
 //       15              30
 //   10      18      25      35
 //  5  11  16  19  24  26  34  36
+
+// console.log(tree.lookup(18));
+// console.log(traverse(tree.root));
+// console.log(tree.breadthFirstSearch());
+// console.log(tree.breadthFirstSearchRecursive([tree.root], []));
+console.log(tree.dfsInOrder()); // [5, 10, 11, 15, 16, 18, 19, 20, 24, 25, 26, 30, 34, 35, 36]
+console.log(tree.dfsPreOrder()); // [20, 15, 10, 5, 11, 18, 16, 19, 30, 25, 24, 26, 35, 34, 36]
+console.log(tree.dfsPostOrder()); // [5, 11, 10, 16, 19, 18, 15, 24, 26, 25, 34, 36, 35, 20, 15]
+
+/* LeetCode problem
+
+function helper(node, lower, upper) {
+    if (node === null) return true;
+
+    let val = node.val;
+    if (lower !== null && val <= lower) return false;
+    if (upper !== null && val >= upper) return false;
+
+    if (!helper(node.right, val, upper)) return false;
+    if (!helper(node.left, lower, val)) return false;
+    return true;
+}
+
+var isValidBST = function (root) {
+    return helper(root, null, null)
+}; 
+*/
