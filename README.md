@@ -1,12 +1,12 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
 <h1>Coursework</h1>
-<p>A collection of supporting files for web development courses</p>
+<p>A collection of supporting files for software development courses</p>
 </div>
 
 ## Introduction
 
-I have been learning web development full-time since August 2018, and prior to that alongside full-time employment since August 2017. I am focused on JavaScript, and am mainly using Udemy, Frontend Masters and egghead.io as training resources. This repo is for notes and supporting files from courses I have taken. I map my progress & plan my journey with **[this Trello board](https://trello.com/b/R1CVyI4S)**.
+I have been learning software development full-time since August 2018, and prior to that alongside full-time employment since August 2017. I am focused on JavaScript, and am mainly using Udemy, Frontend Masters and egghead.io as training resources. This repo is for notes and supporting files from courses I have taken. I map my progress & plan my journey with **[this Trello board](https://trello.com/b/R1CVyI4S)**.
 
 ## Index of courses
 
