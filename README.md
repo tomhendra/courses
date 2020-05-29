@@ -54,53 +54,53 @@ My daily schedule going forward is as follows.
 
 12. **[Frontend Masters Learning Paths: Beginner]()**
 
-    1. [Complete Intro to Web Development, v2]()
-    2. [Getting Started with JavaScript, v2]()
-    3. [CSS Grids and Flexbox for Responsive Web Design]()
-    4. [JavaScript: From Fundamentals to Functional JS, v2]()
-    5. [Mastering Chrome Developer Tools v2]()
+    - [Complete Intro to Web Development, v2]()
+    - [Getting Started with JavaScript, v2]()
+    - [CSS Grids and Flexbox for Responsive Web Design]()
+    - [JavaScript: From Fundamentals to Functional JS, v2]()
+    - [Mastering Chrome Developer Tools v2]()
 
 13. **[Frontend Masters Learning Paths: Professional]()**
 
-    1.  [Complete Intro to React, v5]()
-    2.  [JavaScript: The Hard Parts, v2]()
-    3.  [Deep JavaScript Foundations, v3]()
-    4.  [JavaScript: The Recent Parts]()
-    5.  [Functional-Light JavaScript, v3]()
-    6.  [CSS In-Depth, v2]()
-    7.  [Full Stack for Front-End Engineers, v2]()
+    - [Complete Intro to React, v5]()
+    - [JavaScript: The Hard Parts, v2]()
+    - [Deep JavaScript Foundations, v3]()
+    - [JavaScript: The Recent Parts]()
+    - [Functional-Light JavaScript, v3]()
+    - [CSS In-Depth, v2]()
+    - [Full Stack for Front-End Engineers, v2]()
 
 14. **[Frontend Masters Learning Paths: Expert]()**
 
-    1.  [JavaScript: The New Hard Parts]()
-    2.  [Asynchronous Programming in JavaScript (with Rx.js Observables)]()
-    3.  [Rethinking Asynchronous JavaScript]()
-    4.  [Hardcore Functional Programming in JavaScript, v2]()
-    5.  [Webpack 4 Fundamentals]()
-    6.  [Git In-depth]()
-    7.  [JavaScript Performance]()
-    8.  [Code Transformation and Linting with ASTs]()
-    9.  [Advanced Asynchronous JavaScript]()
+    - [JavaScript: The New Hard Parts]()
+    - [Asynchronous Programming in JavaScript (with R-js Observables)]()
+    - [Rethinking Asynchronous JavaScript]()
+    - [Hardcore Functional Programming in JavaScript, v2]()
+    - [Webpack 4 Fundamentals]()
+    - [Git In-depth]()
+    - [JavaScript Performance]()
+    - [Code Transformation and Linting with ASTs]()
+    - [Advanced Asynchronous JavaScript]()
 
 15. **[Frontend Masters Learning Path: Computer Science]()**
 
-    1.  [Four Semesters of Computer Science in 5 Hours]()
-    2.  [A Practical Guide to Algorithms with JavaScript]()
-    3.  [Introduction to Data Structures for Interviews]()
-    4.  [Four Semesters of Computer Science in 5 Hours, Part 2]()
-    5.  [Tree and Graph Data Structures]()
+    - [Four Semesters of Computer Science in 5 Hours]()
+    - [A Practical Guide to Algorithms with JavaScript]()
+    - [Introduction to Data Structures for Interviews]()
+    - [Four Semesters of Computer Science in 5 Hours, Part 2]()
+    - [Tree and Graph Data Structures]()
 
 16. **[Frontend Masters Learning Path: Full Stack]()**
 
-    1.  [Full Stack for Front-End Engineers, v2]()
-    2.  [Introduction to Node.js]()
-    3.  [API Design in Node.js, v3]()
-    4.  [AWS for Front-End Engineers (ft. S3, Cloudfront & Route 53)]()
+    - [Full Stack for Front-End Engineers, v2]()
+    - [Introduction to Node.js]()
+    - [API Design in Node.js, v3]()
+    - [AWS for Front-End Engineers (ft. S3, Cloudfront & Route 53)]()
 
 17. **[Frontend Masters Learning Path: Design to Code]()**
 
-    1.  [Design for Developers]()
-    2.  [CSS Grids and Flexbox for Responsive Web Design]() **- Repeat from Beginner Path**
-    3.  [CSS In-Depth, v2]() **- Repeat from Professional Path**
-    4.  [Responsive Web Typography v2]()
-    5.  [SVG Essentials & Animation, v2]()
+    - [Design for Developers]()
+    - [CSS Grids and Flexbox for Responsive Web Design]() **- Repeat from Beginner Path**
+    - [CSS In-Depth, v2]() **- Repeat from Professional Path**
+    - [Responsive Web Typography v2]()
+    - [SVG Essentials & Animation, v2]()
