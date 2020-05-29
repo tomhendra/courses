@@ -47,12 +47,12 @@ Up until this point I had been mainly using Udemy as a learning resource. Fronte
 
 My daily schedule going forward is as follows:
 
-    - Frontend Masters: 3 hours
-    - LeetCode sessions: 2 hours
-    - Project building: 3 hours
-    - Egghead.io: Any gaps in knowledge that arise during project building.
+    * Frontend Masters: 3 hours
+    * LeetCode sessions: 2 hours
+    * Project building: 3 hours
+    * Egghead.io: Any gaps in knowledge that arise during project building.
 
-12. **[Frontend Masters Learning Paths: Beginner]()**.\
+1.  **[Frontend Masters Learning Paths: Beginner]()**
 
     1. [Complete Intro to Web Development, v2]()
     2. [Getting Started with JavaScript, v2]()
@@ -60,7 +60,7 @@ My daily schedule going forward is as follows:
     4. [JavaScript: From Fundamentals to Functional JS, v2]()
     5. [Mastering Chrome Developer Tools v2]()
 
-13. **[Frontend Masters Learning Paths: Professional]()**.\
+2.  **[Frontend Masters Learning Paths: Professional]()**
 
     1.  [Complete Intro to React, v5]()
     2.  [JavaScript: The Hard Parts, v2]()
@@ -70,7 +70,7 @@ My daily schedule going forward is as follows:
     6.  [CSS In-Depth, v2]()
     7.  [Full Stack for Front-End Engineers, v2]()
 
-14. **[Frontend Masters Learning Paths: Expert]()**.\
+3.  **[Frontend Masters Learning Paths: Expert]()**
 
     1.  [JavaScript: The New Hard Parts]()
     2.  [Asynchronous Programming in JavaScript (with Rx.js Observables)]()
@@ -82,7 +82,7 @@ My daily schedule going forward is as follows:
     8.  [Code Transformation and Linting with ASTs]()
     9.  [Advanced Asynchronous JavaScript]()
 
-15. **[Frontend Masters Learning Path: Computer Science]()**.\
+4.  **[Frontend Masters Learning Path: Computer Science]()**
 
     1.  [Four Semesters of Computer Science in 5 Hours]()
     2.  [A Practical Guide to Algorithms with JavaScript]()
@@ -90,16 +90,16 @@ My daily schedule going forward is as follows:
     4.  [Four Semesters of Computer Science in 5 Hours, Part 2]()
     5.  [Tree and Graph Data Structures]()
 
-16. **[Frontend Masters Learning Path: Full Stack]()**.\
+5.  **[Frontend Masters Learning Path: Full Stack]()**
 
     1.  [Full Stack for Front-End Engineers, v2]()
     2.  [Introduction to Node.js]()
     3.  [API Design in Node.js, v3]()
     4.  [AWS for Front-End Engineers (ft. S3, Cloudfront & Route 53)]()
 
-17. **[Frontend Masters Learning Path: Design to Code]()**.\
+6.  **[Frontend Masters Learning Path: Design to Code]()**
     1.  [Design for Developers]()
-    2.  [CSS Grids and Flexbox for Responsive Web Design]() **Repeat from Beginner Path**
-    3.  [CSS In-Depth, v2]() **Repeat from Professional Path**
+    2.  [CSS Grids and Flexbox for Responsive Web Design]() **- Repeat from Beginner Path**
+    3.  [CSS In-Depth, v2]() **- Repeat from Professional Path**
     4.  [Responsive Web Typography v2]()
     5.  [SVG Essentials & Animation, v2]()
