@@ -29,16 +29,16 @@ I have been learning software development full-time since August 2018, and prior
     Deeper into JavaScript, a fantastic course. Andrei Neagoie is an excellent teacher.
 
 7.  **[The Complete React Web Developer Course (with Redux)](complete-react-web-developer)**.\
-    Only after having a reasonable level of JavaScript did I start to explore what I always had in mind, React. This course is taught using class based components with hooks as an additional extra.
+    Only after having a reasonable level of JavaScript knowledge did I start to explore what I always had in mind, React. This course is taught using class based components with hooks as an additional extra.
 
-8.  **[Introduction to Gatsby](frontend-masters--gatsby-intro)** - Frontend Masters.\
+8.  **[Introduction to Gatsby](frontend-masters--gatsby-intro)**.\
     Taught by industry experts, Frontend Masters provides confidence in the quality of content being delivered. This course my Jason Lengstorf (of Gatsby at the time of recording) was a great intro. I used this is as a starting point to create my portfolio website.
 
 9.  **[TypeScript: The Complete Developer's Guide 2020](typescript-complete-developers-guide)**.\
     An in depth course on using TypeScript with Stephen Grider. TypeScript is a valuable skill for catching errors during development, and this course goes in depth with 24.5 hours of video content.
 
 10. **[Learning to Learn: Efficient Learning](learning-to-learn)**.\
-    A course to better retain content from the courses I take in future.
+    Techniques to better retain content from the courses I take in future.
 
 11. **[Master the Coding Interview: Data Structures & Algorithms](master-the-coding-interview)**.\
-    This course goes less in depth than Colt Steele's, and the solutions are similar. However I wanted to
+    This course goes less in depth than Colt Steele's, and the solutions are similar. However I wanted to gain an additional perspective on CS subjects, plus this course also covers non-technical advice to succeed in interviews.
