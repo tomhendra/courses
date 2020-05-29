@@ -8,7 +8,7 @@
 
 This is a **[Udemy course](https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/)**. by Andrei Neagoie.
 
-The JavaScript files are run with [parcel](https://parceljs.org/getting_started.html):
+The development server is run with [parcel](https://parceljs.org/getting_started.html):
 
 ```sh
 parcel index.html
