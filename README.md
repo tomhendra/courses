@@ -6,40 +6,39 @@
 
 ## Introduction
 
-I have been learning web development full-time since August 2018, and prior to that alongside full-time employment since August 2017. I am focused on JavaScript, and am mainly using Udemy & Frontend Masters as training resources. This repo serves as storage for supporting files from courses I have been taking. I map my progress & plan my journey with **[this Trello board](https://trello.com/b/R1CVyI4S)**.
+I have been learning web development full-time since August 2018, and prior to that alongside full-time employment since August 2017. I am focused on JavaScript, and am mainly using Udemy, Frontend Masters and egghead.io as training resources. This repo is for notes and supporting files from courses I have taken. I map my progress & plan my journey with **[this Trello board](https://trello.com/b/R1CVyI4S)**.
 
 ## Index of courses
 
 1.  **[FreeCodeCamp](free-code-camp)**.
     Basic tuition with projects to build. Great for beginners.
 
-2.  **[The Modern JavaScript Bootcamp](udemy--modern-javascript-bootcamp)**.
-    Excellent course with Andrew Mead. This made JavaScript start to 'click' for me. Andrew is a gifted teacher.
+2.  **[The Modern JavaScript Bootcamp](udemy--modern-javascript-bootcamp)** - Udemy.
+    Excellent course with Andrew Mead. This made JavaScript start to 'click' for me.
 
-3.  **[JavaScript Algorithms and Data Structures Masterclass](udemy--algorithms-and-data-structures)**.
+3.  **[JavaScript Algorithms and Data Structures Masterclass](udemy--algorithms-and-data-structures)** - Udemy.
     Concious of being in competition with CS graduates, I took 2 months getting stuck into this course with Colt Steele.
 
-4.  **[Advanced CSS & Sass](udemy--advanced-css-and-sass)**.
-    A critical subject to grasp. This course goes in-depth and teaches some great tricks & techniques.
+4.  **[Advanced CSS & Sass](udemy--advanced-css-and-sass)** - Udemy.
+    This course goes in-depth and teaches some great CSS tricks & techniques.
 
-5.  **[The Complete Junior to Senior Web Developer Roadmap](udemy--complete-junior-to-senior-web-developer)**.
+5.  **[The Complete Junior to Senior Web Developer Roadmap](udemy--complete-junior-to-senior-web-developer)** - Udemy.
     I took this course to get a high level understanding of product development as a whole.
 
-6.  **[Advanced JavaScript Concepts](udemy--advanced-javascript-concepts)**
-    Deeper into JavaScript, another fantastic course. Andrei Neagoie is an excellent teacher.
+6.  **[Advanced JavaScript Concepts](udemy--advanced-javascript-concepts)** - Udemy.
+    Deeper into JavaScript, a fantastic course. Andrei Neagoie is an excellent teacher.
 
-7.  **[The Complete React Web Developer Course (with Redux)](udemy--complete-react-web-developer)**.
-    Only after having a reasonable level of JavaScript under my hat did I start to explore what I always had in mind, React. This course was still taught using class based components with hooks as a course extra. Important for understanding pre-hooks code bases that still use a class-based approach. The course currently is being updated, after which I will retake it.
+7.  **[The Complete React Web Developer Course (with Redux)](udemy--complete-react-web-developer)** - Udemy.
+    Only after having a reasonable level of JavaScript did I start to explore what I always had in mind, React. This course is taught using class based components with hooks as an additional extra.
 
-8.  **[Introduction to Gatsby](frontend-masters--gatsby-intro)**
-    Frontend Masters is for intermediate & advanced courses. Taught by industry experts the platform gives me great confidence in the material being delivered. This course my Jason Lengstorf (of Gatsby at the time of recording) was a great intro. I used this is as a starting point to create my portfolio website.
+8.  **[Introduction to Gatsby](frontend-masters--gatsby-intro)** - Frontend Masters.
+    Taught by industry experts, Frontend Masters provides confidence in the quality of content being delivered. This course my Jason Lengstorf (of Gatsby at the time of recording) was a great intro. I used this is as a starting point to create my portfolio website.
 
-9.  **[TypeScript: The Complete Developer's Guide 2020](udemy--typescript-complete-developers-guide)**.
+9.  **[TypeScript: The Complete Developer's Guide 2020](udemy--typescript-complete-developers-guide)** - Udemy.
     An in depth course on using TypeScript with Stephen Grider. TypeScript is a valuable skill for catching errors during development, and this course goes in depth with 24.5 hours of video content.
 
-10. **[Learning to Learn: Efficient Learning](udemy--learning-to-learn)**.
-    A course to better retain information from the courses I am take in the future.
+10. **[Learning to Learn: Efficient Learning](udemy--learning-to-learn)** - Udemy.
+    A course to better retain content from the courses I take in future.
 
-In Progress. **[Frontend Masters React Learning Path](frontend-masters--react)**.
-
-In Progress. **[Frontend Masters Design to Code Learning Path](frontend-masters--design-to-code)**.
+11. **[Master the Coding Interview: Data Structures & Algorithms](udemy--master-the-coding-interview)** - Udemy.
+    This course goes less in depth than Colt Steele's, and the solutions are similar. However I wanted to
