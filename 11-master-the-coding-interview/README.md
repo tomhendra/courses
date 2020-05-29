@@ -671,7 +671,16 @@ How to organize, format and store collections of data values, the relationships 
 #### BFS vs DFS
 
 - Time complexity is the same -- O(n).
-- BFS: Good for shortest path, because we always start with th e root node then search the closest nodes first.
+- BFS: Good for shortest path, because we always start with the root node then search the closest nodes first.
 - BFS: Requires more memory than DFS.
-- BFS: If there is additional information on the target node, and the node is likely to be in the upper level of the tree, BFS is good.
-- DFS: Uses less memory, but can be slower if the tree has many levels.
+- BFS: If the node is likely to be in the upper level of the tree, BFS is good.
+- DFS: Good at verifying if the path exists.
+- DFS: Uses less memory than BFS.
+- DFS: Can be slower if the tree has many levels.
+
+#### Dijkstra & Bellman-Ford algorithms
+
+- Complex algorithms to find the shortest path.
+- Bellman-ford is better than Dijkstra's for finding the shortest path as it supports negative weights.
+- However Bellman-ford time complexity is O(n^2), not the most efficient.
+- Dijkstra's algorithm is more efficient, but doesn't support negative weights.
