@@ -260,25 +260,25 @@ tree.insert(36);
 // console.log(traverse(tree.root));
 // console.log(tree.breadthFirstSearch());
 // console.log(tree.breadthFirstSearchRecursive([tree.root], []));
-console.log(tree.dfsInOrder()); // [5, 10, 11, 15, 16, 18, 19, 20, 24, 25, 26, 30, 34, 35, 36]
-console.log(tree.dfsPreOrder()); // [20, 15, 10, 5, 11, 18, 16, 19, 30, 25, 24, 26, 35, 34, 36]
-console.log(tree.dfsPostOrder()); // [5, 11, 10, 16, 19, 18, 15, 24, 26, 25, 34, 36, 35, 20, 15]
+// console.log(tree.dfsInOrder()); // [5, 10, 11, 15, 16, 18, 19, 20, 24, 25, 26, 30, 34, 35, 36]
+// console.log(tree.dfsPreOrder()); // [20, 15, 10, 5, 11, 18, 16, 19, 30, 25, 24, 26, 35, 34, 36]
+// console.log(tree.dfsPostOrder()); // [5, 11, 10, 16, 19, 18, 15, 24, 26, 25, 34, 36, 35, 20, 15]
 
-/* LeetCode problem
-
-function helper(node, lower, upper) {
+// LeetCode problem:
+function isValidBST(root) {
+  function helper(node, lower, upper) {
     if (node === null) return true;
 
-    let val = node.val;
+    let val = node.value;
     if (lower !== null && val <= lower) return false;
     if (upper !== null && val >= upper) return false;
 
     if (!helper(node.right, val, upper)) return false;
     if (!helper(node.left, lower, val)) return false;
     return true;
+  }
+
+  return helper(root, null, null);
 }
 
-var isValidBST = function (root) {
-    return helper(root, null, null)
-}; 
-*/
+console.log(isValidBST(tree.root));
