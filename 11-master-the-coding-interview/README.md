@@ -684,3 +684,15 @@ How to organize, format and store collections of data values, the relationships 
 - Bellman-ford is better than Dijkstra's for finding the shortest path as it supports negative weights.
 - However Bellman-ford time complexity is O(n^2), not the most efficient.
 - Dijkstra's algorithm is more efficient, but doesn't support negative weights.
+
+### Dynamic programming
+
+- Dynamic programming is an optimisation technique using caching. It means nothing, just a buzzword.
+- A way to solve problems by breaking it down into subproblems, and storing the subproblems in case they reoccur.
+
+#### Memoization
+
+- Caching is a way to store values so you can use them later.
+- A way to speed up programs by retrieving reusable information and avoiding recalculation.
+- Memoization is a specific form of caching that involves caching the return value of a function based on its parameters.
+- If the parameter remains the same, then it's memoized i.e. the calculation has already been performed and the cached value is returned.
