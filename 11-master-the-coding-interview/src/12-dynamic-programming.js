@@ -1,19 +1,28 @@
 document.getElementById('section').append('Algorithms: Dynamic Programming');
 
-function addTo80(n) {
-  return n + 80;
+function memoizedAddTo80() {
+  const cache = {};
+  // inner function has closure over cache
+  return function (n) {
+    if (n in cache) {
+      return cache[n];
+    } else {
+      return (cache[n] = n + 80);
+    }
+  };
 }
 
-let cache = {};
+const memoized = memoizedAddTo80();
 
-function memoizedAddTo80(n) {
-  if (n in cache) {
-    return cache[n];
-  } else {
-    console.log('from cache...');
-    return (cache[n] = n + 80);
-  }
+// console.log(memoized(5));
+// console.log(memoized(5));
+
+let calculations = 0;
+function fib(n) {
+  calculations++;
+  if (n < 2) return n;
+  return fib(n - 1) + fib(n - 2);
 }
 
-console.log(memoizedAddTo80(5));
-console.log(memoizedAddTo80(5));
+console.log(fib(30));
+console.log('calculations: ', calculations);

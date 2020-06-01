@@ -696,3 +696,10 @@ How to organize, format and store collections of data values, the relationships 
 - A way to speed up programs by retrieving reusable information and avoiding recalculation.
 - Memoization is a specific form of caching that involves caching the return value of a function based on its parameters.
 - If the parameter remains the same, then it's memoized i.e. the calculation has already been performed and the cached value is returned.
+- Good practice to ensure the cache doesn't pollute the global scope, and use closure.
+- Dynamic programming can be thought of as divide & conquer + memoization.
+- Steps to follow for whether dynamic programming is suitable:
+  1. Can the problem be divided into subproblems?
+  2. Recursive solution
+  3. Are there repetitive subproblems?
+  4. Memoize subproblems
