@@ -28,6 +28,7 @@ function fib(n) {
 // console.log(fib(30));
 // console.log('calculations: ', calculations);
 
+// Memoized Fibonacci
 function fibMemo() {
   let cache = {};
   return function fib(n) {
@@ -45,6 +46,17 @@ function fibMemo() {
   };
 }
 
-const memoizedFib = fibMemo();
-console.log(memoizedFib(50));
-console.log('calculations:', calculations);
+// const memoizedFib = fibMemo();
+// console.log(memoizedFib(50));
+// console.log('calculations:', calculations);
+
+// Fibonacci bottom-up, avoids recursion
+function fibMemoBottomUp(n) {
+  let answer = [0, 1];
+  for (let i = 2; i <= n; i++) {
+    answer.push(answer[i - 2] + answer[i - 1]);
+  }
+  return answer.pop();
+}
+
+console.log(fibMemoBottomUp(100));
