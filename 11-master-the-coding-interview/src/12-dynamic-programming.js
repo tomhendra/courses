@@ -12,17 +12,39 @@ function memoizedAddTo80() {
   };
 }
 
-const memoized = memoizedAddTo80();
-
+// const memoized = memoizedAddTo80();
 // console.log(memoized(5));
 // console.log(memoized(5));
 
+// Fibonacci problem
 let calculations = 0;
+
 function fib(n) {
   calculations++;
   if (n < 2) return n;
   return fib(n - 1) + fib(n - 2);
 }
 
-console.log(fib(30));
-console.log('calculations: ', calculations);
+// console.log(fib(30));
+// console.log('calculations: ', calculations);
+
+function fibMemo() {
+  let cache = {};
+  return function fib(n) {
+    calculations++;
+    if (n in cache) {
+      return cache[n];
+    } else {
+      if (n < 2) {
+        return n;
+      } else {
+        cache[n] = fib(n - 1) + fib(n - 2);
+        return cache[n];
+      }
+    }
+  };
+}
+
+const memoizedFib = fibMemo();
+console.log(memoizedFib(50));
+console.log('calculations:', calculations);

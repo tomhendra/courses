@@ -6,7 +6,7 @@
 
 ## Introduction
 
-I have been learning software development full-time since August 2018, and prior to that alongside full-time employment since August 2017. I am focused on JavaScript, and am mainly using Udemy, Frontend Masters and egghead.io as training resources. This repo is for notes and supporting files from courses I have taken. I map my progress & plan my journey with **[this Trello board](https://trello.com/b/R1CVyI4S)**.
+I have been learning software development full-time since August 2018, and prior to that alongside full-time employment since August 2017. This repo serves as an archive of notes and supporting files from courses I have taken. I map my progress & plan my journey with **[this Trello board](https://trello.com/b/R1CVyI4S)**.
 
 ## Index of courses
 
@@ -42,15 +42,6 @@ I have been learning software development full-time since August 2018, and prior
 
 11. **[Master the Coding Interview: Data Structures & Algorithms](master-the-coding-interview)**.\
     This course goes less in depth than Colt Steele's, and the solutions are similar. However I wanted to gain an additional perspective on CS subjects, plus this course also covers non-technical advice to succeed in interviews.
-
-Up until this point I had been mainly using Udemy as a learning resource. Frontend Masters provides content taught by industry experts, which gives confidence in the quality of material being delivered. It is aimed at intermediate to advanced level engineers, so moving forward with this platform is a natural progression.
-
-My daily schedule going forward is as follows.
-
-- Frontend Masters: 3 hours
-- LeetCode sessions: 2 hours
-- Project building: 3 hours
-- Egghead.io: Any gaps in knowledge that arise during project building.
 
 12. **[Frontend Masters Learning Paths: Beginner]()**
 
