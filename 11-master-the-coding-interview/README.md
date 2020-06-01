@@ -703,3 +703,31 @@ How to organize, format and store collections of data values, the relationships 
   2. Recursive solution
   3. Are there repetitive subproblems?
   4. Memoize subproblems
+
+## Non-technical interviews
+
+- Coding is just part of an interview.
+- Non-technical interviews are for behavioural questions, asked to see whether you are a good fit for the company.
+
+### Mindset
+
+- The biggest mistake going into interview is thinking that it is your only chance.
+- Know that you have many other opportunities. It is not pass or fail.
+- Treat everything as a learning experience.
+- Don't hope for a job, or anything at all. Just go for the experience.
+- It is just another practice session.
+- Your interviewer is likely to be more excited about interviewing, if you are excited to be there.
+- Your goal is to enter the room with a lot of energy, be happy to be there.
+- The interviewer will match your energy.
+- Before you go into the interview, think to yourself that you are going to meet an old friend and you are happy to be there. This is a proven psychological technique.
+- Excitement is a signal that you actually want to job.
+- An interviewer wants to answer 3 questions:
+  - Can you do the job? (technical)
+  - Can I work with you? (behavioural)
+  - Are you going to improve? (behavioural)
+- Before you enter interviews you need to have 2 - 4 stories prepared (4 heroes).
+- All behavioural questions in interview can be related back to these stories.
+  1. Technical - a difficult project fom your portfolio. You know a lot about it.
+  2. Success - if you built something, what did you do. Past promotions.
+  3. Leadership - are you the type of person who can take initiative.
+  4. Challenge - going through something challenging and how you overcame it.
