@@ -721,13 +721,48 @@ How to organize, format and store collections of data values, the relationships 
 - The interviewer will match your energy.
 - Before you go into the interview, think to yourself that you are going to meet an old friend and you are happy to be there. This is a proven psychological technique.
 - Excitement is a signal that you actually want to job.
+
+### Hero Stories
+
 - An interviewer wants to answer 3 questions:
   - Can you do the job? (technical)
   - Can I work with you? (behavioural)
   - Are you going to improve? (behavioural)
 - Before you enter interviews you need to have 2 - 4 stories prepared (4 heroes).
 - All behavioural questions in interview can be related back to these stories.
-  1. Technical - a difficult project fom your portfolio. You know a lot about it.
-  2. Success - if you built something, what did you do. Past promotions.
-  3. Leadership - are you the type of person who can take initiative.
-  4. Challenge - going through something challenging and how you overcame it.
+- Stories should demonstrate the following qualities:
+  1. Challenge - going through something challenging and how you overcame it.
+  2. Technical - a difficult project fom your portfolio. You know a lot about it.
+  3. Success - if you built something, what did you do. Past promotions.
+  4. Leadership - are you the type of person who can take initiative.
+
+### Tell me about yourself
+
+- Should be preprepared.
+- Answer this question in about 1 minute.
+- A chance for you to steer the conversation towards your hero stories.
+- Tell your heroes journey, how you went from someone from very little skill, to someone they want to hire.
+- The interviewer will ask follow up questions based on this.
+- Your journey should cover the story pointers
+- Your triggers of success.
+- Mention things you want to get asked.
+- Skills should be relevant to job.
+- Mention some of the skills you would be working with at the job.
+- Demonstrate they will be extremely lucky to have you, and how everything you have done in the past makes it a perfect role for you.
+- The interviewer may not even have looked at your resume.
+- What did you do that makes you stand out.
+- Exercise you pitch: cover the four qualities:
+  1. Challenge.
+  2. Technical.
+  3. Success.
+  4. Leadership.
+
+I became really interested in coding a few years ago when I offered to build an e-commerce website for my best friend's record label. He always knew me to be interested in computer hardware and design, and so offered the opportunity to me. I chose to use WordPress and WooCommerce, but became frustrated with the theme's built-in limitations, and found out I could add custom CSS and that's what sparked my interest. I found MDN and was hooked! I finished the website in time for a new track release, and as 1000's of users downloaded the track while the performance remained stable (Kinsta) it gave me a huge buzz! When I got paid for the site it gave me the idea that I could build websites for a living, since I was stagnating in my job at the time, so I started learning to code after work with Codecademy & Treehouse.
+
+About six months later my best friend passed away suddenly at 33, which hit me really hard, and made me reflect on life. At the same time my fiancée was to be made redundant from her job in the UK. We always had a dream of moving to Spain one day, and with everything that had happened we decided to go for it. So I gave six months notice on my job, we saved hard, sold everything we could, and moved to Spain where I could study web development full time and my partner could look for work as a teacher.
+
+I found Kamran Ahmed's Developer Roadmap, started learning JavaScript, React and built my portfolio with Gatbsy. As I learned more I improved my portfolio, each version making the code cleaner and more consistent. The components developed into a reusable API, MarkDown blog posts were replaced with Sanity CMS, I learned how to configure a monorepo with lerna and Yarn workspaces and deploy both to Vercel using their GitHub CI integration. At this point I was confident I could build performant JAMStack websites with a CMS, so I had the ability to freelance.
+
+Then I started to work on more complicated projects to add to the portfolio, while learning more advanced topics from Frontend Masters and egghead.io, while writing blog posts to solidify what I learned (Feynman Technique).
+
+Through these projects and through these posts, every day I am becoming better and better as a coder, to the point where I feel very confident that I could be a valuable asset to your team, not just now but in the years to come where I expect my abilities to exponentially grow.
