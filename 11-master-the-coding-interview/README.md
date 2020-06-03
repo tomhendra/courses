@@ -730,14 +730,19 @@ How to organize, format and store collections of data values, the relationships 
   - Can I work with you? (behavioural)
   - Are you going to improve? (behavioural)
 
-- Before you enter interviews you need to have 2 - 4 stories prepared.
+- Before you enter interviews you need to have 2-4 stories prepared.
 - All behavioural questions in interview can be related back to these stories.
+- Should be about working on previous projects, the 1-2 big projects you have on your portfolio.
 - Stories should demonstrate the following qualities (the four heroes):
 
   1. Challenge - going through something challenging and how you overcame it.
   2. Technical - a difficult project fom your portfolio. You know a lot about it.
   3. Success - if you built something, what did you do. Past promotions.
   4. Leadership - are you the type of person who can take initiative.
+
+#### TODO: ----> Exercise: Hero Stories.
+
+Take 30 minutes of your time to write down 2~3 hero stories. Use these hero stories as your base when interviewing at any company.
 
 ### Tell me about yourself
 
@@ -754,22 +759,24 @@ How to organize, format and store collections of data values, the relationships 
 - Demonstrate they will be extremely lucky to have you, and how everything you have done in the past makes it a perfect role for you.
 - The interviewer may not even have looked at your resume.
 - What did you do that makes you stand out.
-- Exercise your pitch: cover the four heroes:
+- Cover the four heroes:
 
   1. Challenge.
   2. Technical.
   3. Success.
   4. Leadership.
 
-- Exercise: My pitch:
+#### Exercise: Your pitch:
 
-  I became interested in coding a few years ago when I was asked to build an e-commerce website for my best friend's record label, because he knew I was into computers and had an eye for design. I bought a WordPress theme which had limited style options, but found out I could add custom CSS code. So I did some research, wrote some CSS and instantly wanted to dive deeper! I got hooked on MDN! My job was stagnating at the time, so when I received good feedback for the website I thought "wow, maybe I could build websites for a living". So I started learning to code after work and at weekends.
+Spend the next 30 minutes writing your own 1 minute "pitch" for when you get asked "Tell Me About Yourself" types of questions.
 
-  Then a few months later that same friend passed away at 33, which made me reflect on life. My fiancée and I had a dream of one day moving to Spain, and with the stark realisation of just how short life can be, we saved hard for six months, sold everything we owned, and moved to Spain where my partner could look for work as a teacher and I could study software development full time.
+I became interested in coding a few years ago when I was asked to build an e-commerce website for my best friend's record label, because he knew I was into computers and had an eye for design. I bought a WordPress theme which had limited style options, but found out I could add custom CSS code. So I did some research, wrote some CSS and instantly wanted to dive deeper! I got hooked on MDN! My job was stagnating at the time, so when I received good feedback for the website I thought "wow, maybe I could build websites for a living". So I started learning to code after work and at weekends.
 
-  So we settled in Spain, I came across Kamran Ahmed's Developer Roadmap and followed it. I started learning JavaScript, then React, and built my portfolio site with Gatbsy. As I acquired more knowledge I improved my portfolio, to the point where I was confident I could build JAMStack websites with a CMS powered blog and straight 100 Lighthouse score, so I had the ability to freelance. After that I switched focus to finding a job, by working on more complex projects and gaining more advanced skills, while writing blog posts to solidify what I learned (using the Feynman Technique).
+Then a few months later that same friend passed away at 33, which made me reflect on life. My fiancée and I had a dream of one day moving to Spain, and with the stark realisation of just how short life can be, we saved hard for six months, sold everything we owned, and moved to Spain where my partner could look for work as a teacher and I could study software development full time.
 
-  Through these projects and posts I'm improving my coding ability every day, and I'm now at a point in my journey where I feel confident that I could be a valuable asset to your team, not just now but in the years to come where I expect my skills to grow exponentially.
+So we settled in Spain, I came across Kamran Ahmed's Developer Roadmap and followed it. I started learning JavaScript, then React, and built my portfolio site with Gatbsy. As I acquired more knowledge I improved my portfolio, to the point where I was confident I could build JAMStack websites with a CMS powered blog and straight 100 Lighthouse score, so I had the ability to freelance. After that I switched focus to finding a job, by working on more complex projects and gaining more advanced skills, while writing blog posts to solidify what I learned (using the Feynman Technique).
+
+Through these projects and posts I'm improving my coding ability every day, and I'm now at a point in my journey where I feel confident that I could be a valuable asset to your team, not just now but in the years to come where I expect my skills to grow exponentially.
 
 ### Why do you want to work for us?
 
@@ -786,9 +793,33 @@ How to organize, format and store collections of data values, the relationships 
 
 ### Why did you leave your last job?
 
+- Variation of Why do you want to work for us?
 - No negativity - don't complain about the previous company.
 - You want to grow.
 - You want more challenge.
 - You want to work with people who are really smart like they have at this company.
 - You want to learn from the best, work with the best.
 - You are the type of person who can be put in any position to succeed and at the moment this company is the best answer.
+
+### Tell me about a problem and how you solved it.
+
+- Have this prepared.
+- Have metrics and numbers.
+- Scaling, performance, security - really good to talk about.
+- Ideally you have a big project you can talk about.
+- Use the SAR method:
+  - Situation: This is how the project was, this was the problem.
+  - Action: What you did to solve the problem.
+  - Result: What was the result of the action, improved performance, increased users - use metrics.
+- Expect that once you answer this question, expect more questions to follow, so know how to back up your response.
+- Don't be negative - never place blame on clients, co-workers or bosses.
+
+#### Tell me about an interesting project.
+
+- Variation of Tell me about a problem and how you solved it.
+- Show how you are different, because you are building interesting things.
+- Relate it tp the job, you have worked with things the company works with.
+
+#### TODO: ----> Exercise: Past Projects.
+
+Spend the next 30 minutes writing your own answer to when you get asked "Tell Me About A Problem You Have Solved" type of questions. Think of the 1~2 big projects you have worked on.
