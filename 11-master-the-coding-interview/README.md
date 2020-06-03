@@ -834,3 +834,22 @@ Spend the next 30 minutes writing your own answer to when you get asked "Tell Me
 #### Exercise: Your Biggest Weakness.
 
 I can be a perfectionist, and over tweak things. With my portfolio I tried to make it as good as possible before deployment and took a long time to launch. So before starting projct X, I Googled 'How to speed up software development' which led me to agile processes. I downloaded Jira and used it to develop Project X as a MVP, and improved upon my process, learning about CI along the way. My previous job included a continuous improvement initiative where we analysed our processes and looked for ways to make them more efficient, which seems to be a well established paradigm in software development, but I think it helps that I already have the mindset instilled from my previous work, which leads me to always ask "how can things be done more efficiently to drive down cost".
+
+### Any questions for me?
+
+- These should be prepared.
+- Ask 1-3 questions.
+- Ask questions that demonstrate you are really interested in the company.
+- How you have thought well about why you want to work there.
+- Focus on them, not the company, not yourself. Use the word "YOU".
+- Interviewers are humans too, and like to talk about themselves too. Use this to your advantage.
+- Mention something that hey mention - shows you are paying attention.
+- Listen to what they say about themselves during the interview, and bring it up again at the end to tailor the question to them. Use their name, and use what you know about them to ask them a specific question.
+- Examples:
+  - What is greatest mistake you made in the first month of the job and what did you do?
+  - Where do you see this company going in the next 3-5 years? You have better knowledge of the company than I do and I would like to see where the company is headed?
+  - Why did you join this company?
+  - Have you seen your skills grow in the past year?
+  - How does the company deal with mistakes?
+  - What they wish someone had told them when they had just started their job at the company.
+- All genuine questions, targeted at the interviewer, to create a better bond with the interviewer, and show you are human.
