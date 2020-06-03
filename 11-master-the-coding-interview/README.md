@@ -725,12 +725,15 @@ How to organize, format and store collections of data values, the relationships 
 ### Hero Stories
 
 - An interviewer wants to answer 3 questions:
+
   - Can you do the job? (technical)
   - Can I work with you? (behavioural)
   - Are you going to improve? (behavioural)
-- Before you enter interviews you need to have 2 - 4 stories prepared (4 heroes).
+
+- Before you enter interviews you need to have 2 - 4 stories prepared.
 - All behavioural questions in interview can be related back to these stories.
-- Stories should demonstrate the following qualities:
+- Stories should demonstrate the following qualities (the four heroes):
+
   1. Challenge - going through something challenging and how you overcame it.
   2. Technical - a difficult project fom your portfolio. You know a lot about it.
   3. Success - if you built something, what did you do. Past promotions.
@@ -743,24 +746,49 @@ How to organize, format and store collections of data values, the relationships 
 - A chance for you to steer the conversation towards your hero stories.
 - Tell your heroes journey, how you went from someone from very little skill, to someone they want to hire.
 - The interviewer will ask follow up questions based on this.
-- Your journey should cover the story pointers
+- Your journey should include the four heroes.
 - Your triggers of success.
 - Mention things you want to get asked.
-- Skills should be relevant to job.
+- Skills should be relevant to the job.
 - Mention some of the skills you would be working with at the job.
 - Demonstrate they will be extremely lucky to have you, and how everything you have done in the past makes it a perfect role for you.
 - The interviewer may not even have looked at your resume.
 - What did you do that makes you stand out.
-- Exercise you pitch: cover the four qualities:
+- Exercise your pitch: cover the four heroes:
+
   1. Challenge.
   2. Technical.
   3. Success.
   4. Leadership.
 
-I became interested in coding a few years ago when I was asked to build an e-commerce website for my best friend's record label, because he knew I was into computers and had an eye for design. I bought a WordPress theme which had limited style options, but found out I could add custom CSS code. So I did some research, wrote some CSS and instantly wanted to dive deeper! I got hooked on MDN! My job was stagnating at the time, so when I received good feedback for the website I thought "wow, maybe I could build websites for a living". So I started learning to code after work and at weekends.
+- Exercise: My pitch:
 
-Then a few months later that same friend passed away at 33, which made me reflect on life. My fiancée and I had a dream of one day moving to Spain, and with the stark realisation of just how short life can be, we saved hard for six months, sold everything we owned, and moved to Spain where my partner could look for work as a teacher and I could study software development full time.
+  I became interested in coding a few years ago when I was asked to build an e-commerce website for my best friend's record label, because he knew I was into computers and had an eye for design. I bought a WordPress theme which had limited style options, but found out I could add custom CSS code. So I did some research, wrote some CSS and instantly wanted to dive deeper! I got hooked on MDN! My job was stagnating at the time, so when I received good feedback for the website I thought "wow, maybe I could build websites for a living". So I started learning to code after work and at weekends.
 
-So we settled in Spain, I came across Kamran Ahmed's Developer Roadmap and followed it. I started learning JavaScript, then React, and built my portfolio site with Gatbsy. As I acquired more knowledge I improved my portfolio, to the point where I was confident I could build JAMStack websites with a CMS powered blog and straight 100 Lighthouse score, so I had the ability to freelance. After that I switched focus to finding a job, by working on more complex projects and gaining more advanced skills, while writing blog posts to solidify what I learned (using the Feynman Technique).
+  Then a few months later that same friend passed away at 33, which made me reflect on life. My fiancée and I had a dream of one day moving to Spain, and with the stark realisation of just how short life can be, we saved hard for six months, sold everything we owned, and moved to Spain where my partner could look for work as a teacher and I could study software development full time.
 
-Through these projects and posts I'm improving my coding ability every day, and I'm now at a point in my journey where I feel confident that I could be a valuable asset to your team, not just now but in the years to come where I expect my skills to grow exponentially.
+  So we settled in Spain, I came across Kamran Ahmed's Developer Roadmap and followed it. I started learning JavaScript, then React, and built my portfolio site with Gatbsy. As I acquired more knowledge I improved my portfolio, to the point where I was confident I could build JAMStack websites with a CMS powered blog and straight 100 Lighthouse score, so I had the ability to freelance. After that I switched focus to finding a job, by working on more complex projects and gaining more advanced skills, while writing blog posts to solidify what I learned (using the Feynman Technique).
+
+  Through these projects and posts I'm improving my coding ability every day, and I'm now at a point in my journey where I feel confident that I could be a valuable asset to your team, not just now but in the years to come where I expect my skills to grow exponentially.
+
+### Why do you want to work for us?
+
+- Make the interviewer feel special.
+- Make them feel that this is your top choice, and you'll dedicate years growing with the company.
+- Show respect to them because they work there.
+- "I've been researching your company for a while and noticed you are doing some work on X, and I have myself done some work on X. [Expand] I think the problem of X is really interesting and I think it's something I can add value to and also learn and become better at"
+- Show you wat to grow.
+- Demonstrate why you are the best.
+- Mention key words in the job description.
+- Tell them that you specifically searched companies and found this one interesting because if the type of work they do.
+- You'd be great for this job because you have worked with some of their problems in the past.
+- Always try to use the four heroes.
+
+### Why did you leave your last job?
+
+- No negativity - don't complain about the previous company.
+- You want to grow.
+- You want more challenge.
+- You want to work with people who are really smart like they have at this company.
+- You want to learn from the best, work with the best.
+- You are the type of person who can be put in any position to succeed and at the moment this company is the best answer.
