@@ -823,3 +823,14 @@ Through these projects and posts I'm improving my coding ability every day, and 
 #### TODO: ----> Exercise: Past Projects.
 
 Spend the next 30 minutes writing your own answer to when you get asked "Tell Me About A Problem You Have Solved" type of questions. Think of the 1~2 big projects you have worked on.
+
+### What is your biggest weakness?
+
+- Do not give a silly answer trying to make yourself sound great, people can see through it.
+- Provide a real answer, be honest.
+- Show how you improved it.
+- Talk about a weakness, but turn it around into something that makes you a great candidate, somebody that has improved from their past mistakes and is now working in a way that's ideal for a developer.
+
+#### Exercise: Your Biggest Weakness.
+
+I can be a perfectionist, and over tweak things. With my portfolio I tried to make it as good as possible before deployment and took a long time to launch. So before starting projct X, I Googled 'How to speed up software development' which led me to agile processes. I downloaded Jira and used it to develop Project X as a MVP, and improved upon my process, learning about CI along the way. My previous job included a continuous improvement initiative where we analysed our processes and looked for ways to make them more efficient, which seems to be a well established paradigm in software development, but I think it helps that I already have the mindset instilled from my previous work, which leads me to always ask "how can things be done more efficiently to drive down cost".
