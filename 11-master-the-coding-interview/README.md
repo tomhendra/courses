@@ -945,3 +945,16 @@ Spend the next 30 minutes writing your own strong closing statement.
   - Find the exact salary you want? Average for Madrid is €35,000, you should be paid average or more!
   - What value do you provide? What type of traits do you have that would make you a valuable hire? What would you improve in the company? Think about how the company will drive value from you. Use this to negotiate.
   - Always go higher than you want. Be prepared to meet in the middle.
+
+### Handling multiple offers
+
+- This should be your goal.
+- The more choices we have the better we can make a decision on where we should work.
+- First decide which company you want.
+- Salary and benefits shouldn't be the only things to consider.
+- This should be a guideline to accepting a job in rank order:
+  1. Is there an offer that you feel you are underqualified for? - Harder is better. Go for it!
+  2. Long term growth potential - Is the company progressing? Will you be promoted?
+  3. Will you respect people around you? - You want to be the dumbest person in the room.
+  4. Salary and benefits? - Prioritise long term benefits over short term gains.
+  5. Is your decision based on desperation? - Don't accept the first option you get out of desperation, it needs to be the right company to fuel your growth. Think about the long term implications.
