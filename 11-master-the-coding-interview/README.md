@@ -958,3 +958,16 @@ Spend the next 30 minutes writing your own strong closing statement.
   3. Will you respect people around you? - You want to be the dumbest person in the room.
   4. Salary and benefits? - Prioritise long term benefits over short term gains.
   5. Is your decision based on desperation? - Don't accept the first option you get out of desperation, it needs to be the right company to fuel your growth. Think about the long term implications.
+
+### Getting a raise
+
+- If someone hired you that means that they find you valuable, but to get a raise you need to be a good employee.
+- Plan out your career path at the company and monitor it - 1,2,3 5 year plan.
+- Two steps:
+  1. Ask for a raise: You'll get one if you provide value to the company. If you don't ask, the answer is always "no". The cost to the business of hiring and training new is much greater than giving a good employee a raise.
+  2. Show. Don't tell: wHen asking for a raise, make a one page letter to your boss offering proof that you are driving metrics that matter to them. Give them a reason to give you a raise.
+- Keep a record from day one: Problems you have solved, money you have saved, good feedback you have received, skills acquired and what you plan to accomplish in the next six months to improve the company.
+- A raise every six months should be attainable if you prove yourself.
+- Ask for a salary level a lot higher than you actually want. 10K more than you actually want.
+- If both employee and employer respect and value each other, this should be no problem.
+- Value yourself because they value you.
