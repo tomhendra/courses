@@ -905,3 +905,22 @@ Spend the next 30 minutes writing your own strong closing statement.
 - It's not the end of the world if you fail, sometimes luck plays a part. Everybody fails.
 - Companies are more likely to say no because it's a big risk to hire someone.
 - If each day you are improving, one day you will get that offer. Just keep going!
+
+### Negotiation 101
+
+- Common tactics can be applied, but remember there are differences between cultures.
+- When someone asks you about salary expectations say "I know the average software developer earns €XXX, so I think that's a good place to start" - you didn't answer the question, but used anchoring to define where the conversation should start.
+- You will want to give an actual number to end the conversation, but don't!
+- You want to keep the conversation going by giving an industry average, you merely starting the negotiation.
+- Give reason for everything - nobody likes greedy people.
+- If you are made an offer of €25K, say "thanks very much for the offer, it's very generous and I am excited to potentially work with your company, however this is a big family decision and I am looking to work at a company for many years, so I would like some time to discuss this with my partner and make sure this is something we are both comfortable with" - you just asked for more time, and gave reason without being selfish.
+- Always negotiate. It's a win-win situation.
+- Being able to negotiate is present in all cultures, but will certainly differ between them.
+- You are never going to damage a relationship or have an offer revoked because of negotiation.
+- The larger the company, the more room they have to negotiate.
+- Be positive: Negotiating doesn't equal being mean, you just want to explore the options available to you.
+- Negotiation is finding a balance between what two parties want.
+- You have to have stakes: You must have something on the line.
+- If they know you are desperate and this is the only job you can get then you have no negotiation chance.
+- Showing other options are stakes, allowing the person across the table that you are willing to walk away without a deal which gives you power.
+- Recruiters are always willing to negotiate if they want you, especially when there is a chance of losing you to a competitor.
