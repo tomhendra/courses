@@ -866,3 +866,23 @@ Spend the next 30 minutes writing your own weakness. Make sure you cover the poi
   - Focus on overall goal, not myopic: Myopic means very narrowly focused, all you care about is the specific problem you are working on. If a client needs a product out of the door in a week, the focus should be on meeting the deadline and keeping the client happy. You can always refactor code later.
   - No complaining about the client/code/co-workers/etc: Creates a toxic environment in the workplace. Nobody wants to work with a complainer who creates negative energy.
   - No ego: When receiving feedback take it well. Be the type of coder that likes constructive criticism, and understand there is no ego, we work as a team, and the overall goal of the project/company is what matters.
+
+### After the interview
+
+- Thank your recruiter or the interviewer, and sound excited, positive & energetic.
+- You made a good first impression, you want to leave on a good impression - serial-position effect.
+- Ask for specific feedback on the interview if you are able to.
+- Ask how long it will be before a decision is made so you have a timeline.
+- The first and last impression is what most interviewers remember.
+- Prepare a closing statement that considers the following points.
+  - Don't overuse "I".
+  - Talk about the interviewer.
+  - Express how you are the ideal candidate.
+  - Don't brag.
+- Send a follow up email expressing thanks, and if you were unable to complete any technical parts of the interview, follow up with a solution. Keep it short, show you are interested in the position and look forward to the next step.
+- If you haven't head back by the deadline, send another email saying you are waiting for a reply, and will need to make a decision soon as you are interviewing with other companies, but didn't want to make a decision without knowing the situation at this company, because you really enjoyed the interview process there.
+- Remember the more time that passes the more interviews will be conducted.
+
+#### TODO ----> Exercise: Closing statement.
+
+Spend the next 30 minutes writing your own strong closing statement.
