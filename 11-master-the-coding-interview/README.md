@@ -924,3 +924,24 @@ Spend the next 30 minutes writing your own strong closing statement.
 - If they know you are desperate and this is the only job you can get then you have no negotiation chance.
 - Showing other options are stakes, allowing the person across the table that you are willing to walk away without a deal which gives you power.
 - Recruiters are always willing to negotiate if they want you, especially when there is a chance of losing you to a competitor.
+
+### Handling an offer
+
+- Don't say "yes" straight away.
+- The first thing you should do is ask for more time.
+- If you are well prepared, you should have a few more offers coming in.
+- The more time you have, the more time there is for offers from other companies so you can pick the best package for you.
+- Instead say "this sounds fantastic, I really though this was a great fit when I met you and interviewed, and I am really glad you we both agreed and you see a good fit here. Right now I am speaking to a few other companies, so I can't really speak to the full details of the offer until I am done with the interview process and am closer to making a decision. But I am sure that we can find something that works great for us because I really want to be part of your team and I had a great time interviewing and I can really see myself working there long term".
+- After you receive the offer, let the other companies know. You now have stakes and negotiating power.
+- Reach out to the companies who have not made an offer, and create a sense of urgency as if you have a timeline.
+- "Hello [company contact], I just wanted to give you an update on my interviewing process. I've just received another offer from [other company name] which is quite strong. With that said I am really excited to potentially work with your company and had a good time interviewing with you, and I really want to see if we can make things work. Since my timeline is now compressed with this other offer, is there anything we can do to make the process go a little bit faster?"
+- Let the other companies know that you are wanted, creating social proof & urgency. You now have stakes.
+- A company's goal is to hire an effective employee, and hire someone who produces more value than the salary paid.
+- Always know when the deadline is to respond to an offer. Be honest and tell them you are waiting on other offers and want to make the right decision.
+- Don't be rushed, they should respect your time.
+- When declining an offer, be polite and never burn your bridges. You never know if paths may cross in future.
+
+- TODO:
+  - Find the exact salary you want? Average for Madrid is €35,000, you should be paid average or more!
+  - What value do you provide? What type of traits do you have that would make you a valuable hire? What would you improve in the company? Think about how the company will drive value from you. Use this to negotiate.
+  - Always go higher than you want. Be prepared to meet in the middle.
