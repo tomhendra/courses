@@ -740,7 +740,7 @@ How to organize, format and store collections of data values, the relationships 
   3. Success - if you built something, what did you do. Past promotions.
   4. Leadership - are you the type of person who can take initiative.
 
-#### TODO: ----> Exercise: Hero Stories.
+#### TODO ----> Exercise: Hero Stories.
 
 Take 30 minutes of your time to write down 2~3 hero stories. Use these hero stories as your base when interviewing at any company.
 
@@ -820,7 +820,7 @@ Through these projects and posts I'm improving my coding ability every day, and 
 - Show how you are different, because you are building interesting things.
 - Relate it tp the job, you have worked with things the company works with.
 
-#### TODO: ----> Exercise: Past Projects.
+#### TODO ----> Exercise: Past Projects.
 
 Spend the next 30 minutes writing your own answer to when you get asked "Tell Me About A Problem You Have Solved" type of questions. Think of the 1~2 big projects you have worked on.
 
@@ -831,9 +831,9 @@ Spend the next 30 minutes writing your own answer to when you get asked "Tell Me
 - Show how you improved it.
 - Talk about a weakness, but turn it around into something that makes you a great candidate, somebody that has improved from their past mistakes and is now working in a way that's ideal for a developer.
 
-#### Exercise: Your Biggest Weakness.
+#### TODO ----> Exercise: Your Biggest Weakness.
 
-I can be a perfectionist, and over tweak things. With my portfolio I tried to make it as good as possible before deployment and took a long time to launch. So before starting projct X, I Googled 'How to speed up software development' which led me to agile processes. I downloaded Jira and used it to develop Project X as a MVP, and improved upon my process, learning about CI along the way. My previous job included a continuous improvement initiative where we analysed our processes and looked for ways to make them more efficient, which seems to be a well established paradigm in software development, but I think it helps that I already have the mindset instilled from my previous work, which leads me to always ask "how can things be done more efficiently to drive down cost".
+Spend the next 30 minutes writing your own weakness. Make sure you cover the points mentioned in the previous video.
 
 ### Any questions for me?
 
@@ -853,3 +853,16 @@ I can be a perfectionist, and over tweak things. With my portfolio I tried to ma
   - How does the company deal with mistakes?
   - What they wish someone had told them when they had just started their job at the company.
 - All genuine questions, targeted at the interviewer, to create a better bond with the interviewer, and show you are human.
+
+### Secret weapon
+
+- Never give up if things don't go perfectly.
+- You are not competing against a 100% test score.
+- There are ways you can increase your odds and still stand out even if didn't ace everything.
+- There are tonne of great programmers but amongst them are some common problems. If you can avoid these problems you can stand out as a developer.
+- Try and work these into conversation to stand out.
+  - Simplicity over complexity: Demonstrate that you value readability and maintainability over complex solutions that not everyone on the team may understand. Give an example where you focused on readable code rather than trying to impress with a complex solution, because you understand that code needs to be readable and maintainable by team members long after you have written it.
+  - Premature optimization is the root of all evil: You have to work within your limited time. Demonstrate you understand the value of time, resources and money, and how you are able to work on things that matter like performance without getting too obsessed about it.
+  - Focus on overall goal, not myopic: Myopic means very narrowly focused, all you care about is the specific problem you are working on. If a client needs a product out of the door in a week, the focus should be on meeting the deadline and keeping the client happy. You can always refactor code later.
+  - No complaining about the client/code/co-workers/etc: Creates a toxic environment in the workplace. Nobody wants to work with a complainer who creates negative energy.
+  - No ego: When receiving feedback take it well. Be the type of coder that likes constructive criticism, and understand there is no ego, we work as a team, and the overall goal of the project/company is what matters.
