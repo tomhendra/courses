@@ -886,3 +886,22 @@ Spend the next 30 minutes writing your own weakness. Make sure you cover the poi
 #### TODO ----> Exercise: Closing statement.
 
 Spend the next 30 minutes writing your own strong closing statement.
+
+## Offer & negotiation
+
+- Learning these skills will allow you to develop faster and be more satisfied with your job.
+- They are skills to be learned like any other, and can help you work for better companies.
+
+### Handling rejection
+
+- Even the greatest programmers in the world might not be a good fit for a company.
+- Rejections don't mean anything because nobody really cares about them. They don't go on your CV, they don't go on your LinkedIn profile, they just disappear.
+- Winners get up after a rejection and carry on.
+- Being rejected is a good thing - if you wouldn't be a good fit then you probably wouldn't be happy there.
+- Rejection isn't a measure of success. 99 rejections and 1 offer is better than 2 rejections and no offer!
+- When you get rejected extract as much feedback as possible to help you improve.
+- Ask when it would be OK to reapply if you still want to work there.
+- Don't burn any bridges.
+- It's not the end of the world if you fail, sometimes luck plays a part. Everybody fails.
+- Companies are more likely to say no because it's a big risk to hire someone.
+- If each day you are improving, one day you will get that offer. Just keep going!
