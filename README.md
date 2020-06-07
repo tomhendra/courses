@@ -43,7 +43,7 @@ I have been learning software development full-time since August 2018, and prior
 11. **[Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)**.\
     This course goes less in depth than Colt Steele's, and the solutions are similar. However I wanted to gain an additional perspective on CS subjects, plus this course also covers non-technical advice to succeed in interviews.
 
-12. **[Frontend Masters Learning Paths: Beginner](12-frontend-masters-beginner)**
+12. **[Frontend Masters Learning Paths: Beginner](12-frontend-masters-beginner)**.\
     Frontend Masters targets intermediate to advanced level engineers. The content is provided by industry leaders, which gives great confidence in the quality of material being taught.
 
 TODO.......
