@@ -1,8 +1,12 @@
-# Design for Developers
+<div align=center>
+<img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
+<h1>Frontend Masters: Design for Developers</h1>
+<p>By Sarah Drasner</p>
+</div>
 
-Author: Sarah Drasner
+## Introduction
 
-This repo houses the materials and resources for the [Design for Developers course](https://frontendmasters.com/courses/design-for-developers/) on Frontend Masters. 
+This repo houses the materials and resources for the [Design for Developers course](https://frontendmasters.com/courses/design-for-developers/) on Frontend Masters.
 
 Sometimes it seems like designing is an unlearnable skill, or that if you’re a developer, you might not be able to learn it because it’s a different discipline. Luckily, designing has rules just like development does — rules that can be understood both in theory and in practice. In this workshop, learn to how to become self-sufficient for the entire process of execution from concept to design to implementation. This workshop is also ideal for those that want to be a better collaborator to their design counterparts, and better able to execute the creation of complex and beautiful Frontend experiences.
 
