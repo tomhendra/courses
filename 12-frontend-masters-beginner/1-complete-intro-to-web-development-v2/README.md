@@ -42,3 +42,24 @@ Course notes: https://btholt.github.io/intro-to-web-dev-v2/
 - Questions: Stack Overflow.
 
 ## HTML
+
+- Basic building blocks are tags.
+- Thoughtful usage of appropriate tags assists with screen readers and search engine ranking.
+- [Full list of elements on MDN.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+- Use `<img>` when image is relative to content. CSS can be used to display images for purely aesthetic purposes.
+- An element is one instance of a tag.
+- Attributes are additional pieces of information that you can attach to HTML tags.
+- Classes are a special type of attribute, can be applied to any tag, allowing them to be targeted by CSS.
+- IDs are global attributes that must be unique in the document. Useful to anchor sections of document.
+
+### Naming tags
+
+- Generally you should name things semantically. Name things after what they do, not what they look like.
+- If things change in teh future, classnames based on appearances may be inappropriate.
+- CSS uses kebab-case to keep class names readable when they are in the browser.
+
+### Meta HTML
+
+- Information for configuring websites that are hidden from the user.
+- `<meta>` tag is used to describe metadata that cannot be represented by other HTML meta-related elements, like `<base>`, `<link>`, `<script>`, `<style>` or `<title>`.
+- Metadata is — in its very simplest definition — data that describes data. For example, an HTML document is data, but HTML can also contain metadata in its `<head>` element that describes the document — for example who wrote it, and its summary.
