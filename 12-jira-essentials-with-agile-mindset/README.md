@@ -1,17 +1,17 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
-<h1>Atlassian University: Jira Essentials with Agile Mindset</h1>
+<h1>Jira Essentials with Agile Mindset</h1>
 </div>
 
 ## Introduction
 
-Jira Essentials from Atlassian certified training. [Course link](https://training.atlassian.com/jira-essentials-agile-mindset).
+Jira Essentials from Atlassian University certified training. [Course link](https://training.atlassian.com/jira-essentials-agile-mindset).
 
 ## Index of topics
 
 1. [Course overview](#course-overview)
 2. [Agile and Jira Overview](#agile-and-jira-overview)
-3. Visualize Work using Project Boards
+3. [Visualize Work using Project Boards](#visualize-work-using-project-boards)
 4. Enrich Issues
 5. Kanban Method
 6. Lean and Agile Principles
@@ -113,3 +113,57 @@ Jira Essentials from Atlassian certified training. [Course link](https://trainin
 - A Jira issue is an item of work identified by the team.
 - Project boards visualize a team's work.
 - The main types if Jira users are Jira Administrator, Jira Project Administrator & Team Member.
+
+## Visualize Work using Project Boards
+
+### Visualizing Work
+
+- Visualizing work goes way back in history.
+- Simple example is a todo list.
+- Reminds you what to do.
+- Focuses you on a specific set of tasks.
+- Can set priorities be rearranging the list.
+- Visualizes progress by tracking of tasks as you accomplish them.
+- A project board is another way to visualize work.
+- A principle of agile projects is to visualize the work.
+- A board is an agile tool used to visualize and manage work.
+- Reports & dashboards are other ways to visualize work.
+
+**Why visualize work?**
+
+- To easily see the work of the project.
+  - Easily see the (true) current state.
+  - Organizes and focuses the team.
+  - Only work on the tasks on the board.
+- To manage things.
+  - Easy to add and prioritise and prioritize he work on the project.
+  - Easy to update work items.
+- To improve the team's way of working.
+  - Can visually identify problems.
+
+### Workflows
+
+- The set of columns on a board represent a workflow (or process) for completing the work of an issue.
+- Workflows are broken down into statuses(or steps).
+- In Jira boards and workflows are closely related.
+  - A team works using the board.
+  - The board's structure is defined by the underlying workflow.
+- A key part of agile is to continuously improve the process of a team.
+- This is enabled by visualizing the process.
+
+### Jira Boards & Workflows
+
+- Boards are created automatically, but you can also created additional boards at any time.
+- This allows you to use multiple boards showing specific issues for your projects.
+- Every project in Jira automatically has an associated workflow.
+- The status field for each issue must be set to one of the workflow's statuses.
+- Boards are a view of issues arranged by status.
+- Moving an issue changes the value of it status field.
+- An easy way to change the status of an issue is to drag the issue to a new column in the board.
+
+### Takeaways
+
+- A project board is a two-dimensional ay to visualize the work of a team.
+- In Jira, a workflow is often represented using a project board.
+- Project board columns usually map to the status fields of issues.
+- Board columns can be added or removed to match the team's desired process.
