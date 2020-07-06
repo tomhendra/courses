@@ -16,7 +16,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 5. [Kanban Method](#the-kanban-method)
 6. [Lean and Agile Principles](#lean--agile-principles)
 7. [Scrum Overview 1: Artifacts](#scrum-overview-1-artifacts)
-8. Scrum Overview 2: Roles & Events
+8. [Scrum Overview 2: Roles & Events](#scrum-overview-2-roles--events)
 9. Quick and Basic Search
 10. JQL
 11. Filters
@@ -643,3 +643,135 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - Scrum artifacts provide project transparency, enable shared understanding, and enable inspection and adaptation.
 - Artifacts include the product backlog, the sprint backlog, the sprint goal, sprint boards & reports.
 - Velocity is the rate in which the team accomplishes work, usually measured in story points per sprint.
+
+## Scrum Overview 2: Roles & Events
+
+### Scrum Roles
+
+#### Scrum Team
+
+- A Scrum team is made up of three roles:
+  - Product Owner.
+  - Scrum Master.
+  - Development Team.
+- Cross-functional: They generally have the skills to support the product throughout its entire lifecycle.
+- Flexible / Adaptable: Continuously learning and working on things that they haven't worked on before.
+- Self-organizing: Empowered to decide how they will do the work of the team.
+
+#### Stakeholders
+
+- Others interested in the success of the project.
+- Internal: Company managers, executives, other scrum teams.
+- External: Customers, partners, investors.
+
+#### Product Owner
+
+- Responsible for:
+  - Communicating the product vision.
+  - Maximizing the value of each increment.
+  - The product backlog.
+- Interacts with, represents and is accountable to stakeholders.
+- Is often a member of the product management organization, in addition to being on the scrum team.
+
+#### Scrum Master
+
+- Responsibilities include:
+  - Promoting and supporting scrum.
+  - Improving the day-to-day effectiveness of the team.
+  - Protecting the focus of the team.
+  - Increasing the transparency of the project.
+- Typical tasks include:
+  - Coaching the scrum team and stakeholders on scrum.
+  - Removing blocking issues.
+  - Facilitating scrum events. Configuring scrum artifacts.
+  - Monitoring sprint progress.
+
+#### Product Owner vs Scrum Masters
+
+- Product Owner is primarily responsible for the product value.
+- Scrum Master is primarily responsible for team effectiveness.
+- Why separate roles?
+  - Divide & conquer.
+  - Checks and balances.
+
+#### Development Team
+
+- Cross-functional, adaptive team that does the work of the project.
+- Responsibilities include:
+  - Estimating issues.
+  - Deciding how much work can be done in a sprint.
+  - Deciding how to organize and do the work of the sprint.
+  - Creating the increment of each sprint.
+  - Ability to modify the sprint backlog during the sprint.
+- The Scrum Guide recommends three to nine members of the development team.
+
+### Scrum Events
+
+- The sprint itself.
+- Sprint planning meeting.
+- Daily standups / daily scrums.
+- Sprint review.
+- Sprint retrospective.
+- There are characteristics that apply to all scrum meetings.
+  - Fixed maximum time limit, no minimum time limit.
+  - Once the objective of the meeting is achieved, the meeting is ended.
+  - Meetings are primarily to plan, inspect and adapt.
+  - Primarily about collaborating, not updating status.
+  - Primarily spend time on things of value to all participants.
+
+#### Sprint Planning Meeting
+
+- **Attendees**: Entire scrum team.
+- **Duration**: Typically four hours for a two week sprint.
+- **Purpose**: To plan the work of the sprint.
+- **Output**: Sprint goal, spring backlog.
+- At the beginning the product owner usually proposes a sprint goal, as well as a set of proposed issues to be worked on during the sprint.
+- The output of the meeting is a refined and agreed upon sprint goal and sprint backlog.
+
+#### Daily Standup
+
+- Occur every day, and generally attendees stand because ot is a short meeting.
+- **Attendees**: Development team and scrum master (primarily).
+- **Duration**: Typically 15 minutes.
+- **Purpose**:
+  - Inspect recent progress towards the sprint goal.
+  - Plan the day's work.
+  - Identify and impediments, and plans to resolve them.
+- **Output**: Plan for the day.
+
+#### Sprint Review
+
+- Occurs near the end of the sprint.
+- **Attendees**: Scrum team & stakeholders.
+- **Duration**: Typically two hours for a two week sprint.
+- **Purpose**: Inspect the increment and collaboratively update the product backlog.
+- **Output**: First-pass at next sprint backlog.
+
+#### Sprint Retrospective
+
+- The final event of the sprint.
+- **Attendees**: Scrum team, usually facilitated by the scrum master.
+- **Duration**: Typically 90 minutes for a two week sprint.
+- **Purpose**: The team inspects itself, including its processes, tools and team interaction.
+- It's meant to be a supportive, blameless meeting, and often takes on characteristics of a celebration.
+- **Output**: Improvement issue(s) added to next sprint's backlog.
+
+#### Kanban vs Scrum
+
+- Kanban has a continuous flow of issues, and issues are continuously prioritized and added to the backlog.
+- In scrum each sprint has a set of issues that is similar to a Kanban backlog, but also the time-boxed structure of events around scrum.
+- Scrum is a heavier framework as it includes more process around the planning meetings.
+- Kanban in general leaves how to do the planning up to each team.
+
+### Takeaways
+
+- Scrum roles include:
+  - Product Owner.
+  - Scrum Master.
+  - Development team members.
+  - Stakeholders.
+- Scrum meetings include:
+  - Sprint planning meeting.
+  - Daily standups.
+  - Sprint review.
+  - Sprint retrospective.
