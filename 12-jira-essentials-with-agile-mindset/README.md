@@ -15,7 +15,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 4. [Enrich Issues](#enrich-issues)
 5. [Kanban Method](#the-kanban-method)
 6. [Lean and Agile Principles](#lean--agile-principles)
-7. Scrum Overview 1: Artifacts
+7. [Scrum Overview 1: Artifacts](#scrum-overview-1-artifacts)
 8. Scrum Overview 2: Roles & Events
 9. Quick and Basic Search
 10. JQL
@@ -503,7 +503,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 
 1.  **Empower the team**
     - a. Select motivated individuals.
-    - b. Teams should selforganize.
+    - b. Teams should self-organize.
     - c. Collaborate to create shared understanding.
 2.  **Visualize work**
 3.  **Experiment using the scientific method**
@@ -530,3 +530,116 @@ Jira Essentials from Atlassian University certified training. [Course link](http
     - b. The process should identify problems.
     - c. Fix problems when they are discovered.
     - d. Identify and fix the root cause.
+
+## Scrum Overview 1: Artifacts
+
+### What is Scrum?
+
+- Scrum is a framework for developing, delivering and sustaining complex products.
+- A way of achieving agility.
+- Currently the most popular agile framework.
+
+#### Continuous Learning
+
+- A project starts as a vision or an idea of what to create.
+- It's always best to start with the best vision that you can.
+- The agile team then begins working for a period of time called an iteration. They create a small working piece of the product.
+- After the first iteration, the team has learned things, and therefore the project vision has changed somewhat.
+- After the second iteration, the team has built more of a working product, and again the vision has changed slightly due to the fact the team has learned things during the iteration.
+- This process continues and the product moves closer and closer to the vision.
+
+#### Increment
+
+- After each iteration, the team has created what is known as an increment.
+- An increment is a usable product that may be given to the customer.
+- An increment is not always given to the customer, but the point is that it is capable to be given to the customer.
+- Meets the organization's "definition of done." Generally a high quality subset of the product.
+- Each increment contains the work of the current iteration, as well as all prior iterations.
+
+#### Sprint
+
+- A Sprint is a time-boxed period used to work on an increment of the product.
+- Usually 1-4 weeks (typically 2 weeks)
+- Up to the team to decide the duration of sprints, and in general this duration does not vary from sprint to sprint.
+
+#### Parts of the Scrum Framework
+
+- **Artifacts** - Product backlog, sprint backlog, sprint goal, sprint board, reports.
+- **Roles** - Product Owner, Scrum Master, development team members, stakeholders.
+- **Events / Meetings / Ceremonies** - Sprint, sprint planning meeting, daily standups, sprint review, sprint retrospective.
+
+### Scrum Artifacts
+
+- All artifacts provide project transparency.
+- Enable team shared understanding.
+- Enable inspection and adaptation.
+
+#### Product Backlog
+
+- An ordered, ever-changing todo list for the project.
+- Can include features, improvements, bug fixes or any other items of work that the team has defined.
+- Issues near the top should include more detail, because these items are actually closer to being worked on.
+- Modifying the product backlog is called product backlog refinement.
+- Once you have items in the backlog, you can create a sprint.
+
+#### Sprint backlog
+
+- A subset of the product backlog.
+- The list of issues to be completed during the sprint.
+- Includes the plan on how to accomplish the work of the issues.
+
+#### Estimation: Story Points
+
+- As you are planning the sprint, it is common to estimate each issue.
+- A common estimation statistic is called "story points".
+- Story points are a relative measure of the amount of work required to complete the story.
+- Used to help decide how many stories can be completed in the sprint.
+- Story points are often used as opposed to a more absolute measurement such as hours.
+- The point is usually not to tie estimation directly to the number of hours, and hold the team members accountable to those hours.
+
+#### Sprint Goal
+
+- Represents the objective of the sprint's increment, and is agreed to by the team.
+- Sprint goal os reached by completing the sprint backlog.
+- Does not change during the sprint.
+- The sprint is considered a success if the sprint goal is reached.
+
+#### Why Have a Sprint Goal?
+
+- Provides coherence to the product increment.
+- In general you want each increment to have meaningful value for the customer.
+- Enables flexibility with the sprint backlog.
+- The sprint goal is considered a success if the sprint goal is reached, allowing the team to alter some of the issues that it works on during the sprint.
+
+#### Sprint board
+
+- Similar to the kanban board, but only contains issues from the sprint backlog.
+
+#### Scrum Reports: Burndown Chart
+
+- A burndown chart usually represents the number of story points completed over time during a sprint.
+- The goal is for the remaining story points to reach 0 before the end of the sprint.
+
+#### Scrum Reports: Sprint Report
+
+- The Sprint report usually contains the burndown chart, and also the list of issues of the sprint and their current status.
+- A good way for everybody to see how the sprint is progressing.
+
+#### Velocity
+
+- A term related to scrum that represents the rate at which the team accomplishes work.
+- Usually it is the number of story points completed per sprint.
+
+#### Scrum Reports: Velocity Chart
+
+- Shows the estimated and actual velocity of the team over time.
+- Teams can use this historic data to better estimate story points of the current sprint.
+
+### Takeaways
+
+- Scrum is an agile framework.
+- An increment is a potentially shippable portion of the project hat meets the "definition of done".
+- A sprint is a time-boxed period in which an increment is created.
+- Scrum artifacts provide project transparency, enable shared understanding, and enable inspection and adaptation.
+- Artifacts include the product backlog, the sprint backlog, the sprint goal, sprint boards & reports.
+- Velocity is the rate in which the team accomplishes work, usually measured in story points per sprint.
