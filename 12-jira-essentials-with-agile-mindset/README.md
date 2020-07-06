@@ -432,11 +432,13 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - At thee time the traditional waterfall approach to developing software was very popular.
 - This is where you create one big upfront plan, and then build one big release of the software in phases.
 - The Agile Software Manifesto contains four value statements that can be thought of as the agile mindset.
-  1. **Individuals and interactions** over processes and tools.
-  2. **Working software** over comprehensive documentation.
-  3. **Customer collaboration** over contract negotiation.
-  4. **Responding to change** over following a plan.
-  - Although there is value in the items on the right, we value the items on the left more.
+
+1. **Individuals and interactions** over processes and tools.
+2. **Working software** over comprehensive documentation.
+3. **Customer collaboration** over contract negotiation.
+4. **Responding to change** over following a plan.
+
+- Although there is value in the items on the right, we value the items on the left more.
 - In addition to the four value statements, there are [twelve principles](http://agilemanifesto.org/principles.html) behind the agile manifesto.
 
 #### Takeaway Principles
@@ -455,8 +457,6 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - Used at MIT by John Krafcik (1988).
 - Described the ideas of the Toyota Production System.
 - Applies to any type of project.
-
-##### Principles
 
 1.  **Empower the team**
 2.  **Visualize work**
@@ -480,8 +480,6 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - Used by participants who created the Agile Manifesto (2001).
 - Described a lightweight alternative to waterfall software development.
 - Applies to any type of project.
-
-##### Principles
 
 1.  **Empower the team**
     - a. Select motivated individuals.
