@@ -13,7 +13,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 2. [Agile and Jira Overview](#agile-and-jira-overview)
 3. [Visualize Work using Project Boards](#visualize-work-using-project-boards)
 4. [Enrich Issues](#enrich-issues)
-5. Kanban Method
+5. [Kanban Method](#the-kanban-method)
 6. Lean and Agile Principles
 7. Scrum Overview 1: Artifacts
 8. Scrum Overview 2: Roles & Events
@@ -227,3 +227,94 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - Issues can facilitate team communication with comments and @mentions.
 - Labels can be used to categorize and search for issues.
 - Jira can be integrated with version control and/or build systems to improve developer-related communication.
+
+## The Kanban Method
+
+### Kanban Method Overview
+
+- Agile is a way of thinking and working. It is not a specific methodology.
+- An agile method or framework is an approach to implementing agile.
+- Common agile methods include agile and scrum.
+  - Each embody core principles of agile.
+  - These are often combined.
+
+### What is the Kanban Method?
+
+- The kanban method is used to manage a continuous queue of work.
+- Commonly used ideas include:
+  - Visualize work.
+  - Remove process bottlenecks to improve "flow" of value.
+  - Limit work in progress.
+  - Pull work rather than push (where it makes sense).
+  - Continuously prioritize work items.
+
+### Why Choose the Kanban Method?
+
+- Very lightweight and efficient.
+- Evolutionary approach of transforming to agile.
+- Works well if the workflow is service-oriented.
+  - Operations.
+  - Support.
+  - Maintenance development.
+  - New hire funnel.
+- Supports multi-team and multi-project workflows.
+
+### Improving Flow
+
+- Continuously moving items to the done column is known as "flow".
+- One way to improve flow is to limit work in progress (WIP).
+
+#### How?
+
+- Specify the minimum and/or maximum number of issues allowed in certain project board columns.
+
+#### Why?
+
+- Better flow.
+- Limits waste.
+- Promotes teamwork.
+
+### What Should WIP Limits be Set To?
+
+- Could start WIP with no limits and see how the flow of the team is progressing.
+- If there are no problems there is probably no reason to set limits.
+- Add WIP limits as the process shows problems.
+- Could set WIP limits to discourage multitasking.
+- Could set WIP limits on the steps the team neglects.
+
+### Why Agile Reports?
+
+- One way to improve a team's flow is to look at agile reports.
+- Visualize work of the team.
+- Promote transparency showing the true state of the project.
+- Aid troubleshooting and continuous improvement through identifying problem areas.
+- Aid planning and estimating.
+- A common kanban report related to flow is the Cumulative Flow Diagram, which shows the number of issues per status over time.
+
+### Pull vs Push
+
+- Performers either push work to the next step, or pull work from the previous step.
+- On a kanban board you often have items of pushing and pulling.
+
+### Why pull?
+
+- Empowers the team: Team members select work, they are not assigned work.
+- Maintains a sustainable pace as the team members decide when they are ready for more work.
+
+### Planning Work
+
+- The backlog column contains items that are not ready to be worked on. They may need more information and may never be prioritized high enough to be worked on.
+- Since items in the backlog can't be worked on directly, one feature in Jira is to separate the backlog from the project board.
+
+### Why a Separate Backlog?
+
+- Simplicity: Separates the planning of issues from the project board.
+- The team can focus on work items that are ready to be worked on.
+- Once you have separated the backlog in Jira you'll see a backlog tab. You can move issues onto the project board when they are ready.
+
+### Takeaways
+
+- Kanban is a lightweight agile method.
+- A project board should have a continuous flow of issues moving from backlog to done columns.
+- Work in progress limits can improve the flow of value by focusing the team.
+- In Jira, the backlog can be separated from the project board, simplifying the board and allowing separate backlog work.
