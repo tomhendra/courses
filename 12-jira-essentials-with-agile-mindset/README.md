@@ -442,10 +442,11 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 #### Takeaway Principles
 
 - Four value statements interpreted:
-  1. Empower the team. _(Individuals and interactions over processes and tools)_
-  2. Embrace change. _(Working software over comprehensive documentation)_
-  3. Partner with the customer. _(Customer collaboration over contract negotiation)_
-  4. Plan, develop and deliver incrementally. _(Responding to change over following a plan)_
+
+1. Empower the team. _(Individuals and interactions over processes and tools)_
+2. Embrace change. _(Working software over comprehensive documentation)_
+3. Partner with the customer. _(Customer collaboration over contract negotiation)_
+4. Plan, develop and deliver incrementally. _(Responding to change over following a plan)_
 
 ### Lean vs Agile
 
@@ -460,19 +461,19 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 1.  **Empower the team**
 2.  **Visualize work**
 3.  **Experiment using the scientific method**
-    a. Continuously learn and improve
-    b. Embrace change.
+    - a. Continuously learn and improve
+    - b. Embrace change.
 4.  **Improve the flow of value**
-    a. Limit work in progress.
-    b. Map the value stream.
-    c. Pull work.
-    d. Eliminate waste.
-    e. Reduce setup times.
-    f. Automate what should be automated.
+    - a. Limit work in progress.
+    - b. Map the value stream.
+    - c. Pull work.
+    - d. Eliminate waste.
+    - e. Reduce setup times.
+    - f. Automate what should be automated.
 5.  **Build quality in**
-    a. The process should identify problems.
-    b. Fix problems when they are discovered.
-    c. Identify and fix the root cause.
+    - a. The process should identify problems.
+    - b. Fix problems when they are discovered.
+    - c. Identify and fix the root cause.
 
 #### Agile
 
@@ -483,51 +484,51 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 ##### Principles
 
 1.  **Empower the team**
-    a. Select motivated individuals.
-    b. Teams should self-organize.
-    c. Collaborate to create shared understanding.
+    - a. Select motivated individuals.
+    - b. Teams should self-organize.
+    - c. Collaborate to create shared understanding.
 2.  **Embrace change**
-    a. Partner with customer.
-    b. Obtain fast feedback.
-    c. Continuously inspect and adapt.
+    - a. Partner with customer.
+    - b. Obtain fast feedback.
+    - c. Continuously inspect and adapt.
 3.  **Plan, develop and deliver incrementally**
-    a. Prefer conversations or conveying information.
-    b. Continuously refactor to maintain agility.
-    c. Maintain a sustainable pace.
-    d. Completed work items are the primary measure of success.
+    - a. Prefer conversations or conveying information.
+    - b. Continuously refactor to maintain agility.
+    - c. Maintain a sustainable pace.
+    - d. Completed work items are the primary measure of success.
 4.  **Focus on Value**
-    a. Eliminate waste.
-    b. Continuously strive for simplicity.
-    c. Don't compromise on quality.
+    - a. Eliminate waste.
+    - b. Continuously strive for simplicity.
+    - c. Don't compromise on quality.
 
 #### Combined Lean and Agile Principles
 
 1.  **Empower the team**
-    a. Select motivated individuals.
-    b. Teams should selforganize.
-    c. Collaborate to create shared understanding.
+    - a. Select motivated individuals.
+    - b. Teams should selforganize.
+    - c. Collaborate to create shared understanding.
 2.  **Visualize work**
 3.  **Experiment using the scientific method**
-    a. Continuously learn and improve.
-    b. Embrace change.
-    c. Partner with customer.
-    d. Continuously inspect and adapt.
+    - a. Continuously learn and improve.
+    - b. Embrace change.
+    - c. Partner with customer.
+    - d. Continuously inspect and adapt.
 4.  **Plan, develop and deliver incrementally**
-    a. Prefer conversations or conveying information.
-    b. Continuously refactor to maintain agility.
-    c. Maintain a sustainable pace.
-    d. Completed work items are the primary measure of progress.
-    e. Obtain fast feedback.
+    - a. Prefer conversations or conveying information.
+    - b. Continuously refactor to maintain agility.
+    - c. Maintain a sustainable pace.
+    - d. Completed work items are the primary measure of progress.
+    - e. Obtain fast feedback.
 5.  **Improve the flow of value**
-    a. Limit work in progress.
-    b. Map the value stream.
-    c. Pull work.
-    d. Eliminate waste.
-    e. Reduce setup times.
-    f. Automate what should be automated.
-    g. Continuously strive for simplicity.
+    - a. Limit work in progress.
+    - b. Map the value stream.
+    - c. Pull work.
+    - d. Eliminate waste.
+    - e. Reduce setup times.
+    - f. Automate what should be automated.
+    - g. Continuously strive for simplicity.
 6.  **Build quality in**
-    a. Don't compromise on quality.
-    b. The process should identify problems.
-    c. Fix problems when they are discovered.
-    d. Identify and fix the root cause.
+    - a. Don't compromise on quality.
+    - b. The process should identify problems.
+    - c. Fix problems when they are discovered.
+    - d. Identify and fix the root cause.
