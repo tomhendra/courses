@@ -214,4 +214,16 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 ### Developer Integration Overview
 
 - If you integrate Jira with a version control and/or build system you'll see the development panel in issue details.
--
+- Can create new branches directly from Jira, or view existing branches related to the issue.
+- Integration works through the issue key. Information related to version control will automatically show up in Jira when:
+  - Using issue key in commit message.
+  - Using issue key in branch name.
+  - Including issue key in pull request title (or Jira can use issue key from associated commit or branch).
+  - Jira uses he issue key associated with the commit in build / deployment.
+
+### Takeaways
+
+- An issue contains a diverse et of fields that are used to add information to the issue.
+- Issues can facilitate team communication with comments and @mentions.
+- Labels can be used to categorize and search for issues.
+- Jira can be integrated with version control and/or build systems to improve developer-related communication.
