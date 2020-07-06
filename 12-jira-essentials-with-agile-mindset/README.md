@@ -386,10 +386,11 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 
 #### 3. Embrace the scientific method.
 
-- 1. Create a hypothesis.
-- 2. Build an experiment.
-- 3. Observe / learn from the results.
-- 4. Repeat / reiterate.
+1.  Create a hypothesis.
+2.  Build an experiment.
+3.  Observe / learn from the results.
+4.  Repeat / reiterate.
+
 - _"Progress can not be generated when we are satisfied with existing solutions."_
 - **Continuously learn and improve**.
 - **Embrace change**.
@@ -404,9 +405,9 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - _"People prefer working with large quantities. It is easier than having to work hard and learn from producing small quantities"._
 - Problems can be hidden in the volume of what you are doing, and not be discovered until much later.
 - **Map the value stream:**
-  - 1. Draw the current state of how value is being produced for customers.
-  - 2. Draw the desired future state which has higher value for the customer.
-  - 3. Iterate towards the future state.
+  1. Draw the current state of how value is being produced for customers.
+  2. Draw the desired future state which has higher value for the customer.
+  3. Iterate towards the future state.
 - **Pull work.**
 - **Eliminate waste**, then you are only working on things that are important and are improving the flow.
 - **Reduce setup times.** Example in software is using cloud computing, where you can quickly dynamically create instances of compute and destroy them.
@@ -431,20 +432,20 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - At thee time the traditional waterfall approach to developing software was very popular.
 - This is where you create one big upfront plan, and then build one big release of the software in phases.
 - The Agile Software Manifesto contains four value statements that can be thought of as the agile mindset.
-  - 1. **Individuals and interactions** over processes and tools.
-  - 2. **Working software** over comprehensive documentation.
-  - 3. **Customer collaboration** over contract negotiation.
-  - 4. **Responding to change** over following a plan.
+  1. **Individuals and interactions** over processes and tools.
+  2. **Working software** over comprehensive documentation.
+  3. **Customer collaboration** over contract negotiation.
+  4. **Responding to change** over following a plan.
   - Although there is value in the items on the right, we value the items on the left more.
 - In addition to the four value statements, there are [twelve principles](http://agilemanifesto.org/principles.html) behind the agile manifesto.
 
 #### Takeaway Principles
 
 - Four value statements interpreted:
-- 1. Empower the team. _(Individuals and interactions over processes and tools)_
-- 2. Embrace change. _(Working software over comprehensive documentation)_
-- 3. Partner with the customer. _(Customer collaboration over contract negotiation)_
-- 4. Plan, develop and deliver incrementally. _(Responding to change over following a plan)_
+  1. Empower the team. _(Individuals and interactions over processes and tools)_
+  2. Embrace change. _(Working software over comprehensive documentation)_
+  3. Partner with the customer. _(Customer collaboration over contract negotiation)_
+  4. Plan, develop and deliver incrementally. _(Responding to change over following a plan)_
 
 ### Lean vs Agile
 
@@ -456,22 +457,22 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 
 ##### Principles
 
-- 1. **Empower the team**
-- 2. **Visualize work**
-- 3. **Experiment using the scientific method**
-  - a. Continuously learn and improve
-  - b. Embrace change.
-- 4. **Improve the flow of value**
-  - a. Limit work in progress.
-  - b. Map the value stream.
-  - c. Pull work.
-  - d. Eliminate waste.
-  - e. Reduce setup times.
-  - f. Automate what should be automated.
-- 5. **Build quality in**
-  - a. The process should identify problems.
-  - b. Fix problems when they are discovered.
-  - c. Identify and fix the root cause.
+1.  **Empower the team**
+2.  **Visualize work**
+3.  **Experiment using the scientific method**
+    a. Continuously learn and improve
+    b. Embrace change.
+4.  **Improve the flow of value**
+    a. Limit work in progress.
+    b. Map the value stream.
+    c. Pull work.
+    d. Eliminate waste.
+    e. Reduce setup times.
+    f. Automate what should be automated.
+5.  **Build quality in**
+    a. The process should identify problems.
+    b. Fix problems when they are discovered.
+    c. Identify and fix the root cause.
 
 #### Agile
 
@@ -481,52 +482,52 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 
 ##### Principles
 
-- 1. **Empower the team**
-  - a. Select motivated individuals.
-  - b. Teams should self-organize.
-  - c. Collaborate to create shared understanding.
-- 2. **Embrace change**
-  - a. Partner with customer.
-  - b. Obtain fast feedback.
-  - c. Continuously inspect and adapt.
-- 3. **Plan, develop and deliver incrementally**
-  - a. Prefer conversations or conveying information.
-  - b. Continuously refactor to maintain agility.
-  - c. Maintain a sustainable pace.
-  - d. Completed work items are the primary measure of success.
-- 4. **Focus on Value**
-  - a. Eliminate waste.
-  - b. Continuously strive for simplicity.
-  - c. Don't compromise on quality.
+1.  **Empower the team**
+    a. Select motivated individuals.
+    b. Teams should self-organize.
+    c. Collaborate to create shared understanding.
+2.  **Embrace change**
+    a. Partner with customer.
+    b. Obtain fast feedback.
+    c. Continuously inspect and adapt.
+3.  **Plan, develop and deliver incrementally**
+    a. Prefer conversations or conveying information.
+    b. Continuously refactor to maintain agility.
+    c. Maintain a sustainable pace.
+    d. Completed work items are the primary measure of success.
+4.  **Focus on Value**
+    a. Eliminate waste.
+    b. Continuously strive for simplicity.
+    c. Don't compromise on quality.
 
 #### Combined Lean and Agile Principles
 
-- 1. **Empower the team**
-  - a. Select motivated individuals.
-  - b. Teams should self-organize.
-  - c. Collaborate to create shared understanding.
-- 2. **Visualize work**
-- 3. **Experiment using the scientific method**
-  - a. Continuously learn and improve.
-  - b. Embrace change.
-  - c. Partner with customer.
-  - d. Continuously inspect and adapt.
-- 4. **Plan, develop and deliver incrementally**
-  - a. Prefer conversations or conveying information.
-  - b. Continuously refactor to maintain agility.
-  - c. Maintain a sustainable pace.
-  - d. Completed work items are the primary measure of progress.
-  - e. Obtain fast feedback.
-- 5. **Improve the flow of value**
-  - a. Limit work in progress.
-  - b. Map the value stream.
-  - c. Pull work.
-  - d. Eliminate waste.
-  - e. Reduce setup times.
-  - f. Automate what should be automated.
-  - g. Continuously strive for simplicity.
-- 6. **Build quality in**
-  - a. Don't compromise on quality.
-  - b. The process should identify problems.
-  - c. Fix problems when they are discovered.
-  - d. Identify and fix the root cause.
+1.  **Empower the team**
+    a. Select motivated individuals.
+    b. Teams should selforganize.
+    c. Collaborate to create shared understanding.
+2.  **Visualize work**
+3.  **Experiment using the scientific method**
+    a. Continuously learn and improve.
+    b. Embrace change.
+    c. Partner with customer.
+    d. Continuously inspect and adapt.
+4.  **Plan, develop and deliver incrementally**
+    a. Prefer conversations or conveying information.
+    b. Continuously refactor to maintain agility.
+    c. Maintain a sustainable pace.
+    d. Completed work items are the primary measure of progress.
+    e. Obtain fast feedback.
+5.  **Improve the flow of value**
+    a. Limit work in progress.
+    b. Map the value stream.
+    c. Pull work.
+    d. Eliminate waste.
+    e. Reduce setup times.
+    f. Automate what should be automated.
+    g. Continuously strive for simplicity.
+6.  **Build quality in**
+    a. Don't compromise on quality.
+    b. The process should identify problems.
+    c. Fix problems when they are discovered.
+    d. Identify and fix the root cause.
