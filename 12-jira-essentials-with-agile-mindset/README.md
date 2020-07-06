@@ -12,7 +12,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 1. [Course overview](#course-overview)
 2. [Agile and Jira Overview](#agile-and-jira-overview)
 3. [Visualize Work using Project Boards](#visualize-work-using-project-boards)
-4. Enrich Issues
+4. [Enrich Issues](#enrich-issues)
 5. Kanban Method
 6. Lean and Agile Principles
 7. Scrum Overview 1: Artifacts
@@ -129,7 +129,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - A board is an agile tool used to visualize and manage work.
 - Reports & dashboards are other ways to visualize work.
 
-**Why visualize work?**
+### Why visualize work?
 
 - To easily see the work of the project.
   - Easily see the (true) current state.
@@ -167,3 +167,51 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - In Jira, a workflow is often represented using a project board.
 - Project board columns usually map to the status fields of issues.
 - Board columns can be added or removed to match the team's desired process.
+
+## Enrich Issues
+
+- Issues contain work-related information.
+- There are many ways to enrich issues.
+  - Can add attachments.
+  - Add comments.
+  - Link to other issues or show dependency of issues.
+  - Log work related to the issues.
+  - Estimate time completion.
+  - Use the @user to mention users.
+
+### Issue types
+
+- When you create an issue you must specify its issue type.
+  - **Story** is a requirement from the user's perspective, to identify the value to the user.
+  - **Task** is a team work item e.g. upgrading the version of an internal tool.
+  - **Bug** is a flaw that needs to be fixed.
+  - **Epic** is a big issue that can contain other issues.
+  - **Custom** issue types are for the team's specific needs.
+  - **Subtask** is a child of another issue. Any issue type can contain a subtask.
+
+### Why issue types?
+
+- Supports different types of work items.
+- Each type can have different field values, screens and workflows.
+- Can report on types separately.
+
+### Subtasks
+
+- An issue type that must have a parent issue.
+- Allow an issue to be broken down into individually manageable tasks.
+- Can be more technical than the parent issue.
+- E.g. the parent issue could be a story showing the value from a user's perspective, the subtasks can identify & track the technical work related to the story.
+- Subtasks have their own issue keys and fields.
+- Subtasks have independent workflow status.
+- Can have different assignees for each subtask.
+- Can uniquely progress across the project board.
+
+### Labels
+
+- A field used to categorize and search for issues that are related.
+- To add or create a label use the labels field.
+
+### Developer Integration Overview
+
+- If you integrate Jira with a version control and/or build system you'll see the development panel in issue details.
+-
