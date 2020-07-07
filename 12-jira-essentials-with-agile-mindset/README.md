@@ -910,11 +910,11 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 ### Epics Overview
 
 <!-- prettier-ignore -->
-| Jira's work hierarchy            |
-| :--------:|:--------:| :--------:|
-|           | Epic     |           |
-| Story     | Task     | Bug       |
-|           | Subtask  |           |
+ Jira's work hierarchy  
+|:--------:|:--------:|:--------:|
+|          | Epic     |          |
+| Story    | Task     | Bug      |
+|          | Subtask  |          |
 
 - An epic is unique in that it can contain other issue types such as stories, tasks and bugs.
 - Represents a large issue.
