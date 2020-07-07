@@ -35,7 +35,7 @@ I have been learning software development full-time since August 2018, and prior
      This course my Jason Lengstorf (of Gatsby at the time of recording) was a great intro. I used this is as a starting point to create my portfolio website.
 
 9.  **[TypeScript: The Complete Developer's Guide 2020](9-typescript-complete-developers-guide)**.\
-    An in depth course on using TypeScript with Stephen Grider. TypeScript is an demand skill used for catching errors during development, and this course goes in depth with 24.5 hours of video content.
+    An in depth course on using TypeScript with Stephen Grider. TypeScript is an in demand skill used for catching errors during development, and this course goes in depth with 24.5 hours of video content.
 
 10. **[Learning to Learn: Efficient Learning](10-learning-to-learn)**.\
     Techniques to better retain content from the courses I take in future.
@@ -49,8 +49,8 @@ I have been learning software development full-time since August 2018, and prior
 13. **[Jira and Confluence Together](13-jira-and-confluence-together)**.\
     Confluence is part of the Jira family. I decided to take this course from Atlassian University to efficiently plan and manage more complex projects for my portfolio.
 
-14. **[Frontend Masters Learning Paths: Beginner](12-frontend-masters-beginner)**.\
-    Frontend Masters targets intermediate to advanced level engineers. The content is provided by industry leaders, which gives great confidence in the quality of material being taught.
+14. **[Frontend Masters Learning Paths: Beginner](14-fem-beginner)**.\
+    Frontend Masters targets intermediate to advanced level engineers. The content is taught by industry leaders, which gives great confidence in the quality of material being delivered.
 
 TODO.......
 
