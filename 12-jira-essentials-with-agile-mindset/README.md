@@ -912,6 +912,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 Jira's work hierarchy
 
 <!-- prettier-ignore -->
+|          |          |          |
 |:--------:|:--------:|:--------:|
 |          | Epic     |          |
 | Story    | Task     | Bug      |
