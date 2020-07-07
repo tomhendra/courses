@@ -763,7 +763,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - Scrum is a heavier framework as it includes more process around the planning meetings.
 - Kanban in general leaves how to do the planning up to each team.
 
-### Takeaways
+### Takeaways
 
 - Scrum roles include:
   - Product Owner.
@@ -777,3 +777,44 @@ Jira Essentials from Atlassian University certified training. [Course link](http
   - Sprint retrospective.
 
 ## Quick and Basic Search
+
+### Searching Overview
+
+#### Viewing a Project's Progress
+
+- In Jira there are many ways to view a project's progress.
+  - Boards.
+  - Search.
+  - Reports.
+  - Dashboards.
+
+#### Searching
+
+- There are a few ways ti search in Jira.
+
+  1. **Quick search**: Text search of issues, boards and projects.
+  2. **Basic search**: Uses user interface elements to search for issues.
+  3. **Advanced search (JQL)**: Uses a text-based search called JQL to search for issues.
+  4. **Filters**: Convenient saved searching of issues.
+  5. **Quick filters**: Limit the issues that are visible on a board.
+
+- Searching is important because you can adapt your Jira experience to your team's desired process.
+- A good search is usually going on behind the scenes of a specific view of your project.
+
+### Quick Search
+
+- Quick search is a global search which can search for issues as well as other things such as projects.
+- When you start type a search term, you will see only items that match that search.
+- Can use a capitalized NOT to exclude a term.
+- Can also use a capitalized OR to search for issues with one search term or another.
+
+### Basic Search
+
+- Done with a row of user interface elements.
+- Can limit the search.
+- Also includes a text box so you can search the fields of issues for certain values.
+
+### Takeaways
+
+- Quick search can search the text of issues, board names, project names and filter names.
+- Basic search is a user-friendly way to search for issues.
