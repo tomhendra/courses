@@ -19,7 +19,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 8. [Scrum Overview 2: Roles & Events](#scrum-overview-2-roles--events)
 9. [Quick and Basic Search](#quick-and-basic-search)
 10. [JQL](#jql)
-11. Filters
+11. [Filters](#filters)
 12. Epics
 13. Dashboards
 14. Putting it All Together
@@ -891,3 +891,16 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - JQL queries may select subsets of issues and/or order the query results.
 - Functions can be used to avoid hard-coding values in a search clause.
 - Time unit qualifiers can be used with date-related values.
+
+## Filters
+
+- Filters are saved searches to allow you to quickly execute a search.
+- Can create yor own filter by executing a search, and clicking save as.
+- Filters can be private or they can be shared. By default they are private.
+- A quick filter is a way to filter the issues displayed on the board.
+- Quick filters can be used to refine reports.
+
+### Takeaways
+
+- Filters are saved searches that can be exposed through user interface elements.
+- Quick filters are saved searches that re used to further limit the issues displayed on the board or in reports.
