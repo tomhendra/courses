@@ -17,7 +17,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 6. [Lean and Agile Principles](#lean--agile-principles)
 7. [Scrum Overview 1: Artifacts](#scrum-overview-1-artifacts)
 8. [Scrum Overview 2: Roles & Events](#scrum-overview-2-roles--events)
-9. Quick and Basic Search
+9. [Quick and Basic Search](#quick-and-basic-search)
 10. JQL
 11. Filters
 12. Epics
@@ -556,7 +556,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - Meets the organization's "definition of done." Generally a high quality subset of the product.
 - Each increment contains the work of the current iteration, as well as all prior iterations.
 
-#### Sprint
+#### Sprint
 
 - A Sprint is a time-boxed period used to work on an increment of the product.
 - Usually 1-4 weeks (typically 2 weeks)
@@ -604,7 +604,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - Does not change during the sprint.
 - The sprint is considered a success if the sprint goal is reached.
 
-#### Why Have a Sprint Goal?
+#### Why Have a Sprint Goal?
 
 - Provides coherence to the product increment.
 - In general you want each increment to have meaningful value for the customer.
@@ -615,12 +615,12 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 
 - Similar to the kanban board, but only contains issues from the sprint backlog.
 
-#### Scrum Reports: Burndown Chart
+#### Scrum Reports: Burndown Chart
 
 - A burndown chart usually represents the number of story points completed over time during a sprint.
 - The goal is for the remaining story points to reach 0 before the end of the sprint.
 
-#### Scrum Reports: Sprint Report
+#### Scrum Reports: Sprint Report
 
 - The Sprint report usually contains the burndown chart, and also the list of issues of the sprint and their current status.
 - A good way for everybody to see how the sprint is progressing.
@@ -630,7 +630,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - A term related to scrum that represents the rate at which the team accomplishes work.
 - Usually it is the number of story points completed per sprint.
 
-#### Scrum Reports: Velocity Chart
+#### Scrum Reports: Velocity Chart
 
 - Shows the estimated and actual velocity of the team over time.
 - Teams can use this historic data to better estimate story points of the current sprint.
@@ -664,7 +664,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - Internal: Company managers, executives, other scrum teams.
 - External: Customers, partners, investors.
 
-#### Product Owner
+#### Product Owner
 
 - Responsible for:
   - Communicating the product vision.
@@ -728,7 +728,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - At the beginning the product owner usually proposes a sprint goal, as well as a set of proposed issues to be worked on during the sprint.
 - The output of the meeting is a refined and agreed upon sprint goal and sprint backlog.
 
-#### Daily Standup
+#### Daily Standup
 
 - Occur every day, and generally attendees stand because ot is a short meeting.
 - **Attendees**: Development team and scrum master (primarily).
@@ -775,3 +775,5 @@ Jira Essentials from Atlassian University certified training. [Course link](http
   - Daily standups.
   - Sprint review.
   - Sprint retrospective.
+
+## Quick and Basic Search
