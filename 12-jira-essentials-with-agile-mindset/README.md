@@ -20,7 +20,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 9. [Quick and Basic Search](#quick-and-basic-search)
 10. [JQL](#jql)
 11. [Filters](#filters)
-12. Epics
+12. [Epics](#epics)
 13. Dashboards
 14. Putting it All Together
 
@@ -904,3 +904,45 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 
 - Filters are saved searches that can be exposed through user interface elements.
 - Quick filters are saved searches that re used to further limit the issues displayed on the board or in reports.
+
+## Epics
+
+### Epics Overview
+
+<!-- prettier-ignore -->
+| Jira's work hierarchy            |
+| :--------:|:--------:| :--------:|
+|           | Epic     |           |
+| Story     | Task     | Bug       |
+|           | Subtask  |           |
+
+- An epic is unique in that it can contain other issue types such as stories, tasks and bugs.
+- Represents a large issue.
+- Child issues can span multiple iterations, projects, teams & boards.
+- Can be a single issue that represents a placeholder for many stories.
+- As the team gets closer to working on the epic, they can add the child issues to fill in the details.
+
+#### Why Epics?
+
+- Organization of work.
+- Span multiple iterations and projects.
+- Simplifies the backlog (one issue).
+
+### Working with Epics
+
+- To create an epic, you can create an issue with a type of epic.
+- When adding issues to an epic, you can use the epic link field to select a parent epic.
+- Can also use the epic link field to add an existing issue to an epic.
+
+### Epics & Scrum
+
+- Can create epics from the backlog section of the scrum project.
+- Can view the epic panel in the backlog, as a handy way to view the current progress of the epic.
+- An epic report shows the details of the epic.
+- If the epic spans multiple sprints, the epic burndown chart shoes progress for each sprint.
+
+### Takeaways
+
+- An epic is a large issue type "epic" that may contain other issues.
+- The "epic link" field s used to associate issues with an epic.
+- Epics can be shown on boards or in backlogs.
