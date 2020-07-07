@@ -21,7 +21,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 10. [JQL](#jql)
 11. [Filters](#filters)
 12. [Epics](#epics)
-13. Dashboards
+13. [Dashboards](#dashboards)
 14. Putting it All Together
 
 ## Course Overview
@@ -946,3 +946,28 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - An epic is a large issue type "epic" that may contain other issues.
 - The "epic link" field s used to associate issues with an epic.
 - Epics can be shown on boards or in backlogs.
+
+## Dashboards
+
+- A way to visualize work.
+- A configurable view of the work of one or more of the projects.
+- Can be personal or shared.
+- Composed of gadgets.
+- Gadgets fall into one of several categories.
+  - Work of Jira issues.
+  - Charts.
+  - Gadgets that are optimized for wallboards.
+  - Other gadgets.
+- Add more gadgets to dashboards through the Atlassian marketplace.
+
+#### Wallboards
+
+- Once you've created a dashboard, you can select view as wallboard, which can be shown on a TV in a room.
+- Acts as an information radiator, improving the team's shared understanding of the projects.
+
+### Takeaways
+
+- Dashboards display the work of projects.
+- Dashboards can be shared or used personally.
+- Gadgets display a portion of a dashboard.
+- Dashboards can be shown as a wallboard to display information.
