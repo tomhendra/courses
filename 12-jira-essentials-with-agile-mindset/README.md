@@ -909,10 +909,8 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 
 ### Epics Overview
 
-Jira's work hierarchy
-
 <!-- prettier-ignore -->
-|          |          |          |
+| Jira's work hierarchy          |
 |:--------:|:--------:|:--------:|
 |          | Epic     |          |
 | Story    | Task     | Bug      |
