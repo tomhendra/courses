@@ -22,7 +22,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 11. [Filters](#filters)
 12. [Epics](#epics)
 13. [Dashboards](#dashboards)
-14. Putting it All Together
+14. [Putting it All Together](#putting-it-all-together)
 
 ## Course Overview
 
@@ -971,3 +971,28 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 - Dashboards can be shared or used personally.
 - Gadgets display a portion of a dashboard.
 - Dashboards can be shown as a wallboard to display information.
+
+## Putting It All Together
+
+### Quick Course Review
+
+- It is important that you, your team and your entire organization embody [the combined lean and agile principles](#combined-lean-and-agile-principles) in order to be effective.
+- Having these principles, you can choose an agile methodology or framework, as well as the tools to help you implement these principles.
+- We saw that an agile team is continuously changing and improving, and you want to know Jira well enough to configure it to match your team's process.
+- Jira is designed to be configurable for this very purpose.
+  - Choose project template.
+  - Add or remove board columns.
+  - Assign WIP limits.
+  - Create swimlanes.
+  - Create and reuse JQL queries.
+  - Create and uze quick filters.
+  - Modify board card layout.
+  - Create issue types.
+  - Create custom fields.
+  - Customize reports.
+
+### Jira Family
+
+- Jira software is unique un that it has the Jira scrum and kanban projects, and also integration with version control and build systems.
+- Jira Core is a subset of Jira software, and is used for business applications such as onboarding employees.
+- Jira Service Desk is service desk software for IT teams, and is used to manage customer requests.
