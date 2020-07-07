@@ -18,7 +18,7 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 7. [Scrum Overview 1: Artifacts](#scrum-overview-1-artifacts)
 8. [Scrum Overview 2: Roles & Events](#scrum-overview-2-roles--events)
 9. [Quick and Basic Search](#quick-and-basic-search)
-10. JQL
+10. [JQL](#jql)
 11. Filters
 12. Epics
 13. Dashboards
@@ -818,3 +818,76 @@ Jira Essentials from Atlassian University certified training. [Course link](http
 
 - Quick search can search the text of issues, board names, project names and filter names.
 - Basic search is a user-friendly way to search for issues.
+
+## JQL
+
+### JQL Overview
+
+- Basic search uses user interface elements to make searching for issues easy.
+- Advanced search uses text to search for issues. This text is called JQL (Jira Query Language).
+- JQL can do two things:
+  1. Search for issues.
+  2. Order results.
+
+#### Basic vs Advanced Search
+
+- Basic search:
+  - User-friendly interface.
+  - Queries can be complex.
+- Advanced search:
+  - Uses JQL.
+  - Most powerful search method.
+  - JQL can be uses in automation scripts.
+
+#### Parts of JQL Query
+
+- There are two main parts to a JQL query, and both are optional.
+- The first is the search clause, which selects a subset of issues in the Jira instance.
+- The second part is the order by clause, which orders the results.
+- e.g. project = PROJ order be created DESC
+- The simplest JQL query is not search by clause and no order by clause, showing all issues.
+
+### Autocomplete
+
+- When in advanced search writing a JQL query, Jira will help you to write the query.
+- A list of available queries can be found [here](https://support.atlassian.com/jira-software-cloud/docs/advanced-search-reference-jql-fields/).
+- A JQL search clause has a `<field name> <operator> <value>` structure e.g. `project = projectA`
+- Boolean operators AND, OR & NOT are available for use.
+  - e.g. `assignee = currentUser() AND status = "In Progress"`
+  - e.g. `status = "Selected for Development" OR status = "In Progress"`
+  - Another way to write this query is with the `in` operator: `status in ("Selected for Development", "In Progress")`
+
+### Functions
+
+- Instead of a hardcoded field value as im `<field name> <operator> <field value>` e.g. `project = projectA`.
+- You can use a built-in function such as `<field name> <operator> <function>` e.g. `assignee = currentUser()`
+- Learn more about functions [here](https://support.atlassian.com/jira-software-cloud/docs/advanced-search-reference-jql-functions/).
+
+#### Time-based functions
+
+- startOfDay()
+- startOfWeek()
+- startOfMonth()
+- startOfYear()
+- endOfDay()
+- endOfWeek()
+- endOfMonth()
+- endOfYear()
+- now()
+- currentLogin()
+- lastLogin()
+
+#### Time Unit Qualifier
+
+- Can be used to specify specific time units.
+- `(+|-)nn(y|M|w|d|h|m)`
+  - e.g. created in the last 2 days (48 hours): `created > -2d`
+  - e.g. created since the start of the day 2 days ago: `created > startOfDay(-2d)`
+
+### Takeaways
+
+- A JQL query is behind all basic and advanced searches.
+- Leverage basic queries and autocomplete to simplify creating JQL queries.
+- JQL queries may select subsets of issues and/or order the query results.
+- Functions can be used to avoid hard-coding values in a search clause.
+- Time unit qualifiers can be used with date-related values.
