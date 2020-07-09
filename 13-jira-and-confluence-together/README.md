@@ -235,7 +235,7 @@ Jira and Confluence Together from Atlassian University certified training. [Cour
   - Edit the text and macros that are on the report to suit your project.
   - If you want to report on something other that a project, use the advances mode of the Jira Report blueprint and use JQL query for the report.
 
-### Takeaways
+### Takeaways
 
 - Use the Jira charts macro to display single Jira charts in Confluence.
 - Use the Jira Report blueprint in Confluence to create a customizable, graphic page containing information related to Jira issues.
