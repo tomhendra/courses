@@ -124,6 +124,60 @@
 
 ## Creating Issues Using Confluence
 
+- You can use the Jira Issue/Filter Macro to create Jira issues and insert the link on a Confluence page.
+- Create a Jira issue when editing a Confluence page.
+- Results in an issue in Jira with a link on the Confluence page.
+- Why?
+  - The user would prefer to use Confluence.
+  - The issue metadata (for example summary) already exists in Confluence.
+  - A list of issues already exists on a Confluence page and the user wishes to add to the list.
+
+### Create Single Issues with Confluence
+
+- (Optional) in edit mode select some text on the page.
+- Use the Insert Jira Issue/Filter Macro.
+- Select Create New Issue.
+- Enter project, issue type etc. (if you select text to start it is used as the issue summary).
+- Click Insert.
+
+### Create Multiple Issues with Confluence
+
+- When in view mode of a Confluence page (not edit) you can create a Jira issue by selecting text and clicking the Jira icon.
+- (Optional) create multiple issues at once by selecting text in a table.
+- Results in issue(s) in Jira with a link on the Confluence page.
+- Why?
+  - An alternative to creating issues in edit mode.
+  - Create multiple issues at once if from a table.
+- Who?
+  - Any team member who can edit pages (this results in an automatic page edit and publish) and can create issues.
+- How?
+  - Add text (optionally in a table).
+  - Publish the page.
+  - Highlight text.
+  - Select the Create Jira Issue icon.
+  - Enter the issue metadata.
+  - Click Create.
+  - The issue is created in Jira with a link added to the page (no editing or publishing required).
+  - To create multiple issues from a table, highlight a single summary.
+  - Click the Jira icon.
+  - Because the text is in a table, Confluence adds the Create multiple issues from table link.
+  - Issues will be created with a summary corresponding to the text in the summary column.
+  - If there is a link to en epic on the page , Confluence will provide the option to link created issues to that epic.
+  - Click Create.
+
+### Insert a Dynamic List of Issues on a Confluence Page.
+
+- You can use the Jira Issue/Filter Macro to display a table of issues on a Confluence page.
+- Use JQL to search for issues of an epic.
+- Use display options to define the columns of the table.
+- **Pro tip**: Execute the JQL queries in Jira first, and then when you know they are working, copy and paste them in Confluence, because the JQL queries are better in Jira.
+
+### Takeaways
+
+- You can use the Jira Issue/Filter Macro in Confluence to create Jira issues.
+- You can create multiple Jira issues from a Confluence table.
+- Use the Jira Issue/Filter Macro to insert a dynamic list of issues on a Confluence page.
+
 ## Product Requirements Blueprint
 
 ## Reporting Jira Information in Confluence
