@@ -180,4 +180,23 @@
 
 ## Product Requirements Blueprint
 
+### Blueprints
+
+- A blueprint is a template with more functionality than standard page templates.
+- Example blueprints include blog posts, decisions, meeting notes, retrospectives and product requirements.
+- These are all collections of similar pages for your project.
+- Usually, an index page is created along with individual pages.
+
+### A Single Product Requirements Page
+
+- A page template is provided as a start for your project page.
+- Customizable.
+- Some teams choose to have a product requirements page for each epic.
+- Click on the Epic row to insert Jira Issue/Filter macro.
+  - Can link to create Jira issues.
+  - Can display a dynamic list of Jira issues.
+- Once you have created a product requirements page, that page will be added to the page tree.
+- In addition you will see links to the product requirement's index page, containing metadata from the tables on each of the individual pages.
+- The index page is automatically created and updated by Confluence.
+
 ## Reporting Jira Information in Confluence
