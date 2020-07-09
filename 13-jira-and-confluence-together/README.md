@@ -1,9 +1,8 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
 <h1>Jira and Confluence Together</h1>
+<p>Jira and Confluence Together from Atlassian University certified training. [Course link](https://training.atlassian.com/jira-confluence-together).</p>
 </div>
-
-Jira and Confluence Together from Atlassian University certified training. [Course link](https://training.atlassian.com/jira-confluence-together).
 
 ## Index of topics
 
@@ -92,6 +91,36 @@ Jira and Confluence Together from Atlassian University certified training. [Cour
 - Integrating Jira and Confluence improves shared understanding, team satisfaction and productivity.
 
 ## Linking Issues and Pages
+
+### Add links to Pages in Issues.
+
+- In the details of a Jira issue you can link to a Confluence page.
+- This is an easy way to reference information to the Jira issue.
+- Can navigate directly to the Confluence page.
+- Changes to the pages location or title are automatically reflected.
+
+### Add links to Issues on Pages
+
+- On Confluence pages you can add links to related Jira issues.
+- Creates a convenient link to the issue.
+- Automatically provides the current status of the issue (a living document).
+- Automatically adds a link to the page in the issue links section of the Jira issue.
+- To link to a Jira issue on a Confluence page, you can use the Jira Issue/Filter Macro.
+  - Edit a Confluence page.
+  - +(insert more content).
+  - Jira Issue/Filter Macro.
+  - Search for the issue: use any issue key, search URL, Jira link, JQL, plain text or filter.
+  - Configure display options.
+  - Click insert.
+- Another option apart from using the Jira Issue/Filter Macro is to paste the URL of a Jira issue on the Confluence page.
+  - This triggers the auto-convert feature in Confluence, so the link on the page looks the same as if using the Jira Issue/Filter Macro.
+
+### Takeaways
+
+- Jira and Confluence have out-of-the-box linking capabilities.
+- Changes to linked pages or issues are automatically reflected in the links.
+- In Jira, use the link feature of Jira issues to link to Confluence pages.
+- In Confluence, use the Jira Issue/Filter Macro or auto-convert feature to link to Jira issues.
 
 ## Creating Issues Using Confluence
 
