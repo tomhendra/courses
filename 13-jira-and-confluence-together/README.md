@@ -200,3 +200,39 @@
 - The index page is automatically created and updated by Confluence.
 
 ## Reporting Jira Information in Confluence
+
+### Jira Charts Macro Overview
+
+- Add Jira charts to part of a Confluence page.
+- Why?
+  - Provides graphical, live Jira information in Confluence.
+- Who?
+  - Users who can edit Confluence pagers can create charts.
+  - Viewers of the chart only ee issues that they have permission to see.
+- How?
+  - When editing a page, you insert content and select jira Charts.
+
+### Jira Charts Macro: Inserting a Pie Chart
+
+- Select Pie Chart on the left.
+- Specify a search which defines which issues appear in the chart.
+- Display Options > Chart by - defines what th pie slices represent.
+
+### Jira Charts Macro: Two-Dimensional Chart
+
+- Select two-dimensional to view the results as a table.
+
+### Jira Report Blueprint
+
+- Uses the Jira charts macro and other macros on a single customizable page.
+- Visually displays the status of Jira issues inside of Confluence.
+- Select Jira Report while creating the page to use.
+  - Select the project that you want to report on.
+  - Enter a report title.
+  - Edit the text and macros that are on the report to suit your project.
+  - If you want to report on something other that a project, use the advances mode of the Jira Report blueprint and use JQL query for the report.
+
+### Takeaways
+
+- Use the Jira charts macro to display single Jira charts in Confluence.
+- Use the Jira Report blueprint in Confluence to create a customizable, graphic page containing information related to Jira issues.
