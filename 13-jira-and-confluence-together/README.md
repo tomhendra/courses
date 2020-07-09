@@ -5,19 +5,19 @@
 
 Jira and Confluence Together from Atlassian University certified training. [Course link](https://training.atlassian.com/jira-confluence-together).
 
+## Index of topics
+
 1. [Course Overview](#course-overview)
 
 2. [Why Integrate Jira and Confluence](#why-integrate-jira-and-confluence)
 
-3. [Administration Overview](#administration-overview)
+3. [Linking Issues and Page](#linking-issues-and-pages)
 
-4. [Linking Issues and Page](#linking-issues-and-pages)
+4. [Creating Issues Using Confluence](#creating-issues-using-confluence)
 
-5. [Creating Issues Using Confluence](#creating-issues-using-confluence)
+5. [Product Requirements Blueprint](#product-requirements-blueprint)
 
-6. [Product Requirements Blueprint](#product-requirements-blueprint)
-
-7. [Reporting Jira Information in Confluence](#reporting-jira-information-in-confluence)
+6. [Reporting Jira Information in Confluence](#reporting-jira-information-in-confluence)
 
 ## Course Overview
 
@@ -66,7 +66,30 @@ Jira and Confluence Together from Atlassian University certified training. [Cour
 
 - Teams can use the strengths of Confluence for knowledge management, and the strengths of Jira for work management.
 
-## Administration Overview
+### Administration Overview
+
+- In Confluence you have a number of pages, which are organized into spaces.
+- In Jira you have a number of issues, which are organized into projects.
+
+#### Jira & Confluence Administration Tasks
+
+- Connect Jira & Confluence instances (Jira & Confluence admins).
+- Create Confluence spaces (Confluence admin).
+- Assign Confluence space administrators (Confluence admin).
+- Create Jira projects (usually Jira admin).
+- Assign project administrators and leads (usually Jira admin).
+- Create a link between a Confluence space and Jira project (Jira or Confluence admin).
+
+### Notes
+
+- Every agile team is unique and always changing. There often is no "right way" to use the applications.
+- Use the Jira and Confluence tools to reflect your team's current processes, not dictate them.
+
+### Takeaways
+
+- Issue management (Jira) and content creation and collaboration (Confluence) are essential to most projects.
+- Integrate Jira and Confluence to inform and involve the entire team from a single source of truth.
+- Integrating Jira and Confluence improves shared understanding, team satisfaction and productivity.
 
 ## Linking Issues and Pages
 
