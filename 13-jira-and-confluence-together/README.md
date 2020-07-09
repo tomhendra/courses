@@ -3,18 +3,21 @@
 <h1>Jira and Confluence Together</h1>
 </div>
 
-## Introduction
-
 Jira and Confluence Together from Atlassian University certified training. [Course link](https://training.atlassian.com/jira-confluence-together).
 
-## Index of topics
+1. [Course Overview](#course-overview)
 
-- 1. [Course Overview](#course-overview)
-- 2. [Why Integrate Jira and Confluence](#why-integrate-jira-and-confluence)
-- 3. [Linking Issues and Page](#linking-issues-and-pages)
-- 4. [Creating Issues Using Confluence](#creating-issues-using-confluence)
-- 5. [Product Requirements Blueprint](#product-requirements-blueprint)
-- 6. [Reporting Jira Information in Confluence](#reporting-jira-information-in-confluence)
+2. [Why Integrate Jira and Confluence](#why-integrate-jira-and-confluence)
+
+3. [Administration Overview](#administration-overview)
+
+4. [Linking Issues and Page](#linking-issues-and-pages)
+
+5. [Creating Issues Using Confluence](#creating-issues-using-confluence)
+
+6. [Product Requirements Blueprint](#product-requirements-blueprint)
+
+7. [Reporting Jira Information in Confluence](#reporting-jira-information-in-confluence)
 
 ## Course Overview
 
@@ -54,6 +57,16 @@ Jira and Confluence Together from Atlassian University certified training. [Cour
   - Retrospectives.
 
 ## Why Integrate Jira and Confluence
+
+- Single source of project knowledge: Increase productivity by avoiding overlapping, scattered and out-of-sync information.
+- Improve the team's shared understanding of the project: Provide information to team members from the application they use.
+- Maintain traceability: Organized, complete history of project work, conversations, discussions etc.
+
+- Agile projects involve continuous change and planning - integration enables the project information to be _living_.
+
+- Teams can use the strengths of Confluence for knowledge management, and the strengths of Jira for work management.
+
+## Administration Overview
 
 ## Linking Issues and Pages
 
