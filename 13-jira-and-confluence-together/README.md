@@ -22,6 +22,37 @@ Jira and Confluence Together from Atlassian University certified training. [Cour
 - Integrate Jira information in Confluence Spaces.
 - Integrate Confluence information in Jira projects.
 
+### What is Jira Use For?
+
+- To help manage the work of a team project, broken down into issues.
+  - Add, prioritize, update, communicate and report on issues.
+- Visualizes the work of the project using project boards, reports and dashboards.
+
+### What is Confluence Used For?
+
+- A team content, communication and collaboration platform.
+  - Effectively a versioned team website and social media platform.
+- Teams plan, discuss, document and broadcast the work of the project in standardized ways.
+
+#### Example uses of Confluence
+
+- **Project content creation and sharing**
+  - Requirements.
+  - Documentation.
+  - Specifications.
+  - Knowledge base.
+- **Status**
+  - Roadmaps.
+  - Schedules.
+  - Project status.
+- **Collaboration**
+  - Meeting notes.
+  - Blogs.
+  - Comments.
+  - Idea discussions.
+  - Decisions.
+  - Retrospectives.
+
 ## Why Integrate Jira and Confluence
 
 ## Linking Issues and Pages
