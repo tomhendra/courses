@@ -3,6 +3,10 @@
 <h1>Frontend Masters: Complete Intro to Web Development V2</h1>
 </div>
 
+1. [HTML](#html)
+2. [CSS](#css)
+3. [JavaScript](#javascript)
+
 ## Introduction
 
 An introduction to web development with Brian Holt, of Microsoft.
@@ -122,3 +126,238 @@ Course notes: https://btholt.github.io/intro-to-web-dev-v2/
 - Resources:
   - [Flexbox Zombies](https://geddski.teachable.com/p/flexbox-zombies)
   - [Flexbox Froggy](https://flexboxfroggy.com)
+
+## JavaScript
+
+### Fundamentals
+
+- What is code? Code is for humans first and computers second.
+- It's really difficult to come back to code. Write code for maintenance.
+- Do everything you can do to make code more readable, plain, easier to understand. Less code is not the best way.
+- Code is communication.
+- JavaScript is single threaded - can only do one thing at a time.
+
+### Numbers, Strings and Booleans
+
+- Numbers, Strings and Booleans are types.
+- Numbers are numbers! Integers and floats are not separated.
+- Strings are a combination of letters always within "", '' or ``.
+- Booleans are a state of true or false.
+
+### Control flow
+
+- Conditional statements provide control flow.
+- Can use `else if` to ask additional questions.
+
+```js
+const friendsAtYourParty = 10;
+
+if (friendsAtYourParty === 0) {
+  console.log('Cool, now I have a lot of nachos to myself.');
+} else if (friendsAtYourParty >= 4) {
+  console.log('Perfect amount to play some Mario Kart.');
+} else {
+  console.log('Wooooo turn on the dance music!');
+}
+```
+
+### Loops
+
+- Execute something multiple times.
+- Run code blocks repeatedly while a condition is true.
+
+```js
+let friendsAtYourParty = 0;
+while (friendsAtYourParty < 10) {
+  // run this block multiple times
+  friendsAtYourParty = friendsAtYourParty + 1;
+}
+console.log(friendsAtYourParty);
+
+// Same can be achieved using for loop
+let friendsAtMyParty = 0;
+for (let i = 0; i <= 10; i++) {
+  friendsAtMyParty++;
+}
+console.log(friendsAtMyParty);
+```
+
+### Functions
+
+- A function is a piece of reusable code.
+
+```js
+function greet(firstName, lastName, honorific, greeting) {
+  return `${greeting} ${honorific} ${lastName}! I’m extremely pleased you could join us, ${firstName}! I hope you enjoy your stay, ${honorific} ${lastName}.`;
+}
+
+console.log(greet('Tom', 'Hendra', 'Lord', 'Salutations'));
+console.log(greet('Jack', 'Sparrow', 'Captain', 'A-hoy'));
+```
+
+### Scope
+
+- Every time you call a function, it has its own scope.
+- Other things can't peek into it; it just has its own little workspace for it to work with.
+- Once its done, any variable that you haven't explicitly held on to or returned at the end is discarded.
+
+```js
+function addFive(number) {
+  const someVariable = "you can't see me outside this function";
+  console.log(someVariable); // in scope
+  return number + 5;
+}
+
+addFive(10);
+console.log(someVariable); // undefined, out of scope
+```
+
+### Objects
+
+- A data object of key / value pairs.
+- Keys must be unique.
+- Used in conjunction with functions they're very powerful.
+
+```js
+const person1 = {
+  name: 'Tom',
+  ageRange: '25-35',
+};
+const person2 = {
+  name: 'Jack',
+  ageRange: '65-75',
+};
+
+function suggestMusic(person) {
+  if (person.ageRange === '25-35') {
+    console.log("We think you'll like Daft Punk your crazy millenial.");
+  } else if (person.ageRange === '65-75') {
+    console.log(
+      "You're obviously going to like Johnny Cash. He walks the line."
+    );
+  } else {
+    console.log(
+      'Uh, maybe try David Bowie? Everyone likes David Bowie, right?'
+    );
+  }
+}
+
+suggestMusic(person1);
+suggestMusic(person2);
+```
+
+### Context
+
+- In the simplest form, anywhere you are in JavaScript you have a context you are in.
+- You can reference that context by using `this`. If I just reference `this` from the outermost layer, it'll be the global object, which in the browser is something called window.
+- A good rule of thumb (that is unfortunately not always true) is that if you're inside an object of some sort, the `this` will be that object. If not, it'll be the global object, `window`.
+
+```js
+const me = {
+  name: {
+    first: 'Tom',
+    last: 'Hendra',
+  },
+  location: {
+    streetNumber: 500,
+    street: 'Fakestreet',
+    city: 'Seattle',
+    state: 'WA',
+    zipCode: 55555,
+    country: 'USA',
+  },
+  getAddress() {
+    return `${this.name.first} ${this.name.last}
+            ${this.location.streetNumber} ${this.location.street}
+            ${this.location.city}, ${this.location.state} ${this.location.zipCode}
+            ${this.location.country}`;
+  },
+};
+
+console.log(me.getAddress());
+```
+
+### Arrays
+
+- Objects are un-ordered collections of data using keys and values.
+- Arrays, in contrast, are ordered collections of data.
+- Arrays start at index of 0.
+
+```js
+const daysOfTheWeek = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+];
+console.log(daysOfTheWeek);
+console.log(daysOfTheWeek[0]); // Monday
+console.log(daysOfTheWeek[1]); // Tuesday
+console.log(daysOfTheWeek[6]); // Sunday
+```
+
+### The DOM (Document Object Model)
+
+- The DOM is basically a collection of objects and methods that you can call from JavaScript to interact with the HTML/CSS of the page.
+- `document` refers to the current HTML page, and is a globally available variable in the browser that you use to interact with the HTML and CSS.
+
+### Events & Listeners
+
+- An event is created every time certain events happens like when a user clicks something or when they type something.
+- We respond to these events by having what are called event listeners.
+
+```js
+<button class="event-button">Click me!</button>
+<script>
+  const button = document.querySelector('.event-button');
+  button.addEventListener('click', function() {
+    alert("Hey there!");
+  });
+```
+
+```jsx
+<style>
+  .color-box {
+    background-color: limegreen;
+    width: 100px;
+    height: 100px;
+  }
+</style>
+<div class="color-box"></div>
+<input class="color-input" placeholder="Type a color here!" />
+<script>
+  const input = document.querySelector('.color-input');
+  const paragraph = document.querySelector('.color-box');
+
+  input.addEventListener('change', function () {
+    paragraph.style.backgroundColor = input.value;
+  });
+</script>
+```
+
+### Event Delegation
+
+- If you have a bunch of elements that you need to listen for events on, you could attach an event listener to each but that's a bit tedious to do.
+- Instead what is sometimes easier to do is to use what's called **event bubbling**.
+- When event fires on an element, after that "bubbles" up to its parent, and then its parent, and its parent, etc. until it's at the root element.
+
+```jsx
+<div class="button-container">
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>4</button>
+  <button>5</button>
+</div>
+<script>
+  document.querySelector('.button-container').addEventListener('click', function(event) {
+    if (event.target.tagName === 'BUTTON') { // Only button being clicked fires event (not clicking div)
+      alert(`You clicked on button ${event.target.innerText}`);
+    }
+    event.stopPropagation(); // stops event bubbling further than button-container.
+  });
+</script>
+```
