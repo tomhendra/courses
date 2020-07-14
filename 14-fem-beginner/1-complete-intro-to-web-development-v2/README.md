@@ -6,7 +6,8 @@
 1. [HTML](#html)
 2. [CSS](#css)
 3. [JavaScript](#javascript)
-4. [Ajax & Node.js](#ajax--nodejs)
+4. [Ajax](#ajax)
+5. [Node.js](#nodejs)
 
 ## Introduction
 
@@ -363,7 +364,7 @@ console.log(daysOfTheWeek[6]); // Sunday
 </script>
 ```
 
-## Ajax & Node.js
+## Ajax
 
 - Ajax stands for "asynchronous JavaScript and XML" which is not what it does!
 - With the Ajax model, web applications are able to make quick, incremental updates to the user interface without reloading the entire browser page.
@@ -399,10 +400,10 @@ document.querySelector('.add-doggo').addEventListener('click', addNewDoggo);
 
 - Node is a program that allows you to run JavaScript from the terminal.
 - You can run web servers with it or build really cool tools.
-- Parcel is a web application bundler which helps to manage your project.
+- Parcel is a web application bundler built with Node which helps to manage your project.
 - Parcel provides a local dev server, packages files for output, splits code and more.
 
-## Git & Bash
+### Git & Bash
 
 - Git is a distributed source control management tool.
 - It's an easy way to share code and work on it together with a large team.
@@ -410,3 +411,41 @@ document.querySelector('.add-doggo').addEventListener('click', addNewDoggo);
 - GitHub is a centralized repository for git projects.
 - It allows strangers across the world to collaborate on code and make cool stuff.
 - Two parts to storing code on GitHub: Staging & commit.
+
+## Node.js
+
+- Node lets us execute JavaScript outside of the browser
+- The most basic server in Node is only just a couple of lines.
+
+```js
+const http = require('http');
+
+const server = http.createServer(function (req, res) {
+  console.log(`user visited ${req.url}`);
+  res.end('hello!');
+});
+
+console.log('listening on http://localhost:3000');
+server.listen(3000);
+```
+
+- Working with the http module directly can be a bit tedious and reinventing the wheel. It's very low-level.
+- There are some frameworks built on top of it that make it a lot easier to deal with.
+- One such framework is Express that makes it a lot easier to work with without being too complicated.
+
+```js
+const express = require('express');
+
+const app = express();
+
+app.get('/', function (req, res) {
+  res.end('Welcome to my site!');
+});
+
+app.get('/complement', function (req, res) {
+  res.end('You look nice today');
+});
+
+app.listen(3000);
+console.log('listening on http://localhost:3000');
+```
