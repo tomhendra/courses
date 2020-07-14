@@ -9,7 +9,7 @@ A series of courses for the Frontend Masters beginner learning path.
 
 ## Index of courses
 
-1. [Complete Intro to Web Development, v2](1-complete-intro-to-web-development-v2)
+1. [Complete Intro to Web Development, v2](1-complete-intro-to-web-development-v2).\
    A refresher of the basics, for completeness in learning from the Frontend Masters platform.
 
 2. [Getting Started with JavaScript, v2]()
