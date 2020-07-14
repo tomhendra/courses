@@ -3,17 +3,43 @@
 <h1>Frontend Masters: Complete Intro to Web Development V2</h1>
 </div>
 
-1. [HTML](#html)
-2. [CSS](#css)
-3. [JavaScript](#javascript)
-4. [Ajax](#ajax)
-5. [Node.js](#nodejs)
+- [1. Introduction](#1-introduction)
+  - [1.1. Tools](#11-tools)
+  - [1.2. Resources](#12-resources)
+- [2. HTML](#2-html)
+  - [2.1. Naming tags](#21-naming-tags)
+  - [2.2. Meta HTML](#22-meta-html)
+- [3. CSS](#3-css)
+  - [3.1. The Cascade](#31-the-cascade)
+  - [3.2. IDs & !important](#32-ids--important)
+  - [3.3. Pseudo classes & Elements](#33-pseudo-classes--elements)
+  - [3.4. Layout](#34-layout)
+  - [3.5. Height, Width, Padding, Border, and Margin](#35-height-width-padding-border-and-margin)
+  - [3.6. Floats](#36-floats)
+  - [3.7. Flexbox](#37-flexbox)
+- [4. JavaScript](#4-javascript)
+  - [4.1. Fundamentals](#41-fundamentals)
+  - [4.2. Numbers, Strings and Booleans](#42-numbers-strings-and-booleans)
+  - [4.3. Control flow](#43-control-flow)
+  - [4.4. Loops](#44-loops)
+  - [4.5. Functions](#45-functions)
+  - [4.6. Scope](#46-scope)
+  - [4.7. Objects](#47-objects)
+  - [4.8. Context](#48-context)
+  - [4.9. Arrays](#49-arrays)
+  - [4.10. The DOM (Document Object Model)](#410-the-dom-document-object-model)
+  - [4.11. Events & Listeners](#411-events--listeners)
+  - [4.12. Event Delegation](#412-event-delegation)
+- [5. Ajax](#5-ajax)
+  - [5.1. Bundling your Code](#51-bundling-your-code)
+- [6. Node.js](#6-nodejs)
 
-## Introduction
+## 1. Introduction
 
 An introduction to web development with Brian Holt, of Microsoft.
 
-Course notes: https://btholt.github.io/intro-to-web-dev-v2/
+[Course link](https://frontendmasters.com/courses/web-development-v2/)
+[Course notes](https://btholt.github.io/intro-to-web-dev-v2/)
 
 - Programming is hard, there is no right speed.
 - You either get something or not, and both are OK.
@@ -31,14 +57,14 @@ Course notes: https://btholt.github.io/intro-to-web-dev-v2/
   - JavaScript is like a smart house functionality. Interactions with things.
   - The Server is like the pizza delivery place, which delivers pizza to your house based on what you order.
 
-### Tools
+### 1.1. Tools
 
 - If you find a tool that works for you go with it. Don't just go for something shiny and new just because it's popular.
 - Browser, Code editor, Terminal.
 - The terminal emulator is the actual window in your operating system; it itself doesn't execute or understand your commands you're sending to it.
 - The shell is the code running inside of the terminal emulator. e.g. bash, zsh, fish etc.
 
-### Resources
+### 1.2. Resources
 
 - Be careful what resources you trust when Googling for things.
 - HTML, CSS or JavaScript: MDN is the holy grail.
@@ -47,7 +73,7 @@ Course notes: https://btholt.github.io/intro-to-web-dev-v2/
 - Library or Framework: GitHub repo or documentation.
 - Questions: Stack Overflow.
 
-## HTML
+## 2. HTML
 
 - Basic building blocks are tags.
 - Thoughtful usage of appropriate tags assists with screen readers and search engine ranking.
@@ -58,19 +84,19 @@ Course notes: https://btholt.github.io/intro-to-web-dev-v2/
 - Classes are a special type of attribute, can be applied to any tag, allowing them to be targeted by CSS.
 - IDs are global attributes that must be unique in the document. Useful to anchor sections of document.
 
-### Naming tags
+### 2.1. Naming tags
 
 - Generally you should name things semantically. Name things after what they do, not what they look like.
 - If things change in teh future, classnames based on appearances may be inappropriate.
 - CSS uses kebab-case to keep class names readable when they are in the browser.
 
-### Meta HTML
+### 2.2. Meta HTML
 
 - Information for configuring websites that are hidden from the user.
 - `<meta>` tag is used to describe metadata that cannot be represented by other HTML meta-related elements, like `<base>`, `<link>`, `<script>`, `<style>` or `<title>`.
 - Metadata is — in its very simplest definition — data that describes data. For example, an HTML document is data, but HTML can also contain metadata in its `<head>` element that describes the document — for example who wrote it, and its summary.
 
-## CSS
+## 3. CSS
 
 - A series of rules to apply styles to HTML.
 - Components of the rules are: Selector, Property, Value.
@@ -78,25 +104,25 @@ Course notes: https://btholt.github.io/intro-to-web-dev-v2/
 - Parent styles will affect children styles depending on which styles are applied.
 - Always apply styles to classes, never apply them to tags directly, unless literally every single tag should be styled in that same way.
 
-### The Cascade
+### 3.1. The Cascade
 
 - If the same selector is used more than once, the selector that is used last takes precedence.
 - Avoid using this ability of CSS where-ever possible. It'll save you hours-and-hours of debugging!
 - Specificity is the means by which browsers decide which CSS property values are the most relevant to an element and, therefore, will be applied - [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
 
-### IDs & !important
+### 3.2. IDs & !important
 
 - Don't use these!
 - They are wrecking balls and are way too powerful.
 - Lazy developers use these to override specificity rather than understanding the codebase properly.
 
-### Pseudo classes & Elements
+### 3.3. Pseudo classes & Elements
 
 - Change how elements look based on certain events that happen in the DOM like :hover & :focus, :first-child etc.
 - [This article](https://css-tricks.com/pseudo-class-selectors/) from CSS Tricks goes more in depth about pseudo classes.
 - For info about pseudo elements check out [this article](https://css-tricks.com/almanac/selectors/a/after-and-before/) also from CSS Tricks.
 
-### Layout
+### 3.4. Layout
 
 - Every tag in CSS has a display property associated with it by default. You can override & change the display property.
 - `inline`: displays inline e.g. `<span>`
@@ -106,19 +132,19 @@ Course notes: https://btholt.github.io/intro-to-web-dev-v2/
 - `grid` and `inline-grid`: More advance display mode that allow you more power to layout tags inside of them.
 - `table`: Make something act like a table. In general, use the <table></table> tag instead of using CSS to make things act like tables.
 
-### Height, Width, Padding, Border, and Margin
+### 3.5. Height, Width, Padding, Border, and Margin
 
 - These properties cannot be manipulated if something is `display: inline`. Be careful of that.
 - Something that is a block or block-like is made up from these properties.
 - [MDN Box Model](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model)
 
-### Floats
+### 3.6. Floats
 
 - The old bullet-proof method of layouts.
 - The idea behind float is to push an element as far left or right as possible, and once it's out of space, go to the next line.
 - They have peculiar behaviour that's tough to understand.
 
-### Flexbox
+### 3.7. Flexbox
 
 - `display: flex;` is a display mode for CSS.
 - You are controlling the children of the container set to `display: flex`, rather than the children themselves as with float, where the child elements are set to `float: left` for example.
@@ -129,9 +155,9 @@ Course notes: https://btholt.github.io/intro-to-web-dev-v2/
   - [Flexbox Zombies](https://geddski.teachable.com/p/flexbox-zombies)
   - [Flexbox Froggy](https://flexboxfroggy.com)
 
-## JavaScript
+## 4. JavaScript
 
-### Fundamentals
+### 4.1. Fundamentals
 
 - What is code? Code is for humans first and computers second.
 - It's really difficult to come back to code. Write code for maintenance.
@@ -139,14 +165,14 @@ Course notes: https://btholt.github.io/intro-to-web-dev-v2/
 - Code is communication.
 - JavaScript is single threaded - can only do one thing at a time.
 
-### Numbers, Strings and Booleans
+### 4.2. Numbers, Strings and Booleans
 
 - Numbers, Strings and Booleans are types.
 - Numbers are numbers! Integers and floats are not separated.
 - Strings are a combination of letters always within "", '' or ``.
 - Booleans are a state of true or false.
 
-### Control flow
+### 4.3. Control flow
 
 - Conditional statements provide control flow.
 - Can use `else if` to ask additional questions.
@@ -163,7 +189,7 @@ if (friendsAtYourParty === 0) {
 }
 ```
 
-### Loops
+### 4.4. Loops
 
 - Execute something multiple times.
 - Run code blocks repeatedly while a condition is true.
@@ -184,7 +210,7 @@ for (let i = 0; i <= 10; i++) {
 console.log(friendsAtMyParty);
 ```
 
-### Functions
+### 4.5. Functions
 
 - A function is a piece of reusable code.
 
@@ -197,7 +223,7 @@ console.log(greet('Tom', 'Hendra', 'Lord', 'Salutations'));
 console.log(greet('Jack', 'Sparrow', 'Captain', 'A-hoy'));
 ```
 
-### Scope
+### 4.6. Scope
 
 - Every time you call a function, it has its own scope.
 - Other things can't peek into it; it just has its own little workspace for it to work with.
@@ -214,7 +240,7 @@ addFive(10);
 console.log(someVariable); // undefined, out of scope
 ```
 
-### Objects
+### 4.7. Objects
 
 - A data object of key / value pairs.
 - Keys must be unique.
@@ -248,7 +274,7 @@ suggestMusic(person1);
 suggestMusic(person2);
 ```
 
-### Context
+### 4.8. Context
 
 - In the simplest form, anywhere you are in JavaScript you have a context you are in.
 - You can reference that context by using `this`. If I just reference `this` from the outermost layer, it'll be the global object, which in the browser is something called window.
@@ -279,7 +305,7 @@ const me = {
 console.log(me.getAddress());
 ```
 
-### Arrays
+### 4.9. Arrays
 
 - Objects are un-ordered collections of data using keys and values.
 - Arrays, in contrast, are ordered collections of data.
@@ -301,12 +327,12 @@ console.log(daysOfTheWeek[1]); // Tuesday
 console.log(daysOfTheWeek[6]); // Sunday
 ```
 
-### The DOM (Document Object Model)
+### 4.10. The DOM (Document Object Model)
 
 - The DOM is basically a collection of objects and methods that you can call from JavaScript to interact with the HTML/CSS of the page.
 - `document` refers to the current HTML page, and is a globally available variable in the browser that you use to interact with the HTML and CSS.
 
-### Events & Listeners
+### 4.11. Events & Listeners
 
 - An event is created every time certain events happens like when a user clicks something or when they type something.
 - We respond to these events by having what are called event listeners.
@@ -340,7 +366,7 @@ console.log(daysOfTheWeek[6]); // Sunday
 </script>
 ```
 
-### Event Delegation
+### 4.12. Event Delegation
 
 - If you have a bunch of elements that you need to listen for events on, you could attach an event listener to each but that's a bit tedious to do.
 - Instead what is sometimes easier to do is to use what's called **event bubbling**.
@@ -364,7 +390,7 @@ console.log(daysOfTheWeek[6]); // Sunday
 </script>
 ```
 
-## Ajax
+## 5. Ajax
 
 - Ajax stands for "asynchronous JavaScript and XML" which is not what it does!
 - With the Ajax model, web applications are able to make quick, incremental updates to the user interface without reloading the entire browser page.
@@ -396,7 +422,7 @@ function addNewDoggo() {
 document.querySelector('.add-doggo').addEventListener('click', addNewDoggo);
 ```
 
-### Bundling your Code
+### 5.1. Bundling your Code
 
 - Node is a program that allows you to run JavaScript from the terminal.
 - You can run web servers with it or build really cool tools.
@@ -412,7 +438,7 @@ document.querySelector('.add-doggo').addEventListener('click', addNewDoggo);
 - It allows strangers across the world to collaborate on code and make cool stuff.
 - Two parts to storing code on GitHub: Staging & commit.
 
-## Node.js
+## 6. Node.js
 
 - Node lets us execute JavaScript outside of the browser
 - The most basic server in Node is only just a couple of lines.
