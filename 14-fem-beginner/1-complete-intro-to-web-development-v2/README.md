@@ -6,6 +6,7 @@
 1. [HTML](#html)
 2. [CSS](#css)
 3. [JavaScript](#javascript)
+4. [Ajax & Node.js](#ajax--nodejs)
 
 ## Introduction
 
@@ -62,7 +63,7 @@ Course notes: https://btholt.github.io/intro-to-web-dev-v2/
 - If things change in teh future, classnames based on appearances may be inappropriate.
 - CSS uses kebab-case to keep class names readable when they are in the browser.
 
-### Meta HTML
+### Meta HTML
 
 - Information for configuring websites that are hidden from the user.
 - `<meta>` tag is used to describe metadata that cannot be represented by other HTML meta-related elements, like `<base>`, `<link>`, `<script>`, `<style>` or `<title>`.
@@ -361,3 +362,51 @@ console.log(daysOfTheWeek[6]); // Sunday
   });
 </script>
 ```
+
+## Ajax & Node.js
+
+- Ajax stands for "asynchronous JavaScript and XML" which is not what it does!
+- With the Ajax model, web applications are able to make quick, incremental updates to the user interface without reloading the entire browser page.
+- `fetch` is the new way of doing AJAX and it is so much easier than the old one.
+- What `fetch` returns is called a promise and it's similar to a callback that we used before.
+- A promise, like callbacks, allows you to deal with things that don't happen immediately, things that are asynchronous. In this case, we're waiting for the API to respond with the information we asked for. It takes to request more information over the Internet and we don't want to hold up the rest of our code.
+- With a promise, it's an object that represents the future answer to whatever you asked.
+
+```js
+const DOG_URL = 'https://dog.ceo/api/breeds/image/random';
+
+const doggos = document.querySelector('.doggos');
+
+function addNewDoggo() {
+  const promise = fetch(DOG_URL);
+  promise
+    .then(function (response) {
+      const processingPromise = response.json();
+      return processingPromise;
+    })
+    .then(function (processedResponse) {
+      const img = document.createElement('img');
+      img.src = processedResponse.message;
+      img.alt = 'Cute doggo';
+      doggos.appendChild(img);
+    });
+}
+
+document.querySelector('.add-doggo').addEventListener('click', addNewDoggo);
+```
+
+### Bundling your Code
+
+- Node is a program that allows you to run JavaScript from the terminal.
+- You can run web servers with it or build really cool tools.
+- Parcel is a web application bundler which helps to manage your project.
+- Parcel provides a local dev server, packages files for output, splits code and more.
+
+## Git & Bash
+
+- Git is a distributed source control management tool.
+- It's an easy way to share code and work on it together with a large team.
+- It's also a very convenient way to backup your code off your computer and an easy way for you to post code online so other people can use it.
+- GitHub is a centralized repository for git projects.
+- It allows strangers across the world to collaborate on code and make cool stuff.
+- Two parts to storing code on GitHub: Staging & commit.
