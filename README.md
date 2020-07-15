@@ -44,13 +44,13 @@ I have been learning software development full-time since August 2018, and prior
     This course goes less in depth than Colt Steele's, and the solutions are similar. However I wanted to gain an additional perspective on CS topics. This course also covers non-technical advice to succeed in interviews.
 
 12. **[Jira Essentials with Agile Mindset](12-jira-essentials-with-agile-mindset)**.\
-    Many job listings require familiarity with agile methodologies (scrum and/or kanban), and Jira is the most popular project management tool for software development teams. This course from Atlassian University teaches both.
+    Many job listings require familiarity with agile methodologies (scrum and/or kanban), and Jira is the most popular project management tool for software development teams. This course from Atlassian University covers both.
 
 13. **[Jira and Confluence Together](13-jira-and-confluence-together)**.\
-    Confluence is part of the Jira family. I decided to take this course from Atlassian University to efficiently plan and manage more complex projects for my portfolio.
+    Confluence is part of the Jira family. I decided to take this course from Atlassian University to plan and manage complex projects for my portfolio more efficiently.
 
 14. **[Frontend Masters Learning Paths: Beginner](14-fem-beginner)**.\
-    Frontend Masters targets intermediate to advanced level engineers. The content is taught by industry leaders, which gives great confidence in the quality of material being delivered.
+    Frontend Masters targets intermediate to advanced level developers. The content is taught by industry leaders, which gives great confidence in the quality of material being delivered.
 
 TODO.......
 

@@ -68,8 +68,8 @@ The blocks that make up our programs:
 
 - **Number**: In JavaScript there is no distinction between numbers that have decimals and ones that don't.
 - **String**: a collection of characters that make up something that we could pronounce. A word or a sentence.
-- **Boolean**: true / false. Must be one or the other. s
-- **Empty values**: null & undefined. Denotes there is no value, an emptiness.
+- **Boolean**: true / false. Must be one or the other.
+- **Empty value**: null & undefined. Denotes there is no value, an emptiness.
 - **Array**: An ordered set of values.
 - **Object**: A set of values with named positions. The key AKA property is a named specific location. Strings are used for the keys.
 
