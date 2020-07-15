@@ -21,9 +21,9 @@ An introduction to JavaScript with Kyle Simpson, of YDKJS.
 - Programming primer (in JS)
 - Three pillars of JS:
 
-  1. Types / Coercion
-  2. Scope / Closures
-  3. This / Prototypes
+1. Types / Coercion
+2. Scope / Closures
+3. This / Prototypes
 
 ### 1.2. Code is for Humans
 
@@ -56,13 +56,14 @@ An introduction to JavaScript with Kyle Simpson, of YDKJS.
 ## 2. Programming Primer
 
 - The blocks that make up our programs:
-  - 1. Values
-  - 2. Operations
-  - 3. Variables
-  - 4. Expressions and statements
-  - 5. Decisions
-  - 6. Loops
-  - 7. Functions
+
+1. Values
+2. Operations
+3. Variables
+4. Expressions and statements
+5. Decisions
+6. Loops
+7. Functions
 
 ### 2.1. Values
 
@@ -75,16 +76,17 @@ An introduction to JavaScript with Kyle Simpson, of YDKJS.
 
 ### 2.2. Operations
 
-- All basic arithmetic: **+, -, \* and /**.
-- **+** has dual purpose depending on the values; addition for numbers or concatenation for strings. This is knows as 'overloaded' meaning it does more than one thing.
+- All basic arithmetic: `+`, `-`, `*` and `/`.
+- `+` has dual purpose depending on the values; addition for numbers or concatenation for strings.
+  - This is knows as 'overloaded' meaning it does more than one thing.
 - Operators have operands. An operand is the value that is going to be operated on by the operator.
-- e.g. 3 + 4 has operator of +, 3 is the left operand and 4 is the right operand.
+- e.g. `3 + 4` has operator of `+`, `3` is the left operand and `4` is the right operand.
 - The kinds of operators that have a left and right operand are known as 'binary' operators.
-- **!** is a 'unary' operator meaning there's a single operand involved. **!** does the 'flipping' or 'negation' or 'compliment' of a boolean value.
-- **==** is a comparison operator: a binary operator that asks whether the right and left hand operands have a relationship that we can determine something about. Double equals is the loose equality operator.
-- **< or >** comparison operators for less than or greater than, returning a boolean.
+- `!` is a 'unary' operator meaning there's a single operand involved. `!` does the 'flipping' or 'negation' or 'compliment' of a boolean value.
+- `==` is a comparison operator: a binary operator that asks whether the right and left hand operands have a relationship that we can determine something about. Double equals is the loose equality operator.
+- `<` and `>` comparison operators for less than or greater than, returning a boolean.
 - Logical operators try to decide something for us:
-  - The **||** is the OR logical operator: if one or the other results in true, return boolean true.
-  - The **&&** is the AND logical operator: If both result in true, return boolean true.
+  - The `||` is the OR logical operator: if one or the other results in true, return boolean true.
+  - The `&&` is the AND logical operator: If both result in true, return boolean true.
 
 ### 2.3. Types
