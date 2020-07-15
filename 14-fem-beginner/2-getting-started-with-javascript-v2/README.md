@@ -6,6 +6,10 @@
 - [1. Introduction](#1-introduction)
   - [1.1. Course Overview](#11-course-overview)
   - [1.2. Code is for Humans](#12-code-is-for-humans)
+- [2. Programming Primer](#2-programming-primer)
+  - [2.1. Values](#21-values)
+  - [2.2. Operations](#22-operations)
+  - [2.3. Types](#23-types)
 
 ## 1. Introduction
 
@@ -48,3 +52,39 @@ An introduction to JavaScript with Kyle Simpson, of YDKJS.
 - Every single moment you invest in making your code more readable is time saved in the future.
 - The one thing we will always be better at than the computer: Empathetic communication with other people (Getify's Law #1).
 - Understanding your tools is how you communicate your ideas more effectively through code.
+
+## 2. Programming Primer
+
+- The blocks that make up our programs:
+  - 1. Values
+  - 2. Operations
+  - 3. Variables
+  - 4. Expressions and statements
+  - 5. Decisions
+  - 6. Loops
+  - 7. Functions
+
+### 2.1. Values
+
+- **Number**: In JavaScript there is no distinction between numbers that have decimals and ones that don't.
+- **String**: a collection of characters that make up something that we could pronounce. A word or a sentence.
+- **Boolean**: true / false. Must be one or the other. s
+- **Empty values**: null & undefined. Denotes there is no value, an emptiness.
+- **Array**: An ordered set of values.
+- **Object**: A set of values with named positions. The key AKA property is a named specific location. Strings are used for the keys.
+
+### 2.2. Operations
+
+- All basic arithmetic: **+, -, \* and /**.
+- **+** has dual purpose depending on the values; addition for numbers or concatenation for strings. This is knows as 'overloaded' meaning it does more than one thing.
+- Operators have operands. An operand is the value that is going to be operated on by the operator.
+- e.g. 3 + 4 has operator of +, 3 is the left operand and 4 is the right operand.
+- The kinds of operators that have a left and right operand are known as 'binary' operators.
+- **!** is a 'unary' operator meaning there's a single operand involved. **!** does the 'flipping' or 'negation' or 'compliment' of a boolean value.
+- **==** is a comparison operator: a binary operator that asks whether the right and left hand operands have a relationship that we can determine something about. Double equals is the loose equality operator.
+- **< or >** comparison operators for less than or greater than, returning a boolean.
+- Logical operators try to decide something for us:
+  - The **||** is the OR logical operator: if one or the other results in true, return boolean true.
+  - The **&&** is the AND logical operator: If both result in true, return boolean true.
+
+### 2.3. Types
