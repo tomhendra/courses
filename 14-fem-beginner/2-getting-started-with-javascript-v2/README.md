@@ -18,8 +18,7 @@ An introduction to JavaScript with Kyle Simpson, of YDKJS.
 
 ### 1.1. Course Overview
 
-- Programming primer (in JS)
-- Three pillars of JS:
+Three pillars of JS:
 
 1. Types / Coercion
 2. Scope / Closures
@@ -46,7 +45,7 @@ An introduction to JavaScript with Kyle Simpson, of YDKJS.
 - As much as 70% of our time spent coding is spent reading the code.
 - Code must first be ready before it can be written.
 - **Warning:** If your code has to be rewritten to be fixed, improved or extended, you failed.
-- Dedicate 10% if your time (6 minutes in every hour) to refactor your code to be more readable.
+- Dedicate 10% of your time (6 minutes in every hour) to refactor your code to be more readable.
 - Documentation and tests are important, but ultimately they are **indirectly** related to code quality.
 - Readability **directly** impacts your ability, and that of everyone else, to do their job.
 - Every single moment you invest in making your code more readable is time saved in the future.
@@ -55,7 +54,7 @@ An introduction to JavaScript with Kyle Simpson, of YDKJS.
 
 ## 2. Programming Primer
 
-- The blocks that make up our programs:
+The blocks that make up our programs:
 
 1. Values
 2. Operations
