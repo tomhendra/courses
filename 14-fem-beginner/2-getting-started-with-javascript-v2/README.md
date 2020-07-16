@@ -13,7 +13,8 @@
   - [2.4. Variables](#24-variables)
   - [2.5. Expressions & Statements](#25-expressions--statements)
   - [2.6. Decisions: If & Else](#26-decisions-if--else)
-  - [2.7. Functions](#27-functions)
+  - [2.7. Loops](#27-loops)
+  - [2.8. Functions](#28-functions)
 
 ## 1. Introduction
 
@@ -159,7 +160,7 @@ if (isEnrolled()) {
 - The "else clause" only executes if the test clause evaluates to `false`.
 - These statements can be chained and nested to create more complex structures to build your application.
 
-### Loops
+### 2.7. Loops
 
 - It is often the case that you will need to perform several operations multiple times.
 - Loops are the way that we repeat something over and over again.
@@ -190,7 +191,7 @@ while (students.length > 0) {
 }
 ```
 
-### 2.7. Functions
+### 2.8. Functions
 
 - There are times when we have a collection of statements that we want to execute multiple times in different places.
 - Technically the computer science term for a function is a **procedure**: a collection of things that we want to do.
