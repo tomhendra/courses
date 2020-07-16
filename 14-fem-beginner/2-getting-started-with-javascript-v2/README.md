@@ -10,6 +10,10 @@
   - [2.1. Values](#21-values)
   - [2.2. Operations](#22-operations)
   - [2.3. Types](#23-types)
+  - [2.4. Variables](#24-variables)
+  - [2.5. Expressions & Statements](#25-expressions--statements)
+  - [2.6. Decisions: If & Else](#26-decisions-if--else)
+  - [2.7. Functions](#27-functions)
 
 ## 1. Introduction
 
@@ -89,3 +93,125 @@ The blocks that make up our programs:
   - The `&&` is the AND logical operator: If both result in true, return boolean true.
 
 ### 2.3. Types
+
+- The term in programming speak for a kind of value is a type.
+- `typeof` is a unary operator which which returns the type of a value.
+- `typeof null` returns `object` which is a 20 year old bug. We can't always fix bugs in languages becuase it may break other things.
+- `typeof [1,2,3]` returns `object` which is a less specific answer than perhaps we'd like. Arrays are subtypes of the `object` type.
+
+### 2.4. Variables
+
+- A variable is a representation of a place in memory which is used to store values.
+- e.g. `var name = "Tom"` - The variable `name` is assigned the string `"Tom"` with the assignment operator `=` which tells the computer to store it in a place in memory.
+- Later if we want to retrieve the value, we use the variable `name` to give us the string back.
+- The `;` denotes the end of a statement, like a `.` in english to finish a sentence.
+- Array access is done with square brackets e.g. for `var friends = ["Pedro", "Alberto"]` we'd write `friends[1]` to access `"Alberto"`.
+- There are operations that can only be done with variables, because not only do they do something but they reassign too.
+
+  ```js
+  var age = 39;
+  age++; // increment what is in age by 1, and reassign the new value back to age.
+  age += 2; // increment what is in age by 2, and reassign the new value back to age.
+
+  age; // 42
+  ```
+
+### 2.5. Expressions & Statements
+
+- An expression is like a phrase in english, whereas a statement is like a sentence.
+- A statement will nearly always end with a `;`.
+- `var age = 39;` is a statement, it ends with a `;` - a whole sentence.
+- The `age = 39` part is an assignment; an expression - a phrase within the sentence.
+- `age = 1 + (age * 2);` is a statement with more expressions than you might think.
+  - `2` is an expression (a literal expression, using a [primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) value).
+  - `age` is another expression, we need to retrieve the value of the variable.
+  - `(age * 2)` is an another expression, we need to perform arithmetic.
+  - `1` is another expression for the literal 1.
+  - `1 + (age * 2)` is a fifth expression.
+  - `ge = 1 + (age * 2)` is the sixth expression.
+
+### 2.6. Decisions: If & Else
+
+- To do something useful with our programs we need to make decisions.
+- One of the primary ways to make a decision is with the `if` statement.
+
+```js
+var age = 39;
+
+if (age >= 18) {
+  goVote();
+}
+```
+
+- The `()` is the "if clause" or "test clause".
+- We group a set of statements together with `{}` - like a paragraph in english.
+- The test clause is evaluated and if `true` the code within the `{}` is executed.
+- A lot of the time we need to choose between two different things, for which we use the `if else` statement.
+
+```js
+if (isEnrolled()) {
+  takeClass(); // if the test clause evaluates to true, execute this code.
+} else {
+  enrolFirst(); // if the test clause evaluates to false, execute this code.
+}
+```
+
+- The "else clause" only executes if the test clause evaluates to `false`.
+- These statements can be chained and nested to create more complex structures to build your application.
+
+### Loops
+
+- It is often the case that you will need to perform several operations multiple times.
+- Loops are the way that we repeat something over and over again.
+- Two different ways of doing repetition with a `for` loop.
+
+```js
+var students = ['Matt', 'Sarah', 'Kenny'];
+
+// I'm going to do something and count the number of times I am going to do it.
+// Test clause identical to if statement.
+for (let i = 0; i < students.length; i++) {
+  greetStudent(students[i]); // Executed each time the test clause passes.
+}
+
+// A for loop that goes over a list of values.
+// Called an "iterator" where all values are iterated over.
+for (let student of students) {
+  greetStudent(student);
+}
+```
+
+- A while loop keeps iterating while the clause evaluates to true.
+
+```js
+while (students.length > 0) {
+  let student = students.pop();
+  greetStudent(student);
+}
+```
+
+### 2.7. Functions
+
+- There are times when we have a collection of statements that we want to execute multiple times in different places.
+- Technically the computer science term for a function is a **procedure**: a collection of things that we want to do.
+
+```js
+function greetStudent(student) {
+  console.log(`Hello, ${student.name}!`);
+}
+```
+
+- `student` is the **parameter**, the input.
+- Back ticks ` `` ` in JS are used for **interpolated strings** - a string where we are putting other variable values inside.
+- The example is doing something but not giving us anything back, which is why it is a **procedure**.
+- The following example is more true to the spirit of a **function** in that it takes an input and computes an output.
+
+```js
+function timeRemaining(timeElapsed, endTime) {
+  return endTime - timeElapsed;
+}
+
+var left = timeRemaining(42, 240);
+
+left; // 198
+```
