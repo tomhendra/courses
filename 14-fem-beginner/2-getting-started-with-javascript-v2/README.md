@@ -15,6 +15,11 @@
   - [2.6. Decisions: If & Else](#26-decisions-if--else)
   - [2.7. Loops](#27-loops)
   - [2.8. Functions](#28-functions)
+- [3. Types / Coercion](#3-types--coercion)
+  - [3.1. Primitive Types](#31-primitive-types)
+  - [3.2. NaN](#32-nan)
+  - [3.3. new](#33-new)
+  - [3.4. Coercion](#34-coercion)
 
 ## 1. Introduction
 
@@ -216,3 +221,118 @@ var left = timeRemaining(42, 240);
 
 left; // 198
 ```
+
+## 3. Types / Coercion
+
+- Three things that we need to look at are:
+  - Primitive types.
+  - Converting types.
+  - Checking equality.
+
+### 3.1. Primitive Types
+
+- "In JavaScript, everything is an object." - Thrown around as a fact and is **100% false!**
+- We have primitive types in JavaScript.
+
+  - undefined
+  - string
+  - number
+  - boolean
+  - object
+  - symbol (ES6)
+
+- And also other types which are not primitives.
+
+  - null - behaves a bit strangely with respect to the type of operator.
+  - function - technically a subtype of the object type.
+  - array - - technically a subtype of the object type.
+
+- In JavaScript variables don't have types; values do.
+
+```js
+var v;
+typeof v; // undefined
+v = '1';
+typeof v; // string
+v = 2;
+typeof v; // number
+v = true;
+typeof v; // boolean
+v = {};
+typeof v; // object
+v = Symbol();
+typeof v; // symbol
+```
+
+- JS returns `undefined` if a variable has been declared but not assigned, or if a variable has never been declared, which can lead to some confusion.
+
+```js
+typeof doesNotExist; // undefined
+
+var v = null;
+typeof v; // object - oops!! Historical bug.
+
+v = function () {};
+typeof v; // function - JS can distinguish from object.
+
+v = [1, 2, 3];
+typeof v; // object - huh? JS cannot distinguish array from object. Historical reasons...
+```
+
+### 3.2. NaN
+
+- There are values that have special behaviours, such as NaN.
+- NaN is a special value that indicates we've had an invalid numeric operation.
+- There are five different types of operations that return NaN:
+
+  - Number cannot be parsed (e.g. `parseInt("blabla")` or `Number(undefined)`)
+  - Math operation where the result is not a real number (e.g. `Math.sqrt(-1)`)
+  - Operand of an argument is NaN (e.g. `7 ** NaN`)
+  - Indeterminate form (e.g. `0 * Infinity`)
+  - Any operation that involves a string and is not an addition operation (e.g. `"foo"/3`)
+
+```js
+var greeting = 'Hello, Captain Jubbins!';
+
+var something = greeting / 2; // !?!?!?
+
+something; // NaN
+Number.isNan(something); // true
+
+Number.isNan(greeting); // false - although greeting is not a number, it isn't the special JS NaN value.
+```
+
+- It's good practice to test the results of mathematical operations to ensure you don't have any NaNs.
+
+### 3.3. new
+
+- There are built-in fundamental objects, many of which were copied from a language like Java and so start with capital letters.
+
+  - Object()
+  - Array()
+  - Function()
+  - Date()
+  - RegExp()
+  - Error()
+
+- These are constructor forms of fundamental objects which create object representations.
+- We use the `new` keyword to instantiate instances of them.
+- There are however three other fundamental objects that we **don't** want to use the `new` keyword with:
+
+  - String()
+  - Number()
+  - Boolean()
+
+- We want to use `String()`, `Number()` and `Boolean()` as functions.
+- We don't want to put the `new` keyword in front of them, because if we call them with some value, it actually changes the value into that type.
+
+```js
+var yesterday = new Date('July 16, 2020');
+yesterday.toUTCString();
+// "Wed, 15 Jul 2020 22:00:00 GMT"
+
+var myGPA = String(transcript.gpa);
+// "3.54"
+```
+
+### 3.4. Coercion
