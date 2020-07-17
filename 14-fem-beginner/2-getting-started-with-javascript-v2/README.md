@@ -336,3 +336,45 @@ var myGPA = String(transcript.gpa);
 ```
 
 ### 3.4. Coercion
+
+- The way to convert from one type to another.
+- All programs, all languages, need to convert types. You can't do anything useful without it.
+- In a dynamically typed language like JavaScript, the way we convert types is called coercion.
+
+- Implicit coercion of a number to a string:
+
+```js
+var msg1 = 'There are ';
+var numBeers = 16;
+var msg2 = ' bottles of beer on the wall.';
+console.log(msg1 + numBeers + msg2); // "There are 16 bottles of beer on the wall."
+/*
+ * Makes an assumption about the + operator, in that it will coerce numBeers.
+ * + operator is overloaded with behaviour that if at least one of the operands
+ * is already a string, then JS will prefer string concatenation and coerce as expected.
+ */
+
+console.log(`There are ${numBeers + ''} bottles of beer on the wall.`);
+/*
+ * +"" is an extremely common idiomatic way of converting something to a string by adding
+ * the empty string to it. We are again taking advantage of the + operator being overloaded
+ * and that if one of its operands is a string then JS will prefer string concatenation.
+ */
+```
+
+- The pattern for the `+` operator overloading is:
+  - Number + Number = Number
+  - Number + String = String
+  - String + Number = String
+  - String + string = String
+
+```js
+function addABeer(numBeers) {
+  return numBeers + 1;
+}
+// Any user input from a DOM element will always be a string.
+// We will always need to convert to perform calculations.
+addABeer(
+  Number(inputForm.value);
+)
+```
