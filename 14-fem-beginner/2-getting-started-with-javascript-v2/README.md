@@ -20,6 +20,9 @@
   - [3.2. NaN](#32-nan)
   - [3.3. new](#33-new)
   - [3.4. Coercion](#34-coercion)
+  - [3.5. Booleans](#35-booleans)
+  - [3.6. Coercion Best Practices](#36-coercion-best-practices)
+  - [3.7. Equality](#37-equality)
 
 ## 1. Introduction
 
@@ -373,8 +376,93 @@ function addABeer(numBeers) {
   return numBeers + 1;
 }
 // Any user input from a DOM element will always be a string.
-// We will always need to convert to perform calculations.
+// We will always need to convert to perform mathematical calculations.
 addABeer(
   Number(inputForm.value);
 )
 ```
+
+### 3.5. Booleans
+
+- **Truthy**: Which values would become `true` if we try to coerce them.
+- **Falsy**: Which values would become `false` if we try to coerce them.
+- JS defines a very specific list of values that when you convert them to a boolean they become `false`.
+  - `""`
+  - `0` and `-0`
+  - `null`
+  - `NaN`
+  - `false`
+  - `undefined`
+- Everything else becomes `true` when you try to convert to a boolean.
+
+```js
+// Takes advantage that anything other than an empty string is truthy.
+if (studentsInputElem.value) {
+  numStudents = Number(studentsInputElem.value);
+}
+// Takes advantage that any number greater than 0 is truthy.
+while (students.length) {
+  enrollStudent(newStudents.pop());
+}
+
+// !! converts to boolean explicitly. Equivalent of Boolean()
+if (!!studentsInputElem.value) {
+  numStudents = Number(studentsInputElem.value);
+}
+// More explicit expression.
+while (students.length > 0) {
+  enrollStudent(newStudents.pop());
+}
+```
+
+### 3.6. Coercion Best Practices
+
+- A quality JS program embraces coercions, making sure the types involved in every operation are clear.
+- If you make your types obvious in your program, the vast majority of the quirky corner cases that people complain about go away.
+- _If a feature is sometimes useful and sometimes dangerous and if there is a better option, always use the better option._ -- The Good Parts, Crockford.
+  - This statement is troubling, as what _useful_ and _dangerous_ and _better_ mean is not precisely defined.
+  - An improved perspective would be:
+  - _USeful_: when the reader is focused on what is important.
+  - _Dangerous_: when the reader can't tell what will happen.
+  - _Better_: when the reader understands the code.
+
+### 3.7. Equality
+
+- Many people say to always avoid `==` and use `===` all the time base on:
+  - `==` checks value (loose)
+  - `===` checks value and type (strict)
+- This is not actually true!
+  - `==` allows coercion (types different)
+  - `===` disallows coercion (types same)
+- When people say "never use `==`" they are saying "never allow JS to convert from one type to another".
+- This is not the best way to work. We should know what our types are and decide whether coercion is helpful or not.
+- When the types are the same, the `==` and `===` do the same thing 100% of the time, no corner cases.
+- Sometimes the `==` can be more readable.
+
+```js
+var workshop1 = {topic: null};
+var workshop2 = {};
+
+if (
+  (workshop1.topic === null || workshop1.topic === undefined) &&
+  (workshop2.topic === null || workshop2.topic === undefined) &&
+  ) {
+    // execute this code
+  }
+
+// the == coercively checks null and undefined equal to each other. Arguably better code: more readable, focused on what's important.
+if (
+  workshop1.topic == null &&
+  workshop2.topic == null
+) {
+  // execute this code
+}
+```
+
+- Like every other operation, is coercion helpful in an equality comparison or not?
+- Make critical decisions yourself rather than relying on what other people advise.
+- `==` is **not** about comparisons with unknown types.
+- `==` is about comparisons with known type(s), optionally where conversions are helpful.
+- JavaScript has a (dynamic) type system, which uses various forms of coercion for value type conversion, including equality comparisons. **This is a good thing!**
+- You simply cannot write quality JS programs without knowing the types involved in your operations.
+- Make it obvious in the code what types are involved in operations.
