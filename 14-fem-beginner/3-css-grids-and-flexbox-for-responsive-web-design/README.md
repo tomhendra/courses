@@ -5,7 +5,10 @@
 
 - [1. Introduction](#1-introduction)
   - [1.1. Defining Responsive Design](#11-defining-responsive-design)
-- [Floats](#floats)
+- [2. Floats](#2-floats)
+- [3. Flexbox](#3-flexbox)
+  - [3.1. History & Browser Support](#31-history--browser-support)
+  - [Flexbox Properties](#flexbox-properties)
 
 ## 1. Introduction
 
@@ -26,7 +29,7 @@ Responsive Web Design course with Jen Kramer of Harvard University extension Sch
    - Many ways of managing responsive images, client side and server side, including new html 5.1 `<picture>` tag.
    - No JavaScript involved.
 
-## Floats
+## 2. Floats
 
 - One of the original methods for layout in web design.
 - Only every intended to float an image on a web page.
@@ -85,3 +88,55 @@ Responsive Web Design course with Jen Kramer of Harvard University extension Sch
   left -74%;
 }
 ```
+
+## 3. Flexbox
+
+- The first layout elements - but not designed to layout whole web pages.
+- Features flex-containers (row) and flex-items (cells). Both are required for Flexbox to work.
+- Excels at vertical centering and equal heights.
+- Very easy to reorder boxes.
+- Major disadvantages:
+  - Wasn't designed to be locked down for layouts. Works in 1 dimension only.
+  - Browser support and syntax is challenging.
+- Flex-container is either row or column, which affects the main axis / cross axis.
+
+### 3.1. History & Browser Support
+
+- Three versions of flexbox:
+  - 2009: `display: box;`
+  - 2011: `display: flexbox;` ("tweener" syntax - between original and current)
+  - 2016: `display: flex;`
+- Prefixing may still be required depending on browser support desired.
+
+```css
+ul {
+  display: -webkit-flex: /* targets Chrome, Safari */
+  display: -ms-flexbox: /* targets IE10 */
+  display: flex;
+}
+```
+
+- Current support [99.03%](https://caniuse.com/#feat=flexbox)
+
+### Flexbox Properties
+
+- Parent (Flex Container)
+
+  - `display: flex | inline-flex;`
+  - `flex-direction: row | row-reverse | column | column-reverse;`
+  - `flex-wrap: wrap | nowrap | wrap-reverse;`
+  - `flex-flow` (shorthand for `flex-direction` and `flex-wrap`)
+  - `justify-content` (main axis): `flex-start | flex-end | center | space-between | space-around | space-evenly;`
+  - `align-items` (cross axis - adjust to individual sizes): `flex-start | flex-end | center | baseline | stretch;`
+  - `align-content` (cross axis - adjust to largest item): `flex-start | flex-end | center | stretch | space-between | space-around;`
+
+- Children (Flex Items)
+
+  - `order: <integer>;`
+  - `flex-grow: <number>;`
+  - `flex-shrink: <number>;`
+  - `flex-basis: <length> | auto;`
+  - `flex: shorthand for grow, shrink, and basis (default: 0 1 auto)`
+  - `align-self: overrides alignment set on parent`
+
+- Never use `width` on flex items: use `flex-basis`. `width` is an absolute number whereas `flex-basis` is more flexible.
