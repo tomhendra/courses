@@ -31,6 +31,9 @@
   - [4.5. Block Scoping with let](#45-block-scoping-with-let)
   - [4.6. Closure](#46-closure)
 - [5. this & Prototypes](#5-this--prototypes)
+  - [5.1. this](#51-this)
+  - [5.2. Prototypes](#52-prototypes)
+  - [5.3. class {}](#53-class-)
 
 ## 1. Introduction
 
@@ -235,6 +238,7 @@ left; // 198
 
 ## 3. Types / Coercion
 
+- The first pillar of JavaScript.
 - Three things that we need to look at are:
   - Primitive types.
   - Converting types.
@@ -477,6 +481,8 @@ if (
 
 ## 4. Scope / Closures
 
+- The second pillar of JavaScript.
+
 ### 4.1. Scope
 
 - Scope: where the JavaScript engine looks for things.
@@ -651,8 +657,8 @@ function ask(question) {
      * Immediately after we call setTimeout(), the ask() function has finished, so we
      * would assume that any variables created within the scope of ask() would get garbage collected.
      * But the timer is still waiting for 100ms with the function called waitASec in its memory,
-     * and waitASec is referencing question, and as a result of that it keeps that scope alive.
-     * That magic, is called closure.
+     * and waitASec is referencing question, and as a result it keeps that scope alive to
+     * preserve access to the question variable. That magic, is called closure.
      * It is said that "the waitASec function has closure over the question variable".
      */
 
@@ -679,7 +685,6 @@ var myQuestion = ask('What is a closure?');
 
 myQuestion(); // What is a closure?
 // myQuestion still knows the content of the question variable because of closure.
-// It preserved access to the question variable.
 ```
 
 - Closure is a tremendously important concept in all of programming.
@@ -688,3 +693,111 @@ myQuestion(); // What is a closure?
 - It is an incredibly powerful tool to have, and therefore you must understand it well.
 
 ## 5. this & Prototypes
+
+- The third and final pillar, `this` and the prototype system are intrinsically linked.
+- Often in modern JS code the prototype system is what the `class` system is built on top of.
+
+### 5.1. this
+
+- A function's `this` references the execution context for that call, determined entirely by **how the function as called**.
+- It's not about the definition of the function.
+- A `this` aware function can thus have different context each time it is called, which makes it more flexible and reusable.
+- Having multiple contexts of `this` is called **dynamic context**.
+- A very powerful and under-appreciated part of the JS language.
+- - There are four rules for how a function's call determines what the `this` keyword will point at.
+
+```js
+// The implicit binding rule.
+var workshop = {
+  teacher: 'Kyle',
+  ask(question) {
+    console.log(this.teacher, question);
+  },
+};
+/* Only where the function is called will determine what the this keyword is pointing at.
+ * The workshop object is in front of the reference to the .ask method, which is an
+ * implicit binding of the this keyword to the workshop object.
+ */
+workshop.ask('What is an implicit binding?');
+// Kyle What is an implicit binding?
+```
+
+- We can change what `this` context is used based on a call site.
+
+```js
+// The explicit binding rule
+// .call() is another way of invoking a function, and tells it to use another context.
+function ask(question) {
+  console.log(this.teacher, question);
+}
+
+function otherClass() {
+  var myContext = {
+    teacher: 'Suzy',
+  };
+  ask.call(myContext, 'Why?'); // Suzy Why?
+}
+
+otherClass();
+```
+
+### 5.2. Prototypes
+
+- Following example is of prototypal classes code, which is less common these days since the introduction of the `class` keyword to JS.
+- Prototype means that it is an object where any instances are going to be linked to or delegated to.
+
+```js
+// Acts as a constructor function.
+function Workshop(teacher) {
+  this.teacher = teacher;
+}
+
+Workshop.prototype.ask = function (question) {
+  console.log(this.teacher, question);
+};
+
+// When we use the new keyword will invoke the Workshop function,
+// and the object that gets created will be linked to Workshop.prototype
+var deepJS = new Workshop('Kyle');
+var reactJS = new Workshop('Suzy');
+
+/* It's important to understand that the deepJS object does NOT have an ask method.
+ * Instead it is prototype linked to Workshop.prototype, and when we call deepJS.ask()
+ * it will delegate one level up the prototype chain from deepJS up to Workshop.prototype,
+ * and when it invokes the ask method it is done so in the this context of the deepJS object.
+ */
+
+deepJS.ask("Is 'prototype' a class?");
+// Kyle Is 'prototype' a class?
+
+reactJS.ask("Isn't 'prototype' ugly?");
+// Suzy Isn't 'prototype' ugly?
+```
+
+### 5.3. class {}
+
+- The `class` keyword is built on top of the prototype system.
+- Gives us syntax more similar to true class types from other languages such as C++ and Java.
+- Under the covers JavaScript is doing the same thing as the previous example.
+- Classes are a very common way of defining a container for a set of data and behaviour as methods that can run against the data.
+
+```js
+// Does the same thing as the previous example.
+class Workshop {
+  constructor(teacher) {
+    this.teacher = teacher;
+  }
+  ask(question) {
+    console.log(this.teacher, question);
+  }
+}
+
+var deepJS = new Workshop('Kyle');
+var reactJS = new Workshop('Suzy');
+
+deepJS.ask("Is 'prototype' a class?");
+// Kyle Is 'prototype' a class?
+
+reactJS.ask("Isn't 'prototype' ugly?");
+// Suzy Isn't 'prototype' ugly?
+```
