@@ -23,6 +23,14 @@
   - [3.5. Booleans](#35-booleans)
   - [3.6. Coercion Best Practices](#36-coercion-best-practices)
   - [3.7. Equality](#37-equality)
+- [4. Scope / Closures](#4-scope--closures)
+  - [4.1. Scope](#41-scope)
+  - [4.2. Undefined va Undeclared](#42-undefined-va-undeclared)
+  - [4.3. Function Expressions](#43-function-expressions)
+  - [4.4. IIFEs](#44-iifes)
+  - [4.5. Block Scoping with let](#45-block-scoping-with-let)
+  - [4.6. Closure](#46-closure)
+- [5. this & Prototypes](#5-this--prototypes)
 
 ## 1. Introduction
 
@@ -466,3 +474,217 @@ if (
 - JavaScript has a (dynamic) type system, which uses various forms of coercion for value type conversion, including equality comparisons. **This is a good thing!**
 - You simply cannot write quality JS programs without knowing the types involved in your operations.
 - Make it obvious in the code what types are involved in operations.
+
+## 4. Scope / Closures
+
+### 4.1. Scope
+
+- Scope: where the JavaScript engine looks for things.
+- The things JS is looking for are variables.
+- All the rules that go into figuring out where in memory things are stored are called scope.
+
+```js
+var teacher = 'Kyle';
+
+function otherClass() {
+  teacher = 'Suzy';
+  topic = 'React';
+  console.log('Welcome!');
+}
+
+otherClass(); // Welcome!
+
+teacher; // Suzy - because JS will find teacher from the outer scope.
+topic; // React - because in non-strict mode the variable is created in the global scope without declaration.
+```
+
+### 4.2. Undefined va Undeclared
+
+- Concepts around emptiness come into play heavily when dealing with scope.
+- When a variable is undeclared, it is in the state of undeclared.
+- A lot of people think of undefined as the same concept, but undefined and undeclared are very distinctly different.
+- Something that is `undefined` is a variable that has been declared, but it doesn't have a value.
+- A variable that is undeclared has never been declared anywhere. It doesn't exist.
+
+### 4.3. Function Expressions
+
+- A function that is assigned as a value somewhere.
+- Functions are actually values that can be assigned to variables, or passed as arguments to other functions, or can be returned from other functions.
+- A function is a **first class citizen** in JS - it can be passed around as a value.
+
+```js
+// Called an anonymous function expression
+var clickHandler = function () {
+  // execute this code
+};
+
+// Called a named function expression
+var keyHandler = function keyHandler() {
+  // execute this code
+};
+```
+
+- More likely to see anonymous functions, but Kyle says to use named function expressions always where possible.
+- Named functions are more descriptive and easier to read.
+- It's better to have a descriptive function name to tell the reader of the code what the real purpose of the function is.
+
+```js
+var ids = people.map((person) => person.id);
+
+// This function expression tells us in its name exactly what it does.
+var ids = people.map(function getId(person) {
+  return person.id;
+});
+
+// ********************
+
+getPerson()
+  .then((person) => getData(person.id))
+  .then(renderData);
+
+// reads almost like plain english
+getPerson()
+  .then(function getDataFrom(person) {
+    return getData(person.id);
+  })
+  .then(renderData);
+```
+
+### 4.4. IIFEs
+
+- **I**mmediately **I**nvoked **F**unction **E**xpression.
+- A very common pattern.
+
+```js
+var teacher = 'Kyle';
+
+(function anotherTeacher() {
+  var teacher = 'Suzy';
+  console.log(teacher); // Suzy
+})();
+```
+
+- Parenthesis around function makes it a function expression rather than the other form of function: a function declaration.
+- The `()` after the function immediately invokes it.
+- The main end result of an IIFE is that e get a new block of scope.
+- Typically used when we need to collect a set of variables and protect them from encroaching upon an outer scope.
+
+### 4.5. Block Scoping with let
+
+- The more common way these days to organize a set of variables instead of having them pollute the enclosing scope is to use `let`.
+- Instead of using the IIFE to protect variables, we can use **block scoping**.
+
+```js
+var teacher = 'Kyle';
+// we can use a curly brace block with let, instead of a function.
+{
+  let teacher = 'Suzy';
+  console.log(teacher); // Suzy
+}
+```
+
+- Block scoping is a relatively new feature from ES6.
+- Very popular, and recommended to use when required.
+
+```js
+function diff(x, y) {
+  if (x > y) {
+    let tmp = x;
+    x = y;
+    y = tmp;
+  }
+  return y - x;
+}
+```
+
+- There is a principle of engineering that says we should keep things as private and hidden as possible and only expose things when we really need to. Block scoping is a key tool for that.
+
+```js
+function repeat(fn,n) {
+  var result;
+
+  for (let i = 0; i < n; i++) {
+    result = fn(result, i);
+  }
+  return result.
+}
+```
+
+- Kyle likes to use `var` at the function level.
+- Because `var` will always behave as if it belongs to the function, he only uses `let` inside of blocks.
+- It communicates clearly the difference between the two: `let` belongs to the block, `var` belongs to the function.
+
+- Be careful about not just putting something at the function scope because it's convenient.
+- If it is only needed for a few lines, enclose variables in a curly brace block, instead of having them exist for the entire function.
+- Block Scoping is a powerful tool to avoid bugs that may come to bite you weeks or months later.
+
+```js
+function formatStr(str) {
+  // Explicit let block for collection of variables not needed by the entire function.
+  {
+    let prefix, rest; // prefix & rest only exist inside these few lines.
+    prefix = str.slice(0, 3);
+    rest = str.slice(3);
+    str = prefix.toUpperCase() + rest;
+  }
+  // prefix & rest can't possibly be collided or misassigned here later; they do not exist in this scope.
+  if (/^FOO:/.test(str)) {
+    return str;
+  }
+
+  return str.slice(4);
+}
+```
+
+### 4.6. Closure
+
+- Closure is when a function "remembers" the variables outside of it, even if you pass that function elsewhere.
+- Two parts of this definition that are key:
+  - 1. That a function remembers variables outside of it: variables that were declared in some outer scope.
+  - 2. We can only observe this behaviour as a closure, if we take that function and we pass it somewhere: Whenever we treat a function as a value.
+
+```js
+function ask(question) {
+  setTimeout(function waitASec() {
+    /* question is not a variable that is declared inside of watASec.
+     * It is created in the outer scope of the function ask (its parameter).
+     * Immediately after we call setTimeout(), the ask() function has finished, so we
+     * would assume that any variables created within the scope of ask() would get garbage collected.
+     * But the timer is still waiting for 100ms with the function called waitASec in its memory,
+     * and waitASec is referencing question, and as a result of that it keeps that scope alive.
+     * That magic, is called closure.
+     * It is said that "the waitASec function has closure over the question variable".
+     */
+
+    console.log(question);
+  }, 100);
+}
+
+ask('What is a closure?'); // What is a closure?
+```
+
+- Closure allows us to remember the value in a variable even when our function is going to be executed in an entirely different place, or different timeline.
+- We can also demonstrate closure by returning back a function, instead of passing one.
+
+```js
+function ask(question) {
+  return function holdYourQuestion() {
+    console.log(question);
+  };
+}
+
+var myQuestion = ask('What is a closure?');
+
+// Some time later...
+
+myQuestion(); // What is a closure?
+// myQuestion still knows the content of the question variable because of closure.
+// It preserved access to the question variable.
+```
+
+- Closure is a tremendously important concept in all of programming.
+- If all the things that you can dig into, closure is one of the most important concepts.
+- Closure is prevalent in almost every programming language you will ever encounter.
+- It is an incredibly powerful tool to have, and therefore you must understand it well.
+
+## 5. this & Prototypes
