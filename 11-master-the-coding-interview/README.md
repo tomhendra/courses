@@ -4,7 +4,74 @@
 <p>Notes from the course.</p>
 </div>
 
-## Introduction
+- [1. Introduction](#1-introduction)
+- [2. Getting More Interviews](#2-getting-more-interviews)
+  - [2.1. Resumes](#21-resumes)
+  - [2.2. What if I lack experience?](#22-what-if-i-lack-experience)
+  - [2.3. LinkedIn](#23-linkedin)
+  - [2.4. Portfolio](#24-portfolio)
+  - [2.5. Email](#25-email)
+  - [2.6. Where to finds jobs](#26-where-to-finds-jobs)
+  - [2.7. When to start applying for jobs](#27-when-to-start-applying-for-jobs)
+  - [2.8. Summary](#28-summary)
+- [3. Big O](#3-big-o)
+- [4. How to solve coding problems.](#4-how-to-solve-coding-problems)
+- [5. Data structures](#5-data-structures)
+  - [5.1. Arrays](#51-arrays)
+  - [5.2. Hash tables](#52-hash-tables)
+  - [5.3. Linked lists](#53-linked-lists)
+  - [5.4. Stacks & queues.](#54-stacks--queues)
+  - [5.5. Trees](#55-trees)
+    - [5.5.1. Binary trees](#551-binary-trees)
+    - [5.5.2. Binary search trees](#552-binary-search-trees)
+    - [5.5.3. Binary heaps](#553-binary-heaps)
+    - [5.5.4. Tries](#554-tries)
+  - [5.6. Graphs](#56-graphs)
+- [6. Algorithms](#6-algorithms)
+  - [6.1. Recursion](#61-recursion)
+    - [6.1.1. When to use recursion](#611-when-to-use-recursion)
+  - [6.2. Sorting](#62-sorting)
+    - [6.2.1. Bubble sort](#621-bubble-sort)
+    - [6.2.2. Selection sort](#622-selection-sort)
+    - [6.2.3. Insertion sort](#623-insertion-sort)
+    - [6.2.4. Merge sort](#624-merge-sort)
+    - [6.2.5. Quick sort](#625-quick-sort)
+    - [6.2.6. Which sort is best?](#626-which-sort-is-best)
+  - [6.3. Searching](#63-searching)
+    - [6.3.1. Linear search](#631-linear-search)
+    - [6.3.2. Binary search](#632-binary-search)
+    - [6.3.3. Graph & Tree traversal](#633-graph--tree-traversal)
+    - [6.3.4. Breadth First Search (BFS)](#634-breadth-first-search-bfs)
+    - [6.3.5. Depth First Search (DFS)](#635-depth-first-search-dfs)
+    - [6.3.6. BFS vs DFS](#636-bfs-vs-dfs)
+    - [6.3.7. Dijkstra & Bellman-Ford algorithms](#637-dijkstra--bellman-ford-algorithms)
+  - [6.4. Dynamic programming](#64-dynamic-programming)
+    - [6.4.1. Memoization](#641-memoization)
+- [7. Non-technical interviews](#7-non-technical-interviews)
+  - [7.1. Mindset](#71-mindset)
+  - [7.2. Hero Stories](#72-hero-stories)
+    - [7.2.1. TODO ----> Exercise: Hero Stories.](#721-todo------exercise-hero-stories)
+  - [7.3. Tell me about yourself](#73-tell-me-about-yourself)
+    - [7.3.1. Exercise: Your pitch:](#731-exercise-your-pitch)
+  - [7.4. Why do you want to work for us?](#74-why-do-you-want-to-work-for-us)
+  - [7.5. Why did you leave your last job?](#75-why-did-you-leave-your-last-job)
+  - [7.6. Tell me about a problem and how you solved it.](#76-tell-me-about-a-problem-and-how-you-solved-it)
+    - [7.6.1. Tell me about an interesting project.](#761-tell-me-about-an-interesting-project)
+    - [7.6.2. TODO ----> Exercise: Past Projects.](#762-todo------exercise-past-projects)
+  - [7.7. What is your biggest weakness?](#77-what-is-your-biggest-weakness)
+    - [7.7.1. TODO ----> Exercise: Your Biggest Weakness.](#771-todo------exercise-your-biggest-weakness)
+  - [7.8. Any questions for me?](#78-any-questions-for-me)
+  - [7.9. Secret weapon](#79-secret-weapon)
+  - [7.10. After the interview](#710-after-the-interview)
+    - [7.10.1. TODO ----> Exercise: Closing statement.](#7101-todo------exercise-closing-statement)
+- [8. Offer & negotiation](#8-offer--negotiation)
+  - [8.1. Handling rejection](#81-handling-rejection)
+  - [8.2. Negotiation 101](#82-negotiation-101)
+  - [8.3. Handling an offer](#83-handling-an-offer)
+  - [8.4. Handling multiple offers](#84-handling-multiple-offers)
+  - [8.5. Getting a raise](#85-getting-a-raise)
+
+## 1. Introduction
 
 This is a **[Udemy course](https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/)**. by Andrei Neagoie.
 
@@ -19,7 +86,7 @@ The introduction explains that the course is made up of two main parts.
 - 1. Non-technical aspects of interviews.
 - 2. Technical interview topics: data structures & algorithms.
 
-## Getting More Interviews
+## 2. Getting More Interviews
 
 How to ensure you get more interviews through using the best channels and tactics.
 
@@ -30,7 +97,7 @@ How to ensure you get more interviews through using the best channels and tactic
 - If you applying to 100 jobs and only getting one interview, you're probably doing something wrong.
 - Should not take any more than a week to set yourself up for applying to jobs.
 
-### Resumes
+### 2.1. Resumes
 
 - Resumes are scanned in 10 seconds by recruiters and are simply a way to get interviews.
 - Spend no longer than a day on your resume.
@@ -59,7 +126,7 @@ How to ensure you get more interviews through using the best channels and tactic
   - ✅ Include only sections/items that are impressive: Experience, Projects, Education, Technical Skills
   - ✅ No typos or bad grammar
 
-### What if I lack experience?
+### 2.2. What if I lack experience?
 
 - Apply to jobs that you are under-qualified for.
 - Job postings are designed to weed out the weak candidates.
@@ -70,7 +137,7 @@ How to ensure you get more interviews through using the best channels and tactic
   - 1-2 big projects: Big, challenging projects much better than numerous simple ones.
   - Blog
 
-### LinkedIn
+### 2.3. LinkedIn
 
 - If you craft things well enough, you will get lots of recruiters' contact.
 - Should be similar to your resume.
@@ -81,7 +148,7 @@ How to ensure you get more interviews through using the best channels and tactic
   - 4. Try to get recommendations from people to rank higher in recruiters' search results.
   - 5. LinkedIn allows us to target companies and contact people directly at a company you want to work for.
 
-### Portfolio
+### 2.4. Portfolio
 
 - A way to showcase your big projects.
 - Allows you to demonstrate your value.
@@ -89,7 +156,7 @@ How to ensure you get more interviews through using the best channels and tactic
 - Can be simple, as long as it's fast and looks nice.
 - Add to ZTM job board once it's done.
 
-### Email
+### 2.5. Email
 
 - Applying for a job through a company's website or job board is not the best way to apply.
 - Employee referral has proven to be the best way to get an interview.
@@ -117,7 +184,7 @@ Thanks,
 Yourname
 Your website or any public profile link
 
-### Where to finds jobs
+### 2.6. Where to finds jobs
 
 - Development is highly in demand, so there are a tonne of resources.
 - The better you get at engineering, the easier it will be to find work.
@@ -136,7 +203,7 @@ Your website or any public profile link
 - job hunting is a numbers game. for 2% hit rate, apply to 50 companies.
 - Blindly applying to companies is much less efficient than targeting directly i.e. eventual referral.
 
-### When to start applying for jobs
+### 2.7. When to start applying for jobs
 
 - Short answer is -- Apply now! Use it as practice.
 - Interviews shouldn't be looked at like win or lose, more they are a skill to be developed.
@@ -148,7 +215,7 @@ Your website or any public profile link
 - Hiring developers and engineers are more than just technical knowledge.
 - If you never ask the answer is always "no"!
 
-### Summary
+### 2.8. Summary
 
 - Don't apply to 1000 positions online just sending resume everywhere, like most people.
 - Pick 5-10 companies you want to work for, and fully target and focus on applying to them.
@@ -157,7 +224,7 @@ Your website or any public profile link
 - Contact directly and get referrals rather than applying anonymously.
 - The focus is on quality over quantity.
 
-## Big O
+## 3. Big O
 
 A paradigm to classify code according to how runtime or space requirements grow as the input size grows.
 
@@ -212,7 +279,7 @@ A paradigm to classify code according to how runtime or space requirements grow 
 - We only have control over what happens inside of the function, so input space is ignored.
 - We look at whether we are adding space inside the function.
 
-## How to solve coding problems.
+## 4. How to solve coding problems.
 
 How to approach problems and solve them in the optimal way for interviews.
 
@@ -248,7 +315,7 @@ How to approach problems and solve them in the optimal way for interviews.
 - Don't try to memorize problems, instead practice fundamentals to tackle any problem.
 - The assumption is that some people solve problems better than others, but in reality like anything you can train.
 
-## Data structures
+## 5. Data structures
 
 How to organize, format and store collections of data values, the relationships among them, and the functions or operations that can be applied to the data.
 
@@ -283,7 +350,7 @@ How to organize, format and store collections of data values, the relationships 
   - Sorting: sorting data.
   - Access: how do we access data.
 
-### Arrays
+### 5.1. Arrays
 
 - Sometimes called lists.
 - Organize data sequentially in memory (contiguous).
@@ -313,7 +380,7 @@ How to organize, format and store collections of data values, the relationships 
   - Slow delete
   - Fixed size (with static arrays)
 
-### Hash tables
+### 5.2. Hash tables
 
 - AKA hash maps, maps, unordered maps, dictionaries, objects depending on language.
 - Objects in JavaScript are a type of hash table.
@@ -350,7 +417,7 @@ How to organize, format and store collections of data values, the relationships 
   - Slow key iteration
   - Collisions
 
-### Linked lists
+### 5.3. Linked lists
 
 - Two types to be covered: singly and doubly linked lists
 - A singly linked list contains a set of node, each containing two elements: a value and a pointer to the next node.
@@ -394,7 +461,7 @@ How to organize, format and store collections of data values, the relationships 
   - Slow lookup
   - More memory
 
-### Stacks & queues.
+### 5.4. Stacks & queues.
 
 - Both linear data structures allowing sequential traversal.
 - No random access, usually only the first and last elements.
@@ -427,7 +494,7 @@ How to organize, format and store collections of data values, the relationships 
 - Thee bad:
   - Slow lookup
 
-### Trees
+### 5.5. Trees
 
 - Have a hierarchical structure, as opposed to arrays or link lists which are linear.
 - Usually starts with a root node and every child descends from the root.
@@ -439,7 +506,7 @@ How to organize, format and store collections of data values, the relationships 
 - Linked list is technically a type of tree, albeit with a single path.
 - A node can only point to a child.
 
-#### Binary trees
+#### 5.5.1. Binary trees
 
 - Each node can only have either 0, 1 or 2 children, and each child can only have 1 parent.
 - Each node represents a certain state.
@@ -456,7 +523,7 @@ How to organize, format and store collections of data values, the relationships 
 
 - [O(log n) explained](https://medium.com/better-programming/a-gentle-explanation-of-logarithmic-time-complexity-79842728a702)
 
-#### Binary search trees
+#### 5.5.2. Binary search trees
 
 - Great for searching and comparing things.
 - Preserves relationships between nodes.
@@ -477,7 +544,7 @@ How to organize, format and store collections of data values, the relationships 
 - The bad:
   - No O(1) operations
 
-#### Binary heaps
+#### 5.5.3. Binary heaps
 
 - Type of tree where every child belongs to a parent node which has a greater priority or value.
 - Max heap is where root node is the greatest.
@@ -494,14 +561,14 @@ How to organize, format and store collections of data values, the relationships 
 - Because value are always added LTR, binary heaps are always balanced automatically, and are very compact and memory efficient for this reason.
 - Priority queues have elements which have different priorities.
 
-#### Tries
+#### 5.5.4. Tries
 
 - A specialized tree used for searching, most often text.
 - Most cases can outperform BST, hash tables, and most other data structures discussed so far.
 - Allow you to know if a word or part of a word exists in a body of text.
 - AKA prefix tree.
 
-### Graphs
+### 5.6. Graphs
 
 - Graphs are one of the most useful and used data structures used to represent real world data.
 - A set of values that are related in a pair-wise fashion.
@@ -521,7 +588,7 @@ How to organize, format and store collections of data values, the relationships 
 - The bad:
   - Scaling is hard
 
-## Algorithms
+## 6. Algorithms
 
 - Algorithms are just functions that programmers write.
 - Simply steps in a process to take desired actions in a computer program.
@@ -536,7 +603,7 @@ How to organize, format and store collections of data values, the relationships 
 - Some algorithms allow us to simplify our big O complexity to smaller time complexity.
 - Used everywhere in large companies because they deal with large amounts of data.
 
-### Recursion
+### 6.1. Recursion
 
 - Recursion is a concept, not an algorithm.
 - One of the most popular topics in interviews.
@@ -556,7 +623,7 @@ How to organize, format and store collections of data values, the relationships 
 - The bad:
   - Large stack
 
-#### When to use recursion
+#### 6.1.1. When to use recursion
 
 - A good rule -- when you are working with data structures which you are not sure how deep they are.
 - Tail call optimization allows recursions to be called without increasing the call stack.
@@ -569,7 +636,7 @@ How to organize, format and store collections of data values, the relationships 
   - 3. The solutions of each subproblem can be combined to solve the problem at hand.
 - Divide & conquer using recursion.
 
-### Sorting
+### 6.2. Sorting
 
 - Sorting is really important in interviews.
 - Sorting is not important when it comes to small input data, but is very important as data grows larger.
@@ -584,30 +651,30 @@ How to organize, format and store collections of data values, the relationships 
 - Elementary sorting algorithms are basic: Bubble sort, Insertion sort & Selection sort.
 - More complex sorting algorithms are usually more efficient than elementary. They include Merge sort & Quick sort.
 
-#### Bubble sort
+#### 6.2.1. Bubble sort
 
 - One of the simplest but least efficient sorting algorithms: O(n^2) time complexity.
 
-#### Selection sort
+#### 6.2.2. Selection sort
 
 - Finds the minimum by comparing all values in the array and places the minimum at the beginning after comparing all values.
 - O(n^2) time complexity.
 
-#### Insertion sort
+#### 6.2.3. Insertion sort
 
 - Not the most efficient algorithm, but there are cases where it is extremely fast.
 - Useful for times when the list is almost sorted.
 - Performs well with small datasets.
 - Best case scenario is O(n) linear time.
 
-#### Merge sort
+#### 6.2.4. Merge sort
 
 - Uses divide & conquer.
 - Much more efficient than elementary sorting algorithms.
 - Usually O(n log n).
 - One of the most efficient ways you can sort a list.
 
-#### Quick sort
+#### 6.2.5. Quick sort
 
 - Uses divide & conquer.
 - Uses a pivoting technique & breaks a list into smaller lists.
@@ -615,7 +682,7 @@ How to organize, format and store collections of data values, the relationships 
 - Quick sort (and merge sort) are the most commonly used sorting algorithms.
 - Usually O(n log n).
 
-#### Which sort is best?
+#### 6.2.6. Which sort is best?
 
 - Insertion sort should be used with only a few items. If input is small and nearly sorted.
 - Bubble sort - never used in production. For educational purposes only.
@@ -625,25 +692,25 @@ How to organize, format and store collections of data values, the relationships 
 - Mathematically it is impossible to beat time complexity of O(n log n) for comparison sort.
 - Non-comparison sort can beat O(n log n) -- Counting sort, Radix sort. But only work with integers in a small range.
 
-### Searching
+### 6.3. Searching
 
 - Searching is something that is used frequently.
 - A big part of application development.
 - As more data accumulates it is important to know how to perform fast searches.
 
-#### Linear search
+#### 6.3.1. Linear search
 
 - AKA sequential search is a method of finding a target value in a list.
 - Sequentially checks each element in the list until the target value is found.
 - Linear time O(n) is not that fastest searching algorithm.
 
-#### Binary search
+#### 6.3.2. Binary search
 
 - If a list is sorted, we can use divide & conquer to improve on O(n).
 - Storing data in a tree is more efficient to perform search on.
 - O(log n) time complexity by using a binary search tree as data structure.
 
-#### Graph & Tree traversal
+#### 6.3.3. Graph & Tree traversal
 
 - 'Traversal' and 'search' terms are often used interchangeably.
 - Traversals visit every node, so O(n) linear time.
@@ -652,13 +719,13 @@ How to organize, format and store collections of data values, the relationships 
 - The main benefit of putting complex data into trees or graphs is to enable O(log n) search.
 - Also insert and delete is faster.
 
-#### Breadth First Search (BFS)
+#### 6.3.4. Breadth First Search (BFS)
 
 - Start with the root node, then move left to right across subsequent levels.
 - Keep going until you find the node you are looking for or the tree ends.
 - BFS uses additional memory because it is necessary to track the child nodes of all nodes on a given level.
 
-#### Depth First Search (DFS)
+#### 6.3.5. Depth First Search (DFS)
 
 - Follows one branch of the tree down as many levels as possible, until target node is found or end is reached.
 - When the search cannot continue it moves to the nearest ancestor with an unexplored child.
@@ -668,7 +735,7 @@ How to organize, format and store collections of data values, the relationships 
   - PreOrder: Nodes from left to right, starting with root node and respecting ancestors.
   - PostOrder: Nodes from left to right, starting with bottom, then moving upwards towards parent nodes.
 
-#### BFS vs DFS
+#### 6.3.6. BFS vs DFS
 
 - Time complexity is the same -- O(n).
 - BFS: Good for shortest path, because we always start with the root node then search the closest nodes first.
@@ -678,19 +745,19 @@ How to organize, format and store collections of data values, the relationships 
 - DFS: Uses less memory than BFS.
 - DFS: Can be slower if the tree has many levels.
 
-#### Dijkstra & Bellman-Ford algorithms
+#### 6.3.7. Dijkstra & Bellman-Ford algorithms
 
 - Complex algorithms to find the shortest path.
 - Bellman-ford is better than Dijkstra's for finding the shortest path as it supports negative weights.
 - However Bellman-ford time complexity is O(n^2), not the most efficient.
 - Dijkstra's algorithm is more efficient, but doesn't support negative weights.
 
-### Dynamic programming
+### 6.4. Dynamic programming
 
 - Dynamic programming is an optimisation technique using caching. It means nothing, just a buzzword.
 - A way to solve problems by breaking it down into subproblems, and storing the subproblems in case they reoccur.
 
-#### Memoization
+#### 6.4.1. Memoization
 
 - Caching is a way to store values so you can use them later.
 - A way to speed up programs by retrieving reusable information and avoiding recalculation.
@@ -704,12 +771,12 @@ How to organize, format and store collections of data values, the relationships 
   3. Are there repetitive subproblems?
   4. Memoize subproblems
 
-## Non-technical interviews
+## 7. Non-technical interviews
 
 - Coding is just part of an interview.
 - Non-technical interviews are for behavioural questions, asked to see whether you are a good fit for the company.
 
-### Mindset
+### 7.1. Mindset
 
 - The biggest mistake going into interview is thinking that it is your only chance.
 - Know that you have many other opportunities. It is not pass or fail.
@@ -722,7 +789,7 @@ How to organize, format and store collections of data values, the relationships 
 - Before you go into the interview, think to yourself that you are going to meet an old friend and you are happy to be there. This is a proven psychological technique.
 - Excitement is a signal that you actually want to job.
 
-### Hero Stories
+### 7.2. Hero Stories
 
 - An interviewer wants to answer 3 questions:
 
@@ -740,11 +807,11 @@ How to organize, format and store collections of data values, the relationships 
   3. Success - if you built something, what did you do. Past promotions.
   4. Leadership - are you the type of person who can take initiative.
 
-#### TODO ----> Exercise: Hero Stories.
+#### 7.2.1. TODO ----> Exercise: Hero Stories.
 
 Take 30 minutes of your time to write down 2~3 hero stories. Use these hero stories as your base when interviewing at any company.
 
-### Tell me about yourself
+### 7.3. Tell me about yourself
 
 - Should be preprepared.
 - Answer this question in about 1 minute.
@@ -766,7 +833,7 @@ Take 30 minutes of your time to write down 2~3 hero stories. Use these hero stor
   3. Success.
   4. Leadership.
 
-#### Exercise: Your pitch:
+#### 7.3.1. Exercise: Your pitch:
 
 Spend the next 30 minutes writing your own 1 minute "pitch" for when you get asked "Tell Me About Yourself" types of questions.
 
@@ -778,7 +845,7 @@ So we settled in Spain, I came across Kamran Ahmed's Developer Roadmap and follo
 
 Through these projects and posts I'm improving my coding ability every day, and I'm now at a point in my journey where I feel confident that I could be a valuable asset to your team, not just now but in the years to come where I expect my skills to grow exponentially.
 
-### Why do you want to work for us?
+### 7.4. Why do you want to work for us?
 
 - Make the interviewer feel special.
 - Make them feel that this is your top choice, and you'll dedicate years growing with the company.
@@ -791,7 +858,7 @@ Through these projects and posts I'm improving my coding ability every day, and 
 - You'd be great for this job because you have worked with some of their problems in the past.
 - Always try to use the four heroes.
 
-### Why did you leave your last job?
+### 7.5. Why did you leave your last job?
 
 - Variation of Why do you want to work for us?
 - No negativity - don't complain about the previous company.
@@ -801,7 +868,7 @@ Through these projects and posts I'm improving my coding ability every day, and 
 - You want to learn from the best, work with the best.
 - You are the type of person who can be put in any position to succeed and at the moment this company is the best answer.
 
-### Tell me about a problem and how you solved it.
+### 7.6. Tell me about a problem and how you solved it.
 
 - Have this prepared.
 - Have metrics and numbers.
@@ -814,28 +881,28 @@ Through these projects and posts I'm improving my coding ability every day, and 
 - Expect that once you answer this question, expect more questions to follow, so know how to back up your response.
 - Don't be negative - never place blame on clients, co-workers or bosses.
 
-#### Tell me about an interesting project.
+#### 7.6.1. Tell me about an interesting project.
 
 - Variation of Tell me about a problem and how you solved it.
 - Show how you are different, because you are building interesting things.
 - Relate it tp the job, you have worked with things the company works with.
 
-#### TODO ----> Exercise: Past Projects.
+#### 7.6.2. TODO ----> Exercise: Past Projects.
 
 Spend the next 30 minutes writing your own answer to when you get asked "Tell Me About A Problem You Have Solved" type of questions. Think of the 1~2 big projects you have worked on.
 
-### What is your biggest weakness?
+### 7.7. What is your biggest weakness?
 
 - Do not give a silly answer trying to make yourself sound great, people can see through it.
 - Provide a real answer, be honest.
 - Show how you improved it.
 - Talk about a weakness, but turn it around into something that makes you a great candidate, somebody that has improved from their past mistakes and is now working in a way that's ideal for a developer.
 
-#### TODO ----> Exercise: Your Biggest Weakness.
+#### 7.7.1. TODO ----> Exercise: Your Biggest Weakness.
 
 Spend the next 30 minutes writing your own weakness. Make sure you cover the points mentioned in the previous video.
 
-### Any questions for me?
+### 7.8. Any questions for me?
 
 - These should be prepared.
 - Ask 1-3 questions.
@@ -854,7 +921,7 @@ Spend the next 30 minutes writing your own weakness. Make sure you cover the poi
   - What they wish someone had told them when they had just started their job at the company.
 - All genuine questions, targeted at the interviewer, to create a better bond with the interviewer, and show you are human.
 
-### Secret weapon
+### 7.9. Secret weapon
 
 - Never give up if things don't go perfectly.
 - You are not competing against a 100% test score.
@@ -867,7 +934,7 @@ Spend the next 30 minutes writing your own weakness. Make sure you cover the poi
   - No complaining about the client/code/co-workers/etc: Creates a toxic environment in the workplace. Nobody wants to work with a complainer who creates negative energy.
   - No ego: When receiving feedback take it well. Be the type of coder that likes constructive criticism, and understand there is no ego, we work as a team, and the overall goal of the project/company is what matters.
 
-### After the interview
+### 7.10. After the interview
 
 - Thank your recruiter or the interviewer, and sound excited, positive & energetic.
 - You made a good first impression, you want to leave on a good impression - serial-position effect.
@@ -883,16 +950,16 @@ Spend the next 30 minutes writing your own weakness. Make sure you cover the poi
 - If you haven't head back by the deadline, send another email saying you are waiting for a reply, and will need to make a decision soon as you are interviewing with other companies, but didn't want to make a decision without knowing the situation at this company, because you really enjoyed the interview process there.
 - Remember the more time that passes the more interviews will be conducted.
 
-#### TODO ----> Exercise: Closing statement.
+#### 7.10.1. TODO ----> Exercise: Closing statement.
 
 Spend the next 30 minutes writing your own strong closing statement.
 
-## Offer & negotiation
+## 8. Offer & negotiation
 
 - Learning these skills will allow you to develop faster and be more satisfied with your job.
 - They are skills to be learned like any other, and can help you work for better companies.
 
-### Handling rejection
+### 8.1. Handling rejection
 
 - Even the greatest programmers in the world might not be a good fit for a company.
 - Rejections don't mean anything because nobody really cares about them. They don't go on your CV, they don't go on your LinkedIn profile, they just disappear.
@@ -906,7 +973,7 @@ Spend the next 30 minutes writing your own strong closing statement.
 - Companies are more likely to say no because it's a big risk to hire someone.
 - If each day you are improving, one day you will get that offer. Just keep going!
 
-### Negotiation 101
+### 8.2. Negotiation 101
 
 - Common tactics can be applied, but remember there are differences between cultures.
 - When someone asks you about salary expectations say "I know the average software developer earns €XXX, so I think that's a good place to start" - you didn't answer the question, but used anchoring to define where the conversation should start.
@@ -925,7 +992,7 @@ Spend the next 30 minutes writing your own strong closing statement.
 - Showing other options are stakes, allowing the person across the table that you are willing to walk away without a deal which gives you power.
 - Recruiters are always willing to negotiate if they want you, especially when there is a chance of losing you to a competitor.
 
-### Handling an offer
+### 8.3. Handling an offer
 
 - Don't say "yes" straight away.
 - The first thing you should do is ask for more time.
@@ -946,7 +1013,7 @@ Spend the next 30 minutes writing your own strong closing statement.
   - What value do you provide? What type of traits do you have that would make you a valuable hire? What would you improve in the company? Think about how the company will drive value from you. Use this to negotiate.
   - Always go higher than you want. Be prepared to meet in the middle.
 
-### Handling multiple offers
+### 8.4. Handling multiple offers
 
 - This should be your goal.
 - The more choices we have the better we can make a decision on where we should work.
@@ -959,7 +1026,7 @@ Spend the next 30 minutes writing your own strong closing statement.
   4. Salary and benefits? - Prioritise long term benefits over short term gains.
   5. Is your decision based on desperation? - Don't accept the first option you get out of desperation, it needs to be the right company to fuel your growth. Think about the long term implications.
 
-### Getting a raise
+### 8.5. Getting a raise
 
 - If someone hired you that means that they find you valuable, but to get a raise you need to be a good employee.
 - Plan out your career path at the company and monitor it - 1,2,3 5 year plan.

@@ -4,7 +4,36 @@
 <p>Notes from the course.</p>
 </div>
 
-## Introduction
+- [1. Introduction](#1-introduction)
+- [2. Principles](#2-principles)
+- [3. Lies](#3-lies)
+  - [3.1. - Follow your passion:](#31---follow-your-passion)
+  - [3.2. - You can avoid risk:](#32---you-can-avoid-risk)
+  - [3.3. - Trust this one person:](#33---trust-this-one-person)
+  - [3.4. - 10,000 hours rule:](#34---10000-hours-rule)
+- [4. Pillars](#4-pillars)
+- [5. Science](#5-science)
+- [6. Techniques](#6-techniques)
+  - [6.1. Pomodoro Technique](#61-pomodoro-technique)
+  - [6.2. Chunk the Subject](#62-chunk-the-subject)
+  - [6.3. Spaced Repetition](#63-spaced-repetition)
+  - [6.4. Deliberate Practice](#64-deliberate-practice)
+  - [6.5. Create a Roadmap](#65-create-a-roadmap)
+  - [6.6. Interleaving](#66-interleaving)
+  - [6.7. Einstellung](#67-einstellung)
+  - [6.8. Importance of Community](#68-importance-of-community)
+  - [6.9. Habits](#69-habits)
+  - [6.10. System vs Goals](#610-system-vs-goals)
+  - [6.11. Power of the Senses](#611-power-of-the-senses)
+  - [6.12. Method of Loci](#612-method-of-loci)
+  - [6.13. Pareto Principle](#613-pareto-principle)
+  - [6.14. Parkinson's Law](#614-parkinsons-law)
+  - [6.15. Deep Work](#615-deep-work)
+  - [6.16. Stakes & Rewards](#616-stakes--rewards)
+  - [6.17. Concepts vs Facts](#617-concepts-vs-facts)
+  - [6.18. Test Yourself](#618-test-yourself)
+
+## 1. Introduction
 
 This course aims to teach you how to be an efficient learner. As recommended in the course, notes should be taken throughout to solidify retention of the topics covered. This a **[Udemy course](https://www.udemy.com/course/learning-to-learn-efficient-learning-zero-to-mastery/)**. by Andrei Neagoie
 
@@ -20,7 +49,7 @@ The course has four main sections:
 
 **[Here is the link to the full course roadmap](https://coggle.it/diagram/Xe6iV4XedHQFQQOJ/t/%F0%9F%94%A5-efficient-learning-zero-to-mastery-blueprint-%F0%9F%94%A5/5b1fdfcfdfe6e65371ac91bceb8826e905aa80e6a3e5612383710eaef9390944)**
 
-## 1. Principles
+## 2. Principles
 
 Useful principles & guidelines to being a self-motivated learner.
 
@@ -46,39 +75,39 @@ Useful principles & guidelines to being a self-motivated learner.
 - Your productivity time: Learn in the time of the day you are productive.
 - Self-learning paradigm: Using everything on this list so far, find your motivation from within.
 
-## 2. Lies
+## 3. Lies
 
 Popular myths debunked.
 
-### - Follow your passion:
+### 3.1. - Follow your passion:
 
 - Learning a valuable skill, getting smarter & gaining recognition makes a career enjoyable.
 - You don't have to be passionate about it, you just need to have an interest in it.
 - Creativity, control and impact combined with a valuable skill set makes the passion arise.
 - Craftsman mindset: How can I improve and offer something uniquely valuable. Work hard, get good.
 
-### - You can avoid risk:
+### 3.2. - You can avoid risk:
 
 - To achieve success, learn to tolerate and enjoy taking risks.
 - When you notice butterflies in your stomach, you are doing something worthwhile. Embrace them.
 - View risks as challenges to look forward to.
 - You need risk to make exceptional discoveries or leaps in skill.
 
-### - Trust this one person:
+### 3.3. - Trust this one person:
 
 - Don't believe leaders alone.
 - Look at unique sources and combine opinions.
 - Don't get all your information from one source.
 - Form your own opinions and thoughts.
 
-### - 10,000 hours rule:
+### 3.4. - 10,000 hours rule:
 
 - Practice matters, but the 10,000 hour rule has been debunked.
 - Truth is that there are more factors to consider.
 - Everyone has advantages and disadvantages.
 - Efficient learning is better than hard learning.
 
-## 3. Pillars
+## 4. Pillars
 
 Four pillars of foundations for implementing learning techniques.
 
@@ -97,7 +126,7 @@ Four pillars of foundations for implementing learning techniques.
    - Being busy is seen as a good thing in society, but in reality it means you lack time management skills.
    - By using the right strategies and methods, & learning the right topics, you are learning efficiently.
 
-## 4. Science
+## 5. Science
 
 The science on which efficient learning foundations are based.
 
@@ -133,11 +162,11 @@ The science on which efficient learning foundations are based.
 - Have an endpoint: Establish a time to finish a focussed learning session.
 - Be bored: Allows diffuse mode to happen.
 
-## 5. Techniques
+## 6. Techniques
 
 Proven techniques for efficient learning.
 
-### 1. Pomodoro Technique
+### 6.1. Pomodoro Technique
 
 - 25 mins of focused continuous work followed by 5 mins of rest in diffuse mode.
 - Always start with the task that you least want to do, or the hardest.
@@ -152,14 +181,14 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 5.  If you have fewer than four checkmarks, take a short break (3–5 minutes), then go to step 2.
 6.  After four pomodoros, take a longer break (15–30 minutes), reset your checkmark count to zero, then go to step 1.
 
-### 2. Chunk the Subject
+### 6.2. Chunk the Subject
 
 - Combine smaller pieces of information to gain knowledge of a subject.
 - A popular method for cracking particular algorithm challenges is the [Divide and Conquer](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm) method.
 - Break down larger complex things into simpler chunks.
 - Write 1 page to summarize everything in a subject. If it doesn't fit on one side of paper, you haven't chunked enough.
 
-### 3. Spaced Repetition
+### 6.3. Spaced Repetition
 
 - The only way to create long term memories.
 - Used varied techniques for spaced repetition
@@ -168,7 +197,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - This is why the Feynman technique works so well.
 - Diagrams are a good way to enhance spaced repetition.
 
-### 4. Deliberate Practice
+### 6.4. Deliberate Practice
 
 - The idea is to avoid the easy stuff, and take on challenging projects.
 - Put yourself in situations that challenge you all the time.
@@ -177,7 +206,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Always seek immediate feedback.
 - Record progress & measure it.
 
-### 5. Create a Roadmap
+### 6.5. Create a Roadmap
 
 - Mastering a subject requires connections between chunks to be understood.
 - Prepare, plan, create a curriculum and execute it.
@@ -186,13 +215,13 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - What are the most important topics?a
 - What type of results do I want to feel recognized and respected?
 
-### 6. Interleaving
+### 6.6. Interleaving
 
 - Technique to use different problems and sessions to learn something.
 - Variety is important.
 - Form knowledge from multiple perspectives.
 
-### 7. Einstellung
+### 6.7. Einstellung
 
 - Einstellung Effect: a rigid mindset that prevents you from expanding your horizons.
 - Once you are no longer a beginner, you stop taking feedback as much.
@@ -200,7 +229,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Sometimes what you learned previously may not be right. Always be open to new concepts.
 - What is option C? - You thought of options A and B, but might there be another way?
 
-### 8. Importance of Community
+### 6.8. Importance of Community
 
 - If you don't have a community you will be at a disadvantage.
 - Community can provide feedback, find blind spots.
@@ -208,7 +237,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Accountability from others.
 - Be surrounded by people who excel you and propel you to be better.
 
-### 9. Habits
+### 6.9. Habits
 
 - Habits are automatic and don't require concentration, therefore save energy
 - The habit loop: 1. Cue (trigger), 2. Routine (ritual) 3. Reward, 4. Belief
@@ -222,7 +251,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 
 - Build consistency: [Don't break the chain](https://www.writersstore.com/dont-break-the-chain-jerry-seinfeld/)
 
-### 10. System vs Goals
+### 6.10. System vs Goals
 
 - Systems are better than goals.
 - Success in life usually comes from skills obtained, but also luck.
@@ -231,7 +260,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Systems allow us to be flexible and adapt to luck events.
 - Goals better for shorter term, systems better for longer term.
 
-### 11. Power of the Senses
+### 6.11. Power of the Senses
 
 - Imagery, metaphors, analogies, stories: all help greatly in recall.
 - Visual memory and sensual memory help us form strong synapses.
@@ -240,13 +269,13 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Learn in locations that stimulate your senses.
 - Make your study area stimulate your senses.
 
-### 12. Method of Loci
+### 6.12. Method of Loci
 
 - AKA Method of place. [Wikipedia](https://en.wikipedia.org/wiki/Method_of_loci)
 - Memory enhancement technique using visualization.
 - By associations with spacial visualization & stories you can efficiently recall information.
 
-### 13. Pareto Principle
+### 6.13. Pareto Principle
 
 - Core 20% gets 80% of results.
 - Use the 80/20 rule to prioritise the most important topics to learn.
@@ -255,25 +284,25 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Focus on the 20% of the highest quality, most important.
 - Just as important to select as it is to remove.
 
-### 14. Parkinson's Law
+### 6.14. Parkinson's Law
 
 - Parkinson’s law is the adage that “work expands so as to fill the time available for its completion”. It is sometimes applied to the growth of bureaucracy in an organization. [Wiki](https://en.wikipedia.org/wiki/Parkinson%27s_law)
 
-### 15. Deep Work
+### 6.15. Deep Work
 
 - Deep intensely focused, highly engaged work or practice.
 - No distractions to push your cognitive abilities to their limit.
 - Deep work is the ability to focus without distraction on a cognitively demanding task.
 - Shallow work is non-cognitively demanding, logistical-style work, often performed while distracted.
 
-### 16. Stakes & Rewards
+### 6.16. Stakes & Rewards
 
 - Focus on small rewards to stay motivated.
 - What happens when you don't achieve your goal? Stakes need to be on the line.
 - Hold yourself accountable.
 - Stakes are the things that we lose by not achieving our goal.
 
-### 17. Concepts vs Facts
+### 6.17. Concepts vs Facts
 
 - Concepts are more important than facts.
 - Facts are easy to Google, concepts need to be learned.
@@ -285,7 +314,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Always ask why to connect the dots.
 - Feynman technique is important to explain concepts, and leads to true understanding of a topic.
 
-### 18. Test Yourself
+### 6.18. Test Yourself
 
 - Without practice you will never progress.
 - Summarize after learning a topic, recalling information.

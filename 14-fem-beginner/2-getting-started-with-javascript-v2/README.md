@@ -422,7 +422,7 @@ while (students.length > 0) {
 - _If a feature is sometimes useful and sometimes dangerous and if there is a better option, always use the better option._ -- The Good Parts, Crockford.
   - This statement is troubling, as what _useful_ and _dangerous_ and _better_ mean is not precisely defined.
   - An improved perspective would be:
-  - _USeful_: when the reader is focused on what is important.
+  - _Useful_: when the reader is focused on what is important.
   - _Dangerous_: when the reader can't tell what will happen.
   - _Better_: when the reader understands the code.
 
@@ -450,10 +450,10 @@ if (
     // execute this code
   }
 
-// the == coercively checks null and undefined equal to each other. Arguably better code: more readable, focused on what's important.
+// the == coercively checks null and undefined equal to each other.
+// Arguably better code: more readable, focused on what's important.
 if (
-  workshop1.topic == null &&
-  workshop2.topic == null
+  workshop1.topic == null && workshop2.topic == null
 ) {
   // execute this code
 }
