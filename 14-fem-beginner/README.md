@@ -15,6 +15,9 @@ A series of courses for the Frontend Masters beginner learning path.
 2. [Getting Started with JavaScript, v2](2-getting-started-with-javascript-v2).\
    Refresher on the fundamentals of JavaScript. Kyle Simpson is reputedly one of the best teachers of JavaScript in the known universe.
 
-3. [CSS Grids and Flexbox for Responsive Web Design]()
+3. [CSS Grids and Flexbox for Responsive Web Design](3-css-grids-and-flexbox-for-responsive-web-design).\
+   Course to build responsive web applications faster using less code and best practices. Covers floats for context and mastery of Flexbox and CSS grids.
+
 4. [JavaScript: From Fundamentals to Functional JS, v2]()
+
 5. [Mastering Chrome Developer Tools v2]()
