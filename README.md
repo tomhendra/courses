@@ -61,53 +61,53 @@ I have been learning software development full-time since August 2018, and prior
     - **[CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)**\
        Course to build responsive web applications faster using less code and best practices. Covers floats for context and mastery of Flexbox and CSS grids.
 
-    - **[JavaScript: From Fundamentals to Functional JS, v2]()**\
+    - **[JavaScript: From Fundamentals to Functional JS, v2]()**
 
-    - **[Mastering Chrome Developer Tools v2]()**\
+    - **[Mastering Chrome Developer Tools v2]()**
 
 TODO...
 
-15. **[Frontend Masters Learning Paths: Professional]()**
+1.  **[Frontend Masters Learning Paths: Professional]()**
 
-    - **[JavaScript: The Hard Parts, v2]()**\
-    - **[Deep JavaScript Foundations, v3]()**\
-    - **[JavaScript: The Recent Parts]()**\
-    - **[Complete Intro to React, v5]()**\
-    - **[Functional-Light JavaScript, v3]()**\
-    - **[CSS In-Depth, v2]()**\
-    - **[Full Stack for Front-End Engineers, v2]()**\
+    - **[JavaScript: The Hard Parts, v2]()**
+    - **[Deep JavaScript Foundations, v3]()**
+    - **[JavaScript: The Recent Parts]()**
+    - **[Complete Intro to React, v5]()**
+    - **[Functional-Light JavaScript, v3]()**
+    - **[CSS In-Depth, v2]()**
+    - **[Full Stack for Front-End Engineers, v2]()**
 
-16. **[Frontend Masters Learning Paths: Expert]()**
+2.  **[Frontend Masters Learning Paths: Expert]()**
 
-    - **[JavaScript: The New Hard Parts]()**\
-    - **[Asynchronous Programming in JavaScript (with R-js Observables)]()**\
-    - **[Rethinking Asynchronous JavaScript]()**\
-    - **[Hardcore Functional Programming in JavaScript, v2]()**\
-    - **[Webpack 4 Fundamentals]()**\
-    - **[Git In-depth]()**\
-    - **[JavaScript Performance]()**\
-    - **[Code Transformation and Linting with ASTs]()**\
-    - **[Advanced Asynchronous JavaScript]()**\
+    - **[JavaScript: The New Hard Parts]()**
+    - **[Asynchronous Programming in JavaScript (with R-js Observables)]()**
+    - **[Rethinking Asynchronous JavaScript]()**
+    - **[Hardcore Functional Programming in JavaScript, v2]()**
+    - **[Webpack 4 Fundamentals]()**
+    - **[Git In-depth]()**
+    - **[JavaScript Performance]()**
+    - **[Code Transformation and Linting with ASTs]()**
+    - **[Advanced Asynchronous JavaScript]()**
 
-17. **[Frontend Masters Learning Path: Computer Science]()**
+3.  **[Frontend Masters Learning Path: Computer Science]()**
 
-    - **[Four Semesters of Computer Science in 5 Hours]()**\
-    - **[A Practical Guide to Algorithms with JavaScript]()**\
-    - **[Introduction to Data Structures for Interviews]()**\
-    - **[Four Semesters of Computer Science in 5 Hours, Part 2]()**\
-    - **[Tree and Graph Data Structures]()**\
+    - **[Four Semesters of Computer Science in 5 Hours]()**
+    - **[A Practical Guide to Algorithms with JavaScript]()**
+    - **[Introduction to Data Structures for Interviews]()**
+    - **[Four Semesters of Computer Science in 5 Hours, Part 2]()**
+    - **[Tree and Graph Data Structures]()**
 
-18. **[Frontend Masters Learning Path: Full Stack]()**\
+4.  **[Frontend Masters Learning Path: Full Stack]()**
 
-    - **[Full Stack for Front-End Engineers, v2]()**\
-    - **[Introduction to Node.js]()**\
-    - **[API Design in Node.js, v3]()**\
-    - **[AWS for Front-End Engineers (ft. S3, Cloudfront & Route 53)]()**\
+    - **[Full Stack for Front-End Engineers, v2]()**
+    - **[Introduction to Node.js]()**
+    - **[API Design in Node.js, v3]()**
+    - **[AWS for Front-End Engineers (ft. S3, Cloudfront & Route 53)]()**
 
-19. **[Frontend Masters Learning Path: Design to Code]()**\
+5.  **[Frontend Masters Learning Path: Design to Code]()**
 
-    - **[Design for Developers]()**\
-    - **[CSS Grids and Flexbox for Responsive Web Design]()**\ **- Repeat from Beginner Path**
-    - **[CSS In-Depth, v2]()**\ **- Repeat from Professional Path**
-    - **[Responsive Web Typography v2]()**\
-    - **[SVG Essentials & Animation, v2]()**\
+    - **[Design for Developers]()**
+    - **[CSS Grids and Flexbox for Responsive Web Design]()** **- Repeat from Beginner Path**
+    - **[CSS In-Depth, v2]()** **- Repeat from Professional Path**
+    - **[Responsive Web Typography v2]()**
+    - **[SVG Essentials & Animation, v2]()**
