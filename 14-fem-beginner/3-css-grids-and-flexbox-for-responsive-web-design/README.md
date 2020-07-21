@@ -11,6 +11,7 @@
   - [3.2. Flexbox Properties](#32-flexbox-properties)
   - [3.3. Flexbox Grid](#33-flexbox-grid)
 - [4. Responsive Images](#4-responsive-images)
+  - [4.1. Picturefill for Backwards Compatibility](#41-picturefill-for-backwards-compatibility)
 
 ## 1. Introduction
 
@@ -146,5 +147,28 @@ ul {
 ### 3.3. Flexbox Grid
 
 - Popular libraries like [Bootstrap 4](https://getbootstrap.com/docs/4.5/layout/grid/) and [Flexbox Grid](http://flexboxgrid.com) use flexbox-based grid systems.
+- See [exercises with flexbox grid for examples](exercises/3-flexbox-grid/begin).
 
 ## 4. Responsive Images
+
+- Images that resize.
+- Images should change size based on screen resolution.
+- There are several approaches.
+  - Can load a big images and let it scale (not good).
+  - Server-side (good).
+  - Client-side: Load several images and display the appropriate size for the device being used (not good).
+  - Client-side: Let JavaScript decide (better).
+  - Use the `<picture>` tag (even better). Picturefill polyfill can help backwards compatibility with IE.
+
+```html
+<picture>
+  <source srcset="img/peace-pie-original.jpg" media="(min-width: 1200px)" />
+  <source srcset="img/peace-pie-500.jpg" media="(min-width: 800px)" />
+  <img src="img/peace-pie-150.jpg" alt="The original giant peace pie" />
+</picture>
+```
+
+### 4.1. Picturefill for Backwards Compatibility
+
+- [GitHub repo](https://github.com/scottjehl/picturefill).
+- Current support is [95%](https://caniuse.com/#feat=picture).
