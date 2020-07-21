@@ -12,6 +12,7 @@
   - [3.3. Flexbox Grid](#33-flexbox-grid)
 - [4. Responsive Images](#4-responsive-images)
   - [4.1. Picturefill for Backwards Compatibility](#41-picturefill-for-backwards-compatibility)
+- [5. CSS Grid](#5-css-grid)
 
 ## 1. Introduction
 
@@ -172,3 +173,5 @@ ul {
 
 - [GitHub repo](https://github.com/scottjehl/picturefill).
 - Current support is [95%](https://caniuse.com/#feat=picture).
+
+## 5. CSS Grid
