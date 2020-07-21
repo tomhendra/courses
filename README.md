@@ -52,7 +52,20 @@ I have been learning software development full-time since August 2018, and prior
 14. **[Frontend Masters Learning Paths: Beginner](14-fem-beginner)**.\
     Frontend Masters targets intermediate to advanced level developers. The content is taught by industry leaders, which gives great confidence in the quality of material being delivered.
 
-TODO.......
+    - [Complete Intro to Web Development, v2](14-fem-beginner/1-complete-intro-to-web-development-v2).\
+       A refresher of the basics, for completeness in learning from the Frontend Masters platform.
+
+    - [Getting Started with JavaScript, v2](14-fem-beginner/2-getting-started-with-javascript-v2).\
+       Refresher on the fundamentals of JavaScript. Kyle Simpson is reputedly one of the best teachers of JavaScript in the known universe.
+
+    - [CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design).\
+       Course to build responsive web applications faster using less code and best practices. Covers floats for context and mastery of Flexbox and CSS grids.
+
+    - [JavaScript: From Fundamentals to Functional JS, v2]()
+
+    - [Mastering Chrome Developer Tools v2]()
+
+TODO...
 
 15. **[Frontend Masters Learning Paths: Professional]()**
 

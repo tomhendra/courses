@@ -9,7 +9,8 @@
 - [3. Flexbox](#3-flexbox)
   - [3.1. History & Browser Support](#31-history--browser-support)
   - [3.2. Flexbox Properties](#32-flexbox-properties)
-- [4. Flexbox Grid](#4-flexbox-grid)
+  - [3.3. Flexbox Grid](#33-flexbox-grid)
+- [4. Responsive Images](#4-responsive-images)
 
 ## 1. Introduction
 
@@ -142,6 +143,8 @@ ul {
 
 - Never use `width` on flex items: use `flex-basis`. `width` is an absolute number whereas `flex-basis` is more flexible.
 
-## 4. Flexbox Grid
+### 3.3. Flexbox Grid
 
 - Popular libraries like [Bootstrap 4](https://getbootstrap.com/docs/4.5/layout/grid/) and [Flexbox Grid](http://flexboxgrid.com) use flexbox-based grid systems.
+
+## 4. Responsive Images
