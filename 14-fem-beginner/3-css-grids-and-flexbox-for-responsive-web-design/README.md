@@ -8,7 +8,8 @@
 - [2. Floats](#2-floats)
 - [3. Flexbox](#3-flexbox)
   - [3.1. History & Browser Support](#31-history--browser-support)
-  - [Flexbox Properties](#flexbox-properties)
+  - [3.2. Flexbox Properties](#32-flexbox-properties)
+- [4. Flexbox Grid](#4-flexbox-grid)
 
 ## 1. Introduction
 
@@ -118,7 +119,7 @@ ul {
 
 - Current support [99.03%](https://caniuse.com/#feat=flexbox)
 
-### Flexbox Properties
+### 3.2. Flexbox Properties
 
 - Parent (Flex Container)
 
@@ -140,3 +141,7 @@ ul {
   - `align-self: overrides alignment set on parent`
 
 - Never use `width` on flex items: use `flex-basis`. `width` is an absolute number whereas `flex-basis` is more flexible.
+
+## 4. Flexbox Grid
+
+- Popular libraries like [Bootstrap 4](https://getbootstrap.com/docs/4.5/layout/grid/) and [Flexbox Grid](http://flexboxgrid.com) use flexbox-based grid systems.
