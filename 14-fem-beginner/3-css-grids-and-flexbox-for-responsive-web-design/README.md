@@ -13,6 +13,8 @@
 - [4. Responsive Images](#4-responsive-images)
   - [4.1. Picturefill for Backwards Compatibility](#41-picturefill-for-backwards-compatibility)
 - [5. CSS Grid](#5-css-grid)
+  - [Grid Browser Compatibility](#grid-browser-compatibility)
+  - [Syntax](#syntax)
 
 ## 1. Introduction
 
@@ -175,3 +177,55 @@ ul {
 - Current support is [95%](https://caniuse.com/#feat=picture).
 
 ## 5. CSS Grid
+
+- Built into CSS specification (now a recommendation).
+- No "row" markup required.
+- Grid is designed to work in two dimensions.
+- Use Flexbox for UI elements, but use Grid for major layout.
+
+### Grid Browser Compatibility
+
+- Currently at [95.83%](https://caniuse.com/#feat=css-grid).
+- Polyfills & fallbacks:
+  - Old grid spec: https://github.com/codler/Grid-Layout-Polyfill
+  - New grid spec: https://github.com/FremyCompany/css-grid-polyfill
+  - @supports: https://developer.mozilla.org/en-US/docs/Web/CSS/@supports
+  - Rachel Andrew: https://rachelandrew.co.uk/css/cheatsheets/grid-fallbacks
+
+### Syntax
+
+```html
+<div class="wrapper">
+  <div class="col-1"></div>
+  <div class="col-2"></div>
+  <div class="col-3"></div>
+  <div class="col-4"></div>
+</div>
+```
+
+```css
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+}
+```
+
+- Positioning cells:
+
+```css
+.col-1 {
+  grid-column: 1 / 2;
+}
+
+.col-2 {
+  grid-column: 2 / 3;
+}
+
+.col-3 {
+  grid-column: 3 / 4;
+}
+
+.col-4 {
+  grid-column: 4 / 5;
+}
+```
