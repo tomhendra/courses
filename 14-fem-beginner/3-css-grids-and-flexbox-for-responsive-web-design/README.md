@@ -251,7 +251,8 @@ ul {
 .anotherClass {
   grid-template-rows: repeat(2, 350px [name]) 10%;
 }
-translates to .anotherClass {
+/* translates to...  */
+.anotherClass {
   grid-template-rows: 350px [name] 350px [name] 10%;
 }
 ```
