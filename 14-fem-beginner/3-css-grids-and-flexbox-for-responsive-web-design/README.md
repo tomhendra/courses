@@ -13,9 +13,9 @@
 - [4. Responsive Images](#4-responsive-images)
   - [4.1. Picturefill for Backwards Compatibility](#41-picturefill-for-backwards-compatibility)
 - [5. CSS Grid](#5-css-grid)
-  - [Grid Browser Compatibility](#grid-browser-compatibility)
-  - [Syntax](#syntax)
-  - [Grid Properties](#grid-properties)
+  - [5.1. Grid Browser Compatibility](#51-grid-browser-compatibility)
+  - [5.2. Syntax](#52-syntax)
+  - [5.3. Grid Properties](#53-grid-properties)
 
 ## 1. Introduction
 
@@ -127,24 +127,24 @@ ul {
 
 ### 3.2. Flexbox Properties
 
-- Parent (Flex Container)
+**Parent (Flex Container)**
 
-  - `display: flex | inline-flex;`
-  - `flex-direction: row | row-reverse | column | column-reverse;`
-  - `flex-wrap: wrap | nowrap | wrap-reverse;`
-  - `flex-flow` (shorthand for `flex-direction` and `flex-wrap`)
-  - `justify-content` (main axis): `flex-start | flex-end | center | space-between | space-around | space-evenly;`
-  - `align-items` (cross axis - adjust to individual sizes): `flex-start | flex-end | center | baseline | stretch;`
-  - `align-content` (cross axis - adjust to largest item): `flex-start | flex-end | center | stretch | space-between | space-around;`
+- `display: flex | inline-flex;`
+- `flex-direction: row | row-reverse | column | column-reverse;`
+- `flex-wrap: wrap | nowrap | wrap-reverse;`
+- `flex-flow` (shorthand for `flex-direction` and `flex-wrap`)
+- `justify-content` (main axis): `flex-start | flex-end | center | space-between | space-around | space-evenly;`
+- `align-items` (cross axis - adjust to individual sizes): `flex-start | flex-end | center | baseline | stretch;`
+- `align-content` (cross axis - adjust to largest item): `flex-start | flex-end | center | stretch | space-between | space-around;`
 
-- Children (Flex Items)
+**Children (Flex Items)**
 
-  - `order: <integer>;`
-  - `flex-grow: <number>;`
-  - `flex-shrink: <number>;`
-  - `flex-basis: <length> | auto;`
-  - `flex: shorthand for grow, shrink, and basis (default: 0 1 auto)`
-  - `align-self: overrides alignment set on parent`
+- `order: <integer>;`
+- `flex-grow: <number>;`
+- `flex-shrink: <number>;`
+- `flex-basis: <length> | auto;`
+- `flex: shorthand for grow, shrink, and basis (default: 0 1 auto)`
+- `align-self: overrides alignment set on parent`
 
 - Never use `width` on flex items: use `flex-basis`. `width` is an absolute number whereas `flex-basis` is more flexible.
 
@@ -184,7 +184,7 @@ ul {
 - Grid is designed to work in two dimensions.
 - Use Flexbox for UI elements, but use Grid for major layout.
 
-### Grid Browser Compatibility
+### 5.1. Grid Browser Compatibility
 
 - Currently at [95.83%](https://caniuse.com/#feat=css-grid).
 - Polyfills & fallbacks:
@@ -193,7 +193,7 @@ ul {
   - @supports: https://developer.mozilla.org/en-US/docs/Web/CSS/@supports
   - Rachel Andrew: https://rachelandrew.co.uk/css/cheatsheets/grid-fallbacks
 
-### Syntax
+### 5.2. Syntax
 
 ```html
 <div class="wrapper">
@@ -231,9 +231,9 @@ ul {
 }
 ```
 
-### Grid Properties
+### 5.3. Grid Properties
 
-- **Parent (Grid Container)**
+**Parent (Grid Container)**
 
 - `display: grid | inline-grid;`
 - `grid-template-columns`
@@ -301,7 +301,7 @@ translates to .anotherClass {
   - If you create grid cells beyond those specified in grid-template-columns and grid-template-rows, this specifies how big these extra rows/columns should be.
 - `grid:` shorthand for all of the above properties. Not covered in class.
 
-- **Children (Grid Items)**
+**Children (Grid Items)**
 
 - `grid-column-start`
 - `grid-column-end`
