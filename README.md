@@ -61,8 +61,8 @@ I have been learning software development full-time since August 2018, and prior
     - **[CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)**\
        Build responsive web applications faster using less code and best practices. Floats are covered for context and Flexbox and CSS grid in more detail.
 
-    - **[JavaScript: From Fundamentals to Functional JS, v2]()**\
-       Higher-order functions, closures, scope, key functional methods like map, reduce and filter as well as promises, ES6 & asynchronous JavaScript.
+    - **[JavaScript: From Fundamentals to Functional JS, v2](14-fem-beginner/4-javascript-from-fundamentals-to-functional-js-v2)**\
+       A deep dive into JavaScript and functional programming techniques, this course is for beginner to intermediate JavaScript developers who want to learn techniques to write professional, modern JavaScript.
 
     - **[Mastering Chrome Developer Tools v2]()**\
        Master built-in dev tools to step through code with the debugger, audit web page performance, debug Node.js, and remove “page jank” when a site isn’t keeping up.
