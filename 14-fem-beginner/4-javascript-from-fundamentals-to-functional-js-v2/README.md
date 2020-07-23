@@ -105,7 +105,7 @@ var person = [];
 var plea = 'WouldShe';
 
 person[0] = 'I was not in the Billiards room'; // Adds property at index 0.
-person[plea] = 'I would never!'; // Uncaught ReferenceError: plea is not defined
+person[plea] = 'I would never!'; // without var plea = 'WouldShe' -- Uncaught ReferenceError: plea is not defined
 person['plea'] = 'I would never, ever!'; // Adds property called plea.
 
 person; // [0: "I was not in the Billiards room", WouldShe: "I would never!", plea: "I would never, ever!"]
