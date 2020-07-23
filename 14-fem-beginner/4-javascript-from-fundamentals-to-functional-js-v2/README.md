@@ -104,19 +104,19 @@ person; // [0: "I was not in the Billiards room", name: "Mrs. White"]
 var person = [];
 var plea = 'WouldShe';
 
+person[0] = 'I was not in the Billiards room'; // Adds property at index 0.
 person[plea] = 'I would never!'; // Uncaught ReferenceError: plea is not defined
 person['plea'] = 'I would never, ever!'; // Adds property called plea.
-person[0] = 'Number works!'; // Adds property 0.
 
-person; // [0: "Number works!", WouldShe: "I would never!", plea: "I would never, ever!"]
+person; // [0: "I was not in the Billiards room", WouldShe: "I would never!", plea: "I would never, ever!"]
 person.length; // 1
 ```
 
-- Rules about objects and arrays:
+- **Rules regarding objects and arrays:**
   - Arrays are objects with methods attached.
-  - Properties can be assigned with dot or bracket (with quotes) notation.
+  - Properties can be assigned with dot or bracket notation (quotes are required for named properties using brackets).
   - Using dot notation coerces to a string whereas bracket notation doesn't.
-  - You cannot use dot notation to assign numeric properties to an array - it is invalid syntax and will return an `error`.
+  - You cannot use dot notation to assign index properties (numbers) to an array - it is invalid syntax and will return an `error`.
   - The `array.length` method only works with numeric properties (although they are coerced to strings).
 
 ### 2.4. Non-valid Characters
