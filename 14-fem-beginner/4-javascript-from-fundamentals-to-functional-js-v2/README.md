@@ -116,7 +116,21 @@ person.length; // 1
   - Arrays are objects with methods attached.
   - Properties can be assigned with dot or bracket notation (quotes are required for named properties using brackets).
   - Using dot notation coerces to a string whereas bracket notation doesn't.
-  - You cannot use dot notation to assign index properties (numbers) to an array - it is invalid syntax and will return an `error`.
-  - The `array.length` method only works with numeric properties (although they are coerced to strings).
+  - You cannot use dot notation to assign numeric properties (indices) to an array - it is invalid syntax and will return an `error`.
+  - The `array.length` **property** only works with numeric indices (although they are coerced to strings).
 
 ### 2.4. Non-valid Characters
+
+- Try not to use invalid characters as property names.
+
+```js
+var box = {};
+
+box['material'] = 'cardboard';
+box[0] = 'Meow'; // JS sees numbers as something to be evaluated rather than coerced directly into a string. Could even do box[2 + 2] = 'something'.
+box['^&*'] = 'testing 123'; // must use quotes if using non-valid characters.
+
+var test = box['^&*'];
+
+box; // {0: "Meow", material: "cardboard", ^&*: "testing 123"}
+```
