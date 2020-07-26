@@ -11,6 +11,8 @@
   - [2.2. Arrays](#22-arrays)
   - [2.3. Bracket Notation](#23-bracket-notation)
   - [2.4. Non-valid Characters](#24-non-valid-characters)
+  - [2.5. Dot Notation vs Bracket Notation](#25-dot-notation-vs-bracket-notation)
+  - [2.6. Object Recap Quiz](#26-object-recap-quiz)
 
 ## 1. Introduction
 
@@ -134,3 +136,28 @@ var test = box['^&*'];
 
 box; // {0: "Meow", material: "cardboard", ^&*: "testing 123"}
 ```
+
+### 2.5. Dot Notation vs Bracket Notation
+
+| Brackets         | Dots    |
+| ---------------- | ------- |
+| strings          | strings |
+| numbers          |
+| variables        |
+| weird characters |
+| expressions      |
+
+- Dot notation saves characters. We like to type less!
+
+### 2.6. Object Recap Quiz
+
+- What is an object?
+- What is the difference between dot and bracket notation?
+- How do you add a property with a key that contains special characters?
+- How do you add a property whose key and value are stored in different variables?
+- How do we loop through objects to access the values?
+- When can you only use dot notation and not bracket?
+- When can you only use bracket notation and not dot?
+- How do you add a property with a key that is stored in a variable?
+- How do you access an object which is inside another object?
+- How do you create an object that is nested inside another object?
