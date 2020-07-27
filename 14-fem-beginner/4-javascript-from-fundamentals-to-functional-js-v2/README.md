@@ -12,7 +12,7 @@
   - [2.3. Bracket Notation](#23-bracket-notation)
   - [2.4. Non-valid Characters](#24-non-valid-characters)
   - [2.5. Dot Notation vs Bracket Notation](#25-dot-notation-vs-bracket-notation)
-  - [2.6. Object Recap Quiz](#26-object-recap-quiz)
+  - [2.6. Objects Recap Quiz](#26-objects-recap-quiz)
 
 ## 1. Introduction
 
@@ -139,17 +139,17 @@ box; // {0: "Meow", material: "cardboard", ^&*: "testing 123"}
 
 ### 2.5. Dot Notation vs Bracket Notation
 
-| Brackets         | Dots    |
-| ---------------- | ------- |
-| strings          | strings |
-| numbers          |
-| variables        |
-| weird characters |
-| expressions      |
+| Dots    | Brackets         |
+| ------- | ---------------- |
+| strings | strings          |
+|         | numbers          |
+|         | variables        |
+|         | weird characters |
+|         | expressions      |
 
 - Dot notation saves characters. We like to type less!
 
-### 2.6. Object Recap Quiz
+### 2.6. Objects Recap Quiz
 
 - What is an object?
 - What is the difference between dot and bracket notation?
