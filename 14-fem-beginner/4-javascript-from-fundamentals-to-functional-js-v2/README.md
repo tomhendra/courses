@@ -13,6 +13,7 @@
   - [2.4. Non-valid Characters](#24-non-valid-characters)
   - [2.5. Dot Notation vs Bracket Notation](#25-dot-notation-vs-bracket-notation)
   - [2.6. Objects Recap Quiz](#26-objects-recap-quiz)
+  - [2.7. ES6 Destructuring](#27-es6-destructuring)
 
 ## 1. Introduction
 
@@ -161,3 +162,39 @@ box; // {0: "Meow", material: "cardboard", ^&*: "testing 123"}
 - How do you add a property with a key that is stored in a variable?
 - How do you access an object which is inside another object?
 - How do you create an object that is nested inside another object?
+
+### 2.7. ES6 Destructuring
+
+- A simplified way of defining variables and taking them outside of an object or array.
+
+```js
+var obj = { first: 'Tom', last: 'Hendra' };
+var first = obj.first;
+var last = obj.last;
+// Destructured variables
+var { first, last } = obj;
+```
+
+- Two things we need to think about: The target & the source.
+
+```js
+// Array variable declarations: target = source;
+const [first, last] = [true, false];
+let [first, last] = [true, false];
+var [first, last] = [true, false];
+
+// Array variable assignment: target = source;
+[first, last] = [true, false];
+```
+
+- With objects the target properties and variable declarations must have the same name.
+
+```js
+// Object variable declarations: target = source;
+const {first, bump} = {first: 0, second: 1};
+let {first, second} = {first: 0, second: 1};
+var {first, second} = {first: 0, second: 1};
+
+// Object variable assignment: target = source;
+{first, second} = {first: 0, second: 1};
+```
