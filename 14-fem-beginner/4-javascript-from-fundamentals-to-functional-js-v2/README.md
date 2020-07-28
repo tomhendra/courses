@@ -14,6 +14,8 @@
   - [2.5. Dot Notation vs Bracket Notation](#25-dot-notation-vs-bracket-notation)
   - [2.6. Objects Recap Quiz](#26-objects-recap-quiz)
   - [2.7. ES6 Destructuring](#27-es6-destructuring)
+- [3. List Transformations](#3-list-transformations)
+  - [3.1. forEach function](#31-foreach-function)
 
 ## 1. Introduction
 
@@ -198,3 +200,42 @@ var {first, second} = {first: 0, second: 1};
 // Object variable assignment: target = source;
 {first, second} = {first: 0, second: 1};
 ```
+
+## 3. List Transformations
+
+- One of the core things done in functional utility methods.
+- Takes a list of data in different arrangements and extracts what is required.
+- Much of the time in frontend dev you don't have control over API data, so transforming lists into something more usable is a key skill.
+
+```js
+const game = {};
+
+game['suspects'] = [];
+
+game.suspects.push({
+  name: 'Rusty',
+  color: 'orange',
+});
+
+game.suspects[1] = {
+  name: 'Miss Scarlet',
+  color: 'red',
+};
+
+game['suspects']; // [{name: 'Rusty', color: 'orange'}, {name: "Miss Scarlet", color: "red"}]
+
+// Exercise 1 & 2
+game.suspects.forEach((suspect) => {
+  for (let key in suspect) {
+    if (suspect.name === 'Rusty') {
+      suspect.guilty = true;
+    }
+    console.log(`${key}: `, suspect[key]);
+  }
+});
+
+// Exercise 3
+const [{ color: firstColor }, { color: secondColor }] = game.suspects;
+```
+
+### 3.1. forEach function
