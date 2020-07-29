@@ -15,7 +15,9 @@
   - [2.6. Objects Recap Quiz](#26-objects-recap-quiz)
   - [2.7. ES6 Destructuring](#27-es6-destructuring)
 - [3. List Transformations](#3-list-transformations)
-  - [3.1. forEach function](#31-foreach-function)
+- [4. `.forEach()` function](#4-foreach-function)
+  - [4.1. `_.each()` / `.forEach()` Defined](#41-_each--foreach-defined)
+  - [4.2. Exercise: Implement `_.each`](#42-exercise-implement-_each)
 
 ## 1. Introduction
 
@@ -238,4 +240,96 @@ game.suspects.forEach((suspect) => {
 const [{ color: firstColor }, { color: secondColor }] = game.suspects;
 ```
 
-### 3.1. forEach function
+## 4. `.forEach()` function
+
+- Abstracting from loop into a function.
+- Prevents errors.
+- More readable.
+
+```js
+function CreateSuspectObjects(name) {
+  return {
+    name: name,
+    color: name.split(' ')[1],
+    speak() {
+      console.log('my name is ', name);
+    },
+  };
+}
+
+var suspects = ['Miss Scarlet', 'Colonel Mustard', 'Mr. White'];
+
+var suspectsList = [];
+
+// Underscore.js
+_.each(suspects, function (name) {
+  suspectsList.push(CreateSuspectObjects(name));
+});
+
+// forEach native array method
+suspects.forEach((suspect) => {
+  suspectsList.push(CreateSuspectObjects(suspect));
+});
+```
+
+### 4.1. `_.each()` / `.forEach()` Defined
+
+- Iterates over a list of elements, passing the values to a function.
+- Each invocation of iterator, the function, is called with three arguments: (element, index, list).
+- If list is a JavaScript object, iterator's arguments will be (value, key, list).
+
+```js
+// Underscore.js
+_.each(
+    ['observatory','ballroom', 'library'],
+    function(value, index, list){ ... }
+);
+
+// forEach native array method
+['observatory','ballroom','library']
+.forEach(function(value, index, list){ ... });
+```
+
+### 4.2. Exercise: Implement `_.each`
+
+```js
+const _ = {};
+
+_.each = function (list, callback) {
+  if (typeof callback !== 'function') {
+    return console.error(
+      'Invalid argument provided: Callback must be a function'
+    );
+  }
+  if (Array.isArray(list)) {
+    for (var i = 0; i < list.length; i++) {
+      callback(list[i], i, list);
+    }
+  } else if (typeof list === 'object') {
+    for (var key in list) {
+      callback(list[key], key, list);
+    }
+  } else {
+    return console.error(
+      'Invalid argument provided: List must be an array or an object.'
+    );
+  }
+};
+
+const arr = ['Tom', 'Maria', 'Pablo'];
+const obj = { name1: 'Tom', name2: 'Maria', name3: 'Pablo' };
+
+const callback = function (element, i, list) {
+  if (list[i] + 1) {
+    console.log(element, 'is younger than', list[i + 1]);
+  } else {
+    console.log(element, 'is the oldest');
+  }
+};
+
+// Test cases
+_.each(arr, callback);
+_.each(obj, callback);
+_.each('I am a bug', callback);
+_.each(arr, 'I am a bug');
+```
