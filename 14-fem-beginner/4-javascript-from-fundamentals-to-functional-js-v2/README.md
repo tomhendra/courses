@@ -15,9 +15,11 @@
   - [2.6. Objects Recap Quiz](#26-objects-recap-quiz)
   - [2.7. ES6 Destructuring](#27-es6-destructuring)
 - [3. List Transformations](#3-list-transformations)
-- [4. `.forEach()` function](#4-foreach-function)
+- [4. `.forEach()` Function](#4-foreach-function)
   - [4.1. `_.each()` / `.forEach()` Defined](#41-_each--foreach-defined)
   - [4.2. Exercise: Implement `_.each`](#42-exercise-implement-_each)
+- [5. `.map()` Function](#5-map-function)
+  - [5.1. `_.map()` vs `_.each()`](#51-_map-vs-_each)
 
 ## 1. Introduction
 
@@ -240,7 +242,7 @@ game.suspects.forEach((suspect) => {
 const [{ color: firstColor }, { color: secondColor }] = game.suspects;
 ```
 
-## 4. `.forEach()` function
+## 4. `.forEach()` Function
 
 - Abstracting from loop into a function.
 - Prevents errors.
@@ -330,6 +332,57 @@ const callback = function (element, i, list) {
 // Test cases
 _.each(arr, callback);
 _.each(obj, callback);
-_.each('I am a bug', callback);
-_.each(arr, 'I am a bug');
+_.each('I am a 🐛', callback);
+_.each(arr, 'I am a 🐛');
+```
+
+## 5. `.map()` Function
+
+- Key difference between `_.each()` and `_.map()` is that each doesn't return anything.
+- `_.map()` returns a new array every time.
+- We use `_.map()` to transform lists and create a new array.
+
+```js
+_.map([1, 2, 3], function (v, i, list) {
+  console.log(v);
+});
+```
+
+- Produces a new array of values by mapping each value in list through a transformation function (iterator).
+- Each invocation of iterator is called with three arguments: (element, index, list).
+- If list is a JavaScript object, iterator's arguments will be (value, key, list)
+
+```js
+const weapons = ['candlestick', 'lead pipe', 'revolver'];
+
+const makeBroken = function (item) {
+  return `broken ${item}`;
+};
+
+const brokenWeapons = _.map(weapons, makeBroken);
+brokenWeapons; // ["broken candlestick", "broken lead pipe", "broken revolver"]
+```
+
+### 5.1. `_.map()` vs `_.each()`
+
+```js
+function CreateSuspectObjects(name) {
+  return {
+    name: name,
+    color: name.split(' ')[1],
+    speak() {
+      log(`my name is ${this.name}`);
+    },
+  };
+}
+
+var suspects = ['Miss Scarlet', 'Colonel Mustard', 'Mr. White'];
+
+var suspectsList = _.map(suspects, function (name) {
+  return CreateSuspectObjects(name);
+});
+
+_.each(suspects, function (suspect) {
+  suspect.speak();
+});
 ```
