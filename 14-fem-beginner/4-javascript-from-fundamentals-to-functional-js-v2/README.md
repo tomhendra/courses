@@ -15,12 +15,13 @@
   - [2.6. Objects Recap Quiz](#26-objects-recap-quiz)
   - [2.7. ES6 Destructuring](#27-es6-destructuring)
 - [3. List Transformations](#3-list-transformations)
-- [4. `.forEach()` Function](#4-foreach-function)
-  - [4.1. `_.each()` / `.forEach()` Defined](#41-_each--foreach-defined)
-  - [4.2. Exercise: Implement `_.each`](#42-exercise-implement-_each)
-- [5. `.map()` Function](#5-map-function)
-  - [5.1. `_.map()` vs `_.each()`](#51-_map-vs-_each)
-  - [5.2. Exercise: Implement `_.map`](#52-exercise-implement-_map)
+- [4. .forEach() Function](#4-foreach-function)
+  - [4.1. \_.each() / .forEach() Defined](#41-_each--foreach-defined)
+  - [4.2. Exercise: Implement \_.each](#42-exercise-implement-_each)
+- [5. .map() Function](#5-map-function)
+  - [5.1. \_.map() vs \_.each()](#51-_map-vs-_each)
+  - [5.2. Exercise: Implement \_.map](#52-exercise-implement-_map)
+- [6. .filter() Function](#6-filter-function)
 
 ## 1. Introduction
 
@@ -243,7 +244,7 @@ game.suspects.forEach((suspect) => {
 const [{ color: firstColor }, { color: secondColor }] = game.suspects;
 ```
 
-## 4. `.forEach()` Function
+## 4. .forEach() Function
 
 - Abstracting from loop into a function.
 - Prevents errors.
@@ -275,7 +276,7 @@ suspects.forEach((suspect) => {
 });
 ```
 
-### 4.1. `_.each()` / `.forEach()` Defined
+### 4.1. \_.each() / .forEach() Defined
 
 - Iterates over a list of elements, passing the values to a function.
 - Each invocation of iterator, the function, is called with three arguments: (element, index, list).
@@ -293,7 +294,7 @@ _.each(
 .forEach(function(value, index, list){ ... });
 ```
 
-### 4.2. Exercise: Implement `_.each`
+### 4.2. Exercise: Implement \_.each
 
 ```js
 const _ = {};
@@ -335,7 +336,7 @@ _.each('🐛', callback);
 _.each(arr, '🐛');
 ```
 
-## 5. `.map()` Function
+## 5. .map() Function
 
 - Key difference between `_.each()` and `_.map()` is that each doesn't return anything.
 - `_.map()` returns a new array every time.
@@ -362,7 +363,7 @@ const brokenWeapons = _.map(weapons, makeBroken);
 brokenWeapons; // ["broken candlestick", "broken lead pipe", "broken revolver"]
 ```
 
-### 5.1. `_.map()` vs `_.each()`
+### 5.1. \_.map() vs \_.each()
 
 ```js
 function CreateSuspectObjects(name) {
@@ -386,7 +387,7 @@ _.each(suspects, function (suspect) {
 });
 ```
 
-### 5.2. Exercise: Implement `_.map`
+### 5.2. Exercise: Implement \_.map
 
 ```js
 const _ = {};
@@ -431,3 +432,7 @@ const test2 = _.map(obj, callback);
 const test3 = _.map('🐛', callback);
 const test4 = _.map(arr, '🐛');
 ```
+
+## 6. .filter() Function
+
+-
