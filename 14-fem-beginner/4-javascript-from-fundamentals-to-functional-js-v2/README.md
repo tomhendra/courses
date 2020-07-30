@@ -25,8 +25,10 @@
   - [6.1. Exercise: Implement `_.filter`](#61-exercise-implement-_filter)
 - [7. Functions](#7-functions)
   - [7.1. The Anatomy of a Function](#71-the-anatomy-of-a-function)
-  - [ES6 Arrow Functions](#es6-arrow-functions)
-  - [Exercise: Projecting](#exercise-projecting)
+  - [7.2. ES6 Arrow Functions](#72-es6-arrow-functions)
+  - [7.3. Exercise: Projecting](#73-exercise-projecting)
+  - [7.4. Spread Operator](#74-spread-operator)
+  - [7.5. Arguments Keyword](#75-arguments-keyword)
 
 ## 1. Introduction
 
@@ -524,7 +526,7 @@ const filterTest3 = _.filter(videoData, '🐛');
 - A function expression is when we name the function: `function foo() {...}`
 - The function body in between the `{}` doesn't get executed until the function is invoked.
 
-### ES6 Arrow Functions
+### 7.2. ES6 Arrow Functions
 
 - Syntax differences:
   - `function` keyword is replaced by the `=>`.
@@ -549,7 +551,7 @@ $('button').on('click', () => {
 });
 ```
 
-### Exercise: Projecting
+### 7.3. Exercise: Projecting
 
 - "Projecting" is taking a data structure and turning it into another data structure.
 - Exercise combines previous exercises.
@@ -698,4 +700,49 @@ const suspects = _.filter(videoData, (suspectObject) => {
 const suspectNames = _.map(suspects, (suspect) => {
   return suspect.name;
 });
+```
+
+### 7.4. Spread Operator
+
+- Can be used to collect extra arguments when there are more arguments than parameters.
+
+```js
+const createTuple = (a, b, c, ...d) => {
+  return [
+    [a, c],
+    [b, d],
+  ];
+};
+
+createTuple('It', 'be', 'could', 'anyone', 'no one');
+// [['It', 'Could'], ['be', ['anyone', 'no one']]]
+```
+
+### 7.5. Arguments Keyword
+
+- Before the spread operator we had to rely on the `arguments` keyword.
+- References all the arguments as a pseudo array.
+- A pseudo array is an object that looks like an array, but is actually an object.
+- The arguments keyword is most useful when we don't know how many arguments there will be.
+
+```js
+const createTuple = (a, b, c, d) => {
+  console.log(arguments); // arguments is not defined because of arrow function
+  return [
+    [a, c],
+    [b, d],
+  ];
+};
+
+createTuple('It', 'be', 'could', 'anyone', 'no one');
+
+const createTuple = function (a, b, c, ...d) {
+  console.log(arguments); // ['It', 'be', 'could', 'anyone', 'no one']
+  return [
+    [a, c],
+    [b, d],
+  ];
+};
+
+createTuple('It', 'be', 'could', 'anyone', 'no one');
 ```
