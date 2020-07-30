@@ -22,7 +22,11 @@
   - [5.1. `_.map()` vs `_.each()`](#51-_map-vs-_each)
   - [5.2. Exercise: Implement `_.map`](#52-exercise-implement-_map)
 - [6. `.filter()` Function](#6-filter-function)
-  - [Exercise: Implement `_.filter`](#exercise-implement-_filter)
+  - [6.1. Exercise: Implement `_.filter`](#61-exercise-implement-_filter)
+- [7. Functions](#7-functions)
+  - [7.1. The Anatomy of a Function](#71-the-anatomy-of-a-function)
+  - [ES6 Arrow Functions](#es6-arrow-functions)
+  - [Exercise: Projecting](#exercise-projecting)
 
 ## 1. Introduction
 
@@ -440,7 +444,7 @@ const mapTest4 = _.map(arr, '🐛');
 - Takes an array and a callback.
 - Returns a new array that will only contain the values that return true from the callback.
 
-### Exercise: Implement `_.filter`
+### 6.1. Exercise: Implement `_.filter`
 
 ```js
 const _ = {};
@@ -505,4 +509,193 @@ const callback = function (suspectObject) {
 const filterTest1 = _.filter(videoData, callback);
 const filterTest2 = _.filter('🐛', callback);
 const filterTest3 = _.filter(videoData, '🐛');
+```
+
+## 7. Functions
+
+### 7.1. The Anatomy of a Function
+
+- The terms parameters and arguments are used interchangeably but they are actually different.
+- Parameters are variables for the function.
+- Arguments are actually the values passed to the function, which are then stored in the parameters.
+- Side effects are things that are happening other than returning a value that affect something outside of the function. e.g. `console.log()` or changing the value of an object in a different scope.
+- A function definition / declaration is the keyword `function` with `()` and `{}`.
+- A function declaration is when we assign a function to a variable: `var foo = function() {...}`
+- A function expression is when we name the function: `function foo() {...}`
+- The function body in between the `{}` doesn't get executed until the function is invoked.
+
+### ES6 Arrow Functions
+
+- Syntax differences:
+  - `function` keyword is replaced by the `=>`.
+  - No need to wrap parameters in `()` if there is only one.
+  - If only one line can omit the `{}`.
+- Arrow functions do not have their own value for `this`.
+- Arrow functions bind the `this` context to the parent context.
+- Replaces need for `.bind()`.
+- The `arguments` keyword doesn't work with arrow functions.
+
+```js
+var nameImprover = (name, adj) => {
+  return `Col ${name} Mc ${adj} pants`;
+};
+
+$('body').hide();
+
+myArr.forEach((val) => console.log(val));
+
+$('button').on('click', () => {
+  console.log("Don't press my buttons!");
+});
+```
+
+### Exercise: Projecting
+
+- "Projecting" is taking a data structure and turning it into another data structure.
+- Exercise combines previous exercises.
+
+```js
+const videoData = [
+  {
+    name: 'Miss Scarlet',
+    present: true,
+    rooms: [
+      { kitchen: false },
+      { ballroom: false },
+      { conservatory: false },
+      { 'dining room': false },
+      { 'billiard room': false },
+      { library: false },
+    ],
+  },
+  {
+    name: 'Mrs. White',
+    present: false,
+    rooms: [
+      { kitchen: false },
+      { ballroom: false },
+      { conservatory: false },
+      { 'dining room': false },
+      { 'billiard room': false },
+      { library: false },
+    ],
+  },
+  {
+    name: 'Reverend Green',
+    present: true,
+    rooms: [
+      { kitchen: false },
+      { ballroom: false },
+      { conservatory: false },
+      { 'dining room': false },
+      { 'billiard room': false },
+      { library: false },
+    ],
+  },
+  {
+    name: 'Rusty',
+    present: false,
+    rooms: [
+      { kitchen: false },
+      { ballroom: false },
+      { conservatory: false },
+      { 'dining room': false },
+      { 'billiard room': false },
+      { library: false },
+    ],
+  },
+  {
+    name: 'Colonel Mustard',
+    present: true,
+    rooms: [
+      { kitchen: false },
+      { ballroom: false },
+      { conservatory: false },
+      { 'dining room': false },
+      { 'billiard room': false },
+      { library: false },
+    ],
+  },
+  {
+    name: 'Professor Plum',
+    present: true,
+    rooms: [
+      { kitchen: false },
+      { ballroom: false },
+      { conservatory: false },
+      { 'dining room': false },
+      { 'billiard room': false },
+      { library: false },
+    ],
+  },
+];
+
+const _ = {};
+
+_.each = function (list, callback) {
+  if (typeof callback !== 'function') {
+    return console.error('Invalid argument: Callback must be a function.');
+  }
+  if (Array.isArray(list)) {
+    for (var i = 0; i < list.length; i++) {
+      callback(list[i], i, list);
+    }
+  } else if (typeof list === 'object') {
+    for (var key in list) {
+      callback(list[key], key, list);
+    }
+  } else {
+    return console.error(
+      'Invalid argument: List must be an array or an object.'
+    );
+  }
+};
+
+_.map = function (list, callback) {
+  if (typeof callback !== 'function') {
+    return console.error('Invalid argument: Callback must be a function.');
+  }
+
+  const storage = [];
+
+  if (Array.isArray(list) || typeof list === 'object') {
+    _.each(list, function (v, i, list) {
+      storage.push(callback(v, i, list));
+    });
+  } else {
+    return console.error(
+      'Invalid argument: List must be an array or an object.'
+    );
+  }
+
+  return storage;
+};
+
+_.filter = function (arr, callback) {
+  if (typeof callback !== 'function') {
+    return console.error('Invalid argument: Callback must be a function.');
+  }
+
+  const storage = [];
+
+  if (Array.isArray(arr)) {
+    _.each(arr, function (item, i, list) {
+      if (callback(item, i, list) === true) {
+        storage.push(item);
+      }
+    });
+  } else {
+    return console.error('Invalid argument: Data must be an array.');
+  }
+
+  return storage;
+};
+
+const suspects = _.filter(videoData, (suspectObject) => {
+  return suspectObject.present;
+});
+
+const suspectNames = _.map(suspects, (suspect) => {
+  return suspect.name;
+});
 ```
