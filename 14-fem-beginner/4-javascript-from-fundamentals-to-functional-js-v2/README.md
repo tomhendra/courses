@@ -22,6 +22,7 @@
   - [5.1. `_.map()` vs `_.each()`](#51-_map-vs-_each)
   - [5.2. Exercise: Implement `_.map`](#52-exercise-implement-_map)
 - [6. `.filter()` Function](#6-filter-function)
+  - [Exercise: Implement `_.filter`](#exercise-implement-_filter)
 
 ## 1. Introduction
 
@@ -338,7 +339,7 @@ _.each(arr, '🐛');
 
 ## 5. `.map()` Function
 
-- Key difference between `_.each()` and `_.map()` is that each doesn't return anything.
+- Key difference between `_.each()` and `_.map()` is that `_.each()` doesn't return anything.
 - `_.map()` returns a new array every time.
 - We use `_.map()` to transform lists and create a new array.
 
@@ -399,17 +400,18 @@ _.map = function (list, callback) {
 
   const storage = [];
 
-  if (Array.isArray(list)) {
-    for (var i = 0; i < list.length; i++) {
-      storage.push(callback(list[i], i, list));
-    }
-  } else if (typeof list === 'object') {
-    for (var key in list) {
-      storage.push(callback(list[key], i, list));
-    }
-    // _.each(list, function (v, i, list) {
-    //   storage.push(callback(v, i, list));
-    // });
+  // if (Array.isArray(list)) {
+  //   for (var i = 0; i < list.length; i++) {
+  //     storage.push(callback(list[i], i, list));
+  //   }
+  // } else if (typeof list === 'object') {
+  //   for (var key in list) {
+  //     storage.push(callback(list[key], i, list));
+  //   }
+  if (Array.isArray(list) || typeof list === 'object') {
+    _.each(list, function (v, i, list) {
+      storage.push(callback(v, i, list));
+    });
   } else {
     return console.error(
       'Invalid argument: List must be an array or an object.'
@@ -427,12 +429,80 @@ const callback = function (element, i, list) {
 };
 
 // Test cases
-const test1 = _.map(arr, callback);
-const test2 = _.map(obj, callback);
-const test3 = _.map('🐛', callback);
-const test4 = _.map(arr, '🐛');
+const mapTest1 = _.map(arr, callback);
+const mapTest2 = _.map(obj, callback);
+const mapTest3 = _.map('🐛', callback);
+const mapTest4 = _.map(arr, '🐛');
 ```
 
 ## 6. `.filter()` Function
 
--
+- Takes an array and a callback.
+- Returns a new array that will only contain the values that return true from the callback.
+
+### Exercise: Implement `_.filter`
+
+```js
+const _ = {};
+
+_.filter = function (arr, callback) {
+  if (typeof callback !== 'function') {
+    return console.error('Invalid argument: Callback must be a function.');
+  }
+
+  const storage = [];
+
+  if (Array.isArray(arr)) {
+    // for (let i = 0; i < arr.length; i++) {
+    //   if (callback(arr[i], i, arr) === true) {
+    //     storage.push(arr[i]);
+    //   }
+    // }
+    _.each(arr, function (item, i, list) {
+      if (callback(item, i, list) === true) {
+        storage.push(item);
+      }
+    });
+  } else {
+    return console.error('Invalid argument: Data must be an array.');
+  }
+
+  return storage;
+};
+
+const videoData = [
+  {
+    name: 'Miss Scarlet',
+    present: true,
+    rooms: [
+      { kitchen: false },
+      { ballroom: false },
+      { conservatory: false },
+      { 'dining room': false },
+      { 'billiard room': false },
+      { library: false },
+    ],
+  },
+  {
+    name: 'Mr Brown',
+    present: false,
+    rooms: [
+      { kitchen: false },
+      { ballroom: false },
+      { conservatory: false },
+      { 'dining room': false },
+      { 'billiard room': false },
+      { library: false },
+    ],
+  },
+];
+
+const callback = function (suspectObject) {
+  return suspectObject.present;
+};
+
+// Test cases
+const filterTest1 = _.filter(videoData, callback);
+const filterTest2 = _.filter('🐛', callback);
+const filterTest3 = _.filter(videoData, '🐛');
+```
