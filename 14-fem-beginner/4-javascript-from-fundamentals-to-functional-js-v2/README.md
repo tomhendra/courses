@@ -20,6 +20,7 @@
   - [4.2. Exercise: Implement `_.each`](#42-exercise-implement-_each)
 - [5. `.map()` Function](#5-map-function)
   - [5.1. `_.map()` vs `_.each()`](#51-_map-vs-_each)
+  - [5.2. Exercise: Implement `_.map`](#52-exercise-implement-_map)
 
 ## 1. Introduction
 
@@ -299,9 +300,7 @@ const _ = {};
 
 _.each = function (list, callback) {
   if (typeof callback !== 'function') {
-    return console.error(
-      'Invalid argument provided: Callback must be a function'
-    );
+    return console.error('Invalid argument: Callback must be a function.');
   }
   if (Array.isArray(list)) {
     for (var i = 0; i < list.length; i++) {
@@ -313,7 +312,7 @@ _.each = function (list, callback) {
     }
   } else {
     return console.error(
-      'Invalid argument provided: List must be an array or an object.'
+      'Invalid argument: List must be an array or an object.'
     );
   }
 };
@@ -332,8 +331,8 @@ const callback = function (element, i, list) {
 // Test cases
 _.each(arr, callback);
 _.each(obj, callback);
-_.each('I am a 🐛', callback);
-_.each(arr, 'I am a 🐛');
+_.each('🐛', callback);
+_.each(arr, '🐛');
 ```
 
 ## 5. `.map()` Function
@@ -385,4 +384,50 @@ var suspectsList = _.map(suspects, function (name) {
 _.each(suspects, function (suspect) {
   suspect.speak();
 });
+```
+
+### 5.2. Exercise: Implement `_.map`
+
+```js
+const _ = {};
+
+_.map = function (list, callback) {
+  if (typeof callback !== 'function') {
+    return console.error('Invalid argument: Callback must be a function.');
+  }
+
+  const storage = [];
+
+  if (Array.isArray(list)) {
+    for (var i = 0; i < list.length; i++) {
+      storage.push(callback(list[i], i, list));
+    }
+  } else if (typeof list === 'object') {
+    for (var key in list) {
+      storage.push(callback(list[key], i, list));
+    }
+    // _.each(list, function (v, i, list) {
+    //   storage.push(callback(v, i, list));
+    // });
+  } else {
+    return console.error(
+      'Invalid argument: List must be an array or an object.'
+    );
+  }
+
+  return storage;
+};
+
+const arr = [1, 2, 3];
+const obj = { num1: 1, num2: 2, num3: 3 };
+
+const callback = function (element, i, list) {
+  return element + 1;
+};
+
+// Test cases
+const test1 = _.map(arr, callback);
+const test2 = _.map(obj, callback);
+const test3 = _.map('🐛', callback);
+const test4 = _.map(arr, '🐛');
 ```
