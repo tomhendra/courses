@@ -29,6 +29,7 @@
   - [7.3. Exercise: Projecting](#73-exercise-projecting)
   - [7.4. Spread Operator](#74-spread-operator)
   - [7.5. Arguments Keyword](#75-arguments-keyword)
+  - [7.6. Default Parameters](#76-default-parameters)
 
 ## 1. Introduction
 
@@ -745,4 +746,17 @@ const createTuple = function (a, b, c, ...d) {
 };
 
 createTuple('It', 'be', 'could', 'anyone', 'no one');
+```
+
+### 7.6. Default Parameters
+
+- Use `=` to assign a default argument for the parameters of a function.
+- Note, the `arguments` keyword will not pick up the default!
+
+```js
+const add = function (a, b = 2) {
+  console.log(arguments); // logs [3]
+  return a + b;
+};
+add(3); // 5??
 ```
