@@ -30,6 +30,8 @@
   - [7.4. Spread Operator](#74-spread-operator)
   - [7.5. Arguments Keyword](#75-arguments-keyword)
   - [7.6. Default Parameters](#76-default-parameters)
+  - [7.7. Array-like Object](#77-array-like-object)
+  - [7.8. Exercise: Implement `_.from()`](#78-exercise-implement-_from)
 
 ## 1. Introduction
 
@@ -754,9 +756,51 @@ createTuple('It', 'be', 'could', 'anyone', 'no one');
 - Note, the `arguments` keyword will not pick up the default!
 
 ```js
+// ES5
+const add = function (a, b) {
+  b = b || 2;
+  console.log(arguments); // logs [3]
+  return a + b;
+};
+add(3); // 5
+
+// ES6
 const add = function (a, b = 2) {
   console.log(arguments); // logs [3]
   return a + b;
 };
-add(3); // 5??
+add(3); // 5
+```
+
+### 7.7. Array-like Object
+
+```js
+// ES5
+/*
+ * - References the slice native array method.
+ * - Passes in the `arguments` pseudo array as the context.
+ * - Turns array-like object into an array.
+ */
+const constructArr = function () {
+  const arr = Array.prototype.slice.call(arguments);
+  arr.push('the billiards room?');
+  return arr.join(' ');
+};
+constructArr('was', 'it', 'in');
+
+//ES6
+const constructArr = function () {
+  const arr = Array.from(arguments);
+  arr.push('the billiards room?');
+  return arr.join(' ');
+};
+constructArr('was', 'it', 'in');
+```
+
+### 7.8. Exercise: Implement `_.from()`
+
+```js
+const from = (arr) => {
+  return Array.prototype.slice.call(arr);
+};
 ```
