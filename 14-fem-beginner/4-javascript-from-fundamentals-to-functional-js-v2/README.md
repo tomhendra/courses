@@ -918,7 +918,8 @@ const ifElse = (condition, isTrue, isFalse, ...args) => {
 ifElse(true, fn1, fn2, 'HI', 'BYE', 'HOLA');
 
 // ES5
-const ifElse = (condition, isTrue, isFalse) => {
+const ifElse = function (condition, isTrue, isFalse) {
+  // converts everything after the first three arguments from the arguments object to an array.
   const args = [].slice.call(arguments, 3);
 
   return condition ? isTrue.apply(this, args) : isFalse.apply(this, args);
@@ -931,5 +932,5 @@ const logFalse = (msgs) => {
   console.log(msgs);
 };
 
-ifElse(true, logTrue, logFalse);
+ifElse(true, logTrue, logFalse, 'HI', 'BYE', 'HOLA');
 ```
