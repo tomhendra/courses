@@ -38,6 +38,7 @@
   - [9.2. Passing Arguments Part 1](#92-passing-arguments-part-1)
   - [9.3. Exercise: Translate into ES6](#93-exercise-translate-into-es6)
   - [9.4. Passing Arguments Part 2](#94-passing-arguments-part-2)
+  - [9.5. Exercise: Implement `_.reduce()`](#95-exercise-implement-_reduce)
 
 ## 1. Introduction
 
@@ -933,4 +934,36 @@ const logFalse = (msgs) => {
 };
 
 ifElse(true, logTrue, logFalse, 'HI', 'BYE', 'HOLA');
+```
+
+### 9.5. Exercise: Implement `_.reduce()`
+
+- Reduce always returns one value.
+- It loops through the collection & calls the callback function on the collection.
+- Based on the CB function output, the result is accumulated.
+- The CB function is called on the current & previous value from the collection.
+- Arguments:
+  - Collection (Array|Object): The collection to iterate over.
+  - Iteratee (Function): The function invoked per iteration.
+  - The initial value.
+
+```js
+var _ = {};
+
+_.reduce = function (list, callback, init) {
+  let memo = init;
+
+  for (let i = 0; i < list.length; i++) {
+    if (i === 0 && memo === undefined) {
+      memo = list[0];
+    } else {
+      memo = callback(memo, list[i]);
+    }
+  }
+  return memo;
+};
+
+_.reduce([1, 2, 3, 4, 5, 6], function (sum, n) {
+  return sum + n;
+}); // 21
 ```
