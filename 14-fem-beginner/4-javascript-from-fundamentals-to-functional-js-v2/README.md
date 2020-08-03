@@ -23,7 +23,7 @@
   - [5.2. Exercise: Implement `_.map`](#52-exercise-implement-_map)
 - [6. `.filter()` Function](#6-filter-function)
   - [6.1. Exercise: Implement `_.filter`](#61-exercise-implement-_filter)
-- [7. Functions](#7-functions)
+- [7. Functions In-Depth](#7-functions-in-depth)
   - [7.1. The Anatomy of a Function](#71-the-anatomy-of-a-function)
   - [7.2. ES6 Arrow Functions](#72-es6-arrow-functions)
   - [7.3. Exercise: Projecting](#73-exercise-projecting)
@@ -32,6 +32,7 @@
   - [7.6. Default Parameters](#76-default-parameters)
   - [7.7. Array-like Object](#77-array-like-object)
   - [7.8. Exercise: Implement `_.from()`](#78-exercise-implement-_from)
+- [8. Scope](#8-scope)
 
 ## 1. Introduction
 
@@ -516,7 +517,7 @@ const filterTest2 = _.filter('🐛', callback);
 const filterTest3 = _.filter(videoData, '🐛');
 ```
 
-## 7. Functions
+## 7. Functions In-Depth
 
 ### 7.1. The Anatomy of a Function
 
@@ -804,3 +805,11 @@ const from = (arr) => {
   return Array.prototype.slice.call(arr);
 };
 ```
+
+## 8. Scope
+
+- Scope is the area where a variable has access to some value.
+- Global variables exist in the global scope and can be declared without the `var` keyword or directly attached to the `window` object through `window.VARIABLE`.
+- Local variables exist inside of functions or blocks.
+- Most of JS is about function scope.
+- With ES6 `let` creates block scope, anywhere `{}` is used.
