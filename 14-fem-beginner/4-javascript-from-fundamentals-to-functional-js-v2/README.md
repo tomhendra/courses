@@ -33,6 +33,11 @@
   - [7.7. Array-like Object](#77-array-like-object)
   - [7.8. Exercise: Implement `_.from()`](#78-exercise-implement-_from)
 - [8. Scope](#8-scope)
+- [9. Callbacks](#9-callbacks)
+  - [9.1. Higher Order Functions](#91-higher-order-functions)
+  - [9.2. Passing Arguments Part 1](#92-passing-arguments-part-1)
+  - [9.3. Exercise: Translate into ES6](#93-exercise-translate-into-es6)
+  - [9.4. Passing Arguments Part 2](#94-passing-arguments-part-2)
 
 ## 1. Introduction
 
@@ -812,4 +817,119 @@ const from = (arr) => {
 - Global variables exist in the global scope and can be declared without the `var` keyword or directly attached to the `window` object through `window.VARIABLE`.
 - Local variables exist inside of functions or blocks.
 - Most of JS is about function scope.
-- With ES6 `let` creates block scope, anywhere `{}` is used.
+- With ES6 `let` creates block scope, anywhere `{}` are used.
+
+## 9. Callbacks
+
+- Higher-order functions (HOF) and callbacks are the core concepts behind functional programming techniques.
+- Functions in JS are data that can be assigned to variables, or passed as arguments to other functions, or can be returned from other functions -- first-class citizens.
+
+### 9.1. Higher Order Functions
+
+1. Takes function as an input.
+
+```js
+element.addEventListener('change', () => {
+  console.log('Our evidence is updated');
+});
+```
+
+2. Returns a function as the output.
+
+```js
+const newClue = (name) => {
+  const length = name.length;
+
+  return (weapon) => {
+    let clue = length + weapon.length;
+    return !!(clue % 1);
+  };
+};
+```
+
+- Callbacks are just functions that we pass to functions.
+
+```js
+const ifElse = (condition, isTrue, isFalse) => {
+  return condition ? isTrue() : isFalse();
+};
+
+const logTrue = () => {
+  console.log(true);
+};
+const logFalse = () => {
+  console.log(false);
+};
+
+ifElse(true, logTrue, logFalse);
+```
+
+### 9.2. Passing Arguments Part 1
+
+```js
+var increment = function (n) {
+  return n + 1;
+};
+
+var square = function (n) {
+  return n * n;
+};
+
+var doMathSoIDontHaveTo = function (n, func) {
+  return func(n);
+};
+
+doMathSoIDontHaveTo(5, square); // 25
+
+doMathSoIDontHaveTo(4, increment); // 5
+```
+
+### 9.3. Exercise: Translate into ES6
+
+```js
+const increment = (n) => {
+  return n + 1;
+};
+
+const square = (n) => {
+  return n * n;
+};
+
+const doMathSoIDontHaveTo = (n, func) => {
+  return func(n);
+};
+
+doMathSoIDontHaveTo(5, square); // 25
+
+doMathSoIDontHaveTo(4, increment); // 5
+```
+
+### 9.4. Passing Arguments Part 2
+
+```js
+//How do we pass arguments?
+
+// ES6
+const ifElse = (condition, isTrue, isFalse, ...args) => {
+  console.log(args); // ['HI', 'BYE', 'HOLA']
+  return condition ? isTrue(...args) : isFalse(...args);
+  // isTrue('HI', 'BYE', 'HOLA');
+};
+ifElse(true, fn1, fn2, 'HI', 'BYE', 'HOLA');
+
+// ES5
+const ifElse = (condition, isTrue, isFalse) => {
+  const args = [].slice.call(arguments, 3);
+
+  return condition ? isTrue.apply(this, args) : isFalse.apply(this, args);
+};
+
+const logTrue = (msgs) => {
+  console.log(msgs);
+};
+const logFalse = (msgs) => {
+  console.log(msgs);
+};
+
+ifElse(true, logTrue, logFalse);
+```
