@@ -44,6 +44,9 @@
   - [10.1. Currying](#101-currying)
   - [10.2. Composing](#102-composing)
 - [11. Advanced Scope: Closure](#11-advanced-scope-closure)
+  - [11.1. Creating Closure](#111-creating-closure)
+  - [11.2. Closure Recipe](#112-closure-recipe)
+  - [11.3. Gotcha!](#113-gotcha)
 
 ## 1. Introduction
 
@@ -1110,3 +1113,142 @@ blame('you');
 ```
 
 ## 11. Advanced Scope: Closure
+
+- The function alterter has closure over the variable x.
+
+```js
+const myAlert = () => {
+  const x = 'Help! I think I found a clue!';
+  const alerter = () => {
+    alert(x);
+  };
+
+  setTimeout(alerter, 1000);
+  console.log('what happens first? this log or the alert?');
+};
+
+myAlert();
+```
+
+### 11.1. Creating Closure
+
+- Execution context of `count` remains the same.
+- `alerter` function has closure over `count` and can increment it on subsequent function calls with `funcAlert()`.
+
+```js
+const myAlert = () => {
+  const x = 'Help! I think I found a clue!';
+  let count = 0;
+  const alerter = () => {
+    alert(`${x} ${++count}`);
+  };
+
+  return alerter;
+};
+
+const funcAlert = myAlert();
+const funcAlert2 = myAlert();
+funcAlert(); // count = 1
+funcAlert(); // count = 2
+```
+
+```js
+const newClue = (name) => {
+  const length = name.length;
+
+  return (weapon) => {
+    let clue = length + weapon.length;
+    return !!(clue % 2);
+  };
+};
+
+const didGreenDoItWithA = newClue('Green');
+```
+
+- Closure can also be created within object methods.
+
+```js
+// ES5
+function countClues() {
+  var n = 0;
+  return {
+    count: function () {
+      return ++n;
+    },
+    reset: function () {
+      return (n = 0);
+    },
+  };
+}
+
+// ES6 equivalent
+const countClues = () => {
+  let n = 0;
+
+  return {
+    count: () => n++,
+    reset: () => (n = 0),
+  };
+};
+```
+
+### 11.2. Closure Recipe
+
+- Closure recipe [link from slides](https://slides.com/bgando/f2f-final-day-2#/3/7).
+- Closure can be used to return a function from within a function, that has access to its parent scope even after it has been executed.
+
+```js
+var scope = 'global scope';
+
+function checkScope() {
+  var scope = 'local scope';
+
+  function innerFunction() {
+    return scope;
+  }
+
+  return innerFunction;
+}
+
+var test = checkScope();
+test;
+test(); // 'local scope'
+```
+
+### 11.3. Gotcha!
+
+```js
+const findSomeone = () => {
+  const speak = () => {
+    console.log(who);
+  };
+
+  // even though who is defined after the speak, when the function is called who exists in the execution context.
+  let who = 'Why hello there, Prof Plum!';
+
+  return speak;
+};
+
+const someoneSpeak = findSomeone();
+someoneSpeak();
+```
+
+- Closure can be used to hide functionality from users that you don't want them to have access to.
+
+```js
+const makeTimer = () => {
+  let elapsed = 0;
+
+  const stopwatch = () => {
+    return elapsed;
+  };
+
+  const increase = () => elapsed++;
+  setInterval(increase, 1000);
+
+  return stopwatch;
+};
+
+const timer = makeTimer();
+timer(); // increases over time
+```
