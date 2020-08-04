@@ -47,6 +47,7 @@
   - [11.1. Creating Closure](#111-creating-closure)
   - [11.2. Closure Recipe](#112-closure-recipe)
   - [11.3. Gotcha!](#113-gotcha)
+  - [11.4. Exercise: Currying & Composing](#114-exercise-currying--composing)
 
 ## 1. Introduction
 
@@ -1251,4 +1252,44 @@ const makeTimer = () => {
 
 const timer = makeTimer();
 timer(); // increases over time
+```
+
+### 11.4. Exercise: Currying & Composing
+
+```js
+const curry = (fn) => {
+  debugger;
+  return (arg) => {
+    return (arg2) => {
+      return fn(arg, arg2);
+    };
+  };
+};
+
+const abc = function (a, b) {
+  return [a, b];
+};
+
+const curried = curry(abc);
+curried(1)(2); // [1, 2]
+```
+
+```js
+const consider = (name) => {
+  return `I think it could be... ${name}`;
+};
+
+const exclaim = (statement) => {
+  return `${statement.toUpperCase()}!`;
+};
+
+const compose = (fn, fn2) => {
+  return (arg) => {
+    const result = fn2(arg);
+    return fn(result);
+  };
+};
+
+const guess = compose(consider, exclaim);
+guess('Miss Scarlett'); // 'I think it could be... MISS SCARLETT!'
 ```
