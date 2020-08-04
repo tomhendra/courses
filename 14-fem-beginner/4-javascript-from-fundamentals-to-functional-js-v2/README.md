@@ -39,6 +39,7 @@
   - [9.3. Exercise: Translate into ES6](#93-exercise-translate-into-es6)
   - [9.4. Passing Arguments Part 2](#94-passing-arguments-part-2)
   - [9.5. Exercise: Implement `_.reduce()`](#95-exercise-implement-_reduce)
+  - [9.6. Exercise: Empty Room](#96-exercise-empty-room)
 
 ## 1. Introduction
 
@@ -966,4 +967,105 @@ _.reduce = function (list, callback, init) {
 _.reduce([1, 2, 3, 4, 5, 6], function (sum, n) {
   return sum + n;
 }); // 21
+```
+
+### 9.6. Exercise: Empty Room
+
+- Find the empty room, which hasn't been visited (using Lodash methods).
+
+```js
+const newDevelopment = [
+  {
+    name: 'Miss Scarlet',
+    present: true,
+    rooms: [
+      { kitchen: false },
+      { ballroom: false },
+      { conservatory: true },
+      { 'dining room': true },
+      { 'billiard room': false },
+      { library: true },
+    ],
+  },
+  {
+    name: 'Reverend Green',
+    present: true,
+    rooms: [
+      { kitchen: true },
+      { ballroom: false },
+      { conservatory: false },
+      { 'dining room': false },
+      { 'billiard room': true },
+      { library: false },
+    ],
+  },
+  {
+    name: 'Colonel Mustard',
+    present: true,
+    rooms: [
+      { kitchen: false },
+      { ballroom: false },
+      { conservatory: true },
+      { 'dining room': false },
+      { 'billiard room': true },
+      { library: false },
+    ],
+  },
+  {
+    name: 'Professor Plum',
+    present: true,
+    rooms: [
+      { kitchen: true },
+      { ballroom: false },
+      { conservatory: false },
+      { 'dining room': true },
+      { 'billiard room': false },
+      { library: false },
+    ],
+  },
+];
+
+// Solutions  Lodash
+
+// Bianca's solution: Doesn't work!, pushes object to array.
+const notInRoom = (suspect, memo) => {
+  const emptyRooms = _.reduce(
+    suspect.rooms,
+    (room, memo) => {
+      if (room === false) memo.push(room);
+      return memo;
+    },
+    []
+  );
+
+  return emptyRooms;
+};
+
+const notInRooms = _.map(newDevelopment, notInRoom);
+_.intersection(...notInRooms);
+
+// My solution: Works but inelegant!
+const findTheEmptyRoom = function (evidence) {
+  const memo = {
+    kitchen: 'empty',
+    ballroom: 'empty',
+    conservatory: 'empty',
+    'dining room': 'empty',
+    'billiard room': 'empty',
+    library: 'empty',
+  };
+
+  _.each(evidence, (suspect) => {
+    _.each(suspect.rooms, (room) => {
+      let visited = Object.values(room);
+      if (visited[0] === true) {
+        memo[Object.keys(room)] = 'visited';
+      }
+    });
+  });
+
+  return memo;
+};
+
+findTheEmptyRoom(newDevelopment);
 ```
