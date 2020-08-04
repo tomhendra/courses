@@ -1046,25 +1046,24 @@ _.intersection(...notInRooms);
 
 // My solution: Works but inelegant!
 const findTheEmptyRoom = function (evidence) {
-  const memo = {
-    kitchen: 'empty',
-    ballroom: 'empty',
-    conservatory: 'empty',
-    'dining room': 'empty',
-    'billiard room': 'empty',
-    library: 'empty',
-  };
+  const memo = {};
 
-  _.each(evidence, (suspect) => {
-    _.each(suspect.rooms, (room) => {
+  _.each(evidence, function checkEachSuspect(suspect) {
+    _.each(suspect.rooms, function wasRoomVisited(room) {
       let visited = Object.values(room);
       if (visited[0] === true) {
         memo[Object.keys(room)] = 'visited';
+      } else {
+        memo[Object.keys(room)] = null;
       }
     });
   });
 
-  return memo;
+  for (let key in memo) {
+    if (memo[key] === null) {
+      return key;
+    }
+  }
 };
 
 findTheEmptyRoom(newDevelopment);
