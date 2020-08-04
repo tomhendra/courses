@@ -40,6 +40,10 @@
   - [9.4. Passing Arguments Part 2](#94-passing-arguments-part-2)
   - [9.5. Exercise: Implement `_.reduce()`](#95-exercise-implement-_reduce)
   - [9.6. Exercise: Empty Room](#96-exercise-empty-room)
+- [10. Functional Utilities](#10-functional-utilities)
+  - [10.1. Currying](#101-currying)
+  - [10.2. Composing](#102-composing)
+- [11. Advanced Scope: Closure](#11-advanced-scope-closure)
 
 ## 1. Introduction
 
@@ -1025,9 +1029,9 @@ const newDevelopment = [
   },
 ];
 
-// Solutions  Lodash
+// Solutions have dependency of Lodash
 
-// Bianca's solution: Doesn't work!, pushes object to array.
+// Bianca's solution: Doesn't work!, pushes object to array. :/
 const notInRoom = (suspect, memo) => {
   const emptyRooms = _.reduce(
     suspect.rooms,
@@ -1051,20 +1055,58 @@ const findTheEmptyRoom = function (evidence) {
   _.each(evidence, function checkEachSuspect(suspect) {
     _.each(suspect.rooms, function wasRoomVisited(room) {
       let visited = Object.values(room);
-      if (visited[0] === true) {
-        memo[Object.keys(room)] = 'visited';
-      } else {
-        memo[Object.keys(room)] = null;
-      }
+      memo[Object.keys(room)] = visited[0] === true ? 'visited' : null;
     });
   });
 
   for (let key in memo) {
-    if (memo[key] === null) {
-      return key;
-    }
+    if (!memo[key]) return key;
   }
 };
 
 findTheEmptyRoom(newDevelopment);
 ```
+
+## 10. Functional Utilities
+
+- Currying & composition are two fundamental FP techniques.
+
+### 10.1. Currying
+
+- Currying is when you create a function that can be called multiple times.
+
+```js
+var abc = function (a, b, c) {
+  return [a, b, c];
+};
+
+var curried = _.curry(abc);
+
+curried(1)(2)(3);
+// => [1, 2, 3]
+
+curried(1, 2)(3);
+// => [1, 2, 3]
+```
+
+### 10.2. Composing
+
+- When you take two functions and combine them.
+
+```js
+const consider = (name) => {
+  return `I think it could be... ${name}`;
+};
+
+const exclaim  = (statement) => {
+  return `${statement.toUpperCase()}!`;
+};
+
+const blame = _.compose(consider, exclaim);
+
+blame('you');
+
+=> 'I think it could be... YOU!'
+```
+
+## 11. Advanced Scope: Closure
