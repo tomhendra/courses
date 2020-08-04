@@ -4,6 +4,8 @@
 <p>Notes from the course.</p>
 </div>
 
+**READ THROUGH NOTES: 10/08/20**
+
 - [1. Introduction](#1-introduction)
 - [2. Principles](#2-principles)
 - [3. Lies](#3-lies)

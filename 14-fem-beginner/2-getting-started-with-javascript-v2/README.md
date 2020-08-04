@@ -3,6 +3,8 @@
 <h1>Frontend Masters: Getting Started with JavaScript V2</h1>
 </div>
 
+**READ THROUGH NOTES: 04/08/20**
+
 - [1. Introduction](#1-introduction)
   - [1.1. Course Overview](#11-course-overview)
   - [1.2. Code is for Humans](#12-code-is-for-humans)
