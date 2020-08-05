@@ -64,7 +64,7 @@ I have been learning software development full-time since August 2018, and prior
     - **[JavaScript: From Fundamentals to Functional JS, v2](14-fem-beginner/4-javascript-from-fundamentals-to-functional-js-v2)**\
        Learn higher-order functions, closures, scope, master key functional methods like map, reduce and filter and promises and ES6+ asynchronous JavaScript.
 
-    - **[Mastering Chrome Developer Tools v2]()**\
+    - **[Mastering Chrome Developer Tools v2](14-fem-beginner/5-mastering-chrome-developer-tools-v2)**\
        Master built-in dev tools to step through your code with the debugger, audit web page performance, debug Node.js, and remove “page jank” when a site isn’t keeping up.
 
 15. **[Frontend Masters Learning Paths: Professional]()**

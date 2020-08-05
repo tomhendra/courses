@@ -11,6 +11,8 @@
   - [2.3. Break on DOM Changes](#23-break-on-dom-changes)
   - [2.4. Save Changes to Disk](#24-save-changes-to-disk)
   - [2.5. Recent Selection History](#25-recent-selection-history)
+- [3. Debugging](#3-debugging)
+  - [3.1. Step Through Debugging](#31-step-through-debugging)
 
 ## 1. Introduction
 
@@ -99,3 +101,33 @@ The following topics are covered:
 - Select an element in the elements panel > <kbd>esc</kbd> to show console > type `$0` returns currently selected element.
 - `$1`, `$2`, `$3`... to show history.
 - Useful to call JS functions on DOM elements in the console.
+
+## 3. Debugging
+
+- **💡Pro tip:** <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> opens a shortcut panel where you can navigate panels.
+- **💡Pro tip:** <kbd>Command</kbd> + <kbd>P</kbd> searches all files the browser has access to.
+
+### 3.1. Step Through Debugging
+
+- Setting a breakpoint will tell the parser as soon as it hits the breakpoint, pause and show what's going on.
+- The `debugger` keyword can be used anywhere in your code to set a breakpoint.
+- The danger is that you can ship this to production - need a linting rule to ensure it's not shipped!
+- Refresh the page with DevTools open to trigger `debugger`.
+- Can also click on the line number in sources panel to create a breakpoint.
+- Options for navigation are:
+  - Resume script execution (skip the breakpoint and move to the next one).
+  - Step over a function (equivalent to stepping into and out of the function, moves onto next function).
+  - Step into a function.
+  - Step out of a function.
+  - Step (do the next thing: Step over if not a function or step into if a function).
+- The Debugger is unidirectional as it's parsing, so it's not a time travelling debugger (like Redux DevTools is). Once you step in and out of a function, you move to the next line.
+- **Watch** is very useful. Allows you to input any expression.
+  - If you input a variable name, it will tell you (if that variable is defined in the current scope) what the variable is set to.
+  - Watch will also keep track of the variables added even when in a different scope as you step through the code.
+- **Call Stack** says how did we get here.
+  - Can see the call site of where the function was invoked.
+- **Scope** is pretty handy for seeing exactly what you have access to at a specific moment in time.
+  - There can be a lot of noise here, so typically its better to use watch.
+- **Breakpoints** simply shows a list of breakpoints added for debugging.
+  - Can uncheck them which stores in cache but prevents them from triggering the debugger. (light blue means deactivated).
+-
