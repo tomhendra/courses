@@ -53,7 +53,7 @@
 
 ## 1. Introduction
 
-Learn higher-order functions, closures, scope, master key functional methods like map, reduce and filter and promises and ES6+ asynchronous JavaScript. [Course Link](hhttps://frontendmasters.com/courses/js-fundamentals-functional-v2/).
+A deep dive into JavaScript and functional programming techniques, this course is for beginner to intermediate JavaScript developers who want to learn techniques to write professional, modern JavaScript. [Course Link](hhttps://frontendmasters.com/courses/js-fundamentals-functional-v2/).
 
 ### 1.1. Strengthen your understanding of tricky JS concepts:
 
