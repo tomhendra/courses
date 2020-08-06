@@ -15,6 +15,10 @@
   - [3.1. Step Through Debugging](#31-step-through-debugging)
   - [3.2. Blackboxing](#32-blackboxing)
   - [3.3. Conditional and XHR Breakpoints](#33-conditional-and-xhr-breakpoints)
+- [4. Networking](#4-networking)
+  - [4.1. The Waterfall](#41-the-waterfall)
+  - [4.2. Colour Codes](#42-colour-codes)
+  - [4.3. Screenshots](#43-screenshots)
 
 ## 1. Introduction
 
@@ -149,3 +153,63 @@ The following topics are covered:
 - Add a condition, and the breakpoint will only pause the debugger when the condition is met.
 - **XHR/Fetch** breakpoints allow you to pause the debugger only when you make a request for a URL, if the URL contains a certain string.
 - Unlike the step through debugger, the Call Stack is time travelling.
+
+## 4. Networking
+
+### 4.1. The Waterfall
+
+- As the website loads all the HTTP requests will be shown in the waterfall.
+- X axis is time.
+- For the most part, the files are shown in the order they are requested.
+- Holding <kbd>Shift</kbd> over a file will highlight in green the file that called it, or in red which files it called.
+
+### 4.2. Colour Codes
+
+- See [slides](https://slides.com/jkup/devtools/#/13/1) for colours.
+
+- **Light Grey: Queuing**
+- A request being queued indicates that:
+- The request was postponed by the rendering engine because it's considered lower priority than critical resources (such as scripts/styles). This often happens with images.
+- The request was put on hold to wait for an unavailable TCP socket that's about to free up.
+- The request was put on hold because the browser only allows six TCP connections per origin on HTTP 1.
+- Time spent making disk cache entries (typically very quick.)
+
+- **Dark Grey: Stalled / Blocking**
+- Time the request spent waiting before it could be sent.
+- It can be waiting for any of the reasons described for Queueing.
+- Additionally, this time is inclusive of any time spent in proxy negotiation.
+
+- **Medium Gey: Proxy Negotiation**
+- Time spent negotiating with a proxy server connection.
+
+- **Teal: DNS Lookup**
+- Time spent performing the DNS lookup.
+- Every new domain on a page requires a full roundtrip to do the DNS lookup.
+
+- **Initial Connection / Connecting**
+- Time it took to establish a connection, including TCP handshakes/retries and negotiating a SSL.
+
+- **Brown: SSL**
+- Time spent completing a SSL handshake.
+
+- **Bright Fluorescent Green: Request Sent / Sending**
+- Time spent issuing the network request. Typically a fraction of a millisecond.
+
+- **Long patterns of the colours prior to this point would indicate network configuration issues, so would be dealt with by the ops team.**
+
+- **Less Bright Fluorescent Green: Waiting (TTFB)**
+- Time spent waiting for the initial response, also known as the Time To First Byte.
+- This time captures the latency of a round trip to the server in addition to the time spent waiting for the server to deliver the response.
+- Long patterns would indicate a slow application server.
+
+- **Bright Blue: Content Download / Downloading**
+- Time spent receiving the response data.
+
+### 4.3. Screenshots
+
+- Click Network settings > Capture screenshots to capture a filmstrip when reloading.
+- Recommend to undock DevTools to separate window as screenshots will be of the viewable area.
+- When you refresh, it shows every repaint that happens at that stage in time.
+- Can see which parts of the page loads first.
+- Important to consider how people with slow connections will see content.
+- Can inline CSS to make critical elements viewable earlier.
