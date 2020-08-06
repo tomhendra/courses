@@ -19,6 +19,7 @@
   - [4.1. The Waterfall](#41-the-waterfall)
   - [4.2. Colour Codes](#42-colour-codes)
   - [4.3. Screenshots](#43-screenshots)
+- [5. Auditing](#5-auditing)
 
 ## 1. Introduction
 
@@ -168,42 +169,51 @@ The following topics are covered:
 - See [slides](https://slides.com/jkup/devtools/#/13/1) for colours.
 
 - **Light Grey: Queuing**
-- A request being queued indicates that:
-- The request was postponed by the rendering engine because it's considered lower priority than critical resources (such as scripts/styles). This often happens with images.
-- The request was put on hold to wait for an unavailable TCP socket that's about to free up.
-- The request was put on hold because the browser only allows six TCP connections per origin on HTTP 1.
-- Time spent making disk cache entries (typically very quick.)
+
+  - A request being queued indicates that:
+  - The request was postponed by the rendering engine because it's considered lower priority than critical resources (such as scripts/styles). This often happens with images.
+  - The request was put on hold to wait for an unavailable TCP socket that's about to free up.
+  - The request was put on hold because the browser only allows six TCP connections per origin on HTTP 1.
+  - Time spent making disk cache entries (typically very quick.)
 
 - **Dark Grey: Stalled / Blocking**
-- Time the request spent waiting before it could be sent.
-- It can be waiting for any of the reasons described for Queueing.
-- Additionally, this time is inclusive of any time spent in proxy negotiation.
+
+  - Time the request spent waiting before it could be sent.
+  - It can be waiting for any of the reasons described for Queueing.
+  - Additionally, this time is inclusive of any time spent in proxy negotiation.
 
 - **Medium Gey: Proxy Negotiation**
-- Time spent negotiating with a proxy server connection.
+
+  - Time spent negotiating with a proxy server connection.
 
 - **Teal: DNS Lookup**
-- Time spent performing the DNS lookup.
-- Every new domain on a page requires a full roundtrip to do the DNS lookup.
+
+  - Time spent performing the DNS lookup.
+  - Every new domain on a page requires a full roundtrip to do the DNS lookup.
 
 - **Initial Connection / Connecting**
-- Time it took to establish a connection, including TCP handshakes/retries and negotiating a SSL.
+
+  - Time it took to establish a connection, including TCP handshakes/retries and negotiating a SSL.
 
 - **Brown: SSL**
-- Time spent completing a SSL handshake.
+
+  - Time spent completing a SSL handshake.
 
 - **Bright Fluorescent Green: Request Sent / Sending**
-- Time spent issuing the network request. Typically a fraction of a millisecond.
 
-- **Long patterns of the colours prior to this point would indicate network configuration issues, so would be dealt with by the ops team.**
+  - Time spent issuing the network request. Typically a fraction of a millisecond.
+
+**Long patterns of the colours prior to this point would indicate network configuration issues, so would be dealt with by the ops team.**
 
 - **Less Bright Fluorescent Green: Waiting (TTFB)**
-- Time spent waiting for the initial response, also known as the Time To First Byte.
-- This time captures the latency of a round trip to the server in addition to the time spent waiting for the server to deliver the response.
-- Long patterns would indicate a slow application server.
+
+  - Time spent waiting for the initial response, also known as the Time To First Byte.
+  - This time captures the latency of a round trip to the server in addition to the time spent waiting for the server to deliver the response.
+  - Long patterns would indicate a slow application server.
 
 - **Bright Blue: Content Download / Downloading**
-- Time spent receiving the response data.
+
+  - Time spent receiving the response data.
 
 ### 4.3. Screenshots
 
@@ -213,3 +223,5 @@ The following topics are covered:
 - Can see which parts of the page loads first.
 - Important to consider how people with slow connections will see content.
 - Can inline CSS to make critical elements viewable earlier.
+
+## 5. Auditing
