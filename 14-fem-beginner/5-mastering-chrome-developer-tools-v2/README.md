@@ -13,6 +13,8 @@
   - [2.5. Recent Selection History](#25-recent-selection-history)
 - [3. Debugging](#3-debugging)
   - [3.1. Step Through Debugging](#31-step-through-debugging)
+  - [3.2. Blackboxing](#32-blackboxing)
+  - [3.3. Conditional and XHR Breakpoints](#33-conditional-and-xhr-breakpoints)
 
 ## 1. Introduction
 
@@ -20,7 +22,7 @@ Go beyond console.log to master all the built-in tools available in Google’s C
 
 [Course link](https://frontendmasters.com/courses/chrome-dev-tools-v2/).\
 [Slides](https://slides.com/jkup/devtools/).\
-[Workshop repo](https://github.com/jkup/mastering-chrome-devtools).\
+[Workshop repo](https://github.com/jkup/mastering-chrome-devtools).
 
 The following topics are covered:
 
@@ -130,4 +132,20 @@ The following topics are covered:
   - There can be a lot of noise here, so typically its better to use watch.
 - **Breakpoints** simply shows a list of breakpoints added for debugging.
   - Can uncheck them which stores in cache but prevents them from triggering the debugger. (light blue means deactivated).
--
+
+### 3.2. Blackboxing
+
+- Blackboxing scripts is really important.
+- When trying to debug an application which uses a framework, often there will be 100s of functions in the Call Stack, lost of which are React or FRedux internals.
+- If you see a filename from a third party that you are not interested in, you can right click > blackbox script.
+- This will hide its functions from the Call Stack panel.
+- Can also add permanent blackboxes in settings > blackboxing > add pattern.
+- You can un-blackbox script if you wish. Chrome just compresses the Call Stack, rather than remove access totally.
+
+### 3.3. Conditional and XHR Breakpoints
+
+- If you are looking for the cause of an error from a reused function, and only want to see when the function is called under a certain condition.
+- Right click on line number > add conditional breakpoint.
+- Add a condition, and the breakpoint will only pause the debugger when the condition is met.
+- **XHR/Fetch** breakpoints allow you to pause the debugger only when you make a request for a URL, if the URL contains a certain string.
+- Unlike the step through debugger, the Call Stack is time travelling.
