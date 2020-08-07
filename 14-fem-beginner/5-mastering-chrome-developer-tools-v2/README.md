@@ -225,3 +225,12 @@ The following topics are covered:
 - Can inline CSS to make critical elements viewable earlier.
 
 ## 5. Auditing
+
+- If the application isn't live online, you are limited in what tools you can use.
+- Performance improvements can quickly translate to money:
+  - Google.com: +500 ms (speed decrease) -> -20% traffic loss
+  - Yahoo.com: +400 ms (speed decrease) -> -5-9% full-page traffic loss (visitor left before the page finished loading)
+  - Amazon.com: +100 ms (speed decrease) -> -1% sales loss
+- [Webpagetest](https://www.webpagetest.org).
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse/).
+- [Webhint](https://webhint.io).
