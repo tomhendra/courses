@@ -23,6 +23,8 @@
 - [6. Node.js Profiling](#6-nodejs-profiling)
 - [7. Performance Monitoring](#7-performance-monitoring)
   - [7.1. The Performance API](#71-the-performance-api)
+- [8. Image Performance](#8-image-performance)
+  - [8.1. Querying by Size](#81-querying-by-size)
 
 ## 1. Introduction
 
@@ -259,6 +261,25 @@ The following topics are covered:
 - We have the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance) to measure performance.
 - Before the performance API it monitoring used to be done with DateTimes.
 - The performance API methods we are interested in are `.mark()` and `.measure()`.
-- Writing code to measure performance in userland would require a POST request to grab data.
+- Writing code to measure performance in Userland would require a POST request to grab data.
 - Lots of popular apps have performance API code in production.
 - The profiler in DevTools gives you access a Timings UI in the Performance section.
+
+## 8. Image Performance
+
+### 8.1. Querying by Size
+
+- Make images smaller if you can.
+- Remove metadata using an image optimizer.
+- Use the `srcset` API:
+
+```html
+<img
+  src="small.jpg"
+  srcset="small.jpg 300w, medium.jpg 800w, large.jpg 1200w"
+/>
+```
+
+- The browser will only make a new HTTP request for larger images.
+- If the browser window shrinks, the already downloaded larger image will be used, since the cost to repaint the browser is less than to fetch a new image.
+- However increasing the size of the browser image with a smaller image will result in visible lower quality, so an HTTP req is made for a larger image in this case.
