@@ -30,6 +30,7 @@
 - [10. Memory](#10-memory)
   - [10.1. Causes of Memory Leaks](#101-causes-of-memory-leaks)
   - [10.2. Chrome Task Manager & Snapshots](#102-chrome-task-manager--snapshots)
+- [11. Experiments](#11-experiments)
 
 ## 1. Introduction
 
@@ -421,3 +422,9 @@ function removeButton() {
 - There are shallow and retained sizes for memory in the Memory panel.
 - Shallow is the size of the data structure. Retained is the size of the data that is pointed to. So if a variable points to a huge array, if the variable could be garbage collected, retained is the potential memory that could be freed up.
 - Can take two snapshots and change the Summary dropdown to Comparison to see differences between the two snapshots.
+- Memory panel cannot identify source code, but if the issue is with a DOM node, you can use the `$0` trick to bring the variable into console.
+
+## 11. Experiments
+
+- Type chrome://flags/ into Chrome to enable dangerous/cool experimental features!
+- Gives you an idea of what's coming next in DevTools.
