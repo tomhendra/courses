@@ -21,6 +21,8 @@
   - [4.3. Screenshots](#43-screenshots)
 - [5. Auditing](#5-auditing)
 - [6. Node.js Profiling](#6-nodejs-profiling)
+- [7. Performance Monitoring](#7-performance-monitoring)
+  - [7.1. The Performance API](#71-the-performance-api)
 
 ## 1. Introduction
 
@@ -248,3 +250,15 @@ The following topics are covered:
 - Anything that's taking a second is too long and should be looked at.
 - Can also see all the stuff Webpack is doing with the `--inspect` flag.
 - Always keep the profiling record as short as possible, so you are only capturing what you are interested in.
+
+## 7. Performance Monitoring
+
+### 7.1. The Performance API
+
+- There is a difference between you testing with fast machine locally, and the user with any kind of connection and hardware.
+- We have the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance) to measure performance.
+- Before the performance API it monitoring used to be done with DateTimes.
+- The performance API methods we are interested in are `.mark()` and `.measure()`.
+- Writing code to measure performance in userland would require a POST request to grab data.
+- Lots of popular apps have performance API code in production.
+- The profiler in DevTools gives you access a Timings UI in the Performance section.
