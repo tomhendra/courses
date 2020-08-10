@@ -27,6 +27,9 @@
   - [8.1. Querying by Size](#81-querying-by-size)
 - [9. Page Jank](#9-page-jank)
   - [9.1. The Performance Panel](#91-the-performance-panel)
+- [10. Memory](#10-memory)
+  - [10.1. Causes of Memory Leaks](#101-causes-of-memory-leaks)
+  - [10.2. Chrome Task Manager & Snapshots](#102-chrome-task-manager--snapshots)
 
 ## 1. Introduction
 
@@ -356,3 +359,65 @@ element3.style.height = h3 * 2 + 'px';
   - Again if Chrome thinks you are doing to much and frames are being dropped, red boxes will appear.
   - If you click on a box you can use <kbd>W</kbd> <kbd>S</kbd> <kbd>A</kbd> <kbd>D</kbd> to navigate.
   - If you click on a box the summary panel updates contextually, and clicking the function link will take you to the sources panel, where the functions will display a time automatically.
+
+## 10. Memory
+
+### 10.1. Causes of Memory Leaks
+
+- Memory works in the way of: Allocate Memory > Use Memory > Release Memory.
+- Memory leaks in JS happen when the memory cannot be released.
+- Graphs will show memory usage increasing without decreasing again when memory leaks occur.
+- Common causes:
+- **The accidental global.**
+
+```js
+// Forget to put a var or const declaration and you're not in strict mode,
+// JS will create the variable on the window object.
+function foo() {
+  bar = 'This is probably not what you meant!';
+}
+```
+
+- **The forgotten timer.**
+
+```js
+//
+const data = getData();
+// setInterval and setTimeout APIs both return a token which you can call cancel on.
+// Should store this in a variable and whenever you hit the finish condition you remove it,
+// otherwise this will continue forever!
+setInterval(() => {
+  document.innerHTML = JSON.stringify(data);
+}, 1000);
+```
+
+- **The DOM and not the DOM.**
+
+```js
+// Grab from the DOM and later remove the child.
+// But haven't removed the handler to the global button variable, leaving it open.
+const button = document.getElementByID("button");
+// Then later
+function removeButton() {
+  document.removeChild(
+    document.getElementByID("button");
+  )
+}
+```
+
+### 10.2. Chrome Task Manager & Snapshots
+
+- Settings > More tools > Task manager (right click > JavaScript memory).
+- Performance panel is best for figuring out what's causing the memory leak, the Task manager is best for seeing what's going on.
+- A continuously increasing memory usage indicates a leak.
+- Opposite to CPU: For memory performance monitoring, a longer recording is better. 10 seconds for example.
+- An increasing memory usage graph in the performance profiler recording confirms a leak.
+- Once you've confirmed there is a memory leak with the Task Manager & Performance Recording, move to the Memory panel.
+- Now are looking into what is using the memory; performing deeper analysis.
+- Three tools in the memory panel:
+  - Heap Snapshot: Grabs the while memory heap. Can also take multiple and compare them to each other.
+  - Allocation instrumentation: A few Heap Snapshots over time. Identify patterns.
+  - Allocation sampling: More Heap Snapshots over a longer periods of time.
+- There are shallow and retained sizes for memory in the Memory panel.
+- Shallow is the size of the data structure. Retained is the size of the data that is pointed to. So if a variable points to a huge array, if the variable could be garbage collected, retained is the potential memory that could be freed up.
+- Can take two snapshots and change the Summary dropdown to Comparison to see differences between the two snapshots.
