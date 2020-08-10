@@ -20,6 +20,7 @@
   - [4.2. Colour Codes](#42-colour-codes)
   - [4.3. Screenshots](#43-screenshots)
 - [5. Auditing](#5-auditing)
+- [6. Node.js Profiling](#6-nodejs-profiling)
 
 ## 1. Introduction
 
@@ -234,3 +235,16 @@ The following topics are covered:
 - [Webpagetest](https://www.webpagetest.org).
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse/).
 - [Webhint](https://webhint.io).
+
+## 6. Node.js Profiling
+
+- Use the inspect flag e.g. `node --inspect server/index.js` and node icon appears in DevTools.
+- DevTools no longer looks at frontend assets, rather the actual backend application.
+- Can press start in the Profiler, refresh the page in the browser, and get a flame chart.
+- X axis is time, Y axis is the Call Stack.
+- Hold shift to scroll on the Y axis.
+- A function may look like it is taking a long time, but it can only take as long as the combined time of its children functions.
+- Best way to approach is to look for the last function that took a long time, which has children that didn't take a long time.
+- Anything that's taking a second is too long and should be looked at.
+- Can also see all the stuff Webpack is doing with the `--inspect` flag.
+- Always keep the profiling record as short as possible, so you are only capturing what you are interested in.
