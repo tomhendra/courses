@@ -25,6 +25,8 @@
   - [7.1. The Performance API](#71-the-performance-api)
 - [8. Image Performance](#8-image-performance)
   - [8.1. Querying by Size](#81-querying-by-size)
+- [9. Page Jank](#9-page-jank)
+  - [9.1. The Performance Panel](#91-the-performance-panel)
 
 ## 1. Introduction
 
@@ -283,3 +285,74 @@ The following topics are covered:
 - The browser will only make a new HTTP request for larger images.
 - If the browser window shrinks, the already downloaded larger image will be used, since the cost to repaint the browser is less than to fetch a new image.
 - However increasing the size of the browser image with a smaller image will result in visible lower quality, so an HTTP req is made for a larger image in this case.
+
+## 9. Page Jank
+
+- We focus a lot on size of files, images etc, but we also need to consider parse time by the rendering engine of the browser ([V8](https://medium.com/reloading/javascript-start-up-performance-69200f43b201)).
+- We can Gzip and minify, but this doesn't affect the parse time.
+- Parse time becomes an issue for devices with lower end CPUs, i.e. mobile & older computers.
+- **Page Jank** is when things become jittery on screen, when the animation is supposed to be smooth.
+- We should be aiming for 60FPS for animations:
+  - Most devices today refresh their screens 60 times a second (60Hz).
+  - The browser needs to match the device’s refresh rate and put up 1 new picture, or frame, for each of those screen refreshes.
+  - Each of those frames has a budget of just over 16ms (1 second / 60 = 16.66ms).
+  - In reality, however, the browser has housekeeping work to do, so all of your work needs to be completed inside 10ms.
+- If the browser has too much work to do, it will skip frames, which causes page jank.
+- Another cause of page jank is **layout thrashing**.
+  - We do things when we interact with the DOM:
+    1. We read values from it (what's the screen height, what's the width, the colour).
+    2. We write values to it (innerText, innerHTML, classList).
+  - When you read something from the DOM, Chrome can cache things.
+  - But when you change something, Chrome disposes of the cache.
+
+```js
+// Read
+var h1 = element1.clientHeight;
+
+// Write (invalidates layout)
+element1.style.height = h1 * 2 + 'px';
+
+// Read (triggers layout)
+var h2 = element2.clientHeight;
+
+// Write (invalidates layout)
+element2.style.height = h2 * 2 + 'px';
+
+// Read (triggers layout)
+var h3 = element3.clientHeight;
+
+// Write (invalidates layout)
+element3.style.height = h3 * 2 + 'px';
+```
+
+- In an ideal world we would batch these operations together, but this simply is not possible.
+- What we do have is [`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame).
+- Sort of asynchronous way of saying to the browser "when you're about to render the next frame, I have some stuff I need to do first".
+- On top of `requestAnimationFrame()` there are some libraries like [FastDOM](https://github.com/wilsonpage/fastdom).
+- Libraries like React and Angular make heavy use of `requestAnimationFrame()` under the hood.
+- Demo using [Koalas to the Max](https://www.koalastothemax.com):
+- press <kbd>Esc</kbd> to being up console > 3 dots > Rendering > Paint flashing.
+- This highlights what is being repainted.
+- The aim with heavy animations is that only the parts that are moving should get repainted.
+- For websites that are repainting everything, you should look at calls to reads and writes of DOM elements.
+  - Are you grabbing body.height every time?
+  - Are you reading then immediately writing & invalidating the layout?
+
+### 9.1. The Performance Panel
+
+- Hit the record button, scroll around, hit the stop button.
+- Remember with CPU performance monitoring we want the recording to be small: 1 second, 2 at the most.
+- From the bottom panel up:
+  1. Summary: self-explanatory!
+  2. Memory graph: Showing us out of all the things that happened, how much memory was allocated.
+  3. Two remaining bars: FPS / CPU / NET + everything else below. Both have X axis as time.
+  - The top panel is the overview. Higher level.
+    - The green is FPS: lower is better, as higher means the browser is doing more work.
+    - When you see a bad example with dropped frames, a read bar will appear.
+  - The lower panel shows all of the call graphs.
+  - Almost always you want to see what's happening in the main thread first.
+  - Tall is just functions calling others.
+  - Wide is what we are looking for to identify potential performance savings.
+  - Again if Chrome thinks you are doing to much and frames are being dropped, red boxes will appear.
+  - If you click on a box you can use <kbd>W</kbd> <kbd>S</kbd> <kbd>A</kbd> <kbd>D</kbd> to navigate.
+  - If you click on a box the summary panel updates contextually, and clicking the function link will take you to the sources panel, where the functions will display a time automatically.
