@@ -50,7 +50,7 @@ I have been learning software development full-time since August 2018, and prior
     Another release from Atlassian University. Confluence should help me to plan and manage complex projects for my portfolio more effectively.
 
 14. **[Frontend Masters Learning Paths: Beginner](14-fem-beginner)**\
-    Frontend Masters' content is taught by industry experts, which gives great confidence in the quality of material being delivered. The guided learning paths promise to expand your abilities as a well-rounded engineer.
+    Frontend Masters' content is taught by industry experts, which gives great confidence in the quality of material being delivered. The guided learning paths are to expand your abilities as a well-rounded engineer.
 
     - **[Complete Intro to Web Development, v2](14-fem-beginner/1-complete-intro-to-web-development-v2)**\
       A refresher of the basics, for familiarity & completeness in learning from the Frontend Masters platform.
@@ -67,15 +67,29 @@ I have been learning software development full-time since August 2018, and prior
     - **[Mastering Chrome Developer Tools v2](14-fem-beginner/5-mastering-chrome-developer-tools-v2)**\
        Master built-in dev tools to step through your code with the debugger, audit web page performance, debug Node.js, and remove “page jank” when a site isn’t keeping up.
 
-15. **[Frontend Masters Learning Paths: Professional]()**
+15. **[Frontend Masters Learning Paths: Professional](15-fem-professional)**\
+     Move up from professional web developer to a senior-level engineer. This path is for aspiring lead developers.
 
-    - **[JavaScript: The Hard Parts, v2]()**
-    - **[Deep JavaScript Foundations, v3]()**
-    - **[JavaScript: The Recent Parts]()**
-    - **[Complete Intro to React, v5]()**
-    - **[Functional-Light JavaScript, v3]()**
-    - **[CSS In-Depth, v2]()**
-    - **[Full Stack for Front-End Engineers, v2]()**
+    - **[JavaScript: The Hard Parts, v2](15-fem-professional/)**\
+       Take your JavaScript to the next level. Gain an understanding of callbacks, higher order functions, closure, asynchronous and object-oriented JavaScript.
+
+    - **[Deep JavaScript Foundations, v3](15-fem-professional/)**\
+       Dive into JavaScript's core language features: types & coercion, scope & closure, and JavaScript's object oriented system.
+
+    - **[JavaScript: The Recent Parts](15-fem-professional/)**\
+       Get up to speed with new JavaScript features like tagged template literals, destructuring, iterators, generators, regex improvements and async await.
+
+    - **[Complete Intro to React, v5](15-fem-professional/)**\
+       Much more than an intro, you’ll build with the latest features in React, including hooks, effects, context, and portals. Learn to build real-world apps from the ground up using the latest tools in the React ecosystem, like Parcel, ESLint, Prettier, and Reach Router!
+
+    - **[Functional-Light JavaScript, v3](15-fem-professional/)**\
+       Improve your JavaScript by applying functional programming concepts like function purity, point-free, partial-application, currying, composition, immutability, recursion, list operations like map, reduce & filter...plus even more advanced concepts like monads and transduction.
+
+    - **[CSS In-Depth, v2](15-fem-professional/)**\
+      Take a deep-dive into the essential features of CSS, while also exploring CSS features you probably didn’t even know existed!
+
+    - **[Full Stack for Front-End Engineers, v2](15-fem-professional/)**\
+      You'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
 
 16. **[Frontend Masters Learning Paths: Expert]()**
 
@@ -112,6 +126,6 @@ I have been learning software development full-time since August 2018, and prior
     - **[Responsive Web Typography v2]()**
     - **[SVG Essentials & Animation, v2]()**
 
-20. **[Epic React](https://epicreact.dev)**
+20. **[Testing JavaScript](https://testingjavascript.com)**
 
-21. **[Testing JavaScript](https://testingjavascript.com)**
+21. **[Epic React](https://epicreact.dev)**
