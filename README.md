@@ -70,10 +70,10 @@ I have been learning software development full-time since August 2018, and prior
 15. **[Frontend Masters Learning Paths: Professional](15-fem-professional)**\
      Move up from professional web developer to a senior-level engineer. This path is for aspiring lead developers.
 
-    - **[JavaScript: The Hard Parts, v2](15-fem-professional/)**\
+    - **[JavaScript: The Hard Parts, v2](15-fem-professional/1-javascript-the-hard-parts-v2)**\
        Take your JavaScript to the next level. Gain an understanding of callbacks, higher order functions, closure, asynchronous and object-oriented JavaScript.
 
-    - **[Deep JavaScript Foundations, v3](15-fem-professional/)**\
+    - **[Deep JavaScript Foundations, v3](15-fem-professional/2-deep-javascript-foundations)**\
        Dive into JavaScript's core language features: types & coercion, scope & closure, and JavaScript's object oriented system.
 
     - **[JavaScript: The Recent Parts](15-fem-professional/)**\

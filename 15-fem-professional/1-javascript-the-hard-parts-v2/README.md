@@ -60,7 +60,8 @@ The following topics are covered:
 ```js
 // 1. num declared and assigned value of 3, which is stored in memory (in the global execution context).
 const num = 3;
-// 2. multiplyBy2 stored in memory but function doesn't run until it is called. At this point it is just a pointer to the function.
+// 2. multiplyBy2 stored in memory but function doesn't run until it is called.
+// At this point the variable multiplyBy2 is just a pointer to the function.
 function multiplyBy2(inputNumber) {
   // 4. New execution context created & inputNumber parameter is stored in local memory as argument of 3.
   // 5. result is stored in local memory as 6
@@ -68,7 +69,8 @@ function multiplyBy2(inputNumber) {
   // 6. Look in local memory for result variable and return its value.
   return result;
 }
-// 3. output is created but remains uninitialized until the function is run, as variables can only store values, not functionality (commands).
+// 3. output is created but remains uninitialized until the function is run,
+// as variables can only store values, not functionality (commands).
 const output = multiplyBy2(num);
 // 7. after function is run, output evaluates to 6 which is stored in memory (in the global execution context).
 ```
