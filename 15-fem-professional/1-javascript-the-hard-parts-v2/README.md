@@ -11,8 +11,10 @@
 - [3. Functions & Callbacks](#3-functions--callbacks)
   - [3.1. Generalized Functions](#31-generalized-functions)
   - [3.2. Repeating Functionality](#32-repeating-functionality)
-  - [3.3. Higher Order Functions](#33-higher-order-functions)
-  - [3.4. Callbacks and Higher Order Functions](#34-callbacks-and-higher-order-functions)
+  - [3.3. Callbacks and Higher Order Functions](#33-callbacks-and-higher-order-functions)
+  - [3.4. Arrow Functions](#34-arrow-functions)
+- [4. Pair programming](#4-pair-programming)
+- [5. Closure (Scope and Execution Context)](#5-closure-scope-and-execution-context)
 
 ## 1. Introduction
 
@@ -183,7 +185,7 @@ const result = copyArrayAndAdd3(myArray);
 
 - What principle are we breaking? **DRY** (Don’t Repeat Yourself).
 
-### 3.3. Higher Order Functions
+### 3.3. Callbacks and Higher Order Functions
 
 - We could generalize our function - So we pass in our specific instruction only when we run `copyArrayAndManipulate`!
 - We can pass in functionality as a parameter.
@@ -206,21 +208,78 @@ const result = copyArrayAndManipulate([1, 2, 3], multiplyBy2);
 ```
 
 - How was this possible?
-- Functions in javascript = first class objects.
-- They can co-exist with and can be treated like any other javascript object
+- Functions in javascript = **first class objects**.
+- They can co-exist with and can be treated like any other javascript object.
 
-1. Assigned to variables and properties of other objects
-2. Passed as arguments into functions
-3. Returned as values from functions
+1. Assigned to variables and properties of other objects.
+2. Passed as arguments into functions.
+3. Returned as values from functions.
 
 - **Higher order functions:**
 
   - Take in a function or pass out a function.
   - Just a term to describe these functions - any function that does it we call a HOF - but there's nothing different about them inherently.
 
-### 3.4. Callbacks and Higher Order Functions
-
 - Callbacks and Higher Order Functions simplify our code and keep it DRY.
 - **Declarative readable code**: Map, filter, reduce - the most readable way to write code to work with data.
-- **Codesmith & pro interview prep**: One of the most popular topics to test in interview both for Codesmith and mid/senior level job interviews.
+- **Pro interview prep**: One of the most popular topics to test in interview for mid/senior level job interviews.
 - **Asynchronous JavaScript:** Callbacks are a core aspect of async JavaScript, and are under-the-hood of promises, async/await.
+
+### 3.4. Arrow Functions
+
+- Introducing arrow functions - a shorthand way to save functions.
+
+```js
+function multiplyBy2(input) {
+  return input * 2;
+}
+const multiplyBy2 = (input) => {
+  return input * 2;
+};
+// If the function only does one thing, you can skip {} & return keyword.
+const multiplyBy2 = (input) => input * 2;
+// If there is only one parameter, you can skip the () too.
+// prettier-ignore
+const multiplyBy2 = input => input * 2;
+
+const output = multiplyBy2(3); // 6
+```
+
+- Updating our callback function as an arrow function
+
+```js
+function copyArrayAndManipulate(array, instructions) {
+  const output = [];
+  for (let i = 0; i < array.length; i++) {
+    output.push(instructions(array[i]));
+  }
+  return output;
+}
+const multiplyBy2 = (input) => input * 2;
+const result = copyArrayAndManipulate([1, 2, 3], multiplyBy2);
+// The following is becoming more common, but it is so unclear what it is doing. How readable is it?
+const result = copyArrayAndManipulate([1, 2, 3], (input) => input * 2);
+```
+
+- Anonymous and arrow functions
+  - Improve immediate legibility of the code.
+  - But at least for our purposes here they are ‘syntactic sugar’ - we’ll see their full effects later.
+  - Understanding how they’re working under-the-hood is vital to avoid confusion.
+
+## 4. Pair programming
+
+- The most effective way to grow as a software engineer.
+- To be an effective engineer is to overcome and a hard block.
+- To overcome a hard block is to go through the code line-by-line and understand the state (data): That is debugging.
+- When becoming an engineer you often fall into one of two very risky traps:
+- **Researcher**: Avoids blocks by reading everything they can find on their block/bug.
+- **Stackoverflower**: Uses code snippets to fix bug without knowing how they work.
+- **Pair programming**:
+  - Tackle blocks with a partner.
+  - Stay focused on the problem.
+  - Refine technical communication.
+  - Collaborate to solve problem.
+- In pair programming we are forced to verbalise and explain our code which improves our technical communication beyond measure.
+- Not being able to verbalise code with precision and clarity with intuitive style, is a massive hindrance to a company.
+
+## 5. Closure (Scope and Execution Context)
