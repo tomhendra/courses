@@ -14,7 +14,15 @@
   - [3.3. Callbacks and Higher Order Functions](#33-callbacks-and-higher-order-functions)
   - [3.4. Arrow Functions](#34-arrow-functions)
 - [4. Pair programming](#4-pair-programming)
-- [5. Closure (Scope and Execution Context)](#5-closure-scope-and-execution-context)
+- [5. Closure (Lexical Scope and Execution Context)](#5-closure-lexical-scope-and-execution-context)
+  - [5.1. Functions with Memories](#51-functions-with-memories)
+  - [5.2. Returning Functions](#52-returning-functions)
+  - [5.3. Nested Function Scope](#53-nested-function-scope)
+  - [5.4. Retaining Function Memory](#54-retaining-function-memory)
+  - [5.5. Function Closure](#55-function-closure)
+  - [5.6. Closure Technical Definition and Review](#56-closure-technical-definition-and-review)
+  - [5.7. Multiple Closure Instances](#57-multiple-closure-instances)
+  - [5.8. Practical Applications](#58-practical-applications)
 
 ## 1. Introduction
 
@@ -282,4 +290,147 @@ const result = copyArrayAndManipulate([1, 2, 3], (input) => input * 2);
 - In pair programming we are forced to verbalise and explain our code which improves our technical communication beyond measure.
 - Not being able to verbalise code with precision and clarity with intuitive style, is a massive hindrance to a company.
 
-## 5. Closure (Scope and Execution Context)
+## 5. Closure (Lexical Scope and Execution Context)
+
+- Closure is the most esoteric of JavaScript concepts.
+- Enables powerful pro-level functions like ‘once’ and ‘memoize’.
+- Many JavaScript design patterns including the module pattern use closure.
+- Build iterators, currying, handle partial application and maintain state in an asynchronous world.
+
+- Functions get a new memory every run/invocation
+
+```js
+function multiplyBy2(inputNumber) {
+  const result = inputNumber * 2;
+  return result;
+}
+const output = multiplyBy2(7);
+const newOutput = multiplyBy2(10);
+```
+
+### 5.1. Functions with Memories
+
+- When our functions get called, we create a live store of data (local memory/variable environment/state) for that function’s execution context.
+- When the function finishes executing, its local memory is deleted (except the returned value).
+- But what if our functions could hold on to live data between executions?
+- This would let our function definitions have an associated cache/persistent memory. 🤯
+- But it all starts with us returning a function from another function.
+
+### 5.2. Returning Functions
+
+- Functions can be returned from other functions in JavaScript.
+
+```js
+function createFunction() {
+  function multiplyBy2(num) {
+    return num * 2;
+  }
+  return multiplyBy2;
+}
+const generatedFunc = createFunction();
+const result = generatedFunc(3); // 6
+```
+
+- `generatedFunc` is assigned the return value of `createFunction`, which is the code previously assigned to `multiplyBy2`.
+- `generatedFunc` has nothing to do with createdFunction after it has run once.
+- The identifier of `multiplyBy2` is deleted after `createFunction` has run and its execution context is deleted.
+- The identifier `generatedFunc` retains access to the parameter `num`, and the function body itself.
+- When we run `generatedFunc`, we are running the code which was previously assigned to `multiplyBy2`.
+- Result is assigned the return value of `generatedFunc`.
+- This is confusing because we can't see JS storing the return value of `createFunction` in global memory and assigning it to `generatedFunc`.
+- When we read the code we have to look inside `createFunction` to see what the result of running `generatedFunc` (previously assigned `multiplyBy2`) would be.
+
+### 5.3. Nested Function Scope
+
+- Calling a function in the same function call as it was defined.
+- Where you define your functions determines what data it has access to when you call it.
+
+```js
+function outer() {
+  let counter = 0;
+  function incrementCounter() {}
+  counter++;
+  incrementCounter();
+}
+
+outer();
+```
+
+- How is `counter` accessed from inside `incrementCounter`?
+  - Do we move down the call stack into `outer` and look for `counter`?
+  - Is it the fact we are running `incrementCounter` inside of `outer`, which gives us access to `outer`'s local memory?
+  - Is it the fact that we saved `incrementCounter` inside of `outer`'s local memory, which gives us access to `outer`'s local memory?
+- We can't tell!
+- It is fundamental to understanding closure, what the answer to this question is!
+
+### 5.4. Retaining Function Memory
+
+- Calling a function outside of the function call in which it was defined.
+- When a function is defined, it gets a bond to the surrounding Local Memory (“Variable Environment”) in which it has been defined.
+
+```js
+function outer() {
+  let counter = 0;
+  function incrementCounter() {
+    counter++;
+  }
+  return incrementCounter;
+}
+const myNewFunction = outer();
+myNewFunction();
+myNewFunction();
+```
+
+### 5.5. Function Closure
+
+- We return `incrementCounter`’s code (function definition) out of outer into global and give it a new name - `myNewFunction`.
+- We maintain the bond to `outer`’s live local memory - it gets ‘returned out’ attached on the back of `incrementCounter`’s function definition.
+- So `outer`’s local memory is now stored attached to `myNewFunction` - even though `outer`’s execution context is long gone.
+- When we run `myNewFunction` in global, it will first look in its own local memory first (as we’d expect), but then in `myNewFunction`’s ‘backpack’.
+- We now have permanent, and also private data that cannot be accessed in any way apart from running the function. 🤯
+
+### 5.6. Closure Technical Definition and Review
+
+- Angus Croll who wrote [If Hemmingway Wrote JavaScript](https://nostarch.com/hemingway) refers to the "backpack" as the "closed over" data from the "variable environment" - C.O.V.E.
+- Scope is the rules in any programming language for: at any given line of code, what data do I have available to me.
+- JavaScript has a very particular scope rule: Lexical AKA Static scoping - Wherever I declare my function determines for the rest of the life of that function what data it has access to when that function runs.
+- The opposite would be dynamically scoped which means wherever the function is run would determine the data accessible.
+- The technical term for the "backpack" is **Persistent Lexical Scope Referenced Data (P.L.S.R.D.)**.
+- The industry term for the "backpack" and the overall concept is **Closure**.
+- The ‘backpack’ (or ‘closure’) of live data is attached to `incrementCounter` (then to `myNewFunction`) through a hidden property known as `[[scope]]` which persists when the inner function is returned out.
+- There is no way to access `[[scope]]` apart from executing the function of which it is a property.
+- Anything that is referenced in the function definition is retained, so `counter` is available in the backpack.
+- Anything that isn't referenced is deleted, otherwise it would cause a memory leak: that is a variable that can never be accessed.
+- If you return out more than one function (in an object or array) the backpack is shared by all of them.
+
+### 5.7. Multiple Closure Instances
+
+```js
+function outer() {
+  let counter = 0;
+  function incrementCounter() {
+    counter++;
+  }
+  return incrementCounter;
+}
+
+const myNewFunction = outer();
+myNewFunction();
+myNewFunction();
+
+const anotherFunction = outer();
+anotherFunction();
+anotherFunction();
+```
+
+- **Individual backpacks**
+- If we run `outer` again and store the returned `incrementCounter` function definition in `anotherFunction`, this new `incrementCounter` function was created in a new execution context and therefore has a brand new independent backpack.
+
+### 5.8. Practical Applications
+
+- **Closure gives our functions persistent memories and an entirely new toolkit for writing professional code.**
+
+- **Helper functions:** Everyday professional helper functions like ‘once’ and ‘memoize’.
+- **Iterators and generators:** Which use lexical scoping and closure to achieve the most contemporary patterns for handling data in JavaScript.
+- **Module pattern:** Preserve state for the life of an application without polluting the global namespace.
+- **Asynchronous JavaScript:** Callbacks and Promises rely on closure to persist state in an asynchronous environment.
