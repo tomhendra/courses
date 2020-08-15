@@ -23,6 +23,13 @@
   - [5.6. Closure Technical Definition and Review](#56-closure-technical-definition-and-review)
   - [5.7. Multiple Closure Instances](#57-multiple-closure-instances)
   - [5.8. Practical Applications](#58-practical-applications)
+- [6. Asynchronous JavaScript](#6-asynchronous-javascript)
+  - [6.1. Promises, Async & the Event Loop](#61-promises-async--the-event-loop)
+  - [6.2. Asynchronicity in JavaScript](#62-asynchronicity-in-javascript)
+  - [6.3. Asynchronous Browser Features](#63-asynchronous-browser-features)
+  - [6.4. Web APIs](#64-web-apis)
+  - [6.5. Callback Queue & Event Loop](#65-callback-queue--event-loop)
+  - [6.6. Promises](#66-promises)
 
 ## 1. Introduction
 
@@ -434,3 +441,148 @@ anotherFunction();
 - **Iterators and generators:** Which use lexical scoping and closure to achieve the most contemporary patterns for handling data in JavaScript.
 - **Module pattern:** Preserve state for the life of an application without polluting the global namespace.
 - **Asynchronous JavaScript:** Callbacks and Promises rely on closure to persist state in an asynchronous environment.
+
+## 6. Asynchronous JavaScript
+
+### 6.1. Promises, Async & the Event Loop
+
+- Promises - the most significant ES6 feature.
+- Asynchronicity - the feature that makes dynamic web applications possible.
+- The event loop - JavaScript’s triage.
+- Microtask queue, Callback queue and Web Browser features (APIs).
+
+### 6.2. Asynchronicity in JavaScript
+
+- Asynchronicity is the backbone of modern web development in JavaScript yet...
+
+- JavaScript is:
+  - Single threaded (one command runs at a time).
+  - Synchronously executed (each line is run in order the code appears).
+- So what if we have a task:
+
+  - Accessing Twitter’s server to get new tweets that takes a long time - Code we want to run using those tweets.
+  - Challenge: We want to wait for the tweets to be stored in tweets so that they’re there to run displayTweets on - but no code can run in the meantime.
+
+- Slow function blocks further code running.
+
+```js
+const tweets = getTweets('http://twitter.com/will/1');
+
+// ⛔350ms wait while a request is sent to Twitter HQ displayTweets(tweets)
+
+// more code to run
+console.log('I want to runnnn!');
+```
+
+- What if we try to delay a function directly using setTimeout?
+
+```js
+function printHello() {
+  console.log('Hello');
+}
+setTimeout(printHello, 1000);
+console.log('Me first!');
+```
+
+- In what order will our console logs appear?
+
+- So what about a delay of 0ms?
+- Now, in what order will our console logs occur?
+
+```js
+function printHello() {
+  console.log('Hello');
+}
+setTimeout(printHello, 0);
+console.log('Me first!');
+```
+
+- JavaScript is not enough - We need new pieces (some of which aren’t JavaScript at all).
+
+Our core JavaScript engine has 3 main parts:
+
+1. Thread of execution
+2. Memory/variable environment
+3. Call stack
+
+We need to add some new components:
+
+- Web Browser APIs/Node background APIs.
+- Promises.
+- Event loop, Callback/Task queue and micro task queue.
+
+### 6.3. Asynchronous Browser Features
+
+- The browser is more than just JS.
+- It is a collection of features.
+- JavaScript lets us use these features.
+- We have access to a bunch of functions that look like JS functions...
+
+  - `setTimeOut` is the identifier for the browser's timer.
+  - `document` is the identifier for the HTML DOM.
+  - `fetch` / `xhr` is the identifier for the browser feature that allows to make network requests.
+  - `console` is the identifier for the browser console feature.
+
+- But in actual fact, none of these are JavaScript!
+
+### 6.4. Web APIs
+
+- ES5 solution: Introducing ‘callback functions’, and Web Browser APIs.
+
+```js
+function printHello() {
+  console.log('Hello');
+}
+setTimeout(printHello, 1000);
+console.log('Me first!');
+```
+
+- We’re interacting with a world outside of JavaScript now - so we need rules.
+
+```js
+function printHello() {
+  console.log('Hello');
+}
+
+function blockFor1Sec() {
+  // blocks in the JavaScript thread for 1 sec }
+}
+
+setTimeout(printHello, 0);
+blockFor1Sec();
+console.log('Me first!');
+```
+
+### 6.5. Callback Queue & Event Loop
+
+- `setTimeout` starts the web browser timer, and after it has completed, in this case immediately, `printHello` is added to the **callback queue.**
+- However the next function to be added to the call stack is `blockFor1Sec`.
+- Then `console.log('Me first!')` runs.
+- Only afterwards does `printHello` get added to the call stack.
+- The rule is that all other code in global must be executed synchronously before the `printHello` is dequeued.
+- JavaScript checks before running every line of code:
+  - Whether there is anything in the call stack.
+  - Whether there is any more code to run in the global execution context.
+- Only when the there is nothing more to execute, does the function in callback queue get pushed onto the call stack.
+- The feature that facilitates this is called the **event loop.**
+- Up until ES6 this was the entire asynchronous JavaScript model.
+
+### 6.6. Promises
+
+**ES5 Web Browser APIs with callback functions:**
+
+**Problems**
+
+- Our response data is only available in the callback function - Callback hell.
+- Maybe it feels a little odd to think of passing a function into another function only for it to run much later.
+
+**Benefits**
+
+- Super explicit once you understand how it works under-the-hood.
+
+**ES6+ Solution (Promises):**
+
+- Using two-pronged ‘facade’ functions that both:
+
+  - Initiate background web browser work and
+  - Return a placeholder object (promise) immediately in JavaScript
