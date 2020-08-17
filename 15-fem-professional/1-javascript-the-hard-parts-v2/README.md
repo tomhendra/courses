@@ -29,7 +29,6 @@
   - [6.3. Asynchronous Browser Features](#63-asynchronous-browser-features)
   - [6.4. Web APIs](#64-web-apis)
   - [6.5. Callback Queue & Event Loop](#65-callback-queue--event-loop)
-  - [6.6. Promises](#66-promises)
 
 ## 1. Introduction
 
@@ -563,26 +562,28 @@ console.log('Me first!');
 - JavaScript checks before running every line of code:
   - Whether there is anything in the call stack.
   - Whether there is any more code to run in the global execution context.
-- Only when the there is nothing more to execute, does the function in callback queue get pushed onto the call stack.
+- Only when the there is nothing more to execute, does the function in the callback queue get pushed onto the call stack.
 - The feature that facilitates this is called the **event loop.**
 - Up until ES6 this was the entire asynchronous JavaScript model.
-
-### 6.6. Promises
 
 **ES5 Web Browser APIs with callback functions:**
 
 **Problems**
 
-- Our response data is only available in the callback function - Callback hell.
+- With the function that is automatically called, the background feature receives some data.
+- That data only shows up when the background feature inserts the function into the call stack.
+- The problem with that is the data is only available within the execution context of that function.
+- We don't get to run the function ourselves, therefore we can't have it return anything out.
+- We can't assign a return value of it to anywhere.
+- So our response data is only available within the callback function.
+- This is knows as **Callback hell**, where we have to do all of our work on the data inside that one function.
+- You end up with function inside of function inside of function... pretty nasty!
+
 - Maybe it feels a little odd to think of passing a function into another function only for it to run much later.
+- This is debatable as if we are working with a language that makes use of background features, this behaviour is inevitable.
+
+- For error handling it is not as clean as the ES6 (Promise) approach.
 
 **Benefits**
 
 - Super explicit once you understand how it works under-the-hood.
-
-**ES6+ Solution (Promises):**
-
-- Using two-pronged ‘facade’ functions that both:
-
-  - Initiate background web browser work and
-  - Return a placeholder object (promise) immediately in JavaScript
