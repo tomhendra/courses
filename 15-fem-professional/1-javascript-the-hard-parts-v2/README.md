@@ -24,12 +24,16 @@
   - [5.7. Multiple Closure Instances](#57-multiple-closure-instances)
   - [5.8. Practical Applications](#58-practical-applications)
 - [6. Asynchronous JavaScript](#6-asynchronous-javascript)
-  - [6.1. Promises, Async & the Event Loop](#61-promises-async--the-event-loop)
+  - [6.1. Async & the Event Loop](#61-async--the-event-loop)
   - [6.2. Asynchronicity in JavaScript](#62-asynchronicity-in-javascript)
   - [6.3. Asynchronous Browser Features](#63-asynchronous-browser-features)
   - [6.4. Web APIs](#64-web-apis)
   - [6.5. Callback Queue & Event Loop](#65-callback-queue--event-loop)
-  - [6.6. Promises](#66-promises)
+- [7. Promises](#7-promises)
+  - [7.1. Fetch](#71-fetch)
+  - [7.2. Then](#72-then)
+  - [7.3. But How Does It Work?](#73-but-how-does-it-work)
+  - [7.4. Summary](#74-summary)
 
 ## 1. Introduction
 
@@ -444,9 +448,8 @@ anotherFunction();
 
 ## 6. Asynchronous JavaScript
 
-### 6.1. Promises, Async & the Event Loop
+### 6.1. Async & the Event Loop
 
-- Promises - the most significant ES6 feature.
 - Asynchronicity - the feature that makes dynamic web applications possible.
 - The event loop - JavaScript’s triage.
 - Microtask queue, Callback queue and Web Browser features (APIs).
@@ -593,11 +596,154 @@ console.log('Me first!');
 
 - Super explicit once you understand how it works under-the-hood.
 
-### 6.6. Promises
+## 7. Promises
 
-**ES6+ Solution (Promises):**
+- Promises: the most significant ES6 feature.
+- Special objects built into JavaScript that get returned immediately when we make a call to a web browser API/feature (e.g. fetch) that’s set up to return promises (not all are).
+- Promises act as a placeholder for the data we expect to get back from the web browser feature’s background work.
+- With the ES5 asynchronous JavaScript model, keeping track of background feature behaviour wasn't possible in JavaScript-land.
+- You could `console.log` state, but there is no way to visualize what the background features are executing.
+- There is no way to map what's happening in JavaScript-land with what's happening in the background.
+- In terms of developer reasoning, thinking about what we're doing as we go, and maintaining an application at scale, created a premise for a ES6 promises.
+- One of the most valuable features that promises offer, is to say: When you trigger something in the background, don't just throw it out to the browser features, but have it have some sort of consequence in JavaScript memory as well.
 
-- Using two-pronged ‘facade’ functions that both:
+### 7.1. Fetch
+
+- Replaced [`xhr`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) with [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+- A new-styled way of achieving the same thing.
+- Using **two-pronged** ‘facade’ functions that both:
 
   - Initiate background web browser work and
-  - Return a placeholder object (promise) immediately in JavaScript
+  - Return a placeholder object (promise) immediately in JavaScript.
+
+- Not only does the `fetch` identifier trigger a network request, it immediately returns a special type of object - called a promise object - which is stored in JavaScript-land's memory.
+- When the background work is done, the browser updates the promise object's data with the data from the background.
+- Now when we can track what's happening in the background feature with our placeholder object.
+- The promise object is just a regular object, but has special properties that make it unique.
+
+- `fetch` is Amazing!
+  - This little five letter word is the most powerful in JavaScript: It is profoundly complex what those five letters do!
+  - It is speaking to the internet. JavaScript can't speak to the internet, but the browser can.
+  - It is using a myriad of complex technologies to go and get data from the other side of the world.
+
+```js
+function display(data) {
+  console.log(data);
+}
+const futureData = fetch('https://twitter.com/will/tweets/1');
+futureData.then(display);
+console.log('Me first!');
+```
+
+- When the facade function `fetch` is called, it immediately creates the special object in JavaScript: **first prong**.
+- Initially the object will have two properties:
+
+1. `value: undefined`
+2. `onFulfilled: []` (hidden property)
+
+- The other consequence of `fetch` is in the web browser where a network request is made: **second prong**.
+- Two pieces of data are are passed to the network request: The domain (`twitter.com`) and the path (`will/tweets/1`).
+- We can `GET` data and `POST` data using [HTTP request methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
+- `fetch` defaults to `GET`.
+- If we want to `POST` we can pass in to `fetch` as another argument an object with options.
+- Once the (response object) data comes back, the background task completes and the `value` property of the promise object is updated in JS-land.
+- Now `futureData.value` holds the data.
+
+### 7.2. Then
+
+- We want to use the data, but we don't know when it is going to come back.
+- When the data comes back and is stored in the `value` property, we need a way to automatically run some code on it.
+- This is where the empty array assigned to the `onFulfilled` hidden property comes in.
+- In the `onFulfilled` array we can store any functions that we want JS to trigger to be run automatically, when the `value` property is updated with the response data.
+- To store functions in the `onFulfilled` array we pass them to the method `.then()`.
+- Under the hood this pushes to the array: `futureData.onFulfilled.push(display)`.
+- We can't push manually as `onFulfilled` is a hidden property, therefore is inaccessible.
+- Promise objects will automatically trigger the attached function to run (with its input being the returned data stored in the `value` property).
+
+### 7.3. But How Does It Work?
+
+**But we need to know how our promise-deferred functionality gets back into JavaScript to be run.**
+
+- When does the deferred function in the `onFulfilled` array attached to the promise object get pushed onto the call stack?
+- We know that it is triggered to run automatically, but what are the rules?
+- **Asynchronous** means running code out of the order that you see it.
+- The following example shows the entire model of asynchronicity in JavaScript behind the scenes.
+
+```js
+function display(data) {
+  console.log(data);
+}
+
+function printHello() {
+  console.log('Hello');
+}
+
+function blockFor300ms() {
+  // blocks js thread for 300ms
+}
+
+setTimeout(printHello, 0);
+
+const futureData = fetch('https://twitter.com/will/tweets/1');
+futureData.then(display);
+
+blockFor300ms();
+console.log('Me first!');
+```
+
+- `setTimeout` tells the web browser's timer feature to set a timer, and on completion add the function `printHello` to the callback queue.
+- `printHello` is added ot the callback queue immediately since the timer duration is 0.
+- `futureData` is declared and assigned the return value of the `fetch` facade function call.
+- JS prong:
+  - A new promise object is immediately returned out and added to memory with two properties `value: undefined` and `onFulfilled: []`.
+- Web browser feature prong:
+  - A network request is made with the two required parts: The domain and the path (defaults to `GET`).
+  - When the network request completes, the response object will be stored in the `value` property of the promise object.
+- JS prong:
+  - The function `display` is added to the `unfulfilled` array with the `.then()` method, to be triggered to run automatically when the `value` property is updated with the response object (with the function input being the response object stored in the `value` property).
+- `blockFor300ms` is added to the call stack and a new execution context is created.
+
+**----> Data from Twitter received**
+
+- Surprise! There is another queue in addition to the callback queue.
+
+  - In the JS specification the callback queue is called the **task queue.**
+  - Any function that is attached to a promise by the `.then()` method is added to the **microtask queue.**
+
+- The response object is added to the `value` property of the promise assigned to `futureData`.
+- The function `display` is added to the **microtask queue.**
+- `blockFor300ms` completes and is popped off of the call stack.
+- `console.log('Me first!')` is executed.
+- The event loop sees that the call stack is empty, and there is no more code to run in the global execution context.
+- The event loop prioritizes the microtask queue, therefore checks there first.
+- `display` is pushed to the call stack, with its argument automatically inserted from the `value` property of `futureData`.
+- `display` executes and is popped off from the call stack.
+- The event loop sees the microtask queue is empty, and so checks the callback queue.
+- The event loop pushes `printHello` to the call stack from the callback queue.
+- `printHello` executes and is popped off from the call stack.
+
+### 7.4. Summary
+
+**Problems**
+
+- 99% of developers have no idea how they’re working under the hood.
+- Debugging becomes super-hard as a result.
+- Developers fail technical interviews.
+
+**Benefits**
+
+- Cleaner readable style with pseudo-synchronous style code.
+- Nice error handling process.
+
+**We have rules for the execution of our asynchronously delayed code.**
+
+- Hold promise-deferred functions in a microtask queue and callback function in a task queue (Callback queue) when the Web Browser Feature (API) finishes
+- Add the function to the Call stack (i.e. run the function) when:
+  - Call stack is empty & all global code run (Have the Event Loop check this condition).
+- Prioritize functions in the microtask queue over the Callback queue.
+
+**Promises, Web APIs, the Callback & Microtask Queues and Event loop enable:**
+
+- **Non-blocking applications:** This means we don’t have to wait in the single thread and don’t block further code from running.
+- **However long it takes:** We cannot predict when our Browser feature’s work will finish so we let JS handle automatically running the function on its completion.
+- **Web applications:** Asynchronous JavaScript is the backbone of the modern web - letting us build fast ‘non-blocking’ applications.
