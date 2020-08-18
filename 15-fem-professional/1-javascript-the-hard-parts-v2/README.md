@@ -679,12 +679,14 @@ function printHello() {
 }
 
 function blockFor300ms() {
-  // blocks js thread for 300ms
+  console.log('Blocking execution...');
+  alert('Unblock execution');
+  console.log('Execution unblocked!');
 }
 
 setTimeout(printHello, 0);
 
-const futureData = fetch('https://twitter.com/will/tweets/1');
+const futureData = fetch('https://jsonplaceholder.typicode.com/todos/1');
 futureData.then(display);
 
 blockFor300ms();
@@ -694,32 +696,34 @@ console.log('Me first!');
 - `setTimeout` tells the web browser's timer feature to set a timer, and on completion add the function `printHello` to the callback queue.
 - `printHello` is added ot the callback queue immediately since the timer duration is 0.
 - `futureData` is declared and assigned the return value of the `fetch` facade function call.
-- JS prong:
-  - A new promise object is immediately returned out and added to memory with two properties `value: undefined` and `onFulfilled: []`.
-- Web browser feature prong:
+- **JS prong**:
+  - A new promise object is immediately returned out by `fetch` and assigned to `futureData` with two properties:
+    - `value: undefined`
+    - `onFulfilled: []`.
+    - (There is actually a third array `onRejection` added to the promise behind the scenes, which allows you to add functions to trigger automatically on error, i.e. if a response object is not received. We can add to this array using the `.catch()` method).
+- **Web browser feature prong**:
   - A network request is made with the two required parts: The domain and the path (defaults to `GET`).
-  - When the network request completes, the response object will be stored in the `value` property of the promise object.
-- JS prong:
-  - The function `display` is added to the `unfulfilled` array with the `.then()` method, to be triggered to run automatically when the `value` property is updated with the response object (with the function input being the response object stored in the `value` property).
+- **JS prong**:
+  - `display` is added to the `onFulfilled` array with the `.then()` method, ready to be triggered to run automatically when the `value` property is updated with the response data.
 - `blockFor300ms` is added to the call stack and a new execution context is created.
 
-**----> Data from Twitter received**
+**----> Data response object received**
 
-- Surprise! There is another queue in addition to the callback queue.
-
-  - In the JS specification the callback queue is called the **task queue.**
-  - Any function that is attached to a promise by the `.then()` method is added to the **microtask queue.**
-
-- The response object is added to the `value` property of the promise assigned to `futureData`.
-- The function `display` is added to the **microtask queue.**
+- **Web browser feature prong**:
+  - The promise `value` property of `futureData` isn't updated immediately when the data is received.
+  - `value` is only updated after all global code has run, which is intentional: We don't want to try and gain access to something which may or may not be present.
+    - In the JS specification the callback queue is called the **task queue.**
+    - Any function that is attached to a promise by the `.then()` method is pushed to a separate **microtask queue** (called the job queue in JS spec) which takes priority over the callback queue.
+  - `display` is pushed to the microtask queue.
 - `blockFor300ms` completes and is popped off of the call stack.
 - `console.log('Me first!')` is executed.
+- Now all synchronous code has run in global, the `value` property of the promise assigned to `futureData` is updated with the response object.
 - The event loop sees that the call stack is empty, and there is no more code to run in the global execution context.
-- The event loop prioritizes the microtask queue, therefore checks there first.
-- `display` is pushed to the call stack, with its argument automatically inserted from the `value` property of `futureData`.
+- The event loop checks the queues, starting with the microtask queue, where it finds `display`.
+- `display` is dequeued from the microtask queue and pushed to the call stack, with its argument automatically inserted from the `value` property of `futureData`.
 - `display` executes and is popped off from the call stack.
-- The event loop sees the microtask queue is empty, and so checks the callback queue.
-- The event loop pushes `printHello` to the call stack from the callback queue.
+- The event loop sees that the call stack & microtask queue is empty, and so checks the callback queue, where it finds `printHello`.
+- `printHello` is dequeued from the callback queue and pushed to the call stack.
 - `printHello` executes and is popped off from the call stack.
 
 ### 7.4. Summary
