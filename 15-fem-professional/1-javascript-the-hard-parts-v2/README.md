@@ -44,13 +44,14 @@
   - [8.7. this Keyword](#87-this-keyword)
   - [8.8. Arrow Function Scope and this](#88-arrow-function-scope-and-this)
   - [8.9. The new Keyword](#89-the-new-keyword)
+  - [8.10. The class Keyword](#810-the-class-keyword)
 
 ## 1. Introduction
 
 Go under the hood of some of the most important aspects of JavaScript! You'll learn what you need to know to become a sought-after, versatile, problem-solving developer. Combining mental models of JavaScript's inner workings and hands-on programming challenges, this course will give you a solid understanding of callbacks and higher-order functions, closure, asynchronous JavaScript, and object-oriented JavaScript! This course is for developers with a basic to intermediate knowledge of JavaScript who wants to deepen their understanding of the fundamentals to the next level.
 
-[Course Link](https://frontendmasters.com/courses/javascript-hard-parts-v2/).\
-[Slides](https://static.frontendmasters.com/resources/2019-09-18-javascript-hard-parts-v2/javascript-hard-parts-v2.pdf).
+- [Course Link](https://frontendmasters.com/courses/javascript-hard-parts-v2/).\
+- [Slides](https://static.frontendmasters.com/resources/2019-09-18-javascript-hard-parts-v2/javascript-hard-parts-v2.pdf).
 
 The following topics are covered:
 
@@ -70,7 +71,7 @@ The following topics are covered:
 
 ## 2. JavaScript Principles
 
-- The three core components of JavaScript are:
+The three core components of JavaScript are:
 
 1. Memory to store data and code (functionality).
 2. The thread of execution.
@@ -78,7 +79,7 @@ The following topics are covered:
 
 ### 2.1. Thread of Execution
 
-- JavaScript is not that fancy: it does two things:
+JavaScript is not that fancy: it does two things:
 
 1. Goes through the code line-by-line and runs/executes each line - **The thread of execution**.
 2. Saves 'data' in memory like strings and arrays so we can use them later.
@@ -717,7 +718,7 @@ console.log('Me first!');
   - `display` is added to the `onFulfilled` array with the `.then` method, ready to be triggered to run automatically when the `value` property is updated with the response data.
 - `blockFor300ms` is added to the call stack and a new execution context is created.
 
-**----> Data response object received**
+🗳**Data response object received**
 
 - **Web browser feature prong**:
   - The promise `value` property of `futureData` isn't updated immediately when the data is received.
@@ -994,11 +995,11 @@ function userCreator(name, score) {
 
 const userFunctionStore = {
   increment: function () {
-    // Create and invoke a new function (add1) inside increment
-    function add1() {
+    // Create and invoke a new function (addOne) inside increment
+    function addOne() {
       this.score++;
     }
-    add1();
+    addOne();
   },
 };
 
@@ -1026,6 +1027,7 @@ _What does `this` get auto-assigned to?_
 
 ```js
 function userCreator(name, score) {
+  debugger;
   const newUser = Object.create(userFunctionStore);
   newUser.name = name;
   newUser.score = score;
@@ -1049,9 +1051,10 @@ user1.increment();
 _Now our inner function gets its `this` set by where it was saved - it’s a ‘lexically scoped' `this`_
 
 - We don't want to use arrow functions for our methods on objects.
-- If we used an arrow function for `increment` its `this` would point to where it is saved, in global.
-- We want to use the feature of `this` that it is bound to the object on which the function is run, i.e. `user1` / `user2`.
-- But for the functions inside of the methods where we want to point their `this` to the method in which they were defined, use arrow functions.
+- Since objects do not create a lexical scope, the arrow function method looks for `this` in the outer scope: `Window` in this example.
+- So if we used an arrow function for `increment`, its `this` would point to the global object: `Window`.
+- We want to use the feature of JS that binds `this` to the object on which the function is run, i.e. `user1` / `user2`.
+- Using a regular function expression creates a lexical scope with a `this` that the arrow function defined within can point to.
 
 **Solution 2: Using the prototype chain: Review**
 
@@ -1076,6 +1079,157 @@ return newUser;
 - But it is the answer to what's really happening behind the scenes of the standard way to achieve the same goal, which are solutions 3 & 4.
 - If you want to debug, or answer in interview "what's the `new` keyword doing behind the scenes?", you need to understand this model.
 - The more you think in this paradigm, you start structuring your code in a more efficient way: collections of data and related functionality.
-- The next solution introduces the `new` keyword which automates all this hard work.
 
 ### 8.9. The new Keyword
+
+**Solution 3 - Introducing the keyword that automates the hard work: `new`**
+
+- When we call the function that returns an object with `new` in front we automate 2 things:
+
+1. Create a new user object
+2. Return the new user object
+
+```js
+const user1 = new userCreator('Eva', 9);
+const user2 = new userCreator('Tom', 10);
+```
+
+- But now we need to adjust how we write the body of `userCreator` - how can we:
+
+  - Refer to the auto-created object?
+  - Know where to put our single copies of functions?
+
+**Refer to the auto-created object**
+
+- The **other rule** of `this` applies:
+- First rule: `this` always points to the object on the left-hand-side of the `.` when we run a method.
+- Second rule: with the `new` keyword, the automatically created object inside of the execution context is given the label `this`.
+
+**Where to put our single copies of functions**
+
+- Where do we want to store the functions to which the newly created objects have a link to?
+
+**Interlude: functions are both objects and functions in JavaScript**
+
+- When JS sees the keyword `function` we get a function + a "big old object".
+- All functions have these objects.
+- And this object has a property called `prototype`, which defaults to a "big old empty object".
+- The `new` keyword creates a bond through the `__proto__` property to the `prototype` property: this is where we store our functions.
+
+```js
+function multiplyBy2(num) {
+  return num * 2;
+}
+
+multiplyBy2.stored = 5; // using parens calls the function, using dot notation adds a property to the object.
+multiplyBy2(3); // 6
+multiplyBy2.stored; // 5
+multiplyBy2.prototype; // {}
+```
+
+_We could use the fact that all functions have a default property `prototype` on their object version, (itself an object) - to replace our `functionStore` object_
+
+```js
+function userCreator(name, score) {
+  /* const newUser = Object.create(functionStore); */
+  /* newUser */ this.name = name;
+  /* newUser */ this.score = score;
+  /* return newUser; */
+}
+
+/* functionStore */ userCreator.prototype; // {};
+/* functionStore */ userCreator.prototype.increment = function () {
+  this.score++;
+};
+const user1 = new userCreator('Will', 3);
+```
+
+**The `new` keyword automates a lot of our manual work**
+
+- You could say the `new` keyword is a modifier: it alters the behaviour of the `userCreator` execution context - it will insert stuff for us.
+
+```js
+function userCreator(name, score) {
+  this.name = name;
+  this.score = score;
+}
+
+userCreator.prototype.increment = function() {
+  this.score++;
+}
+
+userCreator.prototype.login = function() {
+  console.log("login");
+}
+
+const user1 = new userCreator(“Eva”, 9);
+user1.increment();
+```
+
+- We declare a variable `userCreator` and assign it a function definition + an empty object in global memory.
+- The object attached to `userCreator` automatically has a property `prototype` which has an empty object assigned to it.
+  - We will use the empty object assigned to the `prototype` property to store a single version of each function, that we want any objects that are returned from running `userCreator` to have access to any stored functions.
+- We go to `userCreator`, we go to `userCreator`'s object version of itself, where we look for the `prototype` property, and in the empty object assigned to `prototype` we create a new property called `increment`, and assign the function definition `function() {this.score++;}` to `increment`.
+- We go to `userCreator`, we go to `userCreator`'s object version of itself, where we look for the `prototype` property, and in the object assigned to `prototype` we create an additional property called `login`, and assign the function definition `function() {console.log("login");}` to `login`.
+- We declare a constant `user1` in global memory with a value of uninitialized.
+- We call `userCreator(“Eva”, 9)` with the `new` keyword to modify the behaviour and insert stuff for us.
+- A brand new execution context is created for `userCreator`.
+  - We store the parameters `name` and `score` in local memory.
+  - We assign the arguments `"Eva"` to `name` and `9` to `score`.
+  - The `new` keyword declares and saves in local memory an auto-created empty object and assigns it to `this`.
+  - The `new` keyword creates a link from the hidden `__proto__` property on the auto-created object assigned to `this`, to the object full of functions assigned to the `prototype` property on `userCreator`'s object version of itself.
+  - On the auto-created object assigned to `this` we create a new property called `name` and assign the value of the `name` parameter: `"Eva"`.
+  - On the auto-created object assigned to `this` we create a new property called `score` and assign the value of the `score` parameter: `0`.
+  - The `new` keyword automatically returns `this`: Our auto-created created object.
+- `user1` is assigned the return value: Our auto-created created object.
+- `user1.increment()`: We look for `increment` on the `user1` object in global memory: Not found!
+- We look at the `__proto__` property of `user1` which automatically links us to the `prototype` property on `userCreator`'s object version of itself, where we find the function `increment` stored as a property of the object assigned to `prototype`.
+
+**Benefits:**
+
+- Faster to write. Often used in practice in professional code.
+
+**Problems:**
+
+- 95% of developers have no idea how it works and therefore fail interviews.
+- We have to upper case first letter of the function so we know it requires `new` to work!
+
+### 8.10. The class Keyword
+
+**Solution 4: The `class` ‘syntactic sugar’**
+
+- We’re writing our shared methods separately from our object ‘constructor’ itself (off in the `userCreator.prototype` object).
+- Other languages let us do this all in one place. ES2015 lets us do so too.
+
+```js
+/*
+function userCreator(name, score) {
+  this.name = name;
+  this.score = score;
+} */
+class UserCreator {
+  constructor(name, score) {
+    this.name = name;
+    this.score = score;
+  }
+  // userCreator.prototype.increment = function(){ this.score++; };
+  increment() {
+    this.score++;
+  }
+  // userCreator.prototype.login = function(){ console.log("login"); };
+  login() {
+    console.log('login');
+  }
+}
+const user1 = new UserCreator('Eva', 9);
+user1.increment();
+```
+
+**Benefits:**
+
+- Emerging as a new standard.
+- Feels more like style of other languages (e.g. Python).
+
+**Problems:**
+
+- 99% of developers have no idea how it works and therefore fail interviews... But I will not be one of them! 😁
