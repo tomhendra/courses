@@ -38,6 +38,12 @@
   - [8.1. Object Dot Notation](#81-object-dot-notation)
   - [8.2. Factory Functions](#82-factory-functions)
   - [8.3. The Prototype Chain](#83-the-prototype-chain)
+  - [8.4. Prototypal Link](#84-prototypal-link)
+  - [8.5. Implicit Parameters](#85-implicit-parameters)
+  - [8.6. hasOwnProperty Method](#86-hasownproperty-method)
+  - [8.7. this Keyword](#87-this-keyword)
+  - [8.8. Arrow Function Scope and this](#88-arrow-function-scope-and-this)
+  - [8.9. The new Keyword](#89-the-new-keyword)
 
 ## 1. Introduction
 
@@ -659,7 +665,7 @@ console.log('Me first!');
 - When the data comes back and is stored in the `value` property, we need a way to automatically run some code on it.
 - This is where the empty array assigned to the `onFulfilled` hidden property comes in.
 - In the `onFulfilled` array we can store any functions that we want JS to trigger to be run automatically, when the `value` property is updated with the response data.
-- To store functions in the `onFulfilled` array we pass them to the method `.then()`.
+- To store functions in the `onFulfilled` array we pass them to the method `.then`.
 - Under the hood this pushes to the array: `futureData.onFulfilled.push(display)`.
 - We can't push manually as `onFulfilled` is a hidden property, therefore is inaccessible.
 - Promise objects will automatically trigger the attached function to run (with its input being the returned data stored in the `value` property).
@@ -704,11 +710,11 @@ console.log('Me first!');
   - A new promise object is immediately returned out by `fetch` and assigned to `futureData` with two properties:
     - `value: undefined`
     - `onFulfilled: []`.
-    - (There is actually a third property `onRejection` added to the promise behind the scenes, an array which allows you to store functions to trigger automatically on error, i.e. if a response object is not received. We can add to this array using the `.catch()` method).
+    - (There is actually a third property `onRejection` added to the promise behind the scenes, an array which allows you to store functions to trigger automatically on error, i.e. if a response object is not received. We can add to this array using the `.catch` method).
 - **Web browser feature prong**:
   - A network request is made with the two required parts: The domain and the path (defaults to `GET`).
 - **JS prong**:
-  - `display` is added to the `onFulfilled` array with the `.then()` method, ready to be triggered to run automatically when the `value` property is updated with the response data.
+  - `display` is added to the `onFulfilled` array with the `.then` method, ready to be triggered to run automatically when the `value` property is updated with the response data.
 - `blockFor300ms` is added to the call stack and a new execution context is created.
 
 **----> Data response object received**
@@ -717,7 +723,7 @@ console.log('Me first!');
   - The promise `value` property of `futureData` isn't updated immediately when the data is received.
   - `value` is only updated after all global code has run, which is intentional: We don't want to try and gain access to something which may or may not be present.
     - In the JS specification the callback queue is called the **task queue.**
-    - Any function that is attached to a promise by the `.then()` method is pushed to a separate **microtask queue** (called the job queue in JS spec) which takes priority over the callback queue.
+    - Any function that is attached to a promise by the `.then` method is pushed to a separate **microtask queue** (called the job queue in JS spec) which takes priority over the callback queue.
   - `display` is pushed to the microtask queue.
 - `blockFor300ms` completes and is popped off of the call stack.
 - `console.log('Me first!')` is executed.
@@ -870,8 +876,9 @@ const user2 = userCreator('Tim', 5);
 user1.increment();
 // Note that closure is everywhere!
 // because we returned the function on the increment property,
-// although the function declaration makes reference to 'newUser',
-// the function has a backpack, and retains access to the execution context created for userCreator.
+// although the function declaration makes reference to newUser,
+// the function has a backpack, and retains access to the execution context created for userCreator,
+// where the newUser variable persists: increment has closure over newUser.
 ```
 
 - This approach although easy to reason about, is completely unusable.
@@ -889,8 +896,186 @@ user1.increment();
 
 ### 8.3. The Prototype Chain
 
+- We need a better way in which we only write the function once.
+
 **Solution 2: Using the prototype chain**
 
 - Store the increment function in just one object and have the interpreter, if it doesn't find the function on user1, look up to that object to check if it's there.
-- Link user1 and functionStore so the interpreter, on not finding `.increment`, makes sure to check up in functionStore where it would find it
-  Make the link with `Object.create()` technique.
+- Link `user1` and `userFunctionStore` so the interpreter, on not finding `.increment`, makes sure to check up in `userFunctionStore` where it would find it.
+- Make the link with `Object.create()` technique.
+
+```js
+function userCreator(name, score) {
+  const newUser = Object.create(userFunctionStore);
+  newUser.name = name;
+  newUser.score = score;
+  return newUser;
+}
+
+const userFunctionStore = {
+  increment: function () {
+    this.score++;
+  },
+  login: function () {
+    console.log('Logged in');
+  },
+};
+
+const user1 = userCreator('Will', 3);
+const user2 = userCreator('Tim', 5);
+user1.increment();
+```
+
+### 8.4. Prototypal Link
+
+- `increment` and `login` don't exist on `user1` or `user2`.
+- There is a bond between the user objects and the `userFunctionStore` so that `user1` and `user2` both can access its methods.
+- This is the absolute core of the prototype chain technique.
+- Solutions 3 & 4 are going to be shorthand ways of doing the same thing.
+
+- `Object.create` gives the objects it creates a `__proto__` hidden property which links it to `userFunctionStore`.
+- When JavaScript can't find a method on an object, it checks `__proto__` property for a link.
+
+### 8.5. Implicit Parameters
+
+- An implicit parameter means one that you don't specify.
+- It's automatically there and automatically filled in.
+- It's called `this`.
+- When in the local memory of the execution context for `increment` the implicit parameter `this` is created.
+- **The key rule of `this`:** `this` always attaches to itself the object on the left-hand-side of the dot, on which that function is being run.
+- All functions and global automatically have a `this` although sometimes it's not very useful (when it points to the global object).
+- In the case of `user1.increment` `this` is assigned the value of `user1`.
+
+### 8.6. hasOwnProperty Method
+
+**What if we want to confirm our user1 has the property score?**
+
+```js
+function userCreator(name, score) {
+  const newUser = Object.create(userFunctionStore);
+  newUser.name = name;
+  newUser.score = score;
+  return newUser;
+}
+
+const userFunctionStore = {
+  increment: function () {
+    this.score++;
+  },
+  login: function () {
+    console.log('Logged in');
+  },
+};
+
+const user1 = userCreator('Will', 3);
+const user2 = userCreator('Tim', 5);
+user1.hasOwnProperty('score');
+```
+
+_We can use the hasOwnProperty method - but where is it?_
+
+- We can use the hasOwnProperty method - but where is it? Is it on user1?
+- All objects have a `__proto__` property by default which defaults to linking to a big, headline object: `Object.prototype` which is full of (somewhat) useful functions.
+- We get access to it via `userFunctionStore`’s `__proto__` property - the chain.
+- This is where we find `hasOwnProperty`.
+- `Object.prototype` even has its own `__proto__` property, although its value is `null` meaning we can't go further up the chain.
+
+### 8.7. this Keyword
+
+**Declaring & calling a new function inside our ‘method’ increment**
+
+```js
+function userCreator(name, score) {
+  const newUser = Object.create(userFunctionStore);
+  newUser.name = name;
+  newUser.score = score;
+  return newUser;
+}
+
+const userFunctionStore = {
+  increment: function () {
+    // Create and invoke a new function (add1) inside increment
+    function add1() {
+      this.score++;
+    }
+    add1();
+  },
+};
+
+const user1 = userCreator('Will', 3);
+const user2 = userCreator('Tim', 5);
+user1.increment();
+```
+
+_What does `this` get auto-assigned to?_
+
+- You would think that `this` would be assigned `user1` since that's the object which the `increment` method belongs to.
+- Indeed there are languages where that is the case, even if you are running functions inside of the method.
+- But the JS implementation is arguably not as well designed.
+- There is no `.` and nothing to the left of `addOne`, so the key rule of `this` cannot apply.
+- Therefore `this` is assigned its default value, which is the global `window` object.
+- In the old days the workaround for the problem was to declare `var that = this` in the outer scope, and inside the function `this = that`!
+- There are other solution to manually call `addOne` where you can take control of the `this` assignment inside of it.
+  - `addOne.call(this)` will assign the `this` inside `addOne` to the `this` of where the `addOne.call(this)` statement is defined.
+
+### 8.8. Arrow Function Scope and this
+
+**Arrow functions override the normal `this` rules**
+
+- With arrow functions the `this` value is determined by where the function is saved.
+
+```js
+function userCreator(name, score) {
+  const newUser = Object.create(userFunctionStore);
+  newUser.name = name;
+  newUser.score = score;
+  return newUser;
+}
+
+const userFunctionStore = {
+  increment: function () {
+    const add1 = () => {
+      this.score++;
+    };
+    add1();
+  },
+};
+
+const user1 = userCreator('Will', 3);
+const user2 = userCreator('Tim', 5);
+user1.increment();
+```
+
+_Now our inner function gets its `this` set by where it was saved - it’s a ‘lexically scoped' `this`_
+
+- We don't want to use arrow functions for our methods on objects.
+- If we used an arrow function for `increment` its `this` would point to where it is saved, in global.
+- We want to use the feature of `this` that it is bound to the object on which the function is run, i.e. `user1` / `user2`.
+- But for the functions inside of the methods where we want to point their `this` to the method in which they were defined, use arrow functions.
+
+**Solution 2: Using the prototype chain: Review**
+
+**Problems:**
+
+- No problems! It's beautiful. Maybe a little long-winded.
+- Write this every single time - but it's 6 words!
+
+```js
+const newUser = Object.create(userFunctionStore);
+// ...
+return newUser;
+```
+
+**Benefits:**
+
+- Super sophisticated but not standard.
+
+**Summary**
+
+- It is not the standard model to use, and we shouldn't use it.
+- But it is the answer to what's really happening behind the scenes of the standard way to achieve the same goal, which are solutions 3 & 4.
+- If you want to debug, or answer in interview "what's the `new` keyword doing behind the scenes?", you need to understand this model.
+- The more you think in this paradigm, you start structuring your code in a more efficient way: collections of data and related functionality.
+- The next solution introduces the `new` keyword which automates all this hard work.
+
+### 8.9. The new Keyword
