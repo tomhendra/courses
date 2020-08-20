@@ -3,8 +3,6 @@
 <h1>JavaScript: From Fundamentals to Functional JS, v2</h1>
 </div>
 
-**READ THROUGH NOTES: 11/08/20**
-
 - [1. Introduction](#1-introduction)
   - [1.1. Strengthen your understanding of tricky JS concepts:](#11-strengthen-your-understanding-of-tricky-js-concepts)
   - [1.2. What is Functional Programming?](#12-what-is-functional-programming)

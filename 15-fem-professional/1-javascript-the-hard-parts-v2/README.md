@@ -4,6 +4,7 @@
 </div>
 
 - [1. Introduction](#1-introduction)
+  - [1.1. Course Overview](#11-course-overview)
 - [2. JavaScript Principles](#2-javascript-principles)
   - [2.1. Thread of Execution](#21-thread-of-execution)
   - [2.2. Functions](#22-functions)
@@ -53,7 +54,7 @@ Go under the hood of some of the most important aspects of JavaScript! You'll le
 - [Course Link](https://frontendmasters.com/courses/javascript-hard-parts-v2/).\
 - [Slides](https://static.frontendmasters.com/resources/2019-09-18-javascript-hard-parts-v2/javascript-hard-parts-v2.pdf).
 
-The following topics are covered:
+### 1.1. Course Overview
 
 1. Principles of JavaScript
 2. Callbacks & Higher order functions
