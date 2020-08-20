@@ -3,9 +3,14 @@
 <h1>Deep JavaScript Foundations v3</h1>
 </div>
 
+**Started: 20/08/20**
+
 - [1. Introduction](#1-introduction)
   - [1.1. Motivations](#11-motivations)
   - [1.2. Course Overview](#12-course-overview)
+- [2. Types](#2-types)
+  - [2.1. Primitive Types](#21-primitive-types)
+  - [2.2. The typeof Operator](#22-the-typeof-operator)
 
 ## 1. Introduction
 
@@ -60,7 +65,8 @@ _UpdateExpression : LeftHandSideExpression++_
 **1. Types**
 
 - Primitive Types
-- Abstract Operations - Coercion
+- Abstract Operations
+- Coercion
 - Equality
 - TypeScript, Flow, etc.
 
@@ -77,3 +83,88 @@ _UpdateExpression : LeftHandSideExpression++_
 - `class { }`
 - Prototypes
 - OO vs. OLOO
+
+## 2. Types
+
+### 2.1. Primitive Types
+
+- "In JavaScript everything is an object" - **false!**
+- The reason people say this is because most of the values in JS can behave like objects, but that does not make them objects.
+- The spec doesn't say that. It says...
+
+**6.1 ECMAScript Language Types**
+An ECMAScript language type corresponds to values that are directly manipulated by an ECMAScript programmer using the ECMAScript language. The ECMAScript language types are Undefined, Null, Boolean, String, Symbol, Number, BigInt, and Object. An ECMAScript language value is a value that is characterized by an ECMAScript language type.
+
+- Types have an intrinsic set of characteristics that we means we expect a certain behaviour from a value.
+- The primitive types are:
+
+  - undefined
+  - string
+  - number
+  - boolean
+  - object
+  - symbol
+  - bigint
+
+- There are some other things that may behave like types that we need to consider.
+
+  - undeclared? - not listed in the spec as a type, but has a certain behaviour.
+  - null? - listed in the spec as a type, but it has some quirky behaviour.
+  - function? - listed as a subtype of the object type, yet we know intuitively that values which are functions have a very specific behaviour.
+  - array? - listed as a subtype of the object type, but have a very specific behaviour.\
+
+- Out of all types in both lists the only types that can be considered objects are:
+
+  - object
+  - function
+  - array
+
+- In JS and other dynamically types languages, it is the values that have types, not the variables.
+
+### 2.2. The typeof Operator
+
+- When we assign a value to a variable, we use the `typeof` operator as a way of identifying the value's type.
+- The `typeof` operator always returns a string that represents the type of the value.
+
+```js
+var v;
+typeof v; // "undefined"
+v = '1';
+typeof v; // "string"
+v = 2;
+typeof v; // "number"
+v = true;
+typeof v; // "boolean"
+v = {};
+typeof v; // "object"
+v = Symbol();
+typeof v; // "symbol"
+```
+
+- We can thing of `undefined` as the default value, when there is no other value.
+- A lot of people think of `undefined` as "it doesn't have a value yet".
+- But it is more appropriate to think of it as "it doesn't currently have a value" because it's often the case that a variable did have a value but has been set to `undefined`.
+
+```js
+typeof doesNotExist; // "undefined"
+
+var v = null;
+typeof v; // "object" - oops!! Historical bug.
+
+v = function () {};
+typeof v; // "function" - JS can distinguish from object.
+
+v = [1, 2, 3];
+typeof v; // "object" - huh? JS cannot distinguish array from object. Historical reasons...
+
+v = 42n; // or BigInt(42)
+typeof v; // "bigint"
+```
+
+- `typeof v;` when `v = null` returns a string of `"object".`
+- In the current spec there is a statement that's been there since ES1 that says if you want to unset a regular value you would use `undefined`, but if you want to unset an object you would use `null`. That's part of the historical reason that `typeof null` returns `"object"`. But in reality it is just a bug.
+- You have to ensure that when you are doing a `typeof` check on an object that it isn;t accidentally `null` because you aren't going to get an object.
+- `function` isn't a top level type yet it has a return value for `typeof`.
+- `array` doesn't have a return value for `typeof` - we get `"object"` instead.
+- These things are quirks that we cannot change, because if these bugs were fixed then a bunch of the internet would break!
+- So rather than whine about them we should learn to work around them.
