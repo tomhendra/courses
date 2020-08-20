@@ -1051,8 +1051,7 @@ user1.increment();
 _Now our inner function gets its `this` set by where it was saved - it’s a ‘lexically scoped' `this`_
 
 - We don't want to use arrow functions for our methods on objects.
-- Since objects do not create a lexical scope, the arrow function method looks for `this` in the outer scope: `Window` in this example.
-- So if we used an arrow function for `increment`, its `this` would point to the global object: `Window`.
+- If we used an arrow function for `increment`, its `this` would point to the global object: `Window`.
 - We want to use the feature of JS that binds `this` to the object on which the function is run, i.e. `user1` / `user2`.
 - Using a regular function expression creates a lexical scope with a `this` that the arrow function defined within can point to.
 
@@ -1192,12 +1191,13 @@ user1.increment();
 **Problems:**
 
 - 95% of developers have no idea how it works and therefore fail interviews.
-- We have to upper case first letter of the function so we know it requires `new` to work!
+- If `userCreator` is run directly, the `this` would point to the global object. We have to upper case first letter of the function so we know it requires `new` to work!
 
 ### 8.10. The class Keyword
 
 **Solution 4: The `class` ‘syntactic sugar’**
 
+- 'Syntactic sugar' means the way the codes looks is different but the behaviour is the same.
 - We’re writing our shared methods separately from our object ‘constructor’ itself (off in the `userCreator.prototype` object).
 - Other languages let us do this all in one place. ES2015 lets us do so too.
 
@@ -1228,7 +1228,7 @@ user1.increment();
 **Benefits:**
 
 - Emerging as a new standard.
-- Feels more like style of other languages (e.g. Python).
+- Feels more like style of other languages (e.g. Python, Java).
 
 **Problems:**
 
