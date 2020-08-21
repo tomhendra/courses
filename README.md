@@ -6,48 +6,50 @@
 
 ## Introduction
 
-I have been learning software development full-time since August 2018, and prior to that alongside full-time employment since August 2017. This repo serves as an archive of notes and supporting files from the courses I have taken. I map my progress & plan my journey with **[this Trello board](https://trello.com/b/R1CVyI4S)**.
+I have been learning software development full-time since August 2018, and prior to that alongside full-time employment since August 2017. This repo serves as an archive of notes and supporting files from the courses I have taken since beginning to study full-time.
+
+I map my progress & plan my journey with **[this Trello board](https://trello.com/b/R1CVyI4S)**.
 
 ## Index of courses
 
 1.  **[FreeCodeCamp](1-free-code-camp)**\
     Basic tuition with projects to build. Great for beginners getting their feet wet!
 
-2.  **[The Modern JavaScript Bootcamp](2-modern-javascript-bootcamp)**\
+2.  **[Udemy: The Modern JavaScript Bootcamp](2-modern-javascript-bootcamp)**\
     Excellent foundational course with Andrew Mead. This made JavaScript start to 'click' for me.
 
-3.  **[JavaScript Algorithms and Data Structures Masterclass](3-algorithms-and-data-structures)**\
+3.  **[Udemy: JavaScript Algorithms and Data Structures Masterclass](3-algorithms-and-data-structures)**\
     To understand what makes software performant, and gain some computer science knowledge, I took 2 months getting stuck into Algorithms and Data Structures with Colt Steele.
 
-4.  **[Advanced CSS & Sass](4-advanced-css-and-sass)**\
+4.  **[Udemy: Advanced CSS & Sass](4-advanced-css-and-sass)**\
     This course goes in-depth and teaches some interesting CSS tricks & techniques.
 
-5.  **[The Complete Junior to Senior Web Developer Roadmap](5-complete-junior-to-senior-web-developer)**\
+5.  **[Udemy: The Complete Junior to Senior Web Developer Roadmap](5-complete-junior-to-senior-web-developer)**\
     To gain a high level view of product development as a whole, and an understanding of how the pieces of a modern application's tech stack fit together.
 
-6.  **[Advanced JavaScript Concepts](6-advanced-javascript-concepts)**\
+6.  **[Udemy: Advanced JavaScript Concepts](6-advanced-javascript-concepts)**\
     Deeper into JavaScript. Andrei Neagoie is an excellent teacher with a successful background. His teaching style has a way of making topics stick.
 
-7.  **[The Complete React Web Developer Course (with Redux)](7-complete-react-web-developer)**\
+7.  **[Udemy: The Complete React Web Developer Course (with Redux)](7-complete-react-web-developer)**\
     Only after having a core understanding of JavaScript, did I start to explore what I always had in mind, React. This course is taught using class based components with hooks as an additional extra.
 
-8.  **[Introduction to Gatsby](8-gatsby-intro)**\
+8.  **[Frontend Masters: Introduction to Gatsby](8-gatsby-intro)**\
      Gatsby intro with Jason Lengstorf (of Gatsby at the time of recording). I used this is as a starting point to develop my portfolio website & blog.
 
-9.  **[TypeScript: The Complete Developer's Guide 2020](9-typescript-complete-developers-guide)**\
+9.  **[Udemy: TypeScript: The Complete Developer's Guide 2020](9-typescript-complete-developers-guide)**\
     TypeScript is an in demand skill used for catching errors during development, and this course with Stephen Grider goes in-depth with 24.5 hours of video content.
 
-10. **[Learning to Learn: Efficient Learning](10-learning-to-learn)**\
+10. **[Udemy: Learning to Learn: Efficient Learning](10-learning-to-learn)**\
     Techniques to better retain content from the courses I take in future.
 
-11. **[Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)**\
+11. **[Udemy: Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)**\
     This course goes into less detail than Colt Steele's, and the problem solutions are similar. However I wanted to gain an additional perspective on CS topics.
 
-12. **[Jira Essentials with Agile Mindset](12-jira-essentials-with-agile-mindset)**\
-    Many job listings require familiarity with agile methodologies (scrum and/or kanban), and Jira is the most popular project management tool for software development teams. Atlassian University covers both topics here.
+12. **[Atlassian University: Jira Essentials with Agile Mindset](12-jira-essentials-with-agile-mindset)**\
+    Many job listings require familiarity with agile methodologies (scrum and/or kanban), and Jira is the most popular project management tool for software development teams.
 
-13. **[Jira and Confluence Together](13-jira-and-confluence-together)**\
-    Another release from Atlassian University. Confluence should help me to plan and manage complex projects for my portfolio more effectively.
+13. **[Atlassian University: Jira and Confluence Together](13-jira-and-confluence-together)**\
+    Confluence should help me to plan and manage complex projects for my portfolio more effectively.
 
 14. **[Frontend Masters Learning Paths: Beginner](14-fem-beginner)**\
     Frontend Masters' content is taught by industry experts, which gives great confidence in the quality of material being delivered. The guided learning paths are to expand your abilities as a well-rounded engineer.
@@ -91,7 +93,12 @@ I have been learning software development full-time since August 2018, and prior
     - **[Full Stack for Front-End Engineers, v2](15-fem-professional/)**\
       You'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
 
-16. **[Frontend Masters Learning Paths: Expert]()**
+16. **[Frontend Masters: Design Systems with React & Storybook](16-design-systems-with-react-and-storybook)**\
+     Design components using Figma, and then learn to code your components in React, and document them for your teams with Storybook.
+
+17. **[Kent C. Dodds: Epic React](https://epicreact.dev)**
+
+18. **[Frontend Masters Learning Paths: Expert]()**
 
     - **[JavaScript: The New Hard Parts]()**
     - **[Asynchronous Programming in JavaScript (with R-js Observables)]()**
@@ -103,7 +110,7 @@ I have been learning software development full-time since August 2018, and prior
     - **[Code Transformation and Linting with ASTs]()**
     - **[Advanced Asynchronous JavaScript]()**
 
-17. **[Frontend Masters Learning Path: Computer Science]()**
+19. **[Frontend Masters Learning Path: Computer Science]()**
 
     - **[Four Semesters of Computer Science in 5 Hours]()**
     - **[A Practical Guide to Algorithms with JavaScript]()**
@@ -111,14 +118,14 @@ I have been learning software development full-time since August 2018, and prior
     - **[Four Semesters of Computer Science in 5 Hours, Part 2]()**
     - **[Tree and Graph Data Structures]()**
 
-18. **[Frontend Masters Learning Path: Full Stack]()**
+20. **[Frontend Masters Learning Path: Full Stack]()**
 
     - **[Full Stack for Front-End Engineers, v2]()**
     - **[Introduction to Node.js]()**
     - **[API Design in Node.js, v3]()**
     - **[AWS for Front-End Engineers (ft. S3, Cloudfront & Route 53)]()**
 
-19. **[Frontend Masters Learning Path: Design to Code]()**
+21. **[Frontend Masters Learning Path: Design to Code]()**
 
     - **[Design for Developers]()**
     - **[CSS Grids and Flexbox for Responsive Web Design]()** **- Repeat from Beginner Path**
@@ -126,6 +133,4 @@ I have been learning software development full-time since August 2018, and prior
     - **[Responsive Web Typography v2]()**
     - **[SVG Essentials & Animation, v2]()**
 
-20. **[Testing JavaScript](https://testingjavascript.com)**
-
-21. **[Epic React](https://epicreact.dev)**
+22. **[Kent C. Dodds: Testing JavaScript](https://testingjavascript.com)**

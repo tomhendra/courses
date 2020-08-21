@@ -48,3 +48,8 @@
 
 **Reviewed:**
 **Next review due:** 22/08/2020
+
+- **[Deep JavaScript Foundations, v3](15-fem-professional/2-deep-javascript-foundations)**\
+
+**Reviewed:**
+**Next review due:** 22/08/2020
