@@ -11,6 +11,12 @@
 - [2. Types](#2-types)
   - [2.1. Primitive Types](#21-primitive-types)
   - [2.2. The typeof Operator](#22-the-typeof-operator)
+  - [2.3. BigInt](#23-bigint)
+  - [2.4. Kinds of Emptiness](#24-kinds-of-emptiness)
+  - [2.5. NaN and isNaN](#25-nan-and-isnan)
+  - [2.6. Negative Zero](#26-negative-zero)
+  - [2.7. Type Check Exercise.](#27-type-check-exercise)
+  - [2.8. Fundamental Objects](#28-fundamental-objects)
 
 ## 1. Introduction
 
@@ -168,3 +174,146 @@ typeof v; // "bigint"
 - `array` doesn't have a return value for `typeof` - we get `"object"` instead.
 - These things are quirks that we cannot change, because if these bugs were fixed then a bunch of the internet would break!
 - So rather than whine about them we should learn to work around them.
+
+### 2.3. BigInt
+
+- A primitive type.
+- Can essentially have an integer that grows infinitely large.
+- Don't really mix and match well with regular numbers.
+
+### 2.4. Kinds of Emptiness
+
+- `undefined` and `undeclared` are often confused because developers think about them as synonyms.
+- When a variable is `undeclared`, it has never been declared in any scope that we have access to.
+- Something that is `undefined` is a variable that has been declared, but it doesn't yet have a value.
+- The `typeof` operator is the only operator in existence that is able to reference a thing that doesn't exist and not throw an error.
+- There ia another concept of emptiness in JS that was introduced with ES6: `uninitialized` AKA [TDZ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#The_temporal_dead_zone_and_typeof).
+- The idea with `uninitialized` is that certain variables like block scope ones, don't get initialized. They never initially get set to `undefined`.
+- When something is in an `uninitialized` state you are not allowed to touch it in any way, otherwise you will get a TDZ error.
+
+### 2.5. NaN and isNaN
+
+- Within the primitive types there are special values to pay attention to.
+- There are a number of them but `NaN` and `isNaN` crop up most often.
+- Stands for **N**ot **A** **N**umber and comes from the IEEE 754 spec, which is a set of technical standards for how numbers are represented.
+- Essentially `NaN` doesn't mean "Not A Number" it is a sentinel value that represents an invalid number.
+- `0` is not the way to represent absence of valid numeric value.
+- `NaN` with any other mathematical operation is always `NaN`.
+- The type of `NaN` is `number` but is an invalid number.
+- If you're designing a system and somebody expects to get a number and you want to signal to them there is valid number to give, there is only one value that makes any sense as all: you should return the `NaN`.
+
+```js
+var myAge = Number('0o46'); // 38
+var myNextAge = Number('39'); // 39
+var myCatsAge = Number('n/a'); // NaN
+myAge = "my son's age"; // NaN - JS coerces the string into the NaN value.
+
+myCatsAge === myCatsAge; // false OOPS!
+// This happens because IEEE says NaNs are not equal to each other.
+// NaN is the only value in JS that doesn't have the identity property, meaning it is not equal to itself.
+
+isNaN(myAge); // false
+isNaN(myCatsAge); // true
+isNaN("my son's age"); // true OOPS!
+// This happens because the isNaN utility coerces values to numbers before performing the NaN check.
+// The string is coerced into the NaN value.
+
+Number.isNaN(myCatsAge); // true
+Number.isNaN("my son's age"); // false
+// Number.isNaN came with ES6 and doesn't do any coercion.
+// It tells you literally whether a value is NaN.
+```
+
+### 2.6. Negative Zero
+
+- Another special value.
+- IEEE 754 requires there to be a negative zero, although a mathematician would say it doesn't exist, but it certainly exists in programming.
+- Essentially a zero with the `-` sign.
+- The designers of JS in the early days felt that devs would never want a `-0` and went to extreme lengths to pretend as if it didn't exist.
+
+```js
+var trendRate = -0;
+trendRate === -0; // true
+
+trendRate.toString(); // "0" OOPS!
+trendRate === 0; // true OOPS!
+trendRate < 0; // false
+trendRate > 0; // false
+
+Object.is(trendRate, -0); // true
+Object.is(trendRate, 0); // false
+```
+
+- For a long time you could get negative zeros but you couldn't determine that you had one, until ES6 added a utility `Object.is`.
+- `-0` can actually be useful. For example a car in a game or map app that you need to have point in a certain direction.
+- There's a utility called `Math.sign` which should tell us if the `-` sign is present, but when using with `-0` and -`0` was made to return `-0` and -`0` instead of `-1` and `1` as with all other numbers.
+
+```js
+Math.sign(-3); // -1
+Math.sign(3); // 1
+Math.sign(-0); // -0 WTF??
+Math.sign(0); // 0 WTF??
+
+// fix Math.sign(..) by returning 1 or -1 as with all other numbers.
+function sign(v) {
+  return v !== 0 ? Math.sign(v) : Object.is(v, -0) ? -1 : 1;
+}
+
+sign(-3); // -1
+sign(3); // 1
+sign(-0); // -0
+sign(0); // 0
+```
+
+```js
+function formatTrendRate(trendRate) {
+  var direction = trendRate < 0 || Object.is(trendRate, -0) ? '▼' : '▲';
+  return `${direction} ${Math.abs(trendRate)}`;
+}
+
+formatTrendRate(-3); // "▼ 3"
+formatTrendRate(3); // "▲ 3"
+formatTrendRate(-0); // "▼ 0"
+formatTrendRate(0); // "▲ 0"
+```
+
+- Having acute awareness of the types that exist in out language help us identify bugs, and make better use of our tool.
+
+### 2.7. [Type Check Exercise](exercises/types-exercises/object-is/ex.js).
+
+### 2.8. Fundamental Objects
+
+- In addition to primitive values we have fundamental objects.
+- aka: Built-In Objects.
+- aka: Native Functions.
+- From the bolt-on OOP aspect of JS.
+- Copied from a language like Java and so start with capital letters.
+- **Not advisable to use them**, but we need to understand them.
+- The following fundamental objects should be preceded with the `new` keyword.
+- These are constructor forms of fundamental objects which create object representations.
+
+  - `Object()`
+  - `Array()`
+  - `Function()`
+  - `Date()`
+  - `RegExp()`
+  - `Error()`
+
+- We use the `new` keyword to instantiate instances of them.
+- There are however three other fundamental objects that we could use the `new` keyword with, but we absolutely **should never** use the `new` keyword with:
+
+  - `String()`
+  - `Number()`
+  - `Boolean()`
+
+- We want to use `String()`, `Number()` and `Boolean()` as functions, not constructors.
+- We don't want to put the `new` keyword in front of them, because if we call them with some value, it actually coerces the value into that primitive type.
+
+```js
+var yesterday = new Date('July 16, 2020');
+yesterday.toUTCString();
+// "Wed, 15 Jul 2020 22:00:00 GMT"
+
+var myGPA = String(transcript.gpa);
+// "3.54"
+```
