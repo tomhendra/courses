@@ -75,7 +75,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[JavaScript: The Hard Parts, v2](15-fem-professional/1-javascript-the-hard-parts-v2)**\
        Take your JavaScript to the next level. Gain an understanding of callbacks, higher order functions, closure, asynchronous and object-oriented JavaScript.
 
-    - **[Deep JavaScript Foundations, v3](15-fem-professional/2-deep-javascript-foundations)**\
+    - **[Deep JavaScript Foundations, v3](15-fem-professional/2-deep-javascript-foundations-v3)**\
        Dive into JavaScript's core language features: types & coercion, scope & closure, and JavaScript's object oriented system.
 
     - **[JavaScript: The Recent Parts](15-fem-professional/)**\

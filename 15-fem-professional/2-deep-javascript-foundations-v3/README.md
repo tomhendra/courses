@@ -32,6 +32,12 @@
   - [4.3. Implicit Coercion](#43-implicit-coercion)
   - [4.4. Understanding Features](#44-understanding-features)
   - [4.5. Coercion Exercise](#45-coercion-exercise)
+- [5. Equality](#5-equality)
+  - [5.1. Double and Triple Equals](#51-double-and-triple-equals)
+  - [5.2. Coercive Equality](#52-coercive-equality)
+  - [5.3. Double Equals Algorithm](#53-double-equals-algorithm)
+  - [5.4. Double Equals Corner Cases](#54-double-equals-corner-cases)
+    - [5.4.1. Corner Cases: Booleans](#541-corner-cases-booleans)
 
 ## 1. Introduction
 
@@ -782,3 +788,251 @@ _If a feature is sometimes useful and sometimes dangerous and if there is a bett
 - **It is irresponsible to knowingly avoid usage of a feature that can improve code readability.**
 
 ### 4.5. [Coercion Exercise](exercises/types-exercises/coercion/ex.js)
+
+## 5. Equality
+
+### 5.1. Double and Triple Equals
+
+- The biggest problem that most devs have with coercion is around equality checking.
+- A common interpretation is that:
+  - `==` checks value (loose)
+  - `===` checks value and type (strict)
+- In reality this is not exactly the case.
+- **If you're trying to understand your code, it's critical you learn to think like JS.**
+- The spec says:
+
+**7.2.15 Abstract Equality Comparison**
+The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
+
+1. If Type(x) is the same as Type(y), then
+   a. Return the result of performing Strict Equality Comparison x === y.
+2. If x is null and y is undefined, return true.
+3. If x is undefined and y is null, return true.
+4. If Type(x) is Number and Type(y) is String, return the result of the comparison x == ! ToNumber(y).
+5. If Type(x) is String and Type(y) is Number, return the result of the comparison ! ToNumber(x) == y.
+6. If Type(x) is BigInt and Type(y) is String, then
+   a. Let n be ! StringToBigInt(y).
+   b. If n is NaN, return false.
+   c. Return the result of the comparison x == n.
+7. If Type(x) is String and Type(y) is BigInt, return the result of the comparison y == x.
+8. If Type(x) is Boolean, return the result of the comparison ! ToNumber(x) == y.
+9. If Type(y) is Boolean, return the result of the comparison x == ! ToNumber(y).
+10. If Type(x) is either String, Number, BigInt, or Symbol and Type(y) is Object, return the result of the comparison x == ToPrimitive(y).
+11. If Type(x) is Object and Type(y) is either String, Number, BigInt, or Symbol, return the result of the comparison ToPrimitive(x) == y.
+12. If Type(x) is BigInt and Type(y) is Number, or if Type(x) is Number and Type(y) is BigInt, then
+    a. If x or y are any of NaN, +∞, or -∞, return false.
+    b. If the mathematical value of x is equal to the mathematical value of y, return true; otherwise return false.
+13. Return false.
+
+- There is a myth that `==` checks the value and `===` checks the value and type: debunked on line 1!
+
+```js
+var studentName1 = 'Frank';
+var studentName2 = `${studentName1}`;
+
+var workshopEnrolment1 = 16;
+var workshopEnrolment2 = workshopEnrolment1 + 1;
+
+studentName1 == studentName2; // true
+studentName1 === studentName2; // true
+
+workshopEnrolment1 == workshopEnrolment2; // true
+workshopEnrolment1 === workshopEnrolment2; // true
+```
+
+- When the types match `===` is performed in any case.
+- You should try to have the value types obvious and ideally have them match as much as possible.
+
+**7.2.16 Strict Equality Comparison**
+The comparison x === y, where x and y are values, produces true or false. Such a comparison is performed as follows:
+
+If Type(x) is different from Type(y), return false.
+If Type(x) is Number or BigInt, then
+Return ! Type(x)::equal(x, y).
+Return ! SameValueNonNumeric(x, y).
+
+- Strict equality in the spec states that if the types are not the same then there is no way the operands could be equal.
+- The real difference between loose and strict equality is whether or not we are going to allow any coercion to occur.
+
+```js
+var workshop1 = {
+  name: 'Deep JS Foundations',
+};
+
+var workshop2 = {
+  name: 'Deep JS Foundations',
+};
+
+if (workshop1 == workshop2) {
+  // nope! different objects
+}
+
+if (workshop1 === workshop2) {
+  // nope! different objects
+}
+```
+
+- **`==` allows coercion (types different)**
+- **`===` disallows coercion (types same)**
+
+### 5.2. Coercive Equality
+
+- **Like every other operation, is coercion helpful in an equality comparison or not?**
+- It's a critical analysis.
+- The choice to use `==` or `===` is a trailing indicator of whether you know your program.
+- It's better to fix the problem, that you don't know what the types are in the comparison.
+- Knowing the types will lead to better code and fewer bugs.
+- **Like every other operation, do we know the types or not?**]
+
+### 5.3. Double Equals Algorithm
+
+- Let's look at what `==` will do if the types are different.
+
+1. If x is null and y is undefined, return true.
+2. If x is undefined and y is null, return true.
+
+- `null` and `undefined` are coercively equal to each other, and to no other values in the language.
+- `null` and `undefined` will not match any other clause in the Abstract Equality Comparison algorithm apart from 2 and 3.
+- This is incredibly useful.
+- Having two empty values is confusing, and you have the option to treat `null` and `undefined` as indistinguishable through coercive equality.
+- Whether something us `null` or `undefined` is not a useful distinction in almost all cases.
+- Some of the staunchest critics of JS coercion will use `== null` checks in their code.
+
+```js
+var workshop1 = {topic: null};
+var workshop2 = {};
+
+if (
+  (workshop1.topic === null || workshop1.topic === undefined) &&
+  (workshop2.topic === null || workshop2.topic === undefined) &&
+  ) {
+    // execute this code
+  }
+
+// the == coercively checks null and undefined equal to each other.
+// Arguably better code: more readable, focused on what's important.
+if (
+  workshop1.topic == null && workshop2.topic == null
+) {
+  // execute this code
+}
+```
+
+- What about strings numbers and booleans?
+- There is a prevailing sense that the algorithm prefers to do numeric coercion.
+
+4. If Type(x) is Number and Type(y) is String, return the result of the comparison x == ! ToNumber(y).
+5. If Type(x) is String and Type(y) is Number, return the result of the comparison ! ToNumber(x) == y.
+6. If Type(x) is BigInt and Type(y) is String, then
+   a. Let n be ! StringToBigInt(y).
+   b. If n is NaN, return false.
+   c. Return the result of the comparison x == n.
+7. If Type(x) is String and Type(y) is BigInt, return the result of the comparison y == x.
+8. If Type(x) is Boolean, return the result of the comparison ! ToNumber(x) == y.
+9. If Type(y) is Boolean, return the result of the comparison x == ! ToNumber(y).
+
+- It prefers to reduce everything to numbers to make the comparison.
+- This helps to predict the behaviour of the `==` algorithm.
+
+```js
+var workshopEnrolment1 = 16;
+var workshopEnrolment2 = workshopElement.value;
+
+if (Number(workshopEnrolment1)) === (Number(workshopEnrolment2)) {
+  // ..
+}
+// ASk: What do we know about the types here?
+// if we know that at least one is a number, then the == algorithm will coerce to a number.
+if (workshopEnrolment1 == workshopEnrolment2) {
+  // ..
+}
+```
+
+- You can structure your code in a way that coercion is a useful and obvious system rather than the complex magic that most people perceive.
+
+- If you use `==` with an operand that's not already a primitive, we invoke the `ToPrimitive` abstract algorithm.
+
+1.  If Type(x) is either String, Number, BigInt, or Symbol and Type(y) is Object, return the result of the comparison x == ToPrimitive(y).
+2.  If Type(x) is Object and Type(y) is either String, Number, BigInt, or Symbol, return the result of the comparison ToPrimitive(x) == y.
+
+- Remember that the algorithms are inherently recursive.
+- The `==` operator says: I need to get it to the point that one of the clauses matches. If there is a scenario where the two values don't match completely, I will keep calling the algorithm recursively until I get two primitives that are of the same type, or two primitives that are coercively equal to each other.
+
+- The following is a contrived example, but to demonstrate if you wrote a function that couldn't control whether an array or a number was passed.
+
+```js
+var workshop1Count = 43;
+var workshop2Count = [42];
+
+if (workshop1Count == workshop2Count) {
+  // Yep (but why would an array holding a number
+  // be coercively equal to a number??)
+}
+
+// if (workshop1Count == workshop2Count) {
+// if (42 == "42") - ToPrimitive stringifies the array!
+// if (42 === 42) - The == algorithm prefers numeric coercion!
+if (true) {
+  // Yep (hmm...)
+}
+```
+
+- You shouldn't fix this problem by using `===`.
+- `===` takes you away from the real problem that you are making a terrible comparison in the first place.
+
+**Abstract Equality Comparison Algorithm Summary**
+
+- If the types are the same: `===`.
+- If `null` or `undefined`: equal.
+- If non-primitives: `ToPrimitive`.
+- Prefer: `ToNumber`.
+
+### 5.4. Double Equals Corner Cases
+
+- The following on the surface looks like a clear argument against JS and the `==`.
+
+```js
+[] == ![]; // true HUH?
+```
+
+- But this construct is a false construct to begin with.
+- You would never compare a value to the negated value of itself... ever!
+- But what if you did?
+
+```js
+var workshopStudents1 = [];
+var workshopStudents2 = [];
+// Check if it is coercively equal to its negation
+if (workshopStudents1 == !workshopStudents2) {
+  // Yep, HUH?
+}
+// Check if it is not coercively equal: the non-contrived example!
+if (workshopStudents1 != workshopStudents2) {
+  // Yep, HUH?
+}
+```
+
+- But what is actually happening?
+
+```js
+var workshopStudents1 = [];
+var workshopStudents2 = [];
+// The algorithm is sensibly applied, but not on a rational situation.
+// if (workshopStudents1 == !workshopStudents2)
+// if ([] == false) - negating an array becomes false (arrays are truthy)
+// if ("" == false) - coerces non-primitive to primitive: array becomes ""
+// if (0 == false) - two primitives not of the same type: algorithm prefers numbers
+// if (0 === 0) - false primitive also becomes 0: algorithm prefers numbers
+if (true) {
+  // Yep, HUH?
+}
+
+// if (workshopStudents1 != workshopStudents2)
+// if (!(workshopStudents1 == workshopStudents2))
+// if (!(false)
+if (true) {
+  // Yep, HUH?
+}
+```
+
+#### 5.4.1. Corner Cases: Booleans
