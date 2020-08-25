@@ -26,6 +26,12 @@
   - [3.2. Cases of Coercion](#32-cases-of-coercion)
   - [3.3. Boxing](#33-boxing)
   - [3.4. Corner Cases of Coercion](#34-corner-cases-of-coercion)
+- [4. Philosophy of Coercion](#4-philosophy-of-coercion)
+  - [4.1. Intentional Coercion](#41-intentional-coercion)
+  - [4.2. Culture of Learning](#42-culture-of-learning)
+  - [4.3. Implicit Coercion](#43-implicit-coercion)
+  - [4.4. Understanding Features](#44-understanding-features)
+  - [4.5. Coercion Exercise](#45-coercion-exercise)
 
 ## 1. Introduction
 
@@ -687,3 +693,92 @@ Number(false); // 0
 - So it is terrible idea for booleans to implicitly coerce themselves into numbers.
 - Any programming style from 1970 onwards that relies upon the ability to take something that's boolean and add or subtract from it, has been taking advantage of that hack but making worse off code.
 - Number coercion of booleans should be `NaN` but it's not and we can't change it.
+
+## 4. Philosophy of Coercion
+
+### 4.1. Intentional Coercion
+
+- **You don't deal with these type conversion corner cases by avoiding coercions.**
+- Instead, you have to adopt a coding style that makes value types plain and obvious.
+- **A quality JS program embraces coercions, making sure the types involved in every operation are clear. Thus, corner cases are safely managed.**
+- Don't write polymorphic functions that can take any sort of value and do 15 different things.
+- We can choose to be more obvious about how we manage our types, how much we overload, how polymorphic we make our code.
+- We can opt into problems or opt out of problems as a result.
+- Coercion is a fact of your programs, and you need to decide how much you are going to be affected by those facts.
+- We don't need to have Type Rigidity, Static Types, Type Soundness - they are reactions to this problem, but are not a necessary reaction.
+- **JavaScript's dynamic typing is not a weakness, it's one of its strong qualities.**
+- The first truly multi-paradigm language, and the reason it has survived so many paradigms is because of its type system.
+
+### 4.2. Culture of Learning
+
+- If junior devs don't understand something, it is your duty to ensure they understand coercion well enough.
+- Everyone on the team should be learning and improving.
+- Dumbing down the codebase because not everyone understands JS well enough is not a good direction to move in.
+- Use code reviews, talk to your team members and encourage a culture of learning for everyone.
+- Your code is a form of communication, and there is an effective way to communicate that understands and uses the tool well.
+- If you ask the reader of code to understand something about the tool so they can understand a line of code, that is ain investment on their part. Ensure that investment pays off beyond that line of code.
+- That's part of the problem with not having a great dev culture: not promoting that everyone should understand.
+- From someone who's been writing JS for 3 weeks to someone who has 20 years experience, we should all be able to operate on the same codebase and communicate well.
+
+### 4.3. Implicit Coercion
+
+- There is a temptation to believe and a cult feeling among the community that most devs think that implicit mechanisms are magical.
+- When something happens that is unexpected it is magical, and we equate this with bad.
+- This is part of the reason why anti-coercion perspectives exist, that implicit coercion is the downfall.
+- People say this is a weakness if JS and cite other languages as being better.
+- We should think of implicit coercion as an abstraction.
+- Not all abstractions are good, but some are.
+- Within functional programming abstraction is everywhere.
+- Implicitness is not bad, it is the proper use of abstraction.
+- **Hiding unnecessary details, re-focusing the reader and increasing clarity.**
+- In other words we want to hide the unnecessary details because that refocuses the reader on the important stuff.
+- Some of the implicit nature of JS type system is sketchy, but some is really quite useful.
+- Boxing for example, because the distraction of having to cast into an object is an unnecessary detail.
+
+```js
+var numStudents = 16;
+
+console.log(`There are ${numStudents} students.`);
+
+console.log(`There are ${String(numStudents)} students.`);
+// using if statements to detect corner cases and dropping the
+// String fundamental object properly allows JS abstract the detail that isn't necessary.
+```
+
+```js
+var workshopEnrolment1 = 16;
+var workshopEnrolment2 = workshopElement.value;
+
+if (Number(workshopEnrolment1)) < (Number(workshopEnrolment2)) {
+  // ..
+}
+
+if (workshopEnrolment1 < workshopEnrolment2) {
+  // ..
+}
+```
+
+- The `<` operator does an alphanumeric comparison if both the operands are strings.
+- So there is a corner case to consider, but if you know that at least one operand is a number then you know the other one will be coerced into a number.
+- If you are in a place where you can use coercion but it's not obvious, it is within your purview to make it obvious.
+- If you communicate that intent, it's not going to trip up readers of the code.
+- **Is showing the reader the extra type details helpful or distracting?**
+- Be a critical analytical thinker: an engineer, not a code monkey!
+
+### 4.4. Understanding Features
+
+- A quality JS program embraces coercions, making sure the types involved in every operation are clear.
+- If you make your types obvious in your program, the vast majority of the quirky corner cases that people complain about go away.
+
+_If a feature is sometimes useful and sometimes dangerous and if there is a better option, always use the better option._
+-- The Good Parts, Crockford.
+
+- This statement is troubling, as what _useful_ and _dangerous_ and _better_ mean is not precisely defined.
+- An improved perspective would be:
+- _Useful_: when the reader is focused on what is important.
+- _Dangerous_: when the reader can't tell what will happen.
+- _Better_: when the reader understands the code.
+
+- **It is irresponsible to knowingly avoid usage of a feature that can improve code readability.**
+
+### 4.5. [Coercion Exercise](exercises/types-exercises/coercion/ex.js)
