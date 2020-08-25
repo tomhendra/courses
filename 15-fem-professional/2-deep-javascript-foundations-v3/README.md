@@ -17,6 +17,15 @@
   - [2.6. Negative Zero](#26-negative-zero)
   - [2.7. Type Check Exercise.](#27-type-check-exercise)
   - [2.8. Fundamental Objects](#28-fundamental-objects)
+- [3. Coercion](#3-coercion)
+  - [3.1. Abstract Operations](#31-abstract-operations)
+    - [3.1.1. ToPrimitive (7.1.1)](#311-toprimitive-711)
+    - [3.1.2. ToString (7.1.12)](#312-tostring-7112)
+    - [3.1.3. ToNumber (7.1.4)](#313-tonumber-714)
+    - [3.1.4. ToBoolean (7.1.2)](#314-toboolean-712)
+  - [3.2. Cases of Coercion](#32-cases-of-coercion)
+  - [3.3. Boxing](#33-boxing)
+  - [3.4. Corner Cases of Coercion](#34-corner-cases-of-coercion)
 
 ## 1. Introduction
 
@@ -317,3 +326,364 @@ yesterday.toUTCString();
 var myGPA = String(transcript.gpa);
 // "3.54"
 ```
+
+## 3. Coercion
+
+- When you think of conversion think of coercion, they are the same as far as JS is concerned.
+
+### 3.1. Abstract Operations
+
+- Abstract operations are the fundamental building blocks of how we deal with type conversion.
+- The JavaScript spec says:
+
+**7 Abstract Operations**
+These operations are not a part of the ECMAScript language; they are defined here to solely to aid the specification of the semantics of the ECMAScript language. Other, more specialized abstract operations are defined throughout this specification.
+
+**7.1 Type Conversion**
+The ECMAScript language implicitly performs automatic type conversion as needed. To clarify the semantics of certain constructs it is useful to define a set of conversion abstract operations. The conversion abstract operations are polymorphic; they can accept a value of any ECMAScript language type. But no other specification types are used with these operations.
+
+The BigInt type has no implicit conversions in the ECMAScript language; programmers must call BigInt explicitly to convert values from other types.
+
+- Abstract operations are not functions that can be invoked. When we call them abstract they are a conceptual operation, so conceptually we need to do a set of algorithmic steps to complete the operation.
+
+#### 3.1.1. ToPrimitive (7.1.1)
+
+- If we have something non-primitive like an object or array, and we need to coerce it into a primitive, we would use the `ToPrimitive` abstract operation.
+- Takes an optional type hint: if you have something that is not a primitive, tell me what kind of type you would like it to be.
+- Another thing to understand about the algorithms within JS is that they are inherently recursive. e.g. with `ToPrimitive`, if the return result is not a primitive, it will get invoked repeatedly until the return result is a primitive.
+- There are two methods that could be available on any non-primitive: `valueOf()` & `toString()`.
+- What the algorithm does is try to invoke these two methods until a primitive is returned, or an error if no primitive is returned.
+
+- hint: "number"
+
+  - `valueOf()`
+  - `toString()`
+
+- hint: "string"
+
+  - `toString()`
+  - `valueOf()`
+
+- If you are going to use something with a value that is not a primitive, but definitely needs primitives like math or concatenation, JS will coerce the value through this algorithm.
+
+#### 3.1.2. ToString (7.1.12)
+
+- Takes any value and gives us the representation of that value in string form.
+- Almost every value that you can imagine has some representation in string form.
+
+- `null` ⇢ `"null"`
+- `undefined` ⇢ `"undefined"`
+- `true` ⇢ `"true"`
+- `false` ⇢ `"false"`
+- `3.14159` ⇢ `"3.14159"`
+- `0` ⇢ `"0"`
+- `-0` ⇢ `"0"` - corner case
+
+- if we invoke `ToString` on an object it is going to invoke `ToPrimitive` with the string hint.
+- Array for example have a default `ToString` that serializes the representation of an array as follows.
+
+- `[]` ⇢ `""`
+- `[1,2,3]` ⇢ `"1,2,3"`
+- `[null,undefined]` ⇢ `","`
+- `[[[],[],[]],[]]` ⇢ `",,,"`
+- `[,,,,]`⇢ `",,,"`
+
+- The brackets are removed, strangely.
+- If there is a value it will be returned, unless it is `null` or `undefined`.
+- This is bizarre because `null` or `undefined` are represented differently when `ToString` is applied to them directly.
+
+- For objects the square brackets are present?! Bonkers!
+
+- `{}` ⇢ `"[object Object]"`
+- `{a:2}` ⇢ `"[object Object]"`
+- `{toString(){ return "X"; }}` ⇢ `"X"`
+
+- After the lower case object JS inserts something called the string tag - capitalized "Object".
+- You can override the string tag for any custom object, using an ES6 Symbol [`toStringTag`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag).
+- If you override the `toString` method you can completely control what you want the stringification of your object to look like.
+- The above example shows "X" as the string tag but you could do something more useful like `JSON.stringify()` the object.
+
+#### 3.1.3. ToNumber (7.1.4)
+
+- Any time we want to do something numeric and we don't have a number, we are going to invoke the `ToNumber` abstract operation.
+- Some of the return values are well formed, and some are strange.
+
+- `""` ⇢ `0` - Strange! Surely the absence of value should be represented by NaN?
+- `"0"` ⇢ `0`
+- `"-0"` ⇢ `-0`
+- `"009"` ⇢ `9`
+- `"3.14159"` ⇢ `3.14159`
+- `"0."` ⇢ `0`
+- `".0"` ⇢ `0`
+- `"."` ⇢ `NaN`
+- `"0xaf"` ⇢ `175`
+
+- `false` ⇢ `0`
+- `true` ⇢ `1`
+- `null` ⇢ `0` - This looks like it should make sense, but would have been better as NaN!
+- `undefined` ⇢ `NaN`
+
+- If we invoke `ToNumber` on a non-primitive (here an object) it first invokes `ToPrimitive` with the number hint, which in turn first consults `valueOf()` and then consults `toString()`.
+- For `[]` and `{}` by default (meaning not overridden), the `valueOf` method essentially returns itself, which has the effect of ignoring `valueOf` and just deferring to `toString`, so it doesn't even matter that the hint was number, it automatically goes straight to `ToString`.
+- `valueOf() { return this; }` --> `toString()`
+- You can think of the numberfication of an object as essentially the stringification of it; it's going to end up producing whatever `ToString` produces. A perplexing choice!
+- So in your operations where you would expect a primitive number, you would actually get a primitive string, before further coercions are applied.
+
+- ToNumber(Array)
+
+  - `[""]` ⇢ `0` - empty array becomes empty string, empty string becomes 0!
+  - `["0"]` ⇢ `0`
+  - `["-0"]` ⇢ `-0`
+  - `[null]` ⇢ `0`
+  - `[undefined]` ⇢ `0`
+  - `[1,2,3]` ⇢ `NaN`
+  - `[[[[]]]]` ⇢ `0`
+
+- ToNumber(Object):
+
+  - `{ .. }` ⇢ `NaN` - an object's `ToString` returns the object, of which the stringification is `"[object Object]"`.
+  - `{valueOf() { return 3; }}` ⇢ `3` - you can override the `valueOf` to return whatever you want.
+
+#### 3.1.4. ToBoolean (7.1.2)
+
+- Any time we have a value that is not a boolean, and it's used in a place that needs a boolean, `ToBoolean` will be invoked.
+- This operation is less algorithmic and more lookup: is the value falsy or not?
+- Doesn't invoke the `ToPrimitive`, or `ToNumber`, or `ToString` algorithms ...it just does a lookup.
+- There is literally a lookup table in the spec.
+
+- Falsy: values that will return `false` when coerced to a boolean.
+
+  - `“”`
+  - `0, -0`
+  - `null`
+  - `NaN`
+  - `false`
+  - `undefined`
+
+- Truthy: values that will return `true` when coerced to a boolean.
+
+  - `“foo”`
+  - `23`
+  - `{ a:1 }`
+  - `[1,3]`
+  - `true`
+  - `function(){..}`
+  - Anything else...
+
+**Memorize the falsy list - if a value is anything else it must be truthy.**
+
+### 3.2. Cases of Coercion
+
+- With the four main abstract operations covered as a foundation, we can really tackle the topic of coercion.
+- To get anything out of this section, you need to have an open mind, because devs have been preprogrammed to believe this is a horrible buggy part of JavaScript that you should avoid.
+- Many devs wish to avoid coercions, and just use `===` everywhere and not deal with types, but they are using coercion already whether they realise ot or not!
+
+```js
+var numStudents = 16;
+
+console.log(`There are ${numStudents} students.`);
+// Coerced to a string implicitly!
+
+var msg1 = 'There are ';
+var msg2 = 'students.';
+console.log(msg1 + numStudents + msg2);
+// Coerced to a string implicitly!
+
+console.log(`There are ${numStudents + ''} students.`);
+// Coerced to a string implicitly!
+```
+
+- The spec says that if you use the `+` operator, if either one of the values is a string, the operator prefers string concatenation.
+
+**12.8.3.1 Runtime Semantics: Evaluation**
+
+1. If Type(lprim) is String or Type(rprim) is String, then
+   a. Let lstr be ? ToString(lprim).
+   b. Let rstr be ? ToString(rprim).
+   ...
+
+- You may say you don't want to do these implicit coercions and would rather be explicit about it.
+
+```js
+var numStudents = 16;
+
+console.log(`There are ${[numStudents].join('')} students.`);
+// Coerced to a string explicitly - but don't do this!
+
+console.log(`There are ${numStudents.toString()} students.`);
+// There is a little weirdness here: How are you calling a method on a primitive value?
+// You are actually still doing implicit coercion here.
+
+console.log(`There are ${String(numStudents)} students.`);
+// If you don't want to be implicit at all, then your only option
+// is to use the fundamental object String without the new keyword.
+```
+
+- OK, OK, what what about the other way around? Ha: You're already doing that too!
+
+```js
+function addAStudent(numStudents) {
+  return numStudents + 1;
+}
+
+addAStudent(studentsInputElement.value); // "16"
+// "161" OOPS! String concatenation.
+
+addAStudent(+studentsInputElement.value);
+// force it to be a number.
+// There are two ways to do this:
+// 1. the unary + operator invokes the ToNumber abstract operation.
+// However if the string is empty you will get 0 from ToNumber!
+addAStudent(Number(studentsInputElement.value));
+// 2. the fundamental Number object without the new keyword.
+```
+
+```js
+function kickStudentOut(numStudents) {
+  return numStudents - 1;
+}
+// The - operator is not overloaded for string concatenation,
+// so would invoke ToNumber and coerce to number.
+kickStudentOut(studentsInputElement.value);
+```
+
+- OK, fine. But I never mess around with coercion of booleans, right? Wrong!
+
+```js
+if (studentsInputElement.value) {
+  numStudents = Number(studentsInputElement.value));
+}
+// if statements that use non-booleans in the if clause: coercion!
+// if the string is empty: falsy!
+
+while(newStudents.length) {
+  enrolStudent(newStudents.pop());
+}
+// numeric coercion of a number to a boolean.
+// what happens when it's NaN?
+```
+
+- There are a lot of corner cases and gotchyas, probably more with boolean coercion than any other type coercion.
+- Implicit coercion can be very useful, but we need to understand what's happening sufficiently to be intentional and careful.
+- Don't try to be clever to save a few characters.
+- Be more explicit where being more explicit is more communicative.
+
+```js
+if (!!studentsInputElement.value) {
+  numStudents = Number(studentsInputElement.value));
+}
+// Explicitly coerce into a boolean with !!
+
+while(newStudents.length > 0) {
+  enrolStudent(newStudents.pop());
+}
+// Keep looping while length is > 0 is more semantic than saying
+// keep looping while length is truthy.
+
+Boolean(""); // false
+Boolean("  \t\n"); // true OOPS! if the string is bunch of whitespace: truthy.
+```
+
+- If the test that we are asking for is "has this thing been set or not?" implicit boolean coercion is great.
+- For Kyle, this is the only implicit boolean coercion that is OK to use:
+- Literally where a value is being checked for `null`, `undefined` or an object.
+
+```js
+var workshop = getRegistration(student);
+
+if (workshop) {
+  console.log(`Welcome ${student.name} to ${workshop.name}.`);
+}
+
+Boolean(undefined); // false
+Boolean(null); // false
+Boolean({}); // true
+```
+
+### 3.3. Boxing
+
+- Boxing is the magical behaviour like accessing properties on primitive values e.g. `.length()` on a string.
+- It is a form of implicit coercion.
+- Not called out in the same way as the abstract operations, but in spirit is implicit coercion.
+- You are using something that is not as object as if it was an object.
+- JS is implicitly coercing values into their object counterparts so we can access properties and methods on them.
+- If we had to write code to turn a primitive into an object we would be writing Java!
+- One of unsung heroes of JS, that it does this boxing and does it well.
+
+**All programming languages have type conversions, because it's absolutely necessary.**
+
+**You use coercion in JS whether you admit it or not, because you have to.**
+
+### 3.4. Corner Cases of Coercion
+
+**Every language has type conversion corner cases**
+
+- People use JavaScript's coercion as ammunition to criticize the language because they don't understand it.
+- It is impossible to design a system without corner cases.
+
+```js
+Number(''); // 0 OOPS!
+Number('  \t\n'); // 0 OOPS!
+Number(null); // 0 OOPS!
+Number(undefined); // NaN
+Number([]); // 0 OOPS!
+Number([1, 2, 3]); // NaN
+Number([null]); // 0 OOPS!
+Number([undefined]); // 0 OOPS!
+Number({}); // NaN
+
+String(-0); // "0" OOPS!
+String(null); // "null"
+String(undefined); // "undefined"
+String([null]); // "" OOPS!
+String([undefined]); // "" OOPS!
+
+Boolean(new Boolean(false)); // true OOPS!
+// we just ask if it is on the falsy list or not, so returns true!
+```
+
+- The root of all (coercion) evil: Not only does an empty string become 0, but whitespace also becomes 0.
+- Because the ToNumber first strips off all leading and trailing whitespace before performing its coercion.
+
+```js
+studentsInput.value = '';
+
+Number(studentsInput.value); // 0
+
+studentsInput.value = '  \t\n';
+
+Number(studentsInput.value); // 0
+```
+
+- There are also corner cases that are not so obvious because we are not dealing with typical operations.
+
+```js
+Number(true); // 1
+Number(false); // 0
+
+1 < 2; // true
+2 < 3; // true
+1 < 2 < 3; // true (but what's actually happening is an accident...)
+
+// prettier-ignore
+(1 < 2) < 3; // 1 < 2 is evaluated to true...
+// prettier-ignore
+(true) < 3; // true is coerced into a number, which gives 1.
+1 < 3; // true
+
+// ******************
+
+3 > 2; // true
+2 > 1; // true
+3 > 2 > 1; // false OOPS!
+
+// prettier-ignore
+(3 > 2) > 1; // 3 > 2 is evaluated to true...
+// prettier-ignore
+(true) > 1; // true is coerced into a number, which gives 1.
+1 > 1; // false
+```
+
+- So it is terrible idea for booleans to implicitly coerce themselves into numbers.
+- Any programming style from 1970 onwards that relies upon the ability to take something that's boolean and add or subtract from it, has been taking advantage of that hack but making worse off code.
+- Number coercion of booleans should be `NaN` but it's not and we can't change it.
