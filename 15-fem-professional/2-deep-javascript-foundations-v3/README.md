@@ -810,23 +810,23 @@ _If a feature is sometimes useful and sometimes dangerous and if there is a bett
 The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
 
 1. If Type(x) is the same as Type(y), then
-   a. Return the result of performing Strict Equality Comparison x === y.
+   - a. Return the result of performing Strict Equality Comparison x === y.
 2. If x is null and y is undefined, return true.
 3. If x is undefined and y is null, return true.
 4. If Type(x) is Number and Type(y) is String, return the result of the comparison x == ! ToNumber(y).
 5. If Type(x) is String and Type(y) is Number, return the result of the comparison ! ToNumber(x) == y.
 6. If Type(x) is BigInt and Type(y) is String, then
-   a. Let n be ! StringToBigInt(y).
-   b. If n is NaN, return false.
-   c. Return the result of the comparison x == n.
+   - a. Let n be ! StringToBigInt(y).
+   - b. If n is NaN, return false.
+   - c. Return the result of the comparison x == n.
 7. If Type(x) is String and Type(y) is BigInt, return the result of the comparison y == x.
 8. If Type(x) is Boolean, return the result of the comparison ! ToNumber(x) == y.
 9. If Type(y) is Boolean, return the result of the comparison x == ! ToNumber(y).
 10. If Type(x) is either String, Number, BigInt, or Symbol and Type(y) is Object, return the result of the comparison x == ToPrimitive(y).
 11. If Type(x) is Object and Type(y) is either String, Number, BigInt, or Symbol, return the result of the comparison ToPrimitive(x) == y.
 12. If Type(x) is BigInt and Type(y) is Number, or if Type(x) is Number and Type(y) is BigInt, then
-    a. If x or y are any of NaN, +∞, or -∞, return false.
-    b. If the mathematical value of x is equal to the mathematical value of y, return true; otherwise return false.
+    - a. If x or y are any of NaN, +∞, or -∞, return false.
+    - b. If the mathematical value of x is equal to the mathematical value of y, return true; otherwise return false.
 13. Return false.
 
 - There is a myth that `==` checks the value and `===` checks the value and type: debunked on line 1!
@@ -929,9 +929,9 @@ if (
 4. If Type(x) is Number and Type(y) is String, return the result of the comparison x == ! ToNumber(y).
 5. If Type(x) is String and Type(y) is Number, return the result of the comparison ! ToNumber(x) == y.
 6. If Type(x) is BigInt and Type(y) is String, then
-   a. Let n be ! StringToBigInt(y).
-   b. If n is NaN, return false.
-   c. Return the result of the comparison x == n.
+   - a. Let n be ! StringToBigInt(y).
+   - b. If n is NaN, return false.
+   - c. Return the result of the comparison x == n.
 7. If Type(x) is String and Type(y) is BigInt, return the result of the comparison y == x.
 8. If Type(x) is Boolean, return the result of the comparison ! ToNumber(x) == y.
 9. If Type(y) is Boolean, return the result of the comparison x == ! ToNumber(y).
@@ -1136,7 +1136,7 @@ if (false) {
   - If the types are different, two (or more!) `===` comparisons may distract the reader.
   - Prefer the **cleaner** single `==`.
 
-  - **Summary: whether the types match or not, `==` is the more sensible choice**.
+- **Summary: whether the types match or not, `==` is the more sensible choice**.
 
 - If you **don't** know the type(s) in a comparison:
 
@@ -1158,7 +1158,7 @@ if (false) {
   - Not knowing the types is equivalent to that worst case scenario, you always need to assume the worst.
   - Because of corner cases, the only safe choice is `===`.
 
-  - **Summary: if you can't or won't use known and obvious types, `===` is the only reasonable choice**.
+- **Summary: if you can't or won't use known and obvious types, `===` is the only reasonable choice**.
 
 - Even if `===` would always be equivalent to `==` in your code, using `===` everywhere sends a wrong semantic signal: "Protecting myself since I don't know/trust the types".
 
