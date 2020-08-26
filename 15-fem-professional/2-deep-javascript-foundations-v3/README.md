@@ -37,10 +37,11 @@
   - [5.2. Coercive Equality](#52-coercive-equality)
   - [5.3. Double Equals Algorithm](#53-double-equals-algorithm)
   - [5.4. Double Equals Corner Cases](#54-double-equals-corner-cases)
-    - [5.4.1. Corner Cases: Booleans](#541-corner-cases-booleans)
-  - [5.5. Corner Cases Summary](#55-corner-cases-summary)
-  - [5.6. The Case for Double Equals](#56-the-case-for-double-equals)
-  - [5.7. Equality Exercise](#57-equality-exercise)
+  - [5.5. Corner Cases: Booleans](#55-corner-cases-booleans)
+  - [5.6. Corner Cases Summary](#56-corner-cases-summary)
+  - [5.7. The Case for Double Equals](#57-the-case-for-double-equals)
+  - [5.8. Equality Exercise](#58-equality-exercise)
+- [6. Static Typing](#6-static-typing)
 
 ## 1. Introduction
 
@@ -69,7 +70,7 @@ Dive into the core pillars of the JavaScript language with Kyle Simpson, author 
 
 - Most of the spec is written in this sort of numbered algorithmic format.
 
-**12.4.4.1 Runtime Semantics: Evaluation**
+**12.4.4.1 Runtime Semantics: Evaluation**\
 _UpdateExpression : LeftHandSideExpression++_
 
 1. Let _lhs_ be the result of evaluating _LeftHandSideExpression_.
@@ -85,7 +86,8 @@ _UpdateExpression : LeftHandSideExpression++_
 - You can always check MDN but MDN is not always right!
 - You need to be comfortable enough go to the spec for as the real source of authority.
 
-**Whenever there's a divergence between what your brain thinks is happening, and what the computer does, that's where bugs enter the code.** _--getify's law #17_
+**Whenever there's a divergence between what your brain thinks is happening, and what the computer does, that's where bugs enter the code.**\
+_--getify's law #17_
 
 ### 1.2. Course Overview
 
@@ -804,7 +806,7 @@ _If a feature is sometimes useful and sometimes dangerous and if there is a bett
 - **If you're trying to understand your code, it's critical you learn to think like JS.**
 - The spec says:
 
-**7.2.15 Abstract Equality Comparison**
+**7.2.15 Abstract Equality Comparison**\
 The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
 
 1. If Type(x) is the same as Type(y), then
@@ -846,7 +848,7 @@ workshopEnrolment1 === workshopEnrolment2; // true
 - When the types match `===` is performed in any case.
 - You should try to have the value types obvious and ideally have them match as much as possible.
 
-**7.2.16 Strict Equality Comparison**
+**7.2.16 Strict Equality Comparison**\
 The comparison x === y, where x and y are values, produces true or false. Such a comparison is performed as follows:
 
 If Type(x) is different from Type(y), return false.
@@ -1040,7 +1042,7 @@ if (true) {
 }
 ```
 
-#### 5.4.1. Corner Cases: Booleans
+### 5.5. Corner Cases: Booleans
 
 - If you want to allow the boolean coercion of an array to be true, there's a correct way to do it.
 - Allow the `ToBoolean` operation to be invoked on the array, which performs a simple lookup, with array not being on the falsy list therefore coerces to true.
@@ -1090,7 +1092,7 @@ if (false) {
 }
 ```
 
-### 5.5. Corner Cases Summary
+### 5.6. Corner Cases Summary
 
 - Avoid:
 
@@ -1098,7 +1100,7 @@ if (false) {
 2. `==` with non-primitives - only use it for coercion among the primitives.
 3. `== true` or `== false` - allow `ToBoolean` or use `===`
 
-### 5.6. The Case for Double Equals
+### 5.7. The Case for Double Equals
 
 - You should prefer `==` in all possible places.
 - **Knowing types is always better than not knowing them.**
@@ -1115,15 +1117,21 @@ if (false) {
   - If both types are the same, `==` is identical to `===`.
   - Using `===` would be **unnecessary**, so prefer the shorter `==`.
 
+- If you **know** the type(s) in a comparison (it is **obvious** to the reader what the types will be):
+
   - If the types are different, using one `===` would be **broken** - it will always fail.
   - Since `===` is pointless when the types don't match, it's similarly **unnecessary** when they do match.
   - The only two options in this scenario, are to prefer the more powerful `==` or **don't compare** at all.
+
+- If you **know** the type(s) in a comparison (it is **obvious** to the reader what the types will be):
 
   - If the types are different, the equivalent of one `==` would be two (or more!) `===` (ie, "slower").
   - You cannot have a `===` and a `==` be equivalent when the types are different.
   - It is faster to let JS do the coercion than make a bunch of explicit `===` comparisons.
   - Prefer the "faster" single `==`.
   - (We are talking microseconds but it helps to make the case of the bigger argument).
+
+- If you **know** the type(s) in a comparison (it is **obvious** to the reader what the types will be):
 
   - If the types are different, two (or more!) `===` comparisons may distract the reader.
   - Prefer the **cleaner** single `==`.
@@ -1135,11 +1143,15 @@ if (false) {
   - Not knowing the types means not fully understanding that code.
   - So, best to refactor so you can **know the types**.
 
+- If you **don't** know the type(s) in a comparison:
+
   - The uncertainty of not knowing types should be obvious to reader.
   - Use comments if necessary.
   - The **most obvious** signal is `===`.
   - If `==` should always be used when you do know the types, `===` should be reserved only for when you don't know the types.
   - It signals to the reader that there is uncertainty of the types, and you are trying to protect yourself.
+
+- If you **don't** know the type(s) in a comparison:
 
   - Not knowing the types is equivalent to assuming type conversion.
   - If you don't know the types, the worst case scenario is that they will not match and will invoke some weird corner case of coercion.
@@ -1152,4 +1164,6 @@ if (false) {
 
 - **Summary: making types known and obvious leads to better code. If types are known, `==` is best. Otherwise, fall back to `===`.**
 
-### 5.7. [Equality Exercise](exercises/types-exercises/equality/ex.js)
+### 5.8. [Equality Exercise](exercises/types-exercises/equality/ex.js)
+
+## 6. Static Typing
