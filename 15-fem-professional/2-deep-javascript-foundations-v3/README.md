@@ -42,6 +42,12 @@
   - [5.7. The Case for Double Equals](#57-the-case-for-double-equals)
   - [5.8. Equality Exercise](#58-equality-exercise)
 - [6. Static Typing](#6-static-typing)
+  - [6.1. TypeScript and Flow](#61-typescript-and-flow)
+  - [6.2. Custom Types](#62-custom-types)
+  - [6.3. Validating Operand Types](#63-validating-operand-types)
+  - [6.4. Static Typing Pros](#64-static-typing-pros)
+  - [6.5. Static Typing Cons](#65-static-typing-cons)
+  - [6.6. Understanding Your Types](#66-understanding-your-types)
 
 ## 1. Introduction
 
@@ -1167,3 +1173,71 @@ if (false) {
 ### 5.8. [Equality Exercise](exercises/types-exercises/equality/ex.js)
 
 ## 6. Static Typing
+
+### 6.1. TypeScript and Flow
+
+- Benefits:
+
+1. Catch type-related mistakes
+2. Communicate type intent
+3. Provide IDE feedback
+
+- Caveats:
+
+1. Inferencing is best-guess, not a guarantee
+2. Annotations are optional
+3. Any part of the application that isn't typed introduces uncertainty
+
+```js
+var teacher = 'Kyle';
+// TS will infer that teacher should always be a string, and throw an error if it's reassigned.
+teacher = { name: 'Kyle' };
+// Error: can't assign object to string
+```
+
+### 6.2. Custom Types
+
+- Can create custom types, but notice the guarantee is based on things being assigned correctly.
+- A parameter to a function is a lot like a variable.
+- Can be very useful if your problem is types being misassigned.
+
+### 6.3. Validating Operand Types
+
+- A valuable feature is to validate operands, as many bugs can be introduced this way.
+- Checking the operations we are doing where most of our business logic is.
+
+```js
+var studentName: string = 'Frank';
+
+var studentCount: number = 16 - studentName;
+// Error: can't subtract string from a number
+```
+
+### 6.4. Static Typing Pros
+
+- They make types more obvious in code.
+- Familiarity: they look like other language's type systems.
+- Extremely popular these days.
+- They're **very** sophisticated and good at what they do.
+
+### 6.5. Static Typing Cons
+
+- They use "non-JS-standard" syntax (or code comments).
+- They require\* a build process, which raises the barrier to entry.
+- Their sophistication can be intimidating to those without prior formal types experience.
+- They focus more on "static types" (variables, parameters, returns, properties, etc) than **value types**.
+- The only way to have confidence over the runtime behaviour is to limit/eliminate dynamic typing.
+
+### 6.6. Understanding Your Types
+
+- JavaScript has a (dynamic) type system, which uses various forms of coercion for value type conversion, including equality comparisons.
+- However, the prevailing response seems to be: avoid as much of this system as possible, and use `===` to "protect" from needing to worry about types.
+- Part of the problem with **avoidance** of whole swaths of JS, like pretending `===` saves you from needing to know types, is that it tends to systemically perpetuate bugs.
+- You simply cannot write quality JS programs without knowing the types involved in your operations.
+- Alternately, many choose to adopt a different "static types" system layered on top.
+- While certainly helpful in some respects, this is "avoidance" of a different sort.
+- Apparently, JS's type system is inferior so it must be replaced, rather than learned and leveraged.
+- Many claim that JS's type system is too difficult for newer devs to learn, and that static types are (somehow) more learnable.
+- Kyle's claim: the better approach is to embrace and learn JS's type system, and to adopt a coding style which makes types as obvious as possible.
+- By doing so, you will make your code more readable and more robust, for experienced and new developers alike.
+- As an option to aid in that effort, Kyle created [Typl](https://github.com/getify/Typl), which he believes embraces and unlocks the best parts of JS's types and coercion.
