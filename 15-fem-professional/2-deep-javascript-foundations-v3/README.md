@@ -143,7 +143,7 @@ An ECMAScript language type corresponds to values that are directly manipulated 
   - undeclared? - not listed in the spec as a type, but has a certain behaviour.
   - null? - listed in the spec as a type, but it has some quirky behaviour.
   - function? - listed as a subtype of the object type, yet we know intuitively that values which are functions have a very specific behaviour.
-  - array? - listed as a subtype of the object type, but have a very specific behaviour.\
+  - array? - listed as a subtype of the object type, but have a very specific behaviour.
 
 - Out of all types in both lists the only types that can be considered objects are:
 
@@ -388,22 +388,22 @@ The BigInt type has no implicit conversions in the ECMAScript language; programm
 - Takes any value and gives us the representation of that value in string form.
 - Almost every value that you can imagine has some representation in string form.
 
-- `null` ⇢ `"null"`
-- `undefined` ⇢ `"undefined"`
-- `true` ⇢ `"true"`
-- `false` ⇢ `"false"`
-- `3.14159` ⇢ `"3.14159"`
-- `0` ⇢ `"0"`
-- `-0` ⇢ `"0"` - corner case
+  - `null` ⇢ `"null"`
+  - `undefined` ⇢ `"undefined"`
+  - `true` ⇢ `"true"`
+  - `false` ⇢ `"false"`
+  - `3.14159` ⇢ `"3.14159"`
+  - `0` ⇢ `"0"`
+  - `-0` ⇢ `"0"` - corner case
 
 - if we invoke `ToString` on an object it is going to invoke `ToPrimitive` with the string hint.
 - Array for example have a default `ToString` that serializes the representation of an array as follows.
 
-- `[]` ⇢ `""`
-- `[1,2,3]` ⇢ `"1,2,3"`
-- `[null,undefined]` ⇢ `","`
-- `[[[],[],[]],[]]` ⇢ `",,,"`
-- `[,,,,]`⇢ `",,,"`
+  - `[]` ⇢ `""`
+  - `[1,2,3]` ⇢ `"1,2,3"`
+  - `[null,undefined]` ⇢ `","`
+  - `[[[],[],[]],[]]` ⇢ `",,,"`
+  - `[,,,,]`⇢ `",,,"`
 
 - The brackets are removed, strangely.
 - If there is a value it will be returned, unless it is `null` or `undefined`.
@@ -411,9 +411,9 @@ The BigInt type has no implicit conversions in the ECMAScript language; programm
 
 - For objects the square brackets are present?! Bonkers!
 
-- `{}` ⇢ `"[object Object]"`
-- `{a:2}` ⇢ `"[object Object]"`
-- `{toString(){ return "X"; }}` ⇢ `"X"`
+  - `{}` ⇢ `"[object Object]"`
+  - `{a:2}` ⇢ `"[object Object]"`
+  - `{toString(){ return "X"; }}` ⇢ `"X"`
 
 - After the lower case object JS inserts something called the string tag - capitalized "Object".
 - You can override the string tag for any custom object, using an ES6 Symbol [`toStringTag`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag).
@@ -425,20 +425,20 @@ The BigInt type has no implicit conversions in the ECMAScript language; programm
 - Any time we want to do something numeric and we don't have a number, we are going to invoke the `ToNumber` abstract operation.
 - Some of the return values are well formed, and some are strange.
 
-- `""` ⇢ `0` - Strange! Surely the absence of value should be represented by NaN?
-- `"0"` ⇢ `0`
-- `"-0"` ⇢ `-0`
-- `"009"` ⇢ `9`
-- `"3.14159"` ⇢ `3.14159`
-- `"0."` ⇢ `0`
-- `".0"` ⇢ `0`
-- `"."` ⇢ `NaN`
-- `"0xaf"` ⇢ `175`
+  - `""` ⇢ `0` - Strange! Surely the absence of value should be represented by NaN?
+  - `"0"` ⇢ `0`
+  - `"-0"` ⇢ `-0`
+  - `"009"` ⇢ `9`
+  - `"3.14159"` ⇢ `3.14159`
+  - `"0."` ⇢ `0`
+  - `".0"` ⇢ `0`
+  - `"."` ⇢ `NaN`
+  - `"0xaf"` ⇢ `175`
 
-- `false` ⇢ `0`
-- `true` ⇢ `1`
-- `null` ⇢ `0` - This looks like it should make sense, but would have been better as NaN!
-- `undefined` ⇢ `NaN`
+  - `false` ⇢ `0`
+  - `true` ⇢ `1`
+  - `null` ⇢ `0` - This looks like it should make sense, but would have been better as NaN!
+  - `undefined` ⇢ `NaN`
 
 - If we invoke `ToNumber` on a non-primitive (here an object) it first invokes `ToPrimitive` with the number hint, which in turn first consults `valueOf()` and then consults `toString()`.
 - For `[]` and `{}` by default (meaning not overridden), the `valueOf` method essentially returns itself, which has the effect of ignoring `valueOf` and just deferring to `toString`, so it doesn't even matter that the hint was number, it automatically goes straight to `ToString`.
