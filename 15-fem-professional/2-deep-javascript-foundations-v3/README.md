@@ -38,6 +38,9 @@
   - [5.3. Double Equals Algorithm](#53-double-equals-algorithm)
   - [5.4. Double Equals Corner Cases](#54-double-equals-corner-cases)
     - [5.4.1. Corner Cases: Booleans](#541-corner-cases-booleans)
+  - [5.5. Corner Cases Summary](#55-corner-cases-summary)
+  - [5.6. The Case for Double Equals](#56-the-case-for-double-equals)
+  - [5.7. Equality Exercise](#57-equality-exercise)
 
 ## 1. Introduction
 
@@ -1017,7 +1020,7 @@ if (workshopStudents1 != workshopStudents2) {
 ```js
 var workshopStudents1 = [];
 var workshopStudents2 = [];
-// The algorithm is sensibly applied, but not on a rational situation.
+// The algorithm is sensibly applied, but not to a rational situation.
 // if (workshopStudents1 == !workshopStudents2)
 // if ([] == false) - negating an array becomes false (arrays are truthy)
 // if ("" == false) - coerces non-primitive to primitive: array becomes ""
@@ -1026,7 +1029,9 @@ var workshopStudents2 = [];
 if (true) {
   // Yep, HUH?
 }
-
+// != is like the negation of coercive equality ==.
+// Since they are both arrays, we are asking are they not the same identity.
+// We are asking an identity question, which is totally valid.
 // if (workshopStudents1 != workshopStudents2)
 // if (!(workshopStudents1 == workshopStudents2))
 // if (!(false)
@@ -1036,3 +1041,115 @@ if (true) {
 ```
 
 #### 5.4.1. Corner Cases: Booleans
+
+- If you want to allow the boolean coercion of an array to be true, there's a correct way to do it.
+- Allow the `ToBoolean` operation to be invoked on the array, which performs a simple lookup, with array not being on the falsy list therefore coerces to true.
+
+```js
+var workshopStudents = [];
+
+if (workshopStudents) {
+  // Yep
+}
+
+if (workshopStudents == true) {
+  // Nope :(
+}
+
+if (workshopStudents == false) {
+  // Yep :(
+}
+```
+
+- Using `==` or `===` to compare a boolean with an array will lead to corner cases.
+- Never use `==` or `===` with `true` or `false`.
+- There is no situation where you need to do this, when you can invoked the `ToBoolean` operation implicitly.
+- So what's happening with the algorithms?
+
+```js
+var workshopStudents = [];
+
+// if (workshopStudents)
+// if (Boolean(workshopStudents))
+if (true) {
+  // Yep
+}
+
+// if (workshopStudents == true)
+// if ("" == true) - non-primitive coerced into a primitive, so array becomes ""
+// if (0 === 1) - two primitives not of the same type: algorithm prefers numbers
+if (false) {
+  // Nope :(
+}
+
+// if (workshopStudents == false)
+// if ("" == false) - non-primitive coerced into a primitive, so array becomes ""
+// if (0 === 1) - two primitives not of the same type: algorithm prefers numbers
+if (false) {
+  // Yep :(
+}
+```
+
+### 5.5. Corner Cases Summary
+
+- Avoid:
+
+1. `==` with `0` or `""` (or even `" "`)
+2. `==` with non-primitives - only use it for coercion among the primitives.
+3. `== true` or `== false` - allow `ToBoolean` or use `===`
+
+### 5.6. The Case for Double Equals
+
+- You should prefer `==` in all possible places.
+- **Knowing types is always better than not knowing them.**
+- The uncertainty of code is what makes it hard to read and susceptible to bugs.
+- Some people respond to the problem of not knowing types with changing their coding style to use static typing.
+- **Static Types is not the only (or even necessarily best) way to know your types.**
+- `==` is **not** about comparisons with unknown types.
+- Never use the `==` when you don't know the types.
+- `==` is about comparisons with known type(s), **optionally** where conversions are helpful.
+- If you want to take advantage of coercion `==` is essentially your only option.
+
+- If you **know** the type(s) in a comparison (it is **obvious** to the reader what the types will be):
+
+  - If both types are the same, `==` is identical to `===`.
+  - Using `===` would be **unnecessary**, so prefer the shorter `==`.
+
+  - If the types are different, using one `===` would be **broken** - it will always fail.
+  - Since `===` is pointless when the types don't match, it's similarly **unnecessary** when they do match.
+  - The only two options in this scenario, are to prefer the more powerful `==` or **don't compare** at all.
+
+  - If the types are different, the equivalent of one `==` would be two (or more!) `===` (ie, "slower").
+  - You cannot have a `===` and a `==` be equivalent when the types are different.
+  - It is faster to let JS do the coercion than make a bunch of explicit `===` comparisons.
+  - Prefer the "faster" single `==`.
+  - (We are talking microseconds but it helps to make the case of the bigger argument).
+
+  - If the types are different, two (or more!) `===` comparisons may distract the reader.
+  - Prefer the **cleaner** single `==`.
+
+  - **Summary: whether the types match or not, `==` is the more sensible choice**.
+
+- If you **don't** know the type(s) in a comparison:
+
+  - Not knowing the types means not fully understanding that code.
+  - So, best to refactor so you can **know the types**.
+
+  - The uncertainty of not knowing types should be obvious to reader.
+  - Use comments if necessary.
+  - The **most obvious** signal is `===`.
+  - If `==` should always be used when you do know the types, `===` should be reserved only for when you don't know the types.
+  - It signals to the reader that there is uncertainty of the types, and you are trying to protect yourself.
+
+  - Not knowing the types is equivalent to assuming type conversion.
+  - If you don't know the types, the worst case scenario is that they will not match and will invoke some weird corner case of coercion.
+  - Not knowing the types is equivalent to that worst case scenario, you always need to assume the worst.
+  - Because of corner cases, the only safe choice is `===`.
+
+  - **Summary: if you can't or won't use known and obvious types, `===` is the only reasonable choice**.
+
+- Even if `===` would always be equivalent to `==` in your code, using `===` everywhere sends a wrong semantic signal: "Protecting myself since I don't know/trust the types".
+
+- **Summary: making types known and obvious leads to better code. If types are known, `==` is best. Otherwise, fall back to `===`.**
+
+### 5.7. [Equality Exercise](exercises/types-exercises/equality/ex.js)
