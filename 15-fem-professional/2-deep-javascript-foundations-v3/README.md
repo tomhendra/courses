@@ -48,6 +48,14 @@
   - [6.4. Static Typing Pros](#64-static-typing-pros)
   - [6.5. Static Typing Cons](#65-static-typing-cons)
   - [6.6. Understanding Your Types](#66-understanding-your-types)
+- [7. Scope](#7-scope)
+  - [7.1. Compilation and Scope](#71-compilation-and-scope)
+  - [7.2. Executing Code](#72-executing-code)
+  - [7.3. Dynamic Global Variables](#73-dynamic-global-variables)
+  - [7.4. Strict Mode](#74-strict-mode)
+  - [7.5. Nested Scope](#75-nested-scope)
+  - [7.6. Undefined vs Undeclared](#76-undefined-vs-undeclared)
+  - [7.7. Lexical Scope Elevator](#77-lexical-scope-elevator)
 
 ## 1. Introduction
 
@@ -1241,3 +1249,222 @@ var studentCount: number = 16 - studentName;
 - Kyle's claim: the better approach is to embrace and learn JS's type system, and to adopt a coding style which makes types as obvious as possible.
 - By doing so, you will make your code more readable and more robust, for experienced and new developers alike.
 - As an option to aid in that effort, Kyle created [Typl](https://github.com/getify/Typl), which he believes embraces and unlocks the best parts of JS's types and coercion.
+
+## 7. Scope
+
+- What is lexical scope? Where we look for things.
+- What are we looking for? Identifiers.
+- You can think metaphorically as coloured buckets with matching coloured marbles: The buckets are scopes, and the marbles are identifiers.
+- Here we have a `x` that a value is being assigned to, and a `y` that a value is being retrieved from.
+
+```js
+x = 42;
+console.log(y);
+```
+
+- All variables are in one of those two roles in your program.
+- When the JS engine is processing the code, it's asking:
+
+1. What position is the variable in?
+2. What scope does it belong to?
+
+- There is something nuanced with this definition, in that the processing by the engine is an actual step in JS, and not inlined with the execution.
+- JS is not an interpreted language but a compiled language, or at least it's parsed.
+- Proof: If you receive a syntax error on line 10 you do so without lines 1-9 executing first.
+- There is a processing step.
+- In compiler theory there are four stages to a compiler (sometimes steps 1 & 2 are combined):
+
+1. Lexing.
+2. Tokenization.
+3. Parsing: taking the stream of tokens and turning it into an Abstract Syntax Tree.
+4. Code generation: taking the AST and producing some other executable form of that program.
+
+- That's basically how a program gets processed from textual code that you write into an executable format.
+- A lot of people think about the difference between compiled and interpreted as the distribution model for the binary.
+- A better way to think about it is whether the code is processed before it is executed or not.
+- We want to align our brains more to think like a compiler.
+- In JS a plan for the lexical environment is produced when parsing, at the same stage the AST is created.
+- The JS engine produces in essence an intermediate representation not that dissimilar to bytecode, and hands that off to the JS virtual machine which is embedded inside of the same JS engine.
+- The JS virtual machine interprets the output and whenever it enters a scope it creates all the identifiers according to what the program told it to do.
+- We have to think about JavaScript as a two pass system as opposed to a single pass.
+- **JavaScript organizes scopes with functions and blocks.**
+
+### 7.1. Compilation and Scope
+
+- Consider this code:
+
+```js
+var teacher = 'Kyle';
+
+function otherClass() {
+  var teacher = 'Suzy';
+  console.log('Welcome!');
+}
+
+function ask() {
+  var question = 'Why?';
+  console.log(question);
+}
+
+otherClass(); // Welcome!
+ask(); // Why?
+```
+
+- We need to try and think about the code more like how the JS engine thinks about it.
+- To do this we can pretend that the processing of the program is a conversation!
+- There will be two actors in this conversation:
+
+1. The compiler
+2. The scope manager (makes buckets and marbles)
+
+- This will be the first pass.
+- Once the plans have been produced, we will process the second step which actually executes the code.
+- The global scope is the red bucket, the inner scopes are blue and green.
+
+- Compiler: _Hey scope manager, I have a formal declaration here in the red bucket. Have you ever heard of a thing called teacher?_
+- Scope Manager: _Nope, never heard of it, but I have created now a red marble for you and dropped it into the red bucket._
+- Compiler: _Hey scope manager, I have a formal declaration for otherClass. Heard of this one?_
+- Scope Manager: _Nope, not that one. Here's another red marble for the bucket._
+- Compiler: _Oh, that's a special kind of thing since it's a function, it creates scopes. Hey scope manager, how's about a new bucket?_
+- Scope Manager: _No problem compiler, here's a blue bucket for you dude! Just popped that puppy inside the red bucket for you._
+- Compiler: _Cheers my guy. Just looking inside the blue bucket and I got me another declaration. You ever heard of teacher?_
+- Scope Manager: _Nothing in the blue bucket called teacher. Here's a blue marble coming at ya._
+- Interlude: having two variables of the same name in different scopes is called **shadowing**. Now we cannot reference the outer scope variable of the same name from the inner scope, hence the name shadowing.
+- Compiler: _Nice, back into the red bucket I go... Ah look what I found, another one. Heard of ask?_
+- Scope Manager: _Not on my list, but here you go - another red marble._
+- Compiler: _Ah dude this one's a function. Can you sort me out a green bucket for it?_
+- Scope Manager: _No problem for you my man. Here you go, green bucket, chucked it inside of the red one._
+- Compiler: _Nice, thanks dawg. Just found another declaration in the green bucket though. You have question on your list?_
+- Scope Manager: _Doesn't appear to be there. Here's a green marble for ya._
+- Compiler: _It's been an absolute pleasure as always, all done for now._
+
+- **Takeaway**: In a lexically scoped language, all of the scopes and identifiers that we are dealing with are determined at compile time, not at runtime. This allows the JS engine to much more efficiently optimize at runtime.
+- The decisions you make about scope and variables are author time decisions. They can't change at runtime.
+
+### 7.2. Executing Code
+
+- Back to the example:
+
+```js
+// var teacher: handled by compiler
+// teacher = "Kyle": handled by execution engine
+var teacher = 'Kyle';
+
+function otherClass() {
+  var teacher = 'Suzy';
+  console.log('Welcome!');
+}
+
+function ask() {
+  var question = 'Why?';
+  console.log(question);
+}
+
+otherClass(); // Welcome!
+ask(); // Why?
+```
+
+- The only code left after the compiler stage has finished, is the code remaining to be executed.
+- There was mention earlier that variables are in one of two positions:
+
+1. The **target** of a value assignment.
+2. The **source** of a value retrieval.
+
+- Back in the day the terminology was `lhs` and `rhs` of the assignment operator `=`.
+- The position information is something that the compiler picked up.
+- When it created the AST it knew what scope the identifiers were in, and what position they were in.
+- The next conversation involves the Scope Manager, and this time the JS engine's virtual machine.
+
+- JS Engine: _Hey Scope Manager, I have a target reference for teacher in the red bucket. Hit me!_
+- Scope Manager: _Yeah I got that one, here's the marble._
+- JS Engine: _Cool, I'll assign the value "Kyle" and move on._
+- JS Engine: _Hey Scope man, I got me a source reference for otherClass in the red bucket. Look familiar?_
+- Scope Manager: _Yeah man, here you go, marble away._
+- JS Engine: _Nice, retrieving that value now!_
+- JS Engine: _Ah, parens, nice, let's execute..._
+- JS Engine: _Yo Scope, in the blue bucket I have a target reference for teacher. Any luck?_
+- Scope Manager: _Uh huh, here's ya blue marble my dude._
+- JS Engine: _Sweet, assigning the value "Suzy" to it as we speak._
+- JS Engine: _Hey scope, any console in that blue bucket?_
+- Scope Manager: _Nope, but checking up one level, there's an auto-global in the red bucket. Red marble comin' atchya!_
+
+- When you reference a variable in a **target** position, you have to first look it up.
+- When you reference a variable in a **source** position, you have to first look it up.
+
+- JS Engine: _Hey Scope, just found a source reference for ask, you got that one?_
+- Scope Manager: _Yes, I have that one. Here you go, red marble._
+- JS Engine: _Cool, this one has a function value and I see parens, gonna execute..._
+- JS Engine: _Dude, looking in the green bucket and seeing a target reference for question, you got that one?_
+- Scope Manager: _Yeah got it! Here's your green marble._
+- JS Engine: _Superb work, gonna assign the value to "Why?" to it._
+- JS Engine: _Hey scope, any console in that green bucket?_
+- Scope Manager: _Nope, but checking up one level, there's an auto-global in the red bucket, here you go._
+- JS Engine: _Cheers. Oh and executing the log method on that console object, I have a source ref for question in the green bucket._
+- Scope Manager: _Here you go, green marble for you._
+
+- Then the lookup of `question` happens, the value of `"Why?"` is returned, which we assign as the argument to the `log` method's parameter.
+- Note a parameter is a **target** (assignment) reference, but an argument is a **source** (retrieval) reference.
+
+### 7.3. Dynamic Global Variables
+
+```js
+var teacher = 'Kyle';
+
+function otherClass() {
+  teacher = 'Suzy';
+  topic = 'React';
+  console.log('Welcome!');
+}
+
+otherClass(); // Welcome!
+
+teacher; // Suzy
+topic; // React
+```
+
+- topic is a target reference, not found in the scope of `otherClass` or the global scope.
+- So JS applies a historical bad part of its design and creates a variable automatically in the global scope.
+- Never ever under any circumstances should you create global variables in this way.
+
+### 7.4. Strict Mode
+
+- Use strict mode by putting the pragma at the top of a file: `"use strict";`.
+- This prevents the behaviour of dynamic global variables.
+- When the global scope is queried for `react` in the previous example, a reference error is returned instead of automatically creating a global variable.
+- Type error is different to reference error:
+- Type error is when you find a the variable, but the value it is holding doesn't allow the operation you are trying to perform.
+- Reference error is when a variable cannot be found.
+- Always use strict mode.
+
+### 7.5. Nested Scope
+
+- Scopes can be nested.
+
+```js
+var teacher = 'Kyle';
+
+function otherClass() {
+  var teacher = 'Suzy';
+
+  function ask(question) {
+    console.log(teacher, question);
+  }
+
+  ask('Why>');
+}
+
+otherClass(); // Suzy Why?
+ask('????'); // Reference error!
+// unlike a target reference, a global variable is not created automatically for source references.
+```
+
+### 7.6. Undefined vs Undeclared
+
+- `undefined` means a variable exists, but at the moment it has no value.
+- `undeclared` means a variable has never been formally declared, in any scope that we have access to.
+
+### 7.7. Lexical Scope Elevator
+
+- The idea of scope being nested within each other, can be represented as a building with many floors.
+- The first floor is the current scope where the reference is, and the top floor is the global scope.
+- We move one floor at a time up on the elevator when looking for identifiers in scopes.
