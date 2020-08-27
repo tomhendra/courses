@@ -56,6 +56,12 @@
   - [7.5. Nested Scope](#75-nested-scope)
   - [7.6. Undefined vs Undeclared](#76-undefined-vs-undeclared)
   - [7.7. Lexical Scope Elevator](#77-lexical-scope-elevator)
+- [8. Scope & Function Expressions](#8-scope--function-expressions)
+  - [8.1. Function Expressions](#81-function-expressions)
+  - [8.2. Named Function Expressions](#82-named-function-expressions)
+  - [8.3. Arrow Functions](#83-arrow-functions)
+  - [8.4. Function Types Hierarchy](#84-function-types-hierarchy)
+  - [8.5. Function Expression Exercise](#85-function-expression-exercise)
 
 ## 1. Introduction
 
@@ -1468,3 +1474,146 @@ ask('????'); // Reference error!
 - The idea of scope being nested within each other, can be represented as a building with many floors.
 - The first floor is the current scope where the reference is, and the top floor is the global scope.
 - We move one floor at a time up on the elevator when looking for identifiers in scopes.
+
+## 8. Scope & Function Expressions
+
+### 8.1. Function Expressions
+
+- We've been talking about functions adding their identifier in the enclosing scope.
+- Remember there is a difference between what can happen at compile time, and what can happen at execution time.
+
+```js
+function teacher() {
+  console.log('functional stuff..');
+}
+
+var myTeacher = function anotherTeacher() {
+  console.log(anotherTeacher);
+};
+
+console.log(teacher);
+console.log(myTeacher);
+console.log(anotherTeacher); // ReferenceError: anotherTeacher is not defined
+```
+
+- `myTeacher` identifier is created in the global scope. -`anotherTeacher` creates another scope, but because `var myTeacher = function anotherTeacher(){}` is not a function declaration it is not handled in the same way.
+- This is called a **function expression**.
+- As opposed to `function teacher(){}` which is a **function declaration**.
+- One of the main differences is that function declarations attach their marble to the enclosing scope, where as function expressions add their marble to their own scope.
+- There is a nuance in that not only does the blue marble show up in the blue scope, but it is also read only.
+- You could not reassign `anotherTeacher` to some other value.
+
+### 8.2. Named Function Expressions
+
+- A function declaration is only a function declaration if the keyword `function` is literally the first thing in the statement.
+- Anything else must be a function expression.
+- You can have anonymous function expressions, and named function expressions.
+
+```js
+var clickHandler = function () {
+  // I am an anonymous function expression
+};
+
+var clickHandler = function keyHandler() {
+  // I am a named function expression
+};
+```
+
+- Kyle says that 100% of the time with zero exceptions you should always prefer named function expressions.
+- There are three reasons that make a solid case for why function expressions are better:
+
+- **1. Reliable function self-reference**
+
+  - Useful if function is recursive.
+  - Useful if function is an event handler and needs to reference itself to unbind itself.
+  - Useful if you need to access any properties on the function object.
+  - Any time you need a self-reference the only answer is that it needs to have a name.
+  - If you want to self-reference the function from inside its body, referencing the identifier in its own read only scope is much better than the variable that the function has been assigned to in the outer scope as with a function declaration, which isn't by default read only.
+
+- **2. More debuggable stack traces**
+
+  - Automatically by naming your functions you make your code debuggable.
+  - When you have minified code debugging with anonymous functions is a nightmare.
+  - You can even figure out the bug without looking at the code, if you use well named semantic function names.
+  - And if you do need to look at the code you do with more mental context.
+
+- **3. More self-documenting code**
+
+  - By putting a name on your function you make that code more self-documenting.
+  - If you have a function that is anonymous, to infer the purpose of the function you have to read the function body and what it is being passed.
+  - It's much better to use a name that makes the purpose of the function completely unambiguous to the reader.
+
+- The purpose of code is to clearly communicate your intent.
+- Even when assigning anonymous functions to a property or variable, it still is an anonymous function, it still doesn't have a lexical self-reference. You can reference the variable in the outer scope but it's less reliable and less semantic.
+- Depending on where the anonymous function expression exists, you may still be able to have a name inferred. If it is assigned to a variable then as long as there isn't some complex destructuring code in place, generally JS will infer the name for the purpose of the stack trace.
+- **But the big problem is this**: Where 99.9% of people use anonymous function expressions is as callbacks, passing them inline into other function like `.map`, `.then` etc. but when you pass a function expression in a call position, there's no way to infer any name from it. You don't get the benefit of name inference, so you have to assign it to a variable, so you may as well just use a function declaration.
+
+**In summary**:
+
+- You should prefer function declarations with good semantic names.
+- If you going to pass in function expression then use a name as with function declarations.
+- There is no argument that anonymous functions should be preferable.
+- There is no reason why using names is distracting and unhelpful for code readability.
+- Every single function has a purpose, so every function should have a name.
+- Don't make the reader of your code figure things out every single time.
+- If you can't come up with a name, it probably means that function is too complex, and needs to be broken down into smaller pieces until the names are completely self-obvious.
+- A leading indicator of problems in code is when you can't come up with a name, or the name is 14 words long!
+- Kyle's rule of thumb is that he prefers function declarations if it is more than 3 lines of code. Otherwise use an inline function expression. Unless it needs to be called multiple times, then a declaration is preferable, even if it is only 1 line.
+- Naming things is hard.
+- Code is always an iterative process, so accept the first name you come up with may change several times.
+- If you really can't come up with anything name it TODO and when searching for comments with TODO before committing code you may have a better sense of what to name the function.
+
+### 8.3. Arrow Functions
+
+- Arrow functions are anonymous.
+- The advice is not to use anonymous function expressions.
+- You shouldn't be using them because they are nice short syntax; that isn't why they were created.
+- The shorter the syntax the more complex the corner cases of syntax are.
+- You still have to infer the purpose of the code rather than seeing it listed out.
+
+```js
+var ids = people.map((person) => person.id);
+
+// This function expression tells us in its name exactly what it does.
+var ids = people.map(function getId(person) {
+  return person.id;
+});
+```
+
+- Even though the rule of using a function expression for 3 lines of code and less would apply below, promise chains can be hard to read, so Kyle would use a function declaration instead.
+
+```js
+getPerson()
+  .then((person) => getData(person.id))
+  .then(renderData);
+
+// reads almost like plain english
+getPerson()
+  .then(function getDataFrom(person) {
+    return getData(person.id);
+  })
+  .then(renderData);
+```
+
+- Some people say you can assign arrow functions to variables and get the same benefit out of them.
+
+```js
+// But it's actually fewer characters to do the function declaration!
+var getId = (person) => person.id;
+var ids = people.map(getId);
+
+// ***************************
+
+var getDataFrom = (person) => getData(person.id);
+getPerson().then(getDataFrom).then(renderData);
+```
+
+- More concise code does not equal more readable code.
+
+### 8.4. Function Types Hierarchy
+
+1. (Named) Function Declaration
+2. Named Function Expression
+3. Anonymous Function Expression
+
+### 8.5. [Function Expression Exercise](exercises/scope-exercises/function-expressions/ex.js)
