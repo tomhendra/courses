@@ -62,6 +62,18 @@
   - [8.3. Arrow Functions](#83-arrow-functions)
   - [8.4. Function Types Hierarchy](#84-function-types-hierarchy)
   - [8.5. Function Expression Exercise](#85-function-expression-exercise)
+- [9. Advanced Scope](#9-advanced-scope)
+  - [9.1. Lexical Scope](#91-lexical-scope)
+  - [9.2. Dynamic Scope](#92-dynamic-scope)
+  - [9.3. Function Scoping](#93-function-scoping)
+  - [9.4. IIFE Pattern](#94-iife-pattern)
+  - [9.5. Block Scoping](#95-block-scoping)
+  - [9.6. choosing let or var](#96-choosing-let-or-var)
+  - [9.7. Explicit let Block](#97-explicit-let-block)
+  - [9.8. const](#98-const)
+  - [9.9. Hoisting](#99-hoisting)
+  - [9.10. Hoisting Example](#910-hoisting-example)
+  - [9.11. let Doesn't Hoist](#911-let-doesnt-hoist)
 
 ## 1. Introduction
 
@@ -1617,3 +1629,449 @@ getPerson().then(getDataFrom).then(renderData);
 3. Anonymous Function Expression
 
 ### 8.5. [Function Expression Exercise](exercises/scope-exercises/function-expressions/ex.js)
+
+## 9. Advanced Scope
+
+- Lexical scope is the formal name of what we have refer to as scope.
+- The idea of scopes being nested within each other.
+- Specifically the idea that a compiler / parser / processor is figuring out all those scopes ahead of time before executed.
+- That's where the term lexical scope comes from; the lex shares the same root as the first stage of parsing, the lexer.
+- Think of lexical scope as related to the compiler, the author time. You make a decision at author time about what will be in each scope.
+- It is not affected at runtime, in any way, shape or form.
+- The vast majority of programming languages in existence are lexically scoped.
+- There is another concept of scoping, albeit very rare, called dynamic scope. Bash script is probably the most predominant example.
+
+### 9.1. Lexical Scope
+
+```js
+var teacher = 'Kyle';
+
+function otherClass() {
+  var teacher = 'Suzy';
+
+  function ask(question) {
+    console.log(teacher, question);
+  }
+
+  ask('Why?');
+}
+```
+
+- At author time when the function `ask` was put inside of `otherClass` the irrevocable decision was made that `teacher` being passed as the argument to `console.log` would point to the declaration `var teacher = 'Suzy';`.
+- We figure all this at compile time, and we know that this will never change, so we don't need to figure it out at runtime.
+- One of the reasons lexical scope is so popular is because it is so optimizable.
+
+### 9.2. Dynamic Scope
+
+- Dynamic scope does not exist in JS, but to explain it theoretically, we can look at how the example would be processed if it was.
+
+```js
+var teacher = 'Kyle';
+
+function ask(question) {
+  console.log(teacher, question);
+}
+
+function otherClass() {
+  var teacher = 'Suzy';
+
+  ask('Why?');
+}
+```
+
+- When we encounter `teacher` as the argument to `console.log`, we wouldn't check the outer scope and assign `"Kyle"`.
+- We would ask "where was the function `ask` called from?"
+- `ask` cas called form the scope of `otherClass` so it would have the value of `"Suzy"`.
+- In dynamic scope a function's reference to its variables depend on where the function was called from.
+- Dynamic scope is determined based upon the conditions at runtime, whereas lexical scope is determined based upon the conditions at author time.
+- Dynamic scope is very flexible, lexical scope is very predictable.
+
+### 9.3. Function Scoping
+
+- What problems does function scope solve?
+- Imagine this scenario:
+
+```js
+var teacher = 'Kyle';
+
+{
+  /* ... */
+}
+// 6 months later someone declares a variable of the same name!
+var teacher = 'Suzy';
+
+console.log(teacher); // Suzy OOPS!
+```
+
+- There is a name collision.
+- How do we fix this? Put them in different buckets.
+
+```js
+var teacher = 'Kyle';
+
+function anotherTeacher() {
+  var teacher = 'Suzy';
+  console.log(teacher); // Suzy
+}
+
+anotherTeacher();
+
+console.log(teacher); // Kyle
+```
+
+- But now we have a function that has a nem in that scope: `anotherTeacher`.
+- So we haven't really fixed the problem - we have just shifted it to another variable name.
+- We still have a naming collision problem.
+- There is a principle in software development called **the principle of least exposure / privilege** that says: You should default to keeping everything private, and only expose the minimum necessary.
+- There are three problems that this defensive approach solves:
+
+1. It reduces the surface area for name collisions.
+2. Someone can't accidentally/intentionally misuse it.
+3. You protect yourself for future refactoring. If something is exposed and someone uses it, then it limits your ability to freely refactor it without breaking the code of whoever has used it -- If the person has an important enough job title they will squash your refactor!
+
+### 9.4. IIFE Pattern
+
+- **I**mmediately **I**nvoked **F**unction **E**xpression.
+- A very common pattern.
+- Fixes the problem of name collision, without polluting the scope with a new function name.
+
+```js
+var teacher = 'Kyle';
+
+(function anotherTeacher() {
+  var teacher = 'Suzy';
+  console.log(teacher); // Suzy
+})();
+
+console.log(teacher); // Kyle
+```
+
+- Not like a regular function that we call multiple times, it is a one off for creating a scope.
+- It is not a function definition because the keyword `function` is not the first thing in the statement.
+- The enclosing `()` are there for no other purpose than to syntactically change it into an expression instead of an expression.
+- There are a variety of syntactic ways to change a function into an expression instead of a definition.
+- Instead of the surrounding `()` you can use a unary operator like `+`, `!`, `-`, `~` or even the lesser known `delete` or `void` operators.
+- Each of those would change it into a function expression end enable it to execute.
+- By turning a function into an expression we avoid polluting the enclosing scope.
+- It is common to see anonymous IIFEs.
+
+```js
+var teacher = 'Kyle';
+
+// This IIFE is anonymous - never ever use anonymous function expressions!
+(function (teacher) {
+  console.log(teacher); // Suzy
+})('Suzy'); // can also pass in values!
+
+console.log(teacher); // Kyle
+```
+
+- Another less common use for IIFEs is to turn statements into an expression.
+- If you would like to be able make an assignment to a variable, and have that assignment expression include a try / catch.
+- But a try / catch is a statement so it doesn't work in an expression position.
+- The next best hack is that we make a variable and assign to it twice:
+
+```js
+var teacher;
+try {
+  teacher = fetchTeacher1(1);
+} catch (err) {
+  teacher = 'Kyle';
+}
+```
+
+- To make it obvious to the reader of the code that `teacher` only gets assigned once, we can use an IIFE:
+
+```js
+var teacher = (function getTeacher() {
+  try {
+    return fetchTeacher1(1);
+  } catch (err) {
+    return 'Kyle';
+  }
+})();
+```
+
+- IIFEs can be used any place that you need an expression, and any time you need a statement or a scope in an expression position.
+
+### 9.5. Block Scoping
+
+- Scoping that's done with blocks instead of functions.
+- Same principle applies as with function scope: we put something inside of a block to hide it - avoid name collision, protect it from misuse, better enable free future refactoring.
+
+```js
+var teacher = 'Kyle';
+/*
+(function anotherTeacher() {
+  var teacher = 'Suzy';
+  console.log(teacher); // Suzy
+})();
+*/
+
+// instead of the IIFE...
+{
+  let teacher = 'Suzy';
+  console.log(teacher);
+}
+
+console.log(teacher); // Kyle
+```
+
+- You can't use block scope as expressions, but for statements they are OK.
+- Using a `var` here would attach itself to the outer / function scope.
+- You need to use `let` or `const` instead.
+- `let` and `const` were designed to allow declarations inside of a block.
+- Blocks`{}` are not scoped on their own, but only when `let` or `const` are used inside of them - `let` and `const` implicitly create the scope.
+- Block scoping should be used to reinforce something that you would already naturally want to signal to the reader.
+
+```js
+function diff(x, y) {
+  if (x > y) {
+    let tmp = x;
+    x = y;
+    y = tmp;
+  }
+  return y - x;
+}
+```
+
+- `tmp` signals to the reader this is a temporary variable.
+- It will not be reused anywhere else in the code.
+- if it was a `var` it would attach itself to the scope of `diff`.
+- But we are signalling semantically that the `tmp` belongs to the `if` statement.
+- By using `let` you are enforcing what you were already semantically signalling.
+- You should use it in places that are already obvious and correct design for you to block scope something.
+- You should also be aware when reading existing code that if there is a `let` or `const` inside an `if` statement then it has its own scope and you need to be careful about what you move around things etc.
+
+### 9.6. choosing let or var
+
+- `let` and `const` are not replacements for `var`.
+- There are still reasons to use the `var` keyword.
+
+```js
+function repeat(fn,n) {
+  var result;
+
+  for (let i = 0; i < n; i++) {
+    result = fn(result, i);
+  }
+  return result.
+}
+```
+
+- If you have a variable that belongs to the scope of the function, the correct semantic way to signal that to the reader, is not to use a `let` at the top of the function scope, but to use a `var` because that's what it has always done for 25 years.
+- If you were to replace `var result` with `let result`, even though functionally it would still work, it would remove a small amount of important semantic information.
+- The reader wouldn't know whether the intent is to only use the variable at the top of the function, or for the entirety of it.
+- `let` is supposed to signal a very localized usage.
+
+- If you use a `let` in a place that would otherwise be considered just a block, the variable would attach itself to that block.
+- Consider this example:
+
+```js
+function lookupRecord(searchStr) {
+  try {
+    var id = getRecord(searchStr);
+  } catch (err) {
+    var id = -1;
+  }
+
+  return id;
+}
+```
+
+- If you use `let` inside of a try / catch it wouldn't work in the above example.
+- You could declare the variable at the top of the function, but adding more lines of code, the further the declaration os from the assignment the harder it is for the reader to understand.
+- It is better to have the option to use `var` in situations where it is warranted.
+- Another thing you can do with `var` that you cannot with `let` is use it more than once inside of a scope. Above `var id` is being used twice inside of a function scope, and there are no errors.
+- With large functions if the variable declaration at the top and it is assigned to 100 lines down, the reader may not be clear as to which scope it belongs to. Scrolling up 100 lines is not good DX, so reusing `var` to declare again would be clearer.
+- So there are both semantic reasons and behavioural reasons that `var` and `let` can coexist in your programs.
+- In the history of computer science hardly ever has something been introduced as a complete replacement for something else. It is nearly always an augmentation of what has previously existed.
+
+### 9.7. Explicit let Block
+
+- If you are in the habit of using `let` at the top of functions, and you are only going to use a variable for a few lines of code, rather than throwing it into the top level of the scope, you should create a scope for it:
+
+```js
+function formatStr(str) {
+  // Explicit let block for collection of variables not needed by the entire function.
+  {
+    let prefix, rest; // prefix & rest only exist inside these few lines.
+    prefix = str.slice(0, 3);
+    rest = str.slice(3);
+    str = prefix.toUpperCase() + rest;
+  }
+  // prefix & rest can't possibly be collided or misassigned here later; they do not exist in this scope.
+  if (/^FOO:/.test(str)) {
+    return str;
+  }
+
+  return str.slice(4);
+}
+```
+
+### 9.8. const
+
+- `const` does not carry its own weight within the language.
+- This means there might be a worth but the cost is not worth it.
+- The benefit of `const` is not as great as you are led to believe, and there is a cost to using it.
+- It should be used in specific places rather than a general replacement for `var`.
+- The cost that comes with `const` is not just limited to JS. Every time it has been introduced to any language, devs have become confused.
+- When we think of `const` we think of "constant" and something that doesn't change.
+- It actually means a variable that cannot be reassigned.
+
+```js
+var teacher = 'Suzy';
+teacher = 'Kyle'; // OK
+
+const myTeacher = teacher;
+myTeacher = 'Suzy'; // TypeError
+
+const teachers = ['Kyle', 'Suzy'];
+teachers[1] = 'Brian'; // Allowed!
+```
+
+- The fact that `const` allows mutations of values as demonstrated the array above, creates all kinds of problems.
+- When assigning an array to `const` readers may get the impression that the array won't change.
+- You are supposed to use the `const` keyword within a very small block.
+- What the `const` keyword is actually saying semantically, is: for the rest of this block I promise it is not going to get reassigned.
+- `const` pretends as if it does some major awesome thing for us, but doesn't do much at all.
+- Reassignment is not really the cause of many bugs.
+- It is a like a night light in a child's bedroom: it protects the child from monsters, but we know there aren't really any monsters.
+- Kyle only uses `const` when the value is a primitive and therefore immutable: `string`, `boolean` or `number`.
+- And he uses it as a semantic placeholder for those literals. e.g. API URL.
+- That's what constants are supposed to be for: to give semantic meaning as placeholders.
+- Default to `var`, use `let` where it's useful, and use `const` with immutable primitive values.
+
+### 9.9. Hoisting
+
+- The word hoisting has been thrown around in JS for a long time. However it's only in the last few years that it has appeared in the spec.
+- It turns out that hoisting is not actually a real thing!
+- The JavaScript engine does not hoist.
+- It does not move things around the way it is suggested.
+- "Hoisting" is a metaphor that we have invented, an english language convention we have made up to discuss the idea of lexical scope, without thinking about lexical scope.
+
+```js
+student;
+teacher;
+var student = 'me';
+var teacher = 'Kyle';
+```
+
+- Hoisting would say that code is moved, but in reality it is not:
+
+```js
+var student;
+var teacher;
+
+student; // undefined
+teacher; // undefined
+student = 'me';
+teacher = 'Kyle';
+```
+
+- We know the compiler parses variable declarations first, and the variables are initialized at runtime as a second pass.
+- We use the lexical scope discussion to apply this concept.
+- People don't think about this as two passes, but rather as one pass.
+- Hoisting gives a more convenient explanation that there is some magical behaviour, where the JS engine finds those variable declarations and moves them to the top of the scope before execution: literally how hoisting is described.
+- JS does not do this: it does not move anything around in the code.
+- If you want to find variable declarations further down the block, the only way you can do this is with parsing.
+- Hoisting is therefore a shorthand, a convention to describe something without getting into the details.
+- Hoisting is not necessarily a bad thing, but it's important to understand what really happens to save confusion in future.
+- It is neither the case that functions get moved:
+
+```js
+teacher(); // Kyle
+otherTeacher(); // ??
+
+function teacher() {
+  return 'Kyle';
+}
+
+var otherTeacher = function () {
+  return 'Suzy';
+};
+```
+
+- Hoisting would say that code is moved based on declarations as follows:
+
+```js
+function teacher() {
+  return 'Kyle';
+}
+var otherTeacher;
+
+teacher(); // Kyle
+otherTeacher(); // TypeError
+
+otherTeacher = function () {
+  return 'Suzy';
+};
+```
+
+- For the exact same reason variables aren't moved, neither are functions.
+- There is however an important distinction between function declarations and function expressions.
+- JavaScript only "hoists" declarations, not initializations, and therefore not expressions.
+- In the example, the declaration `otherTeacher` is "hoisted", but the function assignment happens is not, so `otherTeacher()` will throw a `TypeError` when we try to run it.
+- So to use the form of function where you only assign them to properties or variables, you must have the functions defined before you use them.
+- Tip: It's arguably more readable to put executable code at the top of a function so the reader knows what it does straight away, and put all function definitions at the bottom, taking advantage of "hoisting".
+
+### 9.10. Hoisting Example
+
+- If we think about this as the two pass process that it is, of course `teacher` has been made available in the scope of `otherTeacher` before `otherTeacher` has had a chance to run.
+
+```js
+var teacher = 'Kyle';
+otherTeacher(); // otherTeacher is "hoisted"
+
+function otherTeacher() {
+  console.log(teacher); // undefined, so the variable exists but has no value. It was "hoisted".
+  var teacher = 'Suzy';
+}
+```
+
+- Almost universally you shouldn't assign to variables earlier in a scope than you declare them.
+- Many more people allow function hoisting.
+- It can be useful for readability to put executable code at the top, and the functions at the bottom.
+
+```js
+// var hoisting?
+// usually bad :/
+teacher = 'Kyle';
+var teacher;
+
+// function hoisting?
+// actually pretty useful!
+getTeacher(); // Kyle
+
+function getTeacher() {
+  return teacher;
+}
+```
+
+### 9.11. let Doesn't Hoist
+
+- Many people claim that `let` doesn't hoist: this claim is **false**!
+
+```js
+{
+  teacher = 'Kyle'; // TDZ Error
+  let teacher;
+}
+
+var teacher = 'Kyle';
+
+{
+  console.log(teacher); // TDZ Error
+  let teacher = 'Suzy'; // If this didn't hoist, then the above line should print "Kyle"
+}
+```
+
+- There is a difference in the way that `let` and `const` hoist.
+- firstly they hoist to a block whereas `var` only hoists to a function.
+- Secondly, when the scope is realised at runtime, `var` is initialized to `undefined`, whereas `let` and `const` are `uninitialized`.
+- The `TDZ error` exists because of `const`. If `const` was initialized to `undefined` like `var` is, and then it was assigned the value `43`, then technically it would have had two different values at two different times, which academically violates the concept of a `const`. So TC39 decided that they needed to prevent you from accessing a variable earlier in the scope than when it is assigned, so that you can't observe it in that intermediate state.
+- And then they decided if that was the case for `const` then it should also be for `let`.
+- The spec says:
+
+**13.3.1 Let and Const Declarations**\
+let and const declarations define variables that are scoped to the running execution context's LexicalEnvironment. **The variables are created when their containing Lexical Environment is instantiated** but may not be accessed in any way until the variable's LexicalBinding is evaluated. A variable defined by a LexicalBinding with an Initializer is assigned the value of its Initializer's AssignmentExpression **when the LexicalBinding is evaluated, not when the variable is created**. If a LexicalBinding in a let declaration does not have an Initializer the variable is assigned the value undefined when the LexicalBinding is evaluated.
