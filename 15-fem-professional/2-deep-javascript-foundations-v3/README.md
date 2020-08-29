@@ -74,6 +74,9 @@
   - [9.9. Hoisting](#99-hoisting)
   - [9.10. Hoisting Example](#910-hoisting-example)
   - [9.11. let Doesn't Hoist](#911-let-doesnt-hoist)
+- [10. Closure](#10-closure)
+  - [10.1. What is Closure?](#101-what-is-closure)
+  - [10.2. Closing Over Variables](#102-closing-over-variables)
 
 ## 1. Introduction
 
@@ -2075,3 +2078,58 @@ var teacher = 'Kyle';
 
 **13.3.1 Let and Const Declarations**\
 let and const declarations define variables that are scoped to the running execution context's LexicalEnvironment. **The variables are created when their containing Lexical Environment is instantiated** but may not be accessed in any way until the variable's LexicalBinding is evaluated. A variable defined by a LexicalBinding with an Initializer is assigned the value of its Initializer's AssignmentExpression **when the LexicalBinding is evaluated, not when the variable is created**. If a LexicalBinding in a let declaration does not have an Initializer the variable is assigned the value undefined when the LexicalBinding is evaluated.
+
+## 10. Closure
+
+- Lexical scope is fundamental foundation to understanding closure.
+- One of the most prevalent concepts in all of programming.
+- Been in JavaScript since the early days, and is a reason that JS has become so popular today.
+
+### 10.1. What is Closure?
+
+- **Closure is when a function “remembers” its lexical scope even when the function is executed outside that lexical scope.**
+- The scope that the function was defined in has conceptually gone.
+- But the function returned out of that scope retains a reference to it, and access to the variables that were created within it.
+
+```js
+function ask(question) {
+  setTimeout(function waitASec() {
+    /* question is not a variable that is declared inside of watASec.
+     * It is created in the outer scope of the function ask (its parameter).
+     * Immediately after we call setTimeout(), the ask() function has finished, so we
+     * would assume that any variables created within the scope of ask() would get garbage collected.
+     * But the timer is still waiting for 100ms with the function called waitASec in its memory,
+     * and waitASec is referencing question, and as a result it keeps that scope alive to
+     * preserve access to the question variable. That magic, is called closure.
+     * It is said that "the waitASec function has closure over the question variable".
+     */
+
+    console.log(question);
+  }, 100);
+}
+
+ask('What is a closure?'); // What is a closure?
+```
+
+- Generally speaking JS engines implement closure as a linkage to the entire scope, not a per variable basis.
+- So if you have a variable in scope with data assigned to it, and you create a closure, even if you don't reference the variable that data may not get garbage collected.
+- To create closure you just have to create a variable outside, and then just pass the function somewhere.
+- It is almost as if closure is a necessary component of a language that is lexically scoped and has first class functions: If when you passed a function it forgot about all it's variables, it wouldn't be very helpful.
+- We can also demonstrate closure by returning back a function, instead of passing one.
+
+```js
+function ask(question) {
+  return function holdYourQuestion() {
+    console.log(question);
+  };
+}
+
+var myQuestion = ask('What is a closure?');
+
+// Some time later...
+
+myQuestion(); // What is a closure?
+// myQuestion still knows the content of the question variable because: question is closed over by holdYourQuestion.
+```
+
+### 10.2. Closing Over Variables
