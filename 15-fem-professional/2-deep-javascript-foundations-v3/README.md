@@ -77,6 +77,10 @@
 - [10. Closure](#10-closure)
   - [10.1. What is Closure?](#101-what-is-closure)
   - [10.2. Closing Over Variables](#102-closing-over-variables)
+  - [10.3. The Module Pattern](#103-the-module-pattern)
+  - [10.4. ES6 Modules and Node.js](#104-es6-modules-and-nodejs)
+  - [10.5. ES6 Module Syntax](#105-es6-module-syntax)
+  - [10.6. Modules Exercise](#106-modules-exercise)
 
 ## 1. Introduction
 
@@ -1972,14 +1976,14 @@ student = 'me';
 teacher = 'Kyle';
 ```
 
-- We know the compiler parses variable declarations first, and the variables are initialized at runtime as a second pass.
+- We know the compiler parses variable declarations first, and the variables are initialized at runtime during the second pass.
 - We use the lexical scope discussion to apply this concept.
 - People don't think about this as two passes, but rather as one pass.
-- Hoisting gives a more convenient explanation that there is some magical behaviour, where the JS engine finds those variable declarations and moves them to the top of the scope before execution: literally how hoisting is described.
+- Hoisting gives a more convenient explanation that there is some magical behaviour, where the JS engine finds those variable declarations and moves them to the top of the scope before execution: which is literally how hoisting is described.
 - JS does not do this: it does not move anything around in the code.
 - If you want to find variable declarations further down the block, the only way you can do this is with parsing.
 - Hoisting is therefore a shorthand, a convention to describe something without getting into the details.
-- Hoisting is not necessarily a bad thing, but it's important to understand what really happens to save confusion in future.
+- Hoisting is not necessarily a bad thing, but it's important to understand what really happens to save confusion in the future.
 - It is neither the case that functions get moved:
 
 ```js
@@ -2014,7 +2018,7 @@ otherTeacher = function () {
 - For the exact same reason variables aren't moved, neither are functions.
 - There is however an important distinction between function declarations and function expressions.
 - JavaScript only "hoists" declarations, not initializations, and therefore not expressions.
-- In the example, the declaration `otherTeacher` is "hoisted", but the function assignment happens is not, so `otherTeacher()` will throw a `TypeError` when we try to run it.
+- In the example, the declaration `otherTeacher` is "hoisted", but the function expression is not, so `otherTeacher()` will throw a `TypeError` when we try to run it.
 - So to use the form of function where you only assign them to properties or variables, you must have the functions defined before you use them.
 - Tip: It's arguably more readable to put executable code at the top of a function so the reader knows what it does straight away, and put all function definitions at the bottom, taking advantage of "hoisting".
 
@@ -2027,7 +2031,7 @@ var teacher = 'Kyle';
 otherTeacher(); // otherTeacher is "hoisted"
 
 function otherTeacher() {
-  console.log(teacher); // undefined, so the variable exists but has no value. It was "hoisted".
+  console.log(teacher); // undefined, so the variable exists but has no value yet. It was "hoisted".
   var teacher = 'Suzy';
 }
 ```
@@ -2129,7 +2133,200 @@ var myQuestion = ask('What is a closure?');
 // Some time later...
 
 myQuestion(); // What is a closure?
-// myQuestion still knows the content of the question variable because: question is closed over by holdYourQuestion.
+// myQuestion still knows the content of the question variable because:
+// question is closed over by holdYourQuestion, which is assigned to myQuestion.
 ```
 
 ### 10.2. Closing Over Variables
+
+- A common misconception is that closure is a snapshot, and therefore a snapshot of values: capturing some value at a moment in time.
+- But closure has nothing to do with values at all - you don't close over a value, rather you close over a variable.
+- Closure is a preservation of the linkage to the variable, not a capture of the value.
+
+```js
+var teacher = 'Kyle';
+
+var myTeacher = function () {
+  console.log(teacher);
+};
+
+teacher = 'Suzy';
+
+myTeacher(); // Suzy because the variable was closed over, not the value 'Kyle'.
+```
+
+- The classic situation that causes misunderstanding, is when creating closures inside of a loop.
+
+```js
+for (var i = 1; i <= 3; i++) {
+  setTimeout(function () {
+    console.log(`i: ${i}`);
+  }, i * 1000);
+}
+```
+
+- It has the appearance that it is closing over the `i` variable so that we expect the console to print `1, 2, 3`.
+- But when we run it it prints `4, 4, 4,`
+- Closure preserves access to the variable.
+- By the time `setTimeout` releases the function to the event loop, when it is placed on the call stack the value of `i` is already `4`, since the loop has finished running and incremented `i` already.
+- To solve this problem we would need to create separate variables in new scopes.
+
+```js
+for (var i = 1; i <= 3; i++) {
+  let j = i; // will run every time the loop iterates.
+  setTimeout(function () {
+    console.log(`j: ${j}`);
+  }, j * 1000);
+}
+```
+
+- We are closing over `j` in three separate instances, each time the loop iterates.
+- With ES6 is was decided that if you use `let` in the for loop argument, a new `i` for each iteration would be created automatically.
+
+```js
+for (let i = 1; i <= 3; i++) {
+  setTimeout(function () {
+    console.log(`i: ${i}`);
+  }, i * 1000);
+}
+```
+
+- JS automatically wires up the declaration of a new `i` and assigns the value at the time of each iteration.
+- This works with `for`, `for of` and `for in`.
+
+### 10.3. The Module Pattern
+
+- To understand what the module pattern is, we need to understand what the module pattern is not.
+
+```js
+var workshop = {
+  teacher: 'Kyle',
+  ask(question) {
+    console.log(this.teacher, question);
+  },
+};
+
+workshop.ask('Is this a module?');
+// Kyle Is this a module?
+```
+
+- This is not the module pattern. This is the **Namespace** pattern.
+- Taking a bunch of functions and applying them as properties of an object is effectively collecting them into a namespace.
+- Not a syntactic feature of JS but rather an idiom, where we make namespaces with objects.
+- The reason this is not the module pattern, is that the module pattern requires the concept of encapsulation.
+- _Encapsulation_ is a fancy CS word for the idea of hiding data and behaviour.
+- The idea of a module, is that there are things that are public and things that are private.
+- There is an idea of visibility.
+- We can clearly see in the previous example that the properties and data are public, therefore it is not a module.
+- The classic module pattern, sometimes referred to as the revealing module pattern, is described as follows:
+- **Modules encapsulate data and behaviour (methods) together. The state (data) of a module is held by its methods via closure.**
+- You cannot have a module without closure, that is key.
+- The first classic module pattern was codified by Doug Crockford in 2001, and looks like this:
+
+```js
+var workshop = (function Module(teacher) {
+  var publicAPI = { ask };
+  return publicAPI;
+
+  // ***************
+
+  function ask(question) {
+    console.log(teacher, question);
+  }
+})('Kyle');
+
+workshop.ask('This is a module, right?');
+// Kyle This is a module, right?
+```
+
+- Has two components:
+
+1. Outer enclosing function, in this case an IIFE.
+2. Inner function that is closed over the variables.
+
+- The object `workshop` which has access to the inner function `ask` is preserving the scope through closure.
+- `ask` is closed over teacher.
+- We expose things on an object.
+- We could have 100s of other functions that are private and could not be accessed form the outside, but the closed over functions can access everything it wants.
+- The critical thing to note is that this usage of closure is actually closing over variables that are designed to change state over time.
+- The whole purpose of a module is to track state over time.
+- If you have a module that doesn't track state over time, than it's not a module, it's an over-engineered namespace.
+- You can also write this as a module factory: every time the function `workshopModule` is called it produces a new instance of our module.
+
+```js
+function workshopModule(teacher) {
+  var publicAPI = { ask };
+  return publicAPI;
+
+  // ***************
+
+  function ask(question) {
+    console.log(teacher, question);
+  }
+}
+
+var workshop = workshopModule('Kyle');
+workshop.ask('This is a module, right?');
+// Kyle This is a module, right?
+```
+
+- The module pattern is the certainly the most prevalent and potentially the most important of all code organisation patterns.
+- Probably 80-90% of all JS written uses this pattern.
+- However you wouldn't call this pattern first class support in the language for the module pattern, you would call it an idiom: a pattern that accomplishes some end goal using the tools we have available.
+
+### 10.4. ES6 Modules and Node.js
+
+- For years there was clamoring for first class support for the module pattern in JS, since it was so important.
+- So ES6 modules came to be, but are more of a work in progress!
+- There was a process breakdown in that TC39 didn't communicate effectively with the Node.js team to ensure compatibility with npm.
+- They have been working on a solution but there are only bad compromises when you get that far down the road.
+- One of those compromises is the use of a different file extension: .mjs.
+- There is a working group within Node who are working towards full support of ES6 modules in Node.
+- You can think of the current implementation as being wrapped in a big function with automatic privacy.
+- To make something public, you use the `export` keyword.
+- Everything that you export is public, everything you don't export is private.
+
+```js
+var teacher;
+
+export default function ask(question) {
+  console.log(teacher, question);
+}
+
+// ************
+import ask from 'workshop.mjs';
+```
+
+- The other thing to note is that ES6 modules are file based. It is impossible to have more than one module in the same file.
+- Without a build process if you wanted to ship to a browser, you would need to load separate files, with all the performance implications.
+- The current standard usage is to author in ES6 modules and compile back to the classic pattern, and concatenate in a file to ship (Babel).
+- Not only are ES6 modules file based but they are singletons: If you import a module into an application, it only ever runs once. Any additional imports are a reference to that same instance.
+- So if you want to have a factory where people can create new instances, you need to use the classic module factory pattern.
+
+### 10.5. ES6 Module Syntax
+
+- There are two major styles of import:
+
+```js
+var teacher;
+
+export default function ask(question) {
+  console.log(teacher, question);
+}
+
+import ask from 'workshop.mjs';
+ask('This is a default import, right?');
+// Kyle This is a default import, right?"
+
+import * as workshop from 'workshop.mjs';
+ask('This is a namespace import, right?');
+// Kyle This is a namespace import, right?"
+```
+
+1. Named import syntax
+   Technically the exported function is named `default` to the outside and then we decided to name it `ask` when we import it. Now at the top level scope we have an identifier `ask` which is reference bound to the `ask` function inside of the module.
+
+2. The namespace import
+   Collect all of the module's contents into a single namespaced variable using `*`, in this case called `workshop`. This is more akin to the way modules have been done classically.
+
+### 10.6. [Modules Exercise](exercies/../exercises/scope-exercises/modules/ex.js)
