@@ -2627,7 +2627,7 @@ workshop.ask.call(workshop, 'Still no "this"?');
 - It is unfortunate that we have overloaded the `{}` which makes us think they always create a scope.
 - Given the previously discussed problems with arrow functions (anonymous, harder to debug etc.), the only time you should use an arrow function is when you will benefit from lexical this behaviour.
 - The arrow function absolutely is useful in this scenario. It actually matches the mental model of what we want; the `this` keyword to behave lexically.
-- **Only use => arrow functions when you need lexical this.**
+- **Only use `=>` arrow functions when you need lexical this.**
 - [eslint plugin](https://github.com/getify/eslint-plugin-proper-arrows) to enforce it!
 - If you are going to use an anonymous arrow function to make use of lexical this, then you need to combat those three downsides:
   - Anonymous functions don't have a self-reference.
