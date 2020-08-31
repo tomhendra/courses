@@ -81,6 +81,17 @@
   - [10.4. ES6 Modules and Node.js](#104-es6-modules-and-nodejs)
   - [10.5. ES6 Module Syntax](#105-es6-module-syntax)
   - [10.6. Modules Exercise](#106-modules-exercise)
+- [11. Objects](#11-objects)
+  - [11.1. The this Keyword](#111-the-this-keyword)
+  - [11.2. Binding the this Keyword](#112-binding-the-this-keyword)
+    - [11.2.1. Implicit Binding](#1121-implicit-binding)
+    - [11.2.2. Explicit Binding](#1122-explicit-binding)
+    - [11.2.3. new Keyword Binding](#1123-new-keyword-binding)
+    - [11.2.4. Default Binding](#1124-default-binding)
+  - [11.3. Binding Precedence](#113-binding-precedence)
+  - [11.4. Arrow Functions and Lexical this](#114-arrow-functions-and-lexical-this)
+  - [11.5. Resolving this in Arrow Functions](#115-resolving-this-in-arrow-functions)
+  - [11.6. this Exercise](#116-this-exercise)
 
 ## 1. Introduction
 
@@ -2329,4 +2340,299 @@ ask('This is a namespace import, right?');
 2. The namespace import
    Collect all of the module's contents into a single namespaced variable using `*`, in this case called `workshop`. This is more akin to the way modules have been done classically.
 
-### 10.6. [Modules Exercise](exercies/../exercises/scope-exercises/modules/ex.js)
+### 10.6. [Modules Exercise](exercises/scope-exercises/modules/ex.js)
+
+## 11. Objects
+
+### 11.1. The this Keyword
+
+- Probably the most perpetually confused of all the JavaScript features.
+- In incredibly powerful feature that has frequently been explained and taught incorrectly.
+- A function's `this` references the execution context for that call, determined entirely by **how the function was called**.
+- Many people think you can look at a function and figure out its `this` reference, but the function definition doesn't matter at all.
+- The only thing that matters is how the function is invoked.
+- A `this`-aware function can thus have a different context each time it's called, which makes it more flexible & reusable.
+
+```js
+function ask(question) {
+  console.log(this.teacher, question);
+}
+
+function otherClass() {
+  var myContext = {
+    teacher: 'Suzy',
+  };
+  ask.call(myContext, 'Why?'); // Suzy Why?
+}
+
+otherClass();
+```
+
+- By using `.call()` we are saying to use this particular object as the `this` keyword, and invoke the function in that context: `myContext`.
+- The same `ask` function could be called in lots of different ways, and we could provide lots of different context objects.
+- That's the dynamic and flexible usability of the `this` keyword.
+- It exists so we can invoke functions in these different contexts.
+
+### 11.2. Binding the this Keyword
+
+- There are four different ways to invoke a function, and each of them will provide a different answer to what the `this` keyword is.
+
+#### 11.2.1. Implicit Binding
+
+- The first way to invoke a function.
+- Because of the call site the `this` keyword will point at the object that is used to invoke it.
+
+```js
+var workshop = {
+  teacher: 'Kyle',
+  ask(question) {
+    console.log(this.teacher, question);
+  },
+};
+
+workshop.ask('What is an implicit binding?');
+// Kyle What is an implicit binding?
+```
+
+- `workshop.ask` says invoke the `ask` function with the `this` keyword pointing at `workshop`.
+- That is exactly how the `this` binding works in all other languages.
+- This is the most common and intuitive of the rules, because it decides the method based on what object you call it from.
+- The idea of having implicit binding is useful because this is how we share behaviour among different contexts.
+
+```js
+function ask(question) {
+  console.log(this.teacher, question);
+}
+
+var workshop1 = {
+  teacher: 'Kyle',
+  ask: ask,
+};
+
+var workshop2 = {
+  teacher: 'Suzy',
+  ask: ask,
+};
+
+workshop1.ask('How do I share a method?');
+// Kyle How do I share a method?
+
+workshop2.ask('How do I share a method?');
+// Suzy How do I share a method?
+```
+
+- One function, used in lots of different contexts.
+- Recall that lexical scope is fixed and predictable, and not at all affected at runtime.
+- Here we have a feature that is not fixed and predictable, that is entirely dynamic and determined at runtime.
+- The tradeoff here is very intentional, and what we are getting is the choice between predictable and flexible.
+- There are times when the flexibility is a downside, and predictability is preferred.
+
+#### 11.2.2. Explicit Binding
+
+- The second way to invoke a function.
+- The `.call` and its cousin the `.apply` method both take as their first argument a `this` context.
+
+```js
+function ask(question) {
+  console.log(this.teacher, question);
+}
+
+var workshop1 = {
+  teacher: 'Kyle',
+};
+
+var workshop2 = {
+  teacher: 'Suzy',
+};
+
+ask.call(workshop1, 'Can I explicitly set context?');
+// Kyle Can I explicitly set context?
+
+ask.call(workshop2, 'Can I explicitly set context?');
+// Suzy Can I explicitly set context?
+```
+
+- `ask.call` says invoke the `ask` function with the `this` keyword pointing at `workshop1`.
+- Very similar to the first rule in that we are sharing the function among different contexts.
+- But here we are sharing the function explicitly rather than implicitly.
+- We are saying wherever this function comes from, invoke it in a particular context which I am going to specify.
+- There is an extremely common phenomenon to the explicit binding rule regarding losing the `this` binding.
+- Sometimes when you pass a function around you find that it can lose it's `this` binding, causing frustration.
+- To circumvent this phenomenon we can introduce a sub-rule called **hard binding**.
+
+```js
+var workshop = {
+  teacher: 'Kyle',
+  ask(question) {
+    console.log(this.teacher, question);
+  },
+};
+
+setTimeout(workshop.ask, 10, 'Lost this?');
+// undefined Lost this?
+setTimeout(workshop.ask.bind(workshop), 10, 'Hard bound this?');
+// Kyle Hard bound this?
+```
+
+- With `setTimeout(workshop.ask, 10, 'Lost this?');` you have to imagine what the call site would be when the `ask` function runs.
+- It is not going to be `workshop` and because of that `ask` will not be invoked in the `workshop` context.
+- The `this` binding is therefore lost and we get `undefined`.
+- Technically the `setTimeout` utility is defined by HTML, and would explicitly invoke `ask` with `.call` in the context of global, so in the case of the browser the `window` object.
+- The solution is to use `.bind` which removes the flexibility of the feature and forces the function to be invoked in the context specified.
+- The `.bind` method doesn't invoke the function, it produces a new function which is bound to a particular specific `this` context.
+- How do we deal with this tension? There are times when the flexibility is useful, but sometimes we need predictability.
+- If you go to the trouble to write a set of `this`-aware code, and most of the call sites are using the flexible dynamism with only a few occasions that require a hard binding, then you are getting a lot of benefit out of that system. It's a reasonable tradeoff.
+- However if you find that nearly all the call sites require hard binding, then it's a sign you should go back to the predictable lexial scope behaviour and use closure i.e. the module pattern.
+- Use the right tool for the job: If you want flexibility use the `this` keyword. If you want predictability use closures.
+
+#### 11.2.3. new Keyword Binding
+
+- The third way to invoke a function.
+- The new keyword seems as if it has something to do with invoking class constructors.
+- It has nothing to do with classes. It is an unfortunate syntactic trick.
+- The purpose of the `new` keyword is to invoke a function with the `this` keyword pointing at a whole new empty object.
+- The `new` keyword does have other features, but for the purpose of this discussion you could accomplish the same thing with `.call({}, ...);`.
+
+```js
+function ask(question) {
+  console.log(this.teacher, question);
+}
+
+var emptyObject = new ask('What is the new keyword doing here?');
+// undefined What is the new keyword doing here?
+```
+
+- It does four very specific things which are not particularly obvious when you look at the call site.
+
+1. Create a brand new empty object
+2. Link that object to another object
+3. Call function with `this` set to the new object
+4. If the function does not return an object, assume return of `this`
+
+#### 11.2.4. Default Binding
+
+- The fourth (and final) way to invoke a function.
+- The fallback if none of the other three match.
+- A plain old function call.
+- The fallback as defined in the spec is to default to global.
+
+```js
+var teacher = 'Kyle';
+
+function ask(question) {
+  console.log(this.teacher, question);
+}
+
+function askAgain() {
+  'use strict';
+  console.log(this.teacher, question);
+}
+
+ask('What is the non-strict-mode default?');
+// Kyle What is the non-strict-mode default?
+
+askAgain('What is the strict-mode default?');
+// TypeError
+```
+
+- In strict mode when you invoke the function with no other `this` binding, the default behaviour is to leave `this` undefined.
+- So when you try to access the property `teacher` on `undefined` you get a `TypeError`.
+- This is intentional because it is almost certainly an error on your part to define a `this`-aware function and invoke it without any `this`.
+- It is almost never the case that you would want `this` to point to global in the same way you wouldn't want global variables.
+- Strict mode fixes that for us and tells us we've made an error. You need to use one of the other three ways.
+
+### 11.3. Binding Precedence
+
+- What if you have a crazy call site, where three of the four rules apply?
+
+```js
+var workshop = {
+  teacher: 'Kyle',
+  ask(question) {
+    console.log(this.teacher, question);
+  },
+};
+
+new (workshop.ask.bind(workshop))('What does this do?');
+// undefined What does this do?
+```
+
+- If more than one rule matches a call site, what is the order of precedence?
+
+1. Is the function called by `new`?
+2. Is the function called by `call()` or `apply()`?
+   Note: `bind()` effectively uses `apply()`
+3. Is the function called on a context object?
+4. DEFAULT: global object (except strict mode)
+
+### 11.4. Arrow Functions and Lexical this
+
+```js
+var workshop = {
+  teacher: 'Kyle',
+  ask(question) {
+    setTimeout(() => {
+      console.log(this.teacher, question);
+    }, 100);
+  },
+};
+
+workshop.ask('Is this lexical "this"?');
+// Kyle Is this lexical this?
+```
+
+- The `this` binding when the arrow function callback is invoked, is correctly pointing to the `workshop` object's context.
+- This is what we refer to as **lexical this** behaviour.
+- Many people have in their minds that an arrow function is hard bound (i.e.`.bind()`) to the parent's `this`. That is not accurate.
+- The proper way to think about arrow functions is that they do not define a `this` keyword at all.
+- There is no such thing as a `this` keyword in an arrow function.
+- If you use a `this` keyword in an arrow function, it is going to behave like any other variable: it will lexically resolve to the next enclosing scope that does define a `this` keyword.
+- In this example the `ask` function's `this` is set by the call site, therefore when the callback gets invoked it essentially is closed over the parent scope of `ask` which has a `this` reference to the `workshop` object.
+
+- The [spec](https://www.ecma-international.org/ecma-262/11.0/#sec-arrow-function-definitions-runtime-semantics-evaluation) says:
+
+_An ArrowFunction does not define local bindings for arguments, super, this, or new.target. Any reference to arguments, super, this, or new.target within an ArrowFunction must resolve to a binding in a lexically enclosing environment._
+
+- **If you think incorrectly about how a piece of code works, even if it accidentally works in that moment, your incorrect thinking will systemically lead to more bugs down the line.**
+- There is only one fix for that: To think like JavaScript thinks.
+- ~~An arrow function is this-bound (aka .bind()) to its parent function~~.
+- **An arrow function doesn't define a `this`, so it's like any normal variable, and resolves lexically (aka "lexical `this`").**
+
+### 11.5. Resolving this in Arrow Functions
+
+- We tend to think that curly braces must be scopes.
+- Just because there are curly braces around the object doesn't make it a scope.
+
+```js
+var workshop = {
+  teacher: 'Kyle',
+  ask: (question) => {
+      console.log(this.teacher, question);
+    }
+  },
+};
+
+workshop.ask('What happened to "this"?');
+// undefined What happened to this?
+
+workshop.ask.call(workshop, 'Still no "this"?');
+// undefined Still no this?
+```
+
+- Objects are not scopes.
+- This is a very common mistake and there are 100s of questions on StackOverflow around this misconception.
+- `this` would therefore be the global object.
+- You have to think about an arrow function as having no `this` and it resolving lexically.
+- There are only two scopes in this example: `ask` and global.
+- It is unfortunate that we have overloaded the `{}` which makes us think they always create a scope.
+- Given the previously discussed problems with arrow functions (anonymous, harder to debug etc.), the only time you should use an arrow function is when you will benefit from lexical this behaviour.
+- The arrow function absolutely is useful in this scenario. It actually matches the mental model of what we want; the `this` keyword to behave lexically.
+- **Only use => arrow functions when you need lexical this.**
+- [eslint plugin](https://github.com/getify/eslint-plugin-proper-arrows) to enforce it!
+- If you are going to use an anonymous arrow function to make use of lexical this, then you need to combat those three downsides:
+  - Anonymous functions don't have a self-reference.
+  - They don't have a name for debugging (assign it to a variable to have it inferred)
+  - Have some way to make it obvious to the reader what the purpose of the function is (don't make them read the function body).
+- Arrow functions do not introduce a new rule for `this`, which is good. They simply do not have a `this`.
+
+### 11.6. [this Exercise](exercises/objects-exercises/this/ex.js)
