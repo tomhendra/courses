@@ -92,6 +92,8 @@
   - [11.4. Arrow Functions and Lexical this](#114-arrow-functions-and-lexical-this)
   - [11.5. Resolving this in Arrow Functions](#115-resolving-this-in-arrow-functions)
   - [11.6. this Exercise](#116-this-exercise)
+  - [11.7. ES6 class Keyword](#117-es6-class-keyword)
+  - [11.8. Classes Exercise](#118-classes-exercise)
 
 ## 1. Introduction
 
@@ -2192,7 +2194,7 @@ for (var i = 1; i <= 3; i++) {
 ```
 
 - We are closing over `j` in three separate instances, each time the loop iterates.
-- With ES6 is was decided that if you use `let` in the for loop argument, a new `i` for each iteration would be created automatically.
+- With ES6 is was decided that if you use `let` in the for loop clause, a new `i` for each iteration would be created automatically.
 
 ```js
 for (let i = 1; i <= 3; i++) {
@@ -2636,3 +2638,127 @@ workshop.ask.call(workshop, 'Still no "this"?');
 - Arrow functions do not introduce a new rule for `this`, which is good. They simply do not have a `this`.
 
 ### 11.6. [this Exercise](exercises/objects-exercises/this/ex.js)
+
+### 11.7. ES6 class Keyword
+
+- The class pattern is by far the most prevalent pattern used in JS.
+- The `class` keyword is syntactic sugar layered upon the prototype system.
+- classes can be defined with or without an extends clause.
+- Do not need to use `,` in between methods.
+
+```js
+class Workshop {
+  constructor(teacher) {
+    this.teacher = teacher;
+  }
+  ask(question) {
+    console.log(this.teacher, question);
+  }
+}
+
+var deepJS = new Workshop('Kyle');
+var reactJS = new Workshop('Suzy');
+
+deepJS.ask("Is 'class' a class?");
+// Kyle Is 'class' a class?
+
+reactJS.ask('Is this class OK?');
+// Suzy Is this class OK?
+```
+
+- If you want to extend one class into another you use the `extends` clause.
+- You don't have to redefine any methods because they will be inherited.
+
+```js
+class Workshop {
+  constructor(teacher) {
+    this.teacher = teacher;
+  }
+  ask(question) {
+    console.log(this.teacher, question);
+  }
+}
+
+class AnotherWorkshop extends Workshop {
+  speakUp(msg) {
+    this.ask(msg);
+  }
+}
+
+var JSRecentParts = new AnotherWorkshop('Kyle');
+
+JSRecentParts.speakUp('Are classes getting better?');
+// Kyle Are classes getting better?
+```
+
+- When we instantiate the child class, we can invoke the method `speakUp` as if it was on the object.
+- There is also the `super` keyword that allows us to do relative polymorphism.
+- If you have a child class that defines a method of the same name as a parent class (called shadowing), you can refer to the parent from the child using `super`.
+
+```js
+class Workshop {
+  constructor(teacher) {
+    this.teacher = teacher;
+  }
+  ask(question) {
+    console.log(this.teacher, question);
+  }
+}
+
+class AnotherWorkshop extends Workshop {
+  ask(msg) {
+    super.ask(msg.toUpperCase());
+  }
+}
+
+var JSRecentParts = new AnotherWorkshop('Kyle');
+
+JSRecentParts.ask('Are classes super?');
+// Kyle ARE CLASSES SUPER?
+```
+
+- This is an example of extension of syntactic sugar. Prior to ES6 classes, there was no way to do relative polymorphism.
+- If you pay attention to the spec there is a whole new bunch of new features coming to classes.
+- There is nothing different in classes about how function calls are made or the `this` keyword gets bound.
+
+```js
+class Workshop {
+  constructor(teacher) {
+    this.teacher = teacher;
+  }
+  ask(question) {
+    console.log(this.teacher, question);
+  }
+}
+
+var deepJS = new Workshop('Kyle');
+
+setTimeout(deepJS.ask, 100, 'Still losing this?');
+// undefined Still losing this?
+```
+
+- But many developers didn't like this decision, and want JS to force class methods to be auto-bound the way they are in more traditional class-based languages.
+- This has caused an explosion of patterns where people want hard bound methods, so what you see a lot of is methods added to the constructor using an arrow function or hard bound method.
+
+```js
+class Workshop {
+  constructor(teacher) {
+    this.teacher = teacher;
+    this.ask = (question) => {
+      console.log(this.teacher, question);
+    };
+  }
+}
+
+var deepJS = new Workshop('Kyle');
+
+setTimeout(deepJS.ask, 100, 'Is "this" fixed?');
+// Kyle Is "this" fixed?
+```
+
+- By doing this you are betraying the entire system that classes was built upon.
+- The class system is built upon the idea that the methods don't exist on your instances but on the prototypes.
+- Also you end up with a function copied to every instance. In reality this is just a terrible version of a module!
+- The class system is great if you want to use polymorphism and multiple levels of inheritance, it's just that the vast majority of people use them in this way abandon the flexibility and end up with something that could be better accomplished with the module pattern.
+
+### 11.8. [Classes Exercise](exercises/objects-exercises/class/ex.js)
