@@ -94,6 +94,11 @@
   - [11.6. this Exercise](#116-this-exercise)
   - [11.7. ES6 class Keyword](#117-es6-class-keyword)
   - [11.8. Classes Exercise](#118-classes-exercise)
+- [12. ProtoTypes](#12-prototypes)
+  - [12.1. Prototypal Class](#121-prototypal-class)
+  - [12.2. The Prototype Chain](#122-the-prototype-chain)
+  - [12.3. Dunder Prototypes](#123-dunder-prototypes)
+  - [12.4. Shadowing Prototypes](#124-shadowing-prototypes)
 
 ## 1. Introduction
 
@@ -2504,10 +2509,10 @@ var emptyObject = new ask('What is the new keyword doing here?');
 // undefined What is the new keyword doing here?
 ```
 
-- It does four very specific things which are not particularly obvious when you look at the call site.
+- The `new` keyword does four very specific things which are not particularly obvious when you look at the call site.
 
 1. Create a brand new empty object
-2. Link that object to another object
+2. Link that object to another object ([See prototype chain](#122-the-prototype-chain))
 3. Call function with `this` set to the new object
 4. If the function does not return an object, assume return of `this`
 
@@ -2762,3 +2767,170 @@ setTimeout(deepJS.ask, 100, 'Is "this" fixed?');
 - The class system is great if you want to use polymorphism and multiple levels of inheritance, it's just that the vast majority of people use them in this way abandon the flexibility and end up with something that could be better accomplished with the module pattern.
 
 ### 11.8. [Classes Exercise](exercises/objects-exercises/class/ex.js)
+
+## 12. ProtoTypes
+
+- Objects that exist in our programs that we can see or we create or interact with, are always created with **constructor calls** via `new`.
+- It is not the same as a constructor, but a different term.
+- When we use `new` in front of a function call, it's _constructing_ an object to be used for the `this` binding of that function call.
+- It is often said a "constructor call" makes an object “based on” its own prototype, but this is not accurate.
+- To move away from JavaScript for discussion's sake...
+- In computer science foundations of class theory, the most common metaphor to distinguish a class from an instance is that a class is the abstract pattern or blueprint, and the instance is when the blueprint is constructed into a building.
+- This infers the assumption that class oriented coding is fundamentally a copy operation.
+- There is no one standard pattern for what the class design is, there are lots of different ones.
+- But it is also true that the majority of people who write classes in JavaScript have a mental model from Java or C++.
+- The relationship between the blueprint and the building only existed during the split second that it was being instantiated.
+- The characteristics from the blueprint were copied into the building, and the relationship then ceased to exist.
+- When you make an instance of a class, the mental model is that the instance is a copy of all the behaviours, they are inherited.
+- When you talk about classes you immediately start talking about parent and child classes.
+- Inheritance is also fundamentally a copy operation.
+- The metaphor most often used to describe inheritance is the genetic metaphor.
+- When many languages' compilers and interpretors implement classes, they actually flatten them for performance reasons, they will literally copy down into the instance, because it is much faster for the instance to have a reference to the function than to look up some dynamic hierarchy chain.
+- The hierarchy chain is only maintained for relative polymorphism: called a virtual table (C++).
+- In any way you interpret it, computer science foundations of class theory say that the relationship implied by classes is a copy relationship.
+- The statement that in JavaScript a "constructor call" makes an object “based on” its own prototype, also implies that the constructor is making a copy of the prototype in the instance.
+- But JavaScript doesn't do any copying at all.
+- The correct statement would be: A "constructor call" makes an object **linked to** its own prototype.
+- Copying and linking are fundamentally and diametrically opposite to each other.
+- It can completely change what your expectation of a system is, if your mental model is based on copying, or based on linking.
+- It matters what model you are using because a program will break if there is a divergence between your mental model and what the system was actually doing.
+- If you are thinking about copying and the system is linking, bugs will occur.
+- Kyle has a problem with the notion of taking the class system, which has a design pattern which is fundamentally copy, and putting it on top of a language that doesn't do copies. It doesn't fit.
+- It isn't surprising there has been so much trouble making JavaScript look, feel and behave like a class oriented language.
+
+### 12.1. Prototypal Class
+
+- Underneath the sugar, this is what the class system in JavaScript looks like.
+
+```js
+// Acts as a constructor function.
+function Workshop(teacher) {
+  this.teacher = teacher;
+}
+
+Workshop.prototype.ask = function (question) {
+  console.log(this.teacher, question);
+};
+
+// When we use the new keyword it will invoke the Workshop function,
+// and the object that gets created will be linked to Workshop.prototype
+var deepJS = new Workshop('Kyle');
+var reactJS = new Workshop('Suzy');
+
+/* It's important to understand that the deepJS object does NOT have an ask method.
+ * Instead it is prototype linked to Workshop.prototype, and when we call deepJS.ask()
+ * it will delegate one level up the prototype chain from deepJS up to Workshop.prototype,
+ * and when it invokes the ask method it is done so in the this context of the deepJS object.
+ */
+
+deepJS.ask("Is 'prototype' a class?");
+// Kyle Is 'prototype' a class?
+
+reactJS.ask("Isn't 'prototype' ugly?");
+// Suzy Isn't 'prototype' ugly?
+```
+
+- We wouldn't write code like this these days, we would use the built in class system.
+- But it is important ti understand what's happening under the hood so that when things break we understand what's going on.
+
+### 12.2. The Prototype Chain
+
+- To understand the prototype chain, we will break down the example which demonstrates what is happening under the hood:
+
+```js
+function Workshop(teacher) {
+  this.teacher = teacher;
+}
+
+Workshop.prototype.ask = function (question) {
+  console.log(this.teacher, question);
+};
+
+var deepJS = new Workshop('Kyle');
+var reactJS = new Workshop('Suzy');
+
+deepJS.ask("Is 'prototype' a class?");
+reactJS.ask("Isn't 'prototype' ugly?");
+```
+
+- At the very top level, the line 0 environment, before your program has even started to run, there is the `Object` fundamental object.
+- This is not only an object but also a function with a lot of fundamental utilities, so serves as a namespace with a bunch of methods.
+- Also in the line 0 environment, there is an object which is probably the most important in all of JavaScript, but it doesn't have a name.
+- We name it referring to what points at it.
+- There is a property on the `Object` function that points to the unnamed object. That property is `prototype`: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object).
+- It has a lot of important utilities, and all non-primitives descend from `Object.prototype`.
+- There is one other thing that exists in the line 0 environment; a property that points from `Object.prototype` back to `Object`.
+- For this additional property they chose a really perplexing and frustrating name. They chose a name to pretend as if the JavaScript system had classes: it is called `constructor`.
+- It implies that the object function is the constructor of the object that points to it, which it isn't.
+- That word `constructor` in this fundamental prototype system has no more meaning than the word `foobar`.
+- Using the word `constructor` serves to help with the artifice that we are dealing with a class oriented system.
+
+- We create the `Workshop` function.
+- This also creates an object, which is referred to by the property that points to it: `prototype`.
+- And there is a property that points from the object back to the `Workshop`: `constructor`.
+- There is a hidden relationship between `Workshop.prototype` and `Object.prototype`.
+- `Workshop.prototype.ask` adds the property `ask` to the the object referenced with `Workshop.prototype`.
+
+- Recall the four things that happen with the `new` keyword:
+
+1. Create a brand new empty object
+2. Link that object to another object
+3. Call function with `this` set to the new object
+4. If the function does not return an object, assume return of `this`
+
+- So with `var deepJS = new Workshop('Kyle');`
+- (1) A new object is created.
+- (2) The new object is linked to the object referenced with `Workshop.prototype`.
+- (3) We invoke the function and run `this.teacher = teacher;`, so the new object gets a property of `teacher`.
+- (4) The function does not return an object, so the new object (`this`) is returned and assigned to the identifier `deepJS`.
+- The same steps repeat for `var reactJS = new Workshop('Suzy');`
+
+- Next `deepJS.ask("Is 'prototype' a class?");` runs, but `deepJS` doesn't have an `ask` method.
+- We are able to call the method because of internal hidden linkage called **the prototype chain** (In the spec they use `[[prototype]]`).
+- When we look for a property on an object and it doesn't exist, by default we look at the next object in the prototype chain.
+- The object identified with `deepJS` is connected to the object referenced with `Workshop.prototype`, which does have an `ask` method.
+- When we invoke the `ask` method and run `console.log(this.teacher, question);` which has a `this` context of `deepJS` since `deepJS` was the call site. It doesn't mater that we found the method further up the prototype chain.
+- The same steps repeat for `var reactJS = new Workshop('Suzy');`
+
+- We are able to share a method between numerous objects all because of the `this` behaviour and the prototype chain.
+- It is an awesome system, but too limiting to only think about it through the lens of classes.
+
+### 12.3. Dunder Prototypes
+
+- Recall the `constructor` property that points from the `Workshop.prototype` back to `Workshop`.
+- Consider the following.
+
+```js
+function Workshop(teacher) {
+  this.teacher = teacher;
+}
+
+Workshop.prototype.ask = function (question) {
+  console.log(this.teacher, question);
+};
+
+var deepJS = new Workshop('Kyle');
+
+deepJS.constructor === Workshop; // true
+
+deepJS.__proto__ === Workshop.prototype; // true
+Object.getPrototypeOf(deepJS) === Workshop.prototype; // true
+```
+
+- Why is it that `deepJS.constructor === Workshop` returns `true` if there is no `constructor` property on `deepJS`?
+- Because of the same behaviour as with `ask` previously:
+- When we look for a property on an object and it doesn't exist, by default we look at the next object in the prototype chain.
+- `deepJS` is linked to the object referenced with `Workshop.prototype`.
+- `Workshop.prototype` has a `constructor` property that points back to `Workshop`.
+- This seems to imply that `deepJS` was constructed by `Workshop`, but we know that the `new` keyword is what actually created it.
+- The `Workshop` object almost had nothing to do with it.
+- It just happens that these properties exist that create links to infer that a class system has occurred.
+- The cool kids in JS like to refer to the `__proto__` property as **dunder proto**.
+- `__proto__` doesn't exist on `deepJS` nor `Workshop.prototype` but at the top of the chain `Object.prototype` it does.
+- `__proto__` exists on `Object.prototype` but it isn't a property, it is a getter function.
+- When the getter function is invoked on `Object.prototype` its `this` keyword is `deepJS` because that's the call site.
+- `__proto__` returns the value of the `prototype` object it is linked to, in this case `Workshop.prototype`.
+
+### 12.4. Shadowing Prototypes
+
+-
