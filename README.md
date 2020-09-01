@@ -6,7 +6,7 @@
 
 ## Introduction
 
-I have been learning software development full-time since August 2018, and prior to that alongside full-time employment since August 2017. This repo serves as an archive of notes and supporting files from the courses I have taken since beginning to study full-time.
+I have been learning software development full-time since August 2018, and prior to that alongside full-time employment since August 2017. This repo serves as an archive of notes and supporting files from the courses I have taken since learning to use GitHub in December 2018. 🙂
 
 I map my progress & plan my journey with **[this Trello board](https://trello.com/b/R1CVyI4S)**.
 
@@ -78,7 +78,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Deep JavaScript Foundations, v3](15-fem-professional/2-deep-javascript-foundations-v3)**\
        Dive into JavaScript's core language features: types & coercion, scope & closure, and JavaScript's object oriented system.
 
-    - **[JavaScript: The Recent Parts](15-fem-professional/)**\
+    - **[JavaScript: The Recent Parts](15-fem-professional/3-javascript-the-recent-parts)**\
        Get up to speed with new JavaScript features like tagged template literals, destructuring, iterators, generators, regex improvements and async await.
 
     - **[Complete Intro to React, v5](15-fem-professional/)**\
