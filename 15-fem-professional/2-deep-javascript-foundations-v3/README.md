@@ -104,6 +104,7 @@
   - [12.7. Inheritance is Delegation](#127-inheritance-is-delegation)
   - [12.8. OLOO Pattern](#128-oloo-pattern)
   - [12.9. Delegation-Oriented Design](#129-delegation-oriented-design)
+- [13. Summary](#13-summary)
 
 ## 1. Introduction
 
@@ -3221,3 +3222,10 @@ var LoginFormController = Object.assign(Object.create(AuthController), {
 - If you taking seriously the undertaking of properly understanding JavaScript, then you should think about how to use the language in its effectively designed way.
 - Even with all the sugar layered on the class system it is not what JavaScript does inherently.
 - What JavaScript does inherently, is prototype delegation.
+
+## 13. Summary
+
+- If for whatever reason you have decided to make your career centred around JavaScript, doesn't it make more sense to know your JavaScript?
+- Be more curious, ask more questions, want to know why the code works so you can fix it when it breaks.
+- Read the spec one in a while, and understand and have a mental model.
+- Through the understanding of JavaScript communicate your ideas and your intent more effectively.
