@@ -99,6 +99,11 @@
   - [12.2. The Prototype Chain](#122-the-prototype-chain)
   - [12.3. Dunder Prototypes](#123-dunder-prototypes)
   - [12.4. Shadowing Prototypes](#124-shadowing-prototypes)
+  - [12.5. Prototypal Inheritance](#125-prototypal-inheritance)
+  - [12.6. Classical vs Prototypal Inheritance](#126-classical-vs-prototypal-inheritance)
+  - [12.7. Inheritance is Delegation](#127-inheritance-is-delegation)
+  - [12.8. OLOO Pattern](#128-oloo-pattern)
+  - [12.9. Delegation-Oriented Design](#129-delegation-oriented-design)
 
 ## 1. Introduction
 
@@ -2879,17 +2884,19 @@ reactJS.ask("Isn't 'prototype' ugly?");
 4. If the function does not return an object, assume return of `this`
 
 - So with `var deepJS = new Workshop('Kyle');`
-- (1) A new object is created.
-- (2) The new object is linked to the object referenced with `Workshop.prototype`.
-- (3) We invoke the function and run `this.teacher = teacher;`, so the new object gets a property of `teacher`.
-- (4) The function does not return an object, so the new object (`this`) is returned and assigned to the identifier `deepJS`.
-- The same steps repeat for `var reactJS = new Workshop('Suzy');`
+
+1. A new object is created.
+2. The new object is linked to the object referenced with `Workshop.prototype`.
+3. We invoke the function and run `this.teacher = teacher;`, so the new object gets a property of `teacher`.
+4. The function does not return an object, so the new object (`this`) is returned and assigned to the identifier `deepJS`.
+
+The same steps repeat for `var reactJS = new Workshop('Suzy');`
 
 - Next `deepJS.ask("Is 'prototype' a class?");` runs, but `deepJS` doesn't have an `ask` method.
 - We are able to call the method because of internal hidden linkage called **the prototype chain** (In the spec they use `[[prototype]]`).
 - When we look for a property on an object and it doesn't exist, by default we look at the next object in the prototype chain.
 - The object identified with `deepJS` is connected to the object referenced with `Workshop.prototype`, which does have an `ask` method.
-- When we invoke the `ask` method and run `console.log(this.teacher, question);` which has a `this` context of `deepJS` since `deepJS` was the call site. It doesn't mater that we found the method further up the prototype chain.
+- When we invoke the `ask` method and run `console.log(this.teacher, question);` which has a `this` context of `deepJS` since `deepJS` was the call site. It doesn't mater that we found the `ask` method further up the prototype chain on `Workshop.prototype`.
 - The same steps repeat for `var reactJS = new Workshop('Suzy');`
 
 - We are able to share a method between numerous objects all because of the `this` behaviour and the prototype chain.
@@ -2928,9 +2935,289 @@ Object.getPrototypeOf(deepJS) === Workshop.prototype; // true
 - The cool kids in JS like to refer to the `__proto__` property as **dunder proto**.
 - `__proto__` doesn't exist on `deepJS` nor `Workshop.prototype` but at the top of the chain `Object.prototype` it does.
 - `__proto__` exists on `Object.prototype` but it isn't a property, it is a getter function.
-- When the getter function is invoked on `Object.prototype` its `this` keyword is `deepJS` because that's the call site.
-- `__proto__` returns the value of the `prototype` object it is linked to, in this case `Workshop.prototype`.
+- When the getter function is invoked on `Object.prototype` its `this` keyword is `deepJS` because `deepJS` is the call site.
+- The getter of `__proto__` returns the linked `prototype` object, which in the context of `deepJS` is `Workshop.prototype`.
 
 ### 12.4. Shadowing Prototypes
 
--
+- By assigning a function with `deepJS.ask` below we are shadowing, because we have two levels of the prototype chain with the exact same property.
+
+```js
+function Workshop(teacher) {
+  this.teacher = teacher;
+}
+
+Workshop.prototype.ask = function (question) {
+  console.log(this.teacher, question);
+};
+
+var deepJS = new Workshop('Kyle');
+
+deepJS.ask = function (question) {
+  this.ask(question.toUpperCase);
+};
+
+deepJS.ask('Oops, is this infinite recursion?');
+```
+
+- The `this` of ask will point to the call site as always, which is `deepJS`.
+- So we will enter an infinite recursive call of the function `ask`.
+- Recall the statement: _If you have a child class that defines a method of the same name as a parent class (called shadowing), you can refer to the parent from the child using `super`._
+- So this `this.` doesn't work in place of a `super` here. It is not a relative polymorphic reference.
+- How do we go one level up the prototype chain?
+- We could use `__proto__`, but if we referenced `this.__proto__.ask` the call site for `ask` would be `Workshop.prototype` because that's what `__proto__` will return as the linked object.
+- So we have the following abomination of code as a hack:
+
+```js
+function Workshop(teacher) {
+  this.teacher = teacher;
+}
+
+Workshop.prototype.ask = function (question) {
+  console.log(this.teacher, question);
+};
+
+var deepJS = new Workshop('Kyle');
+
+deepJS.ask = function (question) {
+  this.__proto__.ask.call(this, question.toUpperCase());
+};
+
+deepJS.ask('Is this fake polymorphism?');
+// Kyle IS THIS FAKE POLYMORPHISM?
+```
+
+- We find the method one level up the prototype chain but have to invoke it in the current `this` context.
+- This could be referred to as explicit polymorphism!
+- And if we needed to go up another level we would need to write `this.__proto__.__proto__ask`!
+- When you try to shadow without using the class system, there is no way to do relative polymorphism.
+- In class design theory the whole point of having a child class, is that you can inherit something from the parent, override it, and then call `super` to access the parent version of it.
+- So we are trying to override and extend the `ask` method outside of the class system and it simply doesn't work.
+
+### 12.5. Prototypal Inheritance
+
+- If we wanted a parent-child relationship in the prototypal style, we could achieve it as follows.
+
+```js
+function Workshop(teacher) {
+  this.teacher = teacher;
+}
+
+Workshop.prototype.ask = function (question) {
+  console.log(this.teacher, question);
+};
+
+function AnotherWorkshop(teacher) {
+  Workshop.call(this, teacher);
+}
+AnotherWorkshop.prototype = Object.create(Workshop.prototype);
+AnotherWorkshop.prototype.speakUp = function (msg) {
+  this.ask(msg.toUpperCaseI());
+};
+
+var JSRecentParts = new AnotherWorkshop('Kyle');
+
+JSRecentParts.speakUp('Is this actually inheritance?');
+// Kyle IS THIS ACTUALLY INHERITANCE?
+```
+
+- We define `AnotherWorkshop` constructor.
+- The way we make `AnotherWorkshop` extend or inherit from `Workshop` is `Object.create`.
+- We are saying take the original prototype that we initially got `AnotherWorkshop.prototype` which is not what I want, and change where it links to `Workshop.prototype`.
+- `object.create` is a utility built into ES5 and it does two things:
+
+1. Create a brand new empty object
+2. Link that object to another object
+
+- The same first two steps as the `new` algorithm.
+- Although it is an anti-pattern we could also write `AnotherWorkshop.prototype.__proto__ = Workshop.prototype;`.
+- The linkage that exists between these objects is a good thing, but we have a bunch of stuff layered on top, with things that look like constructor functions, verbose use of `prototype` everywhere, confusing `new` keyword instances, and all of this artifice is on top of theses three objects linked together.
+- It is the objects being linked together that creates all of the power. it enables `JSRecentParts.speakUp(...);` to work.
+- `SRecentParts` has no method `speakUp`. It is found up the prototype chain.
+- No matter how far you need to go up the prototype chain, the `this` binding is still controlled at the root by the call site.
+
+### 12.6. Classical vs Prototypal Inheritance
+
+- In classical oriented languages (C++, Java) when you you make a class called `Workshop` and instantiate it, you are conceptually and in some cases physically copying down into those instances.
+- And when you create a child class `AnotherWorkshop` you are copying down into that.
+- And when you instantiate the child class you are doing more copies.
+- The links go from top-to-bottom, left-to-right.
+- When you try to do prototypal inheritances, you have a `Workshop.prototype` object, and then you make other objects `deepJS` and `reactJS` which are linked to `Workshop.prototype`.
+- And when you make `AnotherWorkshop.prototype` it is linked to `Workshop.prototype`.
+- The links go from bottom-to-top, right-to-left.
+- This is often referred to as **prototypal inheritance**.
+- However the word _prototypal_ doesn't really mean anything to most people. But the word _inheritance_ does have meaning, and most dev's brains have been programmed to think of inheritance as having copy relationships.
+- For years JavaScript developers have been confused as to why classes in JS do not work the same as in other languages, which is because the systems are fundamentally different.
+- The emotional attachment to the class design pattern has been pandered, by adding extra complexity on top of JavaScript to suit the syntactic sugar desires instead of embracing what JavaScript already is.
+- Why not embrace the prototype system, the dynamic `this` nature?
+- Instead we keep trying to put all these other things into JavaScript so it can be a class system, but in reality it is not.
+- We keep duct taping the language to make it look like classes instead of embracing it for what it truly is.
+
+### 12.7. Inheritance is Delegation
+
+- The prototype system is fantastic, but it is a different design pattern to classes.
+- JavaScript ~~“Inheritance”~~ “Behaviour Delegation”.
+- That's what JavaScript's prototype system is: a delegation system, not a class system.
+- A class system doesn't fit in a system that was designed to be a delegation system.
+- It would be better to use the system the way it was designed to work.
+- It has been observed, that if you compare a prototypal (delegation) system to a class system, the prototypal system is significantly more powerful than the class system, because you can implement a class system inside of a prototypal system, but you cannot do the reverse.
+- So we chose to take a powerful prototypal system, and use it in one very specific way that's not even a particularly good usage of the system, and spent 20 years banging our heads because it doesn't work like it does in other languages.
+- The wrong pattern is being used, and sometimes because a framework is making the choice for us.
+
+### 12.8. OLOO Pattern
+
+- What can we do with delegation if we set aside our preconception that classes are the only design pattern that matters?
+- Let's look an another way of using the prototype system that has more potential.
+- Kyle has coined the term OLOO: **O**bjects **L**inked to **O**ther **O**bjects.
+- There are two languages in existence, JavaScript and Lua, wherein you can create an object without any class.
+- So if you think about it the only true object oriented languages are JavaScript and Lua.
+- But the term object oriented has been assigned to class oriented languages are we are stuck with it.
+- Recall the class syntax in JS:
+
+```js
+class Workshop {
+  constructor(teacher) {
+    this.teacher = teacher;
+  }
+  ask(question) {
+    console.log(this.teacher, question);
+  }
+}
+
+class AnotherWorkshop extends Workshop {
+  speakUp(msg) {
+    this.ask(msg.toUpperCase());
+  }
+}
+
+var JSRecentParts = new AnotherWorkshop('Kyle');
+JSRecentParts.speakUp('Are classes getting better?');
+// Kyle ARE CLASSES GETTING BETTER?
+```
+
+- But remember under the syntactic sugar, what's really happening is that we are implying all these prototypes.
+
+```js
+function Workshop(teacher) {
+  this.teacher = teacher;
+}
+
+Workshop.prototype.ask = function (question) {
+  console.log(this.teacher, question);
+};
+
+function AnotherWorkshop(teacher) {
+  Workshop.call(this, teacher);
+}
+AnotherWorkshop.prototype = Object.create(Workshop.prototype);
+AnotherWorkshop.prototype.speakUp = function (msg) {
+  this.ask(msg.toUpperCase());
+};
+
+var JSRecentParts = new AnotherWorkshop('Kyle');
+JSRecentParts.speakUp("Isn't this ugly?");
+// Kyle ISN'T THIS UGLY?
+```
+
+- What if we could code in a style that accomplishes the same thing, but without any of the baggage of thinking or designing with classes, or worrying about super or prototypes, and certainly never needing to use the `new` keyword again. What if we could just link objects to objects?
+- Here is the OOLO representation:
+
+```js
+var Workshop = {
+  setTeacher(teacher) {
+    this.teacher = teacher;
+  },
+  ask(question) {
+    console.log(this.teacher, question);
+  },
+};
+
+var AnotherWorkshop = Object.assign(Object.create(Workshop), {
+  speakUp(msg) {
+    this.ask(msg.toUpperCase());
+  },
+});
+
+var JSRecentParts = Object.create(AnotherWorkshop);
+JSRecentParts.setTeacher('Kyle');
+JSRecentParts.speakUp("But isn't this cleaner?");
+// Kyle BUT ISN"T THIS CLEANER
+```
+
+- Everything is just an object.
+- We are getting the same benefits of a class system, without the `.prototype`s, the `constructor` functions or the `new` keywords.
+- We just have objects linked to other objects.
+- `Object.create` creates and links objects for us.
+- Line-for-line there is also very little syntactic difference between this style and the class system.
+- OLOO exposes to you directly what it is, rather than pretending with an artifice that it is something it is not.
+- But how does `Object.create` do that magic?
+- This is an old polyfill for `Object.create`.
+
+```js
+if (!Object.create) {
+  Object.create = function (o) {
+    function F() {} // all those constructor functions
+    F.prototype = o; // all those .prototypes
+    return new F(); // all those new keywords
+  };
+}
+```
+
+- In other words we take all those `constructor` functions, and all those `.prototypes`, and all those `new` keywords and hide them inside of `Object.create`.
+
+### 12.9. Delegation-Oriented Design
+
+- Delegation is a design pattern.
+- Design patterns should affect the way that you think about designing your code.
+- How should delegation be approached to solve problems differently?
+- Imagine you have a login page that you need to construct in your application.
+- You are going to have two different controllers:
+  - AuthControllerClass: represents the authentication with the server
+  - LoginFormControllerClass: represents all the UI components
+- The old school way to design this is to ensure both sets of behaviours are both composed or you have access to both.
+- So you would have AuthControllerClass as a parent class, LoginFormControllerClass as the child class, and then you instantiate to get a pageInstance which has all the methods from both AuthControllerClass and LoginFormControllerClass present in the instance.
+- That would be the inheritance approach: **Composition Thru Inheritance** - the 1980's and 1990's vision of how software should be built.
+- Somewhere in the mid to late 90's it was said having inheritance 30 levels deep was an anti-pattern, and instead of Composition Thru Inheritance it should be composition instead of inheritance AKA **composition over inheritance**.
+- Get rid of all these vertically linked chains, and have things compose themselves together.
+- One way to achieve this is to instantiate the two classes AuthControllerClass and LoginFormControllerClass and have one of them be a property of the other.
+- And then it was said it would be ugly with all of these properties, and it would be better to do mixins.
+- Mixin composition which says to instantiate the two classes AuthControllerClass and LoginFormControllerClass and copy all the methods from one into the other.
+- All of these are solutions to the problem that you want to separate the logic, but they need to be composed for the page to work.
+- Delegation's answer to this is:
+
+1. You stop thinking about parent-child and start thinking about peer-to-peer.
+
+```js
+var AuthController = {
+  authenticate() {
+    server.authenticate(
+      [this.username, this.password],
+      this.handleResponse.bind(this)
+    );
+  },
+  handleResponse(resp) {
+    if (!resp.ok) this.displayError(resp.msg);
+  },
+};
+
+var LoginFormController = Object.assign(Object.create(AuthController), {
+  onSubmit() {
+    this.username = this.$username.val();
+    this.password = this.$password.val();
+    this.authenticate();
+  },
+  displayError(msg) {
+    alert(msg);
+  },
+});
+```
+
+- LoginFormController is linked through the prototype chain to AuthController but you could interact with them separately if you wanted to.
+- These two separate objects have virtually composed each other over the shared `this` context.
+- This is a very different way to think about software design.
+- They can call each other's methods as required.
+- Because these objects exist independently and are only linked through the the prototype chain, they become much more testable than when dealing with class hierarchies.
+- You can mock the AuthController to test the LoginFormController and vice versa.
+- If you taking seriously the undertaking of properly understanding JavaScript, then you should think about how to use the language in its effectively designed way.
+- Even with all the sugar layered on the class system it is not what JavaScript does inherently.
+- What JavaScript does inherently, is prototype delegation.
