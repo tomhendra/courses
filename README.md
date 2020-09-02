@@ -6,7 +6,7 @@
 
 ## Introduction
 
-I have been learning software development full-time since August 2018, and prior to that alongside full-time employment since August 2017. This repo serves as an archive of notes and supporting files from the courses I have taken since learning to use GitHub in December 2018. 🙂
+I have been learning software development full-time since September 2018, and prior to that alongside full-time employment since September 2017. This repo serves as an archive of notes and supporting files from the courses I have taken since learning to use GitHub. 🙂
 
 I map my progress & plan my journey with **[this Trello board](https://trello.com/b/R1CVyI4S)**.
 

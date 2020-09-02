@@ -3,8 +3,6 @@
 <h1>Deep JavaScript Foundations v3</h1>
 </div>
 
-**Started: 20/08/20**
-
 - [1. Introduction](#1-introduction)
   - [1.1. Motivations](#11-motivations)
   - [1.2. Course Overview](#12-course-overview)
