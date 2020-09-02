@@ -7,6 +7,9 @@
   - [1.1. JavaScript New Feature Process](#11-javascript-new-feature-process)
   - [1.2. Declarative JavaScript](#12-declarative-javascript)
   - [1.3. Browser Support and Transpilers](#13-browser-support-and-transpilers)
+  - [1.4. Course Overview](#14-course-overview)
+- [2. Strings](#2-strings)
+  - [2.1. Template Strings](#21-template-strings)
 
 ## 1. Introduction
 
@@ -62,3 +65,38 @@ Learn the latest features in JavaScript with Kyle Simpson, author of the popular
 - That makes code able to communicate better.
 
 ### 1.3. Browser Support and Transpilers
+
+- With the rapid changes coming into JavaScript, ma ny devs have concerns about browser support.
+- In the same period of time that there was a stagnation for 10 years, there was also a trend of developers being years behind the trailing edge of new features that came out.
+- There is a sense that some developers feel safer not using new features if they have to support older browsers.
+- Transpilers solve this problem, and became popular at the same time as ES6.
+- Babel is the most popular.
+- Babel takes JavaScript with the latest features, and compiles to an older version of JavaScript which all browsers support.
+- If we are not using the new features then we are completely missing out.
+- We don't have to learn every new feature, but we should be aware of the pulse and the direction the language is heading.
+- We should be trying to use these new features to improve our code.
+- There will always be a gap between the latest features of JS and browser support, and transpilers close this gap for us.
+- Configuring Webpack is intimidating, but transpilers are the present and future of JS so we should embrace them.
+
+### 1.4. Course Overview
+
+- **JavaScript Versions**
+  - ES6 / ES2015
+  - ES2016
+  - ES2017
+  - ES2018
+  - ES2019
+- **Features**
+  - Template Strings
+  - String padding/trimming
+  - Destructuring
+  - Array find() / includes()
+  - Array flat() / flatMap()
+  - Iterators, Generators
+  - RegExp Improvements
+  - async .. await
+  - async\* .. yield await
+
+## 2. Strings
+
+### 2.1. Template Strings
