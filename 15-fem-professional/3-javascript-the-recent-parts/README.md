@@ -10,6 +10,7 @@
   - [1.4. Course Overview](#14-course-overview)
 - [2. Strings](#2-strings)
   - [2.1. Template Strings](#21-template-strings)
+  - [2.2. Tagged Templates](#22-tagged-templates)
 
 ## 1. Introduction
 
@@ -100,3 +101,62 @@ Learn the latest features in JavaScript with Kyle Simpson, author of the popular
 ## 2. Strings
 
 ### 2.1. Template Strings
+
+- Template perhaps isn't the best word to use, as it implies something that you can reuse multiple times.
+- It is better to think about template strings as Interpolated Literals or "Interpoliterals".
+- The official term for string concatenation is string interpolation.
+- The old way to do this was as follows.
+
+```js
+var name = 'Kyle Simpson';
+var email = 'getify@gmail.com';
+var title = 'Teacher';
+
+var msg =
+  'Welcome to this class! Your ' +
+  title +
+  ' is ' +
+  name +
+  ', contact: ' +
+  email +
+  '.';
+
+console.log(msg);
+// Welcome to this class! Your Teacher is Kyle Simpson, contact: getify@gmail.com.
+```
+
+- This is a feature that has been supported in a variety of other languages prior to JavaScript.
+- This is an example of that very imperative approach to code, as to figure out the final string you need to mentally execute out code.
+- Template strings let us declare what our final string is, and have variable placeholders for where we want our values to be dropped in.
+- Unfortunately the string literal be changed, so a whole new string literal was added to support that automatic interpolation.
+- The backtick operator `` ` `` was chosen to indicate a different kind of string within which will be expressions.
+- The expression used to delimit is `${}`.
+
+```js
+var name = 'Kyle Simpson';
+var email = 'getify@gmail.com';
+var title = 'Teacher';
+
+var msg = `Welcome to this class! Your ${title} is ${name}, contact: ${email}.`;
+
+console.log(msg);
+// Welcome to this class! Your Teacher is Kyle Simpson, contact: getify@gmail.com.
+```
+
+- The typical use case is for variables, but you can literally put any code inside the `{}` that you want to.
+- Also there is no need for string continuation using a backslash when you want a line break.
+- This is typical of the declarative language JavaScript is evolving into: Just write a string and have JS figure it out interpolation.
+
+### 2.2. Tagged Templates
+
+- The template literals have another feature that lets us more fully control the preprocessing: tagged literals.
+
+```js
+var amount = 12.3;
+
+var msg = formatCurrency`The total for your order is ${amount}`;
+
+// The total for your order is $12.30
+```
+
+- There is no operator between `formatCurrency` and the `` ` ``
