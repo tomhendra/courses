@@ -11,6 +11,9 @@
 - [2. Strings](#2-strings)
   - [2.1. Template Strings](#21-template-strings)
   - [2.2. Tagged Templates](#22-tagged-templates)
+  - [2.3. Applying Tagged Templates](#23-applying-tagged-templates)
+  - [2.4. Tagged Template Exercise](#24-tagged-template-exercise)
+  - [2.5. Padding & Trimming](#25-padding--trimming)
 
 ## 1. Introduction
 
@@ -152,11 +155,159 @@ console.log(msg);
 - The template literals have another feature that lets us more fully control the preprocessing: tagged literals.
 
 ```js
+var name = 'Tom';
 var amount = 12.3;
+var company = 'Cider Utopia';
 
-var msg = formatCurrency`The total for your order is ${amount}`;
+var msg = formatCurrency`Hey ${name}, the total value of your order is ${amount}. Thank you for shopping at ${company}.`;
 
-// The total for your order is $12.30
+// Hey Tom, the total value of your order is $12.30. Thank you for shopping at Cider Utopia.
 ```
 
-- There is no operator between `formatCurrency` and the `` ` ``
+- There is no operator between `formatCurrency` and the `\``.
+- It is a special kind of function call, called a tagged template string / tagged template literal.
+- You are declaratively tagging this string to say before it finishes process it with the function `formatCurrency`.
+
+```js
+function formatCurrency(strings, ...values) {
+  var str = '';
+  for (let i = 0; i < strings.length; i++) {
+    if (i > 0) {
+      if (typeof values[i - 1] == 'number') {
+        str += `$${values[i - 1].toFixed(2)}`; // formats the value
+      } else {
+        str += values[i - 1];
+      }
+    }
+    str += strings[i];
+  }
+  return str;
+}
+```
+
+- `formatCurrency` takes a `strings` array, and `...values` gathers the individual values into an array.
+- JavaScript will immediately invoke this function for us, pass all the individual bits of literal strings in one array, and pass all the different values that we have chosen to interpolate in these individual positions into another array.
+- So we have two arrays of things and it is up to us how / if we want to put them together.
+- In a general sense we are almost always going to use a tag function to produce another string, and loop over the arrays to interpolate them together.
+- To make that process easier JavaScript guarantees that the `strings` array will always have one more value than the values `array` would have.
+- So if the `values` array contains 3 items, the `strings` array will have 4.
+- Tag functions are essentially a way to preprocess the string and do some sort of formatting on it.
+- Use cases could include internationalisation for different terminology, or removing escape chars and XSS from user inputs.
+- The great news is you almost certainly don't need to write your own tag function, because there are already 100s already written in various libraries.
+
+### 2.3. Applying Tagged Templates
+
+- It is useful to understanding the processing model of tag functions, as there are more interesting things you can do.
+- The following is a replacement for `console.log` which rather than printing `[object Object]` or just the error string from a `try catch`, it will print objects as JSON, or Errors as a stack trace string.
+
+```js
+function logger(strings, ...values) {
+  var str = '';
+  for (let i = 0; i < strings.length; i++) {
+    if (i > 0) {
+      if (values[i - 1] && typeof values[i - 1] === 'object') {
+        if (values[i - 1] instanceof Error) {
+          if (values[i - 1].stack) {
+            str += values[i - 1].stack;
+            continue;
+          }
+        } else {
+          try {
+            str += JSON.stringify(values[i - 1]);
+            continue;
+          } catch (err) {}
+        }
+      }
+      str += values[i - 1];
+    }
+    str += strings[i];
+  }
+  console.log(str);
+  return str;
+}
+```
+
+- The following is what it looks like in action.
+
+```js
+var v = 42;
+var o = { a: 1, b: [2, 3, 4] };
+
+logger`This is my value: ${v} and another: ${o}`;
+// This is my value: 42 and another: {"a":1,"b":[2,3,4]}
+
+try {
+  nothing();
+} catch (err) {
+  logger`Caught: ${err}`;
+}
+// Caught: ReferenceError: nothing is not defined at <anonymous>:8:3
+```
+
+- Some people have gone way further with tag functions.
+- They don't even have to return a string.
+- For example RegEx written on multiple lines with whitespace that is parsed into a normal RegEx by a tag function, n ot retuning a string but an actual regular expression.
+- People have made entire programming languages where the interpretor is the tag function.
+- JSX requires a compiler because it is not standard JS. Someone decided to write a JSX tag function, that returns the actual DOM object.
+- Tagged Templates are incredibly powerful, and a great extension point for writing more declarative JavaScript.
+
+### 2.4. [Tagged Template Exercise](exercises/template-strings/ex.js)
+
+### 2.5. Padding & Trimming
+
+- Now built into the standard lib, so no more custom utils are required.
+- String padding was added in ES2017, and string trimming in ES2019.
+- The first thing we need to consider is whether to apply padding/trimming to one side or both sides of the string.
+- Need to consider RTL languages, so 'left' and 'right' are not the appropriate terms to describe the beginning and end of a string. Instead we have 'start' and 'end'.
+
+```js
+var str = 'Hello';
+
+str.padStart(5); // 'Hello'
+
+str.padStart(8); // '   Hello'
+
+str.padStart(8, '*'); // '***Hello'
+
+str.padStart(8, '12345'); // '123Hello'
+
+str.padStart(8, 'ab'); // 'abaHello'
+```
+
+- `padStart` automatically detects if the language is LTR or RTL and pads the start of a string.
+- Takes two arguments; the first is required and the second one is optional.
+- The first argument is for the length of the string that we want to pad to in total.
+- By default it uses the standard ASCII 32 character space, but we can override if we want to use a different character.
+- We can also have a multiple character string from which padding characters are pulled.
+- If there are not enough characters they wrap and repeat.
+- Note the pad source is always form LTR regardless of whether the language is LTR or RTL.
+- `padEnd` is formatting in exactly the same way as follows.
+- Note the same nuance applies with chars being pulled LTR from the pad source.
+
+```js
+var str = 'Hello';
+
+str.padEnd(5); // 'Hello'
+
+str.padEnd(8); // 'Hello   '
+
+str.padEnd(8, '*'); // 'Hello***'
+
+str.padEnd(8, '12345'); // 'Hello123'
+
+str.padEnd(8, 'ab'); // 'Helloaba'
+```
+
+- If we needed to pad both ends of the string we'd simply call both `padStart` & `padEnd` on the same string.
+- The `trim` method has been standard for many years.
+- Trims all unicode representations of whitespace.
+
+```js
+var str = '   some stuff   \t\t';
+
+str.trim(); // 'some stuff'
+
+str.trimStart(); // 'some stuff       '
+
+str.trimEnd(); // '   some stuff'
+```
