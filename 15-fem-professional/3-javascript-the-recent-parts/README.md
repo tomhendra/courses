@@ -14,6 +14,7 @@
   - [2.3. Applying Tagged Templates](#23-applying-tagged-templates)
   - [2.4. Tagged Template Exercise](#24-tagged-template-exercise)
   - [2.5. Padding & Trimming](#25-padding--trimming)
+- [3. Array Destructuring](#3-array-destructuring)
 
 ## 1. Introduction
 
@@ -311,3 +312,51 @@ str.trimStart(); // 'some stuff       '
 
 str.trimEnd(); // '   some stuff'
 ```
+
+## 3. Array Destructuring
+
+- A complex feature with lots of nuance.
+- A cleaner declarative way to do things.
+- A good way to think of destructuring is: **De**composing a **structure** into its individual parts.
+- The purpose of destructuring as a feature is to assign individual parts from some larger structure.
+- A common example of the benefit of destructuring is when you pull in some big JSON object from an API with lots of nesting.
+
+```js
+var tmp = getSomeRecords();
+
+var first = tmp[0];
+var second = tmp[1];
+
+var firstName = first.name;
+var firstEmail = first.email !== undefined ? first.email : 'nobody@none.tld';
+
+var secondName = second.name;
+var secondEmail = second.email !== undefined ? second.email : 'nobody@none.tld';
+```
+
+- This is functional code in that it mechanically works, but far from ideal to communicate the code's intent.
+- It's also common that people would document the data structure in a code comment.
+- This highly imperative style could be done with the declarative style of destructuring as follows.
+
+```js
+var [
+  {
+    name: firstName, // create variable firstName and assign the value to it
+    email: firstEmail = 'nobody@none.tld'; // default value expression
+  },
+  {
+    name: secondName,
+    email: secondEmail = 'nobody@none.tld';
+  }
+] = getSomeRecords();
+```
+
+- To the left of the `=` it looks like a JSON object, but that is not what it is.
+- Because it is on the LHS of the `=` it is not a value at all, it is actually a pattern.
+- It is a syntax that is describing the value that is expected from the right hand side, where we call the `getSomeRecords` API.
+- The purpose of the pattern is so that we can assign the individual values as we need them.
+- It describes to JavaScript declaratively how it should break down the data structure and make individual assignments for us.
+- The pattern does not need to account for the entirety of the value. It only has to account for that part of the value we care about.
+- The pattern can describe all of the data structure or just a subset of the necessary structural parts to get at the things we care about.
+- This code in it's declarative nature is also self-documenting.
+- We are documenting with syntax what we expect the API call to return.
