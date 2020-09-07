@@ -21,6 +21,8 @@
   - [3.4. Swapping Variable Values](#34-swapping-variable-values)
   - [3.5. Parameter Arrays](#35-parameter-arrays)
   - [3.6. Nested Array Destructuring](#36-nested-array-destructuring)
+- [4. Object Destructuring](#4-object-destructuring)
+  - [4.1. Object Assignment Destructuring](#41-object-assignment-destructuring)
 
 ## 1. Introduction
 
@@ -394,6 +396,14 @@ var [
 ] = (tmp = data());
 ```
 
+- We can also position the `tmp` variable to hold the entire data structure at the beginning of the statement.
+- But changing the chain of assignment order is arguably more confusing.
+- There is a situation with objects where this order might be preferred (rather than using parentheses to distinguish from a block).
+
+```js
+var tmp = ([first, second, third, ...fourth] = data());
+```
+
 ### 3.2. Declaration and Assignment
 
 - Assignments aren't inherently related to declarations.
@@ -418,7 +428,7 @@ var tmp, first, second, third, fourth;
 [first, second, third, ...fourth] = tmp = data();
 ```
 
-- And if we can make assignments to variables that are already declared, we can also assign them to anything that is valid to assign to.
+- If we can make assignments to variables that are already declared, we can also assign them to anything that is valid to assign to.
 - In 'spec speak' that's called a valid left hand side target.
 
 ```js
@@ -548,4 +558,94 @@ var fourth = tmp[2];
 var tmp;
 
 var [first, [second, third] = [], ...fourth] = (tmp = data() || []);
+```
+
+## 4. Object Destructuring
+
+- Very similar to array destructuring with some nuanced differences.
+- With arrays the order is based on index.
+- With objects we are dealing with properties so order doesn't matter.
+
+```js
+function data() {
+  return { a: 1, b: 2, c: 3 };
+}
+// imperative
+var tmp = data();
+
+var first = tmp.a;
+var second = tmp.b;
+var third = tmp.c;
+
+// destructuring equivalent, the order is source: target
+var { a: first, b: second, c: third } = data();
+```
+
+- For collecting additional properties, the imperative way would require checking for properties already seen with `Object.keys` and filtering the rest to be collected.
+- With destructuring it is much easier using the object rest operator, to collect additional properties into a separate object.
+
+```js
+var { a: first, b: second, ...third } = data();
+```
+
+- Default assignment also works with objects.
+
+```js
+// source: target = default
+var { a: first, b: second = 42, third } = data();
+```
+
+- A source of confusion concerns the `source: target = default` order.
+- With an object literal it is different to destructuring.
+- But if you think about identity rather than role, it makes sense.
+- If you always remember the property is on the left, it is consistent between the two syntaxes.
+- The thing that we are getting it from, or the thing that we are assigning it to, always goes on the right.
+
+```js
+var o = {
+  prop: value,
+  target: source,
+  a: 1,
+  b: 2,
+  c: 3,
+};
+
+var {
+  prop: value,
+  source: target, // reversed
+  a: first,
+  b: second,
+  c: third,
+} = o;
+```
+
+### 4.1. Object Assignment Destructuring
+
+- As with arrays we can separate declaration from assignment.
+- But there is a caveat, in that because the `{}` is overloaded JS will think it is a new block, with a separate scope.
+- In order to distinguish between a destructuring pattern and a block, it was decided that wrapping with `()` would indicate destructuring.
+
+```js
+function data() {
+  return { a: 1, b: 2, c: 3 };
+}
+// imperative
+var tmp = data();
+var first, second, third;
+
+first = tmp.a;
+second = tmp.b;
+third = tmp.c;
+
+// destructuring equivalent
+var first, second, third;
+({ a: first, b: second, c: third } = data());
+```
+
+- You don't need to use the parentheses if there is anything in front of the statement including a declarator, or a variable to assign the entire data structure to.
+
+```js
+var tmp;
+var first, second, third;
+tmp = { a: first, b: second, c: third } = data();
 ```
