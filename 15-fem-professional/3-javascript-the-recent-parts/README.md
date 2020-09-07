@@ -15,6 +15,12 @@
   - [2.4. Tagged Template Exercise](#24-tagged-template-exercise)
   - [2.5. Padding & Trimming](#25-padding--trimming)
 - [3. Array Destructuring](#3-array-destructuring)
+  - [3.1. Refactoring Code Using Destructuring](#31-refactoring-code-using-destructuring)
+  - [3.2. Declaration and Assignment](#32-declaration-and-assignment)
+  - [3.3. Comma Separation](#33-comma-separation)
+  - [3.4. Swapping Variable Values](#34-swapping-variable-values)
+  - [3.5. Parameter Arrays](#35-parameter-arrays)
+  - [3.6. Nested Array Destructuring](#36-nested-array-destructuring)
 
 ## 1. Introduction
 
@@ -360,3 +366,186 @@ var [
 - The pattern can describe all of the data structure or just a subset of the necessary structural parts to get at the things we care about.
 - This code in it's declarative nature is also self-documenting.
 - We are documenting with syntax what we expect the API call to return.
+
+### 3.1. Refactoring Code Using Destructuring
+
+- Destructuring has a process model to it, and by looking at examples we can begin to think like JS.
+- By knowing what the equivalent non-destructuring code it will help us predict the outcomes of destructuring.
+- This also helps with identifying areas in our code that could benefit from destructuring.
+
+```js
+function data() {
+  return [1, 2, 3, 4, 5];
+}
+// imperative
+var tmp = data();
+var first = tmp[0];
+var second = tmp[1] !== undefined ? tmp[1] : 10;
+var third = tmp[2];
+var fourth = tmp.slice(3);
+
+// destructuring equivalent
+var tmp;
+var [
+  first,
+  second = 10, // default assignment is a strict equality check, so only if undefined (not null etc.)
+  third,
+  ...fourth // rest operator gathers remaining values. Must be at the end of the pattern.
+] = (tmp = data());
+```
+
+### 3.2. Declaration and Assignment
+
+- Assignments aren't inherently related to declarations.
+- it is just a convenience that we can do assignment along with declaration.
+- So we can declare variables separately.
+- Destructuring is about the assignment, not the declaration.
+
+```js
+function data() {
+  return [1, 2, 3, 4, 5];
+}
+// imperative
+var tmp = data();
+var first, second, third, fourth;
+first = tmp[0];
+second = tmp[1];
+third = tmp[2];
+fourth = tmp.slice(3);
+
+// destructuring equivalent
+var tmp, first, second, third, fourth;
+[first, second, third, ...fourth] = tmp = data();
+```
+
+- And if we can make assignments to variables that are already declared, we can also assign them to anything that is valid to assign to.
+- In 'spec speak' that's called a valid left hand side target.
+
+```js
+function data() {
+  return [1, 2, 3, 4, 5];
+}
+// imperative
+var tmp = data();
+var o = {};
+o.first = tmp[0];
+o.second = tmp[1];
+o.third = tmp[2];
+o.fourth = tmp.slice(3);
+
+// destructuring equivalent
+var tmp;
+var o = {};
+[o.first, o.second, o.third, ...o.fourth] = tmp = data();
+```
+
+### 3.3. Comma Separation
+
+- We can have empty positions which have the affect of not doing any assignment at all.
+
+```js
+function data() {
+  return [1, 2, 3, 4, 5];
+}
+// imperative
+var tmp = data();
+var first = tmp[0];
+// var second = tmp[1];
+var third = tmp[2];
+var fourth = tmp.slice(3);
+
+// destructuring equivalent
+var tmp;
+var [
+  first,
+  ,
+  // 'array elision'; leaving a hole!
+  second,
+  third,
+  ...fourth
+] = (tmp = data());
+```
+
+### 3.4. Swapping Variable Values
+
+- For swapping variable values we can use destructuring too.
+
+```js
+var x = 10;
+var y = 20;
+{
+  let tmp = x;
+  x = y;
+  y = tmp;
+}
+// with destructuring
+[y, x] = [x, y];
+```
+
+### 3.5. Parameter Arrays
+
+- If we can do array destructuring in our assignments, we can also do so with our parameters.
+
+```js
+function data(tmp) {
+  var [first, second, third] = tmp;
+}
+
+function data([first, second, third]) {
+  // ...
+}
+```
+
+- If the `data` function doesn't return what we expect, we can use an fallback empty array.
+
+```js
+function data() {
+  return null;
+}
+// imperative
+var tmp = data() || [];
+
+var first = tmp[0];
+var second = tmp[1];
+var third = tmp[2];
+var fourth = tmp.slice(3);
+
+// destructuring equivalent
+var tmp;
+var [first, second, third, ...fourth] = (tmp = data() || []);
+```
+
+- And with parameters we can also use the default value as follows:
+
+```js
+function data(tmp = []) {
+  var [first = 10, second = 20, third = 30] = tmp;
+}
+
+function data([first = 10, second = 20, third = 30] = []) {
+  // ...
+}
+```
+
+- Providing default fallback values is a good habit to get into, as almost always graceful degradation is better than a `TypeError`.
+
+### 3.6. Nested Array Destructuring
+
+```js
+function data() {
+  return [1, [2, 3], 4];
+}
+// imperative
+var tmp = data() || [];
+
+var first = tmp[0];
+var tmp2 = tmp[1] || [];
+var second = tmp2[0];
+var third = tmp2[1];
+var fourth = tmp[2];
+
+// destructuring equivalent
+var tmp;
+
+var [first, [second, third] = [], ...fourth] = (tmp = data() || []);
+```
