@@ -23,6 +23,10 @@
   - [3.6. Nested Array Destructuring](#36-nested-array-destructuring)
 - [4. Object Destructuring](#4-object-destructuring)
   - [4.1. Object Assignment Destructuring](#41-object-assignment-destructuring)
+  - [4.2. Object Default Assignment](#42-object-default-assignment)
+  - [4.3. Nested Object Destructuring](#43-nested-object-destructuring)
+  - [4.4. Parameter Objects](#44-parameter-objects)
+  - [4.5. Nested Object & Array Destructuring](#45-nested-object--array-destructuring)
 
 ## 1. Introduction
 
@@ -602,17 +606,18 @@ var { a: first, b: second = 42, third } = data();
 - The thing that we are getting it from, or the thing that we are assigning it to, always goes on the right.
 
 ```js
+// object literal
 var o = {
   prop: value,
-  target: source,
+  target: source, // property is the target, value is the source.
   a: 1,
   b: 2,
   c: 3,
 };
-
+// object destructuring
 var {
   prop: value,
-  source: target, // reversed
+  source: target, // reversed: property is the source, value is the target.
   a: first,
   b: second,
   c: third,
@@ -648,4 +653,177 @@ var first, second, third;
 var tmp;
 var first, second, third;
 tmp = { a: first, b: second, c: third } = data();
+```
+
+### 4.2. Object Default Assignment
+
+- If the `data` function doesn't return what we expect, to avoid TypeErrors we can use the `||` to provide a graceful fallback.
+
+```js
+function data() {
+  // return { a: 1, b: 2, c: 3 d:4 };
+  return null;
+}
+// imperative
+var tmp = data() || {};
+
+var first = tmp.a;
+var second = tmp.b;
+
+// destructuring equivalent
+var first, second;
+
+var { a: first, b: second } = data() || {};
+```
+
+- With arrays destructuring to skip a property we have to use a comma `,` to indicate the empty space.
+- With object destructuring we simply don't list the property that we don't care about.
+- If we want to name the variable the same thing as its source, we can do so with shorthand, rather than `{a: a, b: b}`.
+
+```js
+function data() {
+  return { a: 1, b: 2, c: 3 d:4 };
+}
+// imperative
+var tmp = data() || {};
+var a = tmp.a || 42;
+var b = tmp.b;
+
+// destructuring equivalent
+var { a = 42, b } = data() || {};
+```
+
+### 4.3. Nested Object Destructuring
+
+```js
+function data() {
+  return {
+    a: 1,
+    b: {
+      c: 3,
+      d: 4,
+    },
+  };
+}
+// imperative
+var tmp = data() || {};
+var a = tmp.a;
+var b = tmp.b || {};
+var c = b.c;
+var d = b.d;
+
+// destructuring equivalent
+var { a, b: { c, d } = {} } = data() || {};
+```
+
+- The default assignments are very easy to forget especially when destructuring.
+- To avoid TypeErrors it is recommended to use a linting rule to ensure they are included.
+- There is an ESLint rule to remind you to use defaults on nested patterns.
+- It is always better to put defaults values in the inline pattern, and use `{}` or `[]` for the enclosing data structure.
+- Using so called default object structure creates potential problems.
+
+```js
+var o1 = {
+  a: {
+    b: 2,
+    c: 3,
+  },
+};
+
+var o2 = {
+  a: {},
+};
+
+var o3 = {};
+
+// using the recommended inline pattern will avoid TypeErrors,
+// and b and c will be assigned the desired default values if b is missing from o1.
+var { a: { b = 10, c = 20 } = {} } = o1;
+// when using a default object structure, the default values
+// will not be assigned if b is missing from o1 -- b will be undefined
+var { a: { b, c } = { b = 10, c = 20} } = o1;
+// here the default will not get invoked either -- b will be undefined
+var { a: { b, c } = { b = 10, c = 20} } = o2;
+// the only time the default will be invoked is when a is not present at all.
+var { a: { b, c } = { b = 10, c = 20} } = o3;
+```
+
+- Partially missing properties could result in the desired default values never being assigned.
+- It is strongly recommended to always inline default property assignments, and use an empty `{}` or `[]` as the default for the enclosing object or array.
+
+```js
+var { a: { b = 10, c = 20 } = {} } = o1;
+```
+
+### 4.4. Parameter Objects
+
+```js
+function data(tmp = {}) {
+  var { a, b } = tmp;
+  // ..
+}
+```
+
+- Destructuring in the function body is not as declarative as destructuring the parameter directly.
+- Of course if the entire data structure is required it would have to be done as above.
+
+```js
+function data({ a, b } = {}) {
+  // ..
+}
+```
+
+- When you place an object in the parameter position you are only accounting for one parameter.
+
+### 4.5. Nested Object & Array Destructuring
+
+- With arrays when we use the position to indicate the source, we can only destructure from a position once.
+- When dealing with an object we can actually destructure the same property multiple times.
+
+```js
+var obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
+
+var { a, b: b, b: x, b: y, b: z, c } = obj;
+```
+
+- This is particularly useful when dealing with sub-objects.
+
+```js
+var obj = {
+  a: 1,
+  b: {
+    x: 2,
+    y: 3,
+    z: 4,
+  },
+  c: 5,
+};
+
+var {
+  a,
+  b, // destructure the whole object
+  b: { x, y, z }, // destructure the object contents
+  c,
+} = obj;
+```
+
+- This also works with arrays within objects, objects within arrays, and any multiply nested combinations that we want.
+
+```js
+var obj = {
+  a: 1,
+  b: [500, 600, 700, { r: 800, t: 900 }],
+  c: 5,
+};
+
+var {
+  a,
+  b,
+  b: [x, y, z, { r, t }],
+  c,
+} = obj;
 ```
