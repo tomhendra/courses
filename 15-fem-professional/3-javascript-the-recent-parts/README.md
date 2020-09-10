@@ -27,6 +27,9 @@
   - [4.3. Nested Object Destructuring](#43-nested-object-destructuring)
   - [4.4. Parameter Objects](#44-parameter-objects)
   - [4.5. Nested Object & Array Destructuring](#45-nested-object--array-destructuring)
+- [5. Further Destructuring](#5-further-destructuring)
+  - [5.1. Named Arguments](#51-named-arguments)
+  - [5.2. Destructuring & Restructuring](#52-destructuring--restructuring)
 
 ## 1. Introduction
 
@@ -827,3 +830,34 @@ var {
   c,
 } = obj;
 ```
+
+## 5. Further Destructuring
+
+- Some examples of a higher level to give a better understanding of destructuring.
+
+### 5.1. Named Arguments
+
+- There is a pattern called named arguments which is an idiom essentially.
+- JS doesn't support named arguments, rather they are passed in order.
+- But if we declare a function with an object parameter it gives us essentially what are named arguments at the call site.
+
+```js
+function lookupRecord(store = 'person-records', id = -1) {
+  // we have to remember the order of parameters :(
+}
+
+function lookupRecord({ store = 'person-records', id = -1 }) {
+  // arguments are named and destructured
+}
+
+lookupRecord({ id: 42 });
+```
+
+- This is being an extremely popular pattern.
+- Kyle's rule of thumb is to use this pattern for every function that has three or more parameters.
+- The good thing about named arguments is you don't have to remember the order.
+- The downside is that you do have to remember the name.
+- To help with this come up with a convention for the common parameters that you use e.g. callbacks always called `cb` or array `arr` etc.
+- If we come up with standard conventions and document them for our team, 99% of the problems will go away.
+
+### 5.2. Destructuring & Restructuring
