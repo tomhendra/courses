@@ -30,6 +30,7 @@
 - [5. Further Destructuring](#5-further-destructuring)
   - [5.1. Named Arguments](#51-named-arguments)
   - [5.2. Destructuring & Restructuring](#52-destructuring--restructuring)
+  - [5.3. Destructuring Exercise](#53-destructuring-exercise)
 
 ## 1. Introduction
 
@@ -861,3 +862,84 @@ lookupRecord({ id: 42 });
 - If we come up with standard conventions and document them for our team, 99% of the problems will go away.
 
 ### 5.2. Destructuring & Restructuring
+
+- A common situation is when we have an object that represents some defaults for AJAX, so that we can mix those defaults with some settings whenever we make an AJAX call.
+
+```js
+// most common approach using extend
+var defaults = {
+  url: 'https://some.base.url/api',
+  method: 'post',
+  headers: ['Content-Type: text/plain'],
+};
+
+console.log(defaults);
+
+// *************************
+
+var settings = {
+  url: 'https://some.other.url',
+  data: 42,
+  callback: function (resp) {
+    //..
+  },
+};
+
+// underscore extend
+ajax(_.extend({}, defaults, settings));
+
+// or Object.assign
+ajax(Object.assign({}, defaults, settings));
+```
+
+- So whatever we provide in settings will override the default object properties.
+- The problem with this approach is that it is very imperative, and we are relying on the Underscore library's implementation, so would have to check docs for example when using nested objects.
+- This is a good use case for destructuring.
+- Kyle calls this pattern Destructuring & Restructuring.
+
+```js
+function ajaxOptions({
+  url = 'https://some.base.url/api',
+  method = 'post',
+  data,
+  callback,
+  headers: [headers0 = 'Content-Type: text/plain', ...otherHeaders] = [],
+} = {}) {
+  return {
+    url,
+    method,
+    data,
+    callback,
+    headers: [headers0, ...otherHeaders],
+  };
+}
+```
+
+- The function takes an object as its input, and has a whole set of properties it expects to be on that object.
+- We create defaults in the destructuring parameter signature.
+- We return a restructured object with any defaults set for missing object properties passed to the function.
+- This is a more declarative approach and communicates the defaults clearly.
+- We use the pattern as follows.
+
+```js
+// with no arguments, returns the defaults as an object if necessary.
+var defaults = ajaxOptions();
+
+console.log(defaults);
+
+// *************************
+
+var settings = {
+  url: 'https://some.other.url',
+  data: 42,
+  callback: function (resp) {
+    //..
+  },
+};
+// with an argument it mixes in the defaults with the settings.
+ajax(ajaxOptions(settings));
+```
+
+- Using this pattern is easier to maintain, as we can go to one function and see all of our defaults in one place.
+
+### 5.3. [Destructuring Exercise](exercises/destructuring/ex.js)
