@@ -31,6 +31,11 @@
   - [5.1. Named Arguments](#51-named-arguments)
   - [5.2. Destructuring & Restructuring](#52-destructuring--restructuring)
   - [5.3. Destructuring Exercise](#53-destructuring-exercise)
+- [6. Array Methods](#6-array-methods)
+  - [6.1. find, findIndex](#61-find-findindex)
+  - [6.2. includes](#62-includes)
+  - [6.3. flat & flatMap](#63-flat--flatmap)
+- [7. Iterators & Generators](#7-iterators--generators)
 
 ## 1. Introduction
 
@@ -943,3 +948,130 @@ ajax(ajaxOptions(settings));
 - Using this pattern is easier to maintain, as we can go to one function and see all of our defaults in one place.
 
 ### 5.3. [Destructuring Exercise](exercises/destructuring/ex.js)
+
+## 6. Array Methods
+
+### 6.1. find, findIndex
+
+- `Array.find` was added in ES6 (ES2015), and `Array.includes` was added in ES2016.
+- If we have an array that holds values which are difficult to lookup `Array.find` comes in useful.
+
+```js
+var arr = [{ a: 1 }, { a: 2 }];
+
+arr.find(function match(v) {
+  return v && v.a > 1;
+});
+// { a: 2 }
+
+arr.find(function match(v) {
+  return v && v.a > 10;
+});
+// undefined
+
+arr.findIndex(function match(v) {
+  return v && v.a > 10;
+});
+// -1
+```
+
+- `find` takes in a function callback, which if returns something truthy will return that actual value that was found.
+- Be aware that the value `undefined` is returned when no value is found, but this is indistinguishable from an actual `undefined` value in the array.
+- If we need to verify that case, we can use `findIndex` which will return `-1` if no value is found.
+
+### 6.2. includes
+
+- `includes` gives us a better option than using old patterns like below.
+
+```js
+var arr = [10, 20, NaN, 30, 40, 50];
+// -1 has no meaning and is a sentinel value
+arr.indexOf(30) != -1; // true
+// ~ was a bizarre way of turning a -1 into a truthy or falsy value
+~arr.indexOf(20); // -2 (truthy)
+~arr.indexOf(NaN); // -0 (falsy)
+```
+
+- These are terrible patterns, but were the best available for a long time.
+- Thankfully we now have method that will tell us `true` or `false` whether something exists.
+- If we don't need the actual value, but rather to know whether something exists or not, the best method to use is the `includes` method.
+
+```js
+var arr = [10, 20, NaN, 30, 40, 50];
+
+arr.includes(20); // true
+
+arr.includes(60); // false
+
+arr.includes(20, 3); // false
+
+arr.includes(10, -2); // false
+
+arr.includes(40, -2); // true
+
+arr.includes(NaN); // true
+```
+
+### 6.3. flat & flatMap
+
+- `find` and `includes` are good examples of helper methods that we may bring in from Lodash or Underscore, instead being brought into the JavaScript standard library.
+- Another example of utility library methods being brought into native JS are `Array.flat` and `Array.flatMap`.
+- Both of these were added in ES2019.
+
+```js
+var nestedValues = [1, [2, 3], [[]], [4, [5]], 6];
+
+nestedValues.flat(0);
+// [1, [2, 3], [[]], [4, [5]], 6];
+
+nestedValues.flat(/* default: 1 */);
+// [1, 2, 3, [], 4, [5], 6]
+
+nestedValues.flat(2);
+// [1, 2, 3, 4, 5, 6]
+```
+
+- `flat` takes in a number which defined the level of nesting to flatten.
+- If you want to flatten everything give it a large number like `infinity`.
+- We shouldn't continue to use utility library methods when there is a built-in equivalent in the language.
+- Sometimes we want to do other operations like mapping as well as flatten, as is extremely common in functional programming.
+- For example if we need to map an array of values to an array of sub-arrays:
+
+```js
+[1, 2, 3].map(function tuples(v) {
+  return [v * 2, String(v * 2)];
+});
+// [[2, "2"], [4, "4"], [6, "6"]]
+
+[1, 2, 3]
+  .map(function tuples(v) {
+    return [v * 2, String(v * 2)];
+  })
+  .flat();
+// [2, "2", 4, "4", 6, "6"]
+// Chaining is less desirable because it creates an intermediary array before flattening.
+
+[1, 2, 3].flatMap(function tuples(v) {
+  return [v * 2, String(v * 2)];
+});
+// [2, "2", 4, "4", 6, "6"]
+// maps and flattens in at the same time.
+// Note we cannot control the level of flattening.
+```
+
+- We tend to think of mapping as only producing a new array as the same number of items as the original.
+- With `flatMap` We can turn a mapping operation into something that adds or removes from an array.
+- By using a empty array, owe are removing compared to the original.
+
+```js
+[1, 2, 3, 4, 5, 6].flatMap(function doubleEvens(v) {
+  if (v % 2 == 0) {
+    return [v, v * 2];
+  } else {
+    return [];
+  }
+});
+// [2, 4, 4, 8, 6, 12]
+```
+
+## 7. Iterators & Generators
