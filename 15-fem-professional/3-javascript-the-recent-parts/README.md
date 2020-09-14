@@ -41,6 +41,11 @@
   - [7.3. Data Structure Without Iterators](#73-data-structure-without-iterators)
   - [7.4. Generators](#74-generators)
   - [7.5. Iterator & Generator Exercise](#75-iterator--generator-exercise)
+- [8. Regular Expressions](#8-regular-expressions)
+  - [8.1. Look Ahead & Behind](#81-look-ahead--behind)
+  - [8.2. Named Capture Groups](#82-named-capture-groups)
+  - [8.3. dotall Mode](#83-dotall-mode)
+  - [8.4. Regex Exercise](#84-regex-exercise)
 
 ## 1. Introduction
 
@@ -124,7 +129,7 @@ Learn the latest features in JavaScript with Kyle Simpson, author of the popular
   - Array find() / includes()
   - Array flat() / flatMap()
   - Iterators, Generators
-  - RegExp Improvements
+  - Regex Improvements
   - async .. await
   - async\* .. yield await
 
@@ -273,7 +278,7 @@ try {
 
 - Some people have gone way further with tag functions.
 - They don't even have to return a string.
-- For example RegEx written on multiple lines with whitespace that is parsed into a normal RegEx by a tag function, n ot retuning a string but an actual regular expression.
+- For example regex written on multiple lines with whitespace that is parsed into a normal regex by a tag function, n ot retuning a string but an actual regular expression.
 - People have made entire programming languages where the interpretor is the tag function.
 - JSX requires a compiler because it is not standard JS. Someone decided to write a JSX tag function, that returns the actual DOM object.
 - Tagged Templates are incredibly powerful, and a great extension point for writing more declarative JavaScript.
@@ -1281,3 +1286,104 @@ var obj = {
 - It is a good idea to not only create the default iterator as in the previous example, but to expose any other way that would be useful for someone to iterate over our data structure.
 
 ### 7.5. [Iterator & Generator Exercise](exercises/iterators-generators/ex.js)
+
+## 8. Regular Expressions
+
+- As of ES2018 a set of very helpful changes were added to help with regular expressions.
+- The three key changes were Look Ahead & Behind, Named Capture Groups and dotall Mode.
+
+### 8.1. Look Ahead & Behind
+
+- Look aheads have been in JS for many years, and allow us to check for patterns.
+- A look ahead is an assertion that says when I match something, it only matches if something immediately afterwards also matches.
+- Common assertions that we might use are for the beginning and end of a string, using the anchors `^` and `$` respectively.
+- The idea of assertions in regex is that in addition to the match, something else also has to be true.
+
+```js
+var msg = 'Hello World';
+
+msg.match(/(l.)/g);
+// ["ll", "ld"]
+
+msg.match(/(l.)$/g);
+// ["ld"]
+
+msg.match(/(l.)(?=o)/g);
+// A positive look ahead -- only match if the l is followed by an o
+// ["ll"]
+
+msg.match(/(l.)(?!o)/g);
+// A negative look ahead -- only match if the l is NOT followed by an o
+// ["lo", "ld"]
+```
+
+- If we can do look aheads, it makes sense that we also sometimes want to do look behinds.
+- Unfortunately for all of JavaScript's history, it hasn't supported look behinds.
+
+```js
+var msg = 'Hello World';
+
+msg.match(/(?<=e)(l.)/g);
+// A positive look behind -- only match if the l is preceded by an e
+// ["ll"]
+
+msg.match(/(?<!e)(l.)/g);
+// A positive look behind -- only match if the l is NOT preceded by an e
+// ["lo", "ld"]
+```
+
+### 8.2. Named Capture Groups
+
+- Another feature that has been introduced.
+- In order to understand named capture groups, we need to understand regular capture groups.
+- In regex `()` are not only grouping operators, they are also capturing operators.
+- A capture group is a way to have a sub part of the pattern pulled out in a separate way.
+- Up until Named Capture groups we have always had to use numeric references to those groups.
+- This resulted in counting parenthesis and hard to manage long regex.
+- By using `?<usefulName>` we can give the capture groups a useful name.
+
+```js
+var msg = 'Hello World';
+
+msg.match(/.(l.)/);
+// ["ell", "ll"]
+
+msg.match(/([jkl])o Wor\1/);
+// ["lo Worl", "l"]
+
+msg.match(/(?<cap>l.)/).groups;
+// { cap: ll }
+
+msg.match(/(?<cap>[jkl])o Wor\k<cap>/);
+// ["lo Worl", "l"]
+
+msg.replace(/(?<cap>l.)/g, '-$<cap>-');
+// "He-ll-o Wor-ld"
+
+msg.replace(/(?<cap>l.)/g, function re(...args) {
+  var [, , , , { cap }] = args;
+  return cap.toUpperCase();
+});
+// "HeLLo WorLD"
+```
+
+### 8.3. dotall Mode
+
+- ES2018 also introduced dotall mode, which is a new flag that you can add to the end of your regex.
+- We can use `s` to turn on dotall mode. 
+- Historically the `.` operator is able to match any character except it doesn't match across newlines.
+
+```js
+var msg = `
+  The quick brown fox
+  jumps over the
+  lazy dog`;
+
+msg.match(/brown.*over/);
+// null
+
+msg.match(/brown.*over/s);
+// ["brown fox\njumps over"]
+```
+
+### 8.4. [Regex Exercise](exercises/regex/ex.js)
