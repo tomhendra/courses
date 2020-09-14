@@ -36,6 +36,11 @@
   - [6.2. includes](#62-includes)
   - [6.3. flat & flatMap](#63-flat--flatmap)
 - [7. Iterators & Generators](#7-iterators--generators)
+  - [7.1. Iterators](#71-iterators)
+  - [7.2. Declarative Iterators](#72-declarative-iterators)
+  - [7.3. Data Structure Without Iterators](#73-data-structure-without-iterators)
+  - [7.4. Generators](#74-generators)
+  - [7.5. Iterator & Generator Exercise](#75-iterator--generator-exercise)
 
 ## 1. Introduction
 
@@ -1075,3 +1080,204 @@ nestedValues.flat(2);
 ```
 
 ## 7. Iterators & Generators
+
+- Introduced with ES6 (ES2015).
+
+### 7.1. Iterators
+
+- In ES6 all the basic data types in JavaScript were made iterable.
+- Whenever we have some data source, if we would like to consume the values one at a time, one of the most common ways to do so is the iterator pattern.
+- We can construct a controller that gives us a view of the data source, and presents values one at a time.
+- We construct an object and call `.next` over and over again, and every time we get back the next vale from the data source.
+
+```js
+var str = 'Hello';
+var world = ['W', 'o', 'r', 'l', 'd'];
+
+var it1 = str[Symbol.iterator]();
+var it2 = world[Symbol.iterator]();
+
+itl.next(); // { value: "H", done: false }
+itl.next(); // { value: "e", done: false }
+itl.next(); // { value: "l", done: false }
+itl.next(); // { value: "l", done: false }
+itl.next(); // { value: "o", done: false }
+itl.next(); // { value: undefined, done: true }
+
+it2.next(); // { value: "W", done: false }
+// ..
+```
+
+- In both the case of the string and array they are iterables, and therefore we can construct tan iterator to consume their values.
+- `Symbol.iterator` is a special value that finds a location on the string / array object and produces an iterator from it.
+- We get back an iterator and when we call `next` we get back an _iterator result_ with two properties.
+- The way the iterator determines that there is nothing else to consume, is that you iterate past the end of the data source until `undefined` is returned.
+- Almost all the data structures in JS are now iterables.
+- This pattern is rather ugly and manual but there are some nicer patterns we can use.
+
+### 7.2. Declarative Iterators
+
+- If we want to iterate over some data programmatically we can use a looping construct.
+
+```js
+var str = 'Hello';
+// imperative approach - hard to understand
+for (
+  let it = str[Symbol.iterator](), v, result;
+  (result = it.next()) && !result.done && (v = result.value || true);
+
+) {
+  console.log(v);
+}
+```
+
+- In ES6 to consume an iterator, we can use the `for of` loop.
+
+```js
+// declarative approach
+var str = 'Hello';
+var it = str[Symbol.iterator]();
+
+for (let v of it) {
+  console.log(v);
+}
+// "H" "e" "l" "l" "o"
+
+for (let v of str) {
+  console.log(v);
+}
+// "H" "e" "l" "l" "o"
+```
+
+- The `for of` loop is distinct from the `for in` and the regular `for` loop.
+- The `for of` loop takes iterables, meaning things that can be iterated over.
+- It iterates over the iterable and gives us the value for each iteration.
+- With `var it = str[Symbol.iterator]();` we are making an iterator `it` manually, and we can iterate of an iterator because it is an iteratable.
+- We can also iterate over the iterable `str` itself.
+- One advantage of making our own iterator is that if it was a function that we wanted to call, or call it from a different location, or pass some arguments to it, we can make our own iterator and iterate over it.
+- We can also use the spread operator for iterating.
+
+```js
+var str = 'Hello';
+
+var letters = [...str];
+console.log(letters);
+// ["H", "e", "l", "l", "o"]
+```
+
+- Both `for of` and `...` are syntactic support for the iterator protocol, which is now a first class built-in citizen in JavaScript.
+- This is important because of we expose an iterator for our own custom data structures that adheres to the protocol, then any user of our code can use the syntactic built-in mechanisms for our data structures.
+- It creates a standardized way of iterating through data sources.
+
+### 7.3. Data Structure Without Iterators
+
+- There is a problem in what we do with data structures that don't have iterators.
+- Not all data structures have iterators.
+- The object is a good example.
+
+```js
+var obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
+
+for (let v of obj) {
+  console.log(v);
+}
+// TypeError
+```
+
+- It is a TypeError because the `for of` loop tries to access the `Symbol.iterator` location on `obj` which is `undefined`, and trying to execute on `undefined` results in a TypeError.
+- It is frustrating that the one data structure most devs use is the one that wasn't made automatically iterable.
+- But is not actually that difficult to define our own iterator.
+- So if we know that `for of` and `...` try to find something at that position `Symbol.iterator`, then all we need to do is to define one.
+- We could crate our own iterator factory function. Every time we call it we would produce a new instance of the iterator.
+
+```js
+var obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+  [Symbol.iterator]: function () {
+    var keys = Object.keys(this);
+    var index = 0;
+    return {
+      next: () =>
+        index < keys.length
+          ? { done: false, value: this[keys[index++]] }
+          : { done: true, value: undefined },
+    };
+  },
+};
+
+[...obj];
+```
+
+- The arrow function is used in this particular scenario, because we need the `this` keyword to lexically adopt the parent context.
+
+### 7.4. Generators
+
+- It would be nice if there was a more declarative approach to iterating over an object.
+- That leads us to generators.
+
+```js
+function* main() {
+  yield 1;
+  yield 2;
+  yield 3;
+  return 4;
+}
+
+var it = main();
+
+it.next(); // { value: 1, done: false }
+it.next(); // { value: 2, done: false }
+it.next(); // { value: 3, done: false }
+it.next(); // { value: 4, done: true }
+
+[...main()];
+// [1, 2, 3]
+```
+
+- The `*` indicates we are dealing with a special kind of function: a generator.
+- This was a new type of function that was added in ES6.
+- There are a lot of complexities to generators, but the one thing we need to understand is that when a generator is invoked it doesn't run, but produces an iterator.
+- Since that iterator is a standard iterator, has a `.next` method.
+- When we call `.next` on an iterator that is attached to a generator, it will give us the value that was yielded out from that generator.
+- The new keyword `yield` allows the generator to produce additional values every time it is iterated over.
+- The `return` keyword is used for the last value to define there is nothing left to iterate over.
+- There is however a gotchya in using the `return` keyword inside a generator:
+- When `[...main()];` consumes the iterator according the protocol, as soon as it sees `done: true` it stops, and assumes we have iterated past the last value which has the effect of throwing away the value `4`.
+- If we are making our own iterators using a generator, we must ensure to use the `yield` keyword to ensure the values are received according to the iterator protocol.
+- It is generally considered bad practice to `return` a value from a generator.
+- To turn this into a declarative loop pattern we could use the following approach.
+
+```js
+var obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+  *[Symbol.iterator]() {
+    for (let key of Object.keys(this)) {
+      yield this[key];
+    }
+  },
+};
+
+[...obj];
+// [1, 2, 3]
+```
+
+- We can use `for of` inside the iterator because `Object.keys` returns an array which is iterable.
+- `this` would be the object itself, so `this[key]` would be the value which we `yield` out.
+- If we wanted to yield out just he `key` we could.
+- If we wanted to yield out both the keys and values, we could define something called entries, where we yield a tuple `[key, this[key]]`.
+- We have `Object.values` to iterate over an object's values.
+- We have `Object.keys` to iterate over an object's keys.
+- And we have `Object.entries` to iterate over an object's entries and give us an array of tuples.
+- So all we have to do on our data structures is define those three iterators ourselves.
+- This makes it easy for someone to consume our data structure.
+- It is a good idea to not only create the default iterator as in the previous example, but to expose any other way that would be useful for someone to iterate over our data structure.
+
+### 7.5. [Iterator & Generator Exercise](exercises/iterators-generators/ex.js)
