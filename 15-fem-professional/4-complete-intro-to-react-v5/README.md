@@ -15,7 +15,12 @@
   - [3.2. Prettier](#32-prettier)
   - [3.3. npm / Yarn Scripts](#33-npm--yarn-scripts)
   - [3.4. Prettier Setup](#34-prettier-setup)
-  - [3.5. Eslint](#35-eslint)
+  - [3.5. ESLint Setup](#35-eslint-setup)
+  - [3.6. ESLint Configuration](#36-eslint-configuration)
+  - [3.7. GitIgnore](#37-gitignore)
+  - [3.8. Parcel](#38-parcel)
+  - [3.9. Installing React & ReactDOM](#39-installing-react--reactdom)
+  - [3.10. Separate App into Modules](#310-separate-app-into-modules)
 
 ## 1. Introduction
 
@@ -89,7 +94,8 @@ ReactDOM.render(React.createElement(App), document.getElementById("root"));
 ```
 
 - The first thing we do is make our own component, `App`. React is all about making components. And then taking those components and making more components out of those.
-- There are two types of components, function components and class components. This is a function component. We'll see class components shortly.
+- There are two types of components, function components and class components.
+- This is a function component. We'll see class components shortly.
 - A function component must return markup (which is what `React.createElement` generates.)
 - These component render functions have to be fast. This function is going to be called a lot. It's a hot code path.
 - Inside of the render function, you cannot modify any sort of state. Put in functional terms, this function must be pure. You don't know how or when the function will be called so it can't modify any ambient state.
@@ -101,7 +107,7 @@ ReactDOM.render(React.createElement(App), document.getElementById("root"));
 
 ### 2.2. createElement Arguments
 
-- The three parameters that `React.createElement` gets are:
+- The three parameters that `React.createElement` receives are:
 
 1. What kind of element we want: string or composite component (a component we create).
 2. All the attributes we want to give the component.
@@ -144,7 +150,8 @@ ReactDOM.render(React.createElement(App), document.getElementById("root"));
 
 ### 2.4. Passing in Component Props
 
-Okay so we can have multiple pets but it's not a useful component yet since not all pets will be Havanese dogs named Luna. Let's make it a bit more complicated.
+- Okay so we can have multiple pets but it's not a useful component yet since not all pets will be Havanese dogs named Luna.
+- Let's make it a bit more complicated.
 
 ```js
 const Pet = (props) => {
@@ -179,7 +186,8 @@ const App = () => {
 ReactDOM.render(React.createElement(App), document.getElementById("root"));
 ```
 
-- Now we have a more flexible component that accepts props from its parent. Props are variables that a parent (`App`) passes to its children (the instances of `Pet`.)
+- Now we have a more flexible component that accepts props from its parent.
+- Props are variables that a parent (`App`) passes to its children (the instances of `Pet`.)
 - Now each one can be different! Now that is far more useful than it was since this `Pet` component can represent not just Luna, but any `Pet`.
 - This is the power of React! We can make multiple, re-usable components.
 - We can then use these components to build larger components, which in turn make up yet-larger components.
@@ -200,7 +208,7 @@ const Pet = ({ name, animal, breed }) => {
 };
 ```
 
-- [Code so far](adopt-me/2-pure-react/)
+- [The project files so far](adopt-me/pure-react/)
 
 ## 3. Tools
 
@@ -252,10 +260,153 @@ There really aren't any alternatives for Prettier. The alternative is just not t
 
 ### 3.4. Prettier Setup
 
-- Prettier is great to use with Visual Studio Code. Just download [this extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode&WT.mc_id=reactintro-github-brholt).
+- Prettier is great to use with Visual Studio Code. Just download [this extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
 
 - Pro tip: set it to only run Prettier when it detects a Prettier config file. Makes it so you never have to turn it off. In order to do that, set `prettier.requireConfig` to `true` and `editor.formatOnSave` to `true`. This prevents you from running prettier on code that you shouldn't, and inadvertently modifying every line of code!
 
 - So that our tool can know this is a Prettier project, we're going to create a file called `.prettierrc` and put `{}` in it. This lets everyone know this is a Prettier project that uses the default configuration. You can put other configs here if you hold strong formatting opinions.
 
-### 3.5. Eslint
+### 3.5. ESLint Setup
+
+On top of Prettier which takes of all the formatting, you may want to enforce some code styles which pertain more to usage: for example you may want to force people to never use with which is valid JS but ill advised to use.
+
+- Run `npm i -D eslint eslint-config-prettier` to install ESLint in your project development dependencies.
+- The difference between Prettier and ESLint is often understandably confused, as there is overlap.
+- Prettier is purely concerned with formatting only. It doesn't care what the code actually does.
+- ESLint is more concerned with style. What methods are being used, are we being accessibility friendly.
+- ESLint can check for formatting too, but it is not as powerful at this as prettier is.
+- So we install `eslint-config-prettier` to tell ESLint that Prettier will handle all the formatting correction.
+
+### 3.6. ESLint Configuration
+
+- Now we can configure its functionalities.
+- There are dozens of present configs for ESLint. The Airbnb config is very popular, as is the standard config.
+- We're going to use a looser one for this class: `eslint:recommended`.
+- Let's create an `.eslintrc.json` file to start linting our project.
+- Create this file called `.eslintrc.json`.
+
+```json
+{
+  "extends": ["eslint:recommended", "prettier", "prettier/react"],
+  "plugins": [],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  }
+}
+```
+
+- This is a combination of the recommended configs of ESLint and Prettier.
+- This will lint for both normal JS stuff as well as JSX stuff.
+- Let's go add this to our npm scripts in `package.json`.
+
+```json
+"lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+```
+
+- With npm scripts, you can pass additional parameters to the command if you want. Just add a `--` and then put whatever else you want to tack on after that. For example, if I wanted to get the debug output from ESLint, we could run `npm run lint -- --debug` which would translate to `eslint **/*.js --debug`.
+- We can use our fix trick this way: npm run `lint -- --fix`.
+- We're going to both JS and JSX.
+- ESLint is a cinch to get working with Visual Studio Code: Just down the [extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
+
+- Alternatives to ESLint: JSHint, JSLint.
+
+### 3.7. GitIgnore
+
+- If you haven't already, create a `.gitignore` at the root of your project to ignore the stuff we don't want to commit.
+- Go ahead and put this in there:
+
+```
+node_modules
+.cache/
+dist/
+.env
+.DS_Store
+coverage/
+.vscode/
+```
+
+### 3.8. Parcel
+
+[Parcel](https://parceljs.org) is a relatively new bundler for JavaScript projects. The first three revisions of this workshop all teach Webpack and end up spending a decent amount of time covering how to set it up. Webpack is a fantastic piece of technology and you should definitely consider using it for your large applications; it's been around a long time and has a lot of support.
+
+Webpack is however difficult to setup. With power comes complexity!
+
+That being said, Parcel is an amazing tool with zero-config. It works with everything we want to do out of the box. Since this is a class on React and not build processes, this allows us to focus more on React. Let's go see what it can do for us.
+
+Parcel is going to accept an entry point, crawl through all of its dependencies, and output a single, complete file with all of our code in it. This means we can have large applications with many files and many dependencies. It would be an unmanageable mess. Already our React app has two components in one file: App and Pet. It'd be better if these were in separate files so it'd be easier to keep track of what was where. This is where Parcel can help us.
+
+- Install Parcel by doing `npm i -D parcel-bundler`.
+
+- Now inside of your `package.json` put:
+
+```json
+"scripts" {
+  "dev": "parcel src/index.html"
+}
+```
+
+- Now open http://localhost:1234. You should see your site come up. The difference here is now it's being run through Parcel which means we can leverage all the features that Parcel allows us which we will explore shortly.
+
+So how does it work? We gave the entry point, which is `index.html`. It then reads that `index.html` file and finds its dependencies, which are the two React files and the one `App.js` file that we linked to. It's smart enough to detect that those two React files are remote so it doesn't do anything with those, but it sees that `App.js` is local and so it reads it and compiles its dependencies. Right now it has no dependencies so let's fix that.
+
+### 3.9. Installing React & ReactDOM
+
+- First let's fix the `React` and `ReactDOM` dependencies. Right now these are coming from unpkg.com. Unpkg isn't meant to serve production traffic, nor do we want the burden of loading all of our future dependencies this way. It would get messy quickly and we'd have to make a million requests to get all of them by the end (we'll install more later as we go.) Instead, it'd be better if we could pull our dependencies down from npm and include it in our bundle. Let's do that now.
+
+- Run `npm i react react-dom`. This will pull `React` and `ReactDOM` down from npm and put it in your `node_modules` directory.
+- Now instead of loading them from unpkg, we can tell Parcel to include them in your main bundle. Let's do that now.
+
+- Delete the two unpkg script tags in `index.html`
+
+- Add to the top of `App.js`.
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+```
+
+- Refresh the page and it still works!
+- Now our `React` and `ReactDOM` is loading directly from our bundle instead of separate JavaScript files!
+
+### 3.10. Separate App into Modules
+
+- Let's take this a step further.
+- Create a new file called `Pet.js` and put this in there:
+
+```js
+import React from "react";
+
+export default function Pet({ name, animal, breed }) {
+  return React.createElement("div", {}, [
+    React.createElement("h1", {}, name),
+    React.createElement("h2", {}, animal),
+    React.createElement("h2", {}, breed),
+  ]);
+}
+```
+
+- Go to `App.js`
+
+```js
+// at the top, under React imports
+import Pet from "./Pet";
+
+// remove Pet component
+```
+
+- Load the page again. Still works!
+- Now we can separate components into separate files.
+- Parcel does more than just this but we'll get to that in future sections.
+
+- Alternatives to Parcel: Webpack, Browserfy.
+
+- [The project files so far](adopt-me/tools/).
