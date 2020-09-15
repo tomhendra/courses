@@ -6,7 +6,7 @@
 
 ## Introduction
 
-I have been learning software development full-time since September 2018, and prior to that alongside full-time employment since September 2017. This repo serves as an archive of notes and supporting files from the courses I have taken since learning to use GitHub. 🙂
+I have been learning software development full-time since September 2018, and prior to that alongside full-time employment since September 2017. This repo serves as an archive of notes and supporting files from courses taken since discovering GitHub 🙂.
 
 I map my progress & plan my journey with **[this Trello board](https://trello.com/b/R1CVyI4S)**.
 
@@ -19,19 +19,19 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     Excellent foundational course with Andrew Mead. This made JavaScript start to 'click' for me.
 
 3.  **[Udemy: JavaScript Algorithms and Data Structures Masterclass](3-algorithms-and-data-structures)**\
-    To understand what makes software performant, and gain some computer science knowledge, I took 2 months getting stuck into Algorithms and Data Structures with Colt Steele.
+    To gain some computer science knowledge and be concious of software performance early on, I took 2 months getting stuck into Algorithms and Data Structures with Colt Steele.
 
 4.  **[Udemy: Advanced CSS & Sass](4-advanced-css-and-sass)**\
     This course goes in-depth and teaches some interesting CSS tricks & techniques.
 
 5.  **[Udemy: The Complete Junior to Senior Web Developer Roadmap](5-complete-junior-to-senior-web-developer)**\
-    To gain a high level view of product development as a whole, and an understanding of how the pieces of a modern application's tech stack fit together.
+    To gain a high level view of product development as a whole, and an understanding of how the different pieces of a modern production application fit together.
 
 6.  **[Udemy: Advanced JavaScript Concepts](6-advanced-javascript-concepts)**\
     Deeper into JavaScript. Andrei Neagoie is an excellent teacher with a successful background. His teaching style has a way of making topics stick.
 
 7.  **[Udemy: The Complete React Web Developer Course (with Redux)](7-complete-react-web-developer)**\
-    Only after having a core understanding of JavaScript, did I start to explore what I always had in mind, React. This course is taught using class based components with hooks as an additional extra.
+    Only after having a core understanding of JavaScript did I start to explore React. This course is taught using class based components with hooks as an additional extra.
 
 8.  **[Frontend Masters: Introduction to Gatsby](8-gatsby-intro)**\
      Gatsby intro with Jason Lengstorf (of Gatsby at the time of recording). I used this is as a starting point to develop my portfolio website & blog.
@@ -49,16 +49,16 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     Many job listings require familiarity with agile methodologies (scrum and/or kanban), and Jira is the most popular project management tool for software development teams.
 
 13. **[Atlassian University: Jira and Confluence Together](13-jira-and-confluence-together)**\
-    Confluence should help me to plan and manage complex projects for my portfolio more effectively.
+    Confluence should help me to effectively plan and manage more complex projects for my portfolio.
 
 14. **[Frontend Masters Learning Paths: Beginner](14-fem-beginner)**\
-    Frontend Masters' content is taught by industry experts, which gives great confidence in the quality of material being delivered. The guided learning paths are to expand your abilities as a well-rounded engineer.
+    Frontend Masters' content is taught by industry experts, which gives great confidence in the quality of material being delivered. The guided learning paths are designed to expand your abilities as a well-rounded engineer.
 
     - **[Complete Intro to Web Development, v2](14-fem-beginner/1-complete-intro-to-web-development-v2)**\
       A refresher of the basics, for familiarity & completeness in learning from the Frontend Masters platform.
 
     - **[Getting Started with JavaScript, v2](14-fem-beginner/2-getting-started-with-javascript-v2)**\
-       Refresher on the fundamentals of JavaScript. Kyle Simpson is reputedly one of the best teachers of JavaScript in the known universe.
+       Refresher on the fundamentals of JavaScript. Kyle Simpson is reputedly one of the best teachers of JavaScript in the industry.
 
     - **[CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)**\
        Master CSS Grid and Flexbox, the latest tools and tricks to layout beautiful, responsive web applications with less code.
@@ -81,7 +81,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[JavaScript: The Recent Parts](15-fem-professional/3-javascript-the-recent-parts)**\
        Get up to speed with new JavaScript features like tagged template literals, destructuring, iterators, generators, regex improvements and async await.
 
-    - **[Complete Intro to React, v5](15-fem-professional/)**\
+    - **[Complete Intro to React, v5](15-fem-professional/4-complete-intro-to-react-v5)**\
        Much more than an intro, you’ll build with the latest features in React, including hooks, effects, context, and portals. Learn to build real-world apps from the ground up using the latest tools in the React ecosystem, like Parcel, ESLint, Prettier, and Reach Router!
 
     - **[Functional-Light JavaScript, v3](15-fem-professional/)**\
