@@ -32,6 +32,9 @@
   - [5.5. Calling the Pet API](#55-calling-the-pet-api)
   - [5.6. Breed Dropdown](#56-breed-dropdown)
   - [5.7. Custom Hooks](#57-custom-hooks)
+- [6. Effects](#6-effects)
+  - [6.1. Declaring the Effect Dependencies](#61-declaring-the-effect-dependencies)
+  - [6.2. Run Only Once](#62-run-only-once)
 
 ## 1. Introduction
 
@@ -49,9 +52,10 @@ Learn to build real-world applications using modern React! Much more than an int
 
 ## 2. Pure React
 
+- Let's start by writing pure React. No compile step. No JSX. No Babel. No Webpack or Parcel. Just some JavaScript on a page.
+
 ### 2.1. Getting Started
 
-- Let's start by writing pure React. No compile step. No JSX. No Babel. No Webpack or Parcel. Just some JavaScript on a page.
 - Create your project directory. Create an `index.html` and put it into a `src/` directory inside of your project folder.
 - In `index.html` put:
 
@@ -753,7 +757,7 @@ const useDropdown = (label, defaultState, options) => {
       </select>
     </label>
   );
-  return [state, Dropdown, SetState];
+  return [state, Dropdown, setState];
 };
 
 export default useDropdown;
@@ -785,3 +789,78 @@ You will have ESLint errors around un-used variables. This is expected. We'll us
 - Let's go make it make AJAX requests now!
 
 - [The project files so far](adopt-me/hooks/).
+
+## 6. Effects
+
+We want to make our app be able to read live data about animals to adopt! This data is courteous of Petfinder.com, a wonderful service that provides a free API for adopting animals. Unfortunately, this service is USA-based, so please use USA locations only or else it won't return any results.
+
+Since this Petfinder is a real service and we don't want to hammer their API, we've built a client that heavily caches responses and limits your location to only `Seattle, WA` and `San Francisco, CA`. If you request something else, it'll force you into one of these locations. We do this to cause less load on their servers. In the future this may change.
+
+Occasionally this API has gone down, so the API client can run in offline mode too. In order to run in offline mode, just make sure that `PET_MOCK=mock` is in your environmental variables. To accomplish, let's add this mock ability to our npm scripts.
+
+- Run `npm i -D cross-env` and then add this to our `package.json`'s scripts:
+- `"dev:mock": "cross-env PET_MOCK=mock npm run dev",`.
+- Now any time you run this `npm run dev:mock` instead of `npm run dev` you'll get mock data and not hit the API. This will work offline and if the API is down or taking too long.
+
+- Let's see how we can handle asynchronous code inside of React.
+- In `SearchParams.js`:
+
+```jsx
+// at the top import useEffect and the pet client
+import React, { useState, useEffect } from "react";
+import pet, { ANIMALS } from "@frontendmasters/pet";
+
+// add setBreed to the destructured variables
+const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
+
+// below the two useDropdown calls
+useEffect(() => {
+  pet.breeds("dog").then(console.log, console.error);
+});
+```
+
+- Here we're using an effect to retrieve a list of breeds from the API.
+- An effect is run after every render (which happens after state changes).
+- We're going to use effects to do things like AJAX calls, modify ambient state, integrate with other libraries, and many other things.
+- Basically it's a way to delay work using a promise until after the render happens and to deal with asynchronous side effects.
+- Users don't have to wait to see something rendered, rather `useEffect` is scheduled to run after the first render.
+- If you're familiar with previous versions of React, effects can take the place of most life cycle methods. In this case we're going to use it instead of `componentDidMount` and `componentDidUpdate`.
+
+- So rather than just having `dog` be the static animal, let's make that dynamic and let's make it actually save the breed it gets.
+
+```jsx
+// replace useEffect
+useEffect(() => {
+  setBreeds([]);
+  setBreed("");
+  pet.breeds(animal).then(({ breeds }) => {
+    const breedStrings = breeds.map(({ name }) => name);
+    setBreeds(breedStrings);
+  }, console.error);
+}, [animal, setBreed, setBreeds]);
+```
+
+- Due to JavaScript closures (the fact that state is preserved for various render function calls) we're able to reference `setBreeds` from the outer scope. We use this to update the breed after the successful call to the petfinder API.
+
+### 6.1. Declaring the Effect Dependencies
+
+- The array at the end is peculiar but essential. By default, effects will run at the end of every re-render. This is problematic for us because we're updating breeds, which causes a re-render, which causes another effect, which causes another re-render, etc.
+- What you can to prevent this spiral is give it an array of dependencies as a second parameter, so the effect will only happen if one of those dependencies changes.
+- In this case, we want to only cause the effect if `animal` changes. However `setBreed` and `setBreeds` are also dependencies of `useEffect`, so ESLint demands these are included in the array too, even though we know they will not change.
+- Effects are always called after the first render no matter what.
+- We have to pull the strings out of the objects from the API since the dropdown expect a list of strings, hence the map which does just that.
+
+### 6.2. Run Only Once
+
+- If we want the effect to run once after the first render and never again, we simply make the dependency array empty.
+
+```jsx
+useEffect(() => {
+  //..
+}, []);
+```
+
+- `useState` and `useEffect` are the two primary hooks we are going to use in our applications.
+- They will cover about 90% of our requirements.
+
+- [The project files so far](adopt-me/effects/).
