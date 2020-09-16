@@ -43,6 +43,8 @@
   - [8.2. Using the Fallback Mock API](#82-using-the-fallback-mock-api)
   - [8.3. One-Way Data Flow](#83-one-way-data-flow)
   - [8.4. Reformatting the Pet Component](#84-reformatting-the-pet-component)
+  - [8.5. Reach Router](#85-reach-router)
+  - [8.6. Reach Router Link](#86-reach-router-link)
 
 ## 1. Introduction
 
@@ -1024,3 +1026,92 @@ export default Pet;
 Looks much better! The links don't go anywhere yet but we'll get there. We don't have a good loading experience yet though. Right now we just seem unresponsive.
 
 Using a new tool to React called Suspense we can make the DOM rendering wait until we finish loading our data, show a loader, and then once it finishes we can resume rendering it. This is coming soon; for now you would just keep track of a loading Boolean and then conditionally show your component or a loading spinner based on whether it was finished loading or not.
+
+### 8.5. Reach Router
+
+In previous versions of this course we used various iterations of the React Router. React Router is a fantastic library and you should give serious consideration to using it in your project. Three of the previous versions of this workshop taught the still-current version of React Router, version 4.
+
+Reach Router is a new router from one of the creators of React Router, Ryan Florence. Ryan took much of his learnings from making React Router and made a simpler, more accessible, and easier to accomplish advanced tasks like animated transitions while still maintaining a similar API to React Router. Great piece of technology.
+
+- What we want to do now is to add a second page to our application: a Details page where you can out more about each animal.
+- Let's quickly make a second page so we can switch between the two.
+- Make file called `Details.js`.
+
+```jsx
+import React from "react";
+
+const Details = () => {
+  return (
+    <pre>
+      <code>{JSON.stringify(props, null, 4)}</code>
+    </pre>;
+  );
+};
+
+export default Details;
+```
+
+- Using `<pre><code>...` is a tip for debugging, where we can dump props to the screen!
+
+- Now the Results page is its own component. This makes it easy to bring in the router to be able to switch pages.
+- Run `npm i @reach/router`.
+- Now we have two pages and the router available.
+- Let's go make it ready to switch between the two. In `App.js`:
+
+```jsx
+// at top
+import { Router } from "@reach/router";
+import Details from "./Details";
+
+// replace <SearchParams />
+<Router>
+  <SearchParams path="/" />
+  <Details path="/details/:id" />
+</Router>;
+```
+
+Now we have the router working!
+
+- Try navigating to http://localhost:1234/ and then to http://localhost:1234/details/1. Both should work!
+
+- Reach Router has a ton of features that we're not going to explain here. The docs do a great job.
+- With Reach Router, you make your component the Route component (unlike React Router) by giving it a path attribute.
+- Reach Router then will find the path that it most matches. (It figures this out by a scoring algorithm that functions intuitively, similar to a CSS selector.)
+- The `:id` part is a variable. In http://localhost:1234/details/1, `1` would be the variable.
+- The killer feature of Reach Router is that it's really accessible. It manages things like focus so you don't have to. Pretty great.
+
+### 8.6. Reach Router Link
+
+- So now let's make the two pages link to each other.
+- Go to `Pet.js`.
+
+```jsx
+// at top
+import { Link } from "@reach/router";
+
+// change wrapping <a>
+<Link to={`/details/${id}`} className="pet">
+  […]
+</Link>;
+```
+
+Now each result is a link to a details page! And that id is being passed as a prop to Details.
+
+- Try replacing the `return` of `Details` with `return <h1>{props.id}</h1>;`. You should see the number.
+
+- Let's make the Adopt Me! header clickable too. Go to `App.js`:
+
+```jsx
+// import Link too
+import { Router, Link } from "@reach/router";
+
+// replace h1
+<header>
+  <Link to="/">Adopt Me!</Link>
+</header>;
+```
+
+- Now if you click the header, it'll take you back to the Results page. Cool.
+- Next let's round out the Details page.
+
+- [The project files so far](adopt-me/async-and-routing/).
