@@ -38,6 +38,11 @@
 - [7. Dev Tools](#7-dev-tools)
   - [7.1. Strict Mode](#71-strict-mode)
   - [7.2. Dev Tools](#72-dev-tools)
+- [8. Async & Routing](#8-async--routing)
+  - [8.1. Asynchronous API Requests](#81-asynchronous-api-requests)
+  - [8.2. Using the Fallback Mock API](#82-using-the-fallback-mock-api)
+  - [8.3. One-Way Data Flow](#83-one-way-data-flow)
+  - [8.4. Reformatting the Pet Component](#84-reformatting-the-pet-component)
 
 ## 1. Introduction
 
@@ -799,12 +804,6 @@ We want to make our app be able to read live data about animals to adopt! This d
 
 Since this Petfinder is a real service and we don't want to hammer their API, we've built a client that heavily caches responses and limits your location to only `Seattle, WA` and `San Francisco, CA`. If you request something else, it'll force you into one of these locations. We do this to cause less load on their servers. In the future this may change.
 
-Occasionally this API has gone down, so the API client can run in offline mode too. In order to run in offline mode, just make sure that `PET_MOCK=mock` is in your environmental variables. To accomplish, let's add this mock ability to our npm scripts.
-
-- Run `npm i -D cross-env` and then add this to our `package.json`'s scripts:
-- `"dev:mock": "cross-env PET_MOCK=mock npm run dev",`.
-- Now any time you run this `npm run dev:mock` instead of `npm run dev` you'll get mock data and not hit the API. This will work offline and if the API is down or taking too long.
-
 - Let's see how we can handle asynchronous code inside of React.
 - In `SearchParams.js`:
 
@@ -872,8 +871,6 @@ useEffect(() => {
 
 React has some really great tools to enhance your developer experience. We'll go over a few of them here.
 
-`NODE_ENV=development`
-
 React already has a lot of developer conveniences built into it out of the box. What's better is that they automatically strip it out when you compile your code for production.
 
 So how do you get the debugging conveniences then? Well, if you're using Parcel.js, it will compile your development server with an environment variable of `NODE_ENV=development` and then when you run `parcel build <entry point>` it will automatically change that to `NODE_ENV=production` which is how all the extra weight gets stripped out.
@@ -882,8 +879,148 @@ Why is it important that we strip the debug stuff out? The dev bundle of React i
 
 ### 7.1. Strict Mode
 
-React has a new strict mode. If you wrap your app in `<React.StrictMode></React.StrictMode>` it will give you additional warnings about things you shouldn't be doing. Brian is not teaching us anything that would trip warnings from `React.StrictMode` but it's good to keep your team in line and not use legacy features or things that will be soon be deprecated.
+React has a new strict mode which helps you future-proof your code. If you wrap your app in `<React.StrictMode></React.StrictMode>` it will give you additional warnings about things you shouldn't be doing. Brian is not teaching us anything that would trip warnings from `React.StrictMode` but it's good to keep your team in line and not use legacy features or things that will be soon be deprecated.
 
 ### 7.2. Dev Tools
 
 React has wonderful dev tools that the core team maintains. They're available for both Chromium-based browsers and Firefox. They let you do several things like explore your React app like a DOM tree, modify state and props on the fly to test things out, tease out performance problems, and programmatically manipulate components.
+
+## 8. Async & Routing
+
+### 8.1. Asynchronous API Requests
+
+We've seen one way to handle async code in React: with effects. This is most useful when you need to be reactive to your data changing or when you're setting up or tearing down a component.
+
+Sometimes you just need to respond to someone pressing a button. This isn't hard to accomplish either. Let's make it so whenever someone either hits enter or clicks the button it searches for animals. We can do this by listening for submit events on the form.
+
+- Let's go do that now. In `SearchParams.js`:
+
+```jsx
+// underneath the useState calls
+const [pets, setPets] = useState([]);
+
+// underneath the useDropdown calls
+async function requestPets() {
+  const { animals } = await pet.animals({
+    location,
+    breed,
+    type: animal
+  });
+
+  setPets(animals || []);
+}
+
+// replace <form>
+<form
+  onSubmit={e => {
+    e.preventDefault();
+    requestPets();
+  }}
+>
+```
+
+We don't want Parcel to use Babel to translate our async/await calls (since we are probably using modern browsers, you'd want to let it translate it for production). As such, add this to your `package.json`:
+
+```json
+{
+  "browserslist": ["last 2 Chrome versions"]
+}
+```
+
+This will target all [evergreen browsers](https://www.techopedia.com/definition/31094/evergreen-browser). If you're feeling lazy, feel free to just put the one in you're using.
+
+### 8.2. Using the Fallback Mock API
+
+Occasionally this API has gone down, so the API client can run in offline mode too. In order to run in offline mode, just make sure that `PET_MOCK=mock` is in your environmental variables. To accomplish, let's add this mock ability to our npm scripts.
+
+- Run `npm i -D cross-env` and then add this to our `package.json`'s scripts:
+- `"dev:mock": "cross-env PET_MOCK=mock npm run dev",`.
+- Now any time you run this `npm run dev:mock` instead of `npm run dev` you'll get mock data and not hit the API. This will work offline and if the API is down or taking too long.
+
+### 8.3. One-Way Data Flow
+
+- Now you should be able to see the network request go out whenever you submit the form.
+- Let's display it now. Make a new file called `Results.js`.
+
+```js
+import React from "react";
+import Pet from "./Pet";
+
+const Results = ({ pets }) => {
+  return (
+    <div className="search">
+      {!pets.length ? (
+        <h1>No Pets Found</h1>
+      ) : (
+        pets.map((pet) => {
+          return (
+            <Pet
+              animal={pet.type}
+              key={pet.id}
+              name={pet.name}
+              breed={pet.breeds.primary}
+              media={pet.photos}
+              location={`${pet.contact.address.city}, ${pet.contact.address.state}`}
+              id={pet.id}
+            />
+          );
+        })
+      )}
+    </div>
+  );
+};
+
+export default Results;
+```
+
+- `key` is there so that React knows when you re-arrange lists or filter them differently.
+- It uses that key to shallowly compare if the item has changed or re-arranged to improve DOM performance.
+- Use a unique identifier for it. Only use index if you have to.
+- Now go back to `SearchParams.js` and put this:
+
+```jsx
+// at top
+import Results from "./Results";
+
+// under </form>, still inside the div
+<Results pets={pets} />;
+```
+
+- Now you should be able to make request and see those propagated to the DOM! Pretty great!
+- Notice that the data flows from parent to child, but not up.
+- This is known as **one-way data flow** and is a key concept of React.
+
+### 8.4. Reformatting the Pet Component
+
+- Let's go make `Pet.js` look decent:
+
+```jsx
+import React from "react";
+
+const Pet = (props) => {
+  const { name, animal, breed, media, location, id } = props;
+
+  let hero = "http://placecorgi.com/300/300";
+  if (media.length) {
+    hero = media[0].small;
+  }
+
+  return (
+    <a href={`/details/${id}`} className="pet">
+      <div className="image-container">
+        <img src={hero} alt={name} />
+      </div>
+      <div className="info">
+        <h1>{name}</h1>
+        <h2>{`${animal} — ${breed} — ${location}`}</h2>
+      </div>
+    </a>
+  );
+};
+
+export default Pet;
+```
+
+Looks much better! The links don't go anywhere yet but we'll get there. We don't have a good loading experience yet though. Right now we just seem unresponsive.
+
+Using a new tool to React called Suspense we can make the DOM rendering wait until we finish loading our data, show a loader, and then once it finishes we can resume rendering it. This is coming soon; for now you would just keep track of a loading Boolean and then conditionally show your component or a loading spinner based on whether it was finished loading or not.
