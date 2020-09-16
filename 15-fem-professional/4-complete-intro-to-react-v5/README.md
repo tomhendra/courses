@@ -35,6 +35,9 @@
 - [6. Effects](#6-effects)
   - [6.1. Declaring the Effect Dependencies](#61-declaring-the-effect-dependencies)
   - [6.2. Run Only Once](#62-run-only-once)
+- [7. Dev Tools](#7-dev-tools)
+  - [7.1. Strict Mode](#71-strict-mode)
+  - [7.2. Dev Tools](#72-dev-tools)
 
 ## 1. Introduction
 
@@ -864,3 +867,23 @@ useEffect(() => {
 - They will cover about 90% of our requirements.
 
 - [The project files so far](adopt-me/effects/).
+
+## 7. Dev Tools
+
+React has some really great tools to enhance your developer experience. We'll go over a few of them here.
+
+`NODE_ENV=development`
+
+React already has a lot of developer conveniences built into it out of the box. What's better is that they automatically strip it out when you compile your code for production.
+
+So how do you get the debugging conveniences then? Well, if you're using Parcel.js, it will compile your development server with an environment variable of `NODE_ENV=development` and then when you run `parcel build <entry point>` it will automatically change that to `NODE_ENV=production` which is how all the extra weight gets stripped out.
+
+Why is it important that we strip the debug stuff out? The dev bundle of React is quite a bit bigger and quite a bit slower than the production build. Make sure you're compiling with the correct environmental variables or your users will suffer.
+
+### 7.1. Strict Mode
+
+React has a new strict mode. If you wrap your app in `<React.StrictMode></React.StrictMode>` it will give you additional warnings about things you shouldn't be doing. Brian is not teaching us anything that would trip warnings from `React.StrictMode` but it's good to keep your team in line and not use legacy features or things that will be soon be deprecated.
+
+### 7.2. Dev Tools
+
+React has wonderful dev tools that the core team maintains. They're available for both Chromium-based browsers and Firefox. They let you do several things like explore your React app like a DOM tree, modify state and props on the fly to test things out, tease out performance problems, and programmatically manipulate components.
