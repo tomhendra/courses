@@ -57,6 +57,8 @@
   - [11.1. Context with Hooks](#111-context-with-hooks)
   - [11.2. Context with Classes](#112-context-with-classes)
   - [11.3. Persisting STate with Context Hooks](#113-persisting-state-with-context-hooks)
+- [12. Portals](#12-portals)
+- [13. Conclusion](#13-conclusion)
 
 ## 1. Introduction
 
@@ -1546,3 +1548,106 @@ const [theme, setTheme] = useContext(ThemeContext);
 - That's it for context! Something like theming would be perfect for context. It's for app-level data. Everything else should be boring-ol' state.
 
 - [The project files so far](adopt-me/context/).
+
+## 12. Portals
+
+Another very new feature React is something called a Portal. You can think of the portal as a separate mount point (the actual DOM node which your app is put into) for your React app. The most common use case for this is going to be doing modals. You'll have your normal app with its normal mount point and then you can also put different content into a separate mount point (like a modal or a contextual nav bar) directly from a component. Pretty cool!
+
+- First thing, let's go into `index.html` and add a separate mount point:
+
+```html
+<!-- above #root -->
+<div id="modal"></div>
+```
+
+This where the modal will actually be mounted whenever we render to this portal. Totally separate from our app root.
+
+- Next create a file called `Modal.js`:
+
+```jsx
+import React, { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
+
+const modalRoot = document.getElementById("modal");
+
+const Modal = ({ children }) => {
+  const elRef = useRef(null);
+  if (!elRef.current) {
+    elRef.current = document.createElement("div");
+  }
+
+  useEffect(() => {
+    modalRoot.appendChild(elRef.current);
+    return () => modalRoot.removeChild(elRef.current);
+  }, []);
+
+  return createPortal(<div>{children}</div>, elRef.current);
+};
+
+export default Modal;
+```
+
+- This will mount a div and mount inside of the portal whenever the Modal is rendered and then remove itself whenever it's unrendered.
+- We're using the feature of `useEffect` that if you need to clean up after you're done (we need to remove the div once the Modal is no longer being rendered) you can return a function inside of `useEffect` that cleans up.
+- We're also using a ref here via the hook `useRef`. Refs are like instance variables for function components. Whereas on a class you'd say t`his.myVar` to refer to an instance variable, with function components you can use refs.
+- They're containers of state that live outside a function's closure state which means anytime we refer to `elRef.current`, it's always referring to the same element.
+- This is different from a `useState` call because the variable returned from that `useState` call will always refer to the state of the variable when that function was called. It seems like a weird hair to split but it's important when you have async calls and effects because that variable can change and nearly always you want the `useState` variable, but with something like a portal it's important we always refer to the same DOM div; we don't want a lot of portals.
+- Down at the bottom we use React's `createPortal` to pass the children (whatever you put inside `<Modal></Modal>`) to the portal div.
+
+- Now go to `Details.js` and add:
+
+```js
+// at the top
+import { navigate } from "@reach/router";
+import Modal from "./Modal";
+
+// add showModal
+state = { loading: true, showModal: false };
+
+// add setState inside componentDidMount
+url: animal.url,
+  // above render
+  // prettier-ignore
+  toggleModal = () => this.setState({ showModal: !this.state.showModal });
+adopt = () => navigate(this.state.url);
+
+// add  showModal
+const {
+  media,
+  animal,
+  breed,
+  location,
+  description,
+  name,
+  showModal,
+} = this.state;
+
+// below description
+{
+  showModal ? (
+    <Modal>
+      <div>
+        <h1>Would you like to adopt {name}?</h1>
+        <div className="buttons">
+          <button onClick={this.adopt}>Yes</button>
+          <button onClick={this.toggleModal}>No</button>
+        </div>
+      </div>
+    </Modal>
+  ) : null;
+}
+```
+
+We're using the programmatic way of navigating using Reach Router. This is bad accessibility so you should be extra cautious when doing this. The button should be an `<a>` tag but Brian wanted to show us how to do it. But now if you click Yes on the adopt modal it'll take you to the page when you actually can adopt the pet!
+
+That's it! That's how you make a modal using a portal in React. This used to be significantly more difficult to do but with portals it became trivial. The nice thing about portals is that despite the actual elements being in different DOM trees, these are in the same React trees, so you can do event bubbling up from the modal. Some times this is useful if you want to make your Modal more flexible (like we did.)
+
+- [The final project files](adopt-me/portals/).
+
+## 13. Conclusion
+
+This concludes our intro to React! You know now nearly every feature of the React core library (there are a few more but are rarely needed). What makes React wonderful is not only the core library itself but the ecosystem around. Indeed, the ecosystem around it is as much a reason to learn React as React itself.
+
+The modules following this one are considered to be optional modules: you don't need to know all of these; I'd say just pick the ones you need for your project or what interests you the most and leave the others behind. For the most part these modules will be self-contained: you don't need to complete all the optional modules to understand what's going on. Some will use the code you built in the previous modules here but feel free to clone the complete project and work from there.
+
+Good job getting this far and good luck on the next modules!
