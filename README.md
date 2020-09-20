@@ -93,12 +93,12 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Full Stack for Front-End Engineers, v2](15-fem-professional/)**\
       You'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
 
-16. **[Frontend Masters: Design Systems with React & Storybook](16-design-systems-with-react-and-storybook)**\
+16. **[Wes Bos: JavaScript 30]()**
+
+17. **[Kent C. Dodds: Epic React]()**
+
+18. **[Frontend Masters: Design Systems with React & Storybook](16-design-systems-with-react-and-storybook)**\
      Design components using Figma, and then learn to code your components in React, and document them for your teams with Storybook.
-
-17. **[Wes Bos: JavaScript 30]()**
-
-18. **[Kent C. Dodds: Epic React]()**
 
 19. **[Frontend Masters: Introduction to Next.js]()**\
     Next.js is a complete framework built on top of React.js. You'll learn server-side rendering, static site generation, data fetching, code API endpoints, creating pages with the file system, add CSS modules, and more.

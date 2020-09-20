@@ -9,6 +9,9 @@
   - [1.3. Code is Provable](#13-code-is-provable)
   - [1.4. Course Overview](#14-course-overview)
 - [2. Function Purity](#2-function-purity)
+  - [2.1. Functions vs Procedures](#21-functions-vs-procedures)
+  - [2.2. Functional Naming Semantics](#22-functional-naming-semantics)
+  - [2.3. Side Effects](#23-side-effects)
 
 ## 1. Introduction
 
@@ -81,3 +84,91 @@ Learn to apply functional programming concepts in JavaScript to make your progra
 - FP Libraries
 
 ## 2. Function Purity
+
+### 2.1. Functions vs Procedures
+
+- Functional Programming is not all about the `function` keyword.
+- The following both use the `function` keyword.
+
+```js
+function addNumbers(x = 0, y = 0, z = 0, w = 0) {
+  var total = x + y + z + w;
+  console.log(total);
+}
+
+function extraNumbers(x = 2, ...args) {
+  return addNumbers(x, 40, ...args);
+}
+
+extraNumbers(); // 42
+extraNumbers(3, 8, 1); // 62
+```
+
+- `addNumbers` takes an input and does something with it, but the bar for being a function is higher than that.
+- Just because `addNumbers` uses the `function` keyword does not make it a function.
+- `addNumbers` is a **procedure** -- a collection of operations in a program.
+- Procedures can take inputs, produce outputs, we all use them and they are very useful.
+- To understand the difference between a function and a procedure we need to first say that a function not only has to take an input, it has to _return_ an output.
+- If there is no `return` keyword it is most definitely not a function.
+- Any 'function' without a `return` keyword is a procedure.
+- But there is more to the definition of a function which we will uncover as we progress with the course.
+- `extraNumbers` has a `return` keyword and is returning whatever the return value of `addNumbers` is.
+- In JavaScript all functions minimally return the `undefined` keyword, so it is returning _something_.
+- However `extraNumbers` is not a function because functions can't call procedures, or they become procedures themselves.
+- You can't do any functional programming with anything that is not a function.
+- It has to be a function to take advantage of FP principles.
+- There are many ways where people use what look like function APIs and patterns but don't use true functions, so they are masquerading as functional.
+
+### 2.2. Functional Naming Semantics
+
+- The following example returns an array, but by destructuring we are communicating that we don't really care about the array.
+
+```js
+function tuple(x, y) {
+  return [x + 1, y - 1];
+}
+
+var [a, b] = tuple(...[5, 10]);
+
+a; // 6
+b; // 9
+```
+
+- We actually care about the individual elements with we are assigning to `a` and `b`.
+- We are communicating that `tuple` has two outputs.
+- If we just returned `40`, although it would take inputs and return outputs it wouldn't be considered the true spirit of a function.
+- To understand the spirit of a function, we need to look at some mathematics.
+
+```
+f(x) = 2x² + 3
+```
+
+- The input value is interpreted as the `x` coordinate, and the output value is interpreted as the `y` coordinate, and when you take the input and output together we can interpret their meaning as a [palabora](https://en.wikipedia.org/wiki/Parabola).
+- A function is a relationship between the input and the output.
+- There is a semantic relationship between what we put in, and what we get out.
+- If we were to write this in JS we could write:
+
+```js
+function f(x) {
+  return 2 * Math.pow(x, 2) + 3;
+}
+```
+
+- But a better name for this function would be Parabola, to describe to the reader of our code the relationship.
+- If we are making things that don't have an obvious relationship between the input and the output, we are not accomplishing the spirit of FP.
+- The goal is to create relationships that are obvious to the reader of our code.
+- **Function: the semantic relationship between input and computed output**.
+- If we make a function named `shippingRate` the name of the function tells the reader the semantic relationship.
+
+```js
+function shippingRate(size, weight, speed) {
+  return (size + 1) * weight + speed;
+}
+```
+
+- That is what functional programming bases itself on.
+- Everything that we use in our app must have a name that semantically describes the relationship between the input and output.
+- Even `undefined` is a valid output, as long as it has a semantic relationship to the input.
+- If we were trying to retrieve a property from an object, and it wasn't present, the proper semantic return value would be `undefined`.
+
+### 2.3. Side Effects
