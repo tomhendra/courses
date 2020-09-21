@@ -1,38 +1,49 @@
 "use strict";
 
 var students = [
-	{ id: 260, name: "Kyle" },
-	{ id: 729, name: "Susan" },
-	{ id: 42, name: "Frank" },
-	{ id: 74, name: "Jessica" },
-	{ id: 491, name: "Ally" }
+  { id: 260, name: "Kyle" },
+  { id: 729, name: "Susan" },
+  { id: 42, name: "Frank" },
+  { id: 74, name: "Jessica" },
+  { id: 491, name: "Ally" },
 ];
 
-function sortStudentsByName() {
-	// Don't modify this function
-	students.sort(function byName(s1,s2){
-		if (s1.name < s2.name) return -1;
-		else if (s1.name > s2.name) return 1;
-		else return 0;
-	});
-	return students;
+function getStudentsByName(students) {
+  // we need our local students to be a copy, not a reference to the original.
+  // the slice method makes a shallow copy.
+  // so our students parameter points at local copy, not the global array.
+  students = students.slice();
+  return sortStudentsByName();
+
+  function sortStudentsByName() {
+    // Don't modify this function
+    students.sort(function byName(s1, s2) {
+      if (s1.name < s2.name) return -1;
+      else if (s1.name > s2.name) return 1;
+      else return 0;
+    });
+    return students;
+  }
 }
 
 function sortStudentsByID() {
-	// Don't modify this function
-	students.sort(function byID(s1,s2){
-		return s1.id - s2.id;
-	});
-	return students;
+  // Don't modify this function
+  students.sort(function byID(s1, s2) {
+    return s1.id - s2.id;
+  });
+  return students;
 }
 
 // *************************************
 
 // modify/move this function
-function getStudentsByName() { return students; }
-
-// modify/move this function
-function getStudentsByID() { return students; }
+function getStudentsByID(curStudents) {
+  var origStudents = students.slice(); // copy state
+  students = curStudents; // setup environment
+  var newStudents = sortStudentsByID(); // call function with side effects + capture new state
+  students = origStudents; // restore original state
+  return newStudents; // return the new state
+}
 
 // *************************************
 
