@@ -22,6 +22,10 @@
   - [3.1. Arguments Shape Adapters](#31-arguments-shape-adapters)
   - [3.2. Flap and Reverse Adapter](#32-flap-and-reverse-adapter)
   - [3.3. Spread Adapter](#33-spread-adapter)
+- [4. Point-Free](#4-point-free)
+  - [4.1. Equational Reasoning](#41-equational-reasoning)
+  - [4.2. Point-Free Refactor](#42-point-free-refactor)
+  - [4.3. Advanced Point-Free](#43-advanced-point-free)
 
 ## 1. Introduction
 
@@ -734,3 +738,185 @@ function f(arr) {
 var g = unSpreadArgs(f);
 g(1, 2, 3, 4); // 10
 ```
+
+## 4. Point-Free
+
+- Point-free is a way of defining a function without actually writing anything in the function.
+- A way of making a function by making it with other functions.
+
+### 4.1. Equational Reasoning
+
+- The idea of a [fixed point function](https://en.wikipedia.org/wiki/Fixed_point) in mathematics is that if we have more than one input, we take one of the inputs and fix it at a certain value.
+- E.g. for a function that takes in `x` and `y` and outputs a `z` the `x` might be fixed at `3`.
+- That speaks to why the definition of _point-free_ is defining a function without needing to define its _points_ AKA its _inputs_.
+- So we have a class of techniques in FP for defining functions with other functions.
+
+```js
+getPerson(function onPerson(person) {
+  return renderPerson(person);
+});
+```
+
+- This is a very common pattern.
+- We pass in a callback that receives an input `person` and pass that input along to some other function.
+- That `person` parameter is the _point_ or input for the `onPerson` function.
+- What if we could define the equivalent of this function without having to list the point at all.
+- `onPerson` and `renderPerson` by both taking a single input, have the same shape.
+- If they have the same shape, they are interchangeable.
+- This means we can just pass `renderPerson` as the callback.
+
+```js
+getPerson(renderPerson);
+```
+
+- This is called **equational reasoning**.
+- All this means is that if two functions have the same shape, they are interchangeable.
+- We are _reasoning_ about the _equality_ of the **shape** of two functions.
+- The takeaway is that we are able to define a function without needing to list the point.
+
+As the FP techniques get more advanced, particularly with point-free, the healthy response is the push ourselves just a bit until we are comfortable, before moving on to even more advanced techniques.
+
+- Don't go overboard and create too much complexity with advanced point-free techniques.
+- Fallback to what is practical, reasonable and readable to avoid writing code that we don't even ourselves understand.
+- If our code is not more readable, we lose the benefits of FP.
+- The line of understanding will keep moving forward as we journey further into the realm of FP.
+
+From here on... there be dragons! 🐲 + 🤯 = 🚀
+
+### 4.2. Point-Free Refactor
+
+- We want to get to the idea of the shapes being equal to each other.
+
+```js
+function isOdd(v) {
+  return v % 2 == 1;
+}
+
+function isEven(v) {
+  return !isOdd(v);
+}
+
+isEven(4); // true
+```
+
+- By defining `isEven` in terms of `isOdd` instead of `v % 2 == 0`, we have created a more visible relationship between the two functions.
+- We are saying `isEven` is the negation of `isOdd`.
+- If we had used `v % 2 == 0` the relationship would exist, but it would be completely non-obvious.
+- Here we are attempting to make the relationship more obvious.
+- By thinking about the relationship, we consider whether the pointed definition of `isEven` could be defined in a point-free way.
+- The benefit of point-free is that we are moving to a more declarative style.
+- With points we route an input to an input which is a more imperative style.
+- Remember, declarative is implicit and imperative is explicit.
+- Most developers would argue it is better to write explicit code, but in some situations it is better to use declarative FP techniques to handle unnecessary details.
+- To see `v` being passed from `isEven` to `isOdd` is an unnecessary detail.
+- We accomplish the point-free style by creating a utility that adapts the shape of the function.
+- We can use a HOF that already exists: `not`.
+- Note: `not` is sometimes also referred to as `complement` in FP.
+
+```js
+function not(fn) {
+  return function negated(...args) {
+    return !fn(...args);
+  };
+}
+
+function isOdd(v) {
+  return v % 2 == 1;
+}
+
+var isEven = not(isOdd);
+
+isEven(4); // true
+```
+
+- We return a new function `negated` that executes `isOdd` and negates the return value boolean.
+- The line `var isEven = not(isOdd)` is easier to read, and the relationship is even clearer.
+- That's where we get the readability gains in FP, specifically in pont-free style: We define one function in terms of another, which makes the relationship between them much more clear.
+
+**We allow the _how_ of the imperative details to be implicitly hidden through a declarative style**.
+
+- That is the big takeaway from all of FP.
+
+- [Point-Free Refactoring Exercise](exercises/point-free/ex.js)
+- Recommend to re-watch the [solution video](https://frontendmasters.com/courses/functional-javascript-v3/point-free-solution/) for the walk-through on equational reasoning.
+
+### 4.3. Advanced Point-Free
+
+- There are certainly more advanced techniques.
+- The following are just a couple of examples for a glimpse that will be returned to later.
+- `mod` and `eq` are both common FP library utilities.
+
+```js
+function mod(y) {
+  return function forX(x) {
+    return x % y;
+  };
+}
+
+function eq(y) {
+  return function forX(x) {
+    return x === y;
+  };
+}
+```
+
+- They take their inputs individually, in two separate function calls.
+- We are providing the `y` input first and then the `x`, which might seem strange at first.
+- Functional programmers care a lot about the shape of their functions.
+- It matters not just what kinds of inputs there are, but also what order they are in.
+- The order of `y` then `x` is much more natural in this example as we will see.
+- We earlier defined `isEven` in terms of `isOdd`, but what if we want to defined `isOdd` in a point-free way.
+
+```js
+var mod2 = mod(2);
+var eq1 = eq(1);
+```
+
+- `mod2` now takes any input and mods it with the number `2`.
+- `eq1` now takes any input and compares it to the value `1`.
+- `mod2` & `eq1` are more _specific_ than `mod` & `eq` because they only take one input; the first input has already been pre-specified.
+- To define `isOdd` in terms of `mod2` and `eq1` is quite straightforward.
+
+```js
+function isOdd(x) {
+  return eq1(mod2(x));
+}
+```
+
+- We pass in `x` to `mod2` and whatever that returns we pass in to `eq1`.
+- So if `x % 2 === 1` then `isOdd` will return `true`.
+- We are not point-free yet, but we have made progress moving from operators to functions.
+- We notice that the output of the `mod2` call is passed directly to the `eq1` call.
+- The concept of one function call's output immediately becoming another function call's input, is called _composition_.
+- We can use the idea that this is a composition pattern to define `isOdd` in a point-free manner.
+- We use a compose utility which routes one function's output to another function's input.
+
+```js
+function compose(fn2, fn1) {
+  return function composed(v) {
+    return fn2(fn1(v));
+  };
+}
+
+var isOdd = compose(eq1, mod2);
+```
+
+- We now have a point-free definition of `isOdd`: the composition of `eq1` and `mod2`.
+- `fn1` is `mod2` which is called with whatever value we pass in to `isOdd`.
+- `fn2` is `eq1` which is passed the output of `mod2`.
+- `eq1` will return `true` or `false` as required.
+- This analysis is made by equational reasoning: `eq1(mod2(x))` is the same shape as `fn2(fn1(v)`.
+- They are interchangeable, which enables our point-free definition.
+- But we can go a step further and replace the intermediary `mod2` and `eq1` functions and define them inline.
+
+```js
+var isOdd = compose(eq(1), mod(2));
+```
+
+- They are interchangeable because they are the same shape.
+- **Equational reasoning is at the heart of being able to use point-free style.**
+- We need to ask ourselves: _what kind of a shape change needs to occur to make functions interchangeable?_
+- This style may look less readable at first, but with practise `compose(eq(1), mod(2))` will become more readable than `eq1(mod2(x))`.
+- Familiarity through exposure will make the point-free functional style more readable than non-FP style.
+- Over a period of time practising these techniques, patterns begin to jump out at us, and trigger us to use FP techniques.
+- That is the key to becoming a functional programmer; recognising the patterns and knowing which techniques to apply.
