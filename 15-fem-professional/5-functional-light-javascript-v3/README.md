@@ -18,6 +18,10 @@
   - [2.7. Level of Confidence](#27-level-of-confidence)
   - [2.8. Extracting Impurity](#28-extracting-impurity)
   - [2.9. Containing Impurity](#29-containing-impurity)
+- [3. Argument Adapters](#3-argument-adapters)
+  - [3.1. Arguments Shape Adapters](#31-arguments-shape-adapters)
+  - [3.2. Flap and Reverse Adapter](#32-flap-and-reverse-adapter)
+  - [3.3. Spread Adapter](#33-spread-adapter)
 
 ## 1. Introduction
 
@@ -548,3 +552,185 @@ numbers; // [5, 4, 3, 2, 1]
 - Contain it somewhere, make it obvious, so the future reader knows where to go looking for bugs if they occur.
 
 - [Impurity Exercise: Wrappers & Adapters](exercises/impurity/ex.js)
+
+## 3. Argument Adapters
+
+- Parameter and argument are often used interchangeably.
+- The generally accepted definition is that the parameter is the variable in the function definition, and the argument is the value that is assigned to the parameter, when we call the function.
+- The arguments are the inputs to the function.
+- There are special terms to describe the shape of functions.
+- We will use the terminology **_shape_** in place of the more formal CS term: **_type signature_**.
+- The shape is described by the kind and quantity of things you pass in, and the kind and quantity of things that come out.
+
+```js
+// unary
+function increment(x) {
+  return sum(x, 1);
+}
+
+// binary
+function sum(x, y) {
+  return x + y;
+}
+```
+
+- A function that takes in a single input and produces a single output is a unary function.
+- A function that takes in two inputs and produces a single output is a binary function.
+- We are describing the shape of the input signature.
+- The functional programmer is almost obsessed with the shape of functions: It is super critical.
+- When authoring functions we should constantly be thinking: what does the shape of the function imply to the future use of it.
+- For functions that we decide the design of, we should be very cognizant about the shape.
+- For reasons that we will begin to understand, functional programmers tend to prefer unary functions: one input, one output.
+- The next preferred option is a binary function: two inputs, single output.
+- Probably 95-98% of all functions in a good functional program will be one of those two sorts: Around 70/30 unary/binary.
+- There is a term to describe other functions that take more than two inputs: **enary** functions.
+- Enary functions are vastly less common, because the more inputs a function has, the harder it is to make it work with other functions.
+
+### 3.1. Arguments Shape Adapters
+
+- We can adapt the shape of functions.
+- We are going to introduce a concept that is often not fully understood: Higher Order Function (HOF).
+- A HOF is a function that either receives as its inputs one or more functions, and/or returns one or more functions as its outputs.
+- If the inputs/outputs are not functions, then it is a single order function.
+
+```js
+function unary(fn) {
+  return function one(arg) {
+    return fn(arg);
+  };
+}
+
+function binary(fn) {
+  return function two(arg1, arg2) {
+    return fn(arg1, arg2);
+  };
+}
+
+function f(...args) {
+  return args;
+}
+
+var g = unary(f);
+var h = binary(f);
+
+g(1, 2, 3, 4); // [1]
+h(1, 2, 3, 4); // [1,2]
+```
+
+- `unary` receives a function `fn` and returns another function `one`: It is a HOF.
+- All functions in JS are _variadic_ which means we can pass in as many arguments as we want.
+- We can define a function that expects three arguments and pass four to it, or one, JS will not throw an error.
+- Consider an enary function that might expect multiple arguments like `f`.
+- If we pass it to `unary`, what we get back and assign to `g` is a new function `one`.
+- Only one input makes it to the underlying function, because we name a single parameter `arg`.
+- We took a function that was _enary_, and restricted its shape to _unary_.
+- That's what the `unary` utility function does: it adapts the shape of a enary function to be unary.
+- We must get comfortable with the idea that the shape of a function can be adapted to another shape.
+- That is critical and a key takeaway from the higher order functions pattern.
+- It is essential that we can adapt function shape, for when we need to create an adaptor to make two functions fit together.
+- Virtually all the utilities we find in FP libraries like Lodash are higher order functions.
+- They take a single function in, they do something, and make a new function that does something different.
+- This pattern is repeated all over the place.
+- It is critical to be comfortable with this pattern so we can make our own HOFs.
+- As functional programmers we need to be able to see what kind of adaptor we need to create in order to adapt the shape of the functions to make them fit.
+- This concept is core and central to all of our future functional programming.
+
+### 3.2. Flap and Reverse Adapter
+
+- If we have a binary function that has parameters of `x` and `y` but we need to flip the order to `y` then `x`, we can use a flip adapter.
+
+```js
+function flip(fn) {
+  return function flipped(arg1, arg2, ...args) {
+    return fn(arg2, arg1, ...args);
+  };
+}
+
+function f(...args) {
+  return args;
+}
+
+var g = flip(f);
+
+g(1, 2, 3, 4); // [2,1,3,4]
+```
+
+- `flip` transposes the first two arguments.
+- _Flip_ is the name canonically used for this function in most libraries.
+
+The path to becoming a functional programmer is getting conformable with seeing all these mathematical pieces and using them just like we use `1 + 1 = 2`.
+
+- A somewhat less common example we may encounter would be a reverse adapter.
+
+```js
+function reverseArgs(fn) {
+  return function reversed(...args) {
+    return fn(...args.reverse());
+  };
+}
+
+function f(...args) {
+  return args;
+}
+
+var g = reverseArgs(f);
+
+g(1, 2, 3, 4); // [4,3,2,1]
+```
+
+- This is an adapter that Kyle created.
+
+When we find ourselves messing around with the shape of functions and they don't fit, try and figure out:
+
+1. Can we change the shape of the function at definition so that it fit better.
+2. If not, make an adapter that changes the shape.
+
+Everywhere that we do this we are looking for common patterns. The functional programmer is looking for the lego piece that looks like the pieces they already have.
+
+- We don't want to invent new utilities all the time, because being able to figure something out at a glance is facilitated through familiarity and recognition.
+- Wherever possible use the things that function programmers have been using for 60+ years.
+- When a functional programmer sees something that is not familiar, they spend more time reasoning about the maths.
+- Where it is possible we should make our FP code recognizable at a glance by using common utilities and patterns.
+- That means we need to get familiar with at least one FP library, and most of the methods it provides.
+
+### 3.3. Spread Adapter
+
+- Another very common shape adaptation.
+- When we have a function that takes individual arguments, but we want to call it with an array.
+
+```js
+function spreadArgs(fn) {
+  return function spread(args) {
+    return fn(...args);
+  };
+}
+
+function f(x, y, z, w) {
+  return x + y + z + w;
+}
+
+var g = spreadArgs(f);
+g([1, 2, 3, 4]); // 10
+```
+
+- The JS method `apply` takes an array and spreads the values out as arguments.
+- The reason it is called _apply_ is because that's what functional programmers call it.
+- Almost all FP libraries call this operation `apply`.
+- Here we are using the spread operator to accomplish this.
+- For a function that takes an array as its argument, but we want to call it with individual arguments, we simply move the spread operator from line 3 to line 2.
+
+```js
+function unSpreadArgs(fn) {
+  return function unSpread(...args) {
+    return fn(args);
+  };
+}
+
+function f(arr) {
+  var [x, y, z, w] = arr;
+  return x + y + z + w;
+}
+
+var g = unSpreadArgs(f);
+g(1, 2, 3, 4); // 10
+```
