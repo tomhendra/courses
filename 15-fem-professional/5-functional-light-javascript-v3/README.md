@@ -40,6 +40,10 @@
     - [5.6.3. Strict vs Loose Currying](#563-strict-vs-loose-currying)
   - [5.7. Partial Application & Currying Comparison](#57-partial-application--currying-comparison)
   - [5.8. Changing Function Shape with Curry](#58-changing-function-shape-with-curry)
+- [6. Composition](#6-composition)
+  - [6.1. Composition Illustration](#61-composition-illustration)
+  - [6.2. Declarative Data Flow](#62-declarative-data-flow)
+  - [6.3. Piping vs Composition](#63-piping-vs-composition)
 
 ## 1. Introduction
 
@@ -1324,3 +1328,160 @@ add = curry(add);
 - Partial application would be more awkward.
 - It is a much nicer pattern to have an already curried function.
 - Anywhere we need a specialized function we can just call it with one input. 😍
+
+## 6. Composition
+
+- One function's output becoming the input to another function.
+
+### 6.1. Composition Illustration
+
+- Consider this example with three unary functions.
+
+```js
+function minus2(x) {
+  return x - 2;
+}
+function triple(x) {
+  return x * 3;
+}
+function increment(x) {
+  return x + 1;
+}
+
+// add shipping rate
+var tmp = increment(4);
+tmp = triple(tmp);
+totalCost = basePrice + minus2(tmp);
+```
+
+- This scenario will be used throughout this section.
+- Our goal is to be able to recognize composition opportunities.
+- We need to become familiar with the pattern of one function call producing an output that is later routed to another function call.
+- Often the output is stored in a variable which is later passed, sometimes one call is inside of another.
+
+We will illustrate composition by looking at the code form, and a metaphor. But first we need to understand what abstraction is.
+
+- The term _abstraction_ is thrown around in programming, but seems to have multiple definitions.
+- The original idea behind abstraction is around two or more things in a piece of code that are intertwined.
+- Take our example. We are handling two distinct interwoven concepts:
+
+1. We are calculating a shipping rate.
+2. We are adding that shipping rate to the base total for the order.
+
+- The initial idea of abstraction was to tease apart two things that are intertwined together.
+- We separate them by inserting a semantic boundary in between.
+- Abstraction is not about _hiding_ as is often thought, it is about _separating_.
+- By way of separation we make analysis easier and improve our understanding.
+
+The metaphor we will use to illustrate composition is a chocolate factory.
+
+- The machines operate from right to left with conveyor belts.
+- 🍫 ⬅️ ⬅️ ⬅️ packaging ⬅️ ⬅️ ⬅️ small pieces ⬅️ ⬅️ ⬅️ cooled blocks ⬅️ ⬅️ ⬅️ melted chocolate
+- We are the engineers responsible for managing the machines.
+- One day the CEO comes to us with a problem: our competitors are producing more chocolate than we are, and we need to make more.
+- The machines cannot be sped up, and there is no space for more machines.
+- What can we do?
+
+Back to the code.
+
+- We could get rid of the `tmp` variables that take up too much space, and nest the function calls.
+
+```js
+/*
+var tmp = increment(4);
+tmp = triple(tmp);
+totalCost = basePrice + minus2(tmp);
+*/
+
+totalCost = basePrice + minus2(triple(increment(4)));
+```
+
+- This is function composition.
+
+Back to the chocolate factory.
+
+- We have been thinking about the problem, and those conveyor belts are taking up too much space.
+- Why not just stack the machines right on top of each other. Genius!
+- We install the machines in this way, and everything goes well for six months.
+- Then the CEO comes to us again, saying that the workers are complaining about the setup.
+- The stack of machines has two many switches and wires everywhere, it's a mess.
+- Is there any way to invent one machine that can do everything?
+- 🍫 ⬅️ ⬅️ ⬅️ melted chocolate
+- We think about this, and decide that to maintain the machine we would need to have access to each of the operations.
+
+Back to the code.
+
+- We have the same problem: calculating the shipping and adding to the total are stacked on top of each other.
+- It is hard to reason about each one independently.
+- So we decide to write a function called `shippingRate` - our new machine.
+
+```js
+function shippingRate(x) {
+  return minus2(triple(increment(x)));
+}
+
+totalCost = basePrice + shippingRate(4);
+```
+
+- `minus2(triple(increment(x)));` is where we define how to do the calculation.
+- `basePrice + shippingRate(4);` is where we define what to do with it.
+- We have separated the two concerns by inserting a semantic boundary between how to calculate the shipping rate, and what to do with it.
+- This is called an _abstraction_, and the function name `shippingRate` is our semantic boundary.
+
+### 6.2. Declarative Data Flow
+
+Back to the chocolate factory.
+
+- We've been thinking more, and have another idea.
+- We don't need to change the machines at all, we can just wrap them all in shiny new panelling.
+- We'll leave an access panel so we can reach the individual machines.
+- But the new casing will have a single switch, one input for the melted chocolate, and one output for the packaged bars.
+- The factory workers only care about the input and output, so they love it.
+- The maintenance engineers are happy with the access panel. All is well.
+- But then the CEO returns with another problem!
+- Our competitors are producing new types of chocolate bars all the time, and we only produce one type.
+- We need to make more machines to compete.
+- This might sound crazy, but can you invent a machine that can make more machines?
+
+Back to the code.
+
+- What if we need additional shipping rates for express, next day, international etc.
+- To create separate functions for each would be messy.
+- There is a pattern in that each shipping rate function takes three other functions as inputs, and calls them in succession.
+- We could make a utility to define as many shipping rates as we want.
+
+```js
+function composeThree(fn1, fn2, fn3) {
+  return function composed(v) {
+    fn3(fn2(fn1(v)));
+  };
+}
+
+function minus2(x) {
+  return x - 2;
+}
+function triple(x) {
+  return x * 3;
+}
+function increment(x) {
+  return x + 1;
+}
+
+var shippingRate = composeThree(minus2, triple, increment);
+
+// calculate and add shipping rate
+totalCost = basePrice + shippingRate(4);
+```
+
+- The definition of `shippingRate` is not only point-free, but more declarative.
+- Functional programmers know that a composition will execute a series of functions from right-to-left, passing the output of each one as the input of the next, and return the eventual result.
+- We observe here that composition is _declarative data flow_.
+- It is the flow of data through a series of operations defined declaratively rather than imperatively.
+- Composition is so critical to functional programming, because the entire point of our programs is to have data flow.
+- Our programs are a series of state transition managed data flows with inputs and outputs.
+- The functional programmer knows that because of this, our data flows must be declared clearly and obviously.
+- It is difficult to track data flow when functions are implicitly linked calling one another haphazardly.
+- With declarative definitions such as `composeThree(minus2, triple, increment)` it is as easy as right-to-left.
+- We have a general utility called `compose` that takes any number of functions, provided by all major FP libraries.
+
+### 6.3. Piping vs Composition
