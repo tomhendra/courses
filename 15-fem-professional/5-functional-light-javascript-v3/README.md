@@ -18,6 +18,7 @@
   - [2.7. Level of Confidence](#27-level-of-confidence)
   - [2.8. Extracting Impurity](#28-extracting-impurity)
   - [2.9. Containing Impurity](#29-containing-impurity)
+  - [2.10. Impurity Exercise: Wrappers & Adapters](#210-impurity-exercise-wrappers--adapters)
 - [3. Argument Adapters](#3-argument-adapters)
   - [3.1. Arguments Shape Adapters](#31-arguments-shape-adapters)
   - [3.2. Flap and Reverse Adapter](#32-flap-and-reverse-adapter)
@@ -25,7 +26,20 @@
 - [4. Point-Free](#4-point-free)
   - [4.1. Equational Reasoning](#41-equational-reasoning)
   - [4.2. Point-Free Refactor](#42-point-free-refactor)
-  - [4.3. Advanced Point-Free](#43-advanced-point-free)
+  - [4.3. Point-Free Refactoring Exercise](#43-point-free-refactoring-exercise)
+  - [4.4. Advanced Point-Free](#44-advanced-point-free)
+- [5. Closure](#5-closure)
+  - [5.1. Closure Exercise](#51-closure-exercise)
+  - [5.2. Lazy vs Eager](#52-lazy-vs-eager)
+  - [5.3. Memoization](#53-memoization)
+  - [5.4. Referential Transparency](#54-referential-transparency)
+  - [5.5. Generalized to Specialized](#55-generalized-to-specialized)
+  - [5.6. Partial Application & Currying](#56-partial-application--currying)
+    - [5.6.1. Partial application.](#561-partial-application)
+    - [5.6.2. Currying](#562-currying)
+    - [5.6.3. Strict vs Loose Currying](#563-strict-vs-loose-currying)
+  - [5.7. Partial Application & Currying Comparison](#57-partial-application--currying-comparison)
+  - [5.8. Changing Function Shape with Curry](#58-changing-function-shape-with-curry)
 
 ## 1. Introduction
 
@@ -171,7 +185,7 @@ function f(x) {
 - But a better name for this function would be Parabola, to describe to the reader of our code the relationship.
 - If we are making things that don't have an obvious relationship between the input and the output, we are not accomplishing the spirit of FP.
 - The goal is to create relationships that are obvious to the reader of our code.
-- **Function: the semantic relationship between input and computed output**.
+- **The definition of a function: the semantic relationship between input and computed output**.
 - If we make a function named `shippingRate` the name of the function tells the reader the semantic relationship.
 
 ```js
@@ -555,7 +569,7 @@ numbers; // [5, 4, 3, 2, 1]
 - If we can't do any of these things and we are stuck with the side effect, at least make it obvious.
 - Contain it somewhere, make it obvious, so the future reader knows where to go looking for bugs if they occur.
 
-- [Impurity Exercise: Wrappers & Adapters](exercises/impurity/ex.js)
+### 2.10. [Impurity Exercise: Wrappers & Adapters](exercises/impurity/ex.js)
 
 ## 3. Argument Adapters
 
@@ -837,10 +851,11 @@ isEven(4); // true
 
 - That is the big takeaway from all of FP.
 
-- [Point-Free Refactoring Exercise](exercises/point-free/ex.js)
+### 4.3. [Point-Free Refactoring Exercise](exercises/point-free/ex.js)
+
 - Recommend to re-watch the [solution video](https://frontendmasters.com/courses/functional-javascript-v3/point-free-solution/) for the walk-through on equational reasoning.
 
-### 4.3. Advanced Point-Free
+### 4.4. Advanced Point-Free
 
 - There are certainly more advanced techniques.
 - The following are just a couple of examples for a glimpse that will be returned to later.
@@ -920,3 +935,392 @@ var isOdd = compose(eq(1), mod(2));
 - Familiarity through exposure will make the point-free functional style more readable than non-FP style.
 - Over a period of time practising these techniques, patterns begin to jump out at us, and trigger us to use FP techniques.
 - That is the key to becoming a functional programmer; recognising the patterns and knowing which techniques to apply.
+
+## 5. Closure
+
+- A solid understanding of closure is absolutely essential to being a functional programmer.
+- A very specific definition that we can observe in our programs is:
+
+**Closure is when a function "remembers" the variables around it even when that function is executed elsewhere.**
+
+- The variables we refer to are from an outer scope that the function is accessing them from.
+- Logic would say that passing a function somewhere else and running it in a different scope would remove access to those variables.
+- But the magic of closure retains a link to them.
+
+```js
+function makeCounter() {
+  var counter = 0;
+  return function increment() {
+    return ++counter;
+  };
+}
+
+var c = makeCounter();
+
+c(); // 1
+c(); // 2
+c(); // 3
+```
+
+- The function `increment` closes over the variable `counter` and is able to increment it even though the execution context of `makeCounter` no longer exists.
+- `c` cannot be called a pure function because the same output is not being produced every time.
+- Closure is not necessarily functionally pure, but can absolutely be used in functional purity.
+- The key is if we are closing over a variable, it cannot be reassigned.
+- We are not closed over a constant, we are closed over changing state, so we have an impure function.
+- Some examples of functional purity with closure are as follows.
+
+```js
+function unary(fn) {
+  return function one(arg) {
+    return fn(arg);
+  };
+}
+```
+
+- The parameter `fn` is closed over by `one`.
+
+```js
+function addAnother(z) {
+  return function addTwo(x, y) {
+    return x + y + z;
+  };
+}
+```
+
+- The parameter `z` is closed over by `addTwo`.
+- In both examples this is safe functionally because the closed over variables do not get modified.
+
+### 5.1. [Closure Exercise](exercises/closure/ex.js)
+
+- Recommend to re-watch the [solution video](https://frontendmasters.com/courses/functional-javascript-v3/closure-solution/).
+
+### 5.2. Lazy vs Eager
+
+- We need to understand the idea of deferring when things are occurring.
+
+```js
+function repeater(count) {
+  return function allTheAs() {
+    return "".padStart(count, "A");
+  };
+}
+
+var A = repeater(10);
+
+A(); // AAAAAAAAAA
+A(); // AAAAAAAAAA
+```
+
+- We take in a parameter `count` and return a function `allTheAs` which is closed over `count`.
+- `allTheAs` is assigned to `A` which remembers the value of `count`.
+- The program actually constructs the string `AAAAAAAAAA` with `A()`: that's where the work `"".padStart(count, "A")` is done.
+- It does this work every time we call `A()`.
+- By returning the function `allTheAs` we are deferring the work until later.
+- This is called _lazy_ or _deferred_.
+- We may want to defer computationally expensive work if based on conditions the function was potentially going to be called very little.
+- The downside of deferral is that we have to do the work every time we call the function.
+- So we may not wish to defer if the function is likely to be called repeatedly.
+- The opposite of _lazy_ is _eager_.
+
+```js
+function repeater(count) {
+  var str = "".padStart(count, "A");
+  return function allTheAs() {
+    return str;
+  };
+}
+
+var A = repeater(10);
+
+A(); // AAAAAAAAAA
+A(); // AAAAAAAAAA
+```
+
+- By moving the work outside of `allTheAs`, the work is now done with `var A = repeater(10);` rather than `A();`.
+- We are now closing over the variable `str`.
+- The benefit of eager is that the work is only done once: we basically cache it.
+- The downside is that if the function is never called, we've done the work unnecessarily.
+
+### 5.3. Memoization
+
+- With lazy and eager there is a tradeoff.
+- We want to do the work only once, and we don't want to do the work unless it's been asked for.
+- We want to detect if the work has been done, and if so never repeat it.
+
+```js
+function repeater(count) {
+  var str;
+  return function allTheAs() {
+    if (str == undefined) {
+      str = "".padStart(count, "A");
+    }
+    return str;
+  };
+}
+
+var A = repeater(10);
+
+A(); // AAAAAAAAAA
+A(); // AAAAAAAAAA
+```
+
+- We check to see if `str == undefined` which will only ever be `true` the first time.
+- Subsequent function calls return the same result.
+- The work happens with the first call `A()` but not the second.
+- We cache the result and return it.
+- However, to be functionally pure we cannot close over something that changes, which `str` does.
+- But to be a pure function call it must produce the same output given the same input, which `A` does.
+- So the function call `A()` satisfies that purity requirement, but it is not obviously pure.
+- We are defeating one of the most important reasons for FP: for our code to be readable and understandable.
+- This code style leads to a low degree of confidence in the function purity.
+- We need a more declarative style with the same performance benefits.
+- There is a utility for just this purpose: `memoize`.
+
+```js
+function repeater(count) {
+  return memoize(function allTheAs() {
+    return "".padStart(count, "A");
+  });
+}
+
+var A = repeater(10);
+
+A(); // AAAAAAAAAA
+A(); // AAAAAAAAAA
+```
+
+- `memoize` takes a function that is not optimized and adapts it.
+- It doesn't adapt the function to a different shape, but rather a different behaviour.
+- `memoize` keeps an internal cache of outputs from `allTheAs`, and returns the cached result if an input has been received before.
+- This style of code is more obviously pure. We are not closing over any variable that gets reassigned.
+- The downside of memoization is the cost of space complexity for the cache.
+- The benefit from memoization is with a function we expect to be called multiple times with the same input.
+
+Fundamentally `memoize` is written in the same way as the previous example where we had a closed over variable `str` that was reassigned. But `memoize` is from a trusted library that is mathematically proven. The difference is that we are not using our own version ad-hoc in our code which leads to a low degree of confidence in our functional purity for the readers of our code.
+
+### 5.4. Referential Transparency
+
+- We previously defined pure function calls as always producing the same output given the same input.
+- The path that led us to this point was:
+
+1. A pure function must have inputs and outputs.
+2. A pure function must have relationships between the inputs and outputs.
+3. A pure function must have direct inputs and direct outputs.
+4. A pure function can have indirect inputs; we can close over variables as long as they are not changing.
+5. The function call is what is important, and should always produce the same output given the same input.
+
+- But the full canonical definition of a pure function call is if we can replace the function call with its return value.
+- If We can do that, and not affect any of the program elsewhere, then we have a pure function call.
+- There is a special term for this: Referential Transparency, as in _a function call is pure if it has referential transparency_.
+- The real benefit of referential transparency is to the reader of the code.
+- If the reader sees the same function call used with the same input, they can recall the output they computed in their brain before.
+- This frees up cognitive capacity for them to focus on other more important parts of the app.
+- We must make it easy for the reader of the code to look at a line, understand it, and not have to redo that work again.
+- That's why functional purity matters so much: It makes reasoning about programs easier.
+- This is the cornerstone of all of functional programming.
+
+### 5.5. Generalized to Specialized
+
+- The idea if going from generalized functions to more specialized functions is a key concept in FP.
+
+```js
+function ajax(url, data, cb) {
+  // some code goes here
+}
+
+ajax(CUSTOMER_API, { id: 42 }, renderCustomer);
+```
+
+- The call to `ajax` has a lot of detail that the reader doesn't need to see at that point.
+- We want every line of code to only have the necessary amount of detail.
+- One thing we can do is to write an intermediary function.
+
+```js
+function getCustomer(data, cb) {
+  return ajax(CUSTOMER_API, data, cb);
+}
+
+getCustomer({ id: 42 }, renderCustomer);
+```
+
+- `getCustomer` already knows that all of its API calls will be to `CUSTOMER_API`.
+- It now has a semantic function name, and describes what it does.
+- Many devs say we should only make something into a function when it is used multiple times.
+- But another important reason is to communicate its purpose to our readers.
+- We can take this further and specialize even more, for a particular type of user.
+
+```js
+function getCurrentUser(cb) {
+  return getCustomer({ id: 42 }, cb);
+}
+
+getCurrentUser(renderCustomer);
+```
+
+- `getCurrentUser` is even more semantically descriptive.
+- We haven't changed any functionality, we have just changes the stylization of the code to be more semantic.
+- We are communicating that `getCurrentUser` is the specialization of `getCustomer`, rather than `ajax` which is a weaker relationship.
+- The downside is that we are cluttering up the code with these manual pointed definitions.
+- To arrive at the point-free solution, remember function parameter order matters.
+- To specialize a function we must always go from left-to-right: **general -> specific**.
+
+### 5.6. Partial Application & Currying
+
+- There are two techniques we can use to specialize our `ajax` application.
+
+#### 5.6.1. Partial application.
+
+```js
+function ajax(url, data, cb) {
+  // some code goes here
+}
+
+var getCustomer = partial(ajax, CUSTOMER_API);
+// var getCurrentUser = partial(ajax, CUSTOMER_API, { id: 42 });
+var getCurrentUser = partial(getCustomer, { id: 42 });
+
+getCustomer({ id: 42 }, renderCustomer);
+
+getCurrentUser(renderCustomer);
+```
+
+- We make a partial application of the `ajax` function by prespecifying the `CUSTOMER_API` url as its first input.
+- `partial` is a utility available from all the FP libraries.
+- It takes a function as its first input, and then a set of arguments to pass into that function at some point.
+- `getCurrentUser` is a _partial application_ of `getCustomer`.
+- `partial` allows us to preset one or more inputs, and produces a function that expects the rest of the inputs.
+- Partially applying some of the inputs now, and receiving the other inputs later.
+
+#### 5.6.2. Currying
+
+- The other technique is much more common in FP.
+- Currying is like the cousin of partial application.
+- They both accomplish the same end goal in specializing a function, but do so in a significantly different way.
+
+```js
+function ajax(url) {
+  return function getData(data) {
+    return function getCB(cb) {
+      // some code goes here
+    };
+  };
+}
+
+ajax(CUSTOMER_API)({ id: 42 })(renderCustomer);
+```
+
+- We have three levels of functions.
+- We could call this style _manual currying_.
+- It allows us to call and save the intermediary functions, which facilitates the specialization.
+
+```js
+var getCustomer = ajax(CUSTOMER_API);
+var getCurrentUser = getCustomer({ id: 42 });
+getCurrentUser(renderCustomer);
+```
+
+- We don't have to use a utility.
+- To get the next specialization we just need to pass in the next input.
+- The term _currying_ comes from Haskell. One of the coinventors was named Haskell Curry.
+- We call it currying in JavaScript because it is the way that all functions in Haskell accept inputs.
+- There is a utility that can create curried functions for us rather than writing them manually.
+
+```js
+// var ajax = url => data => cb => {..}
+// var ajax = url => (data => (cb => {..}))
+var ajax = curry(3, function ajax(url, data, cb) {
+  // some code goes here
+});
+
+var getCustomer = ajax(CUSTOMER_API);
+var getCurrentUser = getCustomer({ id: 42 });
+getCurrentUser(renderCustomer);
+```
+
+- Many functional programmers use arrow syntax because it's almost identical to the mathematical notation and Haskell.
+- If we use arrow functions then for readability purposes we should write them with `()` for function boundaries.
+- We call `curry` with the number of inputs we expect the function to receive, and our underlying function.
+- `curry` adapts the function to accept one argument at a time.
+- It creates a wrapper that repeatedly returns a new function that expects another input, until we provide the specified number of inputs, and then calls the underlying function with the collected inputs.
+
+#### 5.6.3. Strict vs Loose Currying
+
+- There is a notion of strict vs loose currying.
+- For a function that receives five inputs, of which three are known in advance, we can avoid three separate function calls.
+- At each level of the function call we can pass in one or more arguments.
+- The function that is returned will expect the subsequent argument.
+
+```js
+// strict currying
+ajax(CUSTOMER_API)({ id: 42 })(renderCustomer);
+
+// loose currying
+ajax(CUSTOMER_API, { id: 42 })(renderCustomer);
+```
+
+- Every FP library for JS does loose currying rather than strict.
+- But if we want to adhere to the true notion of currying as it was conceived in Haskell, we should use strict currying.
+
+### 5.7. Partial Application & Currying Comparison
+
+- The same outcome can be achieved with both techniques.
+- To get each level of specialization, `partial` needs to be called multiple times, whereas `curry` is only called once.
+- This is one of the reasons that makes currying more popular.
+- Virtually all FP library methods are automatically curried.
+- Functional programmers want all functions to be curried.
+- One of the reasons they like curried functions so much is because they like unary functions.
+- A curried function is exactly that: a chain of unary functions - single input => single output.
+- It might be the case that partial application produces a preferable shape in some instances.
+- e.g. if we had a function which expected five inputs, and we wanted to produce another function that expects three:
+  - a. we'd have to call `curry` twice.
+  - b. The returned curried function would expect the three inputs to be passed one at a time.
+
+To summarize:
+
+1. **Both are specialization techniques.**
+2. **Partial Application presets some arguments now, and receives the rest on the next call.**
+3. **Currying doesn't preset any arguments, but receives each argument one at a time.**
+
+### 5.8. Changing Function Shape with Curry
+
+- If we wanted to use `map` to add `1` to each value in an array:
+
+```js
+function add(x, y) {
+  return x + y;
+}
+
+[0, 2, 4, 6, 8].map(function addOne(v) {
+  return add(1, v);
+});
+// [1,3,5,7,9]
+```
+
+- We can't pass the binary function `add` directly to `map` because `map` expects a unary function.
+- `add` is a different shape.
+- We use `addOne` to change the shape of `add` by prespecifying one of its inputs - we specialize it.
+- So it might be better to have a curried version of `add` that creates a more specialized function that is the correct shape.
+
+```js
+function add(x, y) {
+  return x + y;
+}
+
+[0, 2, 4, 6, 8].map(function addOne(v) {
+  return add(1, v);
+});
+// [1,3,5,7,9]
+
+add = curry(add);
+
+[0, 2, 4, 6, 8].map(add(1));
+// [1,3,5,7,9]
+```
+
+- This is an extremely common technique in functional programming.
+- We will see this 100s of times every day in the world of FP.
+- Calling these little functions that are curried, providing one input, getting back a unary function, passing it to a mapper or composition... this is all over the place.
+- This is why currying ends up being by far the preferred form.
+- Partial application would be more awkward.
+- It is a much nicer pattern to have an already curried function.
+- Anywhere we need a specialized function we can just call it with one input. 😍
