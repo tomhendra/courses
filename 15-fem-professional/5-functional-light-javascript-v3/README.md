@@ -44,6 +44,9 @@
   - [6.1. Composition Illustration](#61-composition-illustration)
   - [6.2. Declarative Data Flow](#62-declarative-data-flow)
   - [6.3. Piping vs Composition](#63-piping-vs-composition)
+  - [6.4. Piping & Composition Exercise](#64-piping--composition-exercise)
+  - [6.5. Associativity](#65-associativity)
+  - [6.6. Composition with Currying](#66-composition-with-currying)
 
 ## 1. Introduction
 
@@ -1373,16 +1376,16 @@ We will illustrate composition by looking at the code form, and a metaphor. But 
 - Abstraction is not about _hiding_ as is often thought, it is about _separating_.
 - By way of separation we make analysis easier and improve our understanding.
 
-The metaphor we will use to illustrate composition is a chocolate factory.
+The metaphor we will use to illustrate composition is a chocolate factory. 🍫
 
 - The machines operate from right to left with conveyor belts.
 - 🍫 ⬅️ ⬅️ ⬅️ packaging ⬅️ ⬅️ ⬅️ small pieces ⬅️ ⬅️ ⬅️ cooled blocks ⬅️ ⬅️ ⬅️ melted chocolate
 - We are the engineers responsible for managing the machines.
 - One day the CEO comes to us with a problem: our competitors are producing more chocolate than we are, and we need to make more.
-- The machines cannot be sped up, and there is no space for more machines.
+- The machines cannot be sped up, and there is no space for additional machines.
 - What can we do?
 
-Back to the code.
+💻 Back to the code.
 
 - We could get rid of the `tmp` variables that take up too much space, and nest the function calls.
 
@@ -1398,22 +1401,21 @@ totalCost = basePrice + minus2(triple(increment(4)));
 
 - This is function composition.
 
-Back to the chocolate factory.
+🍫 Back to the chocolate factory.
 
 - We have been thinking about the problem, and those conveyor belts are taking up too much space.
 - Why not just stack the machines right on top of each other. Genius!
 - We install the machines in this way, and everything goes well for six months.
 - Then the CEO comes to us again, saying that the workers are complaining about the setup.
-- The stack of machines has two many switches and wires everywhere, it's a mess.
+- The stack of machines has too many switches and wires everywhere, it's a mess.
 - Is there any way to invent one machine that can do everything?
-- 🍫 ⬅️ ⬅️ ⬅️ melted chocolate
-- We think about this, and decide that to maintain the machine we would need to have access to each of the operations.
+- We think about this, and decide that to maintain the one machine, we would need to access each of its operations separately.
 
-Back to the code.
+💻 Back to the code.
 
 - We have the same problem: calculating the shipping and adding to the total are stacked on top of each other.
 - It is hard to reason about each one independently.
-- So we decide to write a function called `shippingRate` - our new machine.
+- So we decide to write a function called `shippingRate` - our new singular machine.
 
 ```js
 function shippingRate(x) {
@@ -1430,30 +1432,30 @@ totalCost = basePrice + shippingRate(4);
 
 ### 6.2. Declarative Data Flow
 
-Back to the chocolate factory.
+🍫 Back to the chocolate factory.
 
 - We've been thinking more, and have another idea.
-- We don't need to change the machines at all, we can just wrap them all in shiny new panelling.
-- We'll leave an access panel so we can reach the individual machines.
-- But the new casing will have a single switch, one input for the melted chocolate, and one output for the packaged bars.
+- We don't need to combine the machines at all, we can just wrap them all in a shiny new enclosure.
+- We'll leave a single access panel so we can reach the individual machines inside.
+- But the new enclosure will have a single switch, one input for the melted chocolate, and one output for the packaged bars.
 - The factory workers only care about the input and output, so they love it.
 - The maintenance engineers are happy with the access panel. All is well.
 - But then the CEO returns with another problem!
-- Our competitors are producing new types of chocolate bars all the time, and we only produce one type.
+- Our competitors are producing new types of chocolate bars all the time, but we can only produce one type.
 - We need to make more machines to compete.
-- This might sound crazy, but can you invent a machine that can make more machines?
+- This might sound crazy, but can you invent a machine which itself can produce other machines?
 
-Back to the code.
+💻 Back to the code.
 
 - What if we need additional shipping rates for express, next day, international etc.
 - To create separate functions for each would be messy.
-- There is a pattern in that each shipping rate function takes three other functions as inputs, and calls them in succession.
-- We could make a utility to define as many shipping rates as we want.
+- We can use a pattern so that each shipping rate function takes in three other functions as inputs, and calls them in succession.
+- With this we could make a utility to define as many shipping rates as we want.
 
 ```js
-function composeThree(fn1, fn2, fn3) {
+function composeThree(fn3, fn2, fn1) {
   return function composed(v) {
-    fn3(fn2(fn1(v)));
+    return fn3(fn2(fn1(v)));
   };
 }
 
@@ -1482,6 +1484,157 @@ totalCost = basePrice + shippingRate(4);
 - The functional programmer knows that because of this, our data flows must be declared clearly and obviously.
 - It is difficult to track data flow when functions are implicitly linked calling one another haphazardly.
 - With declarative definitions such as `composeThree(minus2, triple, increment)` it is as easy as right-to-left.
-- We have a general utility called `compose` that takes any number of functions, provided by all major FP libraries.
+- There is a general utility called `compose` provided by all major FP libraries, that composes any number of functions.
 
 ### 6.3. Piping vs Composition
+
+🍫 Back to the chocolate factory for the final time.
+
+- We have been working hard, and have finally cracked the problem.
+- We realised that all the machines we use to make chocolate have a standard input and output, and the same switches and wires.
+- So we can make a machine that creates other machines with their individual switches and access panels.
+
+💻 Back to the code.
+
+- That's what `composeThree` did for us.
+- We can take that same function and use it multiple times.
+
+```js
+var c = composeThree(minus2, triple, increment);
+var d = composeThree(increment, triple, minus2);
+
+c(4); // 13
+d(4); // 7
+```
+
+- If we want to define them in the opposite order like `p`, we can do so with _piping_.
+- Pipe: left-to-right.
+- Compose: right-to-left.
+- For example:
+
+```js
+function pipeThree(fn1, fn2, fn3) {
+  return function piped(v) {
+    return fn3(fn2(fn1(v)));
+  };
+}
+
+var p = pipeThree(minus2, triple, increment);
+p(4); // 7
+```
+
+- People tend to prefer piping at first, because thinking about the order of operations from left-to-right seems intuitive.
+- The more we do FP the more we lean towards compose, which reflects the order of execution from inner-to-outer, or right-to-left.
+
+### 6.4. [Piping & Composition Exercise](exercises/composition/ex.js)
+
+### 6.5. Associativity
+
+- A mathematical concept.
+- If we take `1 + 2 + 3 = 6` the `+` is associative.
+- If we calculate `1 + 2` then `+ 3` the result is `6`.
+- If we calculate `2 + 3` then `+ 1` the result is also `6`.
+- Any order that we group the operations in gives the same result.
+- This is a characteristic of certain mathematical operations described as _associative_.
+- Composition is also associative.
+- If we have a series of functions that need to be composed, we can compose them in any grouping and arrive at the same result.
+
+```js
+function minus2(x) {
+  return x - 2;
+}
+function triple(x) {
+  return x * 3;
+}
+function increment(x) {
+  return x + 1;
+}
+
+function composeTwo(fn2, fn1) {
+  return function composed(v) {
+    return fn2(fn1(v));
+  };
+}
+
+var f = composeTwo(composeTwo(minus2, triple), increment);
+var p = composeTwo(minus2, composeTwo(triple, increment));
+
+f(4); // 13
+p(4); // 13
+```
+
+- We still have the same order of functions from right-to-left.
+- The definition of `f` ans `p` look different but they give the same result.
+- This is useful because we can do currying and partial application on our compositions.
+- We don't need to know all of the functions upfront that will participate in a composition.
+- We can curry the compose utility and provide two or three functions now, then take that result and compose it with something else later.
+- We are creating a more specialized function every time.
+- The associativity property of composition is critical to making it so useful.
+
+### 6.6. Composition with Currying
+
+- Here we have two functions: two binary and one unary.
+
+```js
+function sum(x, y) {
+  return x + y;
+}
+function triple(x) {
+  return x * 3;
+}
+function divBy(y, x) {
+  return x / y;
+}
+
+divBy(2, triple(sum(3, 5))); // 12
+```
+
+- Because functions generally only produce a single output, the only natural way to compose a series of functions is for them to be unary.
+- There is a reason shape-wise that they don't fit.
+- We can curry `sum` and `divBy` to reshape them from binary to unary functions.
+
+```js
+sum = curry(2, sum);
+divBy = curry(2, divBy);
+
+composeThree(divBy(2), triple, sum(3))(5); // 12
+```
+
+- Now that we we have seen how currying and composition can work together, we can revisit point-free.
+
+```js
+function mod(y) {
+  return function forX(x) {
+    return x % y;
+  };
+}
+
+function eq(y) {
+  return function forX(x) {
+    return x === y;
+  };
+}
+
+var mod2 = mod(2); // curried
+var eq1 = eq(1); // curried
+
+function isOdd(x) {
+  return eq1(mod2(x));
+}
+```
+
+- If we want to define `isOdd` as point-free, we can do so with compose.
+
+```js
+function composeTwo(fn2, fn1) {
+  return function composed(v) {
+    return fn2(fn1(v));
+  };
+}
+
+var isOdd = composeTwo(eq1, mod2);
+var isOdd = composeTwo(eq(1), mod(2));
+```
+
+- Using equational reasoning we observe `composeTwo(eq1, mod2)` is the same as `composeTwo(eq(1), mod(2))`.
+- We wanted to compose together two binary functions, so we curried both, provided one input to each, thereby producing two unary functions that could be composed together, resulting in a point-free function.
