@@ -47,6 +47,14 @@
   - [6.4. Piping & Composition Exercise](#64-piping--composition-exercise)
   - [6.5. Associativity](#65-associativity)
   - [6.6. Composition with Currying](#66-composition-with-currying)
+- [7. Immutability](#7-immutability)
+  - [7.1. Assignment Immutability](#71-assignment-immutability)
+  - [7.2. Rethinking const Immutability](#72-rethinking-const-immutability)
+  - [7.3. Value Immutability](#73-value-immutability)
+  - [7.4. Object.freeze](#74-objectfreeze)
+  - [7.5. Don't Mutate, Copy](#75-dont-mutate-copy)
+  - [7.6. Immutable Data Structures](#76-immutable-data-structures)
+  - [7.7. Immutable.js Overview](#77-immutablejs-overview)
 
 ## 1. Introduction
 
@@ -1638,3 +1646,215 @@ var isOdd = composeTwo(eq(1), mod(2));
 
 - Using equational reasoning we observe `composeTwo(eq1, mod2)` is the same as `composeTwo(eq(1), mod(2))`.
 - We wanted to compose together two binary functions, so we curried both, provided one input to each, thereby producing two unary functions that could be composed together, resulting in a point-free function.
+
+## 7. Immutability
+
+- Immutability is the idea that something isn't going to change unexpectedly.
+- There are obviously a lot of state changes over time in in our programs; that is the point of them.
+- A program cannot be completely immutable because without state changing there would be no point tp the program.
+- So the point of immutability is that change that needs to occur must be intentional.
+- Immutability is the concept of controlling mutation.
+- There are two different types of mutability that we need to focus on:
+
+1. Assignment Immutability
+2. Value Immutability
+
+### 7.1. Assignment Immutability
+
+- The idea that when you assign a value to a variable or property, we are not allowed to reassign another value.
+
+```js
+var basePrice = 89.99;
+const shippingCost = 6.5;
+
+// other code
+
+basePrice += 5.0; // allowed
+
+// other code
+
+shippingCost *= 1.04; // NOT allowed: TypeError
+```
+
+- We are not _changing_ values we are _reassigning_ them.
+- We cannot change a number or a string, they are inherently immutable.
+- We create a new value with `+= 5.0` and reassign it to `basePrice`.
+- `const` prevents us from reassigning `shippingCost` with the new value, and we get a `TypeError`.
+- Many of the FP community believe that `const` is of great benefit.
+- But there is another way of avoiding the reassignment problem by using functions.
+
+```js
+var basePrice = 89.99;
+const shippingCost = 6.5;
+
+function increasePrice(price) {
+  return price + 5.0;
+}
+
+increasePrice(basePrice); // 94.99
+
+function increaseShipping(shipping) {
+  return shipping * 1.04;
+}
+
+increaseShipping(shippingCost); // 6.76
+```
+
+- This is actually how functional programmers prefer to work.
+- In FP assignment statements are infrequent; we pass values to and return values from functions.
+- We can compute the new `basePrice` or `shippingCost` and choose whether or not to assign the output to a variable.
+- Most functional programmers advise to avoid assignment at all costs.
+- We see composition of function calls, and label temporary variables as bad practice.
+- So the use of the `const` keyword in FP is of limited benefit in reality.
+
+### 7.2. Rethinking const Immutability
+
+- Another problem with `const` is the baggage that comes with it.
+- If we search StockOverflow we can find 1000s of problems with `const` from every language in which it has been implemented.
+- One of the root reasons for this is that the word _constant_ suggests something that cannot be changed.
+- But we can declare a variable with `const` and assign an array, object or function, which can later be mutated.
+- Using `const` with immutable primitive values is logical, but for mutable values it is not.
+- The `const` keyword suggests that the _value_ will not change, but in reality it is the _assignment_ that will not change.
+- If we assign an array with a `const` declaration, then later the array changes, the most likely outcome is reader confusion.
+- The confusion surrounding `const` resulted in it being deprecated in Java and replaced with `final`.
+- We want to communicate better with our code, so why use a feature which is historically associated with confusion.
+- Any new language feature must carry its own weight, and outweigh any potential downsides with its benefits.
+- If `const` comes with decades of negative baggage it should bring substantial benefit. Kyle says it doesn't.
+- The argument for `const` is that it signals intent to the reader that the variable won't be reassigned.
+- But assignments are lexically scoped by definition and therefore only exist for a particular scope.
+- If we write small code blocks as is best practice, the reader should be able to see instances of reassignment within any given scope.
+
+### 7.3. Value Immutability
+
+- Whereas assignments are scoped to a part of our program, values, especially when passed by reference, are completely portable.
+- Values can be passed anywhere in our program, and even beyond to included third party code that is running.
+- Value immutability is much more important than assignment immutability.
+- 99% of immutability problems come from a value being mutated in an unexpected way.
+- Two properties being mutated by some obscure code, on a global state object with 1500 properties is a value mutation.
+- Using the `const` keyword is _not_ a solution to this problem.
+- Let's look at some examples of value mutability to how we _can_ solve the problem.
+
+```js
+{
+  const orderDetails = {
+    orderId: 42;
+    total: (basePrice + shipping);
+  };
+
+  if (orderedItems.length > 0) {
+    orderDetails.items = orderedItems;
+  }
+
+  processOrder(orderDetails);
+}
+```
+
+- We need the `orderDetails` object to be mutated so we can update order details.
+- We then pass `orderDetails` to `processOrder`, by reference, being an object.
+- We can't see what `processOrder` is doing since it is not local.
+- Of course, we could go and look at `processOrder` to see what it does.
+- But if anything below this line relies upon `orderDetails` we have to suspect that `orderDetails` may have changed.
+- If it isn't our intuition to suspect a change, then a bug being introduced at some point is almost inevitable.
+- Functional programmers predict where bugs could occur, and avoid them by using patterns where they can't happen.
+- Passing a value by reference where someone could make unexpected changes, intentionally or not, is asking for bugs.
+- This is why value immutability is so critical to FP.
+- Every time we pass mutable values we must consider how we know there won't be any unexpected changes that could create a bug.
+
+### 7.4. Object.freeze
+
+- We don't need an immutable data structure, we need `orderDetails` to be read only.
+- There is a mechanism already built-in to the language for this purpose: `Object.freeze`.
+
+```js
+processOrder(Object.freeze(orderDetails));
+```
+
+- This prevents the object being mutated.
+- Note `Object.freeze` is only shallow, so would need to be applied individually to nested objects.
+- This communicates to the reader that they don't need to be concerned about the object mutating.
+
+### 7.5. Don't Mutate, Copy
+
+- Read-Only Data Structures: Data structures that **never** need to be mutated.
+- Mutation may occur in the creation process but at some point we freeze it and it becomes immutable.
+- We then use it in that final state for the remainder of the program.
+- This is quite common for example with config objects for APIs, or JSON response objects.
+- However not all data structures can be in a read only state, otherwise the program would do nothing.
+- Consider the `processOrder` function.
+
+```js
+function processOrder(order) {
+  if (!("status" in order)) {
+    order.status = "complete"; // don't do this!
+  }
+
+  saveToDatabase(order);
+}
+```
+
+- Here the `order.status` is mutating the `order` object.
+- This is a mutation by reference and therefore a side effect by definition.
+- Along with `saveToDatabase` it makes `processOrder` impure.
+- If someone passes us a value that is mutable, we must **always** assume that it is read only.
+- We don't know whether someone has used `Object.freeze` or not.
+- Instead we should make a copy.
+
+```js
+function processOrder(order) {
+  var processedOrder = { ...order };
+  if (!("status" in order)) {
+    processedOrder.status = "complete"; // don't do this!
+  }
+
+  saveToDatabase(processedOrder);
+}
+```
+
+- There are two sides to effectively dealing with the issue of value mutability.
+
+1. When we pass in a data structure to a function, communicate with something like `Object.freeze` that we don't want it mutated.
+2. When we write a function that receives a mutable data structure, always assume it is read only, and make a copy.
+
+### 7.6. Immutable Data Structures
+
+- We can't treat all data structures as immutable.
+- When we have the need for a **mutable** data structure, what we actually need is an **immutable** data structure.
+- An immutable data structure is one that allows structured mutation, rather than no mutation at all.
+- It is structured, controlled, intentional mutation as opposed to an assignment statement creating a side effect somewhere.
+- It is the next level up from read only. We only step up to this data structure if the data needs to mutate.
+- An Immutable data structure is a representation of the actual data structure provided to us by an API.
+- The API creates a layer of control that prevents unexpected changes.
+- By default, we essentially make our changes to a new _copy_ of the data structure.
+- Since making full copies would be expensive, immutable data structures are optimized for performance.
+- They maintain a link to the previous state of whatever is mutated, in case other parts of the app rely on it.
+- That way we don't affect other parts of the app from a distance.
+- We can return our mutated version from our function, but the function caller decides whether to accept the mutations.
+- It is a bit like a Git repo, where each new commit is a diff on the previous version.
+- There is no native immutable data structure in JS, but it has been talked about at TC39.
+
+### 7.7. Immutable.js Overview
+
+- In any place that we need to manage mutations in a data structure we will need to use a library.
+- The most popular is [Immutable.js](https://immutable-js.github.io/immutable-js/).
+- Another one is [mori](https://clojurescript.org) which is an extraction of the immutable data structures from [ClojureScript](https://clojurescript.org).
+- Here is an example that uses Immutable.js.
+
+```js
+var items = Immutable.List.of(textbook, supplies);
+
+var updatedItems = items.push(calculator);
+
+items === updatedItems; // false
+
+items.size; // 2
+updatedItems.size; // 3
+```
+
+- We create a list of immutable things.
+- `Immutable` only makes the presence of the items in the list immutable.
+- If they were objects, those objects would still be mutable.
+- To make nested objects or arrays immutable we would need to use `Immutable` at every level required.
+- `updatedItems` is now a modified version of the data structure, and `items` has retained its original state.
+- Immutable Data Structures: Data structures that **need** to be mutated.
+
+- [Immutability Exercise](exercises/immutability/ex.js)
