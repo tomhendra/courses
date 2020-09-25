@@ -55,6 +55,14 @@
   - [7.5. Don't Mutate, Copy](#75-dont-mutate-copy)
   - [7.6. Immutable Data Structures](#76-immutable-data-structures)
   - [7.7. Immutable.js Overview](#77-immutablejs-overview)
+- [8. Recursion](#8-recursion)
+  - [8.1. Base Condition Location](#81-base-condition-location)
+  - [8.2. Recursion Exercise](#82-recursion-exercise)
+  - [8.3. Stack Frames & Memory Limits](#83-stack-frames--memory-limits)
+  - [8.4. Optimization: Tail Calls](#84-optimization-tail-calls)
+  - [8.5. Proper Tail Calls](#85-proper-tail-calls)
+  - [8.6. Refactoring to PTC Form](#86-refactoring-to-ptc-form)
+  - [8.7. Continuation-Passing Style](#87-continuation-passing-style)
 
 ## 1. Introduction
 
@@ -1858,3 +1866,239 @@ updatedItems.size; // 3
 - Immutable Data Structures: Data structures that **need** to be mutated.
 
 - [Immutability Exercise](exercises/immutability/ex.js)
+
+## 8. Recursion
+
+- Recursion is often perceived as hard to learn, but this is due to lack of perspective.
+- Recursion is a significantly important tool in FP so we must understand it well.
+- Take an example of counting the number of vowels in a string.
+
+```js
+function isVowel(char) {
+  return ["a", "e", "i", "o", "u"].includes(char);
+}
+
+function countVowels(str) {
+  var count = 0;
+  for (var i = 0; i < str.length; i++) {
+    if (isVowel(str[i])) {
+      count++;
+    }
+  }
+  return count;
+}
+
+countVowels("The quick brown fox jumps over the lazy dog"); // 11
+```
+
+- This iterative approach demands we read the code to understand what it does.
+- We can't glance at any given `for` loop and instantly know how it will execute.
+- A recursive approach would be much more declarative.
+- Some problems can be solved with recursion, and some must be, so it needs to become familiar.
+- As a programmer our job is to understand the problem before we write the function.
+- We have to consider how can we define the problem in a recursive way before we can write a solution.
+- Sometimes there is only one way to define a problem recursively, sometimes there are two or three.
+- One of these approaches is called _reducing the problem set_.
+- Our string length is unknown, but we do know that one character fewer than the current length would be an easier problem to solve.
+- If we can think about reducing the length by one character, then we can think about reducing it further.
+- With this perspective; the number of vowels can be defined as the number in the first character + the number in the rest of the string.
+- The number of vowels in the first character is a binary choice: `0` or `1`.
+- We just reduced the problem set; the string now has one fewer characters.
+- We repeat the process again and again.
+
+Now we can write our solution.
+
+- Every single recursive solution at the minimum will have a base condition, which is how we know when to stop.
+- In our case the base condition is an empty string.
+- We know that if the string is empty, there are `0` remaining vowels in the string.
+- Then we need to ask what we do when the base condition isn't true: the string is not `0`.
+- We need to count whether the current character is a vowel, then we need to count the vowels in the rest of the string.
+
+```js
+function isVowel(char) {
+  return ["a", "e", "i", "o", "u"].includes(char);
+}
+
+function countVowels(str) {
+  if (str.length == 0) return 0;
+  var first = isVowel(str[0]) ? 1 : 0;
+  return first + countVowels(str.slice(1));
+}
+
+countVowels("The quick brown fox jumps over the lazy dog"); // 11
+```
+
+- We start with our base condition of `str.length == 0`.
+- If the first character in the string is a vowel, we assign `first` with `1` else we assign `0`.
+- Then we add `first` to the count of the vowels in the rest of the string.
+- `str.slice(1)` says slice off the first character, and give us the substring that remains: _reducing the problem set_.
+
+- Recursion can be confusing because people force themselves to think about the implementation.
+- Recursion is not designed to be an imperative approach, it was conceived to be a declarative approach.
+- Declarative is not concerned with how it happens, it is concerned with the outcome.
+- If we understand whether or not the first character is a vowel...
+- We understand the idea that we can count all the vowels to the right...
+- We understand that these two things add together to give a total count...
+- Then we do not need to concern ourselves with how things are working behind the scenes.
+- As functional programmers all we need to think about is breaking the problem down into understandable pieces.
+- That's as far as we should have to go to conceive and author our recursive algorithms.
+- If we have to go deeper than that, then recursion might not be the right solution to our problem.
+- There are two common patterns with recursion:
+
+1. Solve the subproblems
+2. Divide and conquer
+
+- If we can learn to identify when these patterns would be the best solution, then we don't need to know any more about recursion.
+
+### 8.1. Base Condition Location
+
+- The fact that we call `countVowels` with an empty string just to meet the base condition feels like a wasted function call.
+- If we could look ahead one character we would not have to call the function that final time.
+- Instead of checking our base condition first, we can check the first character and only do recursion if there is more work to do.
+
+```js
+function countVowels(str) {
+  var first = isVowel(str[0]) ? 1 : 0;
+  if (str.length <= 1) return 0;
+  return first + countVowels(str.slice(1));
+}
+```
+
+- We have already calculated our `0` or `1` for a single character string before we reach the base condition.
+- If there is only one character in the string, we have no more work to do.
+
+### 8.2. [Recursion Exercise](exercises/recursion/ex.js)
+
+### 8.3. Stack Frames & Memory Limits
+
+- Recursion often doesn't get used in production apps for one sticky reason: The range error that occurs due to stack overflow.
+- There are ways of addressing this problem.
+- _Stack frames_ are areas of reserved memory that functions use for execution.
+- When one function calls another the memory frames are added to a stack.
+- When a function has finished executing is popped off from the stack.
+- The stack frames contain local variables, the program counter etc: all the computer needs to track what is happening within a function.
+- Usually stacks will only contain 5, 10 or 15 stack frames.
+- But when we use recursion, the likelihood of thousands or millions of stack frames being added increases.
+- This presents the problem of memory limitation.
+
+### 8.4. Optimization: Tail Calls
+
+- Tail calls as an optimization technique was conceived in the 60s when the issue of memory limitation became apparent.
+- To understand tail calls, we need to understand why the currently executing stack frame needs to be retained.
+
+```js
+function countVowels(str) {
+  var first = isVowel(str[0]) ? 1 : 0;
+  if (str.length <= 1) return 0;
+  return first + countVowels(str.slice(1));
+}
+```
+
+- We need to retain the stack frame because we are doing the `first` addition after the function completes.
+- If we were just returning `countVowels`, we wouldn't need to retain the stack frame.
+- We can discard the current stack frame or reuse it for the next function call.
+- This is the idea behind tail calls.
+- If a function call is in a _tail call_ position, at the _tail_ of the execution logic, we can discard the existing stack frame.
+- We can dispatch to another function call and not occupy any additional memory.
+- So we only need one stack frame at any given time, if the function call is in the tail position.
+- Tail calls are an additional feature the language has to support, it doesn't come for free.
+- People have been requesting JavaScript support for decades.
+- Tail calls haven't been implemented in JS because the spec is designed to be agnostic about implementation details.
+- This gives JS engines a lot of freedom around implementation details of different optimizations.
+- If the spec dictated that stack frames should be discarded and O(1) memory space used, it would limit the freedom of implementation.
+- Function calls are JS engines' most resource intensive operations, and memory usage is highly optimized by each engine as a result.
+- So there has been significant push back from JS engines regarding tail calls.
+
+### 8.5. Proper Tail Calls
+
+- There was a proposal that came in ES6 to standardize tail calls, referred to as Proper Tail Calls (PTC).
+- There is a related term TCO: Tail Call Optimization, which is different - beware when Googling.
+- PTC is the idea that a tail call gets memory optimized, essentially O(1) memory space.
+- TCO is a family of potential optimizations on top of PTC that a JS engine can optionally take advantage of.
+- The initial proposal was very vague, it was discussed at length by TC39, and eventually decided to be included in ES6.
+- This is the ES6 standard:
+
+```js
+"use strict";
+
+function decrement(x) {
+  return sub(x, 1);
+}
+
+function sub(x, y) {
+  return x - y;
+}
+
+decrement(43); // 42
+```
+
+- Using `"use strict";` is necessary.
+- For the function call `sub(x, 1)` to be in a _proper tail position_.
+- Proper tail calls require a `return` keyword and a single function call, with nothing else in the expression to be computed afterwards.
+- Note we can have a ternary expression with the function call as one of its branches.
+
+```js
+"use strict";
+
+function diminish(x) {
+  if (x > 90) {
+    return diminish(Math.trunc(x / 2));
+  }
+  return x - 3;
+}
+
+diminish(367); // 42
+```
+
+- The statement `return diminish(Math.trunc(x / 2));` is a valid tail call.
+- As long as it doesn't contribute to the growth of the call stack, it is valid.
+
+### 8.6. Refactoring to PTC Form
+
+- In our example the `first +` prevents us from using PTC.
+
+```js
+function countVowels(str) {
+  if (str.length == 0) return 0;
+  var first = isVowel(str[0]) ? 1 : 0;
+  return first + countVowels(str.slice(1));
+}
+```
+
+- Many forms of recursion can be refactored to take advantage of PTC, but it takes more careful thought about the problem.
+- Any time we use recursion we should be thinking about proper tail position.
+- Tail calls aren't always possible, for example in binary recursion, when traversing binary trees.
+- To refactor, we need to remove `first +`.
+- The recognition point in refactoring is to think where else we could keep track of information without using the existing stack frame.
+- The only practical solution is to use the subsequent stack frame.
+- We use the arguments that we pass in to the next function to keep track of our information.
+- We can reserve one of our parameters for the running count.
+
+```js
+function countVowels(count, str) {
+  count += isVowel(str[0]) ? 1 : 0;
+  if (str.length <= 1) return count;
+  return countVowels(str.slice(1));
+}
+
+countVowels(0, "The quick brown fox jumps over the lazy dog"); // 11
+```
+
+- The problem with this is that our recursive _function signature_ is more awkward.
+- A function signature defines input and output of functions or methods.
+- We have a leaky abstraction, passing `0` as the first argument.
+- Often we see an interface function that has a clean signature, which invokes the recursive function with the non-clean signature.
+
+```js
+countVowels = curry(2, function countVowels(count, str) {
+  count += isVowel(str[0]) ? 1 : 0;
+  if (str.length <= 1) return count;
+  return countVowels(str.slice(1));
+})(0);
+
+countVowels("The quick brown fox jumps over the lazy dog"); // 11
+```
+
+- We take advantage of closure to pre-specify the first argument as `0` using `curry`.
+
+### 8.7. Continuation-Passing Style
