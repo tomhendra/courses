@@ -2163,7 +2163,7 @@ function trampoline(fn) {
 ```
 
 - As long as we keep returning a function, `result = result()` will repeatedly call the function.
-- This continues until `result` is not a function.
+- This continues until `result` is no longer a function.
 
 ```js
 countVowels = trampoline(function countVowels(count, str) {
