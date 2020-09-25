@@ -63,6 +63,7 @@
   - [8.5. Proper Tail Calls](#85-proper-tail-calls)
   - [8.6. Refactoring to PTC Form](#86-refactoring-to-ptc-form)
   - [8.7. Continuation-Passing Style](#87-continuation-passing-style)
+  - [8.8. Trampolines](#88-trampolines)
 
 ## 1. Introduction
 
@@ -1971,7 +1972,7 @@ function countVowels(str) {
 
 ### 8.3. Stack Frames & Memory Limits
 
-- Recursion often doesn't get used in production apps for one sticky reason: The range error that occurs due to stack overflow.
+- Recursion often doesn't get used in production apps for one sticky reason: The `RangeError` that occurs due to stack overflow.
 - There are ways of addressing this problem.
 - _Stack frames_ are areas of reserved memory that functions use for execution.
 - When one function calls another the memory frames are added to a stack.
@@ -2059,8 +2060,8 @@ diminish(367); // 42
 
 ```js
 function countVowels(str) {
-  if (str.length == 0) return 0;
   var first = isVowel(str[0]) ? 1 : 0;
+  if (str.length <= 1) return 0;
   return first + countVowels(str.slice(1));
 }
 ```
@@ -2102,3 +2103,82 @@ countVowels("The quick brown fox jumps over the lazy dog"); // 11
 - We take advantage of closure to pre-specify the first argument as `0` using `curry`.
 
 ### 8.7. Continuation-Passing Style
+
+- We can't rely on PTC yet because it has only been implemented in Safari, but we can utilize other approaches.
+- We will discuss two of them: Continuation-Passing Style (CPS) and Trampolines.
+- A _continuation_ is essentially a callback, so we are _passing_ a callback.
+
+```js
+function countVowels(str, cont = (v) => v) {
+  var first = isVowel(str[0]) ? 1 : 0;
+  if (str.length <= 1) return cont(first);
+  return countVowels(str.slice(1), function f(v) {
+    return cont(first + v);
+  });
+}
+
+countVowels("The quick brown fox jumps over the lazy dog"); // 11
+```
+
+- `cont` is defaulted to a special function type called an _identity function_.
+- An identity function is an FP term, simply returning whatever it is passed, and has a a variety of useful applications in FP.
+- Identity functions are provided by all major FP libraries.
+- We return `cont(first)` in the condition that `str` is `0` or `1` characters long, which is straightforward.
+- But we need to make a new function `f` to pass in for the continuation.
+- `f` returns a call to whatever `cont` currently is, since we're closed over whatever was passed in previously to `cont`.
+- Then we compute the work of `first + v`.
+- This code is tremendously complex for us to wrap our brains around.
+- Almost nobody writes CPS. It is usually transpiled code written by a machine.
+- We are making a tail call, but avoid a `RangeError` because the real recursive call `cont` is wrapped by another function to defer it.
+- This 'cheats' the `RangeError` issue, but doesn't address the memory issue.
+- Every time we create a new function we reserve an area of memory, but in the heap rather than the stack.
+- JS has error checking for exhausting the stack, but not for the heap.
+- CPS cheats one problem but creates a worse one, since the system would crash if we exhausted all the available system memory.
+
+### 8.8. Trampolines
+
+- Trampolines are the preferred approach to avoiding stack overflow with recursion.
+- We can take the idea from CPS that we defer the work by wrapping it in a function call.
+- A trampoline takes another function as input and invokes it repeatedly (or bounces the input function) until a certain condition occurs.
+- Instead of making a recursive call, we return a function that will make the next call.
+- This solves the tail call problem by not building up a stack at all.
+- FP libraries provide a `trampoline` utility, which is more sophisticated than our example.
+
+```js
+function isVowel(char) {
+  return ["a", "e", "i", "o", "u"].includes(char);
+}
+
+function trampoline(fn) {
+  return function trampolined(...args) {
+    var result = fn(...args);
+
+    while (typeof result === "function") {
+      result = result();
+    }
+
+    return result;
+  };
+}
+```
+
+- As long as we keep returning a function, `result = result()` will repeatedly call the function.
+- This continues until `result` is not a function.
+
+```js
+countVowels = trampoline(function countVowels(count, str) {
+  count += isVowel(str[0]) ? 1 : 0;
+  if (str.length <= 1) return count;
+  return function f() {
+    return countVowels(str.slice(1));
+  };
+});
+
+// optionally:
+countVowels = curry(2, countVowels)(0);
+```
+
+- The only difference is that we wrap our recursive call in `f` and return it.
+- `f` has closure over the values it needs to be returned back to the trampoline utility.
+- This form of recursion will be easy to automatically convert to PTC when it is fully supported.
+- In regular recursion we literally stack up the work.
