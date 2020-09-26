@@ -2079,7 +2079,7 @@ function countVowels(str) {
 function countVowels(count, str) {
   count += isVowel(str[0]) ? 1 : 0;
   if (str.length <= 1) return count;
-  return countVowels(str.slice(1));
+  return countVowels(count, str.slice(1));
 }
 
 countVowels(0, "The quick brown fox jumps over the lazy dog"); // 11
@@ -2094,7 +2094,7 @@ countVowels(0, "The quick brown fox jumps over the lazy dog"); // 11
 countVowels = curry(2, function countVowels(count, str) {
   count += isVowel(str[0]) ? 1 : 0;
   if (str.length <= 1) return count;
-  return countVowels(str.slice(1));
+  return countVowels(count, str.slice(1));
 })(0);
 
 countVowels("The quick brown fox jumps over the lazy dog"); // 11
@@ -2141,14 +2141,11 @@ countVowels("The quick brown fox jumps over the lazy dog"); // 11
 - We can take the idea from CPS that we defer the work by wrapping it in a function call.
 - A trampoline takes another function as input and invokes it repeatedly (or bounces the input function) until a certain condition occurs.
 - Instead of making a recursive call, we return a function that will make the next call.
-- This solves the tail call problem by not building up a stack at all.
+- In regular recursion we literally stack up the work.
+- Trampolining solves the tail call problem by not building up a stack at all.
 - FP libraries provide a `trampoline` utility, which is more sophisticated than our example.
 
 ```js
-function isVowel(char) {
-  return ["a", "e", "i", "o", "u"].includes(char);
-}
-
 function trampoline(fn) {
   return function trampolined(...args) {
     var result = fn(...args);
@@ -2160,17 +2157,12 @@ function trampoline(fn) {
     return result;
   };
 }
-```
 
-- As long as we keep returning a function, `result = result()` will repeatedly call the function.
-- This continues until `result` is no longer a function.
-
-```js
-countVowels = trampoline(function countVowels(count, str) {
+var countVowels = trampoline(function countVowels(count, str) {
   count += isVowel(str[0]) ? 1 : 0;
   if (str.length <= 1) return count;
   return function f() {
-    return countVowels(str.slice(1));
+    return countVowels(count, str.slice(1));
   };
 });
 
@@ -2179,6 +2171,11 @@ countVowels = curry(2, countVowels)(0);
 ```
 
 - The only difference is that we wrap our recursive call in `f` and return it.
-- `f` has closure over the values it needs to be returned back to the trampoline utility.
+- When the function `f` is returned from `countVowels` it has closure over `count` and `str`.
+- The stack frame for `countVowels` is popped off from the stack when `f` is returned; the execution context has finished.
+- The returned function `f` is assigned to `result`.
+- The `while` clause evaluates to `true` since `result` is a function, so we execute `result()`.
+- This repeats until a function is no longer returned, when the base condition `str.length <= 1` is `true` and we return `count`.
+- When `count` is assigned to `result`, it is no longer a function, so the `while` loop breaks and we return `result`.
 - This form of recursion will be easy to automatically convert to PTC when it is fully supported.
-- In regular recursion we literally stack up the work.
+- We could easily write a script to remove the wrapped functions, leaving proper tail calls.
