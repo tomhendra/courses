@@ -64,6 +64,10 @@
   - [8.6. Refactoring to PTC Form](#86-refactoring-to-ptc-form)
   - [8.7. Continuation-Passing Style](#87-continuation-passing-style)
   - [8.8. Trampolines](#88-trampolines)
+- [9. List Operations](#9-list-operations)
+  - [9.1. Map](#91-map)
+  - [9.2. Filter: Inclusion](#92-filter-inclusion)
+  - [9.3. Reduce: Combination](#93-reduce-combination)
 
 ## 1. Introduction
 
@@ -2179,3 +2183,171 @@ countVowels = curry(2, countVowels)(0);
 - When `count` is assigned to `result`, it is no longer a function, so the `while` loop breaks and we return `result`.
 - This form of recursion will be easy to automatically convert to PTC when it is fully supported.
 - We could easily write a script to remove the wrapped functions, leaving proper tail calls.
+
+## 9. List Operations
+
+- The operations discussed here can be applied to all general data structures.
+- It just so happens in JavaScript that it is easy to illustrate them with lists, i.e. arrays.
+- Rather than apply operations to single discrete values, we want to apply them to collections of values.
+- In FP there is a heavily related term called a _functor_.
+- A functor is a value which contains mappable values, e.g. an array.
+- Any data structure for which we have identified and defined a map operation, gives it the characteristic that it behaves as a functor.
+
+### 9.1. Map
+
+- Map is fundamentally a transformation operation where we perform a conversion on each value within a collection.
+- A single value in a single data structure can be mapped over and is still valid.
+- It is important to note that to follow the principles required to be a functor, the transformation cannot mutate values.
+- The map function must be pure and output a new data structure.
+- Map always outputs the same type of data structure as it is provided as its input.
+
+```js
+function makeRecord(name) {
+  return { id: uniqueID(), name };
+}
+
+function mapper(mapper, arr) {
+  var newList = [];
+  for (let elem of arr) {
+    newList.push(mapper(elem));
+  }
+  return newList;
+}
+
+map(makeRecord, ["Kyle", "Susan"]);
+// [{ id: 42, name: "Kyle" }, { id: 45, name: "Susan" }];
+```
+
+- We call the `mapper` with each individual element and add it to the new data structure.
+- Because arrays are the most common way to think about these operations, they are built-in to the Array prototype.
+
+```js
+function makeRecord(name) {
+  return { id: uniqueID(), name };
+}
+
+["Kyle", "Susan"].map(makeRecord);
+// [{ id: 42, name: "Kyle" }, { id: 45, name: "Susan" }];
+```
+
+- Any source value and any collection of values can be mapped.
+- The idea of map is that we are using the same transformation across all of the values in the data structure.
+- We could use some conditional logic in mapper function but it is strongly recommended not to.
+- The pattern matching for when to use `map` is when we have a collection of values, where we want to transform them into other values with a common operation, and output the transformed values in a new data structure of the same type that was input.
+
+### 9.2. Filter: Inclusion
+
+- Filter is often thought of as an exclusionary operation, but the `filter` on the `Array` prototype is inclusionary.
+- We return `true` if we want to keep the value, and `false` if we don't.
+- We think in english about _filtering out_ by in JS we _filter in_.
+- Kyle doesn't use the native JS method for this reason.
+
+```js
+function isLoggedIn(user) {
+  return user.session != null;
+}
+
+function filterIn(predicate, arr) {
+  var newList = [];
+  for (let elem of arr) {
+    if (predicate(elem)) {
+      newList.push(elem);
+    }
+  }
+  return newList;
+}
+
+filterIn(isLoggedIn, [
+  { userID: 42, session: "a%klDKF543_9*54" },
+  { userID: 17 },
+  { userID: 729, session: "HJ3434k$#.456" },
+]);
+/* [
+  { userID: 42, session: "a%klDKF543_9*54" },
+  { userID: 729, session: "HJ3434k$#.456" },
+/* ]
+```
+
+- If a function returns a boolean based on a vale passed in, it is called a _predicate_.
+- If the predicate returns `true` the value gets pushed to the new list.
+- The `filter` method on the `Array` prototype does the same thing.
+
+```js
+function isLoggedIn(user) {
+  return user.session != null;
+}
+
+[
+  { userID: 42, session: "a%klDKF543_9*54" },
+  { userID: 17 },
+  { userID: 729, session: "HJ3434k$#.456" },
+].filter(isLoggedIn)
+/* [
+  { userID: 42, session: "a%klDKF543_9*54" },
+  { userID: 729, session: "HJ3434k$#.456" },
+/* ]
+```
+
+- The pattern matching for when to use `filter` is when we have a collection of values, where we want to include some and potentially exclude some by using a common predicate, and output the included values in a new data structure of the same type that was input.
+
+### 9.3. Reduce: Combination
+
+- If `map` does transformation, and `filter` does inclusion, `reduce` combines values.
+- `map` and `filter` both operate independently on individual values. They are _parallelizable_.
+- `reduce` however makes its decision based on the current running accumulator, as well as the next value.
+- We start with a collection of values, and an initial value that is appropriate to the collection.
+- We have to select an appropriate initial value for our reduction.
+- If we don't provide an initial value, there are some special cased implementations of `reduce` that will take the first value from the collection as the initial value, and start the reduction with the next value.
+- Sometimes selecting an initial value is easy like `0` for numbers or `''` for strings, but other times it is more awkward.
+- `reduce` takes the current accumulator value and the next value in the collection, and combines them in some way.
+- The accumulator is combined with subsequent values to output a single discrete value.
+- But can use `reduce` in any way we want. It is incredibly powerful, and the swiss army knife of FP.
+- It doesn't have to combine values, we could select an odd or even number for example.
+- We could reduce a list of numbers to a new object with its properties defined as those numbers.
+- Counterintuitively, we could even reduce a list of numbers into a longer list of numbers.
+- `reduce` is so general, both `map` and `filter` can be implemented with it.
+
+```js
+function addToRecord(record, [key, value]) {
+  return { ...record, [key]: value };
+}
+
+function reduce(reducer, initialVal, arr) {
+  var ret = initialVal;
+  for (let elem of arr) {
+    ret = reducer(ret, elem);
+  }
+  return ret;
+}
+
+reduce(addToRecord, {}, [
+  ["name", "Kyle"],
+  ["age", 39],
+  ["isTeacher", true],
+]);
+// { "name": "Kyle",  "age": 39, "isTeacher": true }
+```
+
+- Note our `reduce` is generic. It knows nothing about the `reducer`.
+- We start with an initial value.
+- We call the `reducer` with the current accumulator `ret` and the next value `elem`.
+- And whatever the `reducer` returns becomes the next accumulator value.
+- Always ensure the reducer is pure - never mutate.
+- `reduce` is available as a native method on the `Array` prototype.
+
+```js
+function addToRecord(record, [key, value]) {
+  return { ...record, [key]: value };
+}
+
+[
+  ["name", "Kyle"],
+  ["age", 39],
+  ["isTeacher", true],
+].reduce(addToRecord, {});
+// { "name": "Kyle",  "age": 39, "isTeacher": true }
+```
+
+- Note the difference in shape, in that the `reducer` is binary and the `mapper` (predicate) is unary.
+- Functional programmers love unary functions, but the next best thing is a binary function.
+- Any function that takes in two inputs and produces one output, can be thought of as a reducer.
