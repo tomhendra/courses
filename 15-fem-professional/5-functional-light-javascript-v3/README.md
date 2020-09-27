@@ -68,6 +68,7 @@
   - [9.1. Map](#91-map)
   - [9.2. Filter: Inclusion](#92-filter-inclusion)
   - [9.3. Reduce: Combination](#93-reduce-combination)
+  - [9.4. Composition with Reduce](#94-composition-with-reduce)
 
 ## 1. Introduction
 
@@ -2351,3 +2352,52 @@ function addToRecord(record, [key, value]) {
 - Note the difference in shape, in that the `reducer` is binary and the `mapper` (predicate) is unary.
 - Functional programmers love unary functions, but the next best thing is a binary function.
 - Any function that takes in two inputs and produces one output, can be thought of as a reducer.
+
+### 9.4. Composition with Reduce
+
+- There is a companion function to `reduce` called `reduceRight`.
+- `reduce` goes from left-to-right through an array, and `reduceRight` goes from right-to-left.
+- Recall our `composeTwo` function. It has the shape of a reducer.
+- It takes two functions, and reduces them through composition.
+
+```js
+function add1(v) {
+  return v + 1;
+}
+function mul2(v) {
+  return v * 2;
+}
+function div3(v) {
+  return v / 3;
+}
+
+function composeTwo(fn2, fn1) {
+  return function composed(v) {
+    return fn2(fn1(v));
+  };
+}
+
+var f = [div3, mul2, add1].reduce(composeTwo);
+var p = [add1, mul2, div3].reduceRight(composeTwo);
+
+f(8); // 6
+p(8); // 6
+```
+
+- We can think about reducing as a valid implementation of composition.
+- We need to use `reduceRight` because composition goes from right-to-left.
+- We can actually implement `compose` with `reduceRight`.
+
+```js
+function compose(...fns) {
+  return function composed(v) {
+    return fns.reduceRight(function invoke(fn, val) {
+      return fn(val);
+    });
+  };
+}
+
+var f = compose(div3, mul2, add1);
+
+f(8); // 6
+```
