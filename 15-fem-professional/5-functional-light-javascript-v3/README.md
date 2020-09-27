@@ -2401,3 +2401,7 @@ var f = compose(div3, mul2, add1);
 
 f(8); // 6
 ```
+
+- We are calling `reduceRight` on the list of functions.
+- The reducer `invoke` takes two arguments, a function and a value, and reduces them through invocation.
+- We pass the value to each function and return the result.
