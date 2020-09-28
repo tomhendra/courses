@@ -71,6 +71,11 @@
   - [9.4. Composition with Reduce](#94-composition-with-reduce)
   - [9.5. List Operations Exercise](#95-list-operations-exercise)
   - [9.6. Fusion](#96-fusion)
+- [10. Transduction](#10-transduction)
+  - [10.1. Deriving Transduction: Extracting Reduce](#101-deriving-transduction-extracting-reduce)
+  - [10.2. Deriving Transduction: Combiner & Currying](#102-deriving-transduction-combiner--currying)
+  - [10.3. Deriving Transduction: Single Reduce](#103-deriving-transduction-single-reduce)
+  - [10.4. Derivation Summary](#104-derivation-summary)
 
 ## 1. Introduction
 
@@ -2457,5 +2462,340 @@ list.map(compose(add1, mul2, div3));
 - `this` aware functions are inherently uncomposable.
 - We can't take a `map` call and easily compose it with another function because the input to the `map` call is partly indirect.
 - That's why `map` in FP libraries will take in both a mapper function and an array explicitly, rather than the array being implicit.
-- That makes them more composable, curryable, etc.
+- That makes them more composable, curryable, and everything else we have discussed.
 - We should always use the stand alone versions of utilities, rather than the native JS method versions.
+
+## 10. Transduction
+
+- It is easy to compose together several `map` functions which have the same shape.
+- _Transduction_ allows us to compose together `map`, `filter` and `reduce`.
+- It is not necessary to understand the mechanics of transduction to use and benefit from it.
+- The `mapper`, `filter` and `reducer` have incompatible shapes.
+
+```js
+function add1(v) {
+  return v + 1;
+}
+
+function isOdd(v) {
+  return v % 2 == 1;
+}
+
+function sum(total, v) {
+  return total + v;
+}
+
+var list = [1, 3, 4, 6, 9, 12, 13, 16, 21];
+
+list.map(add1).filter(isOdd).reduce(sum); // 42
+```
+
+- `add1`, `isOdd` and `sum` are incompatible shapes and we can't see how we can use the `compose` utility.
+- The transduction technique is a mathematical transformation of functions.
+- _Transducing is composition of reducers_.
+- We want to change the mappers and predicates into reducers.
+- We could manually put the functions together in a reducer.
+
+```js
+list.reduce(function allAtOnce(total, v) {
+  v = add1(v);
+  if (isOdd(v)) {
+    total = sum(total, v);
+  }
+  return total;
+}, 0);
+// 42
+```
+
+- This is the imperative approach, and not the FP way.
+- We want a mathematical declarative approach. Enter transduction.
+
+```js
+var transducer = compose(mapReducer(add1), filterReducer(isOdd));
+```
+
+- `mapReducer` and `filterReducer` are provided by the FP utility library.
+- We pass mappers into `mapReducer` and filters into `filterReducer`.
+- Reducers don't require transduction because they are already reducers!
+- The output is a special kind if reducer thais composable.
+- Specifically a _transducer_ is in a prototypal state, and will become a reducer itself once it is passed a reducer.
+- A transducer is a higher order reducer.
+- We use a `transduce` utility to complete the process.
+
+```js
+transduce(transducer, sum, 0, [1, 3, 4, 6, 9, 12, 13, 16, 21]); // 42
+```
+
+- We pass in our transducer, the reducer, the initial value and the data structure.
+- `transduce` needs these four inputs.
+- Under the covers it passes in `sum` to `transduce` which creates our special reducer, and reduces the list.
+- There is another FP utility which is a shorthand called `into`.
+
+```js
+into(transducer, 0, [1, 3, 4, 6, 9, 12, 13, 16, 21]); // 42
+```
+
+- We don't need to provide a reducer to `into`.
+- It looks at the data type of the initial value and uses the appropriate combinator automatically.
+
+### 10.1. Deriving Transduction: Extracting Reduce
+
+- Remember that we do NOT need to understand the mathematics behind what happens with transduction.
+- But to try and explain what is going on from a programmer's perspective, we need to start from the beginning.
+
+```js
+function add1(v) {
+  return v + 1;
+}
+
+function isOdd(v) {
+  return v % 2 == 1;
+}
+
+function sum(total, v) {
+  return total + v;
+}
+
+var list = [1, 3, 4, 6, 9, 12, 13, 16, 21];
+
+list.map(add1).filter(isOdd).reduce(sum); // 42
+```
+
+- We observed that the three operations are not compatible for composition.
+- First we need to realise that mapping and filtering can both be modelled as reduction operations.
+
+```js
+function mapWithReduce(arr, mappingFn) {
+  return arr.reduce(function reducer(list, v) {
+    list.push(mappingFn(v));
+    return list;
+  }, []);
+}
+
+function filterWithReduce(arr, predicateFn) {
+  return arr.reduce(function reducer(list, v) {
+    if (predicateFn(v)) list.push(v);
+    return list;
+  }, []);
+}
+
+var list = [1, 3, 4, 6, 9, 12, 13, 16, 21];
+list = mapWithReduce(list, add1);
+list = filterWithReduce(list, isOdd);
+list.reduce(sum);
+// 42
+```
+
+- Both `mapWithReduce` and `filterWithReduce` have the same strategy.
+- They start with an empty array, iterate through the original array, and decide what to add to the new array.
+- FP dictates not to mutate an array directly, but rather make a new one e.g. `var newList = list` and operate on the new array.
+- But the whole point of transduction is for performance optimization, and in this case is deliberate due to how the maths are applied.
+- It would be easier to get `mapWithReduce` and `filterWithReduce` to compose together if we extracted the reducers from them.
+- So we can refactor them to return the reducers, and we can do the reduction ourselves.
+
+```js
+function mapReducer(mappingFn) {
+  return function reducer(list, v) {
+    list.push(mappingFn(v));
+    return list;
+  };
+}
+
+function filterReducer(predicateFn) {
+  return function reducer(list, v) {
+    if (predicateFn(v)) list.push(v);
+    return list;
+  };
+}
+
+var list = [1, 3, 4, 6, 9, 12, 13, 16, 21];
+
+list.reduce(mapReducer(add1), []).reduce(filterReducer(isOdd), []).reduce(sum);
+// 42
+```
+
+- Both `mappingFn` and `predicateFn` are hard coded into their respective `reducer` through closure.
+- We than have three separate `reduce` calls in a a chain.
+- Now that we have three reducers they are shaped more similarly together.
+
+### 10.2. Deriving Transduction: Combiner & Currying
+
+- Inside both of the reducers a value and an array get reduced into a new array.
+- We push a value into an array and then return it.
+- We are going to factor out the genericism by making a _combiner_ to combine the array and value.
+
+```js
+function listCombination(list, v) {
+  list.push(v);
+  return list;
+}
+
+function mapReducer(mappingFn) {
+  return function reducer(list, v) {
+    return listCombination(list, mappingFn(v));
+  };
+}
+
+function filterReducer(predicateFn) {
+  return function reducer(list, v) {
+    if (predicateFn(v)) return listCombination(list, v);
+    return list;
+  };
+}
+
+var list = [1, 3, 4, 6, 9, 12, 13, 16, 21];
+
+list.reduce(mapReducer(add1), []).reduce(filterReducer(isOdd), []).reduce(sum);
+// 42
+```
+
+- `listCombination` is a standalone reducer; it takes two inputs and produces one output.
+- But it still has that side effect of `list.push`.
+- Instead of making a new list and concatenating, it is modifying by reference, which is generally a bad FP principle.
+- Even though our reducers are hard coded to `listCombination` that's only one possible way that combination could occur.
+- We can parameterize the combiner function so we could provide the combiner to use in the reducer.
+
+```js
+function listCombination(list, v) {
+  list.push(v);
+  return list;
+}
+
+var mapReducer = curry(2, function mapReducer(mappingFn, combineFn) {
+  return function reducer(list, v) {
+    return combineFn(list, mappingFn(v));
+  };
+});
+
+var filterReducer = curry(2, function filterReducer(predicateFn, combineFn) {
+  return function reducer(list, v) {
+    if (predicateFn(v)) return combineFn(list, v);
+    return list;
+  };
+});
+
+var list = [1, 3, 4, 6, 9, 12, 13, 16, 21];
+
+list
+  .reduce(mapReducer(add1)(listCombination), [])
+  .reduce(filterReducer(isOdd)(listCombination), [])
+  .reduce(sum);
+// 42
+```
+
+- `mapReducer` and `filterReducer` are now curried, and return a higher order reducer that in turn expects a combiner.
+- The higher order reducer, or _transducer_, will make a reducer if passed another reducer, i.e. the combiner.
+- The real benefit of currying is to create specialization from generalization.
+- When we pass the mapper `add1` or predicate `isOdd` it becomes a more specific function.
+
+### 10.3. Deriving Transduction: Single Reduce
+
+- The next step to compose is to extract the transducer.
+
+```js
+function listCombination(list, v) {
+  list.push(v);
+  return list;
+}
+
+var mapReducer = curry(2, function mapReducer(mappingFn, combineFn) {
+  return function reducer(list, v) {
+    return combineFn(list, mappingFn(v));
+  };
+});
+
+var filterReducer = curry(2, function filterReducer(predicateFn, combineFn) {
+  return function reducer(list, v) {
+    if (predicateFn(v)) return combineFn(list, v);
+    return list;
+  };
+});
+
+var transducer = compose(mapReducer(add1), filterReducer(isOdd));
+
+var list = [1, 3, 4, 6, 9, 12, 13, 16, 21];
+
+list.reduce(transducer(listCombination), []).reduce(sum);
+// 42
+```
+
+- When we call `mapReducer(add1)` we get back a transducer that is expecting a reducer `combineFn`.
+- When we call `filterReducer(isOdd)` we get back a transducer that is expecting a reducer `combineFn`.
+- Each of those transducers produces a reducer when provided with a reducer.
+- We pass the reducer which is output from `filterReducer` as the input to `mapReducer`.
+- We are thinking about reducers as the values that travel through our composition.
+- The `compose` call is setting up our two transducers into a composed transducer.
+- We pass in `listCombination` to the waiting `filterReducer` via `combineFn`.
+- The output from `filterReducer` is a reducer than can do filtering, which becomes to input to the waiting `mapReducer`.
+- `combineFn` in `mapReducer` becomes the `reducer` returned from `filterReducer`.
+- [Explanation of execution at 3:00](https://frontendmasters.com/courses/functional-javascript-v3/deriving-transduction-single-reduce/).
+- But there is one last step to do.
+- We now have only two reducers instead of one.
+- `listCombination` takes a value and a running accumulator array, and combines them by pushing values to the array.
+- But the `sum` function does the same thing; it combines a value with an accumulator.
+- The end result of `list.reduce` is a filtered and mapped array that is reduced into a number.
+- So we can pass `sum` instead of `listCombination`.
+- Now that we have parameterized our reducer, our combiner, we no longer need `listCombination` at all.
+
+```js
+function add1(v) {
+  return v + 1;
+}
+
+function isOdd(v) {
+  return v % 2 == 1;
+}
+
+function sum(total, v) {
+  return total + v;
+}
+
+var mapReducer = curry(2, function mapReducer(mappingFn, combineFn) {
+  return function reducer(list, v) {
+    return combineFn(list, mappingFn(v));
+  };
+});
+
+var filterReducer = curry(2, function filterReducer(predicateFn, combineFn) {
+  return function reducer(list, v) {
+    if (predicateFn(v)) return combineFn(list, v);
+    return list;
+  };
+});
+
+var transducer = compose(mapReducer(add1), filterReducer(isOdd));
+
+var list = [1, 3, 4, 6, 9, 12, 13, 16, 21];
+
+list.reduce(transducer(sum), 0);
+// 42
+```
+
+- We no longer need to pass `[]` as an initial value, since we no longer need to intermediary array.
+
+### 10.4. Derivation Summary
+
+- Remember that we don't need to understand how the underlying maths work to take advantage of FP techniques.
+- There is a way to derive things, and the derivation of transduction uses the basic principles discussed in this course.
+- It is remarkable that those little pieces can be configured in just the right way to arrive at something as powerful as transduction.
+- And the final API version would be as follows.
+
+```js
+function add1(v) {
+  return v + 1;
+}
+
+function isOdd(v) {
+  return v % 2 == 1;
+}
+
+function sum(total, v) {
+  return total + v;
+}
+
+var transducer = compose(mapReducer(add1), filterReducer(isOdd));
+
+transduce(transducer, sum, 0, [1, 3, 4, 6, 9, 12, 13, 16, 21]); // 42
+
+into(transducer, 0, [1, 3, 4, 6, 9, 12, 13, 16, 21]); // 42
+```
