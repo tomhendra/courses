@@ -69,6 +69,8 @@
   - [9.2. Filter: Inclusion](#92-filter-inclusion)
   - [9.3. Reduce: Combination](#93-reduce-combination)
   - [9.4. Composition with Reduce](#94-composition-with-reduce)
+  - [9.5. List Operations Exercise](#95-list-operations-exercise)
+  - [9.6. Fusion](#96-fusion)
 
 ## 1. Introduction
 
@@ -2296,7 +2298,7 @@ function isLoggedIn(user) {
 - If `map` does transformation, and `filter` does inclusion, `reduce` combines values.
 - `map` and `filter` both operate independently on individual values. They are _parallelizable_.
 - `reduce` however makes its decision based on the current running accumulator, as well as the next value.
-- We start with a collection of values, and an initial value that is appropriate to the collection.
+- We start with a collection of values, and an initial value.
 - We have to select an appropriate initial value for our reduction.
 - If we don't provide an initial value, there are some special cased implementations of `reduce` that will take the first value from the collection as the initial value, and start the reduction with the next value.
 - Sometimes selecting an initial value is easy like `0` for numbers or `''` for strings, but other times it is more awkward.
@@ -2391,9 +2393,11 @@ p(8); // 6
 ```js
 function compose(...fns) {
   return function composed(v) {
-    return fns.reduceRight(function invoke(fn, val) {
+    // v = initial value
+    return fns.reduceRight(function invoke(val, fn) {
+      // val = accumulator, fn = currentValue
       return fn(val);
-    });
+    }, v);
   };
 }
 
@@ -2405,3 +2409,53 @@ f(8); // 6
 - We are calling `reduceRight` on the list of functions.
 - The reducer `invoke` takes two arguments, a function and a value, and reduces them through invocation.
 - We pass the value to each function and return the result.
+
+### 9.5. [List Operations Exercise](exercises/lists/ex.js)
+
+- [Solution video 1](https://frontendmasters.com/courses/functional-javascript-v3/list-operations-solution-addn/)
+- [Solution video 2](https://frontendmasters.com/courses/functional-javascript-v3/list-operations-solution-modify-collection/)
+
+### 9.6. Fusion
+
+- Is extremely common to use chains of `map`, `filter` and `reduce`.
+- But there are downsides to doing so.
+- Performance: each time one of the operations gets called, we are producing a new data structure.
+- If we are listing out the steps, it is more difficult for the reader to track the flow of data.
+- `compose` or `pipe` are better ways of communicating data flow.
+- Functional Programmers prefer composition to chains of `map`, `filter` and `reduce`.
+
+```js
+function add1(v) {
+  return v + 1;
+}
+function mul2(v) {
+  return v * 2;
+}
+function div3(v) {
+  return v / 3;
+}
+
+var list = [2, 5, 8, 11, 14, 17, 20];
+
+list.map(add1).map(mul2).map(div3);
+// [2, 4, 6, 8, 10, 12, 14]
+```
+
+- We know that `add1`, `mul2` and `div3` have a shape which is compatible with each other.
+- We only get the benefits of FP if we adhere to the principles of FP.
+- We can't assume any of the mathematical guarantees if we break the rules.
+- In our case the three functions are pure, and therefore can be composed together: a technique called _fusion_.
+
+```js
+list.map(compose(add1, mul2, div3));
+```
+
+- We declaratively tell the reader that they don't need to track data flow.
+- Composition is much better than a chain of maps together.
+- Functional programmers don't like using methods on values, because it essentially falls into class-oriented thinking.
+- Using `map` as a method is impure, because it receives as an implicit input a `this` context that points to a particular array.
+- `this` aware functions are inherently uncomposable.
+- We can't take a `map` call and easily compose it with another function because the input to the `map` call is partly indirect.
+- That's why `map` in FP libraries will take in both a mapper function and an array explicitly, rather than the array being implicit.
+- That makes them more composable, curryable, etc.
+- We should always use the stand alone versions of utilities, rather than the native JS method versions.
