@@ -81,6 +81,13 @@
   - [11.2. Monad Data Structures](#112-monad-data-structures)
   - [11.3. Just Monad](#113-just-monad)
   - [11.4. Maybe Monad](#114-maybe-monad)
+- [12. Async](#12-async)
+  - [12.1. Map Lazy & Lazy Array](#121-map-lazy--lazy-array)
+  - [12.2. Observables](#122-observables)
+  - [12.3. Reactive Programming with Rx.js](#123-reactive-programming-with-rxjs)
+  - [12.4. Async with Rx.js Exercise](#124-async-with-rxjs-exercise)
+- [13. Functional JS Utils](#13-functional-js-utils)
+- [14. Wrapping Up](#14-wrapping-up)
 
 ## 1. Introduction
 
@@ -3083,3 +3090,136 @@ Maybe.of(someObj)
 
 - This is just a glimpse of the intermediate level of FP, and aims to demystify monads rather than delve deeply into them.
 - There are many kinds of monads: Just, Nothing, Maybe, Either, IO, etc.
+
+## 12. Async
+
+- So far we've looked at how we can perform operations on values in a functionally consistent way.
+- But all the values have been present in the exact moment.
+- All of the concepts we have learned not only apply to values present now, but extend to values that will be present eventually.
+
+### 12.1. Map Lazy & Lazy Array
+
+- Here is a synchronous version of a `map` operation.
+
+```js
+var a = [1, 2, 3];
+
+var b = a.map(function double(v) {
+  return v * 2;
+});
+
+b; // [2,4,6]
+```
+
+- We can only get the result `[2,4,6]` because `[1, 2, 3]` were assigned to tlathe variable `a` at the time of the `.map` call.
+- It is synchronous and _eager_; it will consume everything in the array assigned to `a` immediately.
+- We would like to do the operation _lazily_ over time.
+- Consider this hypothetical data structure.
+
+```js
+var a = [];
+
+var b = mapLazy(function double(v) {
+  return v * 2;
+}, a);
+
+a.push(1);
+
+a[0]; // 1
+b[2]; // 2
+```
+
+- If the operation `mapLazy` existed it could create some sort of relationship between `a` and `b`.
+- `b` is empty initially, but when we later do `a.push(1)` the mapped value is added to `b`.
+- This would be a useful tool for creating asynchronous relationships between data structures.
+- But `mapLazy` doesn't exist. Perhaps we could twist things around, and consider a hypothetical 'lazy array'.
+
+```js
+var a = new LazyArray();
+
+setInterval(function everySecond() {
+  a.push(Math.random());
+}, 1000);
+```
+
+- This would be an interesting data structure.
+- We could then setup a `b` as a mapping from `a`, and over time we would see the mapped value in `b`.
+
+```js
+var b = a.map(function double(v) {
+  return v * 2;
+});
+
+b.forEach(function onValue(v) {
+  console.log(v);
+});
+```
+
+- `b.forEach` would be like an event handler that gets called each time a new value is added.
+
+### 12.2. Observables
+
+- Lazy arrays would allow us to adapt all of the FP concepts that we apply to regular arrays, and do them over time.
+- Even transducing and monads could be implemented over time.
+- We don't have lazy arrays, but we do have _observables_, which conceptually is the same thing.
+- An observable is like a spreadsheet e.g. with `B5 = A1 * 2` the cells have a relationship, where the value from `A1` is mapped to `B5`.
+- The idea of an observable is an asynchronous flow of data.
+
+### 12.3. Reactive Programming with Rx.js
+
+- `Rx` was originally written for .NET and has been ported to a variety of other languages.
+- It is a library for doing observables.
+- Observables fall under the category of _reactive programming_.
+
+```js
+var a = new Rx.Subject();
+
+setInterval(function everySecond() {
+  a.next(Math.random());
+}, 1000);
+```
+
+- We create an observable `a` with `new Rx.Subject()`.
+- We call .`next` on a `Subject` which is what we are doing over time.
+- Then somewhere else, we can create a new observable `b` by calling `a.map` that we can `subscribe` to.
+
+```js
+var b = a.map(function double(v) {
+  return v * 2;
+});
+
+b.subscribe(function onValue(v) {
+  console.log(v);
+});
+```
+
+- This code is almost identical to our hypothetical 'lazy array'.
+- We have one stream of data that has vales pushed in over time.
+- We have another stream of two values which are observables.
+- Any time we call a `.` operator from on an observable we get another observable.
+- Just like with `.map` with arrays or monads, we get a new data structure of the same type.
+- All of the things that we learned about FP we learned to first _lift_ those things to a data structure.
+- Now we are lifting to a time oriented data structure; an observable.
+- Observables are not the only way to adapt FP principles over time, but are one of the most compelling and natural to use.
+
+### 12.4. [Async with Rx.js Exercise](exercises/async/ex.js)
+
+## 13. Functional JS Utils
+
+- Throughout this journey we have discussed reliance on utility libraries.
+- [Lodash/FP](https://github.com/lodash/lodash/wiki/FP-Guide) is Lodash with all of the functions adapted to behave how they should in a FP library. It is the best next logical step for current users of Lodash.
+- [Ramda](https://ramdajs.com) is the recommendation for people who are not already using a library like Lodash.
+- [FPO] is Kyle's library, and was conceived as a wrapper around Ramda, but took a different direction due implementation obstacles.
+- There is a style of programming called _named arguments_ where you name the parameter at the call site which you want ot assign an argument to. FPO exposes all of the common FP utilities in a way where you pass in an object with named properties.
+
+## 14. Wrapping Up
+
+- The material that we have covered in this course cannot be learned in 10 hours.
+- It will take days, weeks, months even years of working with FP to learn it.
+- This course and the book are intended as a roadmap to try out each concept little-by-little.
+- E.g. just applying the concepts in the functions discussion, removing side-effects and using point-free functions, will dramatically improve our code.
+- We can then layer on closure, then composition, then immutability... etc.
+- We don't have to go all out and start using every technique straight away.
+- Functional-Light is a ground up, pragmatic and incremental approach to functional programming.
+- Even Kyle still writes the imperative form first, and then refactors to use functional principles.
+- We can't go top-down with FP if we learned the iterative way, the only way is bottom-up.

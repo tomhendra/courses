@@ -93,11 +93,14 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Full Stack for Front-End Engineers, v2](15-fem-professional/)**\
       You'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
 
-16. **[Kent C. Dodds: Testing JavaScript](https://testingjavascript.com)**
+16. **[Kent C. Dodds: Testing JavaScript](https://testingjavascript.com)**\
+    Learn the smart, efficient way to test any JavaScript application. Kent is the author of the widely adopted Testing Library.
 
-17. **[Wes Bos: JavaScript 30](https://javascript30.com)**
+17. **[Wes Bos: JavaScript 30](https://javascript30.com)**\
+    30 Day Vanilla JS Coding Challenge. No frameworks, no compilers, no libraries, no boilerplate. A heavily browser API oriented course. This is my playground for FP techniques and testing practice!
 
-18. **[Kent C. Dodds: Epic React](https://epicreact.dev/learn)**
+18. **[Kent C. Dodds: Epic React](https://epicreact.dev/learn)**\
+    Confidently Ship Well-Architected Production Ready React Apps Like a Pro. Epic React is hands-on practice coding in a real development environment. This is intermediate/advanced material.
 
 19. **[Frontend Masters: Design Systems with React & Storybook](16-design-systems-with-react-and-storybook)**\
      Design components using Figma, and then learn to code your components in React, and document them for your teams with Storybook.
@@ -108,7 +111,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
 21. **[Frontend Masters Learning Paths: Expert]()**
 
     - **[JavaScript: The New Hard Parts]()**
-    - **[Asynchronous Programming in JavaScript (with R-js Observables)]()**
+    - **[Asynchronous Programming in JavaScript (with Rx.js Observables)]()**
     - **[Rethinking Asynchronous JavaScript]()**
     - **[Hardcore Functional Programming in JavaScript, v2]()**
     - **[Webpack 4 Fundamentals]()**
@@ -127,10 +130,11 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
 
 23. **[Frontend Masters Learning Path: Full Stack]()**
 
-    - **[Full Stack for Front-End Engineers, v2]()**
+    - **[Full Stack for Front-End Engineers, v2]()** **- Repeat from professional Path**
     - **[Introduction to Node.js]()**
     - **[API Design in Node.js, v3]()**
     - **[AWS for Front-End Engineers (ft. S3, Cloudfront & Route 53)]()**
+    - **[Complete Intro to Containers]()**
 
 24. **[Frontend Masters Learning Path: Design to Code]()**
 
