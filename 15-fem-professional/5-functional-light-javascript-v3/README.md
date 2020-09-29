@@ -76,6 +76,11 @@
   - [10.2. Deriving Transduction: Combiner & Currying](#102-deriving-transduction-combiner--currying)
   - [10.3. Deriving Transduction: Single Reduce](#103-deriving-transduction-single-reduce)
   - [10.4. Derivation Summary](#104-derivation-summary)
+- [11. Data Structure Operations](#11-data-structure-operations)
+  - [11.1. Object Filter, Reduce & Point-free Exercise](#111-object-filter-reduce--point-free-exercise)
+  - [11.2. Monad Data Structures](#112-monad-data-structures)
+  - [11.3. Just Monad](#113-just-monad)
+  - [11.4. Maybe Monad](#114-maybe-monad)
 
 ## 1. Introduction
 
@@ -2799,3 +2804,282 @@ transduce(transducer, sum, 0, [1, 3, 4, 6, 9, 12, 13, 16, 21]); // 42
 
 into(transducer, 0, [1, 3, 4, 6, 9, 12, 13, 16, 21]); // 42
 ```
+
+## 11. Data Structure Operations
+
+- So far we have used arrays to illustrate the concepts of FP, but we want to be able to generalize to any data structure.
+- We will take `map`, `filter` and `reduce`, and apply them at a more general level.
+
+```js
+var obj = {
+  name: Kyle",
+  email: "Getify@Gmail.com"
+};
+
+function mapObj(mapper, o) {
+  var newObj = {};
+  for (let key of Object.keys(o)) {
+    newObj[key] = mapper(0[key]);
+  }
+  return newObj;
+}
+
+mapObj(function lower(val) {
+  return val.toLowerCase();
+}, obj);
+// { name: "Kyle", email: "getify@mail.com" }
+```
+
+- Think about mapping as adapting an operation across all of the values in a container.
+- As long as we can create a mapper, we can adapt how it is apply to any data structure.
+
+### 11.1. [Object Filter, Reduce & Point-free Exercise](exercises/data-structures/ex.js)
+
+- [Solution video](https://frontendmasters.com/courses/functional-javascript-v3/advanced-point-free-solution/)
+
+### 11.2. Monad Data Structures
+
+- A _monad_ is a way of creating a functional friendly data structure.
+- Data structures are not just about the values they hold, but about the behaviours they created around those values.
+- A monad is a 'wrapper' around a value containing behaviours to make interoperation with other values easier, in a very specific way.
+- One of the characteristics is that a monad turns a value into a functor.
+- ~~Monad: a monoid in the category of endofunctors.~~ - this definition is thrown around a lot.
+- Monad: a pattern for pairing data with a set of predictable behaviors that let it interact with other data+behaviour pairings (monads).
+- So monads are not as scary as they seem. It is just a formalized way to make values interact with other values.
+- In non-functional programming languages like JS, monads can be implemented with many interpretations.
+- To illustrate the concept of a monad we will use very informal examples. In production we'd use a library.
+
+```js
+function Just(val) {
+  return { map, chain, ap };
+}
+
+// *********************
+
+function map(fn) {
+  return Just(fn(val));
+}
+
+// AKA bind, flatMap
+function chain(fn) {
+  return fn(val);
+}
+
+function ap(anotherMonad) {
+  return anotherMonad.map(val);
+}
+```
+
+- `Just` returns an object with three methods, which have closure over `val`.
+- `map` takes in a function, calls our closed over `val` with that function, and creates another `Just` with the output.
+- Just like mapping on an array creates a new array, we create a new monad.
+- That's the functor behaviour of our monad, being mappable.
+- `chain` or flatMap maps over a data structure and flattens it by one level.
+- `ap` is the strangest. It takes in another monad, and we call `.map` on it with the current monad's value.
+- Map always requires a mapper function, so passing our value to `.map` implies `val` must need to be a function.
+
+### 11.3. Just Monad
+
+```js
+var fortyOne = Just(41);
+var fortyTwo = fortyOne.map(function inc(v) {
+  return v + 1;
+});
+```
+
+- `fortyTwo` is not `42`. It is a monad wrapped around `42`.
+- Map always has to output the same type of data structure that is input.
+- This seems like a lot of extra work.
+- The only reason you would go to the trouble of using a monad, is because it makes behaviour more predictable than using regular values.
+
+```js
+function identity(v) {
+  return v;
+}
+
+// debug inspection
+fortyOne.chain(identity); // 41
+fortyTwo.chain(identity); // 42
+```
+
+- Technically this is a violation of monadic laws.
+- We are not supposed to call `chain` with a mapper function that doesn't return a monad.
+- This is only for our illustration purposes.
+- So we are making monads and are able to convert monads by calling `map`.
+- Let's look at `.chain` and `.ap`.
+
+```js
+function Just(val) {
+  return { map, chain, ap };
+}
+
+// *********************
+
+function map(fn) {
+  return Just(fn(val));
+}
+
+// AKA bind, flatMap
+function chain(fn) {
+  return fn(val);
+}
+
+function ap(anotherMonad) {
+  return anotherMonad.map(val);
+}
+
+// *********************
+var user1 = Just("Kyle");
+var user2 = Just("Susan");
+
+var tuple = curry(2, function tuple(x, y) {
+  return [x, y];
+});
+
+var users = user1.map(tuple).ap(user2);
+
+// debug inspection
+users.chain(identity); // ["Kyle", "Susan"]
+```
+
+- `.ap` is being called on the result of the `.map` call.
+- `user1.map(tuple)` will result in a monad wrapped around the output of `tuple("Kyle")`.
+- `tuple` expects two inputs but is only passed one, and since it is curried, returns a single function waiting for another argument.
+- The monad we have made with `user1.map` is wrapped around this function which is closed over `"Kyle"`.
+- Then we call `.ap` on our temporary monad, so we call `user2.map` with this temporary monad containing the function.
+- That `.ap` call is a `.map` call under the covers, so returns another monad, containing our tuple.
+- `.ap` is a way to take one value from a monad, put it into a closure, and use it as the mapper for the next monad.
+- The three functions `map`, `chains` and `ap` have a fixed set of ways they interoperate which fulfils the _three monadic laws_.
+- It is important that monads behave according to those laws, otherwise the mathematics don't work and we lose the benefits.
+
+### 11.4. Maybe Monad
+
+- One of the most common illustrations of a monads.
+
+```js
+var someObj = {
+  something: {
+    else: {
+      entirely: 42,
+    },
+  },
+};
+// someObj.something.else.entirely; // 42
+```
+
+- If one of the properties we try to access doesn't exists, we get an exception like `undefined` or `null`.
+- We would like a way to avoid exceptions.
+
+```js
+function Nothing() {
+  return { map: Nothing, chain: Nothing, ap: Nothing };
+}
+```
+
+- The `Nothing` methods make more `Nothing` monads.
+- It is exactly like 'The Nothing' from The Never Ending Story.
+- This is actually very useful, and monadically represents no operation.
+- We don't want anything to happen if we try to access a property that doesn't exist.
+- We can pair `Nothing` with `Just` to get a special type of monad called a _Maybe_ monad.
+
+```js
+var Maybe = { just, Nothing, of: Just };
+
+function fromNullable(val) {
+  if (val == null) return Maybe.Nothing();
+  else return Maybe.of(val);
+}
+```
+
+- `fromNullable` is the name given by the FP community for the function.
+- If the value input to `fromNullable` is `null` or `undefined` it returns `Nothing`, else it returns the value wrapped in a `Just`.
+- `fromNullable` decides which type of monad to return.
+- It is debatable whether `fromNullable` is part of `Maybe` or a helper alongside `Maybe`, but it is certainly critical behaviour.
+- With `fromNullable` we can define another helper `prop`, which is a FP library utility
+
+```js
+var prop = curry(2, function prop(prop, obj) {
+  return fromNullable(obj[prop]);
+});
+```
+
+- It takes in a property name and an object, and extracts the property from the object.
+- It will either return a `Nothing` monad or a `Just` monad containing the value that was present.
+- We can now make a safe property chaining access off of our `sumObj` object.
+
+```js
+Maybe.of(someObj)
+  .chain(prop("Something"))
+  .chain(prop("else"))
+  .chain(prop("entirely"));
+  // debug inspection
+  .chain(identity); // 42
+```
+
+- `prop("Something")` gets us a function expecting an object as its second argument.
+- `.chain` is being called with the resulting unary function.
+- `Maybe.of(someObj)` creates a `Just` around `someObj`, and then calls `.chain` on it.
+- `.chain` will execute the function with the value that's in the monad.
+- So we have our object being pushed into the waiting unary function, and try to access the property `Something` on that object.
+- It will either find it and return a `Just` monad, or not and return a `Nothing` monad.
+- Using this formulation of using a `Maybe` gives us a functional way of using this optional chaining idea.
+- Here is the full example of our monad pattern to ponder over.
+
+```js
+function Just(val) {
+  return { map, chain, ap };
+}
+
+function Nothing() {
+  return { map: Nothing, chain: Nothing, ap: Nothing };
+}
+
+// ***************************
+function map(fn) {
+  return Just(fn(val));
+}
+
+function chain(fn) {
+  return fn(val);
+}
+
+function ap(anotherMonad) {
+  return anotherMonad.map(val);
+}
+// ***************************
+
+var Maybe = { just, Nothing, of: Just };
+
+function fromNullable(val) {
+  if (val == null) return Maybe.Nothing();
+  else return Maybe.of(val);
+}
+
+var prop = curry(2, function prop(prop, obj) {
+  return fromNullable(obj[prop]);
+});
+
+// ***************************
+
+function identity(v) {
+  return v;
+}
+
+var someObj = {
+  something: {
+    else: {
+      entirely: 42,
+    },
+  },
+};
+
+Maybe.of(someObj)
+  .chain(prop("Something"))
+  .chain(prop("else"))
+  .chain(prop("entirely"));
+  // debug inspection
+  .chain(identity); // 42
+```
+
+- This is just a glimpse of the intermediate level of FP, and aims to demystify monads rather than delve deeply into them.
+- There are many kinds of monads: Just, Nothing, Maybe, Either, IO, etc.

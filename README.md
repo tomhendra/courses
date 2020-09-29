@@ -93,17 +93,19 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Full Stack for Front-End Engineers, v2](15-fem-professional/)**\
       You'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
 
-16. **[Wes Bos: JavaScript 30]()**
+16. **[Kent C. Dodds: Testing JavaScript](https://testingjavascript.com)**
 
-17. **[Kent C. Dodds: Epic React]()**
+17. **[Wes Bos: JavaScript 30](https://javascript30.com)**
 
-18. **[Frontend Masters: Design Systems with React & Storybook](16-design-systems-with-react-and-storybook)**\
+18. **[Kent C. Dodds: Epic React](https://epicreact.dev/learn)**
+
+19. **[Frontend Masters: Design Systems with React & Storybook](16-design-systems-with-react-and-storybook)**\
      Design components using Figma, and then learn to code your components in React, and document them for your teams with Storybook.
 
-19. **[Frontend Masters: Introduction to Next.js]()**\
+20. **[Frontend Masters: Introduction to Next.js]()**\
     Next.js is a complete framework built on top of React.js. You'll learn server-side rendering, static site generation, data fetching, code API endpoints, creating pages with the file system, add CSS modules, and more.
 
-20. **[Frontend Masters Learning Paths: Expert]()**
+21. **[Frontend Masters Learning Paths: Expert]()**
 
     - **[JavaScript: The New Hard Parts]()**
     - **[Asynchronous Programming in JavaScript (with R-js Observables)]()**
@@ -115,7 +117,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Code Transformation and Linting with ASTs]()**
     - **[Advanced Asynchronous JavaScript]()**
 
-21. **[Frontend Masters Learning Path: Computer Science]()**
+22. **[Frontend Masters Learning Path: Computer Science]()**
 
     - **[Four Semesters of Computer Science in 5 Hours]()**
     - **[A Practical Guide to Algorithms with JavaScript]()**
@@ -123,19 +125,17 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Four Semesters of Computer Science in 5 Hours, Part 2]()**
     - **[Tree and Graph Data Structures]()**
 
-22. **[Frontend Masters Learning Path: Full Stack]()**
+23. **[Frontend Masters Learning Path: Full Stack]()**
 
     - **[Full Stack for Front-End Engineers, v2]()**
     - **[Introduction to Node.js]()**
     - **[API Design in Node.js, v3]()**
     - **[AWS for Front-End Engineers (ft. S3, Cloudfront & Route 53)]()**
 
-23. **[Frontend Masters Learning Path: Design to Code]()**
+24. **[Frontend Masters Learning Path: Design to Code]()**
 
     - **[Design for Developers]()**
     - **[CSS Grids and Flexbox for Responsive Web Design]()** **- Repeat from Beginner Path**
     - **[CSS In-Depth, v2]()** **- Repeat from Professional Path**
     - **[Responsive Web Typography v2]()**
     - **[SVG Essentials & Animation, v2]()**
-
-24. **[Kent C. Dodds: Testing JavaScript](https://testingjavascript.com)**
