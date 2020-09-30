@@ -87,7 +87,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Functional-Light JavaScript, v3](15-fem-professional/5-functional-light-javascript-v3)**\
        Improve your JavaScript by applying functional programming concepts like function purity, point-free, partial-application, currying, composition, immutability, recursion, list operations like map, reduce & filter...plus even more advanced concepts like monads and transduction.
 
-    - **[CSS In-Depth, v2](15-fem-professional/)**\
+    - **[CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2)**\
       Take a deep-dive into the essential features of CSS, while also exploring CSS features you probably didn’t even know existed!
 
     - **[Full Stack for Front-End Engineers, v2](15-fem-professional/)**\

@@ -17,6 +17,10 @@
   - [2.10. Linguistic Pseudo Classes](#210-linguistic-pseudo-classes)
   - [2.11. Link Locations and User Actions](#211-link-locations-and-user-actions)
   - [2.12. Specificity](#212-specificity)
+- [3. Pseudo Elements](#3-pseudo-elements)
+  - [3.1. Introduction](#31-introduction)
+  - [3.2. Before, After & Generated Content](#32-before-after--generated-content)
+  - [3.3. Selection & More Pseudo-Elements](#33-selection--more-pseudo-elements)
 
 ## 1. Introduction
 
@@ -205,9 +209,9 @@ child = document.querySelectorAll("#bar .foo");
   - `E[attr|=val]`: Element `E` whose attribute `attr` has a value `val` or begins with `val` with or without a `-` afterwards.
   - e.g. `p[lang|="en"]` would match `<p lang="en-us">` and `<p lang="en-uk">`
 - And CSS3 introduced more.
-- `E[attr^=val]`: Element `E` whose attribute `attr` starts with the value `val`.
-- `E[attr$=val]`: Element `E` whose attribute `attr` ends with the value `val`.
-- `E[attr*=val]`: Element `E` whose attribute `attr` has the value `val` anywhere within the content.
+  - `E[attr^=val]`: Element `E` whose attribute `attr` starts with the value `val`.
+  - `E[attr$=val]`: Element `E` whose attribute `attr` ends with the value `val`.
+  - `E[attr*=val]`: Element `E` whose attribute `attr` has the value `val` anywhere within the content.
 
 ```css
 a[href^="mailto"] {
@@ -241,10 +245,10 @@ a[href$="pdf"]:after {
 - In HTML we can have elements that are enabled or disabled and checked or not checked.
 - We have the following UI pseudo-classes.
 
-- `:enabled`
-- `:disabled`
-- `:checked`
-- `:indeterminate` (Level 4)
+  - `:enabled`
+  - `:disabled`
+  - `:checked`
+  - `:indeterminate` (Level 4)
 
 - CSS updates immediately, which we can use to update a label colour when a checkbox is checked.
 
@@ -256,22 +260,22 @@ input[type="checkbox"]:checked + label {
 
 - The form-related pseudo-classes are as follows:
 
-- `:default`
-- `:valid`
-- `:invalid`
+  - `:default`
+  - `:valid`
+  - `:invalid`
 
-- `:required`
-- `:optional`
+  - `:required`
+  - `:optional`
 
-- `:in-range`
-- `:out-of-range`
+  - `:in-range`
+  - `:out-of-range`
 
-- `:read-only`
-- `:read-write`
+  - `:read-only`
+  - `:read-write`
 
-- `:placeholder-shown`
+  - `:placeholder-shown`
 
-- `:user-error` or `:user-invalid`
+  - `:user-error` or `:user-invalid`
 
 - We can use these selectors for form validation visual cues.
 
@@ -310,38 +314,38 @@ input:in-range {
 - Structural selectors target elements on the page based on their relationships to other elements in the DOM.
 - The CSS updates dynamically if page updates with JS or user interaction.
 
-- `:root`
-- `:empty`
-- `:blank`
-- `:nth-child()`
-- `:nth-last-child()`
-- `:first-child`
-- `:last-child`
-- `:only-child`
-- `:nth-of-type()`
-- `:nth-last-of-type()`
-- `:first-of-type`
-- `:last-of-type`
-- `:only-of-type`
+  - `:root`
+  - `:empty`
+  - `:blank`
+  - `:nth-child()`
+  - `:nth-last-child()`
+  - `:first-child`
+  - `:last-child`
+  - `:only-child`
+  - `:nth-of-type()`
+  - `:nth-last-of-type()`
+  - `:first-of-type`
+  - `:last-of-type`
+  - `:only-of-type`
 
 - The first, last, & only selectors can be a source of bugs, since they can be confusing.
 - Be cautious and refer to MDN for these selectors.
 
-- `:first-child`
-- `:last-child`
-- `:only-child`
-- `:first-of-type`
-- `:last-of-type`
-- `:only-of-type`
+  - `:first-child`
+  - `:last-child`
+  - `:only-child`
+  - `:first-of-type`
+  - `:last-of-type`
+  - `:only-of-type`
 
 ### 2.7. nth-of-type Selectors
 
 - nth pseudo-classes allows to select elements using `odd`, `even` or an equation.
 
-- `:nth-child(3n+1)`: see [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)
-- `:nth-last-child(odd)`: every odd element
-- `:nth-of-type(5)`: the 5th element
-- `:nth-last-of-type(3n)`: every 3rd element
+  - `:nth-child(3n+1)`: see [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)
+  - `:nth-last-child(odd)`: every odd element
+  - `:nth-of-type(5)`: the 5th element
+  - `:nth-last-of-type(3n)`: every 3rd element
 
 ### 2.8. Root, Empty and Blank
 
@@ -472,3 +476,53 @@ li {
   }
 }
 ```
+
+## 3. Pseudo Elements
+
+### 3.1. Introduction
+
+- There are several pseudo-elements and from CSS 2.1 they have had two preceding colons.
+
+  - `::first-line`
+  - `::first-letter`
+  - `::selection` (not in specification)
+  - `::before`
+  - `::after`
+
+- _Pseudo-classes_ select elements that already exist.
+- _Pseudo-elements_ create "faux" elements we can style.
+
+### 3.2. Before, After & Generated Content
+
+- `::before` and `::after` can add content to the page that doesn't exist.
+- We have to always add the `content` property, or there is nothing to style.
+- There are also some future pseudo-elements that are not yet fully supported:
+
+  - `::selection`
+  - `::inactive-selection`
+  - `::spelling-error`
+  - `::grammar-error`
+  - `::marker`
+  - `::placeholder`
+  - `::content`
+
+### 3.3. Selection & More Pseudo-Elements
+
+- The only reason to disable `::selection` is on a mobile device where we want to disable the native behaviour of long tap (copy/paste etc).
+
+  ```css
+  .thisSlide {
+    -webkit-tap-highlight-color: #bada55;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+  ```
+
+- But don't do this, because it is 'assholetic'!
+- Many, many more pseudo-elements with prefixes currently treated as a shadow DOM.
+  - `::-webkit-progress-bar`
+  - `::-webkit-progress-value`
+  - `::-webkit-meter-even-less-good-value`
+  - `::-webkit-inner-spin-button` / `outer-spin-button`
+  - `::-webkit-validation-bubble` / `arrow-clipper` / `arrow` / `message`
+- Top tip: Use the DevTools to discover all sorts of shadow DOM stuff (Computed Styles > Show All).
