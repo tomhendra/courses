@@ -21,6 +21,14 @@
   - [3.1. Introduction](#31-introduction)
   - [3.2. Before, After & Generated Content](#32-before-after--generated-content)
   - [3.3. Selection & More Pseudo-Elements](#33-selection--more-pseudo-elements)
+- [4. Generated Content](#4-generated-content)
+  - [4.1. Before & After](#41-before--after)
+  - [4.2. Counters](#42-counters)
+  - [4.3. Quotes & Attributes](#43-quotes--attributes)
+  - [4.4. Images](#44-images)
+  - [4.5. Strings & Special Characters](#45-strings--special-characters)
+  - [4.6. Icon Accessibility](#46-icon-accessibility)
+  - [4.7. Design Elements](#47-design-elements)
 
 ## 1. Introduction
 
@@ -520,9 +528,237 @@ li {
 
 - But don't do this, because it is 'assholetic'!
 - Many, many more pseudo-elements with prefixes currently treated as a shadow DOM.
+
   - `::-webkit-progress-bar`
   - `::-webkit-progress-value`
   - `::-webkit-meter-even-less-good-value`
   - `::-webkit-inner-spin-button` / `outer-spin-button`
   - `::-webkit-validation-bubble` / `arrow-clipper` / `arrow` / `message`
+
 - Top tip: Use the DevTools to discover all sorts of shadow DOM stuff (Computed Styles > Show All).
+
+## 4. Generated Content
+
+### 4.1. Before & After
+
+- Most people think that `::before` and `::After` are actually before and after the element.
+- But there is almost like a faux span that wraps all three.
+- You get 2 free stylable faux elements for every non-empty element.
+
+```css
+element::before {
+  /* the only 'required' attribute */
+  content: "";
+}
+
+element::after {
+  /* without "content:", you have no content */
+  content: "";
+}
+```
+
+- The accepted values for `content` are as follows:
+  - `none`: Same as no content property declared.
+  - `normal`: Same as no content property declared.
+  - `string`: A string of text. Can be combined with URL, counter, attr(x), quotes, etc.
+  - `image`: URL of a resource, usual an image.
+  - `counter`: 'counter(name), counter(name, style), 'counters(name, string)' or 'counters(name, string, style)'. 'name' is a string, but not 'none', 'inherit' or 'initial'.
+  - `open-quote` / `close-quote`: The appropriate string set in the quotes property.
+  - `no-open-quote` / `no-close-quote`: Does not include quotes, but increments the level of nesting for quotes.
+  - `attr(X)`: Displays the value of the attribute 'X'.
+
+### 4.2. Counters
+
+- For counter to work we need to give it a name. Here we've called it `sections`.
+
+```css
+body {
+  counter-reset: sections;
+}
+header h1.sectiontitle:before {
+  content: "Part " counter(sections) ": ";
+  counter-increment: sections;
+}
+```
+
+- Every time we hit a section, we reset the counter to 0.
+- The counter will then increment each time it encounters a header.
+
+### 4.3. Quotes & Attributes
+
+- Quotes allow us to specify the style of quotation marks in a nested pattern.
+
+```css
+/* Specify pairs of quotes for two levels in two languages */
+:lang(en) > q {
+  quotes: '"' '"' "'" "'";
+}
+:lang(fr) > q {
+  quotes: "«" "»" "’" "’";
+}
+
+/* Insert quotes before and after Q element content */
+q::before {
+  content: open-quote;
+}
+q::after {
+  content: close-quote;
+}
+```
+
+- HTML elements can have any number of attributes.
+- `attr( attrName )` will print the value of an attribute as a string, but is not interpolated.
+- This is a future feature.
+- We can use the returned attribute values as content.
+
+```css
+a[href^="http"]:hover {
+  position: relative;
+}
+a[href^="http"]:hover:after {
+  content: attr(href); /* content */
+  position: absolute;
+  top: 1em;
+  left: 0;
+  background-color: black;
+  color: white;
+  padding: 3px 5px;
+  line-height: 1;
+}
+```
+
+### 4.4. Images
+
+```cs
+.showMe {
+	position:relative;
+}
+.showMe:hover::after {
+	position:absolute;
+	content: url(attr(data-url)); /* doesn't work, because returned value is not interpolated */
+	content: url(estelle.svg); /* does work :) */
+	width: 200px;
+	height:200px; color: blue;
+	bottom: -39px;
+	left: 20px;
+}
+```
+
+### 4.5. Strings & Special Characters
+
+- To generate content we need to have the content attribute with a value.
+
+```css
+element:before {
+  content: "REQUIRED";
+}
+
+element:before {
+  content: ""; /* empty */
+  content: " (.pdf) "; /* any text */
+  content: "\2603"; /* unicode & any special characters */
+  content: " (" attr(href) ")"; /* attributes */
+  content: counter(name);
+  counter-increment: name; /* counters */
+}
+```
+
+### 4.6. Icon Accessibility
+
+- Google Material icons support ligatures for rendering of an icon glyph simply by using its textual name.
+- The textual names can be used with `content`.
+
+```css
+[class|="material-icons"]:after {
+  /* content: "\e84e"; */
+  content: "accessibility";
+  color: red;
+}
+.material-icons {
+  font-size: 3rem;
+}
+```
+
+- Accessibility of Generated Content.
+  - Generated content can enhance but should not change actual content. It should not be relied upon, as it is part of the presentation layer.
+  - Separation of concerns: content vs presentation.
+  - All browsers except IE exposes generated content.
+  - Generated content is factored into element's [accessible name computation](https://w3c.github.io/accname/).
+  - There is no way to put `alt` onto generated content, but in the future we will be able to: `content: url(question.svg) / "More Information";`
+
+### 4.7. Design Elements
+
+- A nice trick for a CSS tooltip:
+
+```css
+p[data-tooltip="true"] {
+  border-bottom: 1px solid;
+  text-decoration: none;
+  line-height: 1;
+  display: inline;
+  z-index: 0;
+}
+p[data-tooltip="true"]:hover {
+  position: relative;
+}
+p[data-tooltip="true"]:hover:before {
+  content: attr(title);
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background-color: #c7573a;
+  color: white;
+  max-width: 10em;
+  min-width: 5em;
+  font-style: normal;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 100;
+}
+p[data-tooltip="true"]:hover:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  border: 15px solid;
+  position: absolute;
+  left: 20px;
+  border-color: transparent transparent #c7573a;
+}
+```
+
+```html
+<i title="'Cause tool tips are awesome" data-tooltip="true">tooltip</i>
+```
+
+- As well as the tooltip, we can create thought bubbles.
+
+```css
+.thought,
+.thought:before,
+.thought:after {
+  border-radius: 50%;
+  border: 5px solid blue;
+  background-color: white;
+  position: relative;
+}
+.thought:before,
+.thought:after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  bottom: -30px;
+  height: 40px;
+  width: 40px;
+}
+.thought:after {
+  left: 12%;
+  bottom: -50px;
+  height: 20px;
+  width: 20px;
+}
+```
+
+- We can make [all sorts of shapes](https://css-tricks.com/the-shapes-of-css/) with CSS.
+- Here is a nice article about [amazing stuff we can do](https://css-tricks.com/pseudo-element-roundup/) with pseudo-elements.
+-
