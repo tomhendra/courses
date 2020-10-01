@@ -29,6 +29,13 @@
   - [4.5. Strings & Special Characters](#45-strings--special-characters)
   - [4.6. Icon Accessibility](#46-icon-accessibility)
   - [4.7. Design Elements](#47-design-elements)
+- [5. Media Queries](#5-media-queries)
+  - [5.1. Syntax & Punctuation](#51-syntax--punctuation)
+  - [5.2. Browser Capability, @supports](#52-browser-capability-supports)
+  - [5.3. Viewport](#53-viewport)
+  - [5.4. Use Cases: Hyphenations](#54-use-cases-hyphenations)
+  - [5.5. Use Case: Columns](#55-use-case-columns)
+  - [Use Cases: SVG](#use-cases-svg)
 
 ## 1. Introduction
 
@@ -761,4 +768,330 @@ p[data-tooltip="true"]:hover:after {
 
 - We can make [all sorts of shapes](https://css-tricks.com/the-shapes-of-css/) with CSS.
 - Here is a nice article about [amazing stuff we can do](https://css-tricks.com/pseudo-element-roundup/) with pseudo-elements.
--
+
+## 5. Media Queries
+
+- In CSS 2.1 we were given media queries, which allowed us to specify which device was to be used to present our content.
+
+1. all
+2. aural
+3. handheld
+4. braille
+5. embossed
+6. print
+7. projection
+8. screen
+9. tty
+10. tv
+
+- We want to present content differently based on the device that is being used to view it.
+- For that we have media queries.
+
+```css
+/* If something is 480px wide or smaller, then use this CSS */
+@media screen and (max-width: 480px) {
+  selector {
+    /* small screen */
+    property: value;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  selector {
+    /* landscape properties */
+    property: value;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  selector {
+    /* portrait properties */
+    property: value;
+  }
+}
+
+@media screen and (min-device-pixel-ratio: 1.5) {
+  selector {
+    /* properties for higher resolution screens */
+    property: value;
+  }
+}
+```
+
+- When want to always use the same aspect ratio, but not target specific breaks i.e. the size of different devices.
+- We should choose breakpoints that make sense for the particular design.
+
+Media query properties ([spec](https://www.w3.org/TR/css3-mediaqueries/#media1)):
+
+- `(min/max)-width:` viewport width
+- `(min/max)-height:` viewport height
+- ~~`(min/max)-device-width:` screen width~~
+- ~~`(min/max)-device-height:` screen height~~
+- `orientation:` portrait(h>w) | landscape(w>h)
+- `(min/max)-aspect-ratio:` width/height
+- ~~`(min/max)-device-aspect-ratio:` device-width/height~~
+- `(min/max)-resolution:` 72dpi | 100dpcm
+
+The following other media query properties are not used for web development so are just for information.
+
+- `(min/max)-color:`
+- `(min/max)-color-index:`
+- `(min/max)-monochrome:` 0 | 1+
+- `scan:` progressive | interlace (tv)
+- `grid:` 0 | 1 (grids (like tty) or bitmap)
+
+Media Features ([MDN]I(https://developer.mozilla.org/en-US/docs/Web/CSS/@media#Media_features)):
+
+- `width`
+- `height`
+- `aspect-ratio`
+- `orientation`
+- `resolution`
+- `scan`
+- `grid`
+- `update`
+- `overflow-block`
+- `overflow-inline`
+- `color`
+- `color-gamut`
+- `color-index`
+- `display-mode`
+- `monochrome`
+- `inverted-colors`
+- `pointer`
+- `hover`
+- `any-pointer`
+- `any-hover`
+- `light-level`
+- `scripting`
+- ~~`device-width`~~
+- ~~`device-height`~~
+- ~~`device-aspect-ratio`~~
+
+Resolution Units:
+
+- `dpi`: dots per inch (72, 96)
+- `dpcm`: dots per centimeter (`1dpcm` ≈ `2.54dpi`)
+- `dppx`: dots per pixel
+- `1dppx` = 96dpi (default resolution of images)
+- Note: `0` is invalid. `O` is not equal to `0dpi`, `0dpcm`, or `0dppx`.
+
+High Resolution Implementation.
+
+- Safari v. Everyone Else:
+
+```css
+/* Safari */
+-webkit-min-device-pixel-ratio: 2
+/* Everyone else */
+min-resolution: 2dppx
+min-resolution: 192dpi
+```
+
+- dppx fallback:
+
+```css
+min-resolution: 192dpi;
+
+@media (-webkit-min-device-pixel-ratio: 2 /* safari */),
+  (min-resolution: 192dpi /* everyone else */) {
+  color: red;
+}
+```
+
+### 5.1. Syntax & Punctuation
+
+- "only" leaves out older browsers.
+
+```css
+media="only print and (color)"
+```
+
+- "and" - both parts must be true.
+
+```css
+media="only screen and (orientation: portrait)"
+```
+
+- "not" - if untrue.
+
+```css
+media="not screen and (color)"
+```
+
+- Comma separates selectors - any part can be true.
+
+```css
+media="print, screen and (min-width: 480px)"
+```
+
+range v. discrete v. boolean
+
+- `min-`
+- `max-`
+- `>=`
+- `>`
+- `<`
+
+```css
+@media (min-width: 600px) {
+}
+@media (max-width: 600px) {
+}
+@media (width >= 600px) {
+}
+@media (width > 600px) {
+}
+@media (width < 600px) {
+}
+@media (width: 600px) {
+}
+```
+
+### 5.2. Browser Capability, @supports
+
+- If a browser supports a feature, use this CSS.
+
+```css
+@supports (display: flex) {
+  /* rules for browsers supporting un-prefixed flex box */
+}
+```
+
+### 5.3. Viewport
+
+- What is the size of the window and how should content be displayed.
+- It is so important and necessary it should always be used.
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+```
+
+- The options for `content` are:
+
+  - `width`
+  - `height`
+  - `initial-scale`
+  - `maximum-scale`
+  - `minimum-scale`
+  - `user-scalable`
+
+- The only time we should use `maximum-scale` / `minimum-scale` is when creating a game, otherwise the viewport won't scale.
+- This would prevent the user from using the browsers' zoom feature.
+
+```css
+@viewport {
+  width: device-width;
+  zoom: 0.5;
+}
+```
+
+- The available properties are:
+
+  - `min-width`
+  - `max-width`
+  - `width`
+  - `min-height`
+  - `max-height`
+  - `height`
+  - `zoom `
+  - `min-zoom `
+  - `max-zoom`
+  - `user-zoom`
+  - `orientation`
+
+- If `<meta>` is set to disable zoom, there is no delay on `onClick` events.
+- If `<meta>` is set to disable zoom, you're a jerk!
+
+Mobile Specific CSS to prevent OS defaults from interfering with a game:
+
+- Tap Highlight Color
+
+```css
+-webkit-tap-highlight-color: #bada55;
+```
+
+- Prevent Select & Hold dialogue
+
+```css
+-webkit-user-select: none;
+```
+
+- Prevent Images Dialog
+
+```css
+-webkit-touch-callout: none;
+```
+
+- Prevent accidental OS popups (panning)
+
+```css
+-ms-touch-action: none;
+```
+
+### 5.4. Use Cases: Hyphenations
+
+- `<WBR>` is an HTML element which we can use anywhere we want a word break.
+- `&Shy;` is the HTML character entity equivalent.
+- In CSS we use `hyphens: auto;`.
+
+```css
+@media screen and (min-width: 38em) {
+  #content {
+    padding: 0 21%; /* trick for less padding on smaller screens */
+  }
+  p {
+    hyphens: auto;
+  }
+}
+```
+
+### 5.5. Use Case: Columns
+
+- Columns work using the following properties.
+
+  - `column-count: 6;`
+  - `column-width: 17em;`
+  - `column-rule: 1px solid #bbb;`
+  - `column-gap: 1.8em;`
+
+- Note that `column-width` is a minimum width.
+
+```css
+#content {
+  columns: 8em 3; /* shorthand for all 4 properties */
+}
+h1 {
+  column-span: all; /* we can span columns too! */
+}
+```
+
+### Use Cases: SVG
+
+- Generally in media queries using `screen`, `width` refers to the device screen width.
+- With SVGs `width` refers to the container of the SVG.
+
+```css
+:root {
+  background-image: url(circle.svg);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 70%;
+}
+```
+
+```html
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="400">
+ <g>
+  <title>Simple SVG + mediaqueries
+   <defs>
+    <style>
+      @media screen and (max-width: 100px) {
+         #circle { fill: #bada55;}
+     }
+    </style>
+   </defs>
+  <circle cx="200" cy="200" r="150" id="circle" />
+ </g>
+</svg>
+```
