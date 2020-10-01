@@ -35,7 +35,11 @@
   - [5.3. Viewport](#53-viewport)
   - [5.4. Use Cases: Hyphenations](#54-use-cases-hyphenations)
   - [5.5. Use Case: Columns](#55-use-case-columns)
-  - [Use Cases: SVG](#use-cases-svg)
+  - [5.6. Use Cases: SVG](#56-use-cases-svg)
+- [6. Colours & Appearance](#6-colours--appearance)
+  - [6.1. Colors: RGB, HSL & HEX](#61-colors-rgb-hsl--hex)
+  - [6.2. Opacity vs Alphatransparency](#62-opacity-vs-alphatransparency)
+  - [6.3. Appearance](#63-appearance)
 
 ## 1. Introduction
 
@@ -1066,7 +1070,7 @@ h1 {
 }
 ```
 
-### Use Cases: SVG
+### 5.6. Use Cases: SVG
 
 - Generally in media queries using `screen`, `width` refers to the device screen width.
 - With SVGs `width` refers to the container of the SVG.
@@ -1095,3 +1099,266 @@ h1 {
  </g>
 </svg>
 ```
+
+## 6. Colours & Appearance
+
+### 6.1. Colors: RGB, HSL & HEX
+
+- Color formats: all of the following are white!
+
+```css
+color: white;
+color: #fff;
+color: #ffffff;
+color: #ffffffff;
+color: rgb(255, 255, 255);
+color: rgb(100%, 100%, 100%);
+color: rgba(255, 255, 255, 1);
+color: rgba(100%, 100%, 100%, 1);
+color: hsl(0, 100%, 100%);
+color: hsla(0, 100%, 100%, 1);
+color: transparent;
+color: currentColor; /* current colour of the text */
+```
+
+- There are a tonne of named colours.
+
+````css
+#F0F8FF /* aliceblue */
+#FAEBD7 /* antiquewhite */
+#00FFFF /* aqua/cyan */
+#7FFFD4 /* aquamarine */
+#F0FFFF /* azure */
+#F5F5DC /* beige */
+#FFE4C4 /* bisque */
+#000000 /* black */
+#FFEBCD /* blanchedalmond */
+#0000FF /* blue */
+#8A2BE2 /* blueviolet */
+#A52A2A /* brown */
+#DEB887 /* burlywood */
+#5F9EA0 /* cadetblue */
+#7FFF00 /* chartreuse */
+#D2691E /* chocolate */
+#FF7F50 /* coral */
+#6495ED /* cornflowerblue */
+#FFF8DC /* cornsilk */
+#DC143C /* crimson */
+#00FFFF /* cyan/aqua */
+#00008B /* darkblue */
+#008B8B /* darkcyan */
+#B8860B /* darkgoldenrod */
+#A9A9A9 /* darkgray/darkgrey */
+#006400 /* darkgreen */
+#BDB76B /* darkkhaki */
+#8B008B /* darkmagenta */
+#556B2F /* darkolivegreen */
+#FF8C00 /* darkorange */
+#9932CC /* darkorchid */
+#8B0000 /* darkred */
+#E9967A /* darksalmon */
+#8FBC8F /* darkseagreen */
+#483D8B /* darkslateblue */
+#2F4F4F /* darkslategray/darkslategrey */
+#00CED1 /* darkturquoise */
+#9400D3 /* darkviolet */
+#FF1493 /* deeppink */
+#00BFFF /* deepskyblue */
+#696969 /* dimgray/dimgrey */
+#1E90FF /* dodgerblue */
+#B22222 /* firebrick */
+#FFFAF0 /* floralwhite */
+#228B22 /* forestgreen */
+#FF00FF /* fuchsia/magenta */
+#DCDCDC /* gainsboro */
+#F8F8FF /* ghostwhite */
+#FFD700 /* gold */
+#DAA520 /* goldenrod */
+#808080 /* gray/grey */
+#008000 /* green */
+#ADFF2F /* greenyellow */
+#F0FFF0 /* honeydew */
+#FF69B4 /* hotpink */
+#CD5C5C /* indianred */
+#4B0082 /* indigo */
+#FFFFF0 /* ivory */
+#F0E68C /* khaki */
+#E6E6FA /* lavender */
+#FFF0F5 /* lavenderblush */
+#7CFC00 /* lawngreen */
+#FFFACD /* lemonchiffon */
+#ADD8E6 /* lightblue */
+#F08080 /* lightcoral */
+#E0FFFF /* lightcyan */
+#FAFAD2 /* lightgoldenrodyellow */
+#D3D3D3 /* lightgray/lightgrey */
+#90EE90 /* lightgreen */
+#FFB6C1 /* lightpink */
+#FFA07A /* lightsalmon */
+#20B2AA /* lightseagreen */
+#87CEFA /* lightskyblue */
+#778899 /* lightslategray/lightslategrey */
+#B0C4DE /* lightsteelblue */
+#FFFFE0 /* lightyellow */
+#00FF00 /* lime */
+#32CD32 /* limegreen */
+#FAF0E6 /* linen */
+#800000 /* maroon */
+#66CDAA /* mediumaquamarine */
+#0000CD /* mediumblue */
+#BA55D3 /* mediumorchid */
+#9370DB /* mediumpurple */
+#3CB371 /* mediumseagreen */
+#7B68EE /* mediumslateblue */
+#00FA9A /* mediumspringgreen */
+#48D1CC /* mediumturquoise */
+#C71585 /* mediumvioletred */
+#191970 /* midnightblue */
+#F5FFFA /* mintcream */
+#FFE4E1 /* mistyrose */
+#FFE4B5 /* moccasin */
+#FFDEAD /* navajowhite */
+#000080 /* navy */
+#FDF5E6 /* oldlace */
+#808000 /* olive */
+#6B8E23 /* olivedrab */
+#FFA500 /* orange */
+#FF4500 /* orangered */
+#DA70D6 /* orchid */
+#EEE8AA /* palegoldenrod */
+#98FB98 /* palegreen */
+#AFEEEE /* paleturquoise */
+#DB7093 /* palevioletred */
+#FFEFD5 /* papayawhip */
+#FFDAB9 /* peachpuff */
+#CD853F /* peru */
+#FFC0CB /* pink */
+#DDA0DD /* plum */
+#B0E0E6 /* powderblue */
+#800080 /* purple */
+#663399 /* rebeccapurple */
+#FF0000 /* red */
+#BC8F8F /* rosybrown */```
+````
+
+- The following colour names have been deprecated.
+
+  - `ActiveBorder`
+  - `ActiveCaption`
+  - `AppWorkspace`
+  - `Background`
+  - `ButtonFace`
+  - `ButtonHighlight`
+  - `ButtonShadow`
+  - `ButtonText`
+  - `CaptionText`
+  - `GrayText`
+  - `Highlight`
+  - `HighlightText`
+  - `InactiveBorder`
+  - `InactiveCaption`
+  - `InactiveCaptionText`
+  - `InfoBackground`
+  - `InfoText`
+  - `Menu`
+  - `MenuText`
+  - `Scrollbar`
+  - `ThreeDDarkShadow`
+  - `ThreeDFace`
+  - `ThreeDHighlight`
+  - `ThreeDLightShadow`
+  - `ThreeDShadow`
+  - `Window`
+  - `WindowFrame`
+  - `WindowText`
+
+- All colours used to be `RGB`.
+- With Hexidecimal, the first two digits are `R`, the second two are `G`, and the third two are `B`.
+- We can use numbers 0 (no colour) to 255 (complete saturation of colour).
+- Or we can use %.
+
+```css
+
+#40BFAC
+rgb(64,191,172)
+rgb(25%,75%,67%)
+```
+
+- `HSLA` extends `HSL` to have alphatransparency.
+
+  - The hue is on scale of 0-360.
+  - Saturation & Lightness are %.
+  - Alpha is 0.00 to 1
+
+- `RGBA` extends `RGB` to have alphatransparency.
+- There is a hexidimal version too which can be expressed as `#RRGGBBAA`.
+
+```
+100% — FF
+ 95% — F2
+ 90% — E6
+ 85% — D9
+ 80% — CC
+ 75% — BF
+ 70% — B3
+ 65% — A6
+ 60% — 99
+ 55% — 8C
+ 50% — 80
+ 45% — 73
+ 40% — 66
+ 35% — 59
+ 30% — 4D
+ 25% — 40
+ 20% — 33
+ 15% — 26
+ 10% — 1A
+  5% — 0D
+  0% — 00
+```
+
+- Color Tips
+
+  - `transparent` == `rgba(0, 0, 0, 0);`
+  - `CurrentColor` == current Text color
+  - Accessibility: Color is NOT the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a - visual element.
+
+### 6.2. Opacity vs Alphatransparency
+
+- Alphatransparency is changing the `colour` so that it is not fully opaque.
+- If alphatransparency is applied to text for example, the shadow and background will still be visible.
+- Opacity affects the text, the shadow, the background, the whole element and makes it transparent.
+
+AlphaTransparency Tips
+
+- Used in RGBA & HSLA colors.
+
+```css
+rgba(58, 103, 171, 0.5);
+hsla(216, 49%, 45%, 0.5);
+```
+
+- Transparent Shadows.
+
+```css
+.trans {
+  box-shadow: -10px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 21px 1px rgba(0, 0, 0, 0.3);
+}
+```
+
+- Solid Shadows look much less realistic.
+
+```css
+.solid {
+  box-shadow: -10px 10px #999;
+  text-shadow: 0 21px 1px #999;
+}
+```
+
+### 6.3. Appearance
+
+- `appearance`: Changes the appearance of buttons and other controls to resemble native controls.
+- It is always better to use the `<button>` element than a `div` etc. for semantics.
+- There are a lot of properties and values for `appearance`: see [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/appearance).
+- Looking at webkit / moz styles will reveal more options.
