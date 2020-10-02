@@ -40,6 +40,13 @@
   - [6.1. Colors: RGB, HSL & HEX](#61-colors-rgb-hsl--hex)
   - [6.2. Opacity vs Alphatransparency](#62-opacity-vs-alphatransparency)
   - [6.3. Appearance](#63-appearance)
+- [7. Flexbox](#7-flexbox)
+  - [7.1. Browser Support & Overview](#71-browser-support--overview)
+  - [7.2. Setup Flex Container & Flex Items](#72-setup-flex-container--flex-items)
+  - [7.3. Understanding Flexbox](#73-understanding-flexbox)
+  - [7.4. Flex Container Properties](#74-flex-container-properties)
+  - [7.5. Flex Item Properties](#75-flex-item-properties)
+  - [7.6. Flexibility & Shorthand](#76-flexibility--shorthand)
 
 ## 1. Introduction
 
@@ -1362,3 +1369,265 @@ hsla(216, 49%, 45%, 0.5);
 - It is always better to use the `<button>` element than a `div` etc. for semantics.
 - There are a lot of properties and values for `appearance`: see [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/appearance).
 - Looking at webkit / moz styles will reveal more options.
+
+## 7. Flexbox
+
+- With flexbox what was once complex became easy.
+
+### 7.1. Browser Support & Overview
+
+- Flexbox is now [widely supported](https://caniuse.com/?search=flexbox) and is super easy to use.
+
+```css
+ul {
+  display: flex;
+  padding: 3px;
+  align-items: baseline;
+  justify-content: center;
+}
+
+ul > li {
+  text-align: center;
+  flex: auto;
+}
+```
+
+- The 'holy grail' of layout:
+
+```css
+body {
+  display: flex;
+  flex-flow: column;
+}
+main {
+  display: flex;
+  flex: 1;
+}
+article {
+  flex: 1;
+}
+nav {
+  order: -1;
+}
+```
+
+- We should always code the HTNML in the order that we want search engines and screen readers to parse it.
+- We can change the CSS to display it however we want afterwards.
+
+### 7.2. Setup Flex Container & Flex Items
+
+The components of Flexbox are:
+
+1. Creation: `display`
+2. Direction: `flex-flow` (`flex-direction`, `flex-wrap`)
+3. Alignment: `justify-content`, `align-items`, `align-self`, a`lign-content`
+4. Ordering: `order`
+5. Flexibility: `flex` (`flex-grow`, `flex-shrink`, `flex-basis`)
+
+The flexible box properties are:
+
+- `display`: Values include `flex`, `inline-flex`. Used on parent to create the flex container.
+- `align-content`: `flex-start` | `flex-end` | `center` | `space-between` | `space-around` | `stretch` | `space-evenly`.
+- `align-items`: `flex-start` | `flex-end` | `center` | `baseline` | `stretch`.
+- `align-self`: `auto` | `flex-start` | `flex-end` | `center` | `baseline` | `stretch`.
+- `flex`: Shorthand for `flex-basis`, `flex-grow`, and `flex-shrink`, or `none`.
+- `flex-basis`: The basis by which the flex-items flex. default: `auto`.
+- `flex-direction`: Set the containers axis for its children with `row` | `row-reverse` | `column` | `column-reverse` on the parent.
+- `flex-flow`: Shorthand for `flex-direction` and `flex-wrap` properties.
+- `flex-grow`: Positive number determines how much flex item will grow relative to other flex items in flex container when positive free space is distributed. default is `1` for container. `0` for children. Positive only.
+- `flex-shrink`: Positive number determines how much flex item will shrink relative to other flex items in flex container when negative free space is distributed. default is `1`.
+- `flex-wrap`: To determine whether the boxes are single line or wrap, and the direction, use `nowrap` | `wrap` | `wrap-reverse`.
+- `justify-content`: `flex-start` | `flex-end` | `center` | `space-between` | `space-around` | `space-evenly`.
+- `min-height`: Default is `auto` not `0`.
+- `min-width`: Default is `auto` not `0`.
+- `order`: Integer. Controls order of flex item within flex container.
+
+Steps:
+
+1. Add `display: flex;` to the parent of the elements to be flexed.
+2. Set `flex-direction` to horizontal or vertical
+3. Set `flex-wrap` to control wrap direction
+
+The `display` property accepts a tonne of values, of which `flex` and `inline-flex` apply to flexbox:
+
+- `inline`
+- `block`
+- `list-item`
+- `inline-list-item`
+- `inline-block`
+- `flex`
+- `inline-flex`
+- `grid`
+- `inline-grid`
+- `table`
+- `inline-table`
+- `table-row-group`
+- `table-header-group`
+- `table-footer-group`
+- `table-row`
+- `table-cell`
+- `table-column-group`
+- `table-column`
+- `table-caption`
+- `ruby`
+- `ruby-base`
+- `ruby-text`
+- `ruby-base-container`
+- `ruby-text-container`
+- `contents`
+- `none`
+- `flow`
+- `flow-root`
+
+**What is a flex item?**
+
+Flex items:
+
+- All non-absolutely positioned direct descendent child nodes.
+- Generated Content.
+- anonymous flex items => non-empty text nodes. Best to always use elements in our HTML.
+
+Not flex items:
+
+- :`:first-line` & `::first-letter`.
+- white space.
+
+Kind of:
+
+- absolutely/fixed positioned elements.
+
+**Flex Impacted CSS Properties**
+
+Changed Properties:
+
+- `margin`: adjacent margins in CSS collapse. In flex they do not.
+- `min-width` & `min-height`: default is `auto`, not `0`.
+- `visibility: collapse;`
+
+Ignored Properties:
+
+- `column-*` properties
+- `float`
+- `clear`
+- `vertical-align`
+
+### 7.3. Understanding Flexbox
+
+`flex-direction` property:
+
+- `row` (default)
+- `row-reverse`
+- `column`
+- `column-reverse`
+
+`flex-wrap` property:
+
+- `nowrap` (default)
+- `wrap`
+- `wrap-reverse`
+- Purpose: is everyting on one line, or can it wrap if necessary?
+
+`flex-flow` property:
+
+- Shorthand for `flex-direction` and `flex-wrap`.
+- Advisable to use this shorthand so that we remember both properties.
+
+```css
+body > div {
+  display: flex;
+  flex-flow: row-reverse wrap;
+}
+div > div {
+  flex: 10%; /* evenly sized items */
+}
+```
+
+### 7.4. Flex Container Properties
+
+- The properties that impact the flex container, which is the parent.
+- We can control the children partially using properties of the flex container.
+
+`justify-content` property:
+
+How to distribute the space if the sum of the widths / heights of the items on the **main axis** is not equal to the container.
+
+- `flex-start` (default)
+- `flex-end`
+- `center`
+- `space-between`
+- `space-around`
+- `space-evenly`
+
+`align-items` property:
+
+How to distribute the space if the sum of the widths / heights of the items on the **cross axis** is not equal to the container.
+
+- `flex-start`
+- `flex-end`
+- `center`
+- `baseline`
+- `stretch` (stretch)
+
+`align-content` property:
+
+How to distribute the space between multiple flex containers on the **main axis**.
+
+- `flex-start`
+- `flex-end`
+- `center`
+- `space-between`
+- `space-around`
+- `stretch` (default)
+- `space-evenly`
+
+### 7.5. Flex Item Properties
+
+- We can also control flex items individually.
+
+`align-self` property:
+
+We can override the container's `align-items` property on a per flex item basis.
+
+- `auto` (default)
+- `flex-start`
+- `flex-end`
+- `center`
+- `baseline`
+- `stretch`
+
+`order` property:
+
+The default value is `0`. Anything lower will come before those without set values. Anything above will come after.
+
+```css
+div:nth-of-type(3n) {
+  order: -1;
+}
+```
+
+In terms of accessibility we should think about how the elements are defined in the HTML.
+
+1. Source Order
+2. Tab order
+3. Right to Left languages
+
+### 7.6. Flexibility & Shorthand
+
+There are three properties that are part of the `flex` shorthand:
+
+- `flex-grow`: How to divide the extra space. Non-negative number. default: 1.
+- `flex-shrink:` How to shrink if there's not enough room. Non-negative number. default: 1.
+- `flex-basis`: The basis on which the item is allowed to grow; the starting size before free space is distributed.
+  - length value, content or auto.
+  - If set to auto, the basis is the flex item’s content size and the remaining space is divided among the growth factors.
+  - If set to 0, the basis is 0, so 100% of the width of the flex item is divided among the growth factors.
+
+```css
+.container {
+  display: flex;
+  flex-flow: row wrap;
+}
+.item:nth-of-type(odd) {
+  flex: 1 0 220px; /* flex shorthand */
+}
+```
