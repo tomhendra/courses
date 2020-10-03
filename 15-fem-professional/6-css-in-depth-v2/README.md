@@ -53,6 +53,7 @@
   - [8.3. Table Borders & Spacing](#83-table-borders--spacing)
   - [8.4. Other Table Properties](#84-other-table-properties)
   - [8.5. Styling a Table](#85-styling-a-table)
+- [9. Grid](#9-grid)
 
 ## 1. Introduction
 
@@ -1831,3 +1832,5 @@ col.stat {
 
 - The most effective way to improve the appearance of tables is with spacing and removing things.
 - Less is more.
+
+## 9. Grid
