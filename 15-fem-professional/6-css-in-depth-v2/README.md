@@ -47,6 +47,12 @@
   - [7.4. Flex Container Properties](#74-flex-container-properties)
   - [7.5. Flex Item Properties](#75-flex-item-properties)
   - [7.6. Flexibility & Shorthand](#76-flexibility--shorthand)
+- [8. Tables](#8-tables)
+  - [8.1. Overview & Semantics](#81-overview--semantics)
+  - [8.2. Captions](#82-captions)
+  - [8.3. Table Borders & Spacing](#83-table-borders--spacing)
+  - [8.4. Other Table Properties](#84-other-table-properties)
+  - [8.5. Styling a Table](#85-styling-a-table)
 
 ## 1. Introduction
 
@@ -1619,8 +1625,8 @@ There are three properties that are part of the `flex` shorthand:
 - `flex-shrink:` How to shrink if there's not enough room. Non-negative number. default: 1.
 - `flex-basis`: The basis on which the item is allowed to grow; the starting size before free space is distributed.
   - length value, content or auto.
-  - If set to auto, the basis is the flex item’s content size and the remaining space is divided among the growth factors.
-  - If set to 0, the basis is 0, so 100% of the width of the flex item is divided among the growth factors.
+  - If set to auto, the basis is the flex item’s content size, and the remaining space is divided among the growth factors.
+  - If set to 0, the basis is 0, and 100% of the width of the flex item is divided among the growth factors.
 
 ```css
 .container {
@@ -1631,3 +1637,197 @@ There are three properties that are part of the `flex` shorthand:
   flex: 1 0 220px; /* flex shorthand */
 }
 ```
+
+## 8. Tables
+
+### 8.1. Overview & Semantics
+
+- We used to use tables for layout, before flexbox was introduced.
+- But tables are still important for the presentation of data.
+
+Appopriate uses for presentation of data using tables would be:
+
+- Presenting
+- Comparing
+- Sorting
+- Calculating
+- Cross Referencing
+
+The markup looks like this:
+
+```htnml
+<table>
+  <caption>Table Description</caption>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th></th>
+    </tr>
+  </tfoot>
+</table>
+```
+
+### 8.2. Captions
+
+- Specifies the title of table.
+- Always the first child of a `<table>`.
+- Can be positioned on top or bottom with `caption-side`.
+- In FF, can be top, bottom, left or right of table.
+- Can be styled.
+- CSS: Inherits from `table`.
+
+`caption-side` property:
+
+- Put on the `<table>`, not the` <caption>`.
+
+Supported in all browsers:
+
+- `caption-side: top; `
+- `caption-side: bottom;`
+
+Experimental:
+
+- `caption-side: left;`
+- `caption-side: right;`
+- `caption-side: top-outside;`
+- `caption-side: bottom-outside;`
+
+In the specification:
+
+- `caption-side: inline-start;`
+- `caption-side: inline-end;`
+
+Deprecated:
+
+- `<table align="left | top | right | bottom">`
+
+We can style captions like any other HTML element.
+
+### 8.3. Table Borders & Spacing
+
+- By default there is spacing between `table` and `td`.
+- We can control this with `border-collapse: separate` (default) | `collapse` | `inherit`.
+- When the borders are collapsed `border-spacing` can control the amount of space between borders.
+- `border-spacing: <length> <length>?;`
+
+```css
+table,
+td,
+th {
+  border: none;
+}
+table {
+  border-spacing: 5px 10px;
+}
+```
+
+- one length: vertical and horizontal padding are the same.
+- two lengths: first is horizontal, second is vertical.
+- Note: not TRouBLe.
+- Irrelevant if `border-collapse: collapse`.
+- Empty space is part of the table, not the column, tbody, row or cell.
+
+### 8.4. Other Table Properties
+
+We can hide emoty cells.
+
+- `empty-cell: show` | `hide`.
+- Similar to:
+
+```css
+td:empty,
+th:empty {
+  visibility: none;
+}
+```
+
+- Ignored if `border-collapse: separate`.
+- Applies to elements with diplay of `table-cell`.
+- Property of `table` or the cells themselves.
+
+We can also vertically align.
+
+`vertical-align:` `baseline` | `sub` | `super` | `text-top` | `text-bottom` | `middle` | `top` | `bottom` | `<percentage>` | `<length>`
+
+- `baseline`: Aligns the baseline of the cell with the baseline of all other cells in the row that are baseline-aligned.
+- `top`: Aligns the top padding edge of the cell with the top of the row.
+- `middle`: Centers the padding box of the cell within the row.
+- `bottom`: Aligns the bottom padding edge of the cell with the bottom of the row.
+  - Applied to thead, tfoot, tbody, tr, td, th, but not table.
+  - Negative values are ok
+  - Additional values (`sub`, `super`, t`ext-top`, `text-bottom`, `<length>` and `<percentage>`) equal baseline.
+
+The `display` property can be used twith the following elements.
+
+```
+display: table;
+display: table-row-group;
+display: table-header-group;
+display: table-footer-group;
+display: table-row;
+display: table-cell;
+display: table-column-group;
+display: table-column;
+display: table-caption;
+```
+
+```css
+.parent {
+  display: table;
+}
+.child {
+  display: table-cell;
+  vertical-align: baseline;
+}
+```
+
+### 8.5. Styling a Table
+
+We can apply limited styles to `<col>` elements.
+
+```html
+<table>
+  <caption>
+    2017–18 Primera División: Player of the week
+  </caption>
+  <colgroup>
+    <col class="week" />
+    <col class="player" />
+    <col class="club" />
+    <col class="stat" />
+  </colgroup>
+  <thead>
+    ....
+  </thead>
+</table>
+```
+
+```css
+col.week {
+  background-color: pink;
+}
+col.player {
+  background-color: gray;
+}
+col.club {
+  background-color: pink;
+}
+col.stat {
+  background-color: gray;
+}
+```
+
+- The most effective way to improve the appearance of tables is with spacing and removing things.
+- Less is more.
