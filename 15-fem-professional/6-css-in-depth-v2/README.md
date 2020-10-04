@@ -78,6 +78,15 @@
   - [10.6. Background Shorthand](#106-background-shorthand)
   - [10.7. Border Color, Style & Width](#107-border-color-style--width)
   - [10.8. Border Radius & Border Image](#108-border-radius--border-image)
+- [11. Gradients](#11-gradients)
+  - [11.1. Linear & Radial Gradient Syntax](#111-linear--radial-gradient-syntax)
+  - [11.2. Color Stops](#112-color-stops)
+  - [11.3. Color Hints](#113-color-hints)
+  - [11.4. Gradient Directions](#114-gradient-directions)
+  - [11.5. Stripes with Repeat Linear Gradient](#115-stripes-with-repeat-linear-gradient)
+  - [11.6. Radial Gradients & Position](#116-radial-gradients--position)
+  - [11.7. Shape, Size & Sizing KeyTerms](#117-shape-size--sizing-keyterms)
+  - [11.8. Radial Gradients: color-stops & color-hints](#118-radial-gradients-color-stops--color-hints)
 
 ## 1. Introduction
 
@@ -2584,3 +2593,353 @@ The `border-image` property accepts `source` || `slice` / `width` / `outset` || 
 - `border-image-repeat`: `stretch` | `repeat` | `round` `{1,2}`
 
 Check out the border image [tool](https://border-image.com) and [tutorial](https://www.sitepoint.com/css3-border-image/).
+
+## 11. Gradients
+
+- A gradient is actually an image.
+- It can be used anywhere that we can use an image in CSS.
+  - `background-image`, `list-style-type`, `border-image`, `content`, `cursor`.
+- There are 4 Gradient Types:
+  - `linear-gradient()`
+  - `radial-gradient()`
+  - `repeating-linear-gradient()`
+  - `repeating-radial-gradient()`
+- There is another newer type too which is not yet fully supported:
+  - `conic-gradient()`
+  - `repeating-conic-gradient()`
+
+### 11.1. Linear & Radial Gradient Syntax
+
+`linear-gradient([<angle>| to <side-or-corner>,]? [<color-stop>[, <color-hint>]?, ]# <color-stop>)`
+
+Things to remember:
+
+1. Use 'to' with keyterms.
+2. `0deg` is to top.
+3. Angles go clockwise.
+
+`radial-gradient([<shape>|| <size> at <position>]? [<color-stop>[, <color-hint>]?, ]# <color-stop>)`
+
+Things to remember:
+
+1. Use 'at' with position.
+2. Position is center of gradient.
+3. If shape is specified as circle or omitted, the size can be a length/percent.
+
+### 11.2. Color Stops
+
+A color stop is when we either provide the gradient with a color, or a color and where it should be located.
+
+`<color> [<length> || <percentage>]?`
+
+- Color?
+- Length? Any length unit.
+- Percent? relative to gradient line which is relative to image size.
+- Omitted? 0%, 100%, or evenly distibuted in between.
+- Duplicate? Hard color stop.
+- Out of Order? previous declared value.
+
+```css
+.slide {
+  background-image: linear-gradient(
+    red 0vh,
+    orange 20vh,
+    yellow 40vh,
+    green 60vh,
+    blue 80vh,
+    purple 100vh
+  );
+}
+```
+
+We can also have hard stops by duplicating them, and use `background-size` to control the perceived compactness.
+
+```css
+.slide {
+  background-image: linear-gradient(
+    red 20%,
+    orange 20%,
+    orange 40%,
+    yellow 40%,
+    yellow 60%,
+    green 60%,
+    green 80%,
+    blue 80%
+  );
+  background-size: 20%;
+}
+```
+
+We can use negative values to spread the gradient.
+
+```css
+.slide {
+  background-image: linear-gradient(rebeccapurple, palegoldenrod),
+    linear-gradient(rebeccapurple -50%, palegoldenrod 150%);
+  background-size: 5% 100%, 100%;
+  background-repeat: no-repeat;
+}
+```
+
+### 11.3. Color Hints
+
+- Midpoint of transition between 2 stops.
+- Length? Any length unit.
+- Percent? relative to gradient line which is relative to image size.
+- Hard Stop? Use 0%.
+- Point is relative to the 0 (zero) mark, not from the previous color stop.
+
+```css
+linear-gradient(rebeccapurple, palegoldenrod);
+linear-gradient(rebeccapurple, 50%, palegoldenrod);
+linear-gradient(rebeccapurple, 20%, palegoldenrod);
+linear-gradient(rebeccapurple, 80%, palegoldenrod);
+```
+
+Demo:
+
+```css
+.slide {
+  background-image: linear-gradient(
+      red,
+      orange 20vh,
+      yellow 40vh,
+      green 60vh,
+      blue 80vh,
+      purple
+    ), linear-gradient(red, 0, orange 20vh, 0, yellow 40vh, 0, green 60vh, 10vh, blue
+        80vh, 0%, purple);
+  background-size: 5% 100%, 100%;
+  background-repeat: no-repeat;
+}
+```
+
+### 11.4. Gradient Directions
+
+**to <side-or-corner>**
+
+Keyterm Directions:
+
+`linear-gradient([<angle>| to <side-or-corner>,]? [<color-stop>[, <color-hint>]?, ]# <color-stop>)`
+
+- Gradient progresses toward the declared side or corner.
+
+`to [left | right]` || `[top | bottom]`
+
+Options:
+
+- `to top`
+- `to bottom` (default)
+- `to left`
+- `to right`
+- `to top left`
+- `to top right`
+- `to bottom left`
+- `to bottom right`
+
+**Angles**
+
+Keyterm Directions:
+
+`linear-gradient([<angle>| to <side-or-corner>,]? [<color-stop>[, <color-hint>]?, ]# <color-stop>)`
+
+- Gradient progresses the declared angle.
+- Degrees go clockwise, starting at 12:00.
+  - top: 0%;
+  - right: 90%;
+  - bottom: 180%;
+  - left: 270%;
+- 0deg is the same as to top
+- 45% is **NOT** the same as to top right
+- deg is required
+
+```css
+background: linear-gradient(142deg, rebeccapurple 50%, palegoldenrod 50%);
+```
+
+### 11.5. Stripes with Repeat Linear Gradient
+
+We can create stripes with a standard linear gradient, but we need to calculate the angles.
+
+```css
+background-color: rebeccapurple;
+background-image: linear-gradient(
+  135deg,
+  rgba(255, 255, 255, 0.2) 25%,
+  rgba(255, 255, 255, 0) 25%,
+  rgba(255, 255, 255, 0) 50%,
+  rgba(255, 255, 255, 0.2) 50%,
+  rgba(255, 255, 255, 0.2) 75%,
+  rgba(255, 255, 255, 0) 75%,
+  rgba(255, 255, 255, 0) 100%
+);
+background-size: 100px 100px;
+background-repeat: repeat;
+```
+
+It is much easier to achieve with repeating linear gradient.
+
+```css
+.rainbow {
+  background-image: repeating-linear-gradient(
+    145deg,
+    red 0,
+    red 20px,
+    orange 20px,
+    orange 40px,
+    yellow 40px,
+    yellow 60px,
+    green 60px,
+    green 80px,
+    blue 80px,
+    blue 100px,
+    purple 100px,
+    purple 120px
+  );
+}
+```
+
+Repeating Linear Gradient Syntax:
+
+`repeating-linear-gradient([<angle>| to <side-or-corner>,]? [<color-stop>[, <color-hint>]?, ]# <color-stop>)`
+
+Things to remember:
+
+1. Use 'to' with keyterms.
+2. Angles go counter clockwise.
+3. 0deg is from left.
+4. Width is last specified color-stop's position minus the first specified color-stop's position.
+5. Color stops repeat indefinitely.
+6. Border color-stops will create hard transitions if gradient doesn't start and end with the same color.
+
+### 11.6. Radial Gradients & Position
+
+Radial gradients have two things in common with linear gradients, which are color stops and color hints.
+
+Radial gradient synytax:
+
+`radial-gradient([<shape>|| <size> at <position>]? [<color-stop>[, <color-hint>]?, ]# <color-stop>)`
+
+Things to remember:
+
+1. Use 'at' with position.
+2. Position is center of gradient.
+3. If shape is specified as circle or omitted, the size can be a length/percent.
+
+```css
+.slide {
+  background-image: radial-gradient(
+    ellipse at 20% 30%,
+    palegoldenrod 0%,
+    rebeccapurple 100%
+  );
+}
+```
+
+Position:
+
+- Same values as `background-position`.
+- Include 'at'.
+- Location of gradient center point.
+- There are no angles, so it is called a gradient ray, not a gradient line.
+
+### 11.7. Shape, Size & Sizing KeyTerms
+
+Two options:
+
+1. circle
+2. ellipse (default)
+
+Declared explicitly, or implied via size declaration.
+
+- Circle: single length value: radius.
+- Ellipse: two length values: width height (in that order).
+- Percentage size is only for ellipses.
+
+```css
+.slide {
+  background-image: radial-gradient(
+    ellipse at 20% 20%,
+    black 1%,
+    1%,
+    palegoldenrod 2%,
+    50%,
+    rebeccapurple 50%
+  );
+}
+```
+
+Sizing With Keywords:
+
+- `closest-side`:
+  - circle: gradient ray end touches closest side.
+  - ellipse: vertical ray touches closest of top or bottom edge.
+  - horizontal ray touchest closest of right or left side.
+- `farthest-side`:
+  - circle: gradient ray end touches furthest side.
+  - ellipse: vertical ray touches furthest of top or bottom edge.
+  - horizontal ray touchest furthest of right or left side.
+- `closest-corner`:
+  - circle: radius is length from center of circle (position) to closest corner.
+  - ellipse: gradient ray touches corner closest to center while maintaining aspect ratio.
+- `farthest-corner`:
+  - Default
+  - circle: radius is length from center of circle (position) to furthest corner.
+  - ellipse: gradient ray touches corner furthest from center while maintaining aspect ratio.
+- `contain` (same as `closest-side`) - **Deprecated**
+- `cover` (same as `farthest-corner`) - **Deprecated**
+
+```css
+.slide {
+  background-image: radial-gradient(
+    circle farthest-corner at bottom 40px right 50px,
+    black 1%,
+    1%,
+    palegoldenrod 2%,
+    98%,
+    rebeccapurple 98%
+  );
+}
+```
+
+### 11.8. Radial Gradients: color-stops & color-hints
+
+```css
+.slide {
+  background-image: radial-gradient(
+    circle closest-side at 100px,
+    red 0%,
+    orange 20%,
+    40% yellow 40%,
+    60% green 60%,
+    80% blue 80%,
+    100% purple 100%
+  );
+}
+```
+
+Repeating Radial Gradient Syntax:
+
+`repeating-radial-gradient([<shape>|| <size> at <position>]? [<color-stop>[, <color-hint>]?, ]# <color-stop>)`
+
+Things to remember:
+
+1. Repeats the radial gradient after the 100% mark.
+2. Has no impact when 'furthest-corner' is used or defaults for gradient size.
+3. Use 'at' with position.
+4. Position is center of gradient.
+5. If shape is specified as circle or omitted, the size can be a length/percent.
+
+```css
+.slide {
+  background-image: repeating-radial-gradient(
+    circle closest-side at 100px,
+    red 0%,
+    orange 20%,
+    yellow 40%,
+    green 60%,
+    blue 80%,
+    purple 100%
+  );
+}
+```
