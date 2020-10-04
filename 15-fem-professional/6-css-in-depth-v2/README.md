@@ -69,6 +69,15 @@
   - [9.13. Align & Justify Content](#913-align--justify-content)
   - [9.14. Track Sizing & Auto Flow](#914-track-sizing--auto-flow)
   - [9.15. More Grid Resources](#915-more-grid-resources)
+- [10. Backgrounds & Borders](#10-backgrounds--borders)
+  - [10.1. Background Properties & Color](#101-background-properties--color)
+  - [10.2. Background Image](#102-background-image)
+  - [10.3. Background Image Future](#103-background-image-future)
+  - [10.4. Repeat, Attachment & Position](#104-repeat-attachment--position)
+  - [10.5. Clip, Origin & Size](#105-clip-origin--size)
+  - [10.6. Background Shorthand](#106-background-shorthand)
+  - [10.7. Border Color, Style & Width](#107-border-color-style--width)
+  - [10.8. Border Radius & Border Image](#108-border-radius--border-image)
 
 ## 1. Introduction
 
@@ -2206,3 +2215,372 @@ When items are placed outside of the tracks defined by `grid-template-rows`, `gr
 
 - [Grid by Example](https://gridbyexample.com) - Rachel Andrew
 - [Layout Lab](https://labs.jensimmons.com) - Jen Simmons
+
+## 10. Backgrounds & Borders
+
+### 10.1. Background Properties & Color
+
+Background properties:
+
+- `background-color `
+- `background-image`
+- `background-repeat`
+- `background-attachment`
+- `background-position`
+- `background-clip`
+- `background-origin`
+- `background-size`
+- `background shorthand`
+
+Border properties:
+
+- `border-color`
+- `border-style`
+- `border-width`
+- `border shorthand`
+- `border-radius`
+
+Border Images:
+
+- `border-image-source`
+- `border-image-slice`
+- `border-image-width`
+- `border-image-outset`
+- `border-image-repeat`
+- `border-image shorthand`
+
+**background-color**.
+
+- Use any of the color types.
+- Always declare when declaring background images.
+- Declare only once in a shorthand declaration.
+
+```css
+background-color: white;
+background-color: #fff;
+background-color: #ffffff;
+background-color: #ffffffff;
+background-color: rgb(255, 255, 255);
+background-color: rgb(100%, 100%, 100%);
+background-color: rgba(255, 255, 255, 1);
+background-color: rgba(100%, 100%, 100%, 1);
+background-color: hsl(0, 100%, 100%);
+background-color: hsla(0, 100%, 100%, 1);
+background-color: transparent;
+background-color: currentColor;
+```
+
+### 10.2. Background Image
+
+Old School: `background-image`.
+
+```css
+background-image: none | <uri> | inherit;
+
+background-image: url(path/aSingleImage.jpg);
+```
+
+Often part of background shorthand with:
+
+- `background-repeat`
+- `background-attachment`
+- `background-position`
+- `background-color`
+
+Don't use `background` shorthand for risk of setting any of 8 properties to default values.
+
+**background image tips:**
+
+- Make sure there's enough contrast with text.
+  - add drop shadow.
+- Include a background color.
+- Doesn't print by default.
+- Not accessible.
+
+**multiple background-image:**
+
+```
+none | [<image>]# | inherit
+
+<image> = <url> | <image()> | <image-set()> |
+          <element()> | <cross-fade()> | <gradient>
+```
+
+```css
+background-image: url(green.gif), url(blue.gif);
+```
+
+- Comma separated.
+- Layered front to back.
+- Include background-color.
+
+**Not widely supported:**
+
+- `cross-fade()`: The ability to crossfade images.
+- `image-set()`: The ability to create a set of images.
+
+`background-image` value types:
+
+- `none`
+- `<url>`
+- `<gradient>`
+- `<image()>` (Not widely supported)
+- `<element()>` (Not widely supported)
+- `<image-set()>` (Not widely supported)
+- `<cross-fade()>` (Not widely supported)
+
+```css
+background-image: none
+
+background-image: url(singleImage.png)
+background-image: url(firstImage.jpg), url(secondImage.jpg)
+background-image: url(data:image/gif;base64,fOulrS123hEAAa517sdfQfda...)
+background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='200'><circle cx='55' cy='190' r='25' fill='#FFF' /></svg>");
+
+background-image: linear-gradient(to bottom, green, blue)
+background-image: radial-gradient(circle, green, blue)
+```
+
+```css
+background-image: image('ico_sprite.jpg#xywh=32,64,16,16')
+background-image: image("try1.svg", 'try2.png' , "try3.gif")
+
+background-image: element('#someID')
+```
+
+### 10.3. Background Image Future
+
+`url()` values:
+
+```css
+url(singleImage.png);
+
+url(multipleImages.gif), url(otherGif.gif)
+
+url(SVGImages.svg);
+
+url(sprite.png#xywh=40,0,20,20);
+image(sprite.png#xywh=40,0,20,20);
+
+url(data:image/gif;base64,fOulrS123hEAAa517sdfQfdafsPFRjuy187xxRM221...)
+
+url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='200'><circle cx='55' cy='190' r='25' fill='#FFF' />^lt;path d='M160 213h-34a82 82 0 0 0 -82 -82v-34a116 116 0 0 1 116 116z' fill='#666'/><path d='M184 213A140 140 0 0 0 44 73 V 38a175 175 0 0 1 175 175z' fill='#666'/></svg>");
+```
+
+- Media fragment will not break backwards... hash will be ignored.
+
+**Other background-image syntax:**
+
+Allows the use of any element, including `<canvas>` where images can be used.
+
+```css
+background-image: -moz-element("#someID");
+background-image: element("#someID");
+```
+
+Define which portion of the image to show:
+
+```css
+background-image: -moz-image-rect(url(ico_sprite.jpg), 32, 64, 16, 16);
+background-image: image("ico_sprite.jpg#xywh=32,64,16,16");
+```
+
+**Unsupported Syntax (future!!)**
+
+Fallback in case your images doesn't load:
+
+````css
+background-image: image("try1.svg", "try2.png", "try3.gif", blue) ```;
+````
+
+Flip the image if the direction is rtl:
+
+```css
+background-image: image("arrow.png" rtl);
+```
+
+### 10.4. Repeat, Attachment & Position
+
+The `background-repeat` repeats a backgroudn image! The property accepts the following values.
+
+- `repeat`: Tiled as often as needed to cover background.
+- `no-repeat`: Placed once, not tiled or repeated.
+- `repeat-x`: Tiled along X axis only (Equivalent to `repeat no-repeat`).
+- `repeat-y`: Tiled along Y axis only (Equivalent to `no-repeat repeat`).
+- `space`: Repeated as often as will fit without being clipped, spaced out evenly.
+- `round`: Repeated as often as will fit without being clipped then scaled so no space in between.
+
+Should accept 2 values (H & V).
+Tip: Include `background-repeat: no-repeat;` in your reset CSS.
+
+The `background-attachment` attaches a background image. It accepts `fixed` | `local` | `scroll` values.
+
+The `background-position` property sets the initial position for each background image. The position is relative to the position layer set by `background-origin`.
+
+```css
+div {
+  background-position: 75% 75%;
+}
+div:after {
+  top: 75%;
+  left: 75%;
+}
+```
+
+- We can also makew the position relative to any corner.
+
+```css
+background-position: right 50px bottom 50px;
+```
+
+### 10.5. Clip, Origin & Size
+
+The `background-clip` property sets whether an element's background extends underneath its border box, padding box, or content box.
+
+- The accepted values are `border-box` | `padding-box` | `content-box`.
+- We can also clip text (not yet fully supported):
+
+```css
+background-clip: text;
+-webkit-background-clip: text;
+color: transparent;
+```
+
+The `background-origin` property sets the background's origin: from the border start, inside the border, or inside the padding.
+
+- The accepted values are `border-box` | `padding-box` | `content-box`.
+
+The `background-size` property sets the size of the element's background image. The image can be left to its natural size, stretched, or constrained to fit the available space.
+
+- Use for creating gradients backgrounds.
+- Needed for hiDPI images.
+- ‘contain’ grows/shrinks to fully fit.
+- ‘cover’ grows to min size that covers 100% of height & width.
+- The accepted values are:
+- `auto`: image is actual size.
+- `cover`: image maintains aspect ratio, covering entire element even if that means part of the image is cut off.
+- `contain`: image maintains aspect ratio, fitting the entire image into the element even if that means part of the background is showing or the image repeats.
+- `length`: image maintains aspect ratio, growing or shrinking so that the width is the length defined.
+- `auto length`: image maintains aspect ratio, growing or shrinking so that the height is the length defined.
+- `length length`: image **does not necessarily** maintain its aspect ratio, height and width both grow or shrink to the length defined.
+
+### 10.6. Background Shorthand
+
+```
+background:
+ img position / size repeat attachment origin clip,
+ img position / size repeat attachment box{1,2} bgcolor;
+
+background:
+ url(topImg.jpg) 0 0 / 30px 30px repeat scroll border-box content-box,
+ url(botImg.jpg) 15px 15px / 30px 30px fixed border-box #609;
+```
+
+**DO NOT USE BACKGROUND SHORTHAND!**
+
+- The syntax is too complicated.
+- And it is easy to overwrite everything by styling additional properties afterwards.
+
+### 10.7. Border Color, Style & Width
+
+The `border-color` property.
+
+- Use any of the color types.
+
+```css
+border-color: white;
+border-color: #fff;
+border-color: #ffffff;
+border-color: #ffffffff;
+border-color: rgb(255, 255, 255);
+border-color: rgb(100%, 100%, 100%);
+border-color: rgba(255, 255, 255, 1);
+border-color: rgba(100%, 100%, 100%, 1);
+border-color: hsl(0, 100%, 100%);
+border-color: hsla(0, 100%, 100%, 1);
+border-color: transparent;
+border-color: currentColor; /* default */
+```
+
+The `border-style` accepts the following values.
+
+- `none`: No border. As if border-width: 0; except with border-image.
+- `hidden`: Same as none, but relevant in border-collapsed tables.
+- `dotted`: Round dots.
+- `dashed`: Square-ended dashes.
+- `solid`: a single solid line.
+- `double`: Two parallel solid lines. Only relevant if `border-width` >= 3px. line + space + line = `border-width` value.
+- `groove`: Shadow effect using two colors on each side, with a slightly lighter and darker than the border-color value. Top / left half of each side darker.
+- `ridge`: Looks as if it were coming out of the canvas. Bottom / Right darker.
+- `inset`: Looks sunken into page. Top and left border are made darker, bottom and right are lighter.. Treated as ridge in border-collapsed tables.
+- `outset`: Looks as if popping out of page. Bottom and right are darker. Top and left border are lighter.. Treated as groove in border-collapsed tables.
+
+The `border-width` accepts `(length)` | `thin` | `medium` | `thick` | `inherit {1,4};`
+
+- Up to 4 values Top Right Bottom Left (TRouBLe).
+- Nothing new here.
+
+The `border` shorthand property:
+
+```css
+border: width style color;
+
+border-left: width style color;
+border-top: 5px dashed rgba(217, 68, 11, 0.8);
+```
+
+- style is REQUIRED.
+- width defaults to `medium`.
+- color defaults to `currentColor`.
+- Beware when using transitions as we can end up with 12 transition end events.
+
+### 10.8. Border Radius & Border Image
+
+The `border-radius` property accepts number, px or %.
+
+```css
+border-radius: 0;
+border-radius: 20px;
+border-radius: 50%;
+```
+
+We can style each corner individually.
+
+```css
+border-top-left-radius
+border-top-right-radius
+border-bottom-right-radius
+border-bottom-left-radius
+```
+
+And we can create shapes.
+
+```css
+.circle {
+  border-radius: 50%;
+}
+.oval {
+  border-radius: 50%;
+}
+.different {
+  border-radius: 10px 30px;
+}
+.elliptical {
+  border-radius: 10px / 30px;
+}
+.uglier {
+  border-radius: 10px 35px 20px 15px / 30px 35px 5px 5px;
+}
+```
+
+The `border-image` property accepts `source` || `slice` / `width` / `outset` || `repeat`;
+
+`border-image` is actually the shorthand, for which the underlying properties are:
+
+- `border-image-source`: `none` | `url()` | `<image>`
+- `border-image-slice`: `<number>` | `XX% {1,4}` && `fill`
+- `border-image-width`: `<length>` | `XX%` | `<number> `| `1` | `auto {1,4}`
+- `border-image-outset`: `<length>` | `<number>` `{1,4}`
+- `border-image-repeat`: `stretch` | `repeat` | `round` `{1,2}`
+
+Check out the border image [tool](https://border-image.com) and [tutorial](https://www.sitepoint.com/css3-border-image/).

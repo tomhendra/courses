@@ -13,28 +13,28 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
 ## Index of courses
 
 1.  **[FreeCodeCamp](1-free-code-camp)**\
-    Basic tuition with projects to build.
+    Basic tuition with graded projects to solidify topics learned.
 
 2.  **[Udemy: The Modern JavaScript Bootcamp](2-modern-javascript-bootcamp)**\
     Excellent foundational course with Andrew Mead.
 
 3.  **[Udemy: JavaScript Algorithms and Data Structures Masterclass](3-algorithms-and-data-structures)**\
-    2 months of Algorithms and Data Structures with Colt Steele to gain knowledge of some computer science topics and analyse software performance.
+    2 months of Algorithms and Data Structures with Colt Steele to gain knowledge of some computer science topics and software analysis.
 
 4.  **[Udemy: Advanced CSS & Sass](4-advanced-css-and-sass)**\
-    Some useful CSS techniques & tricks learned through project building.
+    Some useful CSS techniques & tricks through project-based learning.
 
 5.  **[Udemy: The Complete Junior to Senior Web Developer Roadmap](5-complete-junior-to-senior-web-developer)**\
-    To gain a high level view of product development as a whole, and an understanding of how the different pieces of a modern production application fit together.
+    To gain a high level overview of product development as a whole, and an understanding of how the different pieces of a modern application fit together in production.
 
 6.  **[Udemy: Advanced JavaScript Concepts](6-advanced-javascript-concepts)**\
-    Deeper into JavaScript building on the 2 pillars of closure and prototypal inheritance.
+    Deeper into JavaScript building upon the 2 pillars of closure and prototypal inheritance.
 
 7.  **[Udemy: The Complete React Web Developer Course (with Redux)](7-complete-react-web-developer)**\
-    Only after having a core understanding of JavaScript did I start to explore React. This course is taught using class based components with hooks as an additional extra.
+    React fundamentals taught using class-based components with hooks as an additional module at the end of the course.
 
 8.  **[Frontend Masters: Introduction to Gatsby](8-gatsby-intro)**\
-     Gatsby intro with Jason Lengstorf (who worked for Gatsby at the time of recording). I used this is as a starting point to develop my portfolio website & blog v1.0.
+     Gatsby intro with Jason Lengstorf. I used this is as a starting point to develop my portfolio website and blog 1.0.
 
 9.  **[Udemy: TypeScript: The Complete Developer's Guide 2020](9-typescript-complete-developers-guide)**\
     TypeScript is an in demand skill used for catching errors during development, and this course with Stephen Grider goes in-depth with 24.5 hours of video content.
@@ -43,13 +43,13 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     Techniques to better retain content from the courses I take in future.
 
 11. **[Udemy: Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)**\
-    This course goes into less detail than Colt Steele's, and the problem solutions are similar. However I wanted to gain an additional perspective on CS topics.
+    This course goes into less detail than Colt Steele's, and the problem solutions are similar. However I wanted to gain an additional perspective on some key CS topics.
 
 12. **[Atlassian University: Jira Essentials with Agile Mindset](12-jira-essentials-with-agile-mindset)**\
     Many job listings require familiarity with agile methodologies (scrum and/or kanban), and Jira is the most popular project management tool for software development teams.
 
 13. **[Atlassian University: Jira and Confluence Together](13-jira-and-confluence-together)**\
-    Confluence should help me to effectively plan and manage more complex projects for my portfolio.
+    Confluence should help to effectively plan and manage complex future projects.
 
 14. **[Frontend Masters Learning Paths: Beginner](14-fem-beginner)**\
     Frontend Masters' content is taught by industry experts, which gives great confidence in the quality of material being delivered. The guided learning paths are designed to expand your abilities as a well-rounded engineer.
@@ -85,25 +85,25 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
        Much more than an intro, you’ll build with the latest features in React, including hooks, effects, context, and portals. Learn to build real-world apps from the ground up using the latest tools in the React ecosystem, like Parcel, ESLint, Prettier, and Reach Router!
 
     - **[Functional-Light JavaScript, v3](15-fem-professional/5-functional-light-javascript-v3)**\
-       Improve your JavaScript by applying functional programming concepts like function purity, point-free, partial-application, currying, composition, immutability, recursion, list operations like map, reduce & filter...plus even more advanced concepts like monads and transduction.
+       Improve your JavaScript by applying functional programming concepts like function purity, point-free, partial-application, currying, composition, immutability, recursion, list operations like map, reduce & filter... plus even more advanced concepts like monads and transduction.
 
     - **[CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2)**\
-      Take a deep-dive into the essential features of CSS, while also exploring CSS features you probably didn’t even know existed!
+       Take a deep-dive into the essential features of CSS, while also exploring CSS features you probably didn’t even know existed!
 
     - **[Full Stack for Front-End Engineers, v2](15-fem-professional/)**\
-      You'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
+       You'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
 
 16. **[Frontend Masters Learning Path: Design to Code]()**
     Take your designs to the finish line through being able to code out your ideas.
 
+    - **[CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)**\
+      **Repeat from FEM Beginner Path:** Master CSS Grid and Flexbox, the latest tools and tricks to layout beautiful, responsive web applications with less code.
+
     - **[Design for Developers]()**\
        Become self-sufficient for the entire process of execution from concept to design to implementation. You'll learn to execute the creation of complex and beautiful front-end experiences!
 
-    - **[CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)**\
-      _Repeat from FEM Beginner Path_: Master CSS Grid and Flexbox, the latest tools and tricks to layout beautiful, responsive web applications with less code.
-
     - **[CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2)**\
-      _Repeat from FEM Professional Path_: Take a deep-dive into the essential features of CSS, while also exploring CSS features you probably didn’t even know existed!
+      **Repeat from FEM Professional Path:** Take a deep-dive into the essential features of CSS, while also exploring CSS features you probably didn’t even know existed!
 
     - **[Responsive Web Typography v2]()**\
       Learn how to implement web fonts and create a modern, scalable typographic system to give the best reading experience for desktop and mobile devices!
@@ -115,7 +115,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     Learn the smart, efficient way to test any JavaScript application. Kent is the author of the widely adopted Testing Library.
 
 18. **[Wes Bos: JavaScript 30](https://javascript30.com)**\
-    30 Day Vanilla JS Coding Challenge. No frameworks, no compilers, no libraries, no boilerplate. A heavily browser API oriented course. This is my playground to develop FP, testing and CSS skills, before going deep down the abstraction rabbit hole of React and the FEM expert path.
+    30 Day Vanilla JS Coding Challenge. No frameworks, no compilers, no libraries, no boilerplate. A heavily browser API oriented course. This is my playground to develop FP, testing and CSS skills, before going deep down the rabbit hole of React and the FEM expert path.
 
 19. **[Kent C. Dodds: Epic React](https://epicreact.dev/learn)**\
     Confidently Ship Well-Architected Production Ready React Apps Like a Pro. Epic React is hands-on practice coding in a real development environment. This is intermediate/advanced material.
