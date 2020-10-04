@@ -13,28 +13,28 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
 ## Index of courses
 
 1.  **[FreeCodeCamp](1-free-code-camp)**\
-    Basic tuition with projects to build. Great for beginners getting their feet wet!
+    Basic tuition with projects to build.
 
 2.  **[Udemy: The Modern JavaScript Bootcamp](2-modern-javascript-bootcamp)**\
-    Excellent foundational course with Andrew Mead. This made JavaScript start to 'click' for me.
+    Excellent foundational course with Andrew Mead.
 
 3.  **[Udemy: JavaScript Algorithms and Data Structures Masterclass](3-algorithms-and-data-structures)**\
-    To gain some computer science knowledge and be concious of software performance early on, I took 2 months getting stuck into Algorithms and Data Structures with Colt Steele.
+    2 months of Algorithms and Data Structures with Colt Steele to gain knowledge of some computer science topics and analyse software performance.
 
 4.  **[Udemy: Advanced CSS & Sass](4-advanced-css-and-sass)**\
-    This course goes in-depth and teaches some interesting CSS tricks & techniques.
+    Some useful CSS techniques & tricks learned through project building.
 
 5.  **[Udemy: The Complete Junior to Senior Web Developer Roadmap](5-complete-junior-to-senior-web-developer)**\
     To gain a high level view of product development as a whole, and an understanding of how the different pieces of a modern production application fit together.
 
 6.  **[Udemy: Advanced JavaScript Concepts](6-advanced-javascript-concepts)**\
-    Deeper into JavaScript. Andrei Neagoie is an excellent teacher with a successful background. His teaching style has a way of making topics stick.
+    Deeper into JavaScript building on the 2 pillars of closure and prototypal inheritance.
 
 7.  **[Udemy: The Complete React Web Developer Course (with Redux)](7-complete-react-web-developer)**\
     Only after having a core understanding of JavaScript did I start to explore React. This course is taught using class based components with hooks as an additional extra.
 
 8.  **[Frontend Masters: Introduction to Gatsby](8-gatsby-intro)**\
-     Gatsby intro with Jason Lengstorf (of Gatsby at the time of recording). I used this is as a starting point to develop my portfolio website & blog.
+     Gatsby intro with Jason Lengstorf (who worked for Gatsby at the time of recording). I used this is as a starting point to develop my portfolio website & blog v1.0.
 
 9.  **[Udemy: TypeScript: The Complete Developer's Guide 2020](9-typescript-complete-developers-guide)**\
     TypeScript is an in demand skill used for catching errors during development, and this course with Stephen Grider goes in-depth with 24.5 hours of video content.
@@ -93,22 +93,40 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Full Stack for Front-End Engineers, v2](15-fem-professional/)**\
       You'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
 
-16. **[Kent C. Dodds: Testing JavaScript](https://testingjavascript.com)**\
+16. **[Frontend Masters Learning Path: Design to Code]()**
+    Take your designs to the finish line through being able to code out your ideas.
+
+    - **[Design for Developers]()**\
+       Become self-sufficient for the entire process of execution from concept to design to implementation. You'll learn to execute the creation of complex and beautiful front-end experiences!
+
+    - **[CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)**\
+      _Repeat from FEM Beginner Path_: Master CSS Grid and Flexbox, the latest tools and tricks to layout beautiful, responsive web applications with less code.
+
+    - **[CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2)**\
+      _Repeat from FEM Professional Path_: Take a deep-dive into the essential features of CSS, while also exploring CSS features you probably didn’t even know existed!
+
+    - **[Responsive Web Typography v2]()**\
+      Learn how to implement web fonts and create a modern, scalable typographic system to give the best reading experience for desktop and mobile devices!
+
+    - **[SVG Essentials & Animation, v2]()**\
+      Build and optimize SVG – the scalable graphics format for the web that can achieve impressively small file sizes for fast-loading websites!
+
+17. **[Kent C. Dodds: Testing JavaScript](https://testingjavascript.com)**\
     Learn the smart, efficient way to test any JavaScript application. Kent is the author of the widely adopted Testing Library.
 
-17. **[Wes Bos: JavaScript 30](https://javascript30.com)**\
-    30 Day Vanilla JS Coding Challenge. No frameworks, no compilers, no libraries, no boilerplate. A heavily browser API oriented course. This is my playground for FP techniques and testing practice!
+18. **[Wes Bos: JavaScript 30](https://javascript30.com)**\
+    30 Day Vanilla JS Coding Challenge. No frameworks, no compilers, no libraries, no boilerplate. A heavily browser API oriented course. This is my playground to develop FP, testing and CSS skills, before going deep down the abstraction rabbit hole of React and the FEM expert path.
 
-18. **[Kent C. Dodds: Epic React](https://epicreact.dev/learn)**\
+19. **[Kent C. Dodds: Epic React](https://epicreact.dev/learn)**\
     Confidently Ship Well-Architected Production Ready React Apps Like a Pro. Epic React is hands-on practice coding in a real development environment. This is intermediate/advanced material.
 
-19. **[Frontend Masters: Design Systems with React & Storybook](16-design-systems-with-react-and-storybook)**\
-     Design components using Figma, and then learn to code your components in React, and document them for your teams with Storybook.
+20. **[Frontend Masters: Design Systems with React & Storybook](16-design-systems-with-react-and-storybook)**\
+     Design components using Figma, and then learn to code your components in React, and document them for your teams with Storybook. A starting point to develop a reusable component library for use with future projects.
 
-20. **[Frontend Masters: Introduction to Next.js]()**\
-    Next.js is a complete framework built on top of React.js. You'll learn server-side rendering, static site generation, data fetching, code API endpoints, creating pages with the file system, add CSS modules, and more.
+21. **[Frontend Masters: Introduction to Next.js]()**\
+    Learn server-side rendering, static site generation, data fetching, code API endpoints, creating pages with the file system, add CSS modules, and more. A starting point to refactor my portfolio and blog from Gatsby to Next.js using the component library I've built.
 
-21. **[Frontend Masters Learning Paths: Expert]()**
+22. **[Frontend Masters Learning Paths: Expert]()**
 
     - **[JavaScript: The New Hard Parts]()**
     - **[Asynchronous Programming in JavaScript (with Rx.js Observables)]()**
@@ -120,7 +138,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Code Transformation and Linting with ASTs]()**
     - **[Advanced Asynchronous JavaScript]()**
 
-22. **[Frontend Masters Learning Path: Computer Science]()**
+23. **[Frontend Masters Learning Path: Computer Science]()**
 
     - **[Four Semesters of Computer Science in 5 Hours]()**
     - **[A Practical Guide to Algorithms with JavaScript]()**
@@ -128,18 +146,10 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Four Semesters of Computer Science in 5 Hours, Part 2]()**
     - **[Tree and Graph Data Structures]()**
 
-23. **[Frontend Masters Learning Path: Full Stack]()**
+24. **[Frontend Masters Learning Path: Full Stack]()**
 
-    - **[Full Stack for Front-End Engineers, v2]()** **- Repeat from professional Path**
+    - **[Full Stack for Front-End Engineers, v2]()** => **Repeat from professional Path**
     - **[Introduction to Node.js]()**
     - **[API Design in Node.js, v3]()**
     - **[AWS for Front-End Engineers (ft. S3, Cloudfront & Route 53)]()**
     - **[Complete Intro to Containers]()**
-
-24. **[Frontend Masters Learning Path: Design to Code]()**
-
-    - **[Design for Developers]()**
-    - **[CSS Grids and Flexbox for Responsive Web Design]()** **- Repeat from Beginner Path**
-    - **[CSS In-Depth, v2]()** **- Repeat from Professional Path**
-    - **[Responsive Web Typography v2]()**
-    - **[SVG Essentials & Animation, v2]()**

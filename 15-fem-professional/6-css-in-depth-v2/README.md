@@ -54,6 +54,21 @@
   - [8.4. Other Table Properties](#84-other-table-properties)
   - [8.5. Styling a Table](#85-styling-a-table)
 - [9. Grid](#9-grid)
+  - [9.1. Flexbox vs Grid](#91-flexbox-vs-grid)
+  - [9.2. Grid Basics](#92-grid-basics)
+  - [9.3. Display Property](#93-display-property)
+  - [9.4. Columns & Rows](#94-columns--rows)
+  - [9.5. Fraction Unit & Repeat Notation](#95-fraction-unit--repeat-notation)
+  - [9.6. Adding Gutters](#96-adding-gutters)
+  - [9.7. Positioning Grid Items](#97-positioning-grid-items)
+  - [9.8. Grid Row & Column Naming](#98-grid-row--column-naming)
+  - [9.9. Grid Item Properties](#99-grid-item-properties)
+  - [9.10. The 'Holy Grail' of grid layout.](#910-the-holy-grail-of-grid-layout)
+  - [9.11. Named Template Areas](#911-named-template-areas)
+  - [9.12. Align & Justify Items](#912-align--justify-items)
+  - [9.13. Align & Justify Content](#913-align--justify-content)
+  - [9.14. Track Sizing & Auto Flow](#914-track-sizing--auto-flow)
+  - [9.15. More Grid Resources](#915-more-grid-resources)
 
 ## 1. Introduction
 
@@ -1834,3 +1849,360 @@ col.stat {
 - Less is more.
 
 ## 9. Grid
+
+### 9.1. Flexbox vs Grid
+
+- Flexbox is for when we want 2D layouts, and works brilliantly.
+- Grid allows us to create more complex layouts with better control for the alignemnt of elements.
+
+### 9.2. Grid Basics
+
+To undersrtand grid we need to start with terminology.
+
+- Grid lines: The vertical and horizontal lines that divide the grid and separate the columns and rows. Start counting at 1, not 0.
+- Grid cell: A single child or unit of a CSS grid.
+- Grid area: Any rectangular space surrounded by four grid lines. Can contain any number of grid cells.
+- Grid track: The space between two grid lines. This space can be horizontal or vertical: a grid row or grid column.
+- Grid row: A horizontal grid track.
+- Grid column: A vertical grid track.
+- Gutter: Space between two rows and two columns.
+
+Grid properties declared on the parent:
+
+- `grid-template-columns`
+- `grid-template-rows`
+- `grid-template-areas`
+- `grid-template` (shorthand)
+- `grid-column-gap`
+- `grid-row-gap`
+- `grid-gap`
+
+- `justify-items`
+- `align-items`
+- `justify-content`
+- `align-content`
+- `grid-auto-columns`
+- `grid-auto-rows`
+- `grid-auto-flow`
+- `grid`
+
+### 9.3. Display Property
+
+The `display` property accepts the `grid` and `inline-grid` properties to enable grid.
+
+### 9.4. Columns & Rows
+
+Defines the columns and rows of the grid with a space-separated list of values representing the track size.
+
+- `grid-template-columns:` `none` | `<track-list>`| `<auto-track-list>`
+- `grid-template-rows`: `none` | `<track-list>` | `<auto-track-list>`
+  - `<track-list>` = `<line-name>?` [ `<track-size>` | `<track-repeat>` ]
+  - `<track-size>` - can be a length, a percentage, or a fraction of the free space (`fr`) in the grid.
+  - `<line-name>` - ident or string.
+
+```css
+grid-template-columns: 200px 1fr max-content minmax(min-content, 1fr);
+```
+
+We can mix units! That's the power of grid! Or, at least one of the powers.
+
+```css
+grid-template-columns:
+  150px 150px 150px;
+  repeat(3, 150px);
+  275px repeat(2, 150px);
+  100px repeat(2, 1fr) 2fr;
+
+grid-template-rows:
+  150px 150px 150px;
+  repeat(3, 150px);
+  275px repeat(2, 150px);
+  100px 1fr 2fr;
+```
+
+We can also name grid lines.
+
+- We can name none, some or all of the lines.
+- To name, put brackets around the ident.
+
+```css
+grid-template-columns: [start] 150px 150px 150px [end];
+```
+
+### 9.5. Fraction Unit & Repeat Notation
+
+- `fr`: Fraction Unit. Describes a fraction of the **available** space.
+- `repeat()`: Repeat notation: `repeat(# of repeats, length)`.
+
+```css
+ol {
+  grid-template-columns: repeat(2, 2fr) repeat(3, 1fr) 3fr;
+  grid-template-rows: 2fr 125px repeat(2, 4em);
+}
+```
+
+Values for `grid-template-columns` and `grid-template-rows` are:
+
+- _length_ or _percentage_: % are relative to the inline size of the grid container in column grid tracks, and the block size of the grid container in row grid tracks. If size of container depends on the size of its tracks, the % is treated as auto.
+- _flex_: `fr`: Positive `fr` value specifying the track’s flex factor. Each `fr`'ed track takes a share of the remaining space in proportion to its flex factor.
+- `max-content`: Equal to the largest of the max-contents in the grid track.
+- `min-content`: Equal to the largest of the min-contents in the grid track.
+- `minmax(min, max):` A size between min and less. If max < min, then max is ignored and `minmax(min,max)` is treated as min.
+- `auto`: As a maximum, identical to max-content. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track.
+- `fit-content(length or percent)`: Represents the formula min(max-content, max(auto, argument)), which is calculated similar to auto (i.e. `minmax(auto, max-content)`), except that the track size is clamped at argument if it is greater than the auto minimum.
+
+### 9.6. Adding Gutters
+
+Gutter size: global spacing between grid items with:
+
+- `grid-column-gap`: Vertical space between columns.
+- `grid-row-gap`: Horizontal space between rows.
+- `grid-gap`: Shorthand for `grid-row-gap` and `grid-column-gap`, in that order. Can take one or two lengths or percentages.
+
+Only a single size for each axis.
+
+```css
+grid-column-gap: 20px;
+grid-row-gap: 1em;
+grid-gap: 1em 20px;
+```
+
+Grid Steps:
+
+1. Create grid container with the `display` property.
+2. Optional: Create columns and rows with either:
+   - `grid-template-columns`, and
+   - `grid-template-rows`
+     or
+3. Optional: add a gutter with `grid-gap` or `grid-column-gap` and `grid-row-gap`.
+
+### 9.7. Positioning Grid Items
+
+Item positioning properties:
+
+```css
+.myItem {
+  grid-row-start: 2;
+  grid-row-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 5;
+}
+```
+
+- `grid-row` is shorthand for `grid-row-start` and `grid-row-end`.
+- `grid-column` is shorthand for `grid-column-start` and `grid-column-end`.
+
+```css
+.myItem {
+  grid-row: 2 / 4;
+  grid-column: 2 / 5;
+}
+```
+
+- We can also use `grid-area` to specify an area of the grid for the item to occupy.
+- The values accepted map to `grid-row-start` / `grid-column-start` / `grid-row-end` / `grid-column-end`
+
+```css
+.myItem {
+  grid-area: 2 / 2 / 4 / 5;
+}
+```
+
+### 9.8. Grid Row & Column Naming
+
+The `grid-template-rows` & `grid-template-columns` CSS properties define the line names and track sizing functions of the grid rows/columns.
+
+```css
+ol {
+  grid-template-columns: [start] repeat(6, 1fr) [end];
+}
+.myItem {
+  grid-column-start: [start];
+  grid-column-end: [end];
+}
+```
+
+### 9.9. Grid Item Properties
+
+- `grid-column-start`
+- `grid-column-end`
+- `grid-column`
+- `grid-row-start`
+- `grid-row-end`
+- `grid-row`
+- `grid-area`
+- `justify-self`
+- `align-self`
+
+### 9.10. The 'Holy Grail' of grid layout.
+
+```css
+body {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 3em 1fr 1.5em;
+  grid-gap: 1em;
+}
+header {
+  grid-row: 1/2;
+  grid-column: 1/4;
+}
+footer {
+  grid-row: 3/4;
+  grid-column: 1/4;
+}
+```
+
+### 9.11. Named Template Areas
+
+- We can describe the grid with named areas instead of using numbers.
+
+```css
+body {
+  grid-template-areas:
+    "header header header"
+    "nav article aside"
+    "footer footer footer";
+}
+```
+
+```css
+header {
+  grid-area: header;
+}
+nav {
+  grid-area: nav;
+}
+article {
+  grid-area: article;
+}
+aside {
+  grid-area: aside;
+}
+```
+
+### 9.12. Align & Justify Items
+
+- Very similar to the flexbox discussion.
+
+Container Properties:
+
+- `justify-items`
+- `align-items`
+- `justify-content`
+- `align-content`
+- `grid-auto-columns`
+- `grid-auto-rows`
+- `grid-auto-flow`
+- `grid`
+
+Item properties:
+
+- `justify-self`
+- `align-self`
+
+**Row alignment**: `justify-items` property accepts the following values for grid.
+
+- `normal`
+- `stretch`
+- `baseline`
+- `start`
+- `end`
+- `center`
+- `flex-end`
+- `flex-start`
+- `legacy`
+- `safe`
+- `unsafe`
+- `left`
+- `right`
+- `center`
+- `self-end`
+- `self-start`
+- `start`
+- `stretch`
+- `unset`
+
+**Column alignment**: `align-items` property accepts the following values for grid.
+
+- `baseline`
+- `center`
+- `end`
+- `flex-end`
+- `flex-start`
+- `left`
+- `normal`
+- `right`
+- `safe`
+- `self-end`
+- `self-start`
+- `start`
+- `stretch`
+- `unsafe`
+
+Aligns content of all the grid cells to the content within each cell.
+Individual grid cell content alignment can be overwritten with `align-self` and `justify-self`.
+
+**Do both**: `place-items` property.
+
+```css
+place-items: <align-items> <justify-items>;
+```
+
+- Shorthand for `align-items` and `justify-items`.
+- Order matters! `align-items` is first.
+- If only one value is declared, will be applied to both.
+
+### 9.13. Align & Justify Content
+
+- Defines how the items are aligned with respect to the grid if the size of all the items combined is not the same size as the container.
+
+`justify-content` accepts the following values for grid.
+
+- `baseline`
+- `center`
+- `end`
+- `flex-end`
+- `flex-start`
+- `left`
+- `normal`
+- `right`
+- `space-around`
+- `space-between`
+- `space-evenly`
+- `start`
+- `stretch`
+- `safe`
+- `unsafe`
+
+`align-content` accepts the following values for grid.
+
+- `baseline`
+- `center`
+- `end`
+- `flex-end`
+- `flex-start`
+- `left`
+- `normal`
+- `right`
+- `space-between`
+- `space-evenly`
+- `start`
+- `stretch`
+- `safe`
+- `unsafe`
+
+Tip: `auto` track sizes (and only `auto` track sizes) can be stretched by the `align-content` and `justify-content` properties.
+
+### 9.14. Track Sizing & Auto Flow
+
+When items are placed outside of the tracks defined by `grid-template-rows`, `grid-template-columns` and `grid-template-areas`, implicit grid tracks are added. These properties size those tracks.
+
+- `grid-auto-columns:`
+- `grid-auto-rows:`
+- `grid-auto-flow:`
+
+### 9.15. More Grid Resources
+
+- [Grid by Example](https://gridbyexample.com) - Rachel Andrew
+- [Layout Lab](https://labs.jensimmons.com) - Jen Simmons
