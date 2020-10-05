@@ -87,6 +87,12 @@
   - [11.6. Radial Gradients & Position](#116-radial-gradients--position)
   - [11.7. Shape, Size & Sizing KeyTerms](#117-shape-size--sizing-keyterms)
   - [11.8. Radial Gradients: color-stops & color-hints](#118-radial-gradients-color-stops--color-hints)
+- [12. Transforms](#12-transforms)
+  - [12.1. 2D Transform Functions](#121-2d-transform-functions)
+  - [12.2. Function & Transform Order](#122-function--transform-order)
+  - [12.3. 3D Transform Functions & Properties](#123-3d-transform-functions--properties)
+  - [12.4. Perspective & Perspective Origin](#124-perspective--perspective-origin)
+  - [12.5. Backface Visibility & Box](#125-backface-visibility--box)
 
 ## 1. Introduction
 
@@ -2511,7 +2517,7 @@ border-color: transparent;
 border-color: currentColor; /* default */
 ```
 
-The `border-style` accepts the following values.
+The `border-style` property accepts the following values.
 
 - `none`: No border. As if border-width: 0; except with border-image.
 - `hidden`: Same as none, but relevant in border-collapsed tables.
@@ -2943,3 +2949,217 @@ Things to remember:
   );
 }
 ```
+
+## 12. Transforms
+
+The `transform` attribute defines a list of transform definitions that are applied to an element and the element's children.
+
+### 12.1. 2D Transform Functions
+
+The following functions can be provided to `transform` for 2D.
+
+- `translate(<length>[, <length>])`:
+  Specifies a 2D translation by the vector `[x, y]`, where `x` is the `translation-value` parameter for the `x` axis and `y` is the optional translation value along the `y` axis parameter. If `y` is not provided, `y == 0`.
+- `translateX(<length>)`:
+  Specifies a translation by the given amount in the `X` direction.
+- `translateY(<length>)`:
+  Specifies a translation by the given amount in the `Y` direction.
+- `scale(<number>[, <number>])`:
+  Specifies 2D scaling operation by the [sx,sy]. If `sy` is not provided, `sy` will equal `sx` (growsing or shrinking with the same scale). `Scale(1, 1)` or `scale(1)` leaves an element in it's default state. `Scale(2, 2)` or `scale(2)` causes the element to appear twice as wide and twice as tall as its default size, taking up 4-times the original area.
+- `scaleX(<number>)`:
+  Specifies a scale operation using the `[sx, 1]` scaling vector, where `sx` is given as the parameter.
+- `scaleY(<number>)`:
+  Specifies a scale operation using the `[1, sy]` scaling vector, where `sy` is given as the parameter.
+- `rotate(<angle>)`:
+  Specifies a 2D rotation by the angle specified in the parameter about the origin of the element, as defined by the `transform-origin` property. For example, `rotate(90deg)` would cause elements to appear rotated one-quarter of a turn in the clockwise direction.
+- `skewX(<angle>)`:
+  specifies a skew transformation along the `X` axis by the given angle.
+- `skewY(<angle>)`:
+  Specifies a skew transformation along the `Y` axis by the given angle.
+- `matrix(<num>, <num>, <num>, <num>, <num>, <num>)`:
+  Generally machine generated, specifies a 2D transformation in the form of a transformation matrix of six values. `matrix(a,b,c,d,e,f)` is equivalent to applying the transformation matrix `[a b c d e f]`.
+
+Things to Note:
+
+- Take advantage of `transform-origin`.
+- Multiple values are SPACE separated (no commas).
+- The order of the values matters.
+- 3D transforms are hardware accelerated.
+- Play with [Westciv's Transform Tool](https://westciv.com/tools/transforms/index.html).
+- Matrix is another syntax
+- [More about transforms](http://www.standardista.com/css3/css3-transform-property-and-the-various-transform-functions).
+
+### 12.2. Function & Transform Order
+
+Order of transform functions matters: if you rotate first, your translate direction will be on the rotated axis!
+
+- Usually we want to translate first, and then rotate.
+
+### 12.3. 3D Transform Functions & Properties
+
+- `translate(<x-length>[, <y-length>])`:
+  Specifies a 2D translation by the vector [tx, ty], where tx is the first translation-value parameter and ty is the optional second translation-value parameter. If `<ty>`  is not provided, ty has zero as a value.
+- `translate3d(<x>, <y>, <z>)`:
+  Specifies a 3D translation by the vector `[tx,ty,tz]`, with `tx`, `ty` and `tz` being the first, second and third translation-value parameters respectively.
+- `translateX(<x-length>), translateY(<y-length>)`:
+  Specifies a translation by the given amount in the `X` or `Y` direction.
+- `translateZ(<z-value>)`:
+  Specifies a translation by the given amount in the Z direction. Note that percentage values are not allowed in the `translateZ` `translation-value`, and if present are evaluated as `0`.
+- `scale(<number>[, <number>])`:
+  Specifies a 2D scale operation by the `[sx,sy]` scaling vector described by the 2 parameters. If the second parameter is not provided, it is takes a value equal to the first.
+- `scale3d(<number>, <number>, <number>)`:
+  Specifies a 3D scale operation by the `[sx,sy,sz]` scaling vector described by the 3 parameters.
+- `scaleX(<number>), scaleY(<number>)`:
+  Specifies a scale operation using the `[sx,1,1]` or `[1,sy,1]` scaling vector, where `sx` or `sy` is given as the parameter respectively.
+- `scaleZ(<number>)`:
+  Specifies a scale operation using the [1,1,sz] scaling vector, where sz is given as the parameter.
+- `rotate(<angle>)`:
+  Specifies a 2D rotation by the angle specified in the parameter about the origin of the element, as defined by the `transform-origin` property.
+- `rotate3d(<number>, <number>, <number>, <angle>)`:
+  Specifies a clockwise 3D rotation by the angle specified in last parameter about the `[x,y,z]` direction vector described by the first 3 parameters. If the direction vector is not of unit length, it will be normalized. A direction vector that cannot be normalized, such as `[0, 0, 0]`, will cause the rotation to not be applied. This function is equivalent to:
+
+  ```css
+  matrix3d(1 + (1-cos(angle))*(x*x-1), -z*sin(angle)+(1-cos(angle))*x*y, y*sin(angle)+(1-cos(angle))*x*z, 0, z*sin(angle)+(1-cos(angle))*x*y, 1 + (1-cos(angle))*(y*y-1), -x*sin(angle)+(1-cos(angle))*y*z, 0, -y*sin(angle)+(1-cos(angle))*x*z, x*sin(angle)+(1-cos(angle))*y*z, 1 + (1-cos(angle))*(z*z-1), 0, 0, 0, 0, 1)
+  ```
+
+- `rotateX(<angle>)`:
+  Specifies a clockwise rotation by the given angle about the X axis.
+- `rotateY(<angle>)`:
+  Specifies a clockwise rotation by the given angle about the Y axis.
+- `rotateZ(<angle>)`:
+  Specifies a clockwise rotation by the given angle about the Z axis.
+- `skewX(<angle>),skewY(<angle>)`:
+  Specifies a skew transformation along the X axis or Y axis by the given angle.
+- `skew(<angle> [, <angle>])`:
+  Specifies a skew transformation along the `X` and `Y` axes. The first angle parameter specifies the skew on the `X` axis. The second angle parameter specifies the skew on the `Y` axis. If the second parameter is not given then a value of `0` is used for the `Y` angle (ie. no skew on the `Y` axis).
+- `matrix(<number>{6})`:
+  Specifies a 2D transformation in the form of a transformation matrix of six comma separated values. `matrix(a,b,c,d,e,f)` is equivalent to `matrix3d(a, b, 0, 0, c, d, 0, 0, 0, 0, 1, 0, e, f, 0, 1)`.
+- `matrix3d(<number>{15})`:
+  Specifies a 3D transformation as a 4x4 homogeneous matrix of 16 comma separated values in column-major order.
+- `perspective(<number>)`:
+  Specifies a perspective projection matrix. This matrix maps a **viewing cube** onto a pyramid whose base is infinitely far away from the viewer and whose peak represents the viewer's position. The viewable area is the region bounded by the four edges of the viewport (the portion of the browser window used for rendering the webpage between the viewer's position and a point at a distance of infinity from the viewer). **The depth**, given as the parameter to the function, represents the distance of the `z=0` letters from the viewer. Lower values give a more flattened pyramid and therefore a more pronounced perspective effect. The value is given in pixels, so a value of 1000 gives a moderate amount of foreshortening and a value of 200 gives an extreme amount. The matrix is computed by starting with an identity matrix and replacing the value at row 3, column 4 with the value -1/depth. The value for depth must be greater than zero, otherwise the function is invalid.
+
+3D Transform related Properties:
+
+- `perspective:` `none` | `length`:
+  Same as `transforms: perspective(value)` except it applies to the positioned or transformed children of the element, not the element itself.
+- `transform-origin:` `length` | `keyterm {1,3}`:
+  The centerpoint of the transform.
+- `transform-style:` `flat` | `preserve-3d`:
+  How to handle nested elements are rendered in 3D space.
+- `perspective-origin:` pos relative to parent:
+  Defines the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.
+- `backface-visibility:` `visible` | `hidden`:
+  When an element is flipped, is the content that is flipped away from user visible or not.
+
+### 12.4. Perspective & Perspective Origin
+
+Screens are flat. 3D requires perspective. There are two ways to declare perspective.
+
+1. `transform: perspective(100)` ...
+2. `perspective: 100`
+
+Difference: with the parent property, all the transformed elements share the same perspective. with the function, each transformed element has it's own perspective.
+
+The `perspective()` Function:
+
+`transform: perspective(40px) rotateX(10deg);`
+
+- The `perspective()` function must come first.
+- Smaller numbers have a bigger impact
+
+The `perspective` Property:
+
+```css
+.child {
+  transform: rotateX(10deg);
+}
+.parent {
+  perspective: 40px;
+}
+```
+
+- Generally, if we are dealing with one element, apply perspective to the child, and if dealing with multiple elements apply it to the parent.
+
+The `perspective-origin` Property:
+
+- Property on parent element - doesn't work on the child.
+- Positions the perspective relative to parent, defining the origin for the perspective property.
+- Sets the `X` and `Y` position at which the viewer appears to be looking at the children of the element.
+
+```css
+.one,
+.two {
+  perspective: 100px;
+}
+.one:after,
+.two:after {
+  transform: rotateX(45deg);
+}
+.one {
+  perspective-origin: top left;
+}
+.two {
+  perspective-origin: top right;
+}
+```
+
+**`transform-origin` property:**
+
+Specifies the `x` and `y` position of the origin, relative to the transform object.
+
+```
+transform: perspective(40px) rotateX(10deg);
+transform-origin: top left;
+```
+
+- Keyword positions: `left`, `right`, `bottom`, `top`, `center`
+- Length values
+- Percentage values
+- Default is `50% 50%` (or `center center`)
+- Supported in all browsers that support transform. Prefixed if transform is prefixed.
+
+### 12.5. Backface Visibility & Box
+
+`transform-style:` `flat` | `preserve-3d`:
+
+How to handle nested elements are rendered in 3D space.
+
+- Default is `flat`
+- Set on parent element
+- Only works if the following are set to their default values:
+  - `overflow`
+  - `clip`
+  - `clip-path`
+  - `filter`
+  - `mask-border-source`
+  - `mask-image`
+  - `mix-blend-mode`
+
+`backface-visibility` Property:
+
+Hide/show the bacckface of a transformed element.
+
+```css
+one:after,
+.two:after {
+  transform: rotateX(180deg);
+}
+.one:after {
+  backface-visibility: visible;
+}
+.two:after {
+  backface-visibility: hidden;
+}
+```
+
+The `transform-box` property:
+
+Defines the layout box, to which the transform and transform-origin properties relate to. `(FF, Ch 64, O 51)`.
+
+- `border-box`:
+  Border box as reference box.
+- `fill-box`:
+  Uses the object bounding box as reference box.
+- `view-box`
+  Nearest SVG viewport as reference box. If viewBox attribute exists, the reference box is at the viewBox 0 0, and the width and height are those of the viewBox attribute.
