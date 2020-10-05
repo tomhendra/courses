@@ -99,11 +99,11 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)**\
       **Repeat from FEM Beginner Path:** Master CSS Grid and Flexbox, the latest tools and tricks to layout beautiful, responsive web applications with less code.
 
-    - **[Design for Developers]()**\
-       Become self-sufficient for the entire process of execution from concept to design to implementation. You'll learn to execute the creation of complex and beautiful front-end experiences!
-
     - **[CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2)**\
       **Repeat from FEM Professional Path:** Take a deep-dive into the essential features of CSS, while also exploring CSS features you probably didn’t even know existed!
+
+    - **[Design for Developers]()**\
+       Become self-sufficient for the entire process of execution from concept to design to implementation. You'll learn to execute the creation of complex and beautiful front-end experiences!
 
     - **[Responsive Web Typography v2]()**\
       Learn how to implement web fonts and create a modern, scalable typographic system to give the best reading experience for desktop and mobile devices!

@@ -93,6 +93,17 @@
   - [12.3. 3D Transform Functions & Properties](#123-3d-transform-functions--properties)
   - [12.4. Perspective & Perspective Origin](#124-perspective--perspective-origin)
   - [12.5. Backface Visibility & Box](#125-backface-visibility--box)
+- [13. Transitions](#13-transitions)
+  - [13.1. Animatable Properties](#131-animatable-properties)
+  - [13.2. Events & Transition Examples](#132-events--transition-examples)
+- [14. Animations](#14-animations)
+  - [14.1. @Keyframes](#141-keyframes)
+  - [14.2. Naming Animations & Specificity](#142-naming-animations--specificity)
+  - [14.3. Timing Functions](#143-timing-functions)
+  - [14.4. Steps](#144-steps)
+  - [14.5. Iteration Count & Delay](#145-iteration-count--delay)
+  - [14.6. Direction, Shorthand & Fill Mode](#146-direction-shorthand--fill-mode)
+  - [14.7. Stopping Animations & Events](#147-stopping-animations--events)
 
 ## 1. Introduction
 
@@ -2547,7 +2558,7 @@ border-top: 5px dashed rgba(217, 68, 11, 0.8);
 - style is REQUIRED.
 - width defaults to `medium`.
 - color defaults to `currentColor`.
-- Beware when using transitions as we can end up with 12 transition end events.
+- Beware when using transitions as we can end up with 8 transition end events.
 
 ### 10.8. Border Radius & Border Image
 
@@ -3163,3 +3174,657 @@ Defines the layout box, to which the transform and transform-origin properties r
   Uses the object bounding box as reference box.
 - `view-box`
   Nearest SVG viewport as reference box. If viewBox attribute exists, the reference box is at the viewBox 0 0, and the width and height are those of the viewBox attribute.
+
+## 13. Transitions
+
+Enables the transition of properties from one state to the next over a defined length of time.
+
+A transition in its simplest form:
+
+```css
+a {
+  color: green;
+}
+a:hover {
+  color: orange;
+}
+```
+
+We can even change the transition period.
+
+```css
+a {
+  color: green;
+  transition: 1s;
+}
+a:hover {
+  color: orange;
+}
+```
+
+There are several transition properties.
+
+- `transition-property:` properties (or 'all' default) that transition
+- `transition-duration:` s or ms it takes to transition
+- `transition-timing-function:` bezier curve of transition
+- `transition-delay:` `s` or `ms` before transition starts
+- `transition:` shorthand for 4 transition properties
+
+```css
+code {
+  color: black;
+  font-size: 85%;
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: all 2s ease-in 50ms;
+}
+code:hover {
+  color: red;
+  font-size: 120%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+```
+
+**Top tip:** Add a 50ms delay to transitions to ensure the hover is intentional and not just a mouse drag. 50ms is not long enough for a user to noticce the delay.
+
+### 13.1. Animatable Properties
+
+What can be transitioned? - Anything that has intermediate values.
+
+These can be animated...
+
+```css
+code {
+  opacity: 1;
+}
+code:halfway {
+  opacity: 0.5;
+}
+code:hover {
+  opacity: 0;
+}
+```
+
+These **cannot** be animated...
+
+```css
+code {
+  display: block;
+}
+code:halfway {
+  display: ???;
+}
+code:hover {
+  display: none;
+}
+```
+
+What can be transitioned? - 2 values that have REAL intermediary values.
+
+These can be animated...
+
+```css
+code {
+  font-size: 100%;
+}
+code:halfway {
+  font-size: 110%;
+}
+code:hover {
+  font-size: 120%;
+}
+```
+
+These **cannot** be animated...
+
+```css
+code {
+  height: auto;
+}
+code:halfway {
+  height: ???;
+}
+code:hover {
+  height: 1000px;
+}
+```
+
+Transitionable Properties:
+
+- `background-color`
+- `background-position`
+- `border-color`
+- `border-width`
+- `border-spacing`
+- `bottom`
+- `clip`
+- `color`
+- `crop`
+- `font-size`
+- `font-weight`
+- `height`
+- `left`
+- `letter-spacing`
+- `line-height`
+- `margin`
+- `max-height`
+- `max-width`
+- `min-height`
+- `min-width`
+- `opacity`
+- `outline-color`
+- `outline-offset`
+- `outline-width`
+- `padding`
+- `right`
+- `text-indent`
+- `text-shadow`
+- `top`
+- `vertical-align`
+- `visibility`
+- `width`
+- `word-spacing`
+- `z-index`
+
+Transition Features (or Limitations):
+
+- Single Iteration.
+- Reverse goes to initial state.
+- No granular control.
+- Limited methods of initiation.
+- Can't force them to finish.
+
+### 13.2. Events & Transition Examples
+
+Every single property that has a transition that ends will throw an event.
+
+- Event thrown only when transition completes
+- transitionend for EVERY property
+- transitionend for each long-hand property within a shorthand
+
+In the following example...
+
+```css
+table {
+  border: 1px black solid;
+  transition: border 1s linear 50ms;
+}
+table:hover {
+  border: 5px red solid;
+}
+```
+
+Events will be thrown for each of these properties.
+
+- `border-top-color`
+- `border-right-color`
+- `border-bottom-color`
+- `border-left-color`
+- `border-top-width`
+- `border-right-width`
+- `border-bottom-width`
+- `border-left-width`
+
+Real-world example: Animated navigation.
+
+```css
+nav ul li {
+  list-style-type: none;
+}
+nav > ul > li {
+  display: inline-block;
+  position: relative;
+}
+nav ul ul {
+  transform: scale(1, 0);
+  transform-origin: top center;
+  transition: 0.2s linear 50ms;
+  position: absolute;
+  top: 100%;
+}
+nav li:hover ul {
+  transform: scale(1, 1);
+}
+```
+
+```html
+<nav>
+  <ul>
+    <li>
+      About
+      <ul>
+        <li>Me</li>
+        <li>You</li>
+        <li>Them</li>
+        <li>Nobody</li>
+      </ul>
+    </li>
+    <li>
+      Posts
+      <ul>
+        <li>Door Post</li>
+        <li>Wall hanging</li>
+        <li>Stair Banister</li>
+        <li>Washington</li>
+      </ul>
+    </li>
+    <li>
+      Topics
+      <ul>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>HTML5</li>
+        <li>SEO</li>
+      </ul>
+    </li>
+    <li>
+      Events
+      <ul>
+        <li>Party</li>
+        <li>Dinner</li>
+        <li>Hike</li>
+        <li>Foo Camp</li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+```
+
+## 14. Animations
+
+With transiitions we can only do a singkle animation, but aniumations single, many or infinite iterations.
+
+- Single or bi-directional.
+- Granular control.
+- Can be initiated on page load.
+- Has more robust JS Hooks.
+- Can be paused.
+- Lowest priority in UI Thread.
+
+Animation Essentials:
+
+- `@keyframes`
+- `animation-name`
+- `animation-duration`
+- `animation-timing-function`
+- `animation-iteration-count`
+- `animation-direction`
+- `animation-play-state`
+- `animation-delay`
+- `animation-fill-mode`
+- `animation` (shorthand)
+
+### 14.1. @Keyframes
+
+Naming the keyframe animation:
+
+`@Keyframes` `animation_name` ...
+
+- Identifier
+- Unquoted
+- Characters [a-zA-Z0-9], -, \_ and ISO 10646 characters U+00A0 and higher
+- ISO 10646 = Universal Character Set = Unicode standard
+- [-_a-zA-Z0-9\u00A0-\u10FFFF]
+- Can't start [0-9], -- , or hyphen+digit
+- Can contain escaped:
+- Q&A! may be written as Q\&A\! or Q\26 A\21
+
+Don't use keyterms!
+
+```css
+div {
+  animation: ✏️ infinite 3s alternate;
+}
+@keyframes ✏️ {
+  from {
+    background-color: #030;
+  }
+  to {
+    background-color: #393;
+  }
+}
+```
+
+We can also use `%` instead of `from` and `to`:
+
+```css
+@keyframes writing {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+```
+
+- Don't forget the `%`, it is required.
+- Don't quote the animation name.
+
+We can animate multiple properties.
+
+```css
+@keyframes W {
+  0% {
+    left: 0;
+    top: 0;
+  }
+  25%,
+  75% {
+    top: 400px;
+  }
+  50% {
+    top: 50px;
+  }
+  100% {
+    left: 80%;
+    top: 0;
+  }
+}
+```
+
+Duplicate Keyframes are allowed.
+
+```css
+div {
+  animation: duplicate infinite 20s alternate;
+  background-color: red;
+  opacity: 1;
+}
+@keyframes duplicate {
+  45% {
+    background-color: green;
+  }
+  45% {
+    opacity: 0.3;
+  }
+  55% {
+    background-color: blue;
+  }
+  55% {
+    opacity: 0.7;
+  }
+}
+```
+
+We can animate CSS transforms, which is usually what we want to do.
+We don't want to animate `top` and `left` as before, because we are repainting the page.
+
+```css
+@keyframes gettingThePencil {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(0.5, 0.5);
+  }
+
+  100% {
+    transform: translate3d(600px, 400px, 0) rotate(80deg) scale(1.2, 1.2);
+  }
+}
+```
+
+When we use `transform` it is handled by the GPU and works much better.
+
+### 14.2. Naming Animations & Specificity
+
+In order to use an animation, we need to assign it to something with `animation-name`.
+
+```css
+/* base CSS */
+.pencil {
+  width: 100px;
+  text-align: right;
+  border-bottom: 10px solid;
+}
+.pencil::after {
+  content: "✎";
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+}
+```
+
+```css
+/* animation CSS */
+@keyframes drawALine {
+  0% {
+    width: 0;
+    color: green;
+  }
+  100% {
+    width: 100%;
+    color: blue;
+  }
+}
+```
+
+```css
+/* assignment of the animation */
+.pencil {
+  animation-name: drawALine;
+  animation-duration: 3s;
+}
+```
+
+Order of precedence: The last animation wins.
+Specificity: Animations will override IDs, and `!important` is ignored in Keyframes.
+
+### 14.3. Timing Functions
+
+One of the two most complex topics in animations.
+Timing functions can also be used with transitions.
+
+```css
+.pencil {
+  animation-name: drawALine;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+}
+```
+
+Accepted values are:
+
+- `ease`
+- `ease-in`
+- `ease-in-out `
+- `step-start `
+- `step-end `
+- `steps( X, start` | `end)`
+- `linear`
+- `ease-out`
+- `cubic-bezier(x1, y1, x2, y2)`
+
+Use [cubic-bezier.com](https://cubic-bezier.com) to grab cubic beziers.
+
+### 14.4. Steps
+
+The previous timing function values disucssed were all cubuc beziers, used for smooth animations.
+Usually we want our animations to be smooth, but steps can be useful for things like character animation.
+We can specify how many steps an animation should take to get from 0% to 100%.
+
+```css
+#psy {
+  width: 225px;
+  height: 400px;
+  background-image: url(sprite.png);
+  animation: gangham 4s steps(23, start) infinite, movearound 15s alternate
+      infinite steps(23, start);
+}
+@keyframes gangham {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -5175px 0;
+  }
+}
+@keyframes movearound {
+  0% {
+    transform: translatex(-300px);
+  }
+  100% {
+    transform: translatex(300px);
+  }
+}
+```
+
+### 14.5. Iteration Count & Delay
+
+`animation-iteration-count` defines how many times we want our animation to run. The default is 1.
+
+```css
+.pencil {
+  ...
+  animation-name: drawALine;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 3;
+}
+```
+
+We can also set a partial iteration.
+
+```css
+div {
+  animation: width 10s linear 5s;
+  animation-iteration-count: 0.25;
+}
+@keyframes width {
+  0% {
+    height: 500px;
+    width: 500px;
+  }
+  100% {
+    height: 100px;
+    width: 100px;
+  }
+}
+```
+
+We can delay our animations with `animation-delay`.
+
+```css
+.pencil {
+  animation-name: drawALine;
+  animation-duration: 8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 2;
+  animation-delay: 2s;
+}
+```
+
+### 14.6. Direction, Shorthand & Fill Mode
+
+We can control the direction of our animations.
+
+```css
+.pencil {
+  ...
+  animation-name: drawALine;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 5;
+  animation-direction: normal
+}
+```
+
+There are four accepted values:
+
+- `normal`
+- `alternate`
+- `reverse`
+- `alternate-reverse`
+
+We can use the shorthand `animation`. This...
+
+```css
+.pencil {
+  animation-name: drawALine;
+  animation-duration: 5s;
+  animation-delay: 100ms;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 5;
+}
+```
+
+Can be written as this...
+
+```css
+.pencil {
+  animation: drawALine 5s ease-in-out 100ms 5;
+}
+```
+
+The most complex part to understand is `animation-fill-mode`.
+
+It defines what the animation does during the time that the animation delay expires, and what happens after the 100% mark (or 0% if reversed) is reached.
+
+- `none`: Go back to the default as if the animation wasn't attached.
+- `forwards`: Wherever the animation ends, stop there.
+- `backwards`: During the animation delay, stop at the 0% mark.
+- `both`: Do both forwards and backwards.
+
+```css
+.pencil {
+  animation-name: gettingThePencil;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-delay: 2s;
+  animation-fill-mode: none;
+}
+```
+
+```css
+.pencil {
+  animation: gettingThePencil 3s ease-in-out 1s forwards;
+}
+```
+
+### 14.7. Stopping Animations & Events
+
+We can control when an animation plays with `animation-play-state: paused` | `running`.
+
+```css
+.pencil {
+  transform-origin: center 300px;
+  animation: writingInCircles 3s linear infinite;
+}
+.pencil:hover {
+  animation-play-state: paused;
+}
+```
+
+```css
+@keyframes writingInCircles {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+```
+
+There are some events within the animation API that can be captured.
+
+- `animationstart`
+- `animationend`
+- `animationiteration`
+
+```js
+el.addEventListener(
+  "animationend",
+  function (event) {
+    console.log("Animation Ended");
+  },
+  false
+);
+```
+
+Starting next animation at end of previous:
+
+```js
+el.addEventListener( 'animationend',
+    function( event ) {
+        el.removeClassName('newClass');
+        setTimeout("el.addClassName('newClass')", 100ms)
+    },
+    false );
+```
