@@ -90,7 +90,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2)**\
        Take a deep-dive into the essential features of CSS, while also exploring CSS features you probably didn’t even know existed!
 
-    - **[Full Stack for Front-End Engineers, v2](15-fem-professional/)**\
+    - **[Full Stack for Front-End Engineers, v2](15-fem-professional/7-full-stack-for-front-end-engineers-v2)**\
        You'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
 
 16. **[Frontend Masters Learning Path: Design to Code]()**
