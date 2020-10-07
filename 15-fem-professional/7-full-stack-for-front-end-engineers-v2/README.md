@@ -25,6 +25,10 @@
   - [4.1. Domain Names](#41-domain-names)
   - [4.2. Domain Setup](#42-domain-setup)
   - [4.3. Server Setup](#43-server-setup)
+  - [4.4. User Setup](#44-user-setup)
+  - [4.5. Setting User Permissions](#45-setting-user-permissions)
+  - [4.6. Disabling the Root User](#46-disabling-the-root-user)
+  - [4.7. Nginx Overview](#47-nginx-overview)
 
 ## 1. Introduction
 
@@ -300,11 +304,11 @@ console.log("Server started! Listening on port 8080");
 - MacOS should do this automatically, but not every keychain is automatically configured to add the keys to the agent every time.
 - Alternatively `ssh-add -K ~/.ssh/KEY_NAME` manually adds the key to the keychain.
 
-Note: When we log in to the server, the `#` in the prompt indicates we are logged in as a superuser, as root.
+Note: When we log in to the server, the `#` in the prompt indicates we are logged in as a super user, as root.
 
 - Logging in as root is dangerous, because we can do anything we want.
 - We could delete entire directories and we won't get a warning.
-- When not logged in as a superuser, when we do something that is restricted in permissions, we have to manually override that every time.
+- When not logged in as a super user, when we do something that is restricted in permissions, we have to manually override that every time.
 - It is best practice to login as a user with root permissions but is not root.
 
 ## 4. Server Setup
@@ -337,3 +341,81 @@ Note: When we log in to the server, the `#` in the prompt indicates we are logge
 - DigitalOcean is now responsible for routing and controlling the DNS resolution.
 
 ### 4.3. Server Setup
+
+Usually the steps are:
+
+1. Update software
+2. Create a new user
+3. Make that user a super user
+4. Enable login for new user
+5. Disable root login
+
+- apt is a wrapper around apt-get which makes it simpler to install software. It is like npm for Linux.
+  - Update software: `apt update`
+  - Upgrade software: `apt upgrade`
+
+ALWAYS keep software up-to-date.
+Almost all security breaches are a result of vulnerabilities in software, which are patched with updates.
+
+- Add new user: `adduser $USERNAME`
+
+### 4.4. User Setup
+
+- If we switch to the newly created user we won't have super user access.
+- `sudo` stands for Super User Do.
+- When we use `sudo` we are executing commands with escalated privileges.
+
+So we need to give the user we created those super user privileges:
+
+- Add user to “sudo” group: `usermod -aG sudo $YOUR_USERNAME`
+- Switch user: `su $YOUR_USERNAME`
+- Check sudo access: `sudo cat /var/log/auth.log`
+
+Top tip: `sudo !!` runs the previous command with sudo access, if we forget to use `sudo`.
+
+- The auth log is a log of people that are attempting to do something on the server, or login to the server.
+- We can see what's happening with our server in real time.
+- `head` gives us the first 10 lines in file: `sudo head /var/log/auth.log`.
+- `tail` gives us the last 10 lines in file. We can use the `-f` flag for follow: `sudo tail -f /var/log/auth.log`.
+- We always want to log everything on a server, so when things go wrong we can figure out why.
+- One of the most powerful debugging tools we have is tailing a log file and then connecting to a server at a different terminal or shell and understanding what's happening.
+
+### 4.5. Setting User Permissions
+
+- Our SSH keys are by default in the .ssh directory.
+- We want to be able to login as the new user, and then disable root login.
+
+  - Change to home directory: `cd ~`
+  - Create a new directory if it doesn’t exist: `mkdir -p ~/.ssh`
+  - Create authorized_keys file and paste PUBLIC key: `vi ~/.ssh/authorized_keys`
+
+- `-p` flag creates a directory if one doesn't already exist.
+- All we did when we switched users is open a new shell.
+- So we need to exit the shell back to root, and then exit again, before using SSH to login with our new username.
+
+  - `$ exit`
+  - `# exit`
+  - `ssh $USERNAME@IP_ADDRESS`
+
+### 4.6. Disabling the Root User
+
+We have successfully logged in with our new user which has root access.
+
+We now want to change the file permissions of `authorized_keys` so that it is only readable and writeable by sudo, and certain file system daemons like the SSH daemon.
+
+- Change file permissions: `chmod 644 ~/.ssh/authorized_keys`
+
+After that we can disable root login by modifying the SSH daemon config on the server itself.
+
+- Disable root login: `sudo vi /etc/ssh/sshd_config`
+- Change: `PermitRootLogin yes` to `no`
+
+The daemon is a program that's always running in the background. That's what allows us to login with SSH. We don't need to do anything to start or stop it. It's constantly running and listening.
+
+With SSH daemon we can do lots of things. Bear in mind any time we use `sudo` we are doing a potentially dangerous operation. We could lock ourselves out of our own server! So be careful.
+
+Although the daemon is always running, it isn't always checking the config, so we want to restart that service.
+
+- `sudo service sshd restart`
+
+### 4.7. Nginx Overview
