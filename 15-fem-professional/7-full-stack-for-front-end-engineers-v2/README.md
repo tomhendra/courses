@@ -21,20 +21,16 @@
   - [3.5. Operating Systems](#35-operating-systems)
   - [3.6. SSH](#36-ssh)
   - [3.7. SSH Key Generation & Connecting to the Server](#37-ssh-key-generation--connecting-to-the-server)
+- [4. Server Setup](#4-server-setup)
+  - [4.1. Domain Names](#41-domain-names)
+  - [4.2. Domain Setup](#42-domain-setup)
+  - [4.3. Server Setup](#43-server-setup)
 
 ## 1. Introduction
 
 Learn what it means to become a full-stack engineer! If you’re going to be a well rounded engineer, it’s important you understand what is happening on the server-side. In this course, you'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
 
 - [Slides](https://jemyoung.com/fsfe)
-
-Topics covered on day 1:
-
-1. “Full Stack”
-2. Command line
-3. Shells
-4. How the internet works
-5. VIM
 
 - The frontend could be one of many things.
   - A car
@@ -310,3 +306,34 @@ Note: When we log in to the server, the `#` in the prompt indicates we are logge
 - We could delete entire directories and we won't get a warning.
 - When not logged in as a superuser, when we do something that is restricted in permissions, we have to manually override that every time.
 - It is best practice to login as a user with root permissions but is not root.
+
+## 4. Server Setup
+
+### 4.1. Domain Names
+
+- The way that domain names are resolved is by nameserver records called DNS records.
+- There are different types of records depending on what we want to do.
+- A record: Maps name to an IP address (most common).
+- CNAME: Maps name to a different name.
+- We use the `dig` command to check the records on any given domain.
+
+### 4.2. Domain Setup
+
+- Once we own a domain we beed to add two A records so that it can be resolved to our IP address.
+- We can use DigitalOcean's own nameservers for this.
+- First add the domain in the network menu of the DO dashboard.
+- Then add two A Records with our droplet's IP address:
+  - @ (root domain)
+  - www
+- Now we have two A records that will map the domain name to the droplet IP address.
+- A nameserver is like an address book that holds the records used for resolving domains to IP addresses.
+- But if we try to access the domain at this point, it won't redirect to our website yet, because:
+
+1. The server is not yet accepting connections.
+2. We need to give domain name resolution control to DO's nameservers rather than the registrar's.
+
+- Copy the nameservers from DO and change the nameservers in the domain registrar dashboard.
+- This moves the canonical record from the registrar to DigitalOcean.
+- DigitalOcean is now responsible for routing and controlling the DNS resolution.
+
+### 4.3. Server Setup
