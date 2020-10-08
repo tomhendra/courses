@@ -37,6 +37,9 @@
   - [4.13. Process Manager](#413-process-manager)
   - [4.14. Version Control with Git](#414-version-control-with-git)
   - [4.15. Server Setup Extras & Summary](#415-server-setup-extras--summary)
+- [5. Bash Basics](#5-bash-basics)
+  - [5.1. Standard Streams & Redirection](#51-standard-streams--redirection)
+  - [5.2. Finding Files & Directories](#52-finding-files--directories)
 
 ## 1. Introduction
 
@@ -61,8 +64,8 @@ Learn what it means to become a full-stack engineer! If you’re going to be a w
 
 What is a full stack engineer? - Someone who can build an application from start to finish.
 
-- It is almost impossible to be really amazing at all parts of the stack.
-- Find the area that you are passionate about, and really dig into it to become an expert.
+It is almost impossible to be really amazing at all parts of the stack.
+Find the area that you are passionate about, and really dig into it to become an expert.
 
 ### 1.1. Why Full Stack?
 
@@ -110,10 +113,10 @@ With a shell we are not too far removed from the core of the machine. A GUI is q
 
 ### 2.1. IP Addresses & Protocols
 
-- The internet is built in trust.
+- The internet is built on trust.
 - Mankind agreed on a set of standards for computers to talk to one another.
 - That resulting protocol is **IP** (Internet Protocol).
-- Is is a collective idea that data is well formed enough so that data can be received, read, written, and sent back.
+- It is a collective idea that data is well formed enough so that it can be received, read, written, and sent back.
 - **IP address**: A label assigned to an internet connected device used by IP.
   - IPv4: 8.8.8.8 - 4.3 billion eventually ran out.
   - IPV6: 2001:4860:4860:8888 - 340 undecillion.
@@ -549,7 +552,8 @@ An application server is different from a web server, which just receives web tr
 - But most of the time we are not limited by the speed of the engine, it is something else.
 
   - Install NodeJS and npm: `sudo apt install nodejs npm`
-  - Install git: `sudo apt install git`
+  - Install git: `sudo apt install git` (usually this is already installed)
+  - Configure git to use main as default branch: `git config --global init.defaultBranch main`
 
 ### 4.10. Application Architecture
 
@@ -716,3 +720,57 @@ How the internet works:
 We enter a domain name into the browser, this initiates a connection to a nameserver which looks up the associated IP address, the nameserver returns the IP address which passes off to a node, then another node, then another... and eventually hits the server, the server passes off to a web server like Nginx, and then it passes to an application server like Express.js.
 
 There are faster ways to do what we have done, but for learning purposes going step-by-step is best.
+
+## 5. Bash Basics
+
+### 5.1. Standard Streams & Redirection
+
+_Standard streams_ are a standard for almost all Unix applications.
+
+- standard output
+  - `stdout`
+- standard input
+  - `stdin`
+- standard error
+  - `stderr`
+
+There is something called the POSIX standards (Portable Operating System Interface) where a group of people decided that if we are writing a Unix application, there should be a standard way that inputs go in, outputs go out and how errors are handled. This makes programs really readable.
+
+On any Unix program that we are running, we can pipe the input, the output and errors to a standard place, and we know for a fact that they will all be handled because they all share a common API.
+
+What we do with these inputs, outputs and errors is something called _redirection_.
+
+- `|`: read from stdout
+- `>`: write stdout to file
+- `>>`: append stdout to file
+- `<`: read from stdin
+- `2>`: read from stderr
+
+Much of the time we will be piping output to log files, and the canonical place we keep them is `/var/log`. All of the logs for all services will generally be kept here.
+
+One problem of writing to a stdout file is that it will blow away anything that was already in the file. To append we use `>>`.
+
+### 5.2. Finding Files & Directories
+
+On a Linux system we don't have Spotlight Search. There are two ways that we can generally find things.
+
+1. Search file _names_: `find`
+2. Search file _contents_: `grep`
+
+We use grep often when piping output to find specific lines in that output.
+
+- `find` has the syntax of the directory we are looking in, options we are trying to look then the specific file we are looking for.
+- `find /bar -name foo.txt`
+
+Some useful options are:
+
+- `-name`
+- `-type`
+- `-empty`
+- `-executable`
+- `-writable`
+
+Searching for log files:
+
+- Find all log files in /var/log: `find /var/log/nginx -type f -name "*.log"`
+- Find all directories with the name ‘log’: `find / -type d -name log`
