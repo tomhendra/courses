@@ -30,6 +30,13 @@
   - [4.6. Disabling the Root User](#46-disabling-the-root-user)
   - [4.7. Nginx Overview](#47-nginx-overview)
   - [4.8. Nginx Configuration](#48-nginx-configuration)
+  - [4.9. Node.js Configuration](#49-nodejs-configuration)
+  - [4.10. Application Architecture](#410-application-architecture)
+  - [4.11. Application Setup](#411-application-setup)
+  - [4.12. Proxy Passing Traffic](#412-proxy-passing-traffic)
+  - [4.13. Process Manager](#413-process-manager)
+  - [4.14. Version Control with Git](#414-version-control-with-git)
+  - [4.15. Server Setup Extras & Summary](#415-server-setup-extras--summary)
 
 ## 1. Introduction
 
@@ -388,7 +395,7 @@ Top tip: `sudo !!` runs the previous command with sudo access, if we forget to u
 
   - Change to home directory: `cd ~`
   - Create a new directory if it doesn’t exist: `mkdir -p ~/.ssh`
-  - Create authorized_keys file and paste PUBLIC key: `vi ~/.ssh/authorized_keys`
+  - Create authorized_keys file and paste our PUBLIC key: `vi ~/.ssh/authorized_keys`
 
 - `-p` flag creates a directory if one doesn't already exist.
 - All we did when we switched users is open a new shell.
@@ -524,7 +531,188 @@ server {
 }
 ```
 
-We can create a default page and change it to whatever we want.
-We do this to verify that our directories and files are being served correctly.
+We can create a default page and change it to whatever we want. We do this to verify that our directories and files are being served correctly.
 
 - Create and edit index.html: `sudo vi /var/www/html/index.html`
+
+### 4.9. Node.js Configuration
+
+At some point we want to create complex applications. To do that we are going to create an application server.
+An application server is different from a web server, which just receives web traffic and does something with it.
+
+- NodeJS is a essentially a single threaded JavaScript engine that runs on top of V8.
+- It is usually a few versions behind Chrome.
+- The single thread is something that is often under-appreciated.
+- It means that things can be handled asynchronously very well.
+- Node uses the event loop to hand off processes so is asynchronous.
+- Node isn't the fastest. Generally Java, Go or Rust will be faster.
+- But most of the time we are not limited by the speed of the engine, it is something else.
+
+  - Install NodeJS and npm: `sudo apt install nodejs npm`
+  - Install git: `sudo apt install git`
+
+### 4.10. Application Architecture
+
+- Jem says the difference between a junior engineer and a senior engineer is about architecture.
+- How we arrange the application code and files means thinking about long-term maintainability.
+- Senior engineers think long-term.
+- Application architecture matters. An application can live for a long time, maybe years.
+- So it needs to be setup in a way that makes sense to us and everyone can agree on, because migrating files is painful.
+- If we are making an application and we turn into a business, the architecture will catch up tp us.
+- Part of being full stack is making decisions about the stack, the code, the tools.
+- When making decisions, use things that other people can use too.
+- Think about how other people use our code.
+
+### 4.11. Application Setup
+
+First we want to change the ownership of the `www` directory so that we don't need `sudo` every time we modify it.
+
+- Change ownership of the www directory to the current user: `sudo chown -R $USER:$USER /var/www`
+
+`chown` is for change ownership, the `-R` makes the command recursive, and `$USER` denotes current user.
+
+- Create application directory: `mkdir /var/www/app`
+- Move into app directory and initialize empty git repo: `cd /var/www/app && git init`
+
+Now we can create our directory structure.
+
+- Create directories: `mkdir -p ui/js ui/html ui/css`
+- Create empty app file: `touch app.js`
+- Initialize project: `npm init`
+
+Next we install Express, which is a Node.js-based web server.
+
+- install express: `npm i express --save`
+- edit app: `vi app.js`
+- We will create a bare bones Express server:
+
+```js
+const express = require("express");
+const app = express();
+const port = 3000;
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+```
+
+### 4.12. Proxy Passing Traffic
+
+- If we type `node app.js` the app will start running, but our Express server is running on port 3000, but the internet runs on port 80.
+- We need to direct that traffic to port 80 by connecting Nginx to Express.
+- We can tune Nginx so it points to the correct port.
+- To do this we are going to use the `proxy_pass` directive.
+- This means we proxy all the traffic going to `/` which is the general root domain, to the actual Node server on a different port.
+- Edit nginx config: `sudo vi /etc/nginx/sites-available/default`
+- Remove everything inside the `{}` and replace with `proxy_pass http://127.0.0.1:3000/;`
+
+```
+location / {
+  proxy_pass http://127.0.0.1:3000/;
+}
+```
+
+- Now restart Nginx: `sudo service nginx restart`
+- Any requests received will now be forwarded to the node application to handle.
+- The benefit of this is that we can have several different applications all running on different ports at the same time.
+- We can take an application down, spin another one up, route to a database etc.
+
+### 4.13. Process Manager
+
+Having to run `node app.js` is a pain. What happens if we restart the server, or if our computer goes to sleep and the shell exits which kills every program that's running. We need to use a process manager.
+
+- A process manager is a way of keeping an application up and running.
+- It handles errors, handle restarts.
+- It can handle logging and clustering.
+
+We will use `PM2. There is also a program called Forever but PM2 is more full featured and cleaner to use.
+
+- Install PM2: `sudo npm i -g pm2` (we need to use sudo because it is a global install)
+- Start PM2: `pm2 start app.js`
+
+Now `app.js` is running in the background and PM2 will do its best to keep it running.
+Next we can modify the PM2 startup file so that it creates a daemon that will always start our application when we start the server.
+
+- Setup auto restart: `pm2 startup`
+- Save the current process list: `pm2 save`
+
+### 4.14. Version Control with Git
+
+Version control records changes to a file system to preserve the history. Code is stored in a repository, the most popular of which is GitHub.
+
+In order to store our code in a GitHub repo we need to go through some steps.
+
+1. Create git repository
+2. Create a repo on GitHub
+3. Create SSH key
+4. Add SSH key to GitHub
+5. Add remote repo
+6. Push local repository to GitHub
+
+- Once we go through these steps we can code on our local machines.
+- We won't need to login to a server so we can use our IDE and and all the tools we want.
+- We can spin up the Node server locally and then just push that all to GitHub.
+- When we log into our server we can pull it down, restart our server and all of the changes will be there.
+- Generally we don't do any development on the server itself.
+
+**Create git repository**
+
+- We already did this with `git init` earlier in our app directory on the server.
+
+**Create a repo in Github**
+
+- Go to GitHub.com and create a new repo.
+- Initialize it with a README as this can make it easier to pull in.
+- Create a gitignore in the app directory: `vi .gitignore` and at the least add `node_modules` to it.
+
+**Create SSH key**
+
+- Generate key on the server: `cd ~/.ssh$` then `ssh-keygen`
+- We store the key in the default `id_rsa`
+- When we use GitHub to SSH and push or pull our files, SSH will automatically check `id_rsa`.
+
+**Add SSH key to GitHub**
+
+- [The docs give detailed instructions](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account).
+- Basically go to GiHub Profile > Settings > SSH and GPC Keys > New SSH Key
+- `cat id_rsa.pub` in the `.ssh` directory on the Droplet, copy and paste into Github.
+
+**Add remote repo**
+
+- Go to the new Github repo, select the Code button, and copy the SSH link to the repo.
+- On the server app directory type `git remote add origin git@github.com:username/repo_name.git`
+
+If we try to commit to the repo Git will prompt us to configure a username, so that when the commit lands on Github there will be someone attributed to it. We can set this up with:
+
+- `git config --global user.email "you@example.com"`
+- `git config --global user.name "Your Name"`
+
+Something like `tomhendra-server` would suffice for the name, just to show where the commit came from.
+
+**Push local repository to GitHub**
+
+- GitHub master branch now defaults to main, so change the branch in app with `git branch -m master main`.
+- `git add .`
+- `git commit -m "Server Init"`
+- `git push origin main`
+
+Now we can clone the repo to our local machine with `git clone git@github.com:username/repo_name.git`. We can make changes locally and push to GitHub, then `git pull` into the server.
+
+If we wanted to we can setup a cron job that automatically pulls in the latest changes (this is not a good idea in production, but for our own personal server it's fine).
+
+### 4.15. Server Setup Extras & Summary
+
+- [Install Fail2ban](https://www.techrepublic.com/article/how-to-install-fail2ban-on-ubuntu-server-18-04/).
+  This bans repeated access attempts.
+- [ExpressJS performance tips](http://expressjs.com/en/advanced/best-practice-performance.html).
+  Helps with tuning Nginx and Express.
+
+How the internet works:
+
+We enter a domain name into the browser, this initiates a connection to a nameserver which looks up the associated IP address, the nameserver returns the IP address which passes off to a node, then another node, then another... and eventually hits the server, the server passes off to a web server like Nginx, and then it passes to an application server like Express.js.
+
+There are faster ways to do what we have done, but for learning purposes going step-by-step is best.
