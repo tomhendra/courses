@@ -40,6 +40,7 @@
 - [5. Bash Basics](#5-bash-basics)
   - [5.1. Standard Streams & Redirection](#51-standard-streams--redirection)
   - [5.2. Finding Files & Directories](#52-finding-files--directories)
+  - [5.3. Searching File Contents with grep & zgrep](#53-searching-file-contents-with-grep--zgrep)
 
 ## 1. Introduction
 
@@ -759,7 +760,7 @@ On a Linux system we don't have Spotlight Search. There are two ways that we can
 
 We use grep often when piping output to find specific lines in that output.
 
-- `find` has the syntax of the directory we are looking in, options we are trying to look then the specific file we are looking for.
+- `find` has the syntax of the directory we are looking in, the options we are looking for, then the specific file we are looking for.
 - `find /bar -name foo.txt`
 
 Some useful options are:
@@ -774,3 +775,20 @@ Searching for log files:
 
 - Find all log files in /var/log: `find /var/log/nginx -type f -name "*.log"`
 - Find all directories with the name ‘log’: `find / -type d -name log`
+
+### 5.3. Searching File Contents with grep & zgrep
+
+Regular expressions can be tricky. Top tip: comment regular expressions so that anyone who reads the code can easily figure it out.
+
+- `grep` has the syntax of the options we are looking for, the search expression we are looking for, then the directory we are looking in.
+- `grep -i ‘tom’ /var/www`
+
+Over time log files get concatenated in gzip files, so we can also use `zgrep <FILE>` for searching inside gzip files, rather than having to unpack and go through them.
+
+- Find running node processes: `ps aux | grep node`
+  - `ps`: show running processes
+  - `a`: show processes for all users.
+  - `u`: display the process's user/owner.
+  - `x`: also show processes not attached to a terminal i.e. that are running in the background.
+  - `|` read from stout.
+  - `grep node`: return all matches the the expression 'node'.
