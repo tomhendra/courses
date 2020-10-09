@@ -45,6 +45,13 @@
   - [6.1. Nginx redirect](#61-nginx-redirect)
   - [6.2. Nginx Subdomain](#62-nginx-subdomain)
   - [6.3. Nginx File Compression](#63-nginx-file-compression)
+- [7. Security](#7-security)
+  - [7.1. Read auth.log](#71-read-authlog)
+  - [7.2. Security Checklist](#72-security-checklist)
+  - [7.3. Unattended Upgrades](#73-unattended-upgrades)
+  - [7.4. Firewalls](#74-firewalls)
+  - [7.5. Ports](#75-ports)
+  - [7.6. Uncomplicated Firewall](#76-uncomplicated-firewall)
 
 ## 1. Introduction
 
@@ -849,3 +856,85 @@ There are two different types of compression we are going to do on servers. Ngin
 - Images are not Gzip'ed as they are already compressed using a different type of compression.
 
 It is tempting to crank up the compression in the Nginx config, but we are trading off CPU power as it takes resources to run the compression algorithms. It is best to leave the compression levels alone.
+
+## 7. Security
+
+Security is one of the most important things that we will do. As developers we probably won't do too much security, as there are professional whose job is to look after this, but there are some important concepts that we should keep in mind.
+
+If someone gained access to our server they could lock us out of it, the could scrape the database, they could redirect to a malicious site amongst many other things.
+
+If we are building software for a bank, a hospital or an investment company, we literally have people's lives in our hands. Security is very important.
+
+One of the common malicious practices is to gain access to a server and turn it into a botnet, where they install a back door, delete the logs to cover their tracks, and maybe leave it dormant for months or years, then when the times comes then can shit down all our processes and turn it into a way of DDoSing another site. A distributed Denial of Service attack overwhelms the target to bring it down.
+
+Another common attack is cryptojacking or ransoming, where the database credentials are stolen, the entire database is encrypted and the hackers sell it back to you as a ransom.
+
+With root access it is game over, which is why we disable root.
+
+### 7.1. Read auth.log
+
+- Check auth/log: `sudo cat /var/log/auth.log`
+- Check the first 10 lines: `sudo head /var/log/auth.log`.
+- Check the the last 10 lines with `-f` flag to follow in realtime: `sudo tail -f /var/log/auth.log`.
+
+### 7.2. Security Checklist
+
+There are a few ky ways that we can lock down our server.
+
+- SSH
+- Firewalls
+- Updates
+- Two factor authentication
+- VPN
+
+There is big money in 'zero days' which are undocumented vulnerabilities. “Zero day” refers to the fact that the developers have “zero days” to fix the problem that has just been exposed — and perhaps already exploited by hackers.
+
+Zero days can be worth millions of dollars depending on what the exploit is. There are entire companies who seek zero days for profit. These people are known as _grey hat_ hackers, and are morally ambiguous.
+
+The good guys, the security researchers who find vulnerabilities and tell companies about them are known as _white hat_ hackers.
+
+The bad guys, the nefarious ones are know as _black hat_ hackers.
+
+Then there is the lowest tier of hackers and bad security people known as _script kiddies_. Those are people who download entire IP ranges from the internet and try to break in.
+
+### 7.3. Unattended Upgrades
+
+We want to avoid zero days and make sure that we keep our software up-to-date. We can do this with a program called _Unattended Upgrades_.
+
+Unattended Upgrades automatically upgrades software for minor or security fixes.
+
+- Install unattended upgrades: `sudo apt install unattended-upgrades`
+- View conf file: `cat /etc/apt/apt.conf.d/50unattended-upgrades`
+
+### 7.4. Firewalls
+
+Firewalls are not invulnerable, but it is enough to slow down and deter compromises.
+
+The Cisco definition: A network security device that monitors incoming and outgoing network traffic and decides whether to allow or block specific traffic based on a defined set of security rules.
+
+There are hardware firewalls and software firewalls. Consumer-grade firewalls are usually software. Most consumer OS have firewalls built-in.
+
+We don't want to leave all of our ports open, in case of vulnerabilities. We want to reduce the surface area for attacks.
+
+- `nmap` is a port scanner that an run over a range of IP addresses and checks for open ports.
+- Install nmap: `sudo apt install nmap`
+- Run nmap: `nmap YOUR_SERVER_IP_ADDRESS`
+- Run nmap with more service/version info: `nmap -sV YOUR_SERVER_IP_ADDRESS`
+
+People are running port scans all over the internet. It is very easy to find out software versions being used to target exploits.
+
+### 7.5. Ports
+
+A _port_ is a communication endpoint that maps to a specific process or network service.
+
+We can connect to a computer with an IP address, but ports allow us to target one particular process or service. We can just have one IP address and a lot of different ports.
+
+The danger is that each port that is open to the internet means it is a vulnerability, and can be potentially exploited. So in general we want the fewest number of ports open as possible. That's why ports are closed by default until we open them up.
+
+- We currently have port 3000 open and we don't need to.
+- We only want all traffic to go through port 80.
+- If we start another process on port 3000 and redirect somewhere else, we would have an open port vulnerable to exploits.
+
+We can see what the standard ports are with `less /etc/services`. These are the de facto standards and can be changed, but best practice is to leaves them as the defaults.
+
+### 7.6. Uncomplicated Firewall
