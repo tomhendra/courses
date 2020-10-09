@@ -52,6 +52,8 @@
   - [7.4. Firewalls](#74-firewalls)
   - [7.5. Ports](#75-ports)
   - [7.6. Uncomplicated Firewall](#76-uncomplicated-firewall)
+  - [7.7. Permissions](#77-permissions)
+  - [7.8. Upgrade Node.js](#78-upgrade-nodejs)
 
 ## 1. Introduction
 
@@ -938,3 +940,62 @@ The danger is that each port that is open to the internet means it is a vulnerab
 We can see what the standard ports are with `less /etc/services`. These are the de facto standards and can be changed, but best practice is to leaves them as the defaults.
 
 ### 7.6. Uncomplicated Firewall
+
+We previously have used IP tables which are ways of routing, blocking or denying requests to certain ports over certain protocols. But they are really onerous and the syntax isn't very friendly, e.g. `iptables -p tcp --dport 80 -j REJECT`.
+
+Fortunately the kind folks at The Open Software Foundation (OSF) and Ubuntu created something more lightweight called `ufw`: _The Uncomplicated Firewall_.
+
+The syntax is much nicer: `ufw allow` | `deny` | `reject` and then `ssh` | `http` etc.
+
+It is much easier to reason about when thinking on a surface level rather than a port level.
+
+- `deny` black holes requests. It doesn't respond explicitly that the port is closed, and just drops the request internally.
+- `reject` responds with a packet explicitly saying the port is closed.
+
+Generally we want to black hole requests, unless there is a specific case where we want to tell people that the service they are trying to access is incorrect or the parameters are invalid for example.
+
+Black holing a request causes the process which sent the request to keep hanging, which works as a deterrent by consuming resources and slowing down the port crawling.
+
+- Check firewall status: `sudo ufw status`
+- Enable firewall: `sudo ufw enable`
+- Allow SSH: `sudo ufw allow ssh`
+- Allow HTTP: `sudo ufw allow http`
+- Check firewall status: `sudo ufw status verbose` using verbose for more info.
+
+Be very careful when getting into security. If we start rejecting or black holing SSH requests we can absolutely get locked out of the server. If we close port 22 for SSH we have no way of getting back in!
+
+### 7.7. Permissions
+
+Permissions are based on the idea of what if someone gained access to the server. Permissions mean we are locking down what can be done with a file.
+
+There are three things that can be done with a file:
+
+1. Read
+2. Write
+3. Execute
+
+Permissions are all about controlling these three things.
+
+For instance we use sudo to modify things that we don't have permissions to do. If someone gained access without that root permission, they could do damage but the blast radius would be very limited.
+
+- [The Permissions Cheat Sheet](https://isabelcastillo.com/linux-chmod-permissions-cheat-sheet) shows the numerical codes for how to set the permissions for a file or directory by using the `chmod` command.
+- `ls -ls` gives a list of the permissions on our machine.
+- The six digit format from left to right means `rwe` for us, `rwe` for our group (sudo) and `rwe` for everyone else.
+
+We want to have the least permissive permissions as possible. Unless a user or group needs to access a file, just lock it down.
+
+### 7.8. Upgrade Node.js
+
+The default installed Node was v10 whereas the LTS is v12. The `apt` repo is always behind.
+
+To upgrade Node we are going to use curl, which is short for client URL. It's one of the common commands for reading and writing external sources. We will connect the Node Source which is the Debian repo.
+
+Top tip: rather than using the `man` command to look at manuals, [Explain Shell](https://explainshell.com) is a great for a nicer format.
+
+- Download setup script from nodesource: `curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh`
+- Run script: `sudo bash nodesource_setup.sh`
+
+The script doesn't download anything, but sets the `apt` pointer for Node to a different source.
+
+- Install nodejs: `sudo apt install nodejs`
+- Update outdated packages: `sudo npm update -g`
