@@ -41,6 +41,10 @@
   - [5.1. Standard Streams & Redirection](#51-standard-streams--redirection)
   - [5.2. Finding Files & Directories](#52-finding-files--directories)
   - [5.3. Searching File Contents with grep & zgrep](#53-searching-file-contents-with-grep--zgrep)
+- [6. Nginx Config Basics](#6-nginx-config-basics)
+  - [6.1. Nginx redirect](#61-nginx-redirect)
+  - [6.2. Nginx Subdomain](#62-nginx-subdomain)
+  - [6.3. Nginx File Compression](#63-nginx-file-compression)
 
 ## 1. Introduction
 
@@ -792,3 +796,56 @@ Over time log files get concatenated in gzip files, so we can also use `zgrep <F
   - `x`: also show processes not attached to a terminal i.e. that are running in the background.
   - `|` read from stout.
   - `grep node`: return all matches the the expression 'node'.
+
+## 6. Nginx Config Basics
+
+### 6.1. Nginx redirect
+
+The redirect is really powerful. We can create redirects in Nginx before the application is reached.
+
+Before we used `proxy_pass http://127.0.0.1:3000/;` to proxy pass to Express from the `/` root.
+
+We can do a redirect in the Nginx config at `/etc/nginx/sites-available/default` with another location block for `/help` as follows:
+
+```
+location /help {
+    return 301 https://developer.mozilla.org/en-US/;
+}
+```
+
+Note: 301 is "Moved Permanently" and recommended for SEO, whereas 302 is "Found" or "Moved Temporarily".
+
+For instance if our site is down and we want to redirect to our status page, we want to do a temporary redirect there. When search engines crawl our site, if we use a permanent redirect they will assume that is what they should index, rather than the main site.
+
+### 6.2. Nginx Subdomain
+
+The server block ew configured earlier is what is known as a virtual host. The Nginx config file at `/etc/nginx/sites-available/default` is the virtual hosts config.
+
+We could create 10 different domains and 10 different servers (virtual hosts) on one Nginx configuration, and depending on the URL that is required Nginx will redirect to the right place.
+
+```
+server {
+    	listen 80;
+      listen [::]80; # Note: [::] is IPV6 notation
+
+       server_name test.tomhendra.dev;
+
+        location / {
+           proxy_pass http://localhost:3000;
+          }
+}
+```
+
+In terms of the mental model we can have lots of servers. In terms of cost, we are only paying for one server!
+
+### 6.3. Nginx File Compression
+
+There are two different types of compression we are going to do on servers. Nginx has one turned on by default: Gzip.
+
+- [Info on compression](https://www.geeksforgeeks.org/difference-between-lossy-compression-and-lossless-compression/).
+- Nginx will automatically compress everything in the Gzip standard as per the config at `/etc/nginx/nginx.conf`.
+- All of the browsers know how to unpack a Gzip file.
+- This makes connections much faster.
+- Images are not Gzip'ed as they are already compressed using a different type of compression.
+
+It is tempting to crank up the compression in the Nginx config, but we are trading off CPU power as it takes resources to run the compression algorithms. It is best to leave the compression levels alone.
