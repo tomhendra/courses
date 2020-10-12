@@ -1,9 +1,0 @@
-{
-  "name": "ccc-gsap",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "gsap": "^3.5.1"
-  }
-}

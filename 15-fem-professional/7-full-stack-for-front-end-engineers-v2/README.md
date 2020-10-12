@@ -54,6 +54,9 @@
   - [7.6. Uncomplicated Firewall](#76-uncomplicated-firewall)
   - [7.7. Permissions](#77-permissions)
   - [7.8. Upgrade Node.js](#78-upgrade-nodejs)
+- [8. HTTP](#8-http)
+  - [8.1. HTTP Headers & Cookies](#81-http-headers--cookies)
+  - [8.2. HTTPS](#82-https)
 
 ## 1. Introduction
 
@@ -999,3 +1002,82 @@ The script doesn't download anything, but sets the `apt` pointer for Node to a d
 
 - Install nodejs: `sudo apt install nodejs`
 - Update outdated packages: `sudo npm update -g`
+
+## 8. HTTP
+
+HTTP (Hypertext Transfer Protocol) is the protocol which defines how hypermedia documents, such as HTML, are transmitted over the web.
+
+To be a good full stack engineer we need to understand it.
+
+HTTP runs over TCP. The model is a classic client-server model, with requests and responses.
+
+An HTTP request looks something like this:
+
+```
+GET / HTTP/1.1
+Host: jemisthe.best
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36
+Accept: text/html
+Accept-Encoding: gzip, br
+Accept-Language: en,en-US
+```
+
+### 8.1. HTTP Headers & Cookies
+
+Packets are made up of data and metadata. Part of the metadata is the header.
+
+The metadata contains a lot of information about the data, such as where the request came from, what encoding it has, what content it has.
+
+We can insert and strip out headers to perform different operations. Nginx uses the Host header to route traffic.
+
+**Common headers**
+
+| User-agent | The requesting device type |
+| Accept | What the device will handle |
+| Accept-language | Browser languages |
+| Content-type | The type of media |
+| Set-cookie | Sets stateful information |
+| X- | Typically used for custom headers |
+
+A cookie is a persistent bit of data that persists in the browser.
+
+- A session cookie will persist until the tab or browser is closed.
+- A regular cookie will persist over time and expires whenever we set it to.
+
+Cookies are crucial to the web because the internet is stateless, and all requests and responses are brand new, so we need cookies to persist data for us.
+
+The danger with cookies is that they persist over every singe request unless we expire them, so we can end up adding KBs to requests. Be careful how many cookies we send, and don't add too much data to them.
+
+The response looks a little different, with different headers:
+
+```
+HTTP/1.1 200 OK
+Server: nginx/1.14.0 (Ubuntu)
+Date: Wed, 25 Sep 2019 02:13:13 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 12
+```
+
+The request headers are all about what the browser is, where the request came from, where it is trying to get to, what sort of technology standards are supported.
+
+The response headers are about what the server is sending back.
+
+**HTTP Status Codes** indicate the status of an HTTP request. If we make a request there will always be a response back but we don't know what to do with that response without the status code.
+
+| 200 | OK |
+| 301 | Moved permanently |
+| 302 | Found (temporary redirect) |
+| 401 | Not authorized |
+| 500 | Internal server error |
+
+Status codes help the web application in the browser know what to do with a response.
+
+The prefixes of status codes all mean something very specific.
+
+| 1xx | Information |
+| 2xx | Success |
+| 3xx | Redirect |
+| 4xx | Client error |
+| 5xx | Server error |
+
+### 8.2. HTTPS
