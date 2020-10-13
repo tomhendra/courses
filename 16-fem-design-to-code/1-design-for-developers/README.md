@@ -14,6 +14,7 @@
   - [2.4. Shape](#24-shape)
   - [2.5. Scale & Cropping](#25-scale--cropping)
   - [2.6. Grid](#26-grid)
+- [3. Layout in CSS](#3-layout-in-css)
 
 ## 1. Introduction
 
@@ -95,3 +96,11 @@
 - Without this anchoring a design can feel disorganized and chaotic.
 - It provides a systematic order to layout; _the architecture of space_.
 - But if a design is too systematic it is too predictable, so the art is to break the grid a little bit.
+
+## 3. Layout in CSS
+
+- [Grid by Example](https://gridbyexample.com) by Rachel Andrew is a great resource with a lot of starting patterns.
+- [The Experimental Layout Lab](https://labs.jensimmons.com) by Jen Simmons is a good demonstration of innovative layouts.
+- Use DevTools to play around with the layout demos to learn how they are put together.
+- [Grid Garden](http://cssgridgarden.com) is another good learning tool.
+- [The CSS Grid Generator](https://cssgrid-generator.netlify.app) can help with starting off too.
