@@ -102,7 +102,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2)**\
       **Repeat from FEM Professional Path:** Take a deep-dive into the essential features of CSS, while also exploring CSS features you probably didn’t even know existed!
 
-    - **[Design for Developers]()**\
+    - **[Design for Developers](16-fem-design-to-code/1-design-for-developers)**\
        Become self-sufficient for the entire process of execution from concept to design to implementation. You'll learn to execute the creation of complex and beautiful front-end experiences!
 
     - **[Responsive Web Typography v2]()**\

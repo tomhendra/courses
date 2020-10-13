@@ -1,7 +1,7 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
 <h1>Revision Log</h1>
-<p>A record of spaced repetition note recall, to retain knowledge.</p>
+<p>Spaced repetition note log to retain knowledge.</p>
 </div>
 
 ### [Learning to Learn: Efficient Learning](10-learning-to-learn)\
@@ -60,6 +60,11 @@
 - Next review due: 20/10/2020
 
 ### [Full Stack for Frontend v2](15-fem-professional/7-full-stack-for-front-end-engineers-v2)\
+
+- Reviewed:
+- Next review due: 20/10/2020
+
+### **[Design for Developers](16-fem-design-to-code/1-design-for-developers)**\
 
 - Reviewed:
 - Next review due: 20/10/2020
