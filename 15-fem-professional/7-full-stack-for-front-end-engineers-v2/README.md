@@ -57,6 +57,14 @@
 - [8. HTTP](#8-http)
   - [8.1. HTTP Headers & Cookies](#81-http-headers--cookies)
   - [8.2. HTTPS](#82-https)
+  - [8.3. Adding HTTPS to Nginx](#83-adding-https-to-nginx)
+  - [8.4. HTTP/2](#84-http2)
+  - [8.5. HTTP/3](#85-http3)
+- [9. Containers Basics](#9-containers-basics)
+  - [9.1. Containers & Microservices](#91-containers--microservices)
+  - [9.2. Docker & Orchestration](#92-docker--orchestration)
+  - [9.3. Load Balancers](#93-load-balancers)
+  - [9.4. Deployment](#94-deployment)
 
 ## 1. Introduction
 
@@ -1032,12 +1040,14 @@ We can insert and strip out headers to perform different operations. Nginx uses 
 
 **Common headers**
 
-| User-agent | The requesting device type |
-| Accept | What the device will handle |
-| Accept-language | Browser languages |
-| Content-type | The type of media |
-| Set-cookie | Sets stateful information |
-| X- | Typically used for custom headers |
+| Header Type     | Function                          |
+| --------------- | --------------------------------- |
+| User-agent      | The requesting device type        |
+| Accept          | What the device will handle       |
+| Accept-language | Browser languages                 |
+| Content-type    | The type of media                 |
+| Set-cookie      | Sets stateful information         |
+| X-              | Typically used for custom headers |
 
 A cookie is a persistent bit of data that persists in the browser.
 
@@ -1064,20 +1074,165 @@ The response headers are about what the server is sending back.
 
 **HTTP Status Codes** indicate the status of an HTTP request. If we make a request there will always be a response back but we don't know what to do with that response without the status code.
 
-| 200 | OK |
-| 301 | Moved permanently |
-| 302 | Found (temporary redirect) |
-| 401 | Not authorized |
-| 500 | Internal server error |
+| Error Code | Meaning                    |
+| ---------- | -------------------------- |
+| 200        | OK                         |
+| 301        | Moved permanently          |
+| 302        | Found (temporary redirect) |
+| 401        | Not authorized             |
+| 500        | Internal server error      |
 
 Status codes help the web application in the browser know what to do with a response.
 
 The prefixes of status codes all mean something very specific.
 
-| 1xx | Information |
-| 2xx | Success |
-| 3xx | Redirect |
-| 4xx | Client error |
-| 5xx | Server error |
+| Error Code | Category     |
+| ---------- | ------------ |
+| 1xx        | Information  |
+| 2xx        | Success      |
+| 3xx        | Redirect     |
+| 4xx        | Client error |
+| 5xx        | Server error |
 
 ### 8.2. HTTPS
+
+HTTPS is HTTP over SSL, meaning the data is encrypted in transit.
+
+Not only does HTTPS encrypt data, it also verifies that the domain being accessed is genuinely the domain it is supposed to be. This verification is made by certificate authorities, which are trusted authorities who verify identity.
+
+The client receives a public key and a certificate from the server which it uses to encrypt data. The server then uses its private key to decrypt the data.
+
+### 8.3. Adding HTTPS to Nginx
+
+It used to be very hard to add HTTPS encryption to a site. We needed the key, the right cipher, the right algorithm, the right random number generation and we had to serve out the certificate.
+
+The [Electronic Frontier Foundation](https://www.eff.org) are the good folks who are fighting for encryption on the web. They created Certbot, which is a wrapper around Let's Encrypt.
+
+1. Modify the Nginx config `sudo vi /etc/nginx/sites-available/default` and add the domain name after `server_name`.
+2. Allow HTTPS in the firewall for port 443: `sudo ufw allow https`
+3. Go to the [Certbot](https://certbot.eff.org) website.
+4. Use the dropdown menus to select Nginx & Ubuntu version.
+5. Follow the instructions on the Certbot website.
+
+### 8.4. HTTP/2
+
+Everything discussed so far uses the old protocol HTTP/1.1. HTTP/2 requires HTTPS and allows multiplexing, which means doing multiple things over a single connection.
+
+With HTTP/1.1, every request needs a separate TCP handshake which slows things down. Multiplexing allows us to make one connection and then transfer all files over one larger pipe.
+
+There is a limit to the number of connections we can make, but that's usually due to the computer.
+
+- Add to config: `sudo vi /etc/nginx/sites-available/default`
+- Add `http2` to the line `listen 443 http2 ssl;`
+- Hint: `/443` will take you the right location in the file to edit.
+- Reload Nginx: `sudo service nginx reload`
+
+See the [Akamai demo](xhttps://http2.akamai.com/demo)
+
+The other benefit to HTTP/2 is HPACK, which is a compression algorithm that takes all of the headers and compresses them into a hash and compares them over time. That comparison gives us a 30-40% speed increase. But remember cookies can't be compressed generally, so HTTP/2 won't help much with a large cookie payload.
+
+### 8.5. HTTP/3
+
+Even though HTTP/2 is not fully adopted, HTTP/3 has already been released.
+
+All previous HTTP generations run over TCP, and although HTTP/2 allows multiplexing to reduce the TCP handshakes required, there is still the TCP error correcting which handles lost packets. In the early days of the internet this was required, especially with dial up and dropped connections.
+
+Nowadays the internet is much more reliable, so Google invented a new protocol called Quick UDP Connections which has HTTP over UDP, rather than TCP.
+
+UDP has some error correction built-in but is more of a stream of data which is assumed will be received.
+
+Look at anything from Google and note the DevTools network tab shows a protocol of `h3-Q050`.
+
+HTTP/3 should create a 13-20% speed increase over HTTP/2 and be more common over the coming 5 years.
+
+## 9. Containers Basics
+
+### 9.1. Containers & Microservices
+
+Containers are changing thr landscape of servers and how we structure architecture.
+
+**Microservices** are the architecture of loosely connected services.
+
+It is a misnomer in that just because something is a _microservice_ doesn't mean it is small and lightweight.
+
+The opposite of a microservice architecture is a monolith architecture, which is one app that does everything like Java, Node or Python with Django.
+
+There is a tradeoff when moving to microservices.
+
+One benefit of a monolith is that everything is written in the same language, so maintenance can be easier because there aren't lots of disparate languages and services communicating with each other.
+
+A downside of monolith is that everything can be tightly coupled, so making changes to one part can affect or break other parts, which can have unintended consequences.
+
+There is no "one size fits all" approach between monolith and microservice. It depends on the application, what type of engineers are at the company, how the company is structured etc.
+
+The benefit of Microservice architecture is that we can have multiple teams working on multiple layers of an application, all maintaining their own stack in their chosen language, and as long as a common API is maintained they can all operate independently.
+
+The downside is the complexity that comes with maintaining communication and connections between all the different apps, which is achieved by using containers.
+
+**Containers** are a way of partitioning code and the environment it needs to run in.
+
+Originally microservice architecture used virtual machines each containing an entire OS with the environment running within them.
+
+Containers just run a set of libraries that are required for the code to run, and nothing more.
+
+This is made possible by the advances we have made in cloud computing and the hypervisor, which is the process that controls other processes and how they talk to each other.
+
+The hypervisor is really good at allocating resources to different processes and is what allows us to use tiny portions of servers as a VPS.
+
+The idea of containers is built on top of that. Instead of the VPS we take the concept of a server and segment that out into different sections. And each segment has its own libraries and resources, and doesn't necessarily know about what OS it is running on.
+
+With containers we are able to analyse precisely what each container is doing and allocate resources efficiently. With a monolith we have to look at separate processes and do more digging. Containers are therefore much faster to scale up and down. We can control our server much more accurately.
+
+They are also much easier to start up and take down, as we do not have to configure an entire server each time.
+
+Containers benefits:
+
+- Lightweight
+- Portable
+- Easier for development
+- Easier to manage
+- Faster startup
+- Decouple application from infrastructure
+
+### 9.2. Docker & Orchestration
+
+The most famous containerization platform is Docker. Containerization is the layer that talks between the application and the OS.
+
+There are more: Amazon ECS, Apache Mesos, CoreOS rkt (Rocket) and Netflix runs on a platform called Titus, which is open source.
+
+Orchestration is the process of taking all the individual containers and deploying them to the servers themselves. The most famous orchestration platform is Kubernetes (K8s). There are also Docker Swarm, Amazon EKS, Apache Mesos & AKS.
+
+When we are at this level if engineering we are more DevOps than Full Stack. We need to know exactly what we are doing as we are bringing up €1000's of servers and brining them down quickly, and need to know how to balance that.
+
+### 9.3. Load Balancers
+
+Elastic computing allows us to allocate different amounts of resources at different times based on load.
+
+Load balancers route the traffic to the appropriate cluster. This is something that has to be thought about when we reach a particular scale. It makes sure that traffic is distributed evenly between servers.
+
+Load balancers works with a concept of scheduling algorithms of which there are different types:
+
+- Round Robin\*
+- IP Hashing
+- Random Choice
+- Least Connections
+- Least Load
+
+We can look at our own server processes.
+
+- Display running processes in realtime: `top`
+- Install htop: `sudo apt install htop`
+- Display running processes: `htop`
+
+Nginx has its own [load balancer](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/).
+
+### 9.4. Deployment
+
+If we are not using the container orchestration pattern of microservices architecture, there are tools that handle deployment of multiple servers for us.
+
+- Ansible
+- Vagrant
+- Puppet
+- Chef
+
+We can take everything we have done in this course, put it in a script and roll out a new server every time.
