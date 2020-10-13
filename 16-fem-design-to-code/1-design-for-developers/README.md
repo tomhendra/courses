@@ -26,6 +26,12 @@
   - [4.8. Animated Gradients](#48-animated-gradients)
   - [4.9. How to Create a Colour Palette](#49-how-to-create-a-colour-palette)
   - [4.10. Data Visualization with HSLA](#410-data-visualization-with-hsla)
+- [5. Typography](#5-typography)
+  - [5.1. Typography Resources](#51-typography-resources)
+  - [5.2. Pairing Fonts](#52-pairing-fonts)
+  - [5.3. Typographic Colour](#53-typographic-colour)
+  - [5.4. Terminology](#54-terminology)
+  - [5.5. Summary](#55-summary)
 
 ## 1. Introduction
 
@@ -201,3 +207,54 @@ body {
 - Then find a nice accent colour or two.
 
 ### 4.10. Data Visualization with HSLA
+
+- [Here](https://ich.unesco.org/dive/biome/?language=en) is a great example of generative colours with HSLA.
+
+## 5. Typography
+
+- Typographical balances are really important for meaning.
+- Typography creates hierarchy.
+- Serif has curlicues and sans-serif does not.
+
+### 5.1. Typography Resources
+
+- [Google Fonts](https://fonts.google.com)
+- [Font Squirrel](https://www.fontsquirrel.com)
+- [Fonts.com](https://www.fonts.com)
+- [WhatTheFont](https://www.myfonts.com/WhatTheFont/) - analyzer.
+- [Hoefler&Co](https://www.typography.com)
+
+### 5.2. Pairing Fonts
+
+- We pair typography using two fonts for a website.
+- Never use more than three fonts: it negatively affects design and performance.
+- Don't choose types that are too similar to each other.
+- Even using two fonts we can change up letter spacing and use caps to create different effects.
+- Google fonts has a pairing feature.
+- [FontJoy](https://fontjoy.com) is great for finding pairs.
+- [Typography for Lawyers](https://www.amazon.es/Typography-Lawyers-Matthew-Butterick/dp/1598390775) is a recommended book.
+
+### 5.3. Typographic Colour
+
+- Typographic colour is the rhythm and cadence of typography.
+- This matters for things like body text.
+- If we blur our eyes the text should have an even tone, and many darker parts.
+- Responsive typography: Mike Riethmuller invented a formula for fluid typography: see [CodePen](https://codepen.io/MadeByMike/).
+- We can do creative things with placement of text using [Type Lock-Up](https://css-tricks.com/snippets/svg/text-lock-up/).
+
+### 5.4. Terminology
+
+- We know of monospaced fonts as developers, but many do not the opposite which is proportional.
+- Kerning is the space between letters.
+- Leading is the space between baselines.
+- Widows are when there is one word that is left alone at the end of a paragraph.
+- Orphans are when the end of a paragraph is left alone at the start of the next paragraph.
+- Ligatures are when letters join together.
+- [More typography terminology](https://creativemarket.com/blog/typography-terms-cheatsheet?utm_source=Link&utm_medium=CM+Social+Share&utm_campaign=Blog+Post+Social+Share&utm_content=Free+Typography+Basics+Cheatsheet%3A+Anatomy%2C+Classification+%26+Special+Terms+%7E+Creative+Market+Blog&ts=201811).
+- Text always has a bigger space at the bottom in books. If it is centred, it looks like the text is _falling down_.
+
+### 5.5. Summary
+
+- Always pay close attention to font performance. Use [Zach Leatherman's blog](https://www.zachleat.com/web/) as a guide.
+- Peter Meuller took some of Zach's advise and made an automation tool called [Subfont](https://github.com/Munter/subfont).
+- Robin Rendle has a great [blog](https://www.robinrendle.com/adventures/) about typography.
