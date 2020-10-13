@@ -93,7 +93,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Full Stack for Front-End Engineers, v2](15-fem-professional/7-full-stack-for-front-end-engineers-v2)**\
        You'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
 
-16. **[Frontend Masters Learning Path: Design to Code]()**
+16. **[Frontend Masters Learning Path: Design to Code]()**\
     Take your designs to the finish line through being able to code out your ideas.
 
     - **[CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)**\

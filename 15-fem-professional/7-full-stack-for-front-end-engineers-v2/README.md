@@ -65,6 +65,10 @@
   - [9.2. Docker & Orchestration](#92-docker--orchestration)
   - [9.3. Load Balancers](#93-load-balancers)
   - [9.4. Deployment](#94-deployment)
+- [10. Saving Data](#10-saving-data)
+  - [10.1. Database Types](#101-database-types)
+  - [10.2. Redis & MySql](#102-redis--mysql)
+  - [10.3. WebSockets](#103-websockets)
 
 ## 1. Introduction
 
@@ -1236,3 +1240,68 @@ If we are not using the container orchestration pattern of microservices archite
 - Chef
 
 We can take everything we have done in this course, put it in a script and roll out a new server every time.
+
+## 10. Saving Data
+
+Most of our job as a software engineer involves reading from and writing to databases. But as UI engineers we often don't give a lot of thought as to how and where that data is going.
+
+The simplest way of saving data is a file. But we can't use files for everything because they are not portable. If ten servers need access to the file at the same time it would be hard, because writing to a file means writing to a hard disk, which is the slowest level of caching. And persisting that across thousands of servers is not scalable.
+
+So we need a data platform that is built specifically for saving data and information: **databases** give us a structured way of reading and writing data.
+
+### 10.1. Database Types
+
+**Relational** databases describe how entities relate to each other. Known as the SQL database, they invariably always use tables, and have a very strict structure on how data should be formed, written and read.
+
+When we have massive amounts of data this structure becomes very important. Querying them is a language in itself, and database admin is a whole specialization.
+
+To make proper use of a SQL database we need to have a structure defined ahead of time. We can't just figure things out as we go. We need a strict _schema_ which is a set of rules.
+
+Examples include:
+
+- MySQL
+- PostgreSQL
+- SQLServer
+
+Relational databases were the first kind. But over time another type has been created in **non-relational** or NoSQL databases. These are more like what we think of as general storage.
+
+There is either none or a very loose structure to non-relational databases.
+
+They all have their specializations. For example Redis is a fantastic cache database. MongoDB on the other hand is a document store.
+
+Examples include:
+
+- Redis
+- Elastic
+- MongoDB
+- Cassandra
+
+### 10.2. Redis & MySql
+
+- Install redis server: `sudo apt install redis-server`
+- Edit config to start with system: `sudo vi /etc/redis/redis.conf` => `supervised systemd`
+- Restart redis server: `sudo systemctl restart redis.service`
+
+To run redis with a Node setup, Jem recommends [NodeRedis](https://github.com/NodeRedis/node-redis).
+
+- Install mysql server: `sudo apt install mysql-server`
+- Run setup: `mysql_secure_installation`
+
+To run MySQL with a Node setup, Jem recommends [mysqljs](https://github.com/mysqljs/mysql).
+
+### 10.3. WebSockets
+
+A WebSocket is a persistent bidirectional connection between client and server.
+
+The connection is kept alive through a tunnel through which data can flow. It is much faster than a TCP connection, even though it runs over TCP. It is used a lot in chat applications.
+
+To make WebSockets work in Nginx we need to use an upgrade request to allow the WebSockets to stream though to the Node app.
+
+```
+location / {
+	  proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_pass http://127.0.0.1:3000;
+}
+```
