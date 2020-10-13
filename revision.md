@@ -59,7 +59,7 @@
 - Reviewed:
 - Next review due: 20/10/2020
 
-### [Complete Intro to React, v5](15-fem-professional/)\
+### [Full Stack for Frontend v2](15-fem-professional/7-full-stack-for-front-end-engineers-v2)\
 
 - Reviewed:
 - Next review due: 20/10/2020
@@ -70,6 +70,11 @@
 - Next review due: 20/10/2020
 
 ### [JavaScript Algorithms and Data Structures Masterclass](3-algorithms-and-data-structures)\
+
+- Reviewed:
+- Next review due: 20/10/2020
+
+### [Complete Intro to React, v5](15-fem-professional/)\
 
 - Reviewed:
 - Next review due: 20/10/2020
