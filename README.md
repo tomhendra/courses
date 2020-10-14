@@ -105,7 +105,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Design for Developers](16-fem-design-to-code/1-design-for-developers)**\
        Become self-sufficient for the entire process of execution from concept to design to implementation. You'll learn to execute the creation of complex and beautiful front-end experiences!
 
-    - **[Responsive Web Typography v2]()**\
+    - **[Responsive Web Typography v2](16-fem-design-to-code/1-design-for-developers)**\
       Learn how to implement web fonts and create a modern, scalable typographic system to give the best reading experience for desktop and mobile devices!
 
     - **[SVG Essentials & Animation, v2]()**\

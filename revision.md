@@ -64,7 +64,12 @@
 - Reviewed:
 - Next review due: 20/10/2020
 
-### **[Design for Developers](16-fem-design-to-code/1-design-for-developers)**\
+### [Design for Developers](16-fem-design-to-code/1-design-for-developers)\
+
+- Reviewed:
+- Next review due: 20/10/2020
+
+### [Responsive Web Typography v2](16-fem-design-to-code/2-responsive-web-typography-v2)\
 
 - Reviewed:
 - Next review due: 20/10/2020
