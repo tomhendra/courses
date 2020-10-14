@@ -32,6 +32,9 @@
   - [5.3. Typographic Colour](#53-typographic-colour)
   - [5.4. Terminology](#54-terminology)
   - [5.5. Summary](#55-summary)
+- [6. Inspiration](#6-inspiration)
+  - [6.1. Remixing](#61-remixing)
+  - [6.2. Sources of Inspiration](#62-sources-of-inspiration)
 
 ## 1. Introduction
 
@@ -258,3 +261,29 @@ body {
 - Always pay close attention to font performance. Use [Zach Leatherman's blog](https://www.zachleat.com/web/) as a guide.
 - Peter Meuller took some of Zach's advise and made an automation tool called [Subfont](https://github.com/Munter/subfont).
 - Robin Rendle has a great [blog](https://www.robinrendle.com/adventures/) about typography.
+
+## 6. Inspiration
+
+### 6.1. Remixing
+
+- We can be inspired by someone, but we need to ensure we don't copy them too much.
+- Nothing is new in design, but we can combine sources in a unique way to create something that the audience is less accustomed to.
+- Everything is a _remix_.
+- It is a really good idea to look for inspiration before we start designing.
+- Dribbble, Behance, CodePen, Glitch, CodeSandbox.
+- Finding our heroes is a good idea.
+- Get inspired by multiple sources, throw a load of resources in the insp directory, but then wait.
+- Sleep on it and then try to work from memory, not directly.
+- It is very hard to copy something if we are not looking at it directly.
+- When we stop looking at something for a while, we combine things in our imagination that are unique.
+- Look at other disciplines for inspiration. Don't limit to just the web.
+- Music, comic books, films, anime - they all can inspire.
+- Just like reverse engineering, copying existing work can help us learn.
+
+### 6.2. Sources of Inspiration
+
+- [Give 'n' Go](https://give-n-go.co): Dribble content recreated with code.
+- [Swiss Layout](https://codepen.io/sdras/full/oMZjZa): CodePen by Sarah with animated Swiss layout.
+- [Vue Invaders](https://codepen.io/mirisuzanne/full/LmrEmb/): CodePen showing grid demo.
+- UI Kits on [Shutterstock](https://www.shutterstock.com) or [iStock Photo](https://www.istockphoto.com).
+- [CodePen Topics](https://codepen.io/topics/): design patterns for various components.
