@@ -35,6 +35,11 @@
 - [6. Inspiration](#6-inspiration)
   - [6.1. Remixing](#61-remixing)
   - [6.2. Sources of Inspiration](#62-sources-of-inspiration)
+- [7. Images & Performance](#7-images--performance)
+  - [7.1. Image Formats & Resources](#71-image-formats--resources)
+  - [7.2. Exporting Tips](#72-exporting-tips)
+  - [7.3. SVG](#73-svg)
+  - [7.4. SVG Handling & Full Page Background](#74-svg-handling--full-page-background)
 
 ## 1. Introduction
 
@@ -286,4 +291,57 @@ body {
 - [Swiss Layout](https://codepen.io/sdras/full/oMZjZa): CodePen by Sarah with animated Swiss layout.
 - [Vue Invaders](https://codepen.io/mirisuzanne/full/LmrEmb/): CodePen showing grid demo.
 - UI Kits on [Shutterstock](https://www.shutterstock.com) or [iStock Photo](https://www.istockphoto.com).
-- [CodePen Topics](https://codepen.io/topics/): design patterns for various components.
+- [CodePen Topics](https://codepen.io/topics/): Design patterns for various components.
+
+## 7. Images & Performance
+
+### 7.1. Image Formats & Resources
+
+- We can't be a web performance expert without being an image performance expert.
+- Images are really heavy and a huge part of what we transmit on the web.
+- There are many resources.
+- Free:
+  - Unsplash
+  - Google Image (Search License)
+  - Feepik
+  - freeimages
+  - Pexels
+- Low cost:
+  - Creative Market
+  - Adobe Stock
+- Costly:
+  - Shutterstock
+  - iStockPhoto
+- Sometimes the costly options can be the better option as it is cheaper than paying a designer for 3 hours to find the right images.
+- Raster images are bitmap and lose resolution when scaled.
+- Vector images are mathematical commands and never loses resolution.
+- [Image file formats](https://en.99designs.es/blog/tips/image-file-types/.
+- JPG is lossy compression so loses image quality when the it is compressed.
+- GIF can be limited in colours to reduce file size.
+- PNG have a transparent ability which is good for masking.
+
+### 7.2. Exporting Tips
+
+- If we double the size of the image, compress it as much as possible, then reduce the size to what we want there is almost no notable resolution degradation.
+- [TinyJPG](https://tinyjpg.com) and [TinyPNG](https://tinypng.com) are great for compression. There are also browser extensions and desktop apps.
+- Webpack plugins can be used to compress images. Recommended as part of the build process.
+- [SVGOMG](https://jakearchibald.github.io/svgomg/) is great for optimizing SVGs.
+
+### 7.3. SVG
+
+- SVG has a canvas like a piece of graph paper, and we can create points on the paper for the browser to draw curves with.
+- There are so many ways we can play with SVG.
+- It also has a navigable DOM. We can literally put a class on a SVG and manipulate it.
+- This means we can also debug int the browser.
+- SVG is also super performant.
+- Sarah has written [an article](https://css-tricks.com/high-performance-svgs/) about performance tuning with SVG.
+- We can even convert non-SVG to SVG like with [this tool](https://codepen.io/shshaw/full/LVKEdv).
+
+### 7.4. SVG Handling & Full Page Background
+
+- We can use SVG to clip things as demonstrated in [this article](https://css-tricks.com/masking-vs-clipping-use/) about clipping vs masking.
+- We can clip using two images as demonstrated in [this CodePen](https://codepen.io/noeldelgado/pen/ByxQjL).
+- SVG can be used in img tags, as a background source or inline.
+- When used inline the DOM can be navigated, so this is the preferred method.
+- To save on HTTP requests we can use image sprites and only expose a small section of the sprite (HTTP/2 solves this issue).
+- Full page images are still popular. [This article](https://css-tricks.com/perfect-full-page-background-image/) details best practice.
