@@ -223,4 +223,6 @@ body {
 - [TypeNetwork](https://www.typenetwork.com/brochure/opentype-font-variations/#introduction) has more info.
 - [Monotype](https://www.monotype.com/resources/expertise/variable-fonts-101) has more info.
 - [Jason Pamental](https://codepen.io/jpamental/pen/MGEPEL) has a CodePen demo.
+- [Jason](https://codepen.io/jpamental/) also has a load more CodePens.
 - [Oliver Schöndorfer](https://zeichenschatz.net/demos/vf/variable-web-typo/) has a demo website.
+- [Mandy Michael](https://codepen.io/collection/XqRLMb/) has a bunch of CodePen examples.
