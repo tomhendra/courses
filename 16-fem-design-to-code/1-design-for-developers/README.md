@@ -40,6 +40,12 @@
   - [7.2. Exporting Tips](#72-exporting-tips)
   - [7.3. SVG](#73-svg)
   - [7.4. SVG Handling & Full Page Background](#74-svg-handling--full-page-background)
+- [8. Prototyping](#8-prototyping)
+  - [8.1. Loaders](#81-loaders)
+  - [8.2. User Experience & Tools](#82-user-experience--tools)
+  - [8.3. Motion Design Language](#83-motion-design-language)
+  - [8.4. Types of Prototypes](#84-types-of-prototypes)
+  - [8.5. Page Transitions](#85-page-transitions)
 
 ## 1. Introduction
 
@@ -345,3 +351,54 @@ body {
 - When used inline the DOM can be navigated, so this is the preferred method.
 - To save on HTTP requests we can use image sprites and only expose a small section of the sprite (HTTP/2 solves this issue).
 - Full page images are still popular. [This article](https://css-tricks.com/perfect-full-page-background-image/) details best practice.
+
+## 8. Prototyping
+
+### 8.1. Loaders
+
+- Loaders and perceived performance are important because humans overestimate passive wait times by 36%.
+- So if we are judging the time a site takes to load, we actually have to multiply that by 0.36.
+- Using loaders removed the passive element from waiting, and gives the user something to engage with, reducing perceived wait time.\
+- People are willing to wait twice as long for a custom loader experience.
+- This is because they assume that someone cares about them, and that they have something to engage with while waiting.
+- Uncertain wait times feel longer than known, finite waits.
+- Airports make use walk a long way to baggage, theme parks give us wait times and things to engage us when queuing.
+
+### 8.2. User Experience & Tools
+
+- We need to think about what it is like for people to experience what we build.
+- [This article](https://css-tricks.com/writing-feature-requirements/) on Writing Feature Requirements helps with this.
+- Some large apps feel like the overall end-to-end experience is not cohesive, perhaps as a consequence of multiple product teams owning different parts and not communicating effectively.
+- Be a user for our own site.
+- Story Maps are another way to anticipate user experience. Check out [this article](https://medium.com/design-story/story-map-3cc64033128e).
+- End-to-end website user flows are another way to retain a cohesive UX.
+- UI stencils are good for working with pencil and paper to create user flows.
+
+### 8.3. Motion Design Language
+
+- It is also good to create a motion design language for our products.
+- Sarah made a [concept on CodePen](https://codepen.io/sdras/pen/JbaGwg) to demonstrate.
+- By having our own opinions about how motion can work, it gives a brand a specific feel.
+- For instance if a brand is brightly coloured and vibrant, bouncy motion could work, whereas something more elegant may benefit from eased motion.
+
+### 8.4. Types of Prototypes
+
+- There are several ways that we can create prototypes:
+- Thumbnails: Just for us, for quick and easy iterations.
+- Storyboards: One step up from thumbnails in fidelity where we trash ideas and iterate.
+- Low-fi: Can communicate a concept without committing with fidelity. See [this example](https://codepen.io/sdras/pen/594d891abedf804e87bffe48ee30aace).
+- Low-fi with interactivity: Can communicate a gesture without committing resource. See [this example](https://codepen.io/yusufbkr/pen/ORBArk).
+- High-fi: More fleshed out. Sarah recommends starting with small pieces and either iterate or create more if the client likes it. See [this example](https://codepen.io/sdras/pen/2ae1eadb3a80e26daf3aae54cd148c61).
+- We can also screenshot the undeveloped site and just overlay the part we want to demonstrate to the client.
+
+### 8.5. Page Transitions
+
+- Page transitions can come after prototyping.
+- A good way to plan them is to take similar components, and from page-to-page change some and leave the rest static.
+- [Leo Leung](https://dribbble.com/leoleung) does great motion designs in After Effects on Dribbble for inspiration.
+- [Rally](https://rallyinteractive.com/#toyota-experience-center) does great things with motion.
+- [Codrops](https://tympanus.net/codrops/) is a great resource which demonstrates the code as well.
+- [Page Flip Layout](https://tympanus.net/Development/PageFlipLayout/) is a good one from Codrops.
+- There is something called _flip_ which is used to create performant animations.
+- There is a library called [Flipping](https://github.com/davidkpiano/flipping) which is a good way to use this.
+- GSAP is another good library for hardware accelerated animations.
