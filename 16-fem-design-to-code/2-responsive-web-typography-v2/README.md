@@ -6,6 +6,18 @@
 - [1. Introduction](#1-introduction)
   - [1.1. Responsive Type Overview](#11-responsive-type-overview)
   - [1.2. Typography 101](#12-typography-101)
+  - [1.3. Anatomy of Letterforms](#13-anatomy-of-letterforms)
+  - [1.4. Type Styles, Selection & Pairing](#14-type-styles-selection--pairing)
+  - [1.5. Web Fonts Performance](#15-web-fonts-performance)
+  - [1.6. Progressive Enhancement](#16-progressive-enhancement)
+  - [1.7. Flash of Unstyled Text](#17-flash-of-unstyled-text)
+  - [1.8. Proportion](#18-proportion)
+  - [1.9. Letter Spacing Polish](#19-letter-spacing-polish)
+  - [1.10. Web Font Tips & Tricks](#110-web-font-tips--tricks)
+  - [1.11. Responsive Variable Fonts](#111-responsive-variable-fonts)
+  - [1.12. Variable Fonts Browser Support](#112-variable-fonts-browser-support)
+  - [1.13. The Evolution of Variable Fonts](#113-the-evolution-of-variable-fonts)
+  - [1.14. Variable Font Resources](#114-variable-font-resources)
 
 ## 1. Introduction
 
@@ -15,7 +27,7 @@
 
 ### 1.1. Responsive Type Overview
 
-**Responsive Typography in a Nutshell**
+**Responsive Typography: Four Simple Steps**
 
 - **Performance**:
   - If we don't deal with performance, we don't get to get createive.
@@ -42,3 +54,173 @@ When thinking about a design system it is the perfect time to consider how type 
 We can achieve more typographically on the web than in some cases we can in print, especially with variable fonts.
 
 ### 1.2. Typography 101
+
+- The simplest definition of typography is deciding and putting into practice what type we are using in a given project.
+- For a typographic system we need to make some decisions about what rules we apply.
+- Choices of typography are very powerful: The can evoke a place in time or a particular style.
+- Letterforms are a powerful way for us to make an emotional connection between the viewer and the content we are trying to represent.
+- The web gives us the power to do things like change the hight of descenders for smaller devices so it looks better.
+
+### 1.3. Anatomy of Letterforms
+
+- Serif fonts are nearly always used in books.
+- Sans serif was introduced in the early parts of the 20th century.
+- Sans serif were originally very popular on screens since the 90's because the fine detail in serif fonts got lost on the monitors of the time.
+- There are many parts to a letterform: see the [slides](https://slides.com/frontendmasters/responsivetypography#/37).
+- Learning about all these parts would take a whole day. What's more important is what works together.
+- To make decisions about how to pair fonts, look for similarities in overall shape.
+- Having similarities in some areas of the geometry and some differences will help to create a good pairing.
+
+### 1.4. Type Styles, Selection & Pairing
+
+- There are quite a few other classifications in addition to **serif** and **sans serif**.
+  - **Slab serif**: Works really nicely for large headlines.
+  - **Monospaced**: Every letter takes up the same space. Great for code.
+  - **Display**: Better at large size, doesn't work as body copy.
+  - **Script**: Popular for wedding invites but less on the web. [Magpie Paperworks](https://www.magpiepaperworks.com/portfolio-type/fonts/) do some nice ones which are a cross with handwriting.
+  - **Blackletter**: Not that popular on the web. Used for newspaper names commonly.
+  - **Handwriting**: Does what is says on the tin.
+- For interesting type inspiration Google vintage posters.
+- Another way to look for pairings is typefaces by the same designers. If they are drawn by the same hand, there will be similarities.
+- Don't be afraid to use serifs on the web for body copy. Modern screens do a good job of rendering them.
+- Serifs create connections between letters which helps the type to flow.
+- Always use the brand typeface for clients. It creates the unconscious connection to the brand.
+- There is a lot of sameness on the web (Open Sans).
+- The best way to stand out is to use something different.
+- Most techniques used in print can be done on with CSS, and some things can only be done digitally.
+
+### 1.5. Web Fonts Performance
+
+- Performance matters.
+- Part of performance is making good choices.
+- We should only include what we need.
+- If we want to include more than 3 or 4 weights and styles, it starts to impact performance.
+- A _typeface_ is a family, It includes a range of weights and styles.
+- A _font_ is one instance of a typeface, like bold.
+- Each font has a performance cost, so budget wisely.
+- In order to get the page rendered and get some content on screen, fonts are going to have an impact.
+- A designer's responsibility lies in the while experience, not just what looks good.
+- Font assets can be cached, so if handled properly will only need to be downloaded once.
+
+### 1.6. Progressive Enhancement
+
+- Creating a good baseline experience for any user, any device and any browser.
+- The HTML document is the core, being marked up semantically.
+- If you can view just the plain HTML and read it, with hierarchy that makes sense, that's the litmus test.
+- The premise of progressive enhancement is that we are delivering something that functions, and everything else is an enhancement.
+- CSS is an enhancement to make the layout better.
+- The fonts are another enhancement.
+
+### 1.7. Flash of Unstyled Text
+
+- When web fonts were first implemented, browsers would always show the fallback before the custom fonts loaded.
+- `font-display: swap` allows the fallback font to be rendered first, and the web fonts once they are downloaded.
+- The following classes are used as convention: `.wf-inactive` and `.wf-active`. Both TypeKit and fonts.com inject these classes.
+- We can use these classes ourselves for consistency.
+- We can apply `font-size`, `line-height` and `letter-spacing` to the inactive fonts to help re-flow.
+- That way when the web fonts load the content doesn't move around.
+
+```css
+/* This CSS results in a blank screen load */
+body {
+  font-family: "Trade Gothic", helvetica, arial;
+}
+
+/* This CSS allows content, then fonts */
+
+.wf-inactive body {
+  font-family: helvetica, arial;
+}
+```
+
+- And truthfully we only need to worry about what's above the fold. Everything will load before the user scrolls.
+
+### 1.8. Proportion
+
+- Think about how to create a modular scale across small screens to large ones to maintain hierarchy without compromising the UX.
+- The Elements of Typographic Style is like the bible for designers but is focused on print.
+- We need to get away from the print-centred mindset about what the proportions need to be.
+- We should use breakpoints in a mobile-first context in order to implement the scale.
+- When we have fewer elements visible, we can be more subtle.
+- When we get to a large screen there are so many more things going on, so headings need to stand out more.
+- A more modern scale could look [like this](https://slides.com/frontendmasters/responsivetypography#/94) as a starting point.
+
+### 1.9. Letter Spacing Polish
+
+- Don't forget fit and finish.
+- Kerning is the space between letters.
+- By default browsers tend to set type very loosely. Reducing the kerning can bring type more together.
+- There are libraries that ensure all quotation marks and apostrophes are correct, and widows and orphans are handled.
+- Widowtamer.js is an example.
+
+### 1.10. Web Font Tips & Tricks
+
+- Large blocks of centred text are hard to read.
+- our eye needs to travel back to read the next line, and we need to know where that's going to be.
+- Anything longer than a couple of lines centred will be hard to read.
+- The maximum line length is also important.
+- 65-75 characters per line is what we should be aiming for. 38em is about the sweet spot for a `p { max-width: 38em; }`.
+- CSS3 brings character counts: `ch` and `cx` are related to character height and width, but are not of great value.
+- Use `em` or `rem` but not `px`.
+- Pixels are technically a reference not an actual pixel. Every device does something different based on the reference pixel.
+- `em` is always 16 pixels, and always works.
+- `rem` is great for setting a consistent width or height for body copy.
+- `rem` is always relative to the root, usually 16 pixels, or whatever we set the html or body to be.
+- `em` is always relative to the parent, and that's where people get into trouble with `em`.
+- Sometimes however we want font size relative to the container.
+- For example, sizing margin on a button relative to the text size that is on the button.
+- This makes sense, we want the size to flex and grow with the text of the button, not the root size.
+- If someone resizes the text under an accessibility setting, everything scales smoothly together with `em` and `rem`.
+- Also if the browser pixel reference changes, our design will still work.
+- The only place where pixels belong is maybe in a border thickness.
+- If we never use lorem ipsum in our design, we will never all victim to unpredictable behaviour.
+- Use real words instead like from Moby-Dick.
+- Beware when converting fonts for the web. The font will be inferior, and may breach the license terms through modification.
+- A lot of work goes into making fonts work well for the web.
+- Spend the money and get a proper WOFF2 font, which has the best feature support and compression.
+
+### 1.11. Responsive Variable Fonts
+
+- In 2016 OpenType 1.8 specification introduced variable fonts.
+- MS, Apple, Google & Adobe all collaborated on this.
+- The spec involves different registered and custom axes of variation.
+- There were two previous attempts at this which were not successful.
+- Variable fonts are a single file that can behave like many files.
+- We get all the different variations if the type designer has built them in to the typeface itself and exposed them.
+- This is not modifying a font, it is only affecting what has deliberately been put there by the typeface designer.
+- Registered axes are meant to map back to concepts that we already know.
+- These axes don't have to be a continuum, then can have steps in between.
+- There are five registered axes.
+
+1. Weight: `font-variation-settings: 'wght' 88;`
+2. Width: `font-variation-settings: 'wdth' 265;`
+3. Slant: `font-variation-settings: 'slnt' 20;`
+4. Italic: `font-variation-settings: 'ital' 1;`
+5. Optical size: `font-variation-settings: 'opsz' 12;`
+
+- A typeface designer can expose a custom axis for any property they want.
+- As long as it follows the four letter abbreviation and a number range.
+- One common custom axis is grade, which affects the contrast between the text and the background without changing the physical space.
+- With these variations we challenge what a typeface is, because we can change so much that the emotional tie can be affected.
+
+### 1.12. Variable Fonts Browser Support
+
+- [Current support is good](https://caniuse.com/?search=variable%20fonts).
+- For browsers that don't support variable fonts, the font should still display, but it won't vary.
+
+### 1.13. The Evolution of Variable Fonts
+
+- The W3C has a discussion on [GitHub](https://github.com/w3c/csswg-drafts/issues?q=is:issue+is:open+label:css-fonts-3) where we can all get involved.
+- We can get involved and log issues here.
+- There are some cool developments for instance partial downloads so each page only downloads the subset of the font it requires.
+
+### 1.14. Variable Font Resources
+
+- [Axis-Praxis](https://www.axis-praxis.org/specimens/__DEFAULT__) is a playground.
+- [Variable Fonts](https://v-fonts.com) is a catalogue of all available fonts.
+- [variableFont.js](https://github.com/Monotype/variableFont.js) is a library for using variable fonts.
+- [Microsoft](https://docs.microsoft.com/en-us/typography/opentype/spec/otvaroverview) has put together some info.
+- [TypeNetwork](https://www.typenetwork.com/brochure/opentype-font-variations/#introduction) has more info.
+- [Monotype](https://www.monotype.com/resources/expertise/variable-fonts-101) has more info.
+- [Jason Pamental](https://codepen.io/jpamental/pen/MGEPEL) has a CodePen demo.
+- [Oliver Schöndorfer](https://zeichenschatz.net/demos/vf/variable-web-typo/) has a demo website.
