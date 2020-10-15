@@ -24,6 +24,12 @@
   - [2.3. Typography for Reading](#23-typography-for-reading)
   - [2.4. Set Root Min & Max Font Size](#24-set-root-min--max-font-size)
   - [2.5. CSS Variables](#25-css-variables)
+- [3. The Future of Web Typography](#3-the-future-of-web-typography)
+  - [3.1. Pulling from History](#31-pulling-from-history)
+  - [3.2. OpenType Features](#32-opentype-features)
+  - [3.3. Text-First Design](#33-text-first-design)
+  - [3.4. Adding Font Features](#34-adding-font-features)
+  - [3.5. Editorial Design](#35-editorial-design)
 
 ## 1. Introduction
 
@@ -388,3 +394,51 @@ h1 {
 - We can change this with CSS variables.
 - Check out [08-meta-styles.css](exercises/css/08-meta-styles.css) for how this can be achieved.
 - Also see [08-meta-styles.css](exercises/css/08-meta-styles.css) for a fallback using `@supports` and the `.no-support-message` class for when variable fonts are unsupported.
+
+## 3. The Future of Web Typography
+
+- Note that not all browsers support all VF properties, like `font-stretch`.
+- The lower level syntax `font-variation-settings` is implemented across the board.
+- The danger is that we can fall into the trap of always using `font-variation-settings`.
+- Try to use the actual properties as they become supported.
+
+### 3.1. Pulling from History
+
+- To understand optical sizing we need to take a brief history lesson.
+- Optical sizing is not available in all typefaces, but it is amazing what we can do if we have access to it.
+- Going back 700 years letterforms were thicker for smaller point sizes.
+- We want refined detail for larger type, but when it gets smaller it needs to be readable without elements being lost.
+- This was normal for 100s of years but was lost in the 60s and 70s with photo typesetting and digital typesetting thereafter.
+- There was a single shape that was just scaled.
+- Now with optical sizing this feature is built-in so we can give users a much better experience.
+
+### 3.2. OpenType Features
+
+- Ligatures & Swashes
+- Fractions
+- Kerning
+- Painless fallback
+- File size penalty (for now)
+- These features have been in the CSS spec for years, but not every typeface supports them.
+
+### 3.3. Text-First Design
+
+- At the heart of designing from the content out is thinking about what the smallest element of content is.
+- For a text / media site that's a paragraph.
+- Start with the paragraph and layer features on one at a time to end up with a next level site.
+
+### 3.4. Adding Font Features
+
+- We can use `font-feature-settings` to add features.
+- To see what features are available with a font, we can use [Wakamai Fondue](https://wakamaifondue.com).
+
+### 3.5. Editorial Design
+
+- All of the things covered so far with variable fonts are improvements on what we are already doing.
+- We get access to a much broader design space, because we don't have to worry about only loading 2 or 3 files.
+- We are not revolutionizing design, but potentially variable fonts have the power to do just that.
+- To get there we need to think outside of our typical world of web design.
+- Designers limit themselves to 2 or 3 fonts because that's the constraint they are given.
+- With variable fonts a much broader range can be used because it is more appropriate to the design.
+- The revolution will come from looking at what we've been doing in print and taking things to a new place on the web.
+- This is a time of discovery and experimentation that is wide open to all of us.
