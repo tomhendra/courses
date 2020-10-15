@@ -18,6 +18,12 @@
   - [1.12. Variable Fonts Browser Support](#112-variable-fonts-browser-support)
   - [1.13. The Evolution of Variable Fonts](#113-the-evolution-of-variable-fonts)
   - [1.14. Variable Font Resources](#114-variable-font-resources)
+- [2. Implementation](#2-implementation)
+  - [2.1. Common Font Issues](#21-common-font-issues)
+  - [2.2. Coding Web Fonts](#22-coding-web-fonts)
+  - [2.3. Typography for Reading](#23-typography-for-reading)
+  - [2.4. Set Root Min & Max Font Size](#24-set-root-min--max-font-size)
+  - [2.5. CSS Variables](#25-css-variables)
 
 ## 1. Introduction
 
@@ -226,3 +232,159 @@ body {
 - [Jason](https://codepen.io/jpamental/) also has a load more CodePens.
 - [Oliver Schöndorfer](https://zeichenschatz.net/demos/vf/variable-web-typo/) has a demo website.
 - [Mandy Michael](https://codepen.io/collection/XqRLMb/) has a bunch of CodePen examples.
+
+## 2. Implementation
+
+- The most important thing with variable fonts is not to block page render.
+- 53% of users are going to bounce if a site takes more than 3 seconds to load.
+- Jason recommends [Font Face Observer](https://github.com/bramstein/fontfaceobserver) to handle the class switching.
+- It loads in web fonts using the session storage variable and promises so the `wf-inactive` class is applied until fonts have downloaded.
+- The script should be inline in the HTML head after the CSS import.
+- The session storage variable is faster than checking the browser cache, and should avoid any repaint issues in Chrome.
+- The CSS should include the fallback as below.
+
+```css
+h1 {
+  font-family: "Amstelvar 1.1 VF", Georgia, Serif;
+  font-weight: 563;
+  font-stretch: 491;
+  font-variation-settings: "wght" 563, "wdth" 491, "opsz" 16;
+}
+
+.wf-inactive h1 {
+  font-family: Georgia, Serif;
+  font-weight: bold;
+  font-stretch: normal;
+  letter-spacing: 1px;
+}
+```
+
+- Progressively enhance and tune for the loading process.
+- This approach with Font Face Observer helps address issues for no `@font-face` support too.
+- It works without requiring JS, but is faster when it's there.
+
+### 2.1. Common Font Issues
+
+- We still often see on mobile headings with only two or three words, and body copy with too much line height.
+- We should be tailoring the typography to make use of the available screen space to give readers the best experience.
+- Sometimes headings can even have one word broken onto two lines.
+- Don't get too caught up in the details, just consider what is more important on the screen at any given time.
+- Design is about communicating ideas and influencing behaviour.
+- Use scale as a starting point, and tweak for specific typefaces and usage scenarios.
+- Much like the grid: this is not religion, it is just a start.
+- Take a step back and look at the bigger picture and overall goal, to guide better choices about pairing, heading sizes and the way things scale.
+
+### 2.2. Coding Web Fonts
+
+- The [webfonts.css](exercises/css/webfonts.css) file contains the web font declarations.
+- Anything in a `@font-face` declaration will only download if the font is referenced in the CSS, so we can include as many as we want.
+- By declaring `font-style: normal`, the browser will equate the font to whatever _normal_ is.
+- We should always tell the browser to use a specific file for bold / italic etc. as browser synthesis looks terrible.
+
+### 2.3. Typography for Reading
+
+- Once we have the fonts loaded, we need to ensure we give the user the best possible reading experience.
+- We should design for mobile first and set the breakpoints where the design breaks.
+- Leading up to larger screen sizes, we increase the scale.
+- We can look at the minimum size we want on the small screen and the maximum size on desktop, and choose intermediate values.
+- When we want to style all the headers and fallbacks in this way, the CSS really starts to add up.
+- Using a variable font provides a cleaner approach.
+
+```css
+@font-face {
+  font-family: "Amstelvar";
+  src: url("amstelar.ttf") format("truetype-variations");
+}
+
+.myVariableFontClass {
+  font-weight: 563; /* 1-999 */
+  font-stretch: 491; /* 1-999 */
+  font-style: italic; /* binary */
+  font-style: oblique 20deg; /* 0-20 (?) */
+  font-optical-sizing: auto; /* matches font-size */
+}
+
+/* Or shorthand */
+.myVariableFontClass {
+  font-variation-settings: 'wght': 563, 'wdth' 491, ['ital' 1 OR 'slnt' 20], 'opsz' 16;
+}
+```
+
+- Note that registered axes need to be lowercase, whereas custom ones are uppercase.
+
+### 2.4. Set Root Min & Max Font Size
+
+- As we start to think about viewport units and how we tie that into scale, it gives us some idea of how we might move away from defining these fixed relationships across different breakpoints.
+- [This article by Tim Brown](https://blog.typekit.com/2016/08/17/flexible-typography-with-css-locks/) is interesting but the approach is complicated, in that there is a lot of rewriting needed.
+- Jason thought how he could tie in the equation from Tim Brown's article, with CSS variable concepts from [Lea Verou's talk](https://www.youtube.com/watch?v=kZOJCVvyF-4) and variable fonts.
+- Jason came up with a new approach to typographic hierarchy that is pretty sophisticated, but also portable.
+
+```css
+:root {
+  /* breakpoint variables */
+  --bp-small: 24.15;
+  --bp-medium: 43.75;
+  --bp-large: 60.25;
+  --bp-xlarge: 75;
+
+  /* h1 variables */
+  --h1-font-size-min: 5;
+  --h1-font-size-max: 10;
+}
+```
+
+- We declare our variables in `:root` so that they are available throughout the document.
+- The problem with using viewport units to size text is that if the window gets narrower like a watch, we get very unpredictable results.
+- We lose control of how tiny text gets to be, or how big it gets to be on a large desktop.
+- The locks equation from Tim Brown is a way to set a low end and high end and have everything else calculate in the middle.
+
+```css
+h1 {
+  font-size: calc(var(--h1-font-size-min) * 1em);
+}
+```
+
+- The calculation here is just adding the `em` unit.
+- Now on the high end when we reach large desktop, we use the max value.
+
+```css
+@media screen and (min-width: 75em) {
+  h1 {
+    font-size: calc(var(--h1-font-size-max) * 1em);
+  }
+}
+```
+
+- Now we need to figure out everything in between.
+
+```css
+@media screen and (min-width: 24.15em) {
+  h1 {
+    font-size: calc(var(--h1-font-size-min) * 1em) +
+      (var(--h1-font-size-max) - var(--h1-font-size-min)) * ((
+            100vw - (var(--bp-small) * 1em)
+          ) / (var(--bp-xlarge) - var(--bp-small)));
+  }
+}
+```
+
+- At a minimum width of 24.15em we will trigger a breakpoint, at a phone being turned to landscape.
+- 24.15em was slightly bigger than the smallest screen size Jason could find for a phone being in landscape orientation.
+- The calculation then kicks in.
+- We don't need to care how the equation works, just that it does.
+- Which ever breakpoints are referenced above and below, it will smoothly calculate form the low end value to the high end value.
+- We can use this for font size, line height, optical sizing.
+- There is however a limitation, in that the calculation always ends up with a unit value.
+- ONce we introduce `vw` and `em` we can't get rid of them in `calc`.
+- There is a lot of active discussion in the CSS Working Group around this limitation.
+- [05-plex-styles.css](exercises/css/05-plex-styles.css) demonstrates the fonts being loaded well with no scaling.
+- [06-plex-styles-rwt.css](exercises/css/06-plex-styles-rwt.css) demonstrates the scaling implemented in the traditional way.
+- [06-vf-styles.css](exercises/css/06-vf-styles.css) demonstrates the equation for scaling being used.
+
+### 2.5. CSS Variables
+
+- Note that when we flip colours we may need to adjust the text grade too.
+- The text may not have sufficient contrast to stand out.
+- We can change this with CSS variables.
+- Check out [08-meta-styles.css](exercises/css/08-meta-styles.css) for how this can be achieved.
+- Also see [08-meta-styles.css](exercises/css/08-meta-styles.css) for a fallback using `@supports` and the `.no-support-message` class for when variable fonts are unsupported.
