@@ -33,6 +33,8 @@
 
 ## 1. Introduction
 
+In this course, Jason Pamental demonstrates type fundamentals to create better user experiences on mobile and desktop. Following along with the course, you'll learn how to implement web fonts and create a modern, scalable typographic system. Plus, Jason gives an overview of variable fonts, a type file standard developed to reduce page weight with smaller font sizes and achieve more flexible designs than ever before!
+
 - [Slides](https://slides.com/frontendmasters/responsivetypography).
 - [Repo](https://github.com/jpamental/rwt-vf-workshop-full).
 - [Book](https://www.oreilly.com/library/view/responsive-typography/9781491907085/).
