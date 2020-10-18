@@ -14,6 +14,8 @@
   - [2.7. Paths, Groups & Polylines](#27-paths-groups--polylines)
   - [2.8. Animated Bezier Curves & Temple Literals](#28-animated-bezier-curves--temple-literals)
   - [2.9. Accessibility](#29-accessibility)
+- [3. CSS Animation](#3-css-animation)
+  - [3.1. OPtimizing & Building](#31-optimizing--building)
 
 ## 1. Introduction
 
@@ -244,3 +246,77 @@ rope1.setAttribute("d", `M ${plotter(50, start1)}`.join(" L"));
 - Lang so that if someone is using a screen reader in a different language it will automatically translate it.
 - To go further, see [this resource](https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/), with support charts.
 - And also [this article](https://css-tricks.com/accessible-svgs/) by Heather Migliorisi, who did a tonne of research in her free time to write this article for the community.
+
+## 3. CSS Animation
+
+### 3.1. OPtimizing & Building
+
+- We need to understand how to build and optimize an SVG so that it is appropriate for animation.
+- If there are a lot of path points it can quickly increase the size of an SVG.
+- In Illustrator we can remove points with Object > Path > Simplify.
+- If there are curves that have a lot of nodes, we can redraw the curve.
+- Drop shadows can cost a lot. Quite often there is a giant .png within the SVG for the shadow. SVG filters / effects can be used instead.
+- Sometimes with patterns there can be paths drawn for backgrounds. We can select all (select same is due in AD 1.9) based on colour, delete, and just drop a background in.
+- We also need to optimize the output from the Vector Editing software. Take this example.
+
+**Before...**
+
+```html
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In
+ . SVG Version: 6.00 Build 0)  -->
+<svg
+  version="1.1"
+  id="Layer_1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  x="0px"
+  y="0px"
+  width="218.8px"
+  height="87.1px"
+  viewBox="0 0 218.8 87.1"
+  enable-background="new 0 0 218.8 87.1"
+  xml:space="preserve"
+>
+  <g>
+    <path
+      fill="#FFFFFF"
+      stroke="#000000"
+      stroke-miterlimit="10"
+      d="M133.1,58.2c0,0,12.7-69.2,24.4-47.5c0,0,4.1,8.6,9.5,0.9
+		c0,0,5-10,10.4,0.9c0,0,12.2,32.6,13.6,43c0,0,39.8,5.4,15.8,
+15.4c-13.2,5.5-53.8,13.1-77.4,5.9C129.5,76.8,77.5,61.4,133.1,58.2z"
+    />
+    <path
+      fill="#FFFFFF"
+      stroke="#000000"
+      stroke-miterlimit="10"
+      d="M6.7,61.4c0,0-3.3-55.2,20.8-54.8s-7.2,18.1,4.1,29.9
+		s8.6-31.2,32.1-15.8S86.7,41,77.2,61.8C70.4,76.8,76.8,79,37.9,
+79c-0.4,0-0.9,0.1-1.3,0.1C9,81,40.1,58.7,40.1,58.7"
+    />
+  </g>
+</svg>
+```
+
+**After...**
+
+```html
+<svg viewBox="0 0 218.8 87.1">
+  <g fill="none" stroke="#000">
+    <path
+      d="M7.3 75L25.9 6.8s58.4-6.4 33.5 13-41.1 32.8-11.2 30.8h15.9v5.5s42.6 18.8 0 20.6"
+    />
+    <path
+      d="M133.1 58.2s12.7-69.2 24.4-47.5c0 0 4.1 8.6 9.5.9 0 0 5-10 10.4.9 0 0 12.2 
+32.6 13.6 43 0 0 39.8 5.4 15.8 15.4-13.2 5.5-53.8 13.1-77.4 5.9.1 0-51.9-15.4 3.7-18.6z"
+    />
+  </g>
+</svg>
+```
+
+- These do the same thing.
+- There are optimizing tools to do this for us:
+- [SVGOMG](https://jakearchibald.github.io/svgomg/)
+- [Peter Collingridge's SVG Editor](https://jakearchibald.github.io/svgomg/)
+- [SVG Optimizer](https://github.com/svg/svgo)
