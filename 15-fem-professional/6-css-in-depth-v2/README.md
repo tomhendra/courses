@@ -3431,7 +3431,7 @@ nav li:hover ul {
 
 ## 14. Animations
 
-With transiitions we can only do a singkle animation, but aniumations single, many or infinite iterations.
+With transiitions we can only do a single animation, but animations can have single, many or infinite iterations.
 
 - Single or bi-directional.
 - Granular control.
