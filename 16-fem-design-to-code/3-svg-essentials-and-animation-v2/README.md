@@ -44,13 +44,24 @@
   - [5.5. Interaction & GSAP Timeline Functions](#55-interaction--gsap-timeline-functions)
   - [5.6. Draggable](#56-draggable)
   - [5.7. Exercise: Interactive](#57-exercise-interactive)
+- [6. GSAP Extras](#6-gsap-extras)
+  - [6.1. DrawSVG](#61-drawsvg)
+  - [6.2. Motion Along a Path](#62-motion-along-a-path)
+  - [6.3. Curviness & Rotation](#63-curviness--rotation)
+  - [6.4. Animating Text](#64-animating-text)
+  - [6.5. Relative Colour Values](#65-relative-colour-values)
+  - [6.6. Exercise: Create a Story](#66-exercise-create-a-story)
+  - [6.7. MorphSVG](#67-morphsvg)
+  - [6.8. Bonus Demos](#68-bonus-demos)
+  - [6.9. Exercise: Shape Morph](#69-exercise-shape-morph)
 
 ## 1. Introduction
 
 Learn to build and optimize SVG – the scalable graphics format for the web that can achieve impressively small file sizes for fast-loading websites. In this course, you'll learn to create immersive graphics and make them alive with animations!
 
-- [Slides 1 up to GreenSock](https://slides.com/sdrasner/adv-svg-1?token=UCdXy3zz#/5) -- password: svgisawesome!@
+- [Slides 1](https://slides.com/sdrasner/adv-svg-1?token=UCdXy3zz#/5) -- password: svgisawesome!@
 - [Slides 2 from GreenSock](https://slides.com/sdrasner/adv-svg-2?token=FxyYIMcu#/1) -- password: svgisawesome!@
+- [Slides 3 from GSAP Exrtas](https://slides.com/sdrasner/adv-svg-3?token=IiYk_UQj#/1) -- password: svgisawesome!@
 - [Repo](https://github.com/sdras/svg-workshop).
 
 ## 2. SVG Anatomy Overview
@@ -1146,3 +1157,235 @@ Take your last pen and make it interactive.
 This could be a button click that starts and stops the animation, this could be a slider that controls the progress, whatever you want to try.
 
 If it's more ambitious, you should make a thumbnail or two for yourself before you begin.
+
+## 6. GSAP Extras
+
+### 6.1. DrawSVG
+
+- If we have a stroke which is dashed, and we make the dash really long.
+- The dash offset, i.e. the space in between dashes is an animatable property.
+- We can make all sorts of things.
+
+```js
+TweenMax.staggerFromTo($draw, 4, { drawSVG: "0" }, { drawSVG: true }, 0.1);
+```
+
+- We can achieve this with vanilla JS and even CSS, but the GSAP plugin has a few features that make working with it easier.
+- In plain CSS: see [this Pen](https://codepen.io/sdras/pen/8c38ae4121eae5b6dc035e19c48b35b4).
+- In plain CSS we have the find the length of the dash, which we can do with the JS method `getTotalLength`.
+- However if we have something that is squishy i.e. changes size, the length will change, so we'd have to use CSS variables or JS etc.
+- GreenSock handles this for us and can do tonnes of stuff. See [this demo Pen](https://codepen.io/GreenSock/pen/bNdLyR).
+- [Here](https://github.com/sdras/vue-weather-notifier) is a Vue demo which demos how to make this work with a framework.
+
+### 6.2. Motion Along a Path
+
+- This is one of the coolest things about SMIL, but the promise of support has a longer tail with GreenSock.
+- Backwards compatibility and cross browser even IE!
+- SMIL motion along a path will probably continue to be unsupported in IE, but support for this feature will move into CSS.
+- However, this is down the line. In the meantime, use GSAP for the widest support.
+
+```js
+TweenMax.to(
+  $firefly1,
+  6,
+  {
+    bezier: {
+      type: "soft",
+      values: [
+        { x: 10, y: 30 },
+        { x: -30, y: 20 },
+        { x: -40, y: 10 },
+        { x: 30, y: 20 },
+        { x: 10, y: 30 },
+      ],
+      autoRotate: true,
+    },
+    ease: Linear.easeNone,
+    repeat: -1,
+  },
+  "start+=3"
+);
+```
+
+- Check out this [demo Pen](https://codepen.io/sdras/pen/MYQxXe).
+
+### 6.3. Curviness & Rotation
+
+- Can just use paths as general coordinates and smooth out the motion between
+- Either set the type parameter to soft
+- Or for more control set the type to thru (this is the default), and define a curviness value. 0 defines no curviness, 1 is normal, 2 is twice as curvy, etc
+- Here is another [demo Pen](https://codepen.io/sdras/pen/PqEPqz).
+- Autorotate can be useful. Here is a [demo Pen](https://codepen.io/sdras/pen/aOZOwj).
+- For mechanical worlds we wouldn't use this.
+- Either autoRotate: true OR `autoRotate: ["x","y","rotation",0,false]`
+  - Position property 1 (typically "x")
+  - Position property 2 (typically "y")
+  - Rotational property (typically "rotation", but can also be “rotationX” or “rotationY”)
+  - Number of degrees (or radians/Math.PI) to add to the new rotation at the onset (this is optional)
+  - Boolean value indicating whether or not the rotational property should be defined in radians rather than degrees (default is false which results in degrees)
+
+### 6.4. Animating Text
+
+**Split Text**
+
+- Plugin - no dependencies, even on TweenMax
+- Support Back to IE8
+- Breaks into characters, words or lines
+- Honours natural line breaks
+- Option to create auto-incrementing classes, i.e. `.char1, .char2, .char3`
+
+```js
+var foo = new SplitText("#bar", {
+  type: "words",
+  //optional
+  wordsClass: "word",
+});
+```
+
+- [Here](https://codepen.io/sdras/pen/VLBdOp) is a demo Pen. but don't animate gradients this way, it is not performant.
+- Animate gradients like [this demo](https://codepen.io/sdras/pen/akAWPR), with masks.
+- Set perspective and preserve 3D (you can also do this in CSS).
+
+```js
+TweenLite.set(cont, {
+  transformPerspective: 600,
+  perspective: 300,
+  transformStyle: "preserve-3d",
+  autoAlpha: 1,
+});
+```
+
+- Define type of SplitText you need first.
+
+```js
+var tl = new TimelineLite(),
+  doSplitText = new SplitText(cont, {
+    type: "words, chars",
+  }),
+  cWords = doSplitText.words,
+  cChars = doSplitText.chars,
+  numWords = doSplitText.words.length;
+```
+
+- Helper function:
+
+```js
+function totesRando(max, min) {
+  return Math.floor(Math.random() * (1 + max - min) + min);
+}
+```
+
+- With a for loop. You can even add different points in time to a relative label.
+
+```js
+tl.add("start");
+for (var i = 0; i < numWords; i++) {
+  tl.from(
+    cWords[i],
+    6,
+    {
+      z: totesRando(100, 500),
+      opacity: 0,
+      rotation: totesRando(360, -100),
+      ease: Expo.easeOut,
+    },
+    "start+=" + Math.random() * 0.3
+  );
+}
+```
+
+- [Words can illustrate your story](https://codepen.io/sdras/full/RNWaMX).
+
+### 6.5. Relative Colour Values
+
+- How would we turn a many element scene from day to night?
+- HSL Relative Color - see [this](https://codepen.io/sdras/pen/c647706356bf2e1b940d0d5c6fdbe1b4) demo Pen.
+- We do this with incrementation.
+
+```js
+//button hue
+function hued() {
+  var ch1 = "hsl(+=110%, +=0%, +=0%)",
+  tl = new TimelineMax({
+    paused: true
+  });
+
+  tl.add("hu");
+  tl.to(mult, 1.25, {
+      fill: ch1
+    }, "hu");
+  ...
+  tl.to(body, 1.25, {
+      backgroundColor: ch1
+    }, "hu");
+
+  return tl;
+}
+
+var hue = hued();
+```
+
+- [Here](https://codepen.io/sdras/pen/YyXewa) is another relative color demo on CodePen.
+- [Here](https://codepen.io/sdras/pen/RZGqxR) is another with Vue.
+- Top tip: [Native JS alternative](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString) to Moment.js.
+
+### 6.6. Exercise: Create a Story
+
+Combine 2 of the effects we just learned to tell a simple story with SVG animation.
+
+- DrawSVG
+- Motion Along a Path
+- SplitText
+- HSL Tween
+
+### 6.7. MorphSVG
+
+- Main principle: Design everything first slowly unveil things.
+- Check [this demo](https://codepen.io/sdras/pen/85b34f90de906d707b10e235de5959d5) on CodePen.
+- Point from one id to another.
+
+```js
+TweenMax.to("#start", 1, {
+  morphSVG: { shape: "#end" },
+  ease: Linear.easeNone,
+});
+```
+
+- Convert to path data.
+
+```js
+MorphSVGPlugin.convertToPath("circle, rect,
+ellipse, line, polygon, polyline");
+MorphSVGPlugin.convertToPath("#foo");
+```
+
+- Under the hood it is grabbing the path point data in the DOM and using that to change the existing path points.
+- If we need to target the first SVG again we can.
+- We need to hide the first shape.
+- It only works on paths.
+- Another thing we can do is use `shapeIndex` to finely tune the MorphSVG animations.
+
+```js
+TweenMax.to("#start", 1, { morphSVG: { shape: "#end", shapeIndex: "1" } });
+```
+
+- Default is `shapeIndex: "auto"`
+- Load the extra plugin, and a GUI will come up
+- Usually auto will be correct, but you can pick
+- Use `findShapeIndex(#start, #end)`
+
+### 6.8. Bonus Demos
+
+- [Candle](https://codepen.io/sdras/pen/gaxGBB)
+- [Gooey Menu](https://codepen.io/lbebber/pen/LELBEo)
+- [Another candle](https://codepen.io/sdras/pen/EVRJqg)
+- [Globe](https://cdpn.io/sdras/debug/VpYeNj)
+- [Creepy Scene](https://codepen.io/sdras/pen/zvXbGJ)
+- [Bedroom](https://codepen.io/sdras/pen/dPqRmP)
+
+### 6.9. Exercise: Shape Morph
+
+Either create an SVG or use one from here:
+
+- and create a shape morph.
+- This can be incorporated into your last pen.
