@@ -36,6 +36,14 @@
   - [4.7. Comments on D3](#47-comments-on-d3)
   - [4.8. Timeline](#48-timeline)
   - [4.9. Exercise: GSAP](#49-exercise-gsap)
+- [5. UI/UX Animation](#5-uiux-animation)
+  - [5.1. UI vs Standalone Animation](#51-ui-vs-standalone-animation)
+  - [5.2. Social Engineering with Animation](#52-social-engineering-with-animation)
+  - [5.3. Context Switching](#53-context-switching)
+  - [5.4. Interaction, JS Detection & Scaling](#54-interaction-js-detection--scaling)
+  - [5.5. Interaction & GSAP Timeline Functions](#55-interaction--gsap-timeline-functions)
+  - [5.6. Draggable](#56-draggable)
+  - [5.7. Exercise: Interactive](#57-exercise-interactive)
 
 ## 1. Introduction
 
@@ -951,3 +959,190 @@ tl.staggerTo(".box", 0.5, { x: "100%" }, 0.4);
 Take an SVG, and animate it with GreenSock.
 Use a timeline and the position parameter or labels.
 There are starter pens for reference in [the repo](https://github.com/sdras/svg-workshop/).
+
+## 5. UI/UX Animation
+
+### 5.1. UI vs Standalone Animation
+
+- Sarah has [a repo](https://github.com/sdras/vue-sample-svg-icons) full of sample icons.
+
+**UI / UX Animation**
+
+- Pieces of the UI move to aid in an informative UX choreography.
+- This can typically be done with well placed CSS, some JS to trigger interactions.
+- Responsive can be achieved with _good CSS media queries_.
+- Also very good for context switching like [this example](https://cssanimation.rocks/list-items/).
+- Having things transition or enter between states is better than suddenly appearing.
+
+**Standalone**
+
+- Used to illustrate concepts in the body of the page, either alongside or on it's own.
+- Most of the basis of this course is complex standalone animation.
+- JavaScript is recommended for much longer implementations (explained later).
+- Check out [this example](https://codepen.io/sdras/full/jEjRwo).
+- The idea of UI / UX the goal is to be more invisible, and reveal things to the user as they are needed.
+- A standalone animation is supposed to grab attention, and draw focus.
+
+### 5.2. Social Engineering with Animation
+
+- [Viget did an experiment](https://www.viget.com/articles/experiments-in-loading-how-long-will-you-wait/) and found that despite some individual variation, novel loaders as a whole had a higher wait time and lower abandon rate than generic ones.
+- When considering what type of animation to use, we can think about accents and eases in the same way as accents and palettes.
+- For example using eases everywhere but using a bounce when completing an action.
+
+### 5.3. Context Switching
+
+- This [article](https://css-tricks.com/the-importance-of-context-shifting-in-ux-patterns/) for further reading.
+- This [demo Pen](https://codepen.io/sdras/full/qOdwdB) uses a bounce as a confirmation of success.
+- Another good use of context switching is isolation, as [demonstrated](https://codepen.io/sdras/pen/qOdWEP) with this Pen when you hover over a card. This makes it easier to read the card, as scanning all three at once would be confusing.
+
+### 5.4. Interaction, JS Detection & Scaling
+
+- We can use JS to set SVG DOM attributes.
+
+```js
+magLine.setAttribute("x2", 33.1);
+magLine.setAttribute("x2", 300);
+```
+
+- We can use JS detection for CSS animation, and hook into native events:
+
+  - `animationstart`
+  - `animationiteration`
+  - `animationend`
+
+- See [this Pen](https://codepen.io/sdras/pen/BzExaO) for a demo.
+
+```js
+const select = (s) => document.querySelector(s);
+
+const lil = select('.lilguy'),
+      logIt = select('.logIt'),
+      log = select('.term-content')
+
+lil.addEventListener('animationstart', onAnimationStart)
+lil.addEventListener('animationiteration', onAnimationIteration)
+lil.addEventListener('animationend', onAnimationEnd)
+
+logIt.addEventListener('click', () => lil.classList.add('restart')
+
+const onAnimationStart = () => {
+  log.textContent = ''
+  log.textContent += 'Animation has started. '
+}
+
+const onAnimationIteration = () => log.textContent += 'An iteration has fired. '
+
+const onAnimationEnd = () => {
+  log.textContent += 'Animation has completed. '
+  lil.classList.remove('restart')
+}
+```
+
+- If we are working on a larger system we can have composable pieces of animation, so they aren't being redefined - Like [this Pen](https://codepen.io/sdras/pen/qqVrxy).
+
+### 5.5. Interaction & GSAP Timeline Functions
+
+- Here are some useful functions for interacting with GSAP Timeline.
+
+```js
+tl.pause(); // Pause timeline
+tl.resume(); // Continue playback
+tl.restart(); // Restart the timeline
+tl.play(X); // Play from Xs
+tl.play(-X); // Play Xs from end
+tl.seek(X); // Go to Xs or 'label'
+tl.reverse(); // Reverse playback anytime
+tl.timeScale(x); // Speed up/slow down timeline
+tl.progress(0.5); // Skip to halfway
+```
+
+### 5.6. Draggable
+
+- Draggable is really easy to work with.
+
+```js
+Draggable.create(".box", {
+  type: "x,y",
+  edgeResistance: 0.65,
+  bounds: "#container",
+  throwProps: true,
+});
+```
+
+- Device-enabled for touchscreen
+- Impose bounds- containing units or pixel parameters `bounds: { top:100, left:0, width:1000, height:800 }`
+- Momentum: If you have ThrowPropsPlugin you can set throwProps:true
+- `Draggable.hitTest()` to sense if elements touch eachother.
+- Honours `transform-origin`.
+- Still works on transformed elements.
+- Lock movement to an axis `lockAxis:true`.
+- GPU-accelerated and requestAnimationFrame-driven.
+- See Sarah's [Pen demo](https://codepen.io/sdras/pen/gbERKQ) and [this Pen](https://codepen.io/sdras/pen/Qbdmjy).
+- [More](https://greensock.com/draggable).
+- Rich callback system and event dispatching. Callbacks:
+
+  - `onPress`
+  - `onDragStart`
+  - `onDrag`
+  - `onDragEnd`
+  - `onRelease`
+  - `onLockAxis`
+  - `onClick`
+
+- "this" refers to the Draggable instance itself, so you can easily access its "target" or bounds.
+- If you prefer event listeners, Draggable dispatches events:
+
+```js
+yourDraggable.addEventListener("dragend", yourFunc);
+```
+
+- We can also have droppable login as [this Pen demo](https://codepen.io/GreenSock/pen/GFBvn).
+- And there is now snap points in GSAP as [this Pen demo](https://codepen.io/sdras/pen/d37e832bb3655bbc50bb14ea868104e8).
+- We can use draggable to control a [Timeline interaction](https://codepen.io/sdras/pen/NqYGZv).
+
+```js
+TweenMax.set("#flowers1, #radio, #burst, #magnolia, #flowers2, #starfish, #berries1, #berries2, #berries3, #skulls, #tv, #glitch, #shadow, #lights", {
+  visibility: "visible"
+})
+
+// the first scene
+function sceneOne() {
+  var tl = new TimelineMax()
+
+  tl.add("start")
+  tl.staggerFromTo($f1, 0.3, {
+    scale: 0
+  }, {
+    scale: 1,
+    ease: Back.easeOut
+  }, 0.05, "start")
+  ...
+
+  return tl
+}
+
+var master = new TimelineMax({paused:true})
+master.add(sceneOne(), "scene1")
+
+Draggable.create(gear, {
+  type: "rotation",
+  bounds: {
+    minRotation: 0,
+    maxRotation: 360
+  },
+  onDrag: function() {
+    master.progress((this.rotation)/360 );
+  }
+});
+```
+
+- And we can do interpolation with style bindings - see [this Pen](https://codepen.io/sdras/pen/jwwpap).
+- This changes the [perspective origin](https://developer.mozilla.org/en-US/docs/Web/CSS/perspective-origin).
+
+### 5.7. Exercise: Interactive
+
+Take your last pen and make it interactive.
+
+This could be a button click that starts and stops the animation, this could be a slider that controls the progress, whatever you want to try.
+
+If it's more ambitious, you should make a thumbnail or two for yourself before you begin.
