@@ -26,12 +26,23 @@
   - [3.9. Exercise: Animate an SVG](#39-exercise-animate-an-svg)
   - [3.10. Sprites](#310-sprites)
   - [3.11. Atmospheric & Elemental Motion](#311-atmospheric--elemental-motion)
+- [4. GreenSock](#4-greensock)
+  - [4.1. Performance & GSAP](#41-performance--gsap)
+  - [4.2. TweenMax Syntax](#42-tweenmax-syntax)
+  - [4.3. Stagger](#43-stagger)
+  - [4.4. GSAP Monster Demo](#44-gsap-monster-demo)
+  - [4.5. Cycle Stagger](#45-cycle-stagger)
+  - [4.6. Setting CSS Properties](#46-setting-css-properties)
+  - [4.7. Comments on D3](#47-comments-on-d3)
+  - [4.8. Timeline](#48-timeline)
+  - [4.9. Exercise: GSAP](#49-exercise-gsap)
 
 ## 1. Introduction
 
 Learn to build and optimize SVG – the scalable graphics format for the web that can achieve impressively small file sizes for fast-loading websites. In this course, you'll learn to create immersive graphics and make them alive with animations!
 
-- [Slides](https://slides.com/sdrasner/adv-svg-1?token=UCdXy3zz#/5) -- password: svgisawesome!@
+- [Slides 1 up to GreenSock](https://slides.com/sdrasner/adv-svg-1?token=UCdXy3zz#/5) -- password: svgisawesome!@
+- [Slides 2 from GreenSock](https://slides.com/sdrasner/adv-svg-2?token=FxyYIMcu#/1) -- password: svgisawesome!@
 - [Repo](https://github.com/sdras/svg-workshop).
 
 ## 2. SVG Anatomy Overview
@@ -585,3 +596,358 @@ svg bug that doesn't allow for opacity and transform*/
 - CSS is always going to be a little bit buggy.
 - CSS isn't always more performant than JS either.
 - RequestAnimationFrame has better hardware acceleration with JS than with CSS for SVG DOM nodes.
+
+## 4. GreenSock
+
+- There are different uses cases, pros and cons for using DOM / Virtual DOM vs Canvas.
+
+| DOM / Virtual DOM                                            | Canvas                                            |
+| ------------------------------------------------------------ | ------------------------------------------------- |
+| **Pros:**                                                    | **Pros:**                                         |
+| Great for UI/UX animation                                    | Dance, pixels, dance!                             |
+| Great for SVG that is resolution independent                 | Great for really impressive 3d or immersive stuff |
+| Easier to debug                                              | Movement of a tons of objects                     |
+| **Cons:**                                                    | **Cons:**                                         |
+| Tanks with a lot of objects                                  | Harder to make accessible                         |
+| ^ Because of this you have to care about the way you animate | Not resolution independent out of the box         |
+|                                                              | Breaks to nothing                                 |
+
+- So what are the right tools for the job?
+
+| CSS / SCSS                                      | GreenSock                                 | React Spring / React Motion                                  |
+| ----------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
+| Small sequences and simple interactions         | Great for sequencing and complex movement | Great for single movements that you'd like to look realistic |
+| Once you get more than 3... switch to GreenSock | Cross-browser consistency                 |                                                              |
+
+- Snap.svg is more like jQuery for SVG.
+- AnimeJS is a lot like GSAP! But fewer plugins.
+- Web Animations API looks great, still waiting on support which has been de-prioritized.
+- Velocity is similar to GSAP with less bells and whistles.
+- Mo.js won't come out of beta. (Looks dead).
+- D3.js was built for data vis but you can do a lot more with it.
+
+### 4.1. Performance & GSAP
+
+- Not all things are created equal.
+- We shouldn't be animating with margin, left top etc. because they cause repaints in the browser.
+- Transforms are what we should be animating for position changes, but not just for SVG; for everything.
+- We should also try to use hardware acceleration wherever possible.
+- To force hardware acceleration we can use the _null z transform hack_:
+
+```css
+@mixin accelerate() {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.foo {
+  @include accelerate();
+}
+```
+
+- To dig deeper read [Debugging CSS Keyframe Animations](https://css-tricks.com/debugging-css-keyframe-animations/) and [High Performance Animations](https://www.html5rocks.com/en/tutorials/speed/high-performance-animations/).
+- More tools > Rendering > Paint flashing in Chrome DevTools it will highlight what isn't hardware accelerated.
+- Chrome doesn't properly hardware accelerate a lot of SVG DOM nodes.
+- GreenSock already has hardware acceleration under the hood.
+- Read more in the [Netflix case study](https://eng.wealthfront.com/2015/06/30/implementing-netflix-redesign/).
+- Opacity and Transform are the [most animated](https://slides.com/sdrasner/adv-svg-2?token=FxyYIMcu#/8) properties.
+- Using CSS keyframes for longer animations can become cumbersome as complexity increases.
+- Also keyframes have a stacking order so one thing will happen at a time unless we hack it in a couple of possible ways.. GreenSock just works.
+- Killer features in GreenSock:
+  - Simple syntax
+  - Timelines
+  - Nested Timelines
+  - Draggable
+  - DrawSVG
+  - Stagger
+  - MorphSVG
+- GreenSock solves cross-browser inconsistencies too - see [this example](https://css-tricks.com/svg-animation-on-css-transforms/).
+
+### 4.2. TweenMax Syntax
+
+- TweenMax is a product from GreenSock.
+- Syntax: `TweenMax .to/.from/.fromTo ( element, duration { property: amount })`
+
+```js
+TweenMax.to("div", 2, {
+  scaleY: 0.75,
+  scaleX: 1.25,
+  y: 100,
+  opacity: 0.75,
+  ease: Elastic.easeOut,
+});
+```
+
+- Instead of having to apply animation in one place and define the keyframes in another, GreenSock lets us declare everything in the same place.
+
+**GSAP Cheatsheet**
+
+- The comments are the CSS counterpart.
+
+```js
+x: 100; // transform: translateX(100px)
+y: 100; // transform: translateY(100px)
+z: 100; // transform: translateZ(100px)
+// you do not need the null transform hack or hardware acceleration,
+// it comes baked in with force3d:true.
+// If you want to unset this, force3d:false
+scale: 2; // transform: scale(2)
+scaleX: 2; // transform: scaleX(2)
+scaleY: 2; // transform: scaleY(2)
+scaleZ: 2; // transform: scaleZ(2)
+skew: 15; // transform: skew(15deg)
+skewX: 15; // transform: skewX(15deg)
+skewY: 15; // transform: skewY(15deg)
+rotation: 180; // transform: rotate(180deg)
+rotationX: 180; // transform: rotateX(180deg)
+rotationY: 180; // transform: rotateY(180deg)
+rotationZ: 180; // transform: rotateZ(180deg)
+perspective: 1000; // transform: perspective(1000px)
+transformOrigin: "50% 50%"; // transform-origin: 50% 50%
+```
+
+- Also the [GreenSock Ease Visualizer](https://greensock.com/ease-visualizer) for a handy tool with ease demos.
+
+### 4.3. Stagger
+
+- In GreenSock it is much simpler to stagger.
+
+**CSS**
+
+```css
+@keyframes staggerFoo {
+  to {
+    background: orange;
+    transform: rotate(90deg);
+  }
+}
+
+.css .bar:nth-child(1) {
+  animation: staggerFoo 1s 0.1s ease-out both;
+}
+.css .bar:nth-child(2) {
+  animation: staggerFoo 1s 0.2s ease-out both;
+}
+.css .bar:nth-child(3) {
+  animation: staggerFoo 1s 0.3s ease-out both;
+}
+.css .bar:nth-child(4) {
+  animation: staggerFoo 1s 0.4s ease-out both;
+}
+.css .bar:nth-child(5) {
+  animation: staggerFoo 1s 0.5s ease-out both;
+}
+.css .bar:nth-child(6) {
+  animation: staggerFoo 1s 0.5s ease-out both;
+}
+```
+
+**Sass**
+
+```scss
+@keyframes staggerFoo {
+  to {
+    background: orange;
+    transform: rotate(90deg);
+  }
+}
+
+@for $i from 1 through 6 {
+  .sass .bar:nth-child(#{$i}) {
+    animation: staggerFoo 1s ($i * 0.1s) ease-out both;
+  }
+}
+```
+
+**GreenSock**
+
+```js
+TweenMax.staggerTo(
+  ".gsap .bar",
+  1,
+  {
+    backgroundColor: "orange",
+    rotation: 90,
+    ease: Sine.easeOut,
+  },
+  0.1
+);
+```
+
+- Things like stagger are really complicated to do in CSS animation, and in GSAP are one line of code.
+
+```js
+TweenMax.staggerTo(
+  ".squares",
+  2,
+  {
+    y: 100,
+    backgroundColor: "#4f9d88",
+    ease: Elastic.easeOut,
+  },
+  0.05
+);
+TweenMax.staggerTo(
+  ".squares",
+  2,
+  {
+    rotation: 200,
+    delay: 1,
+    scale: 0.5,
+    backgroundColor: "#72b165",
+    ease: Elastic.easeOut,
+  },
+  0.025
+);
+```
+
+### 4.4. GSAP Monster Demo
+
+- [This Pen](https://codepen.io/sdras/full/Wramvo) has a demo of a monster using stagger.
+- The monster teaches some concepts in GSAP!
+
+### 4.5. Cycle Stagger
+
+- Takes each time we stagger and cycles through different properties instead of keeping them consistent.
+- See [this Pen](https://codepen.io/sdras/pen/XmmjQb) and [this article](https://davidwalsh.name/gsap-features) for more info.
+
+### 4.6. Setting CSS Properties
+
+- We can set different CSS properties using `.set`.
+- The advantage is that it keeps the CSS manipulation alongside the animation code, which has a couple of benefits:
+
+1. People won't delete our code if it is obvious it is being used for animations.
+2. Having the CSS property settings close the animation code helps with workflow.
+
+```js
+TweenMax.set(".squares", {
+  transformPerspective: 200,
+  perspective: 200,
+  transformStyle: "preserve-3d",
+});
+
+TweenMax.to(
+  ".squares",
+  2.5,
+  {
+    rotationX: 230,
+    z: -150,
+    y: 180,
+    opacity: 0.2,
+    ease: Power2.easeOut,
+  },
+  "+=0.2"
+);
+```
+
+### 4.7. Comments on D3
+
+- GreenSock and D3 play really nicely together.
+- We can get everything on the page with D3 and when it is inside the DOM we can manipulate things with GreenSock.
+- The only tricky things is making sure D3 has mounted everything, and then we can access it with GreenSock.
+
+### 4.8. Timeline
+
+- Stack tweens
+- Set them a little before and after one another
+- Change their placement in time
+- Group them into scenes
+- Add relative labels
+- Animate the scenes!
+- Make the whole thing faster, move the placement of the whole scene, nesting
+
+**Position Parameter**
+
+```js
+var tl = new TimelineLite();
+tl.to(".orange", 1, { x: 750 })
+  //this just follows the first
+  .to(".green", 1, { x: 750 })
+  //there is a one second gap between these two tweens due to the incrementor "+=1"
+  .to(".blue", 1, { x: 750 }, "+=1")
+  //this goes to two seconds in.
+  // Using seconds is brittle, as things can break easily if earlier animations take longer.
+  // Good for music timing for e.g.
+  .to(".red", 1, { x: 750 }, "2")
+  // add a relative label at this part of the timeline.
+  // very useful for organisation, as we can define events.
+  .add("newLabel")
+  // tween at 3 seconds past the relative label
+  .to(".purple", 1, { x: 750 }, "newlabel+=3");
+```
+
+- A simple timeline:
+
+```js
+var tl = new TimelineMax();
+
+tl.to(el, 3, {
+  fill: "white",
+  opacity: 0.3,
+  ease: Elastic.easeOut,
+});
+
+tl.to(el2, 3, {
+  fill: "orange",
+  ease: Sine.easeOut,
+});
+```
+
+- Recommended to always put the eases last, so we know where to look for them.
+- Nesting timelines allows us to create master timelines and orchestrate things easier.
+
+```js
+//set properties needed for animation outside
+TweenMax.set(el, {
+  perspective: 400,
+});
+
+// the first scene
+function sceneOne() {
+  var tl = new TimelineMax();
+
+  tl.to(el, 3, {
+    fill: "white",
+    opacity: 0.3,
+    ease: Elastic.easeOut,
+  });
+  // Don't forget to return the tl !
+  return tl;
+}
+
+// Create a master timeline
+var master = new TimelineMax({ options });
+// Add the scene function to the master with a label
+master.add(sceneOne(), "labelOnMaster");
+
+// use this while you're working to get to a place in time
+// master.seek("labelOnMaster+=2");
+```
+
+- As we make more complicated things, this structure comes in really handy.
+- Checkout [this Pen](https://codepen.io/sdras/full/ByEWON) for a timeline demo.
+- To stop a momentary flash of content before the JS loads, we can hide it with CSS until GreenSock is ready.\
+
+```js
+//set to hide in CSS
+.foo { visibility: hidden; }
+//set back in js
+TweenMax.set(".foo", {
+  visibility: "visible"
+});
+```
+
+- And we can do percentage-based transforms on SVG.
+
+```js
+tl.staggerTo(".box", 0.5, { x: "100%" }, 0.4);
+```
+
+- We can do stuff [like this](https://codepen.io/sdras/pen/4e1217f18c4ad55f681316dee44389ac), all fully responsive in every direction.
+
+### 4.9. Exercise: GSAP
+
+Take an SVG, and animate it with GreenSock.
+Use a timeline and the position parameter or labels.
+There are starter pens for reference in [the repo](https://github.com/sdras/svg-workshop/).
