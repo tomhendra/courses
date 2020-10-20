@@ -117,16 +117,19 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
 18. **[Wes Bos: JavaScript 30](https://javascript30.com)**\
     30 Day Vanilla JS Coding Challenge. No frameworks, no compilers, no libraries, no boilerplate. A heavily browser API oriented course. This is my playground to develop FP, testing and CSS skills, before going deep down the rabbit hole of React and the FEM expert path.
 
-19. **[Kent C. Dodds: Epic React](https://epicreact.dev/learn)**\
+19. **[Frontend Masters: Svelte]()**\
+    In the course you’ll learn how Svelte works, how to write svelte components, and take a tour through the entire Svelte API. You’ll also build a complete game!
+
+20. **[Kent C. Dodds: Epic React](https://epicreact.dev/learn)**\
     Confidently Ship Well-Architected Production Ready React Apps Like a Pro. Epic React is hands-on practice coding in a real development environment. This is intermediate/advanced material.
 
-20. **[Frontend Masters: Design Systems with React & Storybook]()**\
+21. **[Frontend Masters: Design Systems with React & Storybook]()**\
      Design components using Figma, and then learn to code your components in React, and document them for your teams with Storybook. A starting point to develop a reusable component library for use with future projects.
 
-21. **[Frontend Masters: Introduction to Next.js]()**\
+22. **[Frontend Masters: Introduction to Next.js]()**\
     Learn server-side rendering, static site generation, data fetching, code API endpoints, creating pages with the file system, add CSS modules, and more. A starting point to refactor my portfolio and blog from Gatsby to Next.js using the component library I've built.
 
-22. **[Frontend Masters Learning Paths: Expert]()**
+23. **[Frontend Masters Learning Paths: Expert]()**
 
     - **[JavaScript: The New Hard Parts]()**
     - **[Asynchronous Programming in JavaScript (with Rx.js Observables)]()**
@@ -138,7 +141,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Code Transformation and Linting with ASTs]()**
     - **[Advanced Asynchronous JavaScript]()**
 
-23. **[Frontend Masters Learning Path: Computer Science]()**
+24. **[Frontend Masters Learning Path: Computer Science]()**
 
     - **[Four Semesters of Computer Science in 5 Hours]()**
     - **[A Practical Guide to Algorithms with JavaScript]()**
@@ -146,7 +149,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Four Semesters of Computer Science in 5 Hours, Part 2]()**
     - **[Tree and Graph Data Structures]()**
 
-24. **[Frontend Masters Learning Path: Full Stack]()**
+25. **[Frontend Masters Learning Path: Full Stack]()**
 
     - **[Full Stack for Front-End Engineers, v2]()** => **Repeat from professional Path**
     - **[Introduction to Node.js]()**
