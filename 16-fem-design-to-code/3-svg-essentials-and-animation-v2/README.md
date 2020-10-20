@@ -54,6 +54,9 @@
   - [6.7. MorphSVG](#67-morphsvg)
   - [6.8. Bonus Demos](#68-bonus-demos)
   - [6.9. Exercise: Shape Morph](#69-exercise-shape-morph)
+- [7. Advanced SVGs](#7-advanced-svgs)
+  - [7.1. viewBox](#71-viewbox)
+  - [svgOrigin](#svgorigin)
 
 ## 1. Introduction
 
@@ -1363,16 +1366,17 @@ MorphSVGPlugin.convertToPath("#foo");
 - If we need to target the first SVG again we can.
 - We need to hide the first shape.
 - It only works on paths.
+- For circles and rectangles etc. we need to convert them to paths to use MorphSVG.
 - Another thing we can do is use `shapeIndex` to finely tune the MorphSVG animations.
 
 ```js
 TweenMax.to("#start", 1, { morphSVG: { shape: "#end", shapeIndex: "1" } });
 ```
 
-- Default is `shapeIndex: "auto"`
-- Load the extra plugin, and a GUI will come up
-- Usually auto will be correct, but you can pick
-- Use `findShapeIndex(#start, #end)`
+- Default is `shapeIndex: "auto"`.
+- Load the extra plugin, and a GUI will appear.
+- Usually auto will be correct, but you can pick.
+- Use `findShapeIndex(#start, #end)`.
 
 ### 6.8. Bonus Demos
 
@@ -1389,3 +1393,69 @@ Either create an SVG or use one from here:
 
 - and create a shape morph.
 - This can be incorporated into your last pen.
+
+## 7. Advanced SVGs
+
+- Until we learn clipping and masking it is hard to get realistic animations.
+- There are a lot of times when we just need to show a piece of something and not the full thing to be realistic.
+- The difference between clipping and masking is is really the way that we think about it.
+- Clipping is using the geometry of a shape to cut out another shape or image.
+- Masking involves transparency and revealing parts of a shape or image.
+- For a better explanation about the differences, read [this article](https://css-tricks.com/masking-vs-clipping-use/).
+- Illustrator is not very good at exporting clip paths. We get something like the below.
+
+```html
+<defs>
+  <ellipse id="SVGID_3_" class="st2" cx="276" cy="147" rx="272" ry="147" />
+</defs>
+
+<clipPath id="SVGID_4_">
+  <use xlink:href="#SVGID_3_" />
+</clipPath>
+```
+
+- We would animate as follows:
+
+```css
+.st4 {
+  clip-path: url(#SVGID_4_);
+}
+```
+
+- But `<use>` tags are hard to animate.
+- A better way to write this would be as follows:
+
+```html
+<defs>
+  <clipPath id="clippy">
+    <ellipse cx="276" cy="147" rx="272" ry="147" />
+  </clipPath>
+</defs>
+```
+
+```css
+.img {
+  clip-path: url(#clippy);
+}
+```
+
+- We don't even need to use `<defs>` which can be considered like a staging area, to define something will be used later.
+- CSS has clip paths but it is not very well supported.
+- SVG support for clip paths is much better.
+- [Here](https://codepen.io/sdras/pen/xOjAmV) is an animated example Pen.
+- [This](https://codepen.io/sdras/pen/YZBGNp) Pen uses clip paths for Wall-E's arm.
+- [This](https://codepen.io/sdras/pen/BReNEN) Pen creates a mask out of a gif.
+
+### 7.1. viewBox
+
+- We can find out the coords of something with the native method `getBBox()` and `console.log`.
+- We can then create a new viewBox with the information - see [this](https://codepen.io/sdras/pen/512230ed732f9b963ad3e50c8d4dcbb8) example.
+- We can use this for data vis and zoom in on a piece of a map - see [this](https://codepen.io/sdras/pen/dXoLEJ) example.
+- We can also do flow charts like [this](https://codepen.io/sdras/full/VjvGJM/) example.
+
+### svgOrigin
+
+- svgOrigin is not a real thing, but something that GreenSock gives us.
+- We can pick out two points in the SVG and have everything rotate around that. See [this](https://codepen.io/sdras/pen/doZReX) example.
+- Be careful with hit tests for SVG as demonstrated in [this](https://codepen.io/sdras/pen/MwxRBL) example.
+- Two SVGs can hit each other way before they appear to visually. Use strokes on bounding boxes to debug.
