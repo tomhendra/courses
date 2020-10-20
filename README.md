@@ -93,7 +93,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Full Stack for Front-End Engineers, v2](15-fem-professional/7-full-stack-for-front-end-engineers-v2)**\
        You'll learn to move back and forth between UI and the back-end through the the command line, SSH, nginx, docker containers, server security, HTTP/2, HTTP/3 and more.
 
-16. **[Frontend Masters Learning Path: Design to Code]()**\
+16. **[Frontend Masters Learning Path: Design to Code](16-fem-design-to-code)**\
     Take your designs to the finish line through being able to code out your ideas.
 
     - **[CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)**\
@@ -108,7 +108,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[Responsive Web Typography v2](16-fem-design-to-code/1-design-for-developers)**\
       Learn how to implement web fonts and create a modern, scalable typographic system to give the best reading experience for desktop and mobile devices!
 
-    - **[SVG Essentials & Animation, v2]()**\
+    - **[SVG Essentials & Animation, v2](16-fem-design-to-code/3-svg-essentials-and-animation-v2)**\
       Build and optimize SVG – the scalable graphics format for the web that can achieve impressively small file sizes for fast-loading websites!
 
 17. **[Kent C. Dodds: Testing JavaScript](https://testingjavascript.com)**\
@@ -120,7 +120,7 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
 19. **[Kent C. Dodds: Epic React](https://epicreact.dev/learn)**\
     Confidently Ship Well-Architected Production Ready React Apps Like a Pro. Epic React is hands-on practice coding in a real development environment. This is intermediate/advanced material.
 
-20. **[Frontend Masters: Design Systems with React & Storybook](16-design-systems-with-react-and-storybook)**\
+20. **[Frontend Masters: Design Systems with React & Storybook]()**\
      Design components using Figma, and then learn to code your components in React, and document them for your teams with Storybook. A starting point to develop a reusable component library for use with future projects.
 
 21. **[Frontend Masters: Introduction to Next.js]()**\

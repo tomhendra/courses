@@ -74,6 +74,11 @@
 - Reviewed:
 - Next review due: 20/10/2020
 
+### [Responsive Web Typography v2](16-fem-design-to-code/2-responsive-web-typography-v2)\
+
+- Reviewed:
+- Next review due: 20/10/2020
+
 ### [Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)\
 
 - Reviewed:
