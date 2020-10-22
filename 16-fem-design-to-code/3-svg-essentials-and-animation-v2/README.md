@@ -949,7 +949,7 @@ master.add(sceneOne(), "labelOnMaster");
 
 - As we make more complicated things, this structure comes in really handy.
 - Checkout [this Pen](https://codepen.io/sdras/full/ByEWON) for a timeline demo.
-- To stop a momentary flash of content before the JS loads, we can hide it with CSS until GreenSock is ready.\
+- To stop a momentary flash of content before the JS loads, we can hide it with CSS until GreenSock is ready.
 
 ```js
 //set to hide in CSS

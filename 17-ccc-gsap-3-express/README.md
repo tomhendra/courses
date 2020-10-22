@@ -7,6 +7,8 @@
   - [1.1. Tweening Basics](#11-tweening-basics)
     - [1.1.1. GSAP Object: Tweens & Timelines](#111-gsap-object-tweens--timelines)
   - [1.2. Basic Tween](#12-basic-tween)
+  - [1.3. from() & fromTo()](#13-from--fromto)
+  - [1.4. Special Properties: Delay & Repeat](#14-special-properties-delay--repeat)
 
 ## 1. Introduction
 
@@ -95,3 +97,37 @@ Changing values that are not CSS Transforms or opacity can cause the browser to 
 
 - `gsap.to()` [docs](<https://greensock.com/docs/v3/GSAP/gsap.to()>).
 - `gsap.defaults()` [docs](<https://greensock.com/docs/v3/GSAP/gsap.defaults()>).
+
+### 1.3. from() & fromTo()
+
+- `gsap.from()` animates from the values you specify to the object’s natural values.
+- To animate from `x` and `y` values of `400`, use:
+
+```js
+gsap.from(".fred", { x: 400, y: 400 });
+```
+
+- `gsap.fromTo()` animates from the values you specify to the values you specify.
+- The 2 objects in the code below are the `from` vars and `to` vars.
+
+```js
+gsap.fromTo(".fred", { x: 400, y: 400 }, { x: 200, y: 200 });
+```
+
+For best results make sure the `from` vars and `to` vars have the same properties. Mismatches sometimes work but at other times they do not.
+
+- `gsap.from()` [docs](<https://greensock.com/docs/v3/GSAP/gsap.from()>).
+- `gsap.fromTo()` [docs](<https://greensock.com/docs/v3/GSAP/gsap.fromTo()>).
+
+### 1.4. Special Properties: Delay & Repeat
+
+- Special properties define how the animation should run and what it should do. Special properties are not animated.
+
+  - `delay`: how much time should transpire before animation begins
+  - `repeat`: how many times the animation should repeat
+  - `yoyo`: when set to true the animation will play back and forth
+  - `repeatDelay`: how much time should transpire between each repeat
+
+- An animation will repeat indefinitely if you set `repeat: -1`.
+
+Using a delay is great for basic sequences with one or two items, but anything more would require a timeline.

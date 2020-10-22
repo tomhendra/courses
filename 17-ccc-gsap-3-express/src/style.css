@@ -1,12 +1,17 @@
 body {
   background-color: #eceff4;
+  font-family: "Open Sans", serif;
+  color: #2e382e;
 }
 
 .container {
   padding: 3em;
+  display: flex;
 }
 
-#owl {
+#owl-blue,
+#owl-orange {
+  visibility: hidden;
   width: 200px;
   height: 200px;
 }
