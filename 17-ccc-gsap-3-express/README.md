@@ -48,7 +48,7 @@ Being a beginner course, we will concentrate on the animations part.
 - The vars object accepts special properties. `duration` is considered special because it is not an animation property.
 - The `x` is shorthand for `translateX()` in CSS.
 - One of the most important things to know about GSAP is that every animation has a _virtual playhead_.
-- Just like After Effects have a playhead to allow scrub, GSAP has one too.
+- Just like After Effects has a playhead to allow for scrub, GSAP has one too.
 - Whenever the playhead of an animation advances, that is when GSAP will apply the changes to the properties that we want.
 - Tweens can be moved to any point in time, played forwards, played backwards, paused, restarted and sped up or slowed down over time.
 - We can also inspect Tweens by obtaining information programmatically.
@@ -62,3 +62,36 @@ Being a beginner course, we will concentrate on the animations part.
 - We can have Tweens overlap. We can insert gaps. We can insert timelines inside of timelines.
 
 ### 1.2. Basic Tween
+
+- A basic tween using the `gsap.to` method:
+
+```js
+gsap.to("#owl", { x: 400, y: 200, scale: 3, duration: 3 }); // animates the element with a class of “fred” to an x position of 400.
+```
+
+- We provide the target which is the object we are moving, in this case an SVG with an ID of `owl`.
+- We provide the different properties we want to animate, in this case translate and scale.
+- The vars object contains property: value pairs.
+- If no `duration` is provided, GSAP will apply a default of 500ms.
+- We can change the default with `gsap.defaults({ duration:1 });`.
+- In order for the animation to happen, behind the scenes GSAP updates an inline style on the SVG that sets a transform value, which is repeatedly updated at 60FPS.
+- There is no set limit to the properties we can animate, but is best for performance to stick to CSS Transform values and opacity because they benefit from hardware acceleration:
+
+  - `x` and `y`
+  - `rotation`, `rotationX`, `rotationY` (GSAP is great at 3D)
+  - `skewX` and `skewY`
+  - `scaleX`, `scaleY`, or just `scale`
+
+- GSAP can animate any numeric property you throw at it.
+
+  - `width` and `height`
+  - `backgroundColor` **hyphenated values need to be camelCase**
+  - `color`
+  - `padding`
+  - `left` and `top` (must set `position` to `relative`, `absolute`, or `fixed`)
+  - `vh` and `vw`
+
+Changing values that are not CSS Transforms or opacity can cause the browser to re-do its layout of the page which in extreme situations can hinder performance. For a few tweens, it’s not the end of the world as some purists make it out to be.
+
+- `gsap.to()` [docs](<https://greensock.com/docs/v3/GSAP/gsap.to()>).
+- `gsap.defaults()` [docs](<https://greensock.com/docs/v3/GSAP/gsap.defaults()>).

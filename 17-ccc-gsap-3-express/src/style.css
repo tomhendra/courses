@@ -1,14 +1,12 @@
 body {
-  font-family: "Source Sans Pro", sans-serif;
   background-color: #eceff4;
-  color: #434c5e;
 }
 
 .container {
   padding: 3em;
 }
 
-h1 {
-  font-size: 4em;
-  font-weight: bold;
+#owl {
+  width: 200px;
+  height: 200px;
 }
