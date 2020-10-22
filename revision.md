@@ -21,6 +21,7 @@
 | [Design for Developers](16-fem-design-to-code/1-design-for-developers)                                                   | --/--/-- | 20/10/2020  |
 | [Responsive Web Typography v2](16-fem-design-to-code/2-responsive-web-typography-v2)                                     | --/--/-- | 20/10/2020  |
 | [SVG Essentials & Animation, v2](16-fem-design-to-code/3-svg-essentials-and-animation-v2)                                | --/--/-- | 20/10/2020  |
+| [Creative Coding Club: GSAP 3 Express](https://www.creativecodingclub.com/courses/gsap-3-express)                        | --/--/-- | 20/10/2020  |
 | [Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)                              | --/--/-- | 20/10/2020  |
 | [JavaScript Algorithms and Data Structures Masterclass](3-algorithms-and-data-structures)                                | --/--/-- | 20/10/2020  |
 | [Complete Intro to React, v5](15-fem-professional/)                                                                      | --/--/-- | 20/10/2020  |

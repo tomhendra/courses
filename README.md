@@ -111,8 +111,8 @@ I map my progress & plan my journey with **[this Trello board](https://trello.co
     - **[SVG Essentials & Animation, v2](16-fem-design-to-code/3-svg-essentials-and-animation-v2)**\
       Build and optimize SVG – the scalable graphics format for the web that can achieve impressively small file sizes for fast-loading websites!
 
-17. **[Creative Coding Club: GSAP 3 Express](https://testingjavascript.com)**\
-    The ultimate beginner's course designed to get you up and running with GSAP's most popular features quickly.
+17. **[Creative Coding Club: GSAP 3 Express](https://www.creativecodingclub.com/courses/gsap-3-express)**\
+    The ultimate beginner's course designed to get you up and running with GSAP's most popular features quickly. SVG Essentials & Animation v2 from FEM taught v2 of GSAP, so this course is for familiarity with the new API in v3.
 
 18. **[Kent C. Dodds: Testing JavaScript](https://testingjavascript.com)**\
     Learn the smart, efficient way to test any JavaScript application. Kent is the author of the widely adopted Testing Library.
