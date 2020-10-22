@@ -9,6 +9,7 @@
   - [1.2. Basic Tween](#12-basic-tween)
   - [1.3. from() & fromTo()](#13-from--fromto)
   - [1.4. Special Properties: Delay & Repeat](#14-special-properties-delay--repeat)
+  - [1.5. Special Property: ease](#15-special-property-ease)
 
 ## 1. Introduction
 
@@ -131,3 +132,22 @@ For best results make sure the `from` vars and `to` vars have the same propertie
 - An animation will repeat indefinitely if you set `repeat: -1`.
 
 Using a delay is great for basic sequences with one or two items, but anything more would require a timeline.
+
+### 1.5. Special Property: ease
+
+- Eases can make our animations feel more playful, lifelike or robotic.
+- An ease controls the rate of change as your animation plays.
+- In simple uses an ease will control whether your animation slows down or speeds up.
+- An ease can be applied on the way out (default), on the way in, or both directions.
+- The steeper the curve the faster change is taking place.
+
+  - `ease:”bounce”` will bounce on the way out
+  - `ease:”bounce.in”` will bounce on the way in
+  - `ease:”bounce.inOut”` will bounce on the way in and out
+
+- Some eases can be configured.
+- `ease:”back.config(6)”` will have a stronger overshoot.
+- Visit the GreenSock [Ease Visualizer](https://greensock.com/docs/v3/Eases).
+- For moving objects off screen generally we want ease-in, which starts with 0 speeds up at the end.
+- For moving objects into view we generally want ease-out, which will start fast and slow down at the end.
+- Eases can dictate the direction of animation, not just the speed.
