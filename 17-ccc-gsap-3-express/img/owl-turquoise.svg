@@ -3,51 +3,53 @@
     <path id="ot-body" fill="#85cdb7" d="M326.893 13.6C176.059 13.6 13.397 137.158 45.93 379.017c26.521 197.175 115.342 320.721 280.963 320.721 165.616 0 254.437-123.546 280.958-320.721C640.384 137.158 477.722 13.6 326.893 13.6z"/>
     <g id="ot-tummy">
       <path id="ot-tummy-bg" fill="#bce1ca" d="M326.893 377.371c-166.834 0-192.863 157.762-195.888 231.846 46.479 58.066 111.092 90.521 195.888 90.521 84.791 0 149.404-32.455 195.883-90.521-3.025-74.084-29.054-231.846-195.883-231.846z"/>
-      <path id="ot-belly-feather" fill="#64c5b8" d="M235.055 463.138h27.504s-12.379 34.012-27.504 0z"/>
-      <path id="ot-belly-feather1" fill="#64c5b8" d="M262.559 463.138h27.509s-12.38 34.012-27.509 0z"/>
-      <path id="ot-belly-feather2" fill="#64c5b8" d="M290.068 463.138h27.504s-12.375 34.012-27.504 0z"/>
-      <path id="ot-belly-feather3" fill="#64c5b8" d="M317.572 463.138h27.508s-12.379 34.012-27.508 0z"/>
-      <path id="ot-belly-feather4" fill="#64c5b8" d="M345.08 463.138h27.508s-12.379 34.012-27.508 0z"/>
-      <path id="ot-belly-feather5" fill="#64c5b8" d="M372.588 463.138h27.505s-12.375 34.012-27.505 0z"/>
-      <path id="ot-belly-feather6" fill="#64c5b8" d="M400.093 463.138h27.508s-12.379 34.012-27.508 0z"/>
-      <path id="ot-belly-feather7" fill="#64c5b8" d="M180.038 503.067h27.509s-12.379 34.008-27.509 0z"/>
-      <path id="ot-belly-feather8" fill="#64c5b8" d="M207.547 503.067h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather9" fill="#64c5b8" d="M235.055 503.067h27.504s-12.379 34.008-27.504 0z"/>
-      <path id="ot-belly-feather10" fill="#64c5b8" d="M262.559 503.067h27.509s-12.38 34.008-27.509 0z"/>
-      <path id="ot-belly-feather11" fill="#64c5b8" d="M290.068 503.067h27.504s-12.375 34.008-27.504 0z"/>
-      <path id="ot-belly-feather12" fill="#64c5b8" d="M317.572 503.067h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather13" fill="#64c5b8" d="M345.08 503.067h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather14" fill="#64c5b8" d="M372.588 503.067h27.505s-12.375 34.008-27.505 0z"/>
-      <path id="ot-belly-feather15" fill="#64c5b8" d="M400.093 503.067h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather16" fill="#64c5b8" d="M427.601 503.067h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather17" fill="#64c5b8" d="M455.109 503.067h27.504s-12.379 34.008-27.504 0z"/>
-      <path id="ot-belly-feather18" fill="#64c5b8" d="M180.038 545.95h27.509s-12.379 34.008-27.509 0z"/>
-      <path id="ot-belly-feather19" fill="#64c5b8" d="M207.547 545.95h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather20" fill="#64c5b8" d="M235.055 545.95h27.504s-12.379 34.008-27.504 0z"/>
-      <path id="ot-belly-feather21" fill="#64c5b8" d="M262.559 545.95h27.509s-12.38 34.008-27.509 0z"/>
-      <path id="ot-belly-feather22" fill="#64c5b8" d="M290.068 545.95h27.504s-12.375 34.008-27.504 0z"/>
-      <path id="ot-belly-feather23" fill="#64c5b8" d="M317.572 545.95h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather24" fill="#64c5b8" d="M345.08 545.95h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather25" fill="#64c5b8" d="M372.588 545.95h27.505s-12.375 34.008-27.505 0z"/>
-      <path id="ot-belly-feather26" fill="#64c5b8" d="M400.093 545.95h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather27" fill="#64c5b8" d="M427.601 545.95h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather28" fill="#64c5b8" d="M455.109 545.95h27.504s-12.379 34.008-27.504 0z"/>
-      <path id="ot-belly-feather29" fill="#64c5b8" d="M207.547 588.833h27.508s-12.379 34.009-27.508 0z"/>
-      <path id="ot-belly-feather30" fill="#64c5b8" d="M235.055 588.833h27.504s-12.379 34.009-27.504 0z"/>
-      <path id="ot-belly-feather31" fill="#64c5b8" d="M262.559 588.833h27.509s-12.38 34.009-27.509 0z"/>
-      <path id="ot-belly-feather32" fill="#64c5b8" d="M290.068 588.833h27.504s-12.375 34.009-27.504 0z"/>
-      <path id="ot-belly-feather33" fill="#64c5b8" d="M317.572 588.833h27.508s-12.379 34.009-27.508 0z"/>
-      <path id="ot-belly-feather34" fill="#64c5b8" d="M345.08 588.833h27.508s-12.379 34.009-27.508 0z"/>
-      <path id="ot-belly-feather35" fill="#64c5b8" d="M372.588 588.833h27.505s-12.375 34.009-27.505 0z"/>
-      <path id="ot-belly-feather36" fill="#64c5b8" d="M400.093 588.833h27.508s-12.379 34.009-27.508 0z"/>
-      <path id="ot-belly-feather37" fill="#64c5b8" d="M427.601 588.833h27.508s-12.379 34.009-27.508 0z"/>
-      <path id="ot-belly-feather38" fill="#64c5b8" d="M235.055 631.717h27.504s-12.379 34.008-27.504 0z"/>
-      <path id="ot-belly-feather39" fill="#64c5b8" d="M262.559 631.717h27.509s-12.38 34.008-27.509 0z"/>
-      <path id="ot-belly-feather40" fill="#64c5b8" d="M290.068 631.717h27.504s-12.375 34.008-27.504 0z"/>
-      <path id="ot-belly-feather41" fill="#64c5b8" d="M317.572 631.717h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather42" fill="#64c5b8" d="M345.08 631.717h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="ot-belly-feather43" fill="#64c5b8" d="M372.588 631.717h27.505s-12.375 34.008-27.505 0z"/>
-      <path id="ot-belly-feather44" fill="#64c5b8" d="M400.093 631.717h27.508s-12.379 34.008-27.508 0z"/>
+      <g id="ot-tummy-feathers" fill="#64c5b8">
+        <path id="ot-belly-feather" d="M235.055 463.138h27.504s-12.379 34.012-27.504 0z"/>
+        <path id="ot-belly-feather1" d="M262.559 463.138h27.509s-12.38 34.012-27.509 0z"/>
+        <path id="ot-belly-feather2" d="M290.068 463.138h27.504s-12.375 34.012-27.504 0z"/>
+        <path id="ot-belly-feather3" d="M317.572 463.138h27.508s-12.379 34.012-27.508 0z"/>
+        <path id="ot-belly-feather4" d="M345.08 463.138h27.508s-12.379 34.012-27.508 0z"/>
+        <path id="ot-belly-feather5" d="M372.588 463.138h27.505s-12.375 34.012-27.505 0z"/>
+        <path id="ot-belly-feather6" d="M400.093 463.138h27.508s-12.379 34.012-27.508 0z"/>
+        <path id="ot-belly-feather7" d="M180.038 503.067h27.509s-12.379 34.008-27.509 0z"/>
+        <path id="ot-belly-feather8" d="M207.547 503.067h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather9" d="M235.055 503.067h27.504s-12.379 34.008-27.504 0z"/>
+        <path id="ot-belly-feather10" d="M262.559 503.067h27.509s-12.38 34.008-27.509 0z"/>
+        <path id="ot-belly-feather11" d="M290.068 503.067h27.504s-12.375 34.008-27.504 0z"/>
+        <path id="ot-belly-feather12" d="M317.572 503.067h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather13" d="M345.08 503.067h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather14" d="M372.588 503.067h27.505s-12.375 34.008-27.505 0z"/>
+        <path id="ot-belly-feather15" d="M400.093 503.067h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather16" d="M427.601 503.067h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather17" d="M455.109 503.067h27.504s-12.379 34.008-27.504 0z"/>
+        <path id="ot-belly-feather18" d="M180.038 545.95h27.509s-12.379 34.008-27.509 0z"/>
+        <path id="ot-belly-feather19" d="M207.547 545.95h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather20" d="M235.055 545.95h27.504s-12.379 34.008-27.504 0z"/>
+        <path id="ot-belly-feather21" d="M262.559 545.95h27.509s-12.38 34.008-27.509 0z"/>
+        <path id="ot-belly-feather22" d="M290.068 545.95h27.504s-12.375 34.008-27.504 0z"/>
+        <path id="ot-belly-feather23" d="M317.572 545.95h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather24" d="M345.08 545.95h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather25" d="M372.588 545.95h27.505s-12.375 34.008-27.505 0z"/>
+        <path id="ot-belly-feather26" d="M400.093 545.95h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather27" d="M427.601 545.95h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather28" d="M455.109 545.95h27.504s-12.379 34.008-27.504 0z"/>
+        <path id="ot-belly-feather29" d="M207.547 588.833h27.508s-12.379 34.009-27.508 0z"/>
+        <path id="ot-belly-feather30" d="M235.055 588.833h27.504s-12.379 34.009-27.504 0z"/>
+        <path id="ot-belly-feather31" d="M262.559 588.833h27.509s-12.38 34.009-27.509 0z"/>
+        <path id="ot-belly-feather32" d="M290.068 588.833h27.504s-12.375 34.009-27.504 0z"/>
+        <path id="ot-belly-feather33" d="M317.572 588.833h27.508s-12.379 34.009-27.508 0z"/>
+        <path id="ot-belly-feather34" d="M345.08 588.833h27.508s-12.379 34.009-27.508 0z"/>
+        <path id="ot-belly-feather35" d="M372.588 588.833h27.505s-12.375 34.009-27.505 0z"/>
+        <path id="ot-belly-feather36" d="M400.093 588.833h27.508s-12.379 34.009-27.508 0z"/>
+        <path id="ot-belly-feather37" d="M427.601 588.833h27.508s-12.379 34.009-27.508 0z"/>
+        <path id="ot-belly-feather38" d="M235.055 631.717h27.504s-12.379 34.008-27.504 0z"/>
+        <path id="ot-belly-feather39" d="M262.559 631.717h27.509s-12.38 34.008-27.509 0z"/>
+        <path id="ot-belly-feather40" d="M290.068 631.717h27.504s-12.375 34.008-27.504 0z"/>
+        <path id="ot-belly-feather41" d="M317.572 631.717h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather42" d="M345.08 631.717h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="ot-belly-feather43" d="M372.588 631.717h27.505s-12.375 34.008-27.505 0z"/>
+        <path id="ot-belly-feather44" d="M400.093 631.717h27.508s-12.379 34.008-27.508 0z"/>
+      </g>
     </g>
     <g id="ot-head">
       <g id="ot-ears" fill="#64c5b8">

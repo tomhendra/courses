@@ -3,51 +3,53 @@
     <path id="op-body" fill="#f17a94" d="M320.069 13.29C169.24 13.29 6.578 136.848 39.111 378.706c26.521 197.175 115.342 320.721 280.958 320.721 165.621 0 254.438-123.546 280.963-320.721C633.565 136.848 470.903 13.29 320.069 13.29z"/>
     <g id="op-tummy">
       <path id="op-tummy-bg" fill="#f7a7b6" d="M320.069 377.06c-166.829 0-192.858 157.763-195.883 231.846 46.475 58.067 111.092 90.521 195.883 90.521 84.796 0 149.409-32.454 195.888-90.521-3.025-74.083-29.054-231.846-195.888-231.846z"/>
-      <path id="op-tummy-feather" fill="#fad9e8" d="M228.232 462.827h27.508s-12.379 34.013-27.508 0z"/>
-      <path id="op-tummy-feather1" fill="#fad9e8" d="M255.74 462.827h27.504s-12.375 34.013-27.504 0z"/>
-      <path id="op-tummy-feather2" fill="#fad9e8" d="M283.244 462.827h27.509s-12.379 34.013-27.509 0z"/>
-      <path id="op-tummy-feather3" fill="#fad9e8" d="M310.753 462.827h27.508s-12.379 34.013-27.508 0z"/>
-      <path id="op-tummy-feather4" fill="#fad9e8" d="M338.261 462.827h27.504s-12.375 34.013-27.504 0z"/>
-      <path id="op-tummy-feather5" fill="#fad9e8" d="M365.765 462.827h27.509s-12.38 34.013-27.509 0z"/>
-      <path id="op-tummy-feather6" fill="#fad9e8" d="M393.274 462.827h27.508s-12.379 34.013-27.508 0z"/>
-      <path id="op-tummy-feather7" fill="#fad9e8" d="M173.219 502.756h27.509s-12.38 34.008-27.509 0z"/>
-      <path id="op-tummy-feather8" fill="#fad9e8" d="M200.728 502.756h27.504s-12.379 34.008-27.504 0z"/>
-      <path id="op-tummy-feather9" fill="#fad9e8" d="M228.232 502.756h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="op-tummy-feather10" fill="#fad9e8" d="M255.74 502.756h27.504s-12.375 34.008-27.504 0z"/>
-      <path id="op-tummy-feather11" fill="#fad9e8" d="M283.244 502.756h27.509s-12.379 34.008-27.509 0z"/>
-      <path id="op-tummy-feather12" fill="#fad9e8" d="M310.753 502.756h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="op-tummy-feather13" fill="#fad9e8" d="M338.261 502.756h27.504s-12.375 34.008-27.504 0z"/>
-      <path id="op-tummy-feather14" fill="#fad9e8" d="M365.765 502.756h27.509s-12.38 34.008-27.509 0z"/>
-      <path id="op-tummy-feather15" fill="#fad9e8" d="M393.274 502.756h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="op-tummy-feather16" fill="#fad9e8" d="M420.782 502.756h27.504s-12.379 34.008-27.504 0z"/>
-      <path id="op-tummy-feather17" fill="#fad9e8" d="M448.286 502.756h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="op-tummy-feather18" fill="#fad9e8" d="M173.219 545.639h27.509s-12.38 34.009-27.509 0z"/>
-      <path id="op-tummy-feather19" fill="#fad9e8" d="M200.728 545.639h27.504s-12.379 34.009-27.504 0z"/>
-      <path id="op-tummy-feather20" fill="#fad9e8" d="M228.232 545.639h27.508s-12.379 34.009-27.508 0z"/>
-      <path id="op-tummy-feather21" fill="#fad9e8" d="M255.74 545.639h27.504s-12.375 34.009-27.504 0z"/>
-      <path id="op-tummy-feather22" fill="#fad9e8" d="M283.244 545.639h27.509s-12.379 34.009-27.509 0z"/>
-      <path id="op-tummy-feather23" fill="#fad9e8" d="M310.753 545.639h27.508s-12.379 34.009-27.508 0z"/>
-      <path id="op-tummy-feather24" fill="#fad9e8" d="M338.261 545.639h27.504s-12.375 34.009-27.504 0z"/>
-      <path id="op-tummy-feather25" fill="#fad9e8" d="M365.765 545.639h27.509s-12.38 34.009-27.509 0z"/>
-      <path id="op-tummy-feather26" fill="#fad9e8" d="M393.274 545.639h27.508s-12.379 34.009-27.508 0z"/>
-      <path id="op-tummy-feather27" fill="#fad9e8" d="M420.782 545.639h27.504s-12.379 34.009-27.504 0z"/>
-      <path id="op-tummy-feather28" fill="#fad9e8" d="M448.286 545.639h27.508s-12.379 34.009-27.508 0z"/>
-      <path id="op-tummy-feather29" fill="#fad9e8" d="M200.728 588.523h27.504s-12.379 34.008-27.504 0z"/>
-      <path id="op-tummy-feather30" fill="#fad9e8" d="M228.232 588.523h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="op-tummy-feather31" fill="#fad9e8" d="M255.74 588.523h27.504s-12.375 34.008-27.504 0z"/>
-      <path id="op-tummy-feather32" fill="#fad9e8" d="M283.244 588.523h27.509s-12.379 34.008-27.509 0z"/>
-      <path id="op-tummy-feather33" fill="#fad9e8" d="M310.753 588.523h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="op-tummy-feather34" fill="#fad9e8" d="M338.261 588.523h27.504s-12.375 34.008-27.504 0z"/>
-      <path id="op-tummy-feather35" fill="#fad9e8" d="M365.765 588.523h27.509s-12.38 34.008-27.509 0z"/>
-      <path id="op-tummy-feather36" fill="#fad9e8" d="M393.274 588.523h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="op-tummy-feather37" fill="#fad9e8" d="M420.782 588.523h27.504s-12.379 34.008-27.504 0z"/>
-      <path id="op-tummy-feather38" fill="#fad9e8" d="M228.232 631.406h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="op-tummy-feather39" fill="#fad9e8" d="M255.74 631.406h27.504s-12.375 34.008-27.504 0z"/>
-      <path id="op-tummy-feather40" fill="#fad9e8" d="M283.244 631.406h27.509s-12.379 34.008-27.509 0z"/>
-      <path id="op-tummy-feather41" fill="#fad9e8" d="M310.753 631.406h27.508s-12.379 34.008-27.508 0z"/>
-      <path id="op-tummy-feather42" fill="#fad9e8" d="M338.261 631.406h27.504s-12.375 34.008-27.504 0z"/>
-      <path id="op-tummy-feather43" fill="#fad9e8" d="M365.765 631.406h27.509s-12.38 34.008-27.509 0z"/>
-      <path id="op-tummy-feather44" fill="#fad9e8" d="M393.274 631.406h27.508s-12.379 34.008-27.508 0z"/>
+      <g id="op-tummy-feathers" fill="#fad9e8">
+        <path id="op-tummy-feather" d="M228.232 462.827h27.508s-12.379 34.013-27.508 0z"/>
+        <path id="op-tummy-feather1" d="M255.74 462.827h27.504s-12.375 34.013-27.504 0z"/>
+        <path id="op-tummy-feather2" d="M283.244 462.827h27.509s-12.379 34.013-27.509 0z"/>
+        <path id="op-tummy-feather3" d="M310.753 462.827h27.508s-12.379 34.013-27.508 0z"/>
+        <path id="op-tummy-feather4" d="M338.261 462.827h27.504s-12.375 34.013-27.504 0z"/>
+        <path id="op-tummy-feather5" d="M365.765 462.827h27.509s-12.38 34.013-27.509 0z"/>
+        <path id="op-tummy-feather6" d="M393.274 462.827h27.508s-12.379 34.013-27.508 0z"/>
+        <path id="op-tummy-feather7" d="M173.219 502.756h27.509s-12.38 34.008-27.509 0z"/>
+        <path id="op-tummy-feather8" d="M200.728 502.756h27.504s-12.379 34.008-27.504 0z"/>
+        <path id="op-tummy-feather9" d="M228.232 502.756h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="op-tummy-feather10" d="M255.74 502.756h27.504s-12.375 34.008-27.504 0z"/>
+        <path id="op-tummy-feather11" d="M283.244 502.756h27.509s-12.379 34.008-27.509 0z"/>
+        <path id="op-tummy-feather12" d="M310.753 502.756h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="op-tummy-feather13" d="M338.261 502.756h27.504s-12.375 34.008-27.504 0z"/>
+        <path id="op-tummy-feather14" d="M365.765 502.756h27.509s-12.38 34.008-27.509 0z"/>
+        <path id="op-tummy-feather15" d="M393.274 502.756h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="op-tummy-feather16" d="M420.782 502.756h27.504s-12.379 34.008-27.504 0z"/>
+        <path id="op-tummy-feather17" d="M448.286 502.756h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="op-tummy-feather18" d="M173.219 545.639h27.509s-12.38 34.009-27.509 0z"/>
+        <path id="op-tummy-feather19" d="M200.728 545.639h27.504s-12.379 34.009-27.504 0z"/>
+        <path id="op-tummy-feather20" d="M228.232 545.639h27.508s-12.379 34.009-27.508 0z"/>
+        <path id="op-tummy-feather21" d="M255.74 545.639h27.504s-12.375 34.009-27.504 0z"/>
+        <path id="op-tummy-feather22" d="M283.244 545.639h27.509s-12.379 34.009-27.509 0z"/>
+        <path id="op-tummy-feather23" d="M310.753 545.639h27.508s-12.379 34.009-27.508 0z"/>
+        <path id="op-tummy-feather24" d="M338.261 545.639h27.504s-12.375 34.009-27.504 0z"/>
+        <path id="op-tummy-feather25" d="M365.765 545.639h27.509s-12.38 34.009-27.509 0z"/>
+        <path id="op-tummy-feather26" d="M393.274 545.639h27.508s-12.379 34.009-27.508 0z"/>
+        <path id="op-tummy-feather27" d="M420.782 545.639h27.504s-12.379 34.009-27.504 0z"/>
+        <path id="op-tummy-feather28" d="M448.286 545.639h27.508s-12.379 34.009-27.508 0z"/>
+        <path id="op-tummy-feather29" d="M200.728 588.523h27.504s-12.379 34.008-27.504 0z"/>
+        <path id="op-tummy-feather30" d="M228.232 588.523h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="op-tummy-feather31" d="M255.74 588.523h27.504s-12.375 34.008-27.504 0z"/>
+        <path id="op-tummy-feather32" d="M283.244 588.523h27.509s-12.379 34.008-27.509 0z"/>
+        <path id="op-tummy-feather33" d="M310.753 588.523h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="op-tummy-feather34" d="M338.261 588.523h27.504s-12.375 34.008-27.504 0z"/>
+        <path id="op-tummy-feather35" d="M365.765 588.523h27.509s-12.38 34.008-27.509 0z"/>
+        <path id="op-tummy-feather36" d="M393.274 588.523h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="op-tummy-feather37" d="M420.782 588.523h27.504s-12.379 34.008-27.504 0z"/>
+        <path id="op-tummy-feather38" d="M228.232 631.406h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="op-tummy-feather39" d="M255.74 631.406h27.504s-12.375 34.008-27.504 0z"/>
+        <path id="op-tummy-feather40" d="M283.244 631.406h27.509s-12.379 34.008-27.509 0z"/>
+        <path id="op-tummy-feather41" d="M310.753 631.406h27.508s-12.379 34.008-27.508 0z"/>
+        <path id="op-tummy-feather42" d="M338.261 631.406h27.504s-12.375 34.008-27.504 0z"/>
+        <path id="op-tummy-feather43" d="M365.765 631.406h27.509s-12.38 34.008-27.509 0z"/>
+        <path id="op-tummy-feather44" d="M393.274 631.406h27.508s-12.379 34.008-27.508 0z"/>
+      </g>
     </g>
     <g id="op-head">
       <g id="op-ears" fill="#ec297c">
