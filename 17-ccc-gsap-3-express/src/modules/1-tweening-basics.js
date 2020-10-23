@@ -1,29 +1,13 @@
 import { gsap } from "gsap";
 
-gsap.set("#owl-blue", {
+gsap.set("#owls svg", {
   visibility: "visible",
 });
 
-gsap.set("#owl-orange", {
-  visibility: "visible",
+gsap.to("#owls svg", {
+  y: -50,
+  stagger: {
+    each: 0.1,
+    from: "edges",
+  },
 });
-
-gsap.fromTo(
-  "#owl-blue",
-  { x: 400, y: 200, scale: 2 },
-  {
-    x: 200,
-    y: 300,
-    scale: 1,
-    ease: "back",
-    duration: 3,
-    repeat: 3,
-    yoyo: true,
-  }
-);
-
-gsap.fromTo(
-  "#owl-orange",
-  { x: 600, y: 600, scale: 2 },
-  { x: 800, y: 300, scale: 1, ease: "back", duration: 3, repeat: 3, yoyo: true }
-);

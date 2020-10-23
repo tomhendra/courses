@@ -9,9 +9,7 @@ body {
   display: flex;
 }
 
-#owl-blue,
-#owl-orange {
+#owls svg {
   visibility: hidden;
-  width: 200px;
-  height: 200px;
+  height: 150px;
 }
