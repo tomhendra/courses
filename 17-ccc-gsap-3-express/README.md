@@ -11,6 +11,8 @@
   - [1.4. Special Properties: Delay & Repeat](#14-special-properties-delay--repeat)
   - [1.5. Special Property: ease](#15-special-property-ease)
   - [1.6. Special Property: Stagger](#16-special-property-stagger)
+  - [1.7. Tween Control](#17-tween-control)
+  - [1.8. Using the GSAP Documentation](#18-using-the-gsap-documentation)
 
 ## 1. Introduction
 
@@ -177,3 +179,33 @@ gsap.to("#owls svg", {
 
 - `each: 0.2` means there will be 0.2 seconds between the start of each animation.
 - If instead you use `amount: 0.2` then all animations will start within 0.2 seconds and be staggered evenly.
+
+### 1.7. Tween Control
+
+- Tweens have a number of methods for controlling playback.
+
+- In order to control a tween you need have way to reference it. Below we set up a variable to reference our tween.
+
+```js
+var tween = gsap.to("#owl", { x: 600 });
+```
+
+- You can use `let` or `const` instead of `var` based on your preference and level of comfort with JS.
+- To prevent a tween from playing automatically you can set its paused special property to true.
+
+```js
+var tween = gsap.to("#owl", { x: 600, paused: true });
+```
+
+- To play that tween you can later call:
+
+```js
+tween.play();
+```
+
+### 1.8. Using the GSAP Documentation
+
+- The GSAP Documentation is extremely robust and thorough. It can be a bit overwhelming at first.
+- Learn how to navigate them, get to the best parts, and make sense of them.
+- Visit the [GSAP Docs](https://greensock.com/docs/v3/GSAP/Tween) and be sure to bookmark them!
+- Study the methods and properties of the GSAP object and Tween class. I can't stress enough how important this. There is so much good info in the docs.
