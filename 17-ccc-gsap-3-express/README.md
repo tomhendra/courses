@@ -4,8 +4,7 @@
 </div>
 
 - [1. Introduction](#1-introduction)
-  - [1.1. Tweening Basics](#11-tweening-basics)
-    - [1.1.1. GSAP Object: Tweens & Timelines](#111-gsap-object-tweens--timelines)
+  - [1.1. GSAP Object: Tweens & Timelines](#11-gsap-object-tweens--timelines)
   - [1.2. Basic Tween](#12-basic-tween)
   - [1.3. from() & fromTo()](#13-from--fromto)
   - [1.4. Special Properties: Delay & Repeat](#14-special-properties-delay--repeat)
@@ -13,6 +12,10 @@
   - [1.6. Special Property: Stagger](#16-special-property-stagger)
   - [1.7. Tween Control](#17-tween-control)
   - [1.8. Using the GSAP Documentation](#18-using-the-gsap-documentation)
+- [2. Timelines](#2-timelines)
+  - [2.1. Basic Timeline](#21-basic-timeline)
+  - [2.2. Position Parameter](#22-position-parameter)
+  - [2.3. Timeline Controls & Labels](#23-timeline-controls--labels)
 
 ## 1. Introduction
 
@@ -20,9 +23,7 @@ Bring your webpages, banners, and online games to life with GSAP3. This course f
 
 - [Course link](https://www.creativecodingclub.com/courses/gsap-3-express).
 
-### 1.1. Tweening Basics
-
-#### 1.1.1. GSAP Object: Tweens & Timelines
+### 1.1. GSAP Object: Tweens & Timelines
 
 **The GSAP Object**
 
@@ -209,3 +210,72 @@ tween.play();
 - Learn how to navigate them, get to the best parts, and make sense of them.
 - Visit the [GSAP Docs](https://greensock.com/docs/v3/GSAP/Tween) and be sure to bookmark them!
 - Study the methods and properties of the GSAP object and Tween class. I can't stress enough how important this. There is so much good info in the docs.
+
+## 2. Timelines
+
+- Timelines allow us to control sequences of Tweens easily.
+- Without using a timeline, sequences of animations need to be done by adding a delay to each Tween.
+- Timelines also enable us to jump to a certain point in the animation sequence, so we don't have to wait for the entire animation sequence to play in order to see any changes we make.
+- If we want to repeat the animation sequence, play or pause it, we can't without a timeline.
+
+### 2.1. Basic Timeline
+
+- A timeline is created with `gsap.timeline();`.
+- All tweens in a timeline naturally play one after the other.
+
+```js
+const timeline = gsap
+  .timeline()
+  .from("#button-group", { xPercent: 100, duration: 0.2 })
+  .from("#title", { opacity: 0, scale: 0, ease: "back" })
+  .from("#owls", { autoAlpha: 0 })
+  .from("#owls svg", {
+    y: 350,
+    stagger: {
+      each: 0.5,
+      from: "edges",
+      paused: true,
+      repeat: -1,
+      yoyo: true,
+    },
+  });
+```
+
+### 2.2. Position Parameter
+
+- The position parameter allows you to offset the start time of tweens in a timeline.
+- It can be a relative position i.e. relative to other Tweens, or an absolute position i.e. at a specific time.
+
+```js
+var tl = gsap.timeline();
+tl.to(object, { y: 300 }, "+=1"); // start 1 second after previous tween ends
+tl.to(object, { x: 300 }, "-=1"); // start 1 second before previous tween ends
+tl.to(object, { rotation: 90 }, "<"); // start when previous tween begins
+tl.to(object, { opacity: 0.5 }, "<1"); // start 1 second after previous tween begins
+tl.to(object2, { x: 200 }, 1); // start exactly at a time of 1 (absolute position)
+```
+
+### 2.3. Timeline Controls & Labels
+
+- Timelines have the exact same control methods as tween.
+- Since we already know how to `play()` a tween we already know how to `play() `a timeline.
+- We must first create a reference to our timeline like:
+
+```js
+var animation = gsap.timeline();
+// later on we can do
+animation.play();
+animation.pause();
+animation.restart();
+animation.reverse();
+//etc
+```
+
+- Labels allow us mark a specific point in time in the timeline.
+- We can add a label to a timeline using the `add()` method.
+
+```js
+.from("#owls svg", {y:160, stagger:0.5, duration:0.8, ease:"back"}, "+=0.5")
+.add("test")
+.from("#title", {xPercent:100, duration:1, ease:"bounce"});
+```
