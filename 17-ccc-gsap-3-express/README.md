@@ -16,6 +16,7 @@
   - [2.1. Basic Timeline](#21-basic-timeline)
   - [2.2. Position Parameter](#22-position-parameter)
   - [2.3. Timeline Controls & Labels](#23-timeline-controls--labels)
+- [3. Final Project](#3-final-project)
 
 ## 1. Introduction
 
@@ -279,3 +280,7 @@ animation.reverse();
 .add("test")
 .from("#title", {xPercent:100, duration:1, ease:"bounce"});
 ```
+
+## 3. Final Project
+
+- No notes for this section, just [the project](./final-project) itself.
