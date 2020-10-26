@@ -283,4 +283,35 @@ animation.reverse();
 
 ## 3. Final Project
 
-- No notes for this section, just [the project](./final-project) itself.
+- See [the project](./final-project).
+- [GSAP DevTools](https://greensock.com/gsdevtools?ref=6234) are available for paid members.
+- The Flash of Unstyled Content occurs when elements appear before they are styled properly.
+- Most commonly this happens when a page renders before the proper font has loaded.
+- You’ll see text for a brief second with the wrong font and then it will change.
+- In order to give users the quickest loading experience its recommended to load your custom scripts after the closing body tag.
+- For our purposes we are using GSAP to animate things in from an opacity of 0, however there is always going to be a brief duration of time after the page is rendered and your JavaScript runs; this is the flash of unstyled content.
+- To avoid the flash there are a few steps to take:
+
+  - Hide the <div> that contains all your elements by giving it a css style of visibility:hidden
+  - Create gsap animation code that fades in from `autoAlpha:0`
+  - Wrap your animation code in an `init()` function.
+  - Call the `init()` function after the page loads using a load event listener.
+
+```js
+function init() {
+  tl.from("#demo", { ease: "linear", autoAlpha: 0 })
+    .from("h1", { x: 80, duration: 1 })
+    .from("h2", { x: -80, duration: 1 }, "<")
+    .from("p", { y: 30 }, "-=0.2")
+    .from("button", { y: 50 }, "-=0.4")
+    .from(
+      "#items > g",
+      { scale: 0, transformOrigin: "50% 50%", stagger: 0.1 },
+      "-=0.5"
+    );
+}
+
+window.addEventListener("load", function (event) {
+  init();
+});
+```
