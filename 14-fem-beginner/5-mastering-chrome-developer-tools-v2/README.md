@@ -36,9 +36,9 @@
 
 Go beyond console.log to master all the built-in tools available in Google’s Chrome Developer Tools to edit, debug, and profile your web applications! You'll learn to step through your code with the debugger, audit web page performance, debug Node.js, and remove “page jank” when a site isn’t keeping up.
 
-[Course link](https://frontendmasters.com/courses/chrome-dev-tools-v2/).\
-[Slides](https://slides.com/jkup/devtools/).\
-[Workshop repo](https://github.com/jkup/mastering-chrome-devtools).
+- [Course link](https://frontendmasters.com/courses/chrome-dev-tools-v2/).\
+- [Slides](https://slides.com/jkup/devtools/).\
+- [Workshop repo](https://github.com/jkup/mastering-chrome-devtools).
 
 The following topics are covered:
 
@@ -84,7 +84,7 @@ The following topics are covered:
 - Display computed styles.
   - click computed styles tab.
   - Clicking the arrow in computed styles panel will point to the relevant CSS declaration.
-  - Useful in bog apps that have 100's of selectors.
+  - Useful in big apps that have 100's of selectors.
 - Find event listeners.
   - Click Event Listeners tab.
 - Change colour formats.
@@ -152,7 +152,7 @@ The following topics are covered:
 ### 3.2. Blackboxing
 
 - Blackboxing scripts is really important.
-- When trying to debug an application which uses a framework, often there will be 100s of functions in the Call Stack, lost of which are React or FRedux internals.
+- When trying to debug an application which uses a framework, often there will be 100s of functions in the Call Stack, lots of which are React or Redux internals.
 - If you see a filename from a third party that you are not interested in, you can right click > blackbox script.
 - This will hide its functions from the Call Stack panel.
 - Can also add permanent blackboxes in settings > blackboxing > add pattern.
@@ -265,7 +265,7 @@ The following topics are covered:
 
 - There is a difference between you testing with fast machine locally, and the user with any kind of connection and hardware.
 - We have the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance) to measure performance.
-- Before the performance API it monitoring used to be done with DateTimes.
+- Before the performance API monitoring used to be done with DateTimes.
 - The performance API methods we are interested in are `.mark()` and `.measure()`.
 - Writing code to measure performance in Userland would require a POST request to grab data.
 - Lots of popular apps have performance API code in production.
@@ -314,19 +314,19 @@ The following topics are covered:
 var h1 = element1.clientHeight;
 
 // Write (invalidates layout)
-element1.style.height = h1 * 2 + 'px';
+element1.style.height = h1 * 2 + "px";
 
 // Read (triggers layout)
 var h2 = element2.clientHeight;
 
 // Write (invalidates layout)
-element2.style.height = h2 * 2 + 'px';
+element2.style.height = h2 * 2 + "px";
 
 // Read (triggers layout)
 var h3 = element3.clientHeight;
 
 // Write (invalidates layout)
-element3.style.height = h3 * 2 + 'px';
+element3.style.height = h3 * 2 + "px";
 ```
 
 - In an ideal world we would batch these operations together, but this simply is not possible.
@@ -335,7 +335,7 @@ element3.style.height = h3 * 2 + 'px';
 - On top of `requestAnimationFrame()` there are some libraries like [FastDOM](https://github.com/wilsonpage/fastdom).
 - Libraries like React and Angular make heavy use of `requestAnimationFrame()` under the hood.
 - Demo using [Koalas to the Max](https://www.koalastothemax.com):
-- press <kbd>Esc</kbd> to being up console > 3 dots > Rendering > Paint flashing.
+- Press <kbd>Esc</kbd> to being up console > 3 dots > Rendering > Paint flashing.
 - This highlights what is being repainted.
 - The aim with heavy animations is that only the parts that are moving should get repainted.
 - For websites that are repainting everything, you should look at calls to reads and writes of DOM elements.
@@ -347,19 +347,21 @@ element3.style.height = h3 * 2 + 'px';
 - Hit the record button, scroll around, hit the stop button.
 - Remember with CPU performance monitoring we want the recording to be small: 1 second, 2 at the most.
 - From the bottom panel up:
-  1. Summary: self-explanatory!
-  2. Memory graph: Showing us out of all the things that happened, how much memory was allocated.
-  3. Two remaining bars: FPS / CPU / NET + everything else below. Both have X axis as time.
-  - The top panel is the overview. Higher level.
-    - The green is FPS: lower is better, as higher means the browser is doing more work.
-    - When you see a bad example with dropped frames, a read bar will appear.
-  - The lower panel shows all of the call graphs.
-  - Almost always you want to see what's happening in the main thread first.
-  - Tall is just functions calling others.
-  - Wide is what we are looking for to identify potential performance savings.
-  - Again if Chrome thinks you are doing to much and frames are being dropped, red boxes will appear.
-  - If you click on a box you can use <kbd>W</kbd> <kbd>S</kbd> <kbd>A</kbd> <kbd>D</kbd> to navigate.
-  - If you click on a box the summary panel updates contextually, and clicking the function link will take you to the sources panel, where the functions will display a time automatically.
+
+1. Summary: self-explanatory!
+2. Memory graph: Showing us out of all the things that happened, how much memory was allocated.
+3. Two remaining bars: FPS / CPU / NET + everything else below. Both have X axis as time.
+
+- The top panel is the overview. Higher level.
+  - The green is FPS: lower is better, as higher means the browser is doing more work.
+  - When you see a bad example with dropped frames, a read bar will appear.
+- The lower panel shows all of the call graphs.
+- Almost always you want to see what's happening in the main thread first.
+- Tall is just functions calling others.
+- Wide is what we are looking for to identify potential performance savings.
+- Again if Chrome thinks you are doing to much and frames are being dropped, red boxes will appear.
+- If you click on a box you can use <kbd>W</kbd> <kbd>S</kbd> <kbd>A</kbd> <kbd>D</kbd> to navigate.
+- If you click on a box the summary panel updates contextually, and clicking the function link will take you to the sources panel, where the functions will display a time automatically.
 
 ## 10. Memory
 
@@ -375,7 +377,7 @@ element3.style.height = h3 * 2 + 'px';
 // Forget to put a var or const declaration and you're not in strict mode,
 // JS will create the variable on the window object.
 function foo() {
-  bar = 'This is probably not what you meant!';
+  bar = "This is probably not what you meant!";
 }
 ```
 

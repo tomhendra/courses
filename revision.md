@@ -9,7 +9,7 @@
 | **Fundamentals**                                                                                                         |
 | [Learning to Learn: Efficient Learning](10-learning-to-learn)                                                            | 27/10/20 | 31/10/20  |
 | [Complete Intro to Web Development, v2](14-fem-beginner/1-complete-intro-to-web-development-v2)                          | 27/10/20 | 31/10/20  |
-| [Mastering Chrome Developer Tools v2](14-fem-beginner/5-mastering-chrome-developer-tools-v2)                             | --/--/-- | --/--/--  |
+| [Mastering Chrome Developer Tools v2](14-fem-beginner/5-mastering-chrome-developer-tools-v2)                             | 27/10/20 | 31/10/20  |
 | **JavaScript**                                                                                                           |
 | [Getting Started with JavaScript, v2](14-fem-beginner/2-getting-started-with-javascript-v2)                              | 27/10/20 | 31/10/20  |
 | [JavaScript: From Fundamentals to Functional JS, v2](14-fem-beginner/4-javascript-from-fundamentals-to-functional-js-v2) | --/--/-- | --/--/--  |
