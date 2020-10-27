@@ -32,6 +32,7 @@
   - [4.12. Event Delegation](#412-event-delegation)
 - [5. Ajax](#5-ajax)
   - [5.1. Bundling your Code](#51-bundling-your-code)
+  - [5.2. Git & Bash](#52-git--bash)
 - [6. Node.js](#6-nodejs)
 
 ## 1. Introduction
@@ -87,7 +88,7 @@ An introduction to web development with Brian Holt, of Microsoft.
 ### 2.1. Naming tags
 
 - Generally you should name things semantically. Name things after what they do, not what they look like.
-- If things change in teh future, classnames based on appearances may be inappropriate.
+- If things change in the future, classnames based on appearances may be inappropriate.
 - CSS uses kebab-case to keep class names readable when they are in the browser.
 
 ### 2.2. Meta HTML
@@ -130,7 +131,7 @@ An introduction to web development with Brian Holt, of Microsoft.
 - `inline-block`: behaves like inline but still allows control over the height, width, padding, margins, etc.
 - `flex` & `inline-flex`: Similar to block in that it affects the tags around it, however it gains some new super power on how its interior tags are laid out.
 - `grid` and `inline-grid`: More advance display mode that allow you more power to layout tags inside of them.
-- `table`: Make something act like a table. In general, use the <table></table> tag instead of using CSS to make things act like tables.
+- `table`: Make something act like a table. In general, use the `<table>` HTML tag instead of using CSS to make things act like tables.
 
 ### 3.5. Height, Width, Padding, Border, and Margin
 
@@ -181,11 +182,11 @@ An introduction to web development with Brian Holt, of Microsoft.
 const friendsAtYourParty = 10;
 
 if (friendsAtYourParty === 0) {
-  console.log('Cool, now I have a lot of nachos to myself.');
+  console.log("Cool, now I have a lot of nachos to myself.");
 } else if (friendsAtYourParty >= 4) {
-  console.log('Perfect amount to play some Mario Kart.');
+  console.log("Perfect amount to play some Mario Kart.");
 } else {
-  console.log('Wooooo turn on the dance music!');
+  console.log("Wooooo turn on the dance music!");
 }
 ```
 
@@ -219,8 +220,8 @@ function greet(firstName, lastName, honorific, greeting) {
   return `${greeting} ${honorific} ${lastName}! I’m extremely pleased you could join us, ${firstName}! I hope you enjoy your stay, ${honorific} ${lastName}.`;
 }
 
-console.log(greet('Tom', 'Hendra', 'Lord', 'Salutations'));
-console.log(greet('Jack', 'Sparrow', 'Captain', 'A-hoy'));
+console.log(greet("Tom", "Hendra", "Lord", "Salutations"));
+console.log(greet("Jack", "Sparrow", "Captain", "A-hoy"));
 ```
 
 ### 4.6. Scope
@@ -248,24 +249,24 @@ console.log(someVariable); // undefined, out of scope
 
 ```js
 const person1 = {
-  name: 'Tom',
-  ageRange: '25-35',
+  name: "Tom",
+  ageRange: "25-35",
 };
 const person2 = {
-  name: 'Jack',
-  ageRange: '65-75',
+  name: "Jack",
+  ageRange: "65-75",
 };
 
 function suggestMusic(person) {
-  if (person.ageRange === '25-35') {
+  if (person.ageRange === "25-35") {
     console.log("We think you'll like Daft Punk your crazy millenial.");
-  } else if (person.ageRange === '65-75') {
+  } else if (person.ageRange === "65-75") {
     console.log(
       "You're obviously going to like Johnny Cash. He walks the line."
     );
   } else {
     console.log(
-      'Uh, maybe try David Bowie? Everyone likes David Bowie, right?'
+      "Uh, maybe try David Bowie? Everyone likes David Bowie, right?"
     );
   }
 }
@@ -283,16 +284,16 @@ suggestMusic(person2);
 ```js
 const me = {
   name: {
-    first: 'Tom',
-    last: 'Hendra',
+    first: "Tom",
+    last: "Hendra",
   },
   location: {
     streetNumber: 500,
-    street: 'Fakestreet',
-    city: 'Seattle',
-    state: 'WA',
+    street: "Fakestreet",
+    city: "Seattle",
+    state: "WA",
     zipCode: 55555,
-    country: 'USA',
+    country: "USA",
   },
   getAddress() {
     return `${this.name.first} ${this.name.last}
@@ -313,13 +314,13 @@ console.log(me.getAddress());
 
 ```js
 const daysOfTheWeek = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
 ];
 console.log(daysOfTheWeek);
 console.log(daysOfTheWeek[0]); // Monday
@@ -396,13 +397,13 @@ console.log(daysOfTheWeek[6]); // Sunday
 - With the Ajax model, web applications are able to make quick, incremental updates to the user interface without reloading the entire browser page.
 - `fetch` is the new way of doing AJAX and it is so much easier than the old one.
 - What `fetch` returns is called a promise and it's similar to a callback that we used before.
-- A promise, like callbacks, allows you to deal with things that don't happen immediately, things that are asynchronous. In this case, we're waiting for the API to respond with the information we asked for. It takes to request more information over the Internet and we don't want to hold up the rest of our code.
+- A promise, like callbacks, allows you to deal with things that don't happen immediately, things that are asynchronous. In this case, we're waiting for the API to respond with the information we asked for. It takes time to request more information over the Internet and we don't want to hold up the rest of our code.
 - With a promise, it's an object that represents the future answer to whatever you asked.
 
 ```js
-const DOG_URL = 'https://dog.ceo/api/breeds/image/random';
+const DOG_URL = "https://dog.ceo/api/breeds/image/random";
 
-const doggos = document.querySelector('.doggos');
+const doggos = document.querySelector(".doggos");
 
 function addNewDoggo() {
   const promise = fetch(DOG_URL);
@@ -412,14 +413,14 @@ function addNewDoggo() {
       return processingPromise;
     })
     .then(function (processedResponse) {
-      const img = document.createElement('img');
+      const img = document.createElement("img");
       img.src = processedResponse.message;
-      img.alt = 'Cute doggo';
+      img.alt = "Cute doggo";
       doggos.appendChild(img);
     });
 }
 
-document.querySelector('.add-doggo').addEventListener('click', addNewDoggo);
+document.querySelector(".add-doggo").addEventListener("click", addNewDoggo);
 ```
 
 ### 5.1. Bundling your Code
@@ -429,7 +430,7 @@ document.querySelector('.add-doggo').addEventListener('click', addNewDoggo);
 - Parcel is a web application bundler built with Node which helps to manage your project.
 - Parcel provides a local dev server, packages files for output, splits code and more.
 
-### Git & Bash
+### 5.2. Git & Bash
 
 - Git is a distributed source control management tool.
 - It's an easy way to share code and work on it together with a large team.
@@ -444,14 +445,14 @@ document.querySelector('.add-doggo').addEventListener('click', addNewDoggo);
 - The most basic server in Node is only just a couple of lines.
 
 ```js
-const http = require('http');
+const http = require("http");
 
 const server = http.createServer(function (req, res) {
   console.log(`user visited ${req.url}`);
-  res.end('hello!');
+  res.end("hello!");
 });
 
-console.log('listening on http://localhost:3000');
+console.log("listening on http://localhost:3000");
 server.listen(3000);
 ```
 
@@ -460,18 +461,18 @@ server.listen(3000);
 - One such framework is Express that makes it a lot easier to work with without being too complicated.
 
 ```js
-const express = require('express');
+const express = require("express");
 
 const app = express();
 
-app.get('/', function (req, res) {
-  res.end('Welcome to my site!');
+app.get("/", function (req, res) {
+  res.end("Welcome to my site!");
 });
 
-app.get('/complement', function (req, res) {
-  res.end('You look nice today');
+app.get("/complement", function (req, res) {
+  res.end("You look nice today");
 });
 
 app.listen(3000);
-console.log('listening on http://localhost:3000');
+console.log("listening on http://localhost:3000");
 ```
