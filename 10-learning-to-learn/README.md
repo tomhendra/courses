@@ -4,8 +4,6 @@
 <p>Notes from the course.</p>
 </div>
 
-**READ THROUGH NOTES: 10/08/20**
-
 - [1. Introduction](#1-introduction)
 - [2. Principles](#2-principles)
 - [3. Lies](#3-lies)
@@ -39,7 +37,7 @@
 
 This course aims to teach you how to be an efficient learner. As recommended in the course, notes should be taken throughout to solidify retention of the topics covered. This a **[Udemy course](https://www.udemy.com/course/learning-to-learn-efficient-learning-zero-to-mastery/)**. by Andrei Neagoie
 
-The course starts with an introduction to a fun technique, memory palace, where you choose a memorable place such as your home, and imagine a scenario or story that you can link to the topics you are trying to learn. The example elaborates with using a [deck of cards](https://deck.of.cards/) to remember the first 10, and works remarkably well.
+The course starts with an introduction to a fun technique, memory palace, where you choose a memorable place such as your home, and imagine a scenario or story that you can link to the topics you are trying to learn. Applying the technique to remember the first 10 cards revealed from [a deck](https://deck.of.cards/) works remarkably well.
 
 The course has four main sections:
 
@@ -140,24 +138,26 @@ The science on which efficient learning foundations are based.
 - Feedback is integral to learning, both positive and negative, however criticism is more effective, and immediate feedback is best.
 - Procrastination: everyone has to deal with it. The key is to manage emotion rather than time.
 - To overcome procrastination you need to make a start on the task; take the the first step.
-- Long & short term memory: Long term memory is where fundamental principles are stored, formed my practising and repeating.
-- Short term / working memory generally consists of 4 chunks of information. Spaced repetition used to ensure memory is transformed into long term by strengthening synapses.
+- Long & short term memory: Long term memory is where fundamental principles are stored, formed by practising and repeating.
+- Short term / working memory generally consists of 4 chunks of information. Spaced repetition is used to ensure memory is transformed into long term by strengthening synapses.
 - Active vs passive learning: Active engagement is more effective than passive learning.
 - Passively watching videos creates illusion of competence.
-- Need to practice what you have learned through actually doing. Retrieval is better than re-reading.
+- We need to practice what we've learned through actually doing. Retrieval is better than re-reading.
 - Intrinsic motivation comes from within, what we want to do. Extrinsic motivation come from outside of us.
 - Three factors for intrinsic drive: Autonomy, Mastery, Purpose.
-- Small steps for goals eliminate fear of failure.
+- Small steps towards goals eliminate fear of failure.
 - S.M.A.R.T. Specific, Measurable, Attainable, Relevant, Time-bound
 - It pays not to be busy: Healthy leisurely time is crucial. Taking breaks means more efficient learning.
 - Chunking: Combine chunks of knowledge (bottom up learning). The connections between chunks (top down learning) combined with the chunks themselves, create knowledge.
 - How to solve problems: 2 ways: Within focus mode & within diffuse mode (intuition).
 - Deliberate practice: Pushing past the perceived limit once plateau us reached. Concentrate on things just outside of your abilities.
-- Four things required:
-  1. Specific goals
-  2. Intense focus
-  3. Immediate feedback
-  4. Frequent discomfort
+- Four things are required:
+
+1. Specific goals
+2. Intense focus
+3. Immediate feedback
+4. Frequent discomfort
+
 - Spaced repetition: Best way to strengthen the synaptic neurons, create long term memory.
 - Energy saving with habits: Not having to focus on something saves energy.
 - We remember things better in an adventurous state, when doing something new or experimenting.
@@ -193,9 +193,9 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 ### 6.3. Spaced Repetition
 
 - The only way to create long term memories.
-- Used varied techniques for spaced repetition
-- Repetitive over-learning can cause the [forgetting curve](https://en.wikipedia.org/wiki/Forgetting_curve)
-- Recalling and retrieving information causes reconciliation which strengthens the neural synapses (connections)
+- Used varied techniques for spaced repetition.
+- Repetitive over-learning can cause the [forgetting curve](https://en.wikipedia.org/wiki/Forgetting_curve).
+- Recalling and retrieving information causes reconciliation which strengthens the neural synapses (connections).
 - This is why the Feynman technique works so well.
 - Diagrams are a good way to enhance spaced repetition.
 
@@ -214,7 +214,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Prepare, plan, create a curriculum and execute it.
 - Select high quality resources to learn from.
 - Focus on industry leaders and what they say.
-- What are the most important topics?a
+- What are the most important topics?
 - What type of results do I want to feel recognized and respected?
 
 ### 6.6. Interleaving
@@ -234,7 +234,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 ### 6.8. Importance of Community
 
 - If you don't have a community you will be at a disadvantage.
-- Community can provide feedback, find blind spots.
+- Community can provide feedback and find blind spots.
 - Motivation from others learning the same thing.
 - Accountability from others.
 - Be surrounded by people who excel you and propel you to be better.
@@ -246,10 +246,10 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Better to use habits rather than willpower, which is depletable.
 - Four laws of behaviour change:
 
-  1. obvious: Is the habit obvious, with roadmap, clear goal.
-  2. easy: Is it easy as possible to form this habit?
-  3. attractive: Is the outcome attractive to us?
-  4. satisfying: Does this habit reward us?
+1. Obvious: Is the habit obvious, with roadmap, clear goal.
+2. Easy: Is it easy as possible to form this habit?
+3. Attractive: Is the outcome attractive to us?
+4. Satisfying: Does this habit reward us?
 
 - Build consistency: [Don't break the chain](https://www.writersstore.com/dont-break-the-chain-jerry-seinfeld/)
 
@@ -258,9 +258,9 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Systems are better than goals.
 - Success in life usually comes from skills obtained, but also luck.
 - Systems can become habits.
-- Goal is a rigid objective, system is a way to do something regularly with the expectation of improvement.
+- A goal is a rigid objective, a system is a way to do something regularly with the expectation of improvement.
 - Systems allow us to be flexible and adapt to luck events.
-- Goals better for shorter term, systems better for longer term.
+- Goals are better for shorter term, systems are better for longer term.
 
 ### 6.11. Power of the Senses
 
@@ -313,7 +313,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique), ther
 - Facts are cheap, anyone can learn them.
 - Successful people have concepts to connect the chunks of knowledge to form a novel solution.
 - Foundations and principles are important (trunk based knowledge) to form connections of chunks.
-- Always ask why to connect the dots.
+- Always ask "why?" to connect the dots.
 - Feynman technique is important to explain concepts, and leads to true understanding of a topic.
 
 ### 6.18. Test Yourself
