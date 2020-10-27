@@ -65,7 +65,7 @@ Three pillars of JS:
 - The best metric for code quality is effective communication of your ideas so that it survives the "it'd be faster if I just rewrote it" cycle.
 - Make your code so understandable that another person can figure out what you were thinking and spot and correct a mistake causing a bug. This is rare!
 - Code that you do not understand is code that you cannot trust, and code that you cannot trust is code that you do not understand.
-- Why re we always optimizing for writability instead of readability?
+- Why are we always optimizing for writability instead of readability?
 - As much as 70% of our time spent coding is spent reading the code.
 - Code must first be ready before it can be written.
 - **Warning:** If your code has to be rewritten to be fixed, improved or extended, you failed.
@@ -103,7 +103,7 @@ The blocks that make up our programs:
 - `+` has dual purpose depending on the values; addition for numbers or concatenation for strings.
   - This is knows as 'overloaded' meaning it does more than one thing.
 - Operators have operands. An operand is the value that is going to be operated on by the operator.
-- e.g. `3 + 4` has operator of `+`, `3` is the left operand and `4` is the right operand.
+- e.g. `3 + 4` has the operator `+`, `3` is the left operand and `4` is the right operand.
 - The kinds of operators that have a left and right operand are known as 'binary' operators.
 - `!` is a 'unary' operator meaning there's a single operand involved. `!` does the 'flipping' or 'negation' or 'compliment' of a boolean value.
 - `==` is a comparison operator: a binary operator that asks whether the right and left hand operands have a relationship that we can determine something about. Double equals is the loose equality operator.
@@ -139,7 +139,7 @@ The blocks that make up our programs:
 ### 2.5. Expressions & Statements
 
 - An expression is like a phrase in english, whereas a statement is like a sentence.
-- A statement will nearly always end with a `;`.
+- A statement will nearly always end with a `;`
 - `var age = 39;` is a statement, it ends with a `;` - a whole sentence.
 - The `age = 39` part is an assignment; an expression - a phrase within the sentence.
 - `age = 1 + (age * 2);` is a statement with more expressions than you might think.
@@ -148,7 +148,7 @@ The blocks that make up our programs:
   - `(age * 2)` is an another expression, we need to perform arithmetic.
   - `1` is another expression for the literal 1.
   - `1 + (age * 2)` is a fifth expression.
-  - `ge = 1 + (age * 2)` is the sixth expression.
+  - `age = 1 + (age * 2)` is the sixth expression.
 
 ### 2.6. Decisions: If & Else
 
@@ -186,7 +186,7 @@ if (isEnrolled()) {
 - Two different ways of doing repetition with a `for` loop.
 
 ```js
-var students = ['Matt', 'Sarah', 'Kenny'];
+var students = ["Matt", "Sarah", "Kenny"];
 
 // I'm going to do something and count the number of times I am going to do it.
 // Test clause identical to if statement.
@@ -260,14 +260,14 @@ left; // 198
 
   - null - behaves a bit strangely with respect to the type of operator.
   - function - technically a subtype of the object type.
-  - array - - technically a subtype of the object type.
+  - array - technically a subtype of the object type.
 
 - In JavaScript variables don't have types; values do.
 
 ```js
 var v;
 typeof v; // undefined
-v = '1';
+v = "1";
 typeof v; // string
 v = 2;
 typeof v; // number
@@ -279,7 +279,7 @@ v = Symbol();
 typeof v; // symbol
 ```
 
-- JS returns `undefined` if a variable has been declared but not assigned, or if a variable has never been declared, which can lead to some confusion.
+- JS returns `undefined` if a variable has been declared but not assigned to, or if a variable has never been declared, which can lead to some confusion.
 
 ```js
 typeof doesNotExist; // undefined
@@ -307,14 +307,14 @@ typeof v; // object - huh? JS cannot distinguish array from object. Historical r
   - Any operation that involves a string and is not an addition operation (e.g. `"foo"/3`)
 
 ```js
-var greeting = 'Hello, Captain Jubbins!';
+var greeting = "Hello, Captain Jubbins!";
 
 var something = greeting / 2; // !?!?!?
 
 something; // NaN
-Number.isNan(something); // true
+Number.isNaN(something); // true
 
-Number.isNan(greeting); // false - although greeting is not a number, it isn't the special JS NaN value.
+Number.isNaN(greeting); // false - although greeting is not a number, it isn't the special JS NaN value.
 ```
 
 - It's good practice to test the results of mathematical operations to ensure you don't have any NaNs.
@@ -323,26 +323,26 @@ Number.isNan(greeting); // false - although greeting is not a number, it isn't t
 
 - There are built-in fundamental objects, many of which were copied from a language like Java and so start with capital letters.
 
-  - Object()
-  - Array()
-  - Function()
-  - Date()
-  - RegExp()
-  - Error()
+  - `Object()`
+  - `Array()`
+  - `Function()`
+  - `Date()`
+  - `RegExp()`
+  - `Error()`
 
 - These are constructor forms of fundamental objects which create object representations.
 - We use the `new` keyword to instantiate instances of them.
 - There are however three other fundamental objects that we **don't** want to use the `new` keyword with:
 
-  - String()
-  - Number()
-  - Boolean()
+  - `String()`
+  - `Number()`
+  - `Boolean()`
 
 - We want to use `String()`, `Number()` and `Boolean()` as functions.
 - We don't want to put the `new` keyword in front of them, because if we call them with some value, it actually changes the value into that type.
 
 ```js
-var yesterday = new Date('July 16, 2020');
+var yesterday = new Date("July 16, 2020");
 yesterday.toUTCString();
 // "Wed, 15 Jul 2020 22:00:00 GMT"
 
@@ -359,9 +359,9 @@ var myGPA = String(transcript.gpa);
 - Implicit coercion of a number to a string:
 
 ```js
-var msg1 = 'There are ';
+var msg1 = "There are ";
 var numBeers = 16;
-var msg2 = ' bottles of beer on the wall.';
+var msg2 = " bottles of beer on the wall.";
 console.log(msg1 + numBeers + msg2); // "There are 16 bottles of beer on the wall."
 /*
  * Makes an assumption about the + operator, in that it will coerce numBeers.
@@ -369,7 +369,7 @@ console.log(msg1 + numBeers + msg2); // "There are 16 bottles of beer on the wal
  * is already a string, then JS will prefer string concatenation and coerce as expected.
  */
 
-console.log(`There are ${numBeers + ''} bottles of beer on the wall.`);
+console.log(`There are ${numBeers + ""} bottles of beer on the wall.`);
 /*
  * +"" is an extremely common idiomatic way of converting something to a string by adding
  * the empty string to it. We are again taking advantage of the + operator being overloaded
@@ -490,12 +490,12 @@ if (
 - All the rules that go into figuring out where in memory things are stored are called scope.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 function otherClass() {
-  teacher = 'Suzy';
-  topic = 'React';
-  console.log('Welcome!');
+  teacher = "Suzy";
+  topic = "React";
+  console.log("Welcome!");
 }
 
 otherClass(); // Welcome!
@@ -562,10 +562,10 @@ getPerson()
 - A very common pattern.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 (function anotherTeacher() {
-  var teacher = 'Suzy';
+  var teacher = "Suzy";
   console.log(teacher); // Suzy
 })();
 ```
@@ -581,10 +581,10 @@ var teacher = 'Kyle';
 - Instead of using the IIFE to protect variables, we can use **block scoping**.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 // we can use a curly brace block with let, instead of a function.
 {
-  let teacher = 'Suzy';
+  let teacher = "Suzy";
   console.log(teacher); // Suzy
 }
 ```
@@ -666,7 +666,7 @@ function ask(question) {
   }, 100);
 }
 
-ask('What is a closure?'); // What is a closure?
+ask("What is a closure?"); // What is a closure?
 ```
 
 - Closure allows us to remember the value in a variable even when our function is going to be executed in an entirely different place, or different timeline.
@@ -679,7 +679,7 @@ function ask(question) {
   };
 }
 
-var myQuestion = ask('What is a closure?');
+var myQuestion = ask("What is a closure?");
 
 // Some time later...
 
@@ -701,15 +701,15 @@ myQuestion(); // What is a closure?
 
 - A function's `this` references the execution context for that call, determined entirely by **how the function as called**.
 - It's not about the definition of the function.
-- A `this` aware function can thus have different context each time it is called, which makes it more flexible and reusable.
+- A `this`-aware function can thus have different context each time it is called, which makes it more flexible and reusable.
 - Having multiple contexts of `this` is called **dynamic context**.
 - A very powerful and under-appreciated part of the JS language.
-- - There are four rules for how a function's call determines what the `this` keyword will point at.
+- There are four rules for how a function's call determines what the `this` keyword will point at.
 
 ```js
 // The implicit binding rule.
 var workshop = {
-  teacher: 'Kyle',
+  teacher: "Kyle",
   ask(question) {
     console.log(this.teacher, question);
   },
@@ -718,7 +718,7 @@ var workshop = {
  * The workshop object is in front of the reference to the .ask method, which is an
  * implicit binding of the this keyword to the workshop object.
  */
-workshop.ask('What is an implicit binding?');
+workshop.ask("What is an implicit binding?");
 // Kyle What is an implicit binding?
 ```
 
@@ -733,9 +733,9 @@ function ask(question) {
 
 function otherClass() {
   var myContext = {
-    teacher: 'Suzy',
+    teacher: "Suzy",
   };
-  ask.call(myContext, 'Why?'); // Suzy Why?
+  ask.call(myContext, "Why?"); // Suzy Why?
 }
 
 otherClass();
@@ -743,7 +743,7 @@ otherClass();
 
 ### 5.2. Prototypes
 
-- Following example is of prototypal classes code, which is less common these days since the introduction of the `class` keyword to JS.
+- The following example is of prototypal classes code, which is less common these days since the introduction of the `class` keyword to JS.
 - Prototype means that it is an object where any instances are going to be linked to or delegated to.
 
 ```js
@@ -756,10 +756,10 @@ Workshop.prototype.ask = function (question) {
   console.log(this.teacher, question);
 };
 
-// When we use the new keyword will invoke the Workshop function,
+// When we use the new keyword it will invoke the Workshop function,
 // and the object that gets created will be linked to Workshop.prototype
-var deepJS = new Workshop('Kyle');
-var reactJS = new Workshop('Suzy');
+var deepJS = new Workshop("Kyle");
+var reactJS = new Workshop("Suzy");
 
 /* It's important to understand that the deepJS object does NOT have an ask method.
  * Instead it is prototype linked to Workshop.prototype, and when we call deepJS.ask()
@@ -792,8 +792,8 @@ class Workshop {
   }
 }
 
-var deepJS = new Workshop('Kyle');
-var reactJS = new Workshop('Suzy');
+var deepJS = new Workshop("Kyle");
+var reactJS = new Workshop("Suzy");
 
 deepJS.ask("Is 'prototype' a class?");
 // Kyle Is 'prototype' a class?
