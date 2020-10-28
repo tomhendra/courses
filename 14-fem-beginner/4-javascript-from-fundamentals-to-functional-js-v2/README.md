@@ -51,7 +51,9 @@
 
 ## 1. Introduction
 
-A deep dive into JavaScript and functional programming techniques, this course is for beginner to intermediate JavaScript developers who want to learn techniques to write professional, modern JavaScript. [Course Link](hhttps://frontendmasters.com/courses/js-fundamentals-functional-v2/).
+A deep dive into JavaScript and functional programming techniques, this course is for beginner to intermediate JavaScript developers who want to learn techniques to write professional, modern JavaScript.
+
+- [Course Link](https://frontendmasters.com/courses/js-fundamentals-functional-v2/).
 
 ### 1.1. Strengthen your understanding of tricky JS concepts:
 
@@ -85,13 +87,13 @@ A deep dive into JavaScript and functional programming techniques, this course i
 ```js
 var person = {};
 // Assignment with dot
-person.name = 'Mrs. White';
+person.name = "Mrs. White";
 
 var who = person.name;
 
 who; // Mrs. White
 
-person.name = 'Mr. White';
+person.name = "Mr. White";
 
 who; // Mrs. White - no change.
 
@@ -116,7 +118,7 @@ who; // Mrs. White - no change.
 ```js
 var person = [];
 // Assignment with dot
-person.name = 'Mrs. White';
+person.name = "Mrs. White";
 
 var who = person.name;
 
@@ -128,22 +130,22 @@ who; // Mrs. White
 ```js
 var person = [];
 
-person.name = 'Mrs. White';
+person.name = "Mrs. White";
 
 var who = person.name;
 
-person[0] = 'I was not in the Billiards room';
+person[0] = "I was not in the Billiards room";
 
 person; // [0: "I was not in the Billiards room", name: "Mrs. White"]
 ```
 
 ```js
 var person = [];
-var plea = 'WouldShe';
+var plea = "WouldShe";
 
-person[0] = 'I was not in the Billiards room'; // Adds property at index 0.
-person[plea] = 'I would never!'; // without var plea = 'WouldShe' -- Uncaught ReferenceError: plea is not defined
-person['plea'] = 'I would never, ever!'; // Adds property called plea.
+person[0] = "I was not in the Billiards room"; // Adds property at index 0.
+person[plea] = "I would never!"; // without var plea = 'WouldShe' -- Uncaught ReferenceError: plea is not defined
+person["plea"] = "I would never, ever!"; // Adds property called plea.
 
 person; // [0: "I was not in the Billiards room", WouldShe: "I would never!", plea: "I would never, ever!"]
 person.length; // 1
@@ -163,11 +165,11 @@ person.length; // 1
 ```js
 var box = {};
 
-box['material'] = 'cardboard';
-box[0] = 'Meow'; // JS sees numbers as something to be evaluated rather than coerced directly into a string. Could even do box[2 + 2] = 'something'.
-box['^&*'] = 'testing 123'; // must use quotes if using non-valid characters.
+box["material"] = "cardboard";
+box[0] = "Meow"; // JS sees numbers as something to be evaluated rather than coerced directly into a string. Could even do box[2 + 2] = 'something'.
+box["^&*"] = "testing 123"; // must use quotes if using non-valid characters.
 
-var test = box['^&*'];
+var test = box["^&*"];
 
 box; // {0: "Meow", material: "cardboard", ^&*: "testing 123"}
 ```
@@ -202,7 +204,7 @@ box; // {0: "Meow", material: "cardboard", ^&*: "testing 123"}
 - A simplified way of defining variables and taking them outside of an object or array.
 
 ```js
-var obj = { first: 'Tom', last: 'Hendra' };
+var obj = { first: "Tom", last: "Hendra" };
 var first = obj.first;
 var last = obj.last;
 // Destructured variables
@@ -242,24 +244,24 @@ var {first, second} = {first: 0, second: 1};
 ```js
 const game = {};
 
-game['suspects'] = [];
+game["suspects"] = [];
 
 game.suspects.push({
-  name: 'Rusty',
-  color: 'orange',
+  name: "Rusty",
+  color: "orange",
 });
 
 game.suspects[1] = {
-  name: 'Miss Scarlet',
-  color: 'red',
+  name: "Miss Scarlet",
+  color: "red",
 };
 
-game['suspects']; // [{name: 'Rusty', color: 'orange'}, {name: "Miss Scarlet", color: "red"}]
+game["suspects"]; // [{name: 'Rusty', color: 'orange'}, {name: "Miss Scarlet", color: "red"}]
 
 // Exercise 1 & 2
 game.suspects.forEach((suspect) => {
   for (let key in suspect) {
-    if (suspect.name === 'Rusty') {
+    if (suspect.name === "Rusty") {
       suspect.guilty = true;
     }
     console.log(`${key}: `, suspect[key]);
@@ -280,14 +282,14 @@ const [{ color: firstColor }, { color: secondColor }] = game.suspects;
 function CreateSuspectObjects(name) {
   return {
     name: name,
-    color: name.split(' ')[1],
+    color: name.split(" ")[1],
     speak() {
-      console.log('my name is ', name);
+      console.log("my name is ", name);
     },
   };
 }
 
-var suspects = ['Miss Scarlet', 'Colonel Mustard', 'Mr. White'];
+var suspects = ["Miss Scarlet", "Colonel Mustard", "Mr. White"];
 
 var suspectsList = [];
 
@@ -326,40 +328,40 @@ _.each(
 const _ = {};
 
 _.each = function (list, callback) {
-  if (typeof callback !== 'function') {
-    return console.error('Invalid argument: Callback must be a function.');
+  if (typeof callback !== "function") {
+    return console.error("Invalid argument: Callback must be a function.");
   }
   if (Array.isArray(list)) {
     for (var i = 0; i < list.length; i++) {
       callback(list[i], i, list);
     }
-  } else if (typeof list === 'object') {
+  } else if (typeof list === "object") {
     for (var key in list) {
       callback(list[key], key, list);
     }
   } else {
     return console.error(
-      'Invalid argument: List must be an array or an object.'
+      "Invalid argument: List must be an array or an object."
     );
   }
 };
 
-const arr = ['Tom', 'Maria', 'Pablo'];
-const obj = { name1: 'Tom', name2: 'Maria', name3: 'Pablo' };
+const arr = ["Tom", "Maria", "Pablo"];
+const obj = { name1: "Tom", name2: "Maria", name3: "Pablo" };
 
 const callback = function (element, i, list) {
   if (list[i] + 1) {
-    console.log(element, 'is younger than', list[i + 1]);
+    console.log(element, "is younger than", list[i + 1]);
   } else {
-    console.log(element, 'is the oldest');
+    console.log(element, "is the oldest");
   }
 };
 
 // Test cases
 _.each(arr, callback);
 _.each(obj, callback);
-_.each('🐛', callback);
-_.each(arr, '🐛');
+_.each("🐛", callback);
+_.each(arr, "🐛");
 ```
 
 ## 5. `.map()` Function
@@ -379,7 +381,7 @@ _.map([1, 2, 3], function (v, i, list) {
 - If list is a JavaScript object, iterator's arguments will be (value, key, list)
 
 ```js
-const weapons = ['candlestick', 'lead pipe', 'revolver'];
+const weapons = ["candlestick", "lead pipe", "revolver"];
 
 const makeBroken = function (item) {
   return `broken ${item}`;
@@ -395,14 +397,14 @@ brokenWeapons; // ["broken candlestick", "broken lead pipe", "broken revolver"]
 function CreateSuspectObjects(name) {
   return {
     name: name,
-    color: name.split(' ')[1],
+    color: name.split(" ")[1],
     speak() {
       log(`my name is ${this.name}`);
     },
   };
 }
 
-var suspects = ['Miss Scarlet', 'Colonel Mustard', 'Mr. White'];
+var suspects = ["Miss Scarlet", "Colonel Mustard", "Mr. White"];
 
 var suspectsList = _.map(suspects, function (name) {
   return CreateSuspectObjects(name);
@@ -419,8 +421,8 @@ _.each(suspects, function (suspect) {
 const _ = {};
 
 _.map = function (list, callback) {
-  if (typeof callback !== 'function') {
-    return console.error('Invalid argument: Callback must be a function.');
+  if (typeof callback !== "function") {
+    return console.error("Invalid argument: Callback must be a function.");
   }
 
   const storage = [];
@@ -433,13 +435,13 @@ _.map = function (list, callback) {
   //   for (var key in list) {
   //     storage.push(callback(list[key], i, list));
   //   }
-  if (Array.isArray(list) || typeof list === 'object') {
+  if (Array.isArray(list) || typeof list === "object") {
     _.each(list, function (v, i, list) {
       storage.push(callback(v, i, list));
     });
   } else {
     return console.error(
-      'Invalid argument: List must be an array or an object.'
+      "Invalid argument: List must be an array or an object."
     );
   }
 
@@ -456,8 +458,8 @@ const callback = function (element, i, list) {
 // Test cases
 const mapTest1 = _.map(arr, callback);
 const mapTest2 = _.map(obj, callback);
-const mapTest3 = _.map('🐛', callback);
-const mapTest4 = _.map(arr, '🐛');
+const mapTest3 = _.map("🐛", callback);
+const mapTest4 = _.map(arr, "🐛");
 ```
 
 ## 6. `.filter()` Function
@@ -471,8 +473,8 @@ const mapTest4 = _.map(arr, '🐛');
 const _ = {};
 
 _.filter = function (arr, callback) {
-  if (typeof callback !== 'function') {
-    return console.error('Invalid argument: Callback must be a function.');
+  if (typeof callback !== "function") {
+    return console.error("Invalid argument: Callback must be a function.");
   }
 
   const storage = [];
@@ -489,7 +491,7 @@ _.filter = function (arr, callback) {
       }
     });
   } else {
-    return console.error('Invalid argument: Data must be an array.');
+    return console.error("Invalid argument: Data must be an array.");
   }
 
   return storage;
@@ -497,26 +499,26 @@ _.filter = function (arr, callback) {
 
 const videoData = [
   {
-    name: 'Miss Scarlet',
+    name: "Miss Scarlet",
     present: true,
     rooms: [
       { kitchen: false },
       { ballroom: false },
       { conservatory: false },
-      { 'dining room': false },
-      { 'billiard room': false },
+      { "dining room": false },
+      { "billiard room": false },
       { library: false },
     ],
   },
   {
-    name: 'Mr Brown',
+    name: "Mr Brown",
     present: false,
     rooms: [
       { kitchen: false },
       { ballroom: false },
       { conservatory: false },
-      { 'dining room': false },
-      { 'billiard room': false },
+      { "dining room": false },
+      { "billiard room": false },
       { library: false },
     ],
   },
@@ -528,8 +530,8 @@ const callback = function (suspectObject) {
 
 // Test cases
 const filterTest1 = _.filter(videoData, callback);
-const filterTest2 = _.filter('🐛', callback);
-const filterTest3 = _.filter(videoData, '🐛');
+const filterTest2 = _.filter("🐛", callback);
+const filterTest3 = _.filter(videoData, "🐛");
 ```
 
 ## 7. Functions In-Depth
@@ -561,11 +563,11 @@ var nameImprover = (name, adj) => {
   return `Col ${name} Mc ${adj} pants`;
 };
 
-$('body').hide();
+$("body").hide();
 
 myArr.forEach((val) => console.log(val));
 
-$('button').on('click', () => {
+$("button").on("click", () => {
   console.log("Don't press my buttons!");
 });
 ```
@@ -578,74 +580,74 @@ $('button').on('click', () => {
 ```js
 const videoData = [
   {
-    name: 'Miss Scarlet',
+    name: "Miss Scarlet",
     present: true,
     rooms: [
       { kitchen: false },
       { ballroom: false },
       { conservatory: false },
-      { 'dining room': false },
-      { 'billiard room': false },
+      { "dining room": false },
+      { "billiard room": false },
       { library: false },
     ],
   },
   {
-    name: 'Mrs. White',
+    name: "Mrs. White",
     present: false,
     rooms: [
       { kitchen: false },
       { ballroom: false },
       { conservatory: false },
-      { 'dining room': false },
-      { 'billiard room': false },
+      { "dining room": false },
+      { "billiard room": false },
       { library: false },
     ],
   },
   {
-    name: 'Reverend Green',
+    name: "Reverend Green",
     present: true,
     rooms: [
       { kitchen: false },
       { ballroom: false },
       { conservatory: false },
-      { 'dining room': false },
-      { 'billiard room': false },
+      { "dining room": false },
+      { "billiard room": false },
       { library: false },
     ],
   },
   {
-    name: 'Rusty',
+    name: "Rusty",
     present: false,
     rooms: [
       { kitchen: false },
       { ballroom: false },
       { conservatory: false },
-      { 'dining room': false },
-      { 'billiard room': false },
+      { "dining room": false },
+      { "billiard room": false },
       { library: false },
     ],
   },
   {
-    name: 'Colonel Mustard',
+    name: "Colonel Mustard",
     present: true,
     rooms: [
       { kitchen: false },
       { ballroom: false },
       { conservatory: false },
-      { 'dining room': false },
-      { 'billiard room': false },
+      { "dining room": false },
+      { "billiard room": false },
       { library: false },
     ],
   },
   {
-    name: 'Professor Plum',
+    name: "Professor Plum",
     present: true,
     rooms: [
       { kitchen: false },
       { ballroom: false },
       { conservatory: false },
-      { 'dining room': false },
-      { 'billiard room': false },
+      { "dining room": false },
+      { "billiard room": false },
       { library: false },
     ],
   },
@@ -654,38 +656,38 @@ const videoData = [
 const _ = {};
 
 _.each = function (list, callback) {
-  if (typeof callback !== 'function') {
-    return console.error('Invalid argument: Callback must be a function.');
+  if (typeof callback !== "function") {
+    return console.error("Invalid argument: Callback must be a function.");
   }
   if (Array.isArray(list)) {
     for (var i = 0; i < list.length; i++) {
       callback(list[i], i, list);
     }
-  } else if (typeof list === 'object') {
+  } else if (typeof list === "object") {
     for (var key in list) {
       callback(list[key], key, list);
     }
   } else {
     return console.error(
-      'Invalid argument: List must be an array or an object.'
+      "Invalid argument: List must be an array or an object."
     );
   }
 };
 
 _.map = function (list, callback) {
-  if (typeof callback !== 'function') {
-    return console.error('Invalid argument: Callback must be a function.');
+  if (typeof callback !== "function") {
+    return console.error("Invalid argument: Callback must be a function.");
   }
 
   const storage = [];
 
-  if (Array.isArray(list) || typeof list === 'object') {
+  if (Array.isArray(list) || typeof list === "object") {
     _.each(list, function (v, i, list) {
       storage.push(callback(v, i, list));
     });
   } else {
     return console.error(
-      'Invalid argument: List must be an array or an object.'
+      "Invalid argument: List must be an array or an object."
     );
   }
 
@@ -693,8 +695,8 @@ _.map = function (list, callback) {
 };
 
 _.filter = function (arr, callback) {
-  if (typeof callback !== 'function') {
-    return console.error('Invalid argument: Callback must be a function.');
+  if (typeof callback !== "function") {
+    return console.error("Invalid argument: Callback must be a function.");
   }
 
   const storage = [];
@@ -706,7 +708,7 @@ _.filter = function (arr, callback) {
       }
     });
   } else {
-    return console.error('Invalid argument: Data must be an array.');
+    return console.error("Invalid argument: Data must be an array.");
   }
 
   return storage;
@@ -733,7 +735,7 @@ const createTuple = (a, b, c, ...d) => {
   ];
 };
 
-createTuple('It', 'be', 'could', 'anyone', 'no one');
+createTuple("It", "be", "could", "anyone", "no one");
 // [['It', 'Could'], ['be', ['anyone', 'no one']]]
 ```
 
@@ -753,7 +755,7 @@ const createTuple = (a, b, c, d) => {
   ];
 };
 
-createTuple('It', 'be', 'could', 'anyone', 'no one');
+createTuple("It", "be", "could", "anyone", "no one");
 
 const createTuple = function (a, b, c, ...d) {
   console.log(arguments); // ['It', 'be', 'could', 'anyone', 'no one']
@@ -763,7 +765,7 @@ const createTuple = function (a, b, c, ...d) {
   ];
 };
 
-createTuple('It', 'be', 'could', 'anyone', 'no one');
+createTuple("It", "be", "could", "anyone", "no one");
 ```
 
 ### 7.6. Default Parameters
@@ -799,18 +801,18 @@ add(3); // 5
  */
 const constructArr = function () {
   const arr = Array.prototype.slice.call(arguments);
-  arr.push('the billiards room?');
-  return arr.join(' ');
+  arr.push("the billiards room?");
+  return arr.join(" ");
 };
-constructArr('was', 'it', 'in');
+constructArr("was", "it", "in");
 
 //ES6
 const constructArr = function () {
   const arr = Array.from(arguments);
-  arr.push('the billiards room?');
-  return arr.join(' ');
+  arr.push("the billiards room?");
+  return arr.join(" ");
 };
-constructArr('was', 'it', 'in');
+constructArr("was", "it", "in");
 ```
 
 ### 7.8. Exercise: Implement `_.from()`
@@ -839,8 +841,8 @@ const from = (arr) => {
 1. Takes function as an input.
 
 ```js
-element.addEventListener('change', () => {
-  console.log('Our evidence is updated');
+element.addEventListener("change", () => {
+  console.log("Our evidence is updated");
 });
 ```
 
@@ -925,7 +927,7 @@ const ifElse = (condition, isTrue, isFalse, ...args) => {
   return condition ? isTrue(...args) : isFalse(...args);
   // isTrue('HI', 'BYE', 'HOLA');
 };
-ifElse(true, fn1, fn2, 'HI', 'BYE', 'HOLA');
+ifElse(true, fn1, fn2, "HI", "BYE", "HOLA");
 
 // ES5
 const ifElse = function (condition, isTrue, isFalse) {
@@ -942,7 +944,7 @@ const logFalse = (msgs) => {
   console.log(msgs);
 };
 
-ifElse(true, logTrue, logFalse, 'HI', 'BYE', 'HOLA');
+ifElse(true, logTrue, logFalse, "HI", "BYE", "HOLA");
 ```
 
 ### 9.5. Exercise: Implement `_.reduce()`
@@ -984,50 +986,50 @@ _.reduce([1, 2, 3, 4, 5, 6], function (sum, n) {
 ```js
 const newDevelopment = [
   {
-    name: 'Miss Scarlet',
+    name: "Miss Scarlet",
     present: true,
     rooms: [
       { kitchen: false },
       { ballroom: false },
       { conservatory: true },
-      { 'dining room': true },
-      { 'billiard room': false },
+      { "dining room": true },
+      { "billiard room": false },
       { library: true },
     ],
   },
   {
-    name: 'Reverend Green',
+    name: "Reverend Green",
     present: true,
     rooms: [
       { kitchen: true },
       { ballroom: false },
       { conservatory: false },
-      { 'dining room': false },
-      { 'billiard room': true },
+      { "dining room": false },
+      { "billiard room": true },
       { library: false },
     ],
   },
   {
-    name: 'Colonel Mustard',
+    name: "Colonel Mustard",
     present: true,
     rooms: [
       { kitchen: false },
       { ballroom: false },
       { conservatory: true },
-      { 'dining room': false },
-      { 'billiard room': true },
+      { "dining room": false },
+      { "billiard room": true },
       { library: false },
     ],
   },
   {
-    name: 'Professor Plum',
+    name: "Professor Plum",
     present: true,
     rooms: [
       { kitchen: true },
       { ballroom: false },
       { conservatory: false },
-      { 'dining room': true },
-      { 'billiard room': false },
+      { "dining room": true },
+      { "billiard room": false },
       { library: false },
     ],
   },
@@ -1059,7 +1061,7 @@ const findTheEmptyRoom = function (evidence) {
   _.each(evidence, function checkEachSuspect(suspect) {
     _.each(suspect.rooms, function wasRoomVisited(room) {
       let visited = Object.values(room);
-      memo[Object.keys(room)] = visited[0] === true ? 'visited' : null;
+      memo[Object.keys(room)] = visited[0] === true ? "visited" : null;
     });
   });
 
@@ -1119,13 +1121,13 @@ blame('you');
 
 ```js
 const myAlert = () => {
-  const x = 'Help! I think I found a clue!';
+  const x = "Help! I think I found a clue!";
   const alerter = () => {
     alert(x);
   };
 
   setTimeout(alerter, 1000);
-  console.log('what happens first? this log or the alert?');
+  console.log("what happens first? this log or the alert?");
 };
 
 myAlert();
@@ -1138,7 +1140,7 @@ myAlert();
 
 ```js
 const myAlert = () => {
-  const x = 'Help! I think I found a clue!';
+  const x = "Help! I think I found a clue!";
   let count = 0;
   const alerter = () => {
     alert(`${x} ${++count}`);
@@ -1163,7 +1165,7 @@ const newClue = (name) => {
   };
 };
 
-const didGreenDoItWithA = newClue('Green');
+const didGreenDoItWithA = newClue("Green");
 ```
 
 - Closure can also be created within object methods.
@@ -1199,10 +1201,10 @@ const countClues = () => {
 - Closure can be used to return a function from within a function, that has access to its parent scope even after it has been executed.
 
 ```js
-var scope = 'global scope';
+var scope = "global scope";
 
 function checkScope() {
-  var scope = 'local scope';
+  var scope = "local scope";
 
   function innerFunction() {
     return scope;
@@ -1224,8 +1226,8 @@ const findSomeone = () => {
     console.log(who);
   };
 
-  // even though who is defined after the speak, when the function is called who exists in the execution context.
-  let who = 'Why hello there, Prof Plum!';
+  // even though who is defined after the speak, when the function is called, who exists in the execution context.
+  let who = "Why hello there, Prof Plum!";
 
   return speak;
 };
@@ -1291,5 +1293,5 @@ const compose = (fn, fn2) => {
 };
 
 const guess = compose(consider, exclaim);
-guess('Miss Scarlett'); // 'I think it could be... MISS SCARLETT!'
+guess("Miss Scarlett"); // 'I think it could be... MISS SCARLETT!'
 ```

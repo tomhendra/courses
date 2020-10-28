@@ -253,8 +253,9 @@ left; // 198
   - string
   - number
   - boolean
-  - object
   - symbol (ES6)
+  - bigint (ES2020)
+  - object - [The spec](https://tc39.es/ecma262/#sec-primitive-value) doesn't list object as a primitive type, but Kyle specifies it as primitive?
 
 - And also other types which are not primitives.
 

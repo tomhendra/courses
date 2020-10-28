@@ -195,9 +195,9 @@ An ECMAScript language type corresponds to values that are directly manipulated 
   - string
   - number
   - boolean
-  - object
   - symbol
   - bigint
+  - object - [The spec](https://tc39.es/ecma262/#sec-primitive-value) doesn't list object as a primitive type, but Kyle specifies it as primitive?
 
 - There are some other things that may behave like types that we need to consider.
 
@@ -222,7 +222,7 @@ An ECMAScript language type corresponds to values that are directly manipulated 
 ```js
 var v;
 typeof v; // "undefined"
-v = '1';
+v = "1";
 typeof v; // "string"
 v = 2;
 typeof v; // "number"
@@ -290,9 +290,9 @@ typeof v; // "bigint"
 - If you're designing a system and somebody expects to get a number and you want to signal to them there is valid number to give, there is only one value that makes any sense as all: you should return the `NaN`.
 
 ```js
-var myAge = Number('0o46'); // 38
-var myNextAge = Number('39'); // 39
-var myCatsAge = Number('n/a'); // NaN
+var myAge = Number("0o46"); // 38
+var myNextAge = Number("39"); // 39
+var myCatsAge = Number("n/a"); // NaN
 myAge = "my son's age"; // NaN - JS coerces the string into the NaN value.
 
 myCatsAge === myCatsAge; // false OOPS!
@@ -354,7 +354,7 @@ sign(0); // 0
 
 ```js
 function formatTrendRate(trendRate) {
-  var direction = trendRate < 0 || Object.is(trendRate, -0) ? '▼' : '▲';
+  var direction = trendRate < 0 || Object.is(trendRate, -0) ? "▼" : "▲";
   return `${direction} ${Math.abs(trendRate)}`;
 }
 
@@ -397,7 +397,7 @@ formatTrendRate(0); // "▲ 0"
 - We don't want to put the `new` keyword in front of them, because if we call them with some value, it actually coerces the value into that primitive type.
 
 ```js
-var yesterday = new Date('July 16, 2020');
+var yesterday = new Date("July 16, 2020");
 yesterday.toUTCString();
 // "Wed, 15 Jul 2020 22:00:00 GMT"
 
@@ -562,12 +562,12 @@ var numStudents = 16;
 console.log(`There are ${numStudents} students.`);
 // Coerced to a string implicitly!
 
-var msg1 = 'There are ';
-var msg2 = 'students.';
+var msg1 = "There are ";
+var msg2 = "students.";
 console.log(msg1 + numStudents + msg2);
 // Coerced to a string implicitly!
 
-console.log(`There are ${numStudents + ''} students.`);
+console.log(`There are ${numStudents + ""} students.`);
 // Coerced to a string implicitly!
 ```
 
@@ -585,7 +585,7 @@ console.log(`There are ${numStudents + ''} students.`);
 ```js
 var numStudents = 16;
 
-console.log(`There are ${[numStudents].join('')} students.`);
+console.log(`There are ${[numStudents].join("")} students.`);
 // Coerced to a string explicitly - but don't do this!
 
 console.log(`There are ${numStudents.toString()} students.`);
@@ -700,8 +700,8 @@ Boolean({}); // true
 - It is impossible to design a system without corner cases.
 
 ```js
-Number(''); // 0 OOPS!
-Number('  \t\n'); // 0 OOPS!
+Number(""); // 0 OOPS!
+Number("  \t\n"); // 0 OOPS!
 Number(null); // 0 OOPS!
 Number(undefined); // NaN
 Number([]); // 0 OOPS!
@@ -724,11 +724,11 @@ Boolean(new Boolean(false)); // true OOPS!
 - Because the ToNumber first strips off all leading and trailing whitespace before performing its coercion.
 
 ```js
-studentsInput.value = '';
+studentsInput.value = "";
 
 Number(studentsInput.value); // 0
 
-studentsInput.value = '  \t\n';
+studentsInput.value = "  \t\n";
 
 Number(studentsInput.value); // 0
 ```
@@ -893,7 +893,7 @@ The comparison x == y, where x and y are values, produces true or false. Such a 
 - There is a myth that `==` checks the value and `===` checks the value and type: debunked on line 1!
 
 ```js
-var studentName1 = 'Frank';
+var studentName1 = "Frank";
 var studentName2 = `${studentName1}`;
 
 var workshopEnrolment1 = 16;
@@ -922,11 +922,11 @@ Return ! SameValueNonNumeric(x, y).
 
 ```js
 var workshop1 = {
-  name: 'Deep JS Foundations',
+  name: "Deep JS Foundations",
 };
 
 var workshop2 = {
-  name: 'Deep JS Foundations',
+  name: "Deep JS Foundations",
 };
 
 if (workshop1 == workshop2) {
@@ -1244,9 +1244,9 @@ if (false) {
 3. Any part of the application that isn't typed introduces uncertainty
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 // TS will infer that teacher should always be a string, and throw an error if it's reassigned.
-teacher = { name: 'Kyle' };
+teacher = { name: "Kyle" };
 // Error: can't assign object to string
 ```
 
@@ -1262,7 +1262,7 @@ teacher = { name: 'Kyle' };
 - Checking the operations we are doing where most of our business logic is.
 
 ```js
-var studentName: string = 'Frank';
+var studentName: string = "Frank";
 
 var studentCount: number = 16 - studentName;
 // Error: can't subtract string from a number
@@ -1341,15 +1341,15 @@ console.log(y);
 - Consider this code:
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 function otherClass() {
-  var teacher = 'Suzy';
-  console.log('Welcome!');
+  var teacher = "Suzy";
+  console.log("Welcome!");
 }
 
 function ask() {
-  var question = 'Why?';
+  var question = "Why?";
   console.log(question);
 }
 
@@ -1395,15 +1395,15 @@ ask(); // Why?
 ```js
 // var teacher: handled by compiler
 // teacher = "Kyle": handled by execution engine
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 function otherClass() {
-  var teacher = 'Suzy';
-  console.log('Welcome!');
+  var teacher = "Suzy";
+  console.log("Welcome!");
 }
 
 function ask() {
-  var question = 'Why?';
+  var question = "Why?";
   console.log(question);
 }
 
@@ -1455,12 +1455,12 @@ ask(); // Why?
 ### 7.3. Dynamic Global Variables
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 function otherClass() {
-  teacher = 'Suzy';
-  topic = 'React';
-  console.log('Welcome!');
+  teacher = "Suzy";
+  topic = "React";
+  console.log("Welcome!");
 }
 
 otherClass(); // Welcome!
@@ -1488,20 +1488,20 @@ topic; // React
 - Scopes can be nested.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 function otherClass() {
-  var teacher = 'Suzy';
+  var teacher = "Suzy";
 
   function ask(question) {
     console.log(teacher, question);
   }
 
-  ask('Why>');
+  ask("Why>");
 }
 
 otherClass(); // Suzy Why?
-ask('????'); // Reference error!
+ask("????"); // Reference error!
 // unlike a target reference, a global variable is not created automatically for source references.
 ```
 
@@ -1525,7 +1525,7 @@ ask('????'); // Reference error!
 
 ```js
 function teacher() {
-  console.log('functional stuff..');
+  console.log("functional stuff..");
 }
 
 var myTeacher = function anotherTeacher() {
@@ -1673,16 +1673,16 @@ getPerson().then(getDataFrom).then(renderData);
 ### 9.1. Lexical Scope
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 function otherClass() {
-  var teacher = 'Suzy';
+  var teacher = "Suzy";
 
   function ask(question) {
     console.log(teacher, question);
   }
 
-  ask('Why?');
+  ask("Why?");
 }
 ```
 
@@ -1695,16 +1695,16 @@ function otherClass() {
 - Dynamic scope does not exist in JS, but to explain it theoretically, we can look at how the example would be processed if it was.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 function ask(question) {
   console.log(teacher, question);
 }
 
 function otherClass() {
-  var teacher = 'Suzy';
+  var teacher = "Suzy";
 
-  ask('Why?');
+  ask("Why?");
 }
 ```
 
@@ -1721,13 +1721,13 @@ function otherClass() {
 - Imagine this scenario:
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 {
   /* ... */
 }
 // 6 months later someone declares a variable of the same name!
-var teacher = 'Suzy';
+var teacher = "Suzy";
 
 console.log(teacher); // Suzy OOPS!
 ```
@@ -1736,10 +1736,10 @@ console.log(teacher); // Suzy OOPS!
 - How do we fix this? Put them in different buckets.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 function anotherTeacher() {
-  var teacher = 'Suzy';
+  var teacher = "Suzy";
   console.log(teacher); // Suzy
 }
 
@@ -1765,10 +1765,10 @@ console.log(teacher); // Kyle
 - Fixes the problem of name collision, without polluting the scope with a new function name.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 (function anotherTeacher() {
-  var teacher = 'Suzy';
+  var teacher = "Suzy";
   console.log(teacher); // Suzy
 })();
 
@@ -1785,12 +1785,12 @@ console.log(teacher); // Kyle
 - It is common to see anonymous IIFEs.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 // This IIFE is anonymous - never ever use anonymous function expressions!
 (function (teacher) {
   console.log(teacher); // Suzy
-})('Suzy'); // can also pass in values!
+})("Suzy"); // can also pass in values!
 
 console.log(teacher); // Kyle
 ```
@@ -1805,7 +1805,7 @@ var teacher;
 try {
   teacher = fetchTeacher1(1);
 } catch (err) {
-  teacher = 'Kyle';
+  teacher = "Kyle";
 }
 ```
 
@@ -1816,7 +1816,7 @@ var teacher = (function getTeacher() {
   try {
     return fetchTeacher1(1);
   } catch (err) {
-    return 'Kyle';
+    return "Kyle";
   }
 })();
 ```
@@ -1829,7 +1829,7 @@ var teacher = (function getTeacher() {
 - Same principle applies as with function scope: we put something inside of a block to hide it - avoid name collision, protect it from misuse, better enable free future refactoring.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 /*
 (function anotherTeacher() {
   var teacher = 'Suzy';
@@ -1839,7 +1839,7 @@ var teacher = 'Kyle';
 
 // instead of the IIFE...
 {
-  let teacher = 'Suzy';
+  let teacher = "Suzy";
   console.log(teacher);
 }
 
@@ -1949,14 +1949,14 @@ function formatStr(str) {
 - It actually means a variable that cannot be reassigned.
 
 ```js
-var teacher = 'Suzy';
-teacher = 'Kyle'; // OK
+var teacher = "Suzy";
+teacher = "Kyle"; // OK
 
 const myTeacher = teacher;
-myTeacher = 'Suzy'; // TypeError
+myTeacher = "Suzy"; // TypeError
 
-const teachers = ['Kyle', 'Suzy'];
-teachers[1] = 'Brian'; // Allowed!
+const teachers = ["Kyle", "Suzy"];
+teachers[1] = "Brian"; // Allowed!
 ```
 
 - The fact that `const` allows mutations of values as demonstrated the array above, creates all kinds of problems.
@@ -1982,8 +1982,8 @@ teachers[1] = 'Brian'; // Allowed!
 ```js
 student;
 teacher;
-var student = 'me';
-var teacher = 'Kyle';
+var student = "me";
+var teacher = "Kyle";
 ```
 
 - Hoisting would say that code is moved, but in reality it is not:
@@ -1994,8 +1994,8 @@ var teacher;
 
 student; // undefined
 teacher; // undefined
-student = 'me';
-teacher = 'Kyle';
+student = "me";
+teacher = "Kyle";
 ```
 
 - We know the compiler parses variable declarations first, and the variables are initialized at runtime during the second pass.
@@ -2013,11 +2013,11 @@ teacher(); // Kyle
 otherTeacher(); // ??
 
 function teacher() {
-  return 'Kyle';
+  return "Kyle";
 }
 
 var otherTeacher = function () {
-  return 'Suzy';
+  return "Suzy";
 };
 ```
 
@@ -2025,7 +2025,7 @@ var otherTeacher = function () {
 
 ```js
 function teacher() {
-  return 'Kyle';
+  return "Kyle";
 }
 var otherTeacher;
 
@@ -2033,7 +2033,7 @@ teacher(); // Kyle
 otherTeacher(); // TypeError
 
 otherTeacher = function () {
-  return 'Suzy';
+  return "Suzy";
 };
 ```
 
@@ -2049,12 +2049,12 @@ otherTeacher = function () {
 - If we think about this as the two pass process that it is, of course `teacher` has been made available in the scope of `otherTeacher` before `otherTeacher` has had a chance to run.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 otherTeacher(); // otherTeacher is "hoisted"
 
 function otherTeacher() {
   console.log(teacher); // undefined, so the variable exists but has no value yet. It was "hoisted".
-  var teacher = 'Suzy';
+  var teacher = "Suzy";
 }
 ```
 
@@ -2065,7 +2065,7 @@ function otherTeacher() {
 ```js
 // var hoisting?
 // usually bad :/
-teacher = 'Kyle';
+teacher = "Kyle";
 var teacher;
 
 // function hoisting?
@@ -2083,15 +2083,15 @@ function getTeacher() {
 
 ```js
 {
-  teacher = 'Kyle'; // TDZ Error
+  teacher = "Kyle"; // TDZ Error
   let teacher;
 }
 
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 {
   console.log(teacher); // TDZ Error
-  let teacher = 'Suzy'; // If this didn't hoist, then the above line should print "Kyle"
+  let teacher = "Suzy"; // If this didn't hoist, then the above line should print "Kyle"
 }
 ```
 
@@ -2134,7 +2134,7 @@ function ask(question) {
   }, 100);
 }
 
-ask('What is a closure?'); // What is a closure?
+ask("What is a closure?"); // What is a closure?
 ```
 
 - Generally speaking JS engines implement closure as a linkage to the entire scope, not a per variable basis.
@@ -2150,7 +2150,7 @@ function ask(question) {
   };
 }
 
-var myQuestion = ask('What is a closure?');
+var myQuestion = ask("What is a closure?");
 
 // Some time later...
 
@@ -2166,13 +2166,13 @@ myQuestion(); // What is a closure?
 - Closure is a preservation of the linkage to the variable, not a capture of the value.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 var myTeacher = function () {
   console.log(teacher);
 };
 
-teacher = 'Suzy';
+teacher = "Suzy";
 
 myTeacher(); // Suzy because the variable was closed over, not the value 'Kyle'.
 ```
@@ -2222,13 +2222,13 @@ for (let i = 1; i <= 3; i++) {
 
 ```js
 var workshop = {
-  teacher: 'Kyle',
+  teacher: "Kyle",
   ask(question) {
     console.log(this.teacher, question);
   },
 };
 
-workshop.ask('Is this a module?');
+workshop.ask("Is this a module?");
 // Kyle Is this a module?
 ```
 
@@ -2255,9 +2255,9 @@ var workshop = (function Module(teacher) {
   function ask(question) {
     console.log(teacher, question);
   }
-})('Kyle');
+})("Kyle");
 
-workshop.ask('This is a module, right?');
+workshop.ask("This is a module, right?");
 // Kyle This is a module, right?
 ```
 
@@ -2287,8 +2287,8 @@ function workshopModule(teacher) {
   }
 }
 
-var workshop = workshopModule('Kyle');
-workshop.ask('This is a module, right?');
+var workshop = workshopModule("Kyle");
+workshop.ask("This is a module, right?");
 // Kyle This is a module, right?
 ```
 
@@ -2316,7 +2316,7 @@ export default function ask(question) {
 }
 
 // ************
-import ask from 'workshop.mjs';
+import ask from "workshop.mjs";
 ```
 
 - The other thing to note is that ES6 modules are file based. It is impossible to have more than one module in the same file.
@@ -2336,12 +2336,12 @@ export default function ask(question) {
   console.log(teacher, question);
 }
 
-import ask from 'workshop.mjs';
-ask('This is a default import, right?');
+import ask from "workshop.mjs";
+ask("This is a default import, right?");
 // Kyle This is a default import, right?"
 
-import * as workshop from 'workshop.mjs';
-ask('This is a namespace import, right?');
+import * as workshop from "workshop.mjs";
+ask("This is a namespace import, right?");
 // Kyle This is a namespace import, right?"
 ```
 
@@ -2371,9 +2371,9 @@ function ask(question) {
 
 function otherClass() {
   var myContext = {
-    teacher: 'Suzy',
+    teacher: "Suzy",
   };
-  ask.call(myContext, 'Why?'); // Suzy Why?
+  ask.call(myContext, "Why?"); // Suzy Why?
 }
 
 otherClass();
@@ -2395,13 +2395,13 @@ otherClass();
 
 ```js
 var workshop = {
-  teacher: 'Kyle',
+  teacher: "Kyle",
   ask(question) {
     console.log(this.teacher, question);
   },
 };
 
-workshop.ask('What is an implicit binding?');
+workshop.ask("What is an implicit binding?");
 // Kyle What is an implicit binding?
 ```
 
@@ -2416,19 +2416,19 @@ function ask(question) {
 }
 
 var workshop1 = {
-  teacher: 'Kyle',
+  teacher: "Kyle",
   ask: ask,
 };
 
 var workshop2 = {
-  teacher: 'Suzy',
+  teacher: "Suzy",
   ask: ask,
 };
 
-workshop1.ask('How do I share a method?');
+workshop1.ask("How do I share a method?");
 // Kyle How do I share a method?
 
-workshop2.ask('How do I share a method?');
+workshop2.ask("How do I share a method?");
 // Suzy How do I share a method?
 ```
 
@@ -2449,17 +2449,17 @@ function ask(question) {
 }
 
 var workshop1 = {
-  teacher: 'Kyle',
+  teacher: "Kyle",
 };
 
 var workshop2 = {
-  teacher: 'Suzy',
+  teacher: "Suzy",
 };
 
-ask.call(workshop1, 'Can I explicitly set context?');
+ask.call(workshop1, "Can I explicitly set context?");
 // Kyle Can I explicitly set context?
 
-ask.call(workshop2, 'Can I explicitly set context?');
+ask.call(workshop2, "Can I explicitly set context?");
 // Suzy Can I explicitly set context?
 ```
 
@@ -2473,15 +2473,15 @@ ask.call(workshop2, 'Can I explicitly set context?');
 
 ```js
 var workshop = {
-  teacher: 'Kyle',
+  teacher: "Kyle",
   ask(question) {
     console.log(this.teacher, question);
   },
 };
 
-setTimeout(workshop.ask, 10, 'Lost this?');
+setTimeout(workshop.ask, 10, "Lost this?");
 // undefined Lost this?
-setTimeout(workshop.ask.bind(workshop), 10, 'Hard bound this?');
+setTimeout(workshop.ask.bind(workshop), 10, "Hard bound this?");
 // Kyle Hard bound this?
 ```
 
@@ -2509,7 +2509,7 @@ function ask(question) {
   console.log(this.teacher, question);
 }
 
-var emptyObject = new ask('What is the new keyword doing here?');
+var emptyObject = new ask("What is the new keyword doing here?");
 // undefined What is the new keyword doing here?
 ```
 
@@ -2528,21 +2528,21 @@ var emptyObject = new ask('What is the new keyword doing here?');
 - The fallback as defined in the spec is to default to global.
 
 ```js
-var teacher = 'Kyle';
+var teacher = "Kyle";
 
 function ask(question) {
   console.log(this.teacher, question);
 }
 
 function askAgain() {
-  'use strict';
+  "use strict";
   console.log(this.teacher, question);
 }
 
-ask('What is the non-strict-mode default?');
+ask("What is the non-strict-mode default?");
 // Kyle What is the non-strict-mode default?
 
-askAgain('What is the strict-mode default?');
+askAgain("What is the strict-mode default?");
 // TypeError
 ```
 
@@ -2558,13 +2558,13 @@ askAgain('What is the strict-mode default?');
 
 ```js
 var workshop = {
-  teacher: 'Kyle',
+  teacher: "Kyle",
   ask(question) {
     console.log(this.teacher, question);
   },
 };
 
-new (workshop.ask.bind(workshop))('What does this do?');
+new (workshop.ask.bind(workshop))("What does this do?");
 // undefined What does this do?
 ```
 
@@ -2580,7 +2580,7 @@ new (workshop.ask.bind(workshop))('What does this do?');
 
 ```js
 var workshop = {
-  teacher: 'Kyle',
+  teacher: "Kyle",
   ask(question) {
     setTimeout(() => {
       console.log(this.teacher, question);
@@ -2665,13 +2665,13 @@ class Workshop {
   }
 }
 
-var deepJS = new Workshop('Kyle');
-var reactJS = new Workshop('Suzy');
+var deepJS = new Workshop("Kyle");
+var reactJS = new Workshop("Suzy");
 
 deepJS.ask("Is 'class' a class?");
 // Kyle Is 'class' a class?
 
-reactJS.ask('Is this class OK?');
+reactJS.ask("Is this class OK?");
 // Suzy Is this class OK?
 ```
 
@@ -2694,9 +2694,9 @@ class AnotherWorkshop extends Workshop {
   }
 }
 
-var JSRecentParts = new AnotherWorkshop('Kyle');
+var JSRecentParts = new AnotherWorkshop("Kyle");
 
-JSRecentParts.speakUp('Are classes getting better?');
+JSRecentParts.speakUp("Are classes getting better?");
 // Kyle Are classes getting better?
 ```
 
@@ -2720,9 +2720,9 @@ class AnotherWorkshop extends Workshop {
   }
 }
 
-var JSRecentParts = new AnotherWorkshop('Kyle');
+var JSRecentParts = new AnotherWorkshop("Kyle");
 
-JSRecentParts.ask('Are classes super?');
+JSRecentParts.ask("Are classes super?");
 // Kyle ARE CLASSES SUPER?
 ```
 
@@ -2740,9 +2740,9 @@ class Workshop {
   }
 }
 
-var deepJS = new Workshop('Kyle');
+var deepJS = new Workshop("Kyle");
 
-setTimeout(deepJS.ask, 100, 'Still losing this?');
+setTimeout(deepJS.ask, 100, "Still losing this?");
 // undefined Still losing this?
 ```
 
@@ -2759,7 +2759,7 @@ class Workshop {
   }
 }
 
-var deepJS = new Workshop('Kyle');
+var deepJS = new Workshop("Kyle");
 
 setTimeout(deepJS.ask, 100, 'Is "this" fixed?');
 // Kyle Is "this" fixed?
@@ -2818,8 +2818,8 @@ Workshop.prototype.ask = function (question) {
 
 // When we use the new keyword it will invoke the Workshop function,
 // and the object that gets created will be linked to Workshop.prototype
-var deepJS = new Workshop('Kyle');
-var reactJS = new Workshop('Suzy');
+var deepJS = new Workshop("Kyle");
+var reactJS = new Workshop("Suzy");
 
 /* It's important to understand that the deepJS object does NOT have an ask method.
  * Instead it is prototype linked to Workshop.prototype, and when we call deepJS.ask()
@@ -2850,8 +2850,8 @@ Workshop.prototype.ask = function (question) {
   console.log(this.teacher, question);
 };
 
-var deepJS = new Workshop('Kyle');
-var reactJS = new Workshop('Suzy');
+var deepJS = new Workshop("Kyle");
+var reactJS = new Workshop("Suzy");
 
 deepJS.ask("Is 'prototype' a class?");
 reactJS.ask("Isn't 'prototype' ugly?");
@@ -2915,7 +2915,7 @@ Workshop.prototype.ask = function (question) {
   console.log(this.teacher, question);
 };
 
-var deepJS = new Workshop('Kyle');
+var deepJS = new Workshop("Kyle");
 
 deepJS.constructor === Workshop; // true
 
@@ -2950,13 +2950,13 @@ Workshop.prototype.ask = function (question) {
   console.log(this.teacher, question);
 };
 
-var deepJS = new Workshop('Kyle');
+var deepJS = new Workshop("Kyle");
 
 deepJS.ask = function (question) {
   this.ask(question.toUpperCase);
 };
 
-deepJS.ask('Oops, is this infinite recursion?');
+deepJS.ask("Oops, is this infinite recursion?");
 ```
 
 - The `this` of ask will point to the call site as always, which is `deepJS`.
@@ -2976,13 +2976,13 @@ Workshop.prototype.ask = function (question) {
   console.log(this.teacher, question);
 };
 
-var deepJS = new Workshop('Kyle');
+var deepJS = new Workshop("Kyle");
 
 deepJS.ask = function (question) {
   this.__proto__.ask.call(this, question.toUpperCase());
 };
 
-deepJS.ask('Is this fake polymorphism?');
+deepJS.ask("Is this fake polymorphism?");
 // Kyle IS THIS FAKE POLYMORPHISM?
 ```
 
@@ -3014,9 +3014,9 @@ AnotherWorkshop.prototype.speakUp = function (msg) {
   this.ask(msg.toUpperCaseI());
 };
 
-var JSRecentParts = new AnotherWorkshop('Kyle');
+var JSRecentParts = new AnotherWorkshop("Kyle");
 
-JSRecentParts.speakUp('Is this actually inheritance?');
+JSRecentParts.speakUp("Is this actually inheritance?");
 // Kyle IS THIS ACTUALLY INHERITANCE?
 ```
 
@@ -3089,8 +3089,8 @@ class AnotherWorkshop extends Workshop {
   }
 }
 
-var JSRecentParts = new AnotherWorkshop('Kyle');
-JSRecentParts.speakUp('Are classes getting better?');
+var JSRecentParts = new AnotherWorkshop("Kyle");
+JSRecentParts.speakUp("Are classes getting better?");
 // Kyle ARE CLASSES GETTING BETTER?
 ```
 
@@ -3113,7 +3113,7 @@ AnotherWorkshop.prototype.speakUp = function (msg) {
   this.ask(msg.toUpperCase());
 };
 
-var JSRecentParts = new AnotherWorkshop('Kyle');
+var JSRecentParts = new AnotherWorkshop("Kyle");
 JSRecentParts.speakUp("Isn't this ugly?");
 // Kyle ISN'T THIS UGLY?
 ```
@@ -3138,7 +3138,7 @@ var AnotherWorkshop = Object.assign(Object.create(Workshop), {
 });
 
 var JSRecentParts = Object.create(AnotherWorkshop);
-JSRecentParts.setTeacher('Kyle');
+JSRecentParts.setTeacher("Kyle");
 JSRecentParts.speakUp("But isn't this cleaner?");
 // Kyle BUT ISN"T THIS CLEANER
 ```
