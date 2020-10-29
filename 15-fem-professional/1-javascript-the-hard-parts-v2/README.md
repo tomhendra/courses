@@ -1113,7 +1113,7 @@ const user2 = new userCreator("Tom", 10);
 
 - When JS sees the keyword `function` we get a function + a "big old object".
 - All functions have these objects.
-- And this object has a property called `prototype`, which defaults to a "big old empty object".
+- And this object has a property called `prototype`, which defaults to a _big old empty object_.
 - The `new` keyword creates a bond through the `__proto__` property to the `prototype` property: this is where we store our functions.
 
 ```js
