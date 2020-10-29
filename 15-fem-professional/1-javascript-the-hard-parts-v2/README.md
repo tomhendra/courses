@@ -51,7 +51,7 @@
 
 Go under the hood of some of the most important aspects of JavaScript! You'll learn what you need to know to become a sought-after, versatile, problem-solving developer. Combining mental models of JavaScript's inner workings and hands-on programming challenges, this course will give you a solid understanding of callbacks and higher-order functions, closure, asynchronous JavaScript, and object-oriented JavaScript! This course is for developers with a basic to intermediate knowledge of JavaScript who wants to deepen their understanding of the fundamentals to the next level.
 
-- [Course Link](https://frontendmasters.com/courses/javascript-hard-parts-v2/).\
+- [Course Link](https://frontendmasters.com/courses/javascript-hard-parts-v2/).
 - [Slides](https://static.frontendmasters.com/resources/2019-09-18-javascript-hard-parts-v2/javascript-hard-parts-v2.pdf).
 
 ### 1.1. Course Overview
@@ -92,7 +92,7 @@ JavaScript is not that fancy: it does two things:
 - These two things together create a new **execution context**.
 - A global execution context is created as soon as we start to run any code from a file.
 - A new execution context is created for every function.
-- The memory created inside of the ne execution context is called **local memory**.
+- The memory created inside of the new execution context is called **local memory**.
 - Once the function has finished running, everything is deleted apart form the value that is returned.
 
 ```js
@@ -164,15 +164,15 @@ squareNum(9); // 81
 squareNum(8); // 64
 ```
 
-- This is the core premise if functions: Making code that we can write once, and then reuse again with different values.
+- This is the core premise of functions: Making code that we can write once, and then reuse again with different values.
 - ‘Parameters’ (placeholders) mean we don’t need to decide what data to run our functionality on until we run the function.
-- Then provide an actual value (‘argument’) when we run the function.
+- Then we provide an actual value (‘argument’) when we run the function.
 - Higher order functions follow this same principle.
 - We may not want to decide exactly what some of our functionality is until we run our function: HOFs facilitate this.
 
 ### 3.2. Repeating Functionality
 
-- Now suppose we have a function `copyArrayAndMultiplyBy2`
+- Suppose we have a function `copyArrayAndMultiplyBy2`
 
 ```js
 function copyArrayAndMultiplyBy2(array) {
@@ -214,11 +214,11 @@ const myArray = [1, 2, 3];
 const result = copyArrayAndAdd3(myArray);
 ```
 
-- What principle are we breaking? **DRY** (Don’t Repeat Yourself).
+- What principle are we breaking? - **DRY** (Don’t Repeat Yourself).
 
 ### 3.3. Callbacks and Higher Order Functions
 
-- We could generalize our function - So we pass in our specific instruction only when we run `copyArrayAndManipulate`!
+- We could generalize our function, so that we pass in our specific instruction only when we run `copyArrayAndManipulate`.
 - We can pass in functionality as a parameter.
 
 ```js
@@ -248,8 +248,8 @@ const result = copyArrayAndManipulate([1, 2, 3], multiplyBy2);
 
 - **Higher order functions:**
 
-  - Take in a function or pass out a function.
-  - Just a term to describe these functions - any function that does it we call a HOF - but there's nothing different about them inherently.
+  - Just a term to describe a function that takes in a function or passes out a function.
+  - Any function that does it we call a HOF. There's nothing inherently different about them.
 
 - Callbacks and Higher Order Functions simplify our code and keep it DRY.
 - **Declarative readable code**: Map, filter, reduce - the most readable way to write code to work with data.
@@ -300,8 +300,8 @@ const result = copyArrayAndManipulate([1, 2, 3], (input) => input * 2);
 ## 4. Pair programming
 
 - The most effective way to grow as a software engineer.
-- To be an effective engineer is to overcome and a hard block.
-- To overcome a hard block is to go through the code line-by-line and understand the state (data): That is debugging.
+- To be an effective engineer is to overcome a hard block.
+- To overcome a hard block is to go through the code line-by-line and understand the state (data): That is **debugging**.
 - When becoming an engineer you often fall into one of two very risky traps:
 - **Researcher**: Avoids blocks by reading everything they can find on their block/bug.
 - **Stackoverflower**: Uses code snippets to fix bug without knowing how they work.
@@ -371,8 +371,9 @@ const result = generatedFunc(3); // 6
 ```js
 function outer() {
   let counter = 0;
-  function incrementCounter() {}
-  counter++;
+  function incrementCounter() {
+    counter++;
+  }
   incrementCounter();
 }
 
@@ -481,22 +482,22 @@ anotherFunction();
 - Slow function blocks further code running.
 
 ```js
-const tweets = getTweets('http://twitter.com/will/1');
+const tweets = getTweets("http://twitter.com/will/1");
 
-// ⛔350ms wait while a request is sent to Twitter HQ displayTweets(tweets)
+// ⛔ 350ms wait while a request is sent to Twitter HQ displayTweets(tweets)
 
 // more code to run
-console.log('I want to runnnn!');
+console.log("I want to runnnn!");
 ```
 
 - What if we try to delay a function directly using setTimeout?
 
 ```js
 function printHello() {
-  console.log('Hello');
+  console.log("Hello");
 }
 setTimeout(printHello, 1000);
-console.log('Me first!');
+console.log("Me first!");
 ```
 
 - In what order will our console logs appear?
@@ -506,10 +507,10 @@ console.log('Me first!');
 
 ```js
 function printHello() {
-  console.log('Hello');
+  console.log("Hello");
 }
 setTimeout(printHello, 0);
-console.log('Me first!');
+console.log("Me first!");
 ```
 
 - JavaScript is not enough - We need new pieces (some of which aren’t JavaScript at all).
@@ -546,17 +547,17 @@ We need to add some new components:
 
 ```js
 function printHello() {
-  console.log('Hello');
+  console.log("Hello");
 }
 setTimeout(printHello, 1000);
-console.log('Me first!');
+console.log("Me first!");
 ```
 
 - We’re interacting with a world outside of JavaScript now - so we need rules.
 
 ```js
 function printHello() {
-  console.log('Hello');
+  console.log("Hello");
 }
 
 function blockFor1Sec() {
@@ -565,7 +566,7 @@ function blockFor1Sec() {
 
 setTimeout(printHello, 0);
 blockFor1Sec();
-console.log('Me first!');
+console.log("Me first!");
 ```
 
 ### 6.5. Callback Queue & Event Loop
@@ -617,7 +618,7 @@ console.log('Me first!');
 - You could `console.log` state, but there is no way to visualize what the background features are executing.
 - There is no way to map what's happening in JavaScript-land with what's happening in the background.
 - In terms of developer reasoning, thinking about what we're doing as we go, and maintaining an application at scale, created a premise for a ES6 promises.
-- One of the most valuable features that promises offer, is to say: When you trigger something in the background, don't just throw it out to the browser features, but have it have some sort of consequence in JavaScript memory as well.
+- One of the most valuable features that promises offer, is to say: When you trigger something in the background, don't just throw it out to the browser features, but make it have some sort of consequence in JavaScript memory as well.
 
 ### 7.1. Fetch
 
@@ -642,9 +643,9 @@ console.log('Me first!');
 function display(data) {
   console.log(data);
 }
-const futureData = fetch('https://twitter.com/will/tweets/1');
+const futureData = fetch("https://twitter.com/will/tweets/1");
 futureData.then(display);
-console.log('Me first!');
+console.log("Me first!");
 ```
 
 - When the facade function `fetch` is called, it immediately creates the special object in JavaScript: **first prong**.
@@ -674,7 +675,7 @@ console.log('Me first!');
 
 ### 7.3. But How Does It Work?
 
-**But we need to know how our promise-deferred functionality gets back into JavaScript to be run.**
+**We need to know how our promise-deferred functionality gets back into JavaScript to be run.**
 
 - When does the deferred function in the `onFulfilled` array attached to the promise object get pushed onto the call stack?
 - We know that it is triggered to run automatically, but what are the rules?
@@ -687,22 +688,22 @@ function display(data) {
 }
 
 function printHello() {
-  console.log('Hello');
+  console.log("Hello");
 }
 
 function blockFor300ms() {
-  console.log('Blocking execution...');
-  alert('Unblock execution');
-  console.log('Execution unblocked!');
+  console.log("Blocking execution...");
+  alert("Unblock execution");
+  console.log("Execution unblocked!");
 }
 
 setTimeout(printHello, 0);
 
-const futureData = fetch('https://jsonplaceholder.typicode.com/todos/1');
+const futureData = fetch("https://jsonplaceholder.typicode.com/todos/1");
 futureData.then(display);
 
 blockFor300ms();
-console.log('Me first!');
+console.log("Me first!");
 ```
 
 - `setTimeout` tells the web browser's timer feature to set a timer, and on completion add the function `printHello` to the callback queue.
@@ -755,7 +756,7 @@ console.log('Me first!');
 
 - Hold promise-deferred functions in a microtask queue and callback function in a task queue (Callback queue) when the Web Browser Feature (API) finishes
 - Add the function to the Call stack (i.e. run the function) when:
-  - Call stack is empty & all global code run (Have the Event Loop check this condition).
+  - Call stack is empty & all global code run (have the Event Loop check this condition).
 - Prioritize functions in the microtask queue over the Callback queue.
 
 **Promises, Web APIs, the Callback & Microtask Queues and Event loop enable:**
@@ -817,7 +818,7 @@ console.log('Me first!');
 
 ```js
 const user1 = {
-  name: 'Will',
+  name: "Will",
   score: 3,
   increment: function () {
     user1.score++;
@@ -835,7 +836,7 @@ _Let's keep creating our objects. What alternative techniques do we have for cre
 ```js
 const user2 = {}; // create an empty object
 // assign properties to that object
-user2.name = 'Tim';
+user2.name = "Tim";
 user2.score = 6;
 user2.increment = function () {
   user2.score++;
@@ -850,7 +851,7 @@ user2.increment = function () {
 
 ```js
 const user3 = Object.create(null);
-user3.name = 'Eva';
+user3.name = "Eva";
 user3.score = 9;
 user3.increment = function () {
   user3.score++;
@@ -873,8 +874,8 @@ function userCreator(name, score) {
   };
   return newUser;
 }
-const user1 = userCreator('Will', 3);
-const user2 = userCreator('Tim', 5);
+const user1 = userCreator("Will", 3);
+const user2 = userCreator("Tim", 5);
 user1.increment();
 // Note that closure is everywhere!
 // because we returned the function on the increment property,
@@ -919,12 +920,12 @@ const userFunctionStore = {
     this.score++;
   },
   login: function () {
-    console.log('Logged in');
+    console.log("Logged in");
   },
 };
 
-const user1 = userCreator('Will', 3);
-const user2 = userCreator('Tim', 5);
+const user1 = userCreator("Will", 3);
+const user2 = userCreator("Tim", 5);
 user1.increment();
 ```
 
@@ -934,7 +935,6 @@ user1.increment();
 - There is a bond between the user objects and the `userFunctionStore` so that `user1` and `user2` both can access its methods.
 - This is the absolute core of the prototype chain technique.
 - Solutions 3 & 4 are going to be shorthand ways of doing the same thing.
-
 - `Object.create` gives the objects it creates a `__proto__` hidden property which links it to `userFunctionStore`.
 - When JavaScript can't find a method on an object, it checks `__proto__` property for a link.
 
@@ -965,13 +965,13 @@ const userFunctionStore = {
     this.score++;
   },
   login: function () {
-    console.log('Logged in');
+    console.log("Logged in");
   },
 };
 
-const user1 = userCreator('Will', 3);
-const user2 = userCreator('Tim', 5);
-user1.hasOwnProperty('score');
+const user1 = userCreator("Will", 3);
+const user2 = userCreator("Tim", 5);
+user1.hasOwnProperty("score");
 ```
 
 _We can use the hasOwnProperty method - but where is it?_
@@ -1004,12 +1004,12 @@ const userFunctionStore = {
   },
 };
 
-const user1 = userCreator('Will', 3);
-const user2 = userCreator('Tim', 5);
+const user1 = userCreator("Will", 3);
+const user2 = userCreator("Tim", 5);
 user1.increment();
 ```
 
-_What does `this` get auto-assigned to?_
+_What does_ `this` _get auto-assigned to in the function body of_ `addOne`_?_
 
 - You would think that `this` would be assigned `user1` since that's the object which the `increment` method belongs to.
 - Indeed there are languages where that is the case, even if you are running functions inside of the method.
@@ -1018,7 +1018,7 @@ _What does `this` get auto-assigned to?_
 - Therefore `this` is assigned its default value, which is the global `window` object.
 - In the old days the workaround for the problem was to declare `var that = this` in the outer scope, and inside the function `this = that`!
 - There are other solution to manually call `addOne` where you can take control of the `this` assignment inside of it.
-  - `addOne.call(this)` will assign the `this` inside `addOne` to the `this` of where the `addOne.call(this)` statement is defined.
+  - `addOne.call(this)` will assign the `this` inside `addOne` to the `this` of where the `addOne.call(this)` statement is defined, which would result in it pointing to `user1` / `user2`.
 
 ### 8.8. Arrow Function Scope and this
 
@@ -1044,8 +1044,8 @@ const userFunctionStore = {
   },
 };
 
-const user1 = userCreator('Will', 3);
-const user2 = userCreator('Tim', 5);
+const user1 = userCreator("Will", 3);
+const user2 = userCreator("Tim", 5);
 user1.increment();
 ```
 
@@ -1090,8 +1090,8 @@ return newUser;
 2. Return the new user object
 
 ```js
-const user1 = new userCreator('Eva', 9);
-const user2 = new userCreator('Tom', 10);
+const user1 = new userCreator("Eva", 9);
+const user2 = new userCreator("Tom", 10);
 ```
 
 - But now we need to adjust how we write the body of `userCreator` - how can we:
@@ -1141,7 +1141,7 @@ function userCreator(name, score) {
 /* functionStore */ userCreator.prototype.increment = function () {
   this.score++;
 };
-const user1 = new userCreator('Will', 3);
+const user1 = new userCreator("Will", 3);
 ```
 
 **The `new` keyword automates a lot of our manual work**
@@ -1219,10 +1219,10 @@ class UserCreator {
   }
   // userCreator.prototype.login = function(){ console.log("login"); };
   login() {
-    console.log('login');
+    console.log("login");
   }
 }
-const user1 = new UserCreator('Eva', 9);
+const user1 = new UserCreator("Eva", 9);
 user1.increment();
 ```
 

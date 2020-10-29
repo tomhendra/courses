@@ -13,7 +13,7 @@
 | **JavaScript**                                                                                                           |
 | [Getting Started with JavaScript, v2](14-fem-beginner/2-getting-started-with-javascript-v2)                              | 27/10/20 | 31/10/20  |
 | [JavaScript: From Fundamentals to Functional JS, v2](14-fem-beginner/4-javascript-from-fundamentals-to-functional-js-v2) | 28/10/20 | 01/11/20  |
-| [JavaScript: The Hard Parts, v2](15-fem-professional/1-javascript-the-hard-parts-v2)                                     | --/--/-- | --/--/--  |
+| [JavaScript: The Hard Parts, v2](15-fem-professional/1-javascript-the-hard-parts-v2)                                     | 29/10/20 | 01/11/20  |
 | [Deep JavaScript Foundations, v3](15-fem-professional/2-deep-javascript-foundations)                                     | --/--/-- | --/--/--  |
 | [JavaScript: The Recent Parts](15-fem-professional/3-javascript-the-recent-parts)                                        | --/--/-- | --/--/--  |
 | [Functional-Light JavaScript, v3](15-fem-professional/5-functional-light-javascript-v3)                                  | --/--/-- | --/--/--  |
