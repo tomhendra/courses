@@ -256,7 +256,7 @@ typeof v; // "bigint"
 
 - `typeof v;` when `v = null` returns a string of `"object".`
 - In the current spec there is a statement that's been there since ES1 that says if you want to unset a regular value you would use `undefined`, but if you want to unset an object you would use `null`. That's part of the historical reason that `typeof null` returns `"object"`. But in reality it is just a bug.
-- You have to ensure that when you are doing a `typeof` check on an object that it isn;t accidentally `null` because you aren't going to get an object.
+- You have to ensure that when you are doing a `typeof` check on an object that it isn't accidentally `null` because you aren't going to get an object.
 - `function` isn't a top level type yet it has a return value for `typeof`.
 - `array` doesn't have a return value for `typeof` - we get `"object"` instead.
 - These things are quirks that we cannot change, because if these bugs were fixed then a bunch of the internet would break!
@@ -272,7 +272,7 @@ typeof v; // "bigint"
 
 - `undefined` and `undeclared` are often confused because developers think about them as synonyms.
 - When a variable is `undeclared`, it has never been declared in any scope that we have access to.
-- Something that is `undefined` is a variable that has been declared, but it doesn't yet have a value.
+- Something that is `undefined` is a variable that has been declared, but doesn't currently have a value.
 - The `typeof` operator is the only operator in existence that is able to reference a thing that doesn't exist and not throw an error.
 - There ia another concept of emptiness in JS that was introduced with ES6: `uninitialized` AKA [TDZ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#The_temporal_dead_zone_and_typeof).
 - The idea with `uninitialized` is that certain variables like block scope ones, don't get initialized. They never initially get set to `undefined`.
@@ -284,10 +284,10 @@ typeof v; // "bigint"
 - There are a number of them but `NaN` and `isNaN` crop up most often.
 - Stands for **N**ot **A** **N**umber and comes from the IEEE 754 spec, which is a set of technical standards for how numbers are represented.
 - Essentially `NaN` doesn't mean "Not A Number" it is a sentinel value that represents an invalid number.
-- `0` is not the way to represent absence of valid numeric value.
+- `0` is not the way to represent the absence of a valid numeric value.
 - `NaN` with any other mathematical operation is always `NaN`.
 - The type of `NaN` is `number` but is an invalid number.
-- If you're designing a system and somebody expects to get a number and you want to signal to them there is valid number to give, there is only one value that makes any sense as all: you should return the `NaN`.
+- If you're designing a system and somebody expects to get a number and you want to signal to them that there is no valid number to give, there is only one value that makes any sense as all: you should return the `NaN`.
 
 ```js
 var myAge = Number("0o46"); // 38
@@ -333,7 +333,7 @@ Object.is(trendRate, 0); // false
 
 - For a long time you could get negative zeros but you couldn't determine that you had one, until ES6 added a utility `Object.is`.
 - `-0` can actually be useful. For example a car in a game or map app that you need to have point in a certain direction.
-- There's a utility called `Math.sign` which should tell us if the `-` sign is present, but when using with `-0` and -`0` was made to return `-0` and -`0` instead of `-1` and `1` as with all other numbers.
+- There's a utility called `Math.sign` which should tell us if the `-` sign is present, but when using with `-0` and `0` was made to return `-0` and `0` instead of `-1` and `1` as with all other numbers.
 
 ```js
 Math.sign(-3); // -1
@@ -348,8 +348,8 @@ function sign(v) {
 
 sign(-3); // -1
 sign(3); // 1
-sign(-0); // -0
-sign(0); // 0
+sign(-0); // -1
+sign(0); // 1
 ```
 
 ```js
@@ -414,19 +414,25 @@ var myGPA = String(transcript.gpa);
 - Abstract operations are the fundamental building blocks of how we deal with type conversion.
 - The JavaScript spec says:
 
-**7 Abstract Operations**
-These operations are not a part of the ECMAScript language; they are defined here to solely to aid the specification of the semantics of the ECMAScript language. Other, more specialized abstract operations are defined throughout this specification.
+**_7 Abstract Operations_**
+_These operations are not a part of the ECMAScript language; they are defined here to solely to aid the specification of the semantics of the ECMAScript language. Other, more specialized abstract operations are defined throughout this specification._
 
-**7.1 Type Conversion**
-The ECMAScript language implicitly performs automatic type conversion as needed. To clarify the semantics of certain constructs it is useful to define a set of conversion abstract operations. The conversion abstract operations are polymorphic; they can accept a value of any ECMAScript language type. But no other specification types are used with these operations.
+**_7.1 Type Conversion_**
+_The ECMAScript language implicitly performs automatic type conversion as needed. To clarify the semantics of certain constructs it is useful to define a set of conversion abstract operations. The conversion abstract operations are polymorphic; they can accept a value of any ECMAScript language type. But no other specification types are used with these operations._
 
-The BigInt type has no implicit conversions in the ECMAScript language; programmers must call BigInt explicitly to convert values from other types.
+_The BigInt type has no implicit conversions in the ECMAScript language; programmers must call BigInt explicitly to convert values from other types._
 
 - Abstract operations are not functions that can be invoked. When we call them abstract they are a conceptual operation, so conceptually we need to do a set of algorithmic steps to complete the operation.
+- As a foundation we need to become familiar with the four main abstract operations:
+
+1. ToPrimitive
+2. ToString
+3. ToNumber
+4. ToBoolean
 
 #### 3.1.1. ToPrimitive (7.1.1)
 
-- If we have something non-primitive like an object or array, and we need to coerce it into a primitive, we would use the `ToPrimitive` abstract operation.
+- If we have something non-primitive like an object or array, and we need to coerce it into a primitive, we apply the `ToPrimitive` abstract operation.
 - Takes an optional type hint: if you have something that is not a primitive, tell me what kind of type you would like it to be.
 - Another thing to understand about the algorithms within JS is that they are inherently recursive. e.g. with `ToPrimitive`, if the return result is not a primitive, it will get invoked repeatedly until the return result is a primitive.
 - There are two methods that could be available on any non-primitive: `valueOf()` & `toString()`.
@@ -458,7 +464,7 @@ The BigInt type has no implicit conversions in the ECMAScript language; programm
   - `-0` ⇢ `"0"` - corner case
 
 - if we invoke `ToString` on an object it is going to invoke `ToPrimitive` with the string hint.
-- Array for example have a default `ToString` that serializes the representation of an array as follows.
+- Arrays for example have a default `ToString` that serializes the representation of an array as follows.
 
   - `[]` ⇢ `""`
   - `[1,2,3]` ⇢ `"1,2,3"`
@@ -533,10 +539,10 @@ The BigInt type has no implicit conversions in the ECMAScript language; programm
 
   - `“”`
   - `0, -0`
-  - `null`
   - `NaN`
-  - `false`
+  - `null`
   - `undefined`
+  - `false`
 
 - Truthy: values that will return `true` when coerced to a boolean.
 
@@ -573,12 +579,12 @@ console.log(`There are ${numStudents + ""} students.`);
 
 - The spec says that if you use the `+` operator, if either one of the values is a string, the operator prefers string concatenation.
 
-**12.8.3.1 Runtime Semantics: Evaluation**
+_12.15.5 ApplyStringOrNumericBinaryOperator_
 
-1. If Type(lprim) is String or Type(rprim) is String, then
-   a. Let lstr be ? ToString(lprim).
-   b. Let rstr be ? ToString(rprim).
-   ...
+_c. If Type(lprim) is String or Type(rprim) is String, then_
+_i. Let lstr be ? ToString(lprim)._
+_ii. Let rstr be ? ToString(rprim)._
+_iii. Return the string-concatenation of lstr and rstr._
 
 - You may say you don't want to do these implicit coercions and would rather be explicit about it.
 
@@ -686,7 +692,7 @@ Boolean({}); // true
 - You are using something that is not as object as if it was an object.
 - JS is implicitly coercing values into their object counterparts so we can access properties and methods on them.
 - If we had to write code to turn a primitive into an object we would be writing Java!
-- One of unsung heroes of JS, that it does this boxing and does it well.
+- One of the unsung heroes of JS is that it does this boxing and does it well.
 
 **All programming languages have type conversions, because it's absolutely necessary.**
 
@@ -788,7 +794,7 @@ Number(false); // 0
 - Dumbing down the codebase because not everyone understands JS well enough is not a good direction to move in.
 - Use code reviews, talk to your team members and encourage a culture of learning for everyone.
 - Your code is a form of communication, and there is an effective way to communicate that understands and uses the tool well.
-- If you ask the reader of code to understand something about the tool so they can understand a line of code, that is ain investment on their part. Ensure that investment pays off beyond that line of code.
+- If you ask the reader of code to understand something about the tool so they can understand a line of code, that is aweakness if JS n investment on their part. Ensure that investment pays off beyond that line of code.
 - That's part of the problem with not having a great dev culture: not promoting that everyone should understand.
 - From someone who's been writing JS for 3 weeks to someone who has 20 years experience, we should all be able to operate on the same codebase and communicate well.
 
@@ -797,7 +803,7 @@ Number(false); // 0
 - There is a temptation to believe and a cult feeling among the community that most devs think that implicit mechanisms are magical.
 - When something happens that is unexpected it is magical, and we equate this with bad.
 - This is part of the reason why anti-coercion perspectives exist, that implicit coercion is the downfall.
-- People say this is a weakness if JS and cite other languages as being better.
+- People say this is a weakness of JS and cite other languages as being better.
 - We should think of implicit coercion as an abstraction.
 - Not all abstractions are good, but some are.
 - Within functional programming abstraction is everywhere.
@@ -867,28 +873,27 @@ _If a feature is sometimes useful and sometimes dangerous and if there is a bett
 - **If you're trying to understand your code, it's critical you learn to think like JS.**
 - The spec says:
 
-**7.2.15 Abstract Equality Comparison**\
+_7.2_.15 Abstract Equality _Comparison_
 The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
 
-1. If Type(x) is the same as Type(y), then
-   - a. Return the result of performing Strict Equality Comparison x === y.
-2. If x is null and y is undefined, return true.
-3. If x is undefined and y is null, return true.
-4. If Type(x) is Number and Type(y) is String, return the result of the comparison x == ! ToNumber(y).
-5. If Type(x) is String and Type(y) is Number, return the result of the comparison ! ToNumber(x) == y.
-6. If Type(x) is BigInt and Type(y) is String, then
-   - a. Let n be ! StringToBigInt(y).
-   - b. If n is NaN, return false.
-   - c. Return the result of the comparison x == n.
-7. If Type(x) is String and Type(y) is BigInt, return the result of the comparison y == x.
-8. If Type(x) is Boolean, return the result of the comparison ! ToNumber(x) == y.
-9. If Type(y) is Boolean, return the result of the comparison x == ! ToNumber(y).
-10. If Type(x) is either String, Number, BigInt, or Symbol and Type(y) is Object, return the result of the comparison x == ToPrimitive(y).
-11. If Type(x) is Object and Type(y) is either String, Number, BigInt, or Symbol, return the result of the comparison ToPrimitive(x) == y.
-12. If Type(x) is BigInt and Type(y) is Number, or if Type(x) is Number and Type(y) is BigInt, then
-    - a. If x or y are any of NaN, +∞, or -∞, return false.
-    - b. If the mathematical value of x is equal to the mathematical value of y, return true; otherwise return false.
-13. Return false.
+1. _If Type(x) is the same as Type(y), then_
+   - _a. Return the result of performing Strict Equality Comparison x === y._
+2. _If x is null and y is undefined, return true._
+3. _If x is undefined and y is null, return true._
+4. _If Type(x) is Number and Type(y) is String, return the result of the comparison x == ! ToNumber(y)._ 5._ If Type(x) is String and Type(y) is Number, return the result of the comparison ! ToNumber(x) == y._
+5. _If Type(x) is BigInt and Type(y) is String, then_
+   - _a. Let n be ! StringToBigInt(y)._
+   - _b. If n is NaN, return false._
+   - _c. Return the result of the comparison x == n._
+6. _If Type(x) is String and Type(y) is BigInt, return the result of the comparison y == x._
+7. _If Type(x) is Boolean, return the result of the comparison ! ToNumber(x) == y._
+8. _If Type(y) is Boolean, return the result of the comparison x == ! ToNumber(y)._
+9. _If Type(x) is either String, Number, BigInt, or Symbol and Type(y) is Object, return the result of the comparison x == ToPrimitive(y)._
+10. _If Type(x) is Object and Type(y) is either String, Number, BigInt, or Symbol, return the result of the comparison ToPrimitive(x) == y._
+11. _If Type(x) is BigInt and Type(y) is Number, or if Type(x) is Number and Type(y) is BigInt, then_
+    - _a. If x or y are any of NaN, +∞, or -∞, return false._
+    - _b. If the mathematical value of x is equal to the mathematical value of y, return true; otherwise return false._
+12. _Return false._
 
 - There is a myth that `==` checks the value and `===` checks the value and type: debunked on line 1!
 
@@ -897,7 +902,7 @@ var studentName1 = "Frank";
 var studentName2 = `${studentName1}`;
 
 var workshopEnrolment1 = 16;
-var workshopEnrolment2 = workshopEnrolment1 + 1;
+var workshopEnrolment2 = workshopEnrolment1 + 0;
 
 studentName1 == studentName2; // true
 studentName1 === studentName2; // true
@@ -909,13 +914,13 @@ workshopEnrolment1 === workshopEnrolment2; // true
 - When the types match `===` is performed in any case.
 - You should try to have the value types obvious and ideally have them match as much as possible.
 
-**7.2.16 Strict Equality Comparison**\
-The comparison x === y, where x and y are values, produces true or false. Such a comparison is performed as follows:
+**_7.2.16 Strict Equality Comparison_**
+_The comparison x === y, where x and y are values, produces true or false. Such a comparison is performed as follows:_
 
-If Type(x) is different from Type(y), return false.
-If Type(x) is Number or BigInt, then
-Return ! Type(x)::equal(x, y).
-Return ! SameValueNonNumeric(x, y).
+_If Type(x) is different from Type(y), return false._
+_If Type(x) is Number or BigInt, then_
+_Return ! Type(x)::equal(x, y)._
+_Return ! SameValueNonNumeric(x, y)._
 
 - Strict equality in the spec states that if the types are not the same then there is no way the operands could be equal.
 - The real difference between loose and strict equality is whether or not we are going to allow any coercion to occur.
@@ -948,7 +953,7 @@ if (workshop1 === workshop2) {
 - The choice to use `==` or `===` is a trailing indicator of whether you know your program.
 - It's better to fix the problem, that you don't know what the types are in the comparison.
 - Knowing the types will lead to better code and fewer bugs.
-- **Like every other operation, do we know the types or not?**]
+- **Like every other operation, do we know the types or not?**
 
 ### 5.3. Double Equals Algorithm
 
