@@ -992,15 +992,15 @@ if (
 - What about strings numbers and booleans?
 - There is a prevailing sense that the algorithm prefers to do numeric coercion.
 
-4. If Type(x) is Number and Type(y) is String, return the result of the comparison x == ! ToNumber(y).
-5. If Type(x) is String and Type(y) is Number, return the result of the comparison ! ToNumber(x) == y.
-6. If Type(x) is BigInt and Type(y) is String, then
-   - a. Let n be ! StringToBigInt(y).
-   - b. If n is NaN, return false.
-   - c. Return the result of the comparison x == n.
-7. If Type(x) is String and Type(y) is BigInt, return the result of the comparison y == x.
-8. If Type(x) is Boolean, return the result of the comparison ! ToNumber(x) == y.
-9. If Type(y) is Boolean, return the result of the comparison x == ! ToNumber(y).
+4. _If Type(x) is Number and Type(y) is String, return the result of the comparison x == ! ToNumber(y)._
+5. _If Type(x) is String and Type(y) is Number, return the result of the comparison ! ToNumber(x) == y._
+6. _If Type(x) is BigInt and Type(y) is String, then_
+   - _a. Let n be ! StringToBigInt(y)._
+   - _b. If n is NaN, return false._
+   - _c. Return the result of the comparison x == n._
+7. _If Type(x) is String and Type(y) is BigInt, return the result of the comparison y == x._
+8. _If Type(x) is Boolean, return the result of the comparison ! ToNumber(x) == y._
+9. _If Type(y) is Boolean, return the result of the comparison x == ! ToNumber(y)._
 
 - It prefers to reduce everything to numbers to make the comparison.
 - This helps to predict the behaviour of the `==` algorithm.
@@ -1012,7 +1012,7 @@ var workshopEnrolment2 = workshopElement.value;
 if (Number(workshopEnrolment1)) === (Number(workshopEnrolment2)) {
   // ..
 }
-// ASk: What do we know about the types here?
+// Ask: What do we know about the types here?
 // if we know that at least one is a number, then the == algorithm will coerce to a number.
 if (workshopEnrolment1 == workshopEnrolment2) {
   // ..
@@ -1023,8 +1023,8 @@ if (workshopEnrolment1 == workshopEnrolment2) {
 
 - If you use `==` with an operand that's not already a primitive, we invoke the `ToPrimitive` abstract algorithm.
 
-1.  If Type(x) is either String, Number, BigInt, or Symbol and Type(y) is Object, return the result of the comparison x == ToPrimitive(y).
-2.  If Type(x) is Object and Type(y) is either String, Number, BigInt, or Symbol, return the result of the comparison ToPrimitive(x) == y.
+1.  _If Type(x) is either String, Number, BigInt, or Symbol and Type(y) is Object, return the result of the comparison x == ToPrimitive(y)._
+2.  _If Type(x) is Object and Type(y) is either String, Number, BigInt, or Symbol, return the result of the comparison ToPrimitive(x) == y._
 
 - Remember that the algorithms are inherently recursive.
 - The `==` operator says: I need to get it to the point that one of the clauses matches. If there is a scenario where the two values don't match completely, I will keep calling the algorithm recursively until I get two primitives that are of the same type, or two primitives that are coercively equal to each other.
@@ -1131,7 +1131,7 @@ if (workshopStudents == false) {
 
 - Using `==` or `===` to compare a boolean with an array will lead to corner cases.
 - Never use `==` or `===` with `true` or `false`.
-- There is no situation where you need to do this, when you can invoked the `ToBoolean` operation implicitly.
+- There is no situation where you need to do this, when you can invoke the `ToBoolean` operation implicitly.
 - So what's happening with the algorithms?
 
 ```js
