@@ -1307,7 +1307,7 @@ var studentCount: number = 16 - studentName;
 - What is lexical scope? Where we look for things.
 - What are we looking for? Identifiers.
 - You can think metaphorically as coloured buckets with matching coloured marbles: The buckets are scopes, and the marbles are identifiers.
-- Here we have a `x` that a value is being assigned to, and a `y` that a value is being retrieved from.
+- Here we have a variable `x` that a value is being assigned to, and a variable `y` that a value is being retrieved from.
 
 ```js
 x = 42;
@@ -1381,7 +1381,9 @@ ask(); // Why?
 - Scope Manager: _No problem compiler, here's a blue bucket for you dude! Just popped that puppy inside the red bucket for you._
 - Compiler: _Cheers my guy. Just looking inside the blue bucket and I got me another declaration. You ever heard of teacher?_
 - Scope Manager: _Nothing in the blue bucket called teacher. Here's a blue marble coming at ya._
-- Interlude: having two variables of the same name in different scopes is called **shadowing**. Now we cannot reference the outer scope variable of the same name from the inner scope, hence the name shadowing.
+
+_Interlude_: having two variables of the same name in different scopes is called **shadowing**. Now we cannot reference the outer scope variable of the same name from the inner scope, hence the name shadowing.
+
 - Compiler: _Nice, back into the red bucket I go... Ah look what I found, another one. Heard of ask?_
 - Scope Manager: _Not on my list, but here you go - another red marble._
 - Compiler: _Ah dude this one's a function. Can you sort me out a green bucket for it?_
@@ -1440,8 +1442,8 @@ ask(); // Why?
 - JS Engine: _Hey scope, any console in that blue bucket?_
 - Scope Manager: _Nope, but checking up one level, there's an auto-global in the red bucket. Red marble comin' atchya!_
 
-- When you reference a variable in a **target** position, you have to first look it up.
-- When you reference a variable in a **source** position, you have to first look it up.
+When you reference a variable in a **target** position, you have to first look it up.
+When you reference a variable in a **source** position, you have to first look it up.
 
 - JS Engine: _Hey Scope, just found a source reference for ask, you got that one?_
 - Scope Manager: _Yes, I have that one. Here you go, red marble._
@@ -1483,10 +1485,10 @@ topic; // React
 - Use strict mode by putting the pragma at the top of a file: `"use strict";`.
 - This prevents the behaviour of dynamic global variables.
 - When the global scope is queried for `react` in the previous example, a reference error is returned instead of automatically creating a global variable.
-- Type error is different to reference error:
-- Type error is when you find a the variable, but the value it is holding doesn't allow the operation you are trying to perform.
-- Reference error is when a variable cannot be found.
-- Always use strict mode.
+- A Type error is different to a Reference error.
+- A _Type error_ is when you find the variable, but the value it is holding doesn't allow the operation you are trying to perform.
+- A _Reference error_ is when a variable cannot be found.
+- **Always use strict mode**.
 
 ### 7.5. Nested Scope
 
@@ -1502,7 +1504,7 @@ function otherClass() {
     console.log(teacher, question);
   }
 
-  ask("Why>");
+  ask("Why?");
 }
 
 otherClass(); // Suzy Why?
@@ -1542,7 +1544,8 @@ console.log(myTeacher);
 console.log(anotherTeacher); // ReferenceError: anotherTeacher is not defined
 ```
 
-- `myTeacher` identifier is created in the global scope. -`anotherTeacher` creates another scope, but because `var myTeacher = function anotherTeacher(){}` is not a function declaration it is not handled in the same way.
+- `myTeacher` identifier is created in the global scope.
+- `anotherTeacher` creates another scope, but because `var myTeacher = function anotherTeacher() {...}` is not a function declaration it is not handled in the same way.
 - This is called a **function expression**.
 - As opposed to `function teacher(){}` which is a **function declaration**.
 - One of the main differences is that function declarations attach their marble to the enclosing scope, where as function expressions add their marble to their own scope.
@@ -1578,7 +1581,7 @@ var clickHandler = function keyHandler() {
 
 - **2. More debuggable stack traces**
 
-  - Automatically by naming your functions you make your code debuggable.
+  - By naming your functions you automatically make your code debuggable.
   - When you have minified code debugging with anonymous functions is a nightmare.
   - You can even figure out the bug without looking at the code, if you use well named semantic function names.
   - And if you do need to look at the code you do with more mental context.
@@ -1668,8 +1671,8 @@ getPerson().then(getDataFrom).then(renderData);
 
 - Lexical scope is the formal name of what we have refer to as scope.
 - The idea of scopes being nested within each other.
-- Specifically the idea that a compiler / parser / processor is figuring out all those scopes ahead of time before executed.
-- That's where the term lexical scope comes from; the lex shares the same root as the first stage of parsing, the lexer.
+- Specifically the idea that a compiler / parser / processor is figuring out all those scopes ahead of time before being executed.
+- That's where the term _lexical_ scope comes from; the _lex_ shares the same root as the first stage of parsing, the _lexer_.
 - Think of lexical scope as related to the compiler, the author time. You make a decision at author time about what will be in each scope.
 - It is not affected at runtime, in any way, shape or form.
 - The vast majority of programming languages in existence are lexically scoped.
@@ -1745,15 +1748,14 @@ var teacher = "Kyle";
 
 function anotherTeacher() {
   var teacher = "Suzy";
-  console.log(teacher); // Suzy
+  console.log(teacher);
 }
 
-anotherTeacher();
-
+anotherTeacher(); // Suzy
 console.log(teacher); // Kyle
 ```
 
-- But now we have a function that has a nem in that scope: `anotherTeacher`.
+- But now we have a function that exists in the scope: `anotherTeacher`.
 - So we haven't really fixed the problem - we have just shifted it to another variable name.
 - We still have a naming collision problem.
 - There is a principle in software development called **the principle of least exposure / privilege** that says: You should default to keeping everything private, and only expose the minimum necessary.
@@ -1781,9 +1783,9 @@ console.log(teacher); // Kyle
 ```
 
 - Not like a regular function that we call multiple times, it is a one off for creating a scope.
-- It is not a function definition because the keyword `function` is not the first thing in the statement.
-- The enclosing `()` are there for no other purpose than to syntactically change it into an expression instead of an expression.
-- There are a variety of syntactic ways to change a function into an expression instead of a definition.
+- It is not a function declaration because the keyword `function` is not the first thing in the statement.
+- The enclosing `()` are there for no other purpose than to syntactically change it into an expression instead of a declaration.
+- There are a variety of syntactic ways to change a function into an expression instead of a declaration.
 - Instead of the surrounding `()` you can use a unary operator like `+`, `!`, `-`, `~` or even the lesser known `delete` or `void` operators.
 - Each of those would change it into a function expression end enable it to execute.
 - By turning a function into an expression we avoid polluting the enclosing scope.
@@ -1914,7 +1916,7 @@ function lookupRecord(searchStr) {
 ```
 
 - If you use `let` inside of a try / catch it wouldn't work in the above example.
-- You could declare the variable at the top of the function, but adding more lines of code, the further the declaration os from the assignment the harder it is for the reader to understand.
+- You could declare the variable at the top of the function, but adding more lines of code, the further the declaration is from the assignment the harder it is for the reader to understand.
 - It is better to have the option to use `var` in situations where it is warranted.
 - Another thing you can do with `var` that you cannot with `let` is use it more than once inside of a scope. Above `var id` is being used twice inside of a function scope, and there are no errors.
 - With large functions if the variable declaration at the top and it is assigned to 100 lines down, the reader may not be clear as to which scope it belongs to. Scrolling up 100 lines is not good DX, so reusing `var` to declare again would be clearer.
@@ -2058,7 +2060,7 @@ var teacher = "Kyle";
 otherTeacher(); // otherTeacher is "hoisted"
 
 function otherTeacher() {
-  console.log(teacher); // undefined, so the variable exists but has no value yet. It was "hoisted".
+  console.log(teacher); // undefined - the variable exists but has no value yet. It was "hoisted".
   var teacher = "Suzy";
 }
 ```
@@ -2107,8 +2109,8 @@ var teacher = "Kyle";
 - And then they decided if that was the case for `const` then it should also be for `let`.
 - The spec says:
 
-**13.3.1 Let and Const Declarations**\
-let and const declarations define variables that are scoped to the running execution context's LexicalEnvironment. **The variables are created when their containing Lexical Environment is instantiated** but may not be accessed in any way until the variable's LexicalBinding is evaluated. A variable defined by a LexicalBinding with an Initializer is assigned the value of its Initializer's AssignmentExpression **when the LexicalBinding is evaluated, not when the variable is created**. If a LexicalBinding in a let declaration does not have an Initializer the variable is assigned the value undefined when the LexicalBinding is evaluated.
+**_13.3.1 Let and Const Declarations_**
+_let and const declarations define variables that are scoped to the running execution context's LexicalEnvironment. **The variables are created when their containing Lexical Environment is instantiated** but may not be accessed in any way until the variable's LexicalBinding is evaluated. A variable defined by a LexicalBinding with an Initializer is assigned the value of its Initializer's AssignmentExpression **when the LexicalBinding is evaluated, not when the variable is created**. If a LexicalBinding in a let declaration does not have an Initializer the variable is assigned the value undefined when the LexicalBinding is evaluated._
 
 ## 10. Closure
 
@@ -2350,10 +2352,10 @@ ask("This is a namespace import, right?");
 // Kyle This is a namespace import, right?"
 ```
 
-1. Named import syntax
+1. **Named import syntax**\
    Technically the exported function is named `default` to the outside and then we decided to name it `ask` when we import it. Now at the top level scope we have an identifier `ask` which is reference bound to the `ask` function inside of the module.
 
-2. The namespace import
+2. **The namespace import**\
    Collect all of the module's contents into a single namespaced variable using `*`, in this case called `workshop`. This is more akin to the way modules have been done classically.
 
 ### 10.6. [Modules Exercise](exercises/scope-exercises/modules/ex.js)
