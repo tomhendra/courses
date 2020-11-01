@@ -151,18 +151,18 @@ Learn the latest features in JavaScript with Kyle Simpson, author of the popular
 - The old way to do this was as follows.
 
 ```js
-var name = 'Kyle Simpson';
-var email = 'getify@gmail.com';
-var title = 'Teacher';
+var name = "Kyle Simpson";
+var email = "getify@gmail.com";
+var title = "Teacher";
 
 var msg =
-  'Welcome to this class! Your ' +
+  "Welcome to this class! Your " +
   title +
-  ' is ' +
+  " is " +
   name +
-  ', contact: ' +
+  ", contact: " +
   email +
-  '.';
+  ".";
 
 console.log(msg);
 // Welcome to this class! Your Teacher is Kyle Simpson, contact: getify@gmail.com.
@@ -176,9 +176,9 @@ console.log(msg);
 - The expression used to delimit is `${}`.
 
 ```js
-var name = 'Kyle Simpson';
-var email = 'getify@gmail.com';
-var title = 'Teacher';
+var name = "Kyle Simpson";
+var email = "getify@gmail.com";
+var title = "Teacher";
 
 var msg = `Welcome to this class! Your ${title} is ${name}, contact: ${email}.`;
 
@@ -195,9 +195,9 @@ console.log(msg);
 - The template literals have another feature that lets us more fully control the preprocessing: tagged literals.
 
 ```js
-var name = 'Tom';
+var name = "Tom";
 var amount = 12.3;
-var company = 'Cider Utopia';
+var company = "Cider Utopia";
 
 var msg = formatCurrency`Hey ${name}, the total value of your order is ${amount}. Thank you for shopping at ${company}.`;
 
@@ -210,10 +210,10 @@ var msg = formatCurrency`Hey ${name}, the total value of your order is ${amount}
 
 ```js
 function formatCurrency(strings, ...values) {
-  var str = '';
+  var str = "";
   for (let i = 0; i < strings.length; i++) {
     if (i > 0) {
-      if (typeof values[i - 1] == 'number') {
+      if (typeof values[i - 1] == "number") {
         str += `$${values[i - 1].toFixed(2)}`; // formats the value
       } else {
         str += values[i - 1];
@@ -242,10 +242,10 @@ function formatCurrency(strings, ...values) {
 
 ```js
 function logger(strings, ...values) {
-  var str = '';
+  var str = "";
   for (let i = 0; i < strings.length; i++) {
     if (i > 0) {
-      if (values[i - 1] && typeof values[i - 1] === 'object') {
+      if (values[i - 1] && typeof values[i - 1] === "object") {
         if (values[i - 1] instanceof Error) {
           if (values[i - 1].stack) {
             str += values[i - 1].stack;
@@ -301,17 +301,17 @@ try {
 - Need to consider RTL languages, so 'left' and 'right' are not the appropriate terms to describe the beginning and end of a string. Instead we have 'start' and 'end'.
 
 ```js
-var str = 'Hello';
+var str = "Hello";
 
 str.padStart(5); // 'Hello'
 
 str.padStart(8); // '   Hello'
 
-str.padStart(8, '*'); // '***Hello'
+str.padStart(8, "*"); // '***Hello'
 
-str.padStart(8, '12345'); // '123Hello'
+str.padStart(8, "12345"); // '123Hello'
 
-str.padStart(8, 'ab'); // 'abaHello'
+str.padStart(8, "ab"); // 'abaHello'
 ```
 
 - `padStart` automatically detects if the language is LTR or RTL and pads the start of a string.
@@ -325,17 +325,17 @@ str.padStart(8, 'ab'); // 'abaHello'
 - Note the same nuance applies with chars being pulled LTR from the pad source.
 
 ```js
-var str = 'Hello';
+var str = "Hello";
 
 str.padEnd(5); // 'Hello'
 
 str.padEnd(8); // 'Hello   '
 
-str.padEnd(8, '*'); // 'Hello***'
+str.padEnd(8, "*"); // 'Hello***'
 
-str.padEnd(8, '12345'); // 'Hello123'
+str.padEnd(8, "12345"); // 'Hello123'
 
-str.padEnd(8, 'ab'); // 'Helloaba'
+str.padEnd(8, "ab"); // 'Helloaba'
 ```
 
 - If we needed to pad both ends of the string we'd simply call both `padStart` & `padEnd` on the same string.
@@ -343,7 +343,7 @@ str.padEnd(8, 'ab'); // 'Helloaba'
 - Trims all unicode representations of whitespace.
 
 ```js
-var str = '   some stuff   \t\t';
+var str = "   some stuff   \t\t";
 
 str.trim(); // 'some stuff'
 
@@ -367,10 +367,10 @@ var first = tmp[0];
 var second = tmp[1];
 
 var firstName = first.name;
-var firstEmail = first.email !== undefined ? first.email : 'nobody@none.tld';
+var firstEmail = first.email !== undefined ? first.email : "nobody@none.tld";
 
 var secondName = second.name;
-var secondEmail = second.email !== undefined ? second.email : 'nobody@none.tld';
+var secondEmail = second.email !== undefined ? second.email : "nobody@none.tld";
 ```
 
 - This is functional code in that it mechanically works, but far from ideal to communicate the code's intent.
@@ -866,11 +866,11 @@ var {
 - But if we declare a function with an object parameter it gives us essentially what are named arguments at the call site.
 
 ```js
-function lookupRecord(store = 'person-records', id = -1) {
+function lookupRecord(store = "person-records", id = -1) {
   // we have to remember the order of parameters :(
 }
 
-function lookupRecord({ store = 'person-records', id = -1 }) {
+function lookupRecord({ store = "person-records", id = -1 }) {
   // arguments are named and destructured
 }
 
@@ -891,9 +891,9 @@ lookupRecord({ id: 42 });
 ```js
 // most common approach using extend
 var defaults = {
-  url: 'https://some.base.url/api',
-  method: 'post',
-  headers: ['Content-Type: text/plain'],
+  url: "https://some.base.url/api",
+  method: "post",
+  headers: ["Content-Type: text/plain"],
 };
 
 console.log(defaults);
@@ -901,7 +901,7 @@ console.log(defaults);
 // *************************
 
 var settings = {
-  url: 'https://some.other.url',
+  url: "https://some.other.url",
   data: 42,
   callback: function (resp) {
     //..
@@ -922,11 +922,11 @@ ajax(Object.assign({}, defaults, settings));
 
 ```js
 function ajaxOptions({
-  url = 'https://some.base.url/api',
-  method = 'post',
+  url = "https://some.base.url/api",
+  method = "post",
   data,
   callback,
-  headers: [headers0 = 'Content-Type: text/plain', ...otherHeaders] = [],
+  headers: [headers0 = "Content-Type: text/plain", ...otherHeaders] = [],
 } = {}) {
   return {
     url,
@@ -953,7 +953,7 @@ console.log(defaults);
 // *************************
 
 var settings = {
-  url: 'https://some.other.url',
+  url: "https://some.other.url",
   data: 42,
   callback: function (resp) {
     //..
@@ -1104,8 +1104,8 @@ nestedValues.flat(2);
 - We construct an object and call `.next` over and over again, and every time we get back the next vale from the data source.
 
 ```js
-var str = 'Hello';
-var world = ['W', 'o', 'r', 'l', 'd'];
+var str = "Hello";
+var world = ["W", "o", "r", "l", "d"];
 
 var it1 = str[Symbol.iterator]();
 var it2 = world[Symbol.iterator]();
@@ -1133,7 +1133,7 @@ it2.next(); // { value: "W", done: false }
 - If we want to iterate over some data programmatically we can use a looping construct.
 
 ```js
-var str = 'Hello';
+var str = "Hello";
 // imperative approach - hard to understand
 for (
   let it = str[Symbol.iterator](), v, result;
@@ -1148,7 +1148,7 @@ for (
 
 ```js
 // declarative approach
-var str = 'Hello';
+var str = "Hello";
 var it = str[Symbol.iterator]();
 
 for (let v of it) {
@@ -1171,7 +1171,7 @@ for (let v of str) {
 - We can also use the spread operator for iterating.
 
 ```js
-var str = 'Hello';
+var str = "Hello";
 
 var letters = [...str];
 console.log(letters);
@@ -1308,7 +1308,7 @@ var obj = {
 - The idea of assertions in regex is that in addition to the match, something else also has to be true.
 
 ```js
-var msg = 'Hello World';
+var msg = "Hello World";
 
 msg.match(/(l.)/g);
 // ["ll", "ld"]
@@ -1329,7 +1329,7 @@ msg.match(/(l.)(?!o)/g);
 - Unfortunately for all of JavaScript's history, it hasn't supported look behinds.
 
 ```js
-var msg = 'Hello World';
+var msg = "Hello World";
 
 msg.match(/(?<=e)(l.)/g);
 // A positive look behind -- only match if the l is preceded by an e
@@ -1351,7 +1351,7 @@ msg.match(/(?<!e)(l.)/g);
 - By using `?<usefulName>` we can give the capture groups a useful name.
 
 ```js
-var msg = 'Hello World';
+var msg = "Hello World";
 
 msg.match(/.(l.)/);
 // ["ell", "ll"]
@@ -1365,7 +1365,7 @@ msg.match(/(?<cap>l.)/).groups;
 msg.match(/(?<cap>[jkl])o Wor\k<cap>/);
 // ["lo Worl", "l"]
 
-msg.replace(/(?<cap>l.)/g, '-$<cap>-');
+msg.replace(/(?<cap>l.)/g, "-$<cap>-");
 // "He-ll-o Wor-ld"
 
 msg.replace(/(?<cap>l.)/g, function re(...args) {

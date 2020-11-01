@@ -2648,9 +2648,11 @@ workshop.ask.call(workshop, 'Still no "this"?');
 - **Only use `=>` arrow functions when you need lexical this.**
 - [eslint plugin](https://github.com/getify/eslint-plugin-proper-arrows) to enforce it!
 - If you are going to use an anonymous arrow function to make use of lexical this, then you need to combat those three downsides:
-  - Anonymous functions don't have a self-reference.
-  - They don't have a name for debugging (assign it to a variable to have it inferred)
-  - Have some way to make it obvious to the reader what the purpose of the function is (don't make them read the function body).
+
+1. Anonymous functions don't have a self-reference.
+2. They don't have a name for debugging (assign it to a variable to have it inferred)
+3. Have some way to make it obvious to the reader what the purpose of the function is (don't make them read the function body).
+
 - Arrow functions do not introduce a new rule for `this`, which is good. They simply do not have a `this`.
 
 ### 11.6. [this Exercise](exercises/objects-exercises/this/ex.js)
@@ -2734,7 +2736,7 @@ JSRecentParts.ask("Are classes super?");
 ```
 
 - This is an example of extension of syntactic sugar. Prior to ES6 classes, there was no way to do relative polymorphism.
-- If you pay attention to the spec there is a whole new bunch of new features coming to classes.
+- If you pay attention to the spec there is a whole bunch of new features coming to classes.
 - There is nothing different in classes about how function calls are made or the `this` keyword gets bound.
 
 ```js
@@ -2867,7 +2869,7 @@ reactJS.ask("Isn't 'prototype' ugly?");
 - At the very top level, the line 0 environment, before your program has even started to run, there is the `Object` fundamental object.
 - This is not only an object but also a function with a lot of fundamental utilities, so serves as a namespace with a bunch of methods.
 - Also in the line 0 environment, there is an object which is probably the most important in all of JavaScript, but it doesn't have a name.
-- We name it referring to what points at it.
+- We name it by referring to what points at it.
 - There is a property on the `Object` function that points to the unnamed object. That property is `prototype`: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object).
 - It has a lot of important utilities, and all non-primitives descend from `Object.prototype`.
 - There is one other thing that exists in the line 0 environment; a property that points from `Object.prototype` back to `Object`.
@@ -3039,7 +3041,7 @@ JSRecentParts.speakUp("Is this actually inheritance?");
 - Although it is an anti-pattern we could also write `AnotherWorkshop.prototype.__proto__ = Workshop.prototype;`.
 - The linkage that exists between these objects is a good thing, but we have a bunch of stuff layered on top, with things that look like constructor functions, verbose use of `prototype` everywhere, confusing `new` keyword instances, and all of this artifice is on top of theses three objects linked together.
 - It is the objects being linked together that creates all of the power. it enables `JSRecentParts.speakUp(...);` to work.
-- `SRecentParts` has no method `speakUp`. It is found up the prototype chain.
+- `JSRecentParts` has no method `speakUp`. It is found up the prototype chain.
 - No matter how far you need to go up the prototype chain, the `this` binding is still controlled at the root by the call site.
 
 ### 12.6. Classical vs Prototypal Inheritance
@@ -3077,7 +3079,7 @@ JSRecentParts.speakUp("Is this actually inheritance?");
 - Kyle has coined the term OLOO: **O**bjects **L**inked to **O**ther **O**bjects.
 - There are two languages in existence, JavaScript and Lua, wherein you can create an object without any class.
 - So if you think about it the only true object oriented languages are JavaScript and Lua.
-- But the term object oriented has been assigned to class oriented languages are we are stuck with it.
+- But the term object oriented has been assigned to class oriented languages so we are stuck with it.
 - Recall the class syntax in JS:
 
 ```js
