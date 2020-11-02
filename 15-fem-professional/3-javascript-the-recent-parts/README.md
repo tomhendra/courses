@@ -68,19 +68,19 @@ Learn the latest features in JavaScript with Kyle Simpson, author of the popular
 - During that same period of time a lot of things happened in the broader web ecosystem.
 - Internet Explorer 6 came out and stagnated for more than 5 years, which caused many people to be frustrated.
 - New browsers were created in response to this frustration with the stagnation of the web platform.
-- The reason for the stagnation in JavaScrip was due to a lot of political infighting.
+- The reason for the stagnation in JavaScript was due to a lot of political infighting.
 - They were trying to work on the ES4 spec, and there were divisions, they couldn't figure things out.
-- So everyone back to their neutral sites and no updates happened because they couldn't agree.
-- They came back together in 2009 and decided not the have these big factions but rather one JavaScript policy, that nothing gets put in the spec unless everyone agrees it will be faithfully implemented.
+- So everyone went back to their neutral sites and no updates happened because they couldn't agree.
+- They came back together in 2009 and decided not to have these big factions but rather one JavaScript policy, and that nothing gets put in the spec unless everyone agrees it will be faithfully implemented.
 - By that point there were many more stakeholders, more browsers both desktop and mobile, and other environments.
 - It was decided there should be one unified JavaScript rather than different versions for different browsers like in the IE6 days.
 - This was a tremendously important inflection point for the history of JavaScript.
-- It signalled that they process was back together, people are agreeing to work towards progress.
+- It signalled that they process was back together, people were agreeing to work towards progress.
 - It seemed like ES5 would be the turning point for thing moving forward more rapidly in future.
-- And then 2010, 2011, 2012 & 2013 went by and they were still trying to be work out the issues.
+- And then 2010, 2011, 2012 & 2013 went by and they were still trying to work out the issues.
 - They were the problems of ES4, that they wanted to move JS forward as a full first class programming language.
 - They wanted to add lots of features to enable that, and so that JS could be regarded as equal to the other major programming languages.
-- So there was a lot of disagreement about each individual feature and so ES6 or ES2015 didn't land until late 2015.
+- So there was a lot of disagreement about each individual feature and so ES6 AKA ES2015 didn't land until late 2015.
 - So from 2009 to 2015 there was another stagnation of 6 years when JS wasn't updated.
 - When ES6 eventually landed there was a tonne of new features, over 300.
 - Naturally there was a bunch of blow back at such a massive change.
@@ -88,7 +88,7 @@ Learn the latest features in JavaScript with Kyle Simpson, author of the popular
 - So they voted to say the healthiest thing for the language is not to stagnate, nor to collect features up into some symbolic thing like version 6 or version 7, but rather to move forward incrementally little-by-little and release updates annually.
 - So to reflect this they changed the name of the language so the next update that came wasn't ES7, it was ES2016.
 - Then we had ES2017, ES2018, ES2019 and ES2020.
-- There is a nuance, in that they vote in the early part of the year, and then by midyear it is officially ratified by ECMA; the organisation that manages the standard.
+- There is a nuance, in that they vote in the early part of the year, and then by midyear it is officially ratified by ECMA, which is the organisation that manages the standard.
 - Nobody knows when a feature will land until it reaches the final stage.
 - There are five stages of the TC39 proposal process from 0 - 4.
 - Stage 4 means finished and shipped.
@@ -96,7 +96,7 @@ Learn the latest features in JavaScript with Kyle Simpson, author of the popular
 - So the proposals move independently rather than being kept behind a gate, and they move as fast or slowly as necessary.
 - This works well since some features are small and relatively simple to implement, and some are huge and take years to figure out.
 - Backwards compatibility requirement creates a tremendous pressure that when something gets added to the language it needs to be really ready.
-- So we have a process where we get updates to the language annually where some are small and some are major, and hopefully we never see history repeated with the stagnation and features bombs that have happened in the past.
+- So we now have a process where we get updates to the language annually where some are small and some are major, and hopefully we never see history repeated with the stagnation and features bombs that have happened in the past.
 - There are already threats to JS like Web Assembly where you write code in Go or Rust and skip JavaScript entirely.
 - If JavaScript wants to continue to be a vital part of the web it must continue to evolve.
 
@@ -110,8 +110,8 @@ Learn the latest features in JavaScript with Kyle Simpson, author of the popular
 
 ### 1.3. Browser Support and Transpilers
 
-- With the rapid changes coming into JavaScript, ma ny devs have concerns about browser support.
-- In the same period of time that there was a stagnation for 10 years, there was also a trend of developers being years behind the trailing edge of new features that came out.
+- With the rapid changes coming into JavaScript, many devs have concerns about browser support.
+- In the same period of time that there was a stagnation for 10 yeUnfortunately the string literal bears, there was also a trend of developers being years behind the trailing edge of new features that came out.
 - There is a sense that some developers feel safer not using new features if they have to support older browsers.
 - Transpilers solve this problem, and became popular at the same time as ES6.
 - Babel is the most popular.
@@ -171,7 +171,7 @@ console.log(msg);
 - This is a feature that has been supported in a variety of other languages prior to JavaScript.
 - This is an example of that very imperative approach to code, as to figure out the final string you need to mentally execute out code.
 - Template strings let us declare what our final string is, and have variable placeholders for where we want our values to be dropped in.
-- Unfortunately the string literal be changed, so a whole new string literal was added to support that automatic interpolation.
+- Unfortunately the string literal cannot be changed, so a whole new string literal was added to support that automatic interpolation.
 - The backtick operator `` ` `` was chosen to indicate a different kind of string within which will be expressions.
 - The expression used to delimit is `${}`.
 
@@ -204,9 +204,9 @@ var msg = formatCurrency`Hey ${name}, the total value of your order is ${amount}
 // Hey Tom, the total value of your order is $12.30. Thank you for shopping at Cider Utopia.
 ```
 
-- There is no operator between `formatCurrency` and the `\``.
+- There is no operator between `formatCurrency` and the `` ` ``.
 - It is a special kind of function call, called a tagged template string / tagged template literal.
-- You are declaratively tagging this string to say before it finishes process it with the function `formatCurrency`.
+- You are declaratively tagging this string to say before it finishes, process it with the function `formatCurrency`.
 
 ```js
 function formatCurrency(strings, ...values) {
@@ -237,7 +237,7 @@ function formatCurrency(strings, ...values) {
 
 ### 2.3. Applying Tagged Templates
 
-- It is useful to understanding the processing model of tag functions, as there are more interesting things you can do.
+- It is useful to understand the processing model of tag functions, as there are more interesting things you can do.
 - The following is a replacement for `console.log` which rather than printing `[object Object]` or just the error string from a `try catch`, it will print objects as JSON, or Errors as a stack trace string.
 
 ```js
@@ -286,7 +286,7 @@ try {
 
 - Some people have gone way further with tag functions.
 - They don't even have to return a string.
-- For example regex written on multiple lines with whitespace that is parsed into a normal regex by a tag function, n ot retuning a string but an actual regular expression.
+- For example regex written on multiple lines with whitespace that is parsed into a normal regex by a tag function, not retuning a string but an actual regular expression.
 - People have made entire programming languages where the interpretor is the tag function.
 - JSX requires a compiler because it is not standard JS. Someone decided to write a JSX tag function, that returns the actual DOM object.
 - Tagged Templates are incredibly powerful, and a great extension point for writing more declarative JavaScript.
