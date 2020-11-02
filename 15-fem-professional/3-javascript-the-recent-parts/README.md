@@ -877,7 +877,7 @@ function lookupRecord({ store = "person-records", id = -1 }) {
 lookupRecord({ id: 42 });
 ```
 
-- This is being an extremely popular pattern.
+- This is becoming an extremely popular pattern.
 - Kyle's rule of thumb is to use this pattern for every function that has three or more parameters.
 - The good thing about named arguments is you don't have to remember the order.
 - The downside is that you do have to remember the name.
@@ -1011,7 +1011,7 @@ arr.indexOf(30) != -1; // true
 ```
 
 - These are terrible patterns, but were the best available for a long time.
-- Thankfully we now have method that will tell us `true` or `false` whether something exists.
+- Thankfully we now have a method that will tell us `true` or `false` whether something exists.
 - If we don't need the actual value, but rather to know whether something exists or not, the best method to use is the `includes` method.
 
 ```js
@@ -1079,7 +1079,7 @@ nestedValues.flat(2);
 
 - We tend to think of mapping as only producing a new array as the same number of items as the original.
 - With `flatMap` We can turn a mapping operation into something that adds or removes from an array.
-- By using a empty array, owe are removing compared to the original.
+- By using a empty array, we are removing compared to the original.
 
 ```js
 [1, 2, 3, 4, 5, 6].flatMap(function doubleEvens(v) {
@@ -1121,8 +1121,8 @@ it2.next(); // { value: "W", done: false }
 // ..
 ```
 
-- In both the case of the string and array they are iterables, and therefore we can construct tan iterator to consume their values.
-- `Symbol.iterator` is a special value that finds a location on the string / array object and produces an iterator from it.
+- In both the case of the string and array they are iterables, and therefore we can construct an iterator to consume their values.
+- `Symbol.iterator` is a special value that finds a location on the string / array / object and produces an iterator from it.
 - We get back an iterator and when we call `next` we get back an _iterator result_ with two properties.
 - The way the iterator determines that there is nothing else to consume, is that you iterate past the end of the data source until `undefined` is returned.
 - Almost all the data structures in JS are now iterables.
@@ -1178,8 +1178,8 @@ console.log(letters);
 // ["H", "e", "l", "l", "o"]
 ```
 
-- Both `for of` and `...` are syntactic support for the iterator protocol, which is now a first class built-in citizen in JavaScript.
-- This is important because of we expose an iterator for our own custom data structures that adheres to the protocol, then any user of our code can use the syntactic built-in mechanisms for our data structures.
+- Both `for of` and `...` are syntactic support for the iterator protocol, which is now a built-in first class citizen in JavaScript.
+- This is important because if we expose an iterator for our own custom data structures that adheres to the protocol, then any user of our code can use the syntactic built-in mechanisms for our data structures.
 - It creates a standardized way of iterating through data sources.
 
 ### 7.3. Data Structure Without Iterators
@@ -1495,8 +1495,8 @@ async function fetchFiles(files) {
 
 1. The `await` keyword only knows what to do with actual real promises.
 
-   - It would be nice to be able to use `await` with custom promises that don't have the same then functionality or for a thunk (function representation of a future value).
-   - The `await` keyword is not extensible in any way, it only knows what to do with thenables and promises.
+   - It would be nice to be able to use `await` with custom promises that don't have the same `then` functionality or for a thunk (function representation of a future value).
+   - The `await` keyword is not extensible in any way, it only knows what to do with 'thenables' and promises.
    - With a generator and gen-runner we are free to `yield` and pause on any future representation of future values that we need to.
 
 2. Scheduling (Starvation).
