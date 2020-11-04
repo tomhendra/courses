@@ -8,6 +8,7 @@
 - [3. CSS Variables](#3-css-variables)
 - [4. Array Cardio Day 1](#4-array-cardio-day-1)
 - [5. Flex Panel Gallery](#5-flex-panel-gallery)
+- [6. Type Ahead](#6-type-ahead)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -37,3 +38,9 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - Uses flexbox to layout columns and JavaScript to apply a class on the `click` event which transitions the `flex-grow` and `font-size` properties.
 - Another event listener is added for the `transitionend` event which then applies a second class to transition the upper and lower text on/off viewport.
+
+### 6. [Type Ahead](06-type-ahead/index-START.html)
+
+- Uses event listeners on an input element to display items from a list of data fetched from an API endpoint, which matches user input.
+- RexExp is used to filter the returned data based on the input value.
+- Finally the matched input value is highlighted in the list of filtered data using regex and replace.
