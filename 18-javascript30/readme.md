@@ -6,6 +6,7 @@
 - [1. JavaScript Drum Kit](#1-javascript-drum-kit)
 - [2. CSS & JS Clock](#2-css--js-clock)
 - [3. CSS Variables](#3-css-variables)
+- [4. Array Cardio Day 1](#4-array-cardio-day-1)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -25,4 +26,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - CSS variables are updatable with JS. Sass variables get defined at compile time which we can't change after compilation.
 - Custom data attributes can be collected in a [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/dataset) object which this exercise uses to apply the suffix `px` with the custom attribute `data-sizing`.
-- Modifies CSS variables by using the `name` attribute on selected `<input>` elements, and using `setProperty` to target `:root` and interpolate variable names and values on `change` or `mousemove` events.
+- Modifies CSS variables by using the `name` attribute on selected `<input>` elements, and using `setProperty` to target `:root` CSS variables and interpolate the variable names and values on `change` or `mousemove` events.
+
+### 4. [Array Cardio Day 1](04-array-cardio-day-1/index-START.html)
+
+- Bunch of exercises to practice use of the built-in array methods available in JavaScript.
