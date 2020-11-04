@@ -9,6 +9,7 @@
 - [4. Array Cardio Day 1](#4-array-cardio-day-1)
 - [5. Flex Panel Gallery](#5-flex-panel-gallery)
 - [6. Type Ahead](#6-type-ahead)
+- [7. Array Cardio Day 2](#7-array-cardio-day-2)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -44,3 +45,7 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 - Uses event listeners on an input element to display items from a list of data fetched from an API endpoint, which matches user input.
 - RexExp is used to filter the returned data based on the input value.
 - Finally the matched input value is highlighted in the list of filtered data using regex and replace.
+
+### 7. [Array Cardio Day 2](07-array-cardio-day-2/index-START.html)
+
+- More familiarization with array methods that come in handy especially when working with data.
