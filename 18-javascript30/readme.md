@@ -11,10 +11,10 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 ## 1. [JavaScript Drum Kit](01-javascript-drum-kit/index-START.html)
 
-- Uses `data-*` HTML attributes and JavaScript attribute selector to add a class to elements on the `keydown` event.
-- Also listens for `transitionend` event to remove the class once the CSS transition has completed.
+- Uses `data-*` HTML attributes and JavaScript attribute selector to play audio and add a class to elements on the `keydown` event.
+- Also listens for `transitionend` event to remove the class once the CSS transition has ended.
 
 ## 2. [CSS & JS Clock](02-js-and-css-clock/index-START.html)
 
-- Use of the `Date()` API in JavaScript to position clock hands with rotate transforms.
+- Use of the `Date()` API to position clock hands with `transform: rotate`.
 - Also demonstrates use of `bezier-timing-function` to transition hands realistically.
