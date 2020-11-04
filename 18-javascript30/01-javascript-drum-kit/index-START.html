@@ -71,7 +71,8 @@
       }
 
       const keys = document.querySelectorAll(".key");
-
+      // must add event listener to individual items.
+      // We can't add a collective listener to keys.
       keys.forEach((key) =>
         key.addEventListener("transitionend", removeTransition)
       );
