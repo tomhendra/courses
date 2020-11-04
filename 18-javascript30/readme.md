@@ -7,6 +7,7 @@
 - [2. CSS & JS Clock](#2-css--js-clock)
 - [3. CSS Variables](#3-css-variables)
 - [4. Array Cardio Day 1](#4-array-cardio-day-1)
+- [5. Flex Panel Gallery](#5-flex-panel-gallery)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -31,3 +32,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 ### 4. [Array Cardio Day 1](04-array-cardio-day-1/index-START.html)
 
 - Bunch of exercises to practice use of the built-in array methods available in JavaScript.
+
+### 5. [Flex Panel Gallery](05-flex-panel-gallery/index-START.html)
+
+- Uses flexbox to layout columns and JavaScript to apply a class on the `click` event which transitions the `flex-grow` and `font-size` properties.
+- Another event listener is added for the `transitionend` event which then applies a second class to transition the upper and lower text on/off viewport.
