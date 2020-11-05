@@ -10,6 +10,7 @@
 - [5. Flex Panel Gallery](#5-flex-panel-gallery)
 - [6. Type Ahead](#6-type-ahead)
 - [7. Array Cardio Day 2](#7-array-cardio-day-2)
+- [8. Fun with HTML5 Canvas](#8-fun-with-html5-canvas)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -49,3 +50,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 ### 7. [Array Cardio Day 2](07-array-cardio-day-2/index-START.html)
 
 - More familiarization with array methods that come in handy especially when working with data.
+
+### 8. [Fun with HTML5 Canvas](08-fun-with-html5-canvas/index-START.html)
+
+- Uses canvas to draw strokes with varying colour and width.
+- Listens for mousemove/out/up events and applies a draw function by using a boolean flag.
