@@ -11,6 +11,7 @@
 - [6. Type Ahead](#6-type-ahead)
 - [7. Array Cardio Day 2](#7-array-cardio-day-2)
 - [8. Fun with HTML5 Canvas](#8-fun-with-html5-canvas)
+- [9. Dev Tools Domination](#9-dev-tools-domination)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -55,3 +56,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - Uses canvas to draw strokes with varying colour and width.
 - Listens for mousemove/out/up events and applies a draw function by using a boolean flag.
+
+### 9. [Dev Tools Domination](09-dev-tools-domination/index-START.html)
+
+- Right click on element in elements panel > break on > attribute modification: launches debugger breakpoint to locate JS which is causes attribute modification.
+- Tips on console messages demonstrated in the [HTML file](09-dev-tools-domination/index-START.html).
