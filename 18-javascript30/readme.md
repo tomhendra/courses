@@ -12,6 +12,7 @@
 - [7. Array Cardio Day 2](#7-array-cardio-day-2)
 - [8. Fun with HTML5 Canvas](#8-fun-with-html5-canvas)
 - [9. Dev Tools Domination](#9-dev-tools-domination)
+- [10. Hold Shift to Check Multiple Checkboxes](#10-hold-shift-to-check-multiple-checkboxes)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -61,3 +62,7 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - Right click on element in elements panel > break on > attribute modification: launches debugger breakpoint to locate JS which is causes attribute modification.
 - Tips on console messages demonstrated in the [HTML file](09-dev-tools-domination/index-START.html).
+
+### 10. [Hold Shift to Check Multiple Checkboxes](10-hold-shift-and-check-checkboxes/index-START.html)
+
+-
