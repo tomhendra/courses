@@ -13,6 +13,7 @@
 - [8. Fun with HTML5 Canvas](#8-fun-with-html5-canvas)
 - [9. Dev Tools Domination](#9-dev-tools-domination)
 - [10. Hold Shift to Check Multiple Checkboxes](#10-hold-shift-to-check-multiple-checkboxes)
+- [11. Custom Video Player](#11-custom-video-player)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -65,4 +66,9 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 ### 10. [Hold Shift to Check Multiple Checkboxes](10-hold-shift-and-check-checkboxes/index-START.html)
 
--
+- Selects all checkboxes, listens for click event, loops over checkboxes and uses a flag to mark `checked` to `true` fir each item if `shiftKey` is `true` on the event.
+
+### 11. [Custom Video Player](11-custom-video-player/scripts.js)
+
+- Styling the default HTML video player can be very tricky.
+- Here we create a custom HTML video player, using custom functions to build out functionality.
