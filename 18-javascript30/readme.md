@@ -14,6 +14,7 @@
 - [9. Dev Tools Domination](#9-dev-tools-domination)
 - [10. Hold Shift to Check Multiple Checkboxes](#10-hold-shift-to-check-multiple-checkboxes)
 - [11. Custom Video Player](#11-custom-video-player)
+- [12. Key Sequence Detection](#12-key-sequence-detection)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -72,3 +73,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - Styling the default HTML video player can be very tricky.
 - Here we create a custom HTML video player, using custom functions to build out functionality.
+
+### 12. [Key Sequence Detection](12-key-sequence-detection/index-START.html)
+
+- AKA the Konami code. Detects sequence of keys being entered to trigger an event.
+- Listens for `keyup` event and compares an array of values with 'secret code'.
