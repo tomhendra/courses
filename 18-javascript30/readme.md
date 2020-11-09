@@ -19,6 +19,7 @@
 - [14. Objects & Arrays: Reference vs Copy](#14-objects--arrays-reference-vs-copy)
 - [15. LocalStorage & Event Delegation](#15-localstorage--event-delegation)
 - [16. CSS Text Shadow Mouse Move Effect](#16-css-text-shadow-mouse-move-effect)
+- [17. Sort without Articles](#17-sort-without-articles)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -102,3 +103,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - Listens for `mousemove` event and translates text shadow in relation to mouse position.
 - Uses `offsetX` and `offsetY` to grab cursor position, with `offsetLeft` and `offsetTop` to compensate for the event firing on nested elements.
+
+### 17. [Sort without Articles](17-sort-without-articles/index-START.html)
+
+- Uses `Array.sort` method but excludes articles "The", "A" or "An" from sorting using a `strip` function and regEx.
+- Displays a list of the sorted bands.
