@@ -81,3 +81,6 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 - Listens for `keyup` event and compares an array of values with 'secret code'.
 
 ### 13. [Slide in on Scroll](13-slide-in-on-scroll/index-START.html)
+
+- listens on `window` object for `scroll` event and a custom function `checkSlide` to apply a class to trigger the translation of images.
+- Uses a `debounce` function to control the amount that `checkSlide` runs, as to not hammer the browser with function calls.
