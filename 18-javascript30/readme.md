@@ -16,6 +16,7 @@
 - [11. Custom Video Player](#11-custom-video-player)
 - [12. Key Sequence Detection](#12-key-sequence-detection)
 - [13. Slide in on Scroll](#13-slide-in-on-scroll)
+- [14. Objects & Arrays: Reference vs Copy](#14-objects--arrays-reference-vs-copy)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -84,3 +85,7 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - listens on `window` object for `scroll` event and a custom function `checkSlide` to apply a class to trigger the translation of images.
 - Uses a `debounce` function to control the amount that `checkSlide` runs, as to not hammer the browser with function calls.
+
+### 14. [Objects & Arrays: Reference vs Copy](14-javascript-references-vs-copying/index-START.html)
+
+- Quick few examples tp demonstrate assignment by reference vs assignment be value.
