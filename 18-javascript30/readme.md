@@ -15,6 +15,7 @@
 - [10. Hold Shift to Check Multiple Checkboxes](#10-hold-shift-to-check-multiple-checkboxes)
 - [11. Custom Video Player](#11-custom-video-player)
 - [12. Key Sequence Detection](#12-key-sequence-detection)
+- [13. Slide in on Scroll](#13-slide-in-on-scroll)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -58,7 +59,7 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 ### 8. [Fun with HTML5 Canvas](08-fun-with-html5-canvas/index-START.html)
 
 - Uses canvas to draw strokes with varying colour and width.
-- Listens for mousemove/out/up events and applies a draw function by using a boolean flag.
+- Listens for `mousemove`/`mouseout`/`mouseup` events and applies a draw function by using a boolean flag.
 
 ### 9. [Dev Tools Domination](09-dev-tools-domination/index-START.html)
 
@@ -78,3 +79,5 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - AKA the Konami code. Detects sequence of keys being entered to trigger an event.
 - Listens for `keyup` event and compares an array of values with 'secret code'.
+
+### 13. [Slide in on Scroll](13-slide-in-on-scroll/index-START.html)
