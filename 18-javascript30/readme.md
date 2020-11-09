@@ -17,6 +17,7 @@
 - [12. Key Sequence Detection](#12-key-sequence-detection)
 - [13. Slide in on Scroll](#13-slide-in-on-scroll)
 - [14. Objects & Arrays: Reference vs Copy](#14-objects--arrays-reference-vs-copy)
+- [15. LocalStorage & Event Delegation](#15-localstorage--event-delegation)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -89,3 +90,9 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 ### 14. [Objects & Arrays: Reference vs Copy](14-javascript-references-vs-copying/index-START.html)
 
 - Quick few examples tp demonstrate assignment by reference vs assignment be value.
+
+### 15. [LocalStorage & Event Delegation](15-localstorage/index-START.html)
+
+- Uses the localStorage API to persist list items.
+- Listens for `submit` event to add items to the list from input value.
+- Uses event delegation to listen on parent `<ul>`.
