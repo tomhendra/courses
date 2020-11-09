@@ -23,6 +23,7 @@
 - [18. Adding Up Times with Reduce](#18-adding-up-times-with-reduce)
 - [19. Webcam Fun](#19-webcam-fun)
 - [20. Native Speech Recognition](#20-native-speech-recognition)
+- [21. Geolocation](#21-geolocation)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -124,3 +125,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 ### 20. [Native Speech Recognition](20-speech-detection/index-START.html)
 
 - Uses the speech recognition to API to print to the DOM the results of dictation.
+
+### 21. [Geolocation](21-geolocation/index-START.html)
+
+- Uses `navigator.geolocation` and listens for user position.
+- Displays speed and position relative to north with SVG compass.
