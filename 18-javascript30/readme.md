@@ -31,6 +31,7 @@
 - [26. Stripe Follow Along Dropdown](#26-stripe-follow-along-dropdown)
 - [27. Click and Drag to Scroll](#27-click-and-drag-to-scroll)
 - [28. Video Speed Controller UI](#28-video-speed-controller-ui)
+- [29. Countdown Clock](#29-countdown-clock)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -170,3 +171,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 ### 28. [Video Speed Controller UI](28-video-speed-controller/index-START.html)
 
 - Listens for `mousemove` event, grabs the cursor Y position and uses it to set video `playbackRate`.
+
+### 29. [Countdown Clock](29-countdown-timer/scripts-START.js)
+
+- Countdown timer using Date API and timestamps to display time remaining on a timer.
+- Sets time remaining using predetermined buttons, as well as a custom input.
