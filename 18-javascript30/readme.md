@@ -27,6 +27,7 @@
 - [22. Follow Along Links](#22-follow-along-links)
 - [23. Speech Synthesis](#23-speech-synthesis)
 - [24. Stick Nav](#24-stick-nav)
+- [25. Event Capture, Propagation, Bubbling & Once\](#25-event-capture-propagation-bubbling--once)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -148,3 +149,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - Fixes navigation at certain scroll point.
 - Accounts for the height of the nav element being removed form the document flow when `position: fixed` is applied.
+
+### 25. [Event Capture, Propagation, Bubbling & Once](25-event-capture,-propagation,-bubbling-and-once/index-START.html)\
+
+- Demonstrations of how events work with capture and bubbling.
+- Demonstrates use of once to unbind event listener after event fires once.
