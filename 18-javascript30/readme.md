@@ -26,6 +26,7 @@
 - [21. Geolocation](#21-geolocation)
 - [22. Follow Along Links](#22-follow-along-links)
 - [23. Speech Synthesis](#23-speech-synthesis)
+- [24. Stick Nav](#24-stick-nav)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -142,3 +143,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - Uses the browser `speechSynthesis` API to synthesise the value of an input.
 - Populates dropdown with available voices from the API and calls `speechSynthesis.speak()` on selected option.
+
+### 24. [Stick Nav](24-sticky-nav/index-START.html)
+
+- Fixes navigation at certain scroll point.
+- Accounts for the height of the nav element being removed form the document flow when `position: fixed` is applied.
