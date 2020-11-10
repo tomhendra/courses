@@ -24,6 +24,7 @@
 - [19. Webcam Fun](#19-webcam-fun)
 - [20. Native Speech Recognition](#20-native-speech-recognition)
 - [21. Geolocation](#21-geolocation)
+- [22. Follow Along Links](#22-follow-along-links)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -130,3 +131,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - Uses `navigator.geolocation` and listens for user position.
 - Displays speed and position relative to north with SVG compass.
+
+### 22. [Follow Along Links](22-follow-along-link-highlighter/index-START.html)
+
+- Uses `getBoundingClientRect` to get coords and size to position a highlight over any link on the page.
+- Uses `window.scrollY` & `window.scrollX` to compensate for scroll distance when positioning the element.
