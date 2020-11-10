@@ -27,7 +27,7 @@
 | [Design for Developers](16-fem-design-to-code/1-design-for-developers)                                                   | --/--/-- | --/--/-- |
 | [Responsive Web Typography v2](16-fem-design-to-code/2-responsive-web-typography-v2)                                     | --/--/-- | --/--/-- |
 | [SVG Essentials & Animation, v2](16-fem-design-to-code/3-svg-essentials-and-animation-v2)                                | --/--/-- | --/--/-- |
-| [Creative Coding Club: GSAP 3 Express](https://www.creativecodingclub.com/courses/gsap-3-express)                        | --/--/-- | --/--/-- |
+| [Creative Coding Club: GSAP 3](17-ccc-gsap-3)                                                                            | --/--/-- | --/--/-- |
 | **React**                                                                                                                |          |          |
 | [Complete Intro to React, v5](15-fem-professional/)                                                                      | --/--/-- | --/--/-- |
 | **Full Stack**                                                                                                           |          |          |
