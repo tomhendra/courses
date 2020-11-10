@@ -25,6 +25,7 @@
 - [20. Native Speech Recognition](#20-native-speech-recognition)
 - [21. Geolocation](#21-geolocation)
 - [22. Follow Along Links](#22-follow-along-links)
+- [23. Speech Synthesis](#23-speech-synthesis)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -136,3 +137,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - Uses `getBoundingClientRect` to get coords and size to position a highlight over any link on the page.
 - Uses `window.scrollY` & `window.scrollX` to compensate for scroll distance when positioning the element.
+
+### 23. [Speech Synthesis](23-speech-synthesis/index-START.html)
+
+- Uses the browser `speechSynthesis` API to synthesise the value of an input.
+- Populates dropdown with available voices from the API and calls `speechSynthesis.speak()` on selected option.
