@@ -30,6 +30,7 @@
 - [25. Event Capture, Propagation, Bubbling & Once\](#25-event-capture-propagation-bubbling--once)
 - [26. Stripe Follow Along Dropdown](#26-stripe-follow-along-dropdown)
 - [27. Click and Drag to Scroll](#27-click-and-drag-to-scroll)
+- [28. Video Speed Controller UI](#28-video-speed-controller-ui)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -165,3 +166,7 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 ### 27. [Click and Drag to Scroll](27-click-and-drag/index-START.html)
 
 - Listens for mouse events to set the scroll position of a container based on mouse movements when mouse is down.
+
+### 28. [Video Speed Controller UI](28-video-speed-controller/index-START.html)
+
+- Listens for `mousemove` event, grabs the cursor Y position and uses it to set video `playbackRate`.
