@@ -17,6 +17,7 @@
 | [Deep JavaScript Foundations, v3](15-fem-professional/2-deep-javascript-foundations-v3)                                  | 01/11/20 | 15/11/20 |
 | [JavaScript: The Recent Parts](15-fem-professional/3-javascript-the-recent-parts)                                        | 02/11/20 | 15/11/20 |
 | [Functional-Light JavaScript, v3](15-fem-professional/5-functional-light-javascript-v3)                                  | --/--/-- | --/--/-- |
+| [JavaScript30](18-javascript30)                                                                                          | 10/11/20 | --/--/-- |
 | **Computer Science**                                                                                                     |          |          |
 | [Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)                              | --/--/-- | --/--/-- |
 | [JavaScript Algorithms and Data Structures Masterclass](3-algorithms-and-data-structures)                                | --/--/-- | --/--/-- |
