@@ -28,6 +28,7 @@
 - [23. Speech Synthesis](#23-speech-synthesis)
 - [24. Stick Nav](#24-stick-nav)
 - [25. Event Capture, Propagation, Bubbling & Once\](#25-event-capture-propagation-bubbling--once)
+- [26. Stripe Follow Along Dropdown](#26-stripe-follow-along-dropdown)
 
 No framework vanilla JavaScript course. These tutorials rely heavily upon browser APIs, most of which involve interaction with the page.
 
@@ -154,3 +155,8 @@ We steer clear of opinionated design patterns, frameworks, libraries and any typ
 
 - Demonstrations of how events work with capture and bubbling.
 - Demonstrates use of once to unbind event listener after event fires once.
+
+### 26. [Stripe Follow Along Dropdown](26-stripe-follow-along-nav/index-START.html)
+
+- Transitioned dropdown navigation as proof of concept in matching the Stripe website navigation.
+- Demonstrates staggering of `opacity: 0` to `1` and `display: none` to `block` as we cannot maintain opacity transition when both are set simultaneously (this is apparently how React & Angular animations work).
