@@ -839,7 +839,7 @@ As the FP techniques get more advanced, particularly with point-free, the health
 - If our code is not more readable, we lose the benefits of FP.
 - The line of understanding will keep moving forward as we journey further into the realm of FP.
 
-From here on... there be dragons! 🐲 + 🤯 = 🚀
+From here on... there be dragons! 🚀 = 🐲 + 🤯
 
 ### 4.2. Point-Free Refactor
 
@@ -964,7 +964,7 @@ var isOdd = compose(eq1, mod2);
 - `fn1` is `mod2` which is called with whatever value we pass in to `isOdd`.
 - `fn2` is `eq1` which is passed the output of `mod2`.
 - `eq1` will return `true` or `false` as required.
-- This analysis is made by equational reasoning: `eq1(mod2(x))` is the same shape as `fn2(fn1(v)`.
+- This analysis is made by equational reasoning: `eq1(mod2(x))` is the same shape as `fn2(fn1(v))`.
 - They are interchangeable, which enables our point-free definition.
 - But we can go a step further and replace the intermediary `mod2` and `eq1` functions and define them inline.
 
@@ -1009,7 +1009,7 @@ c(); // 3
 - The function `increment` closes over the variable `counter` and is able to increment it even though the execution context of `makeCounter` no longer exists.
 - `c` cannot be called a pure function because the same output is not being produced every time.
 - Closure is not necessarily functionally pure, but can absolutely be used in functional purity.
-- The key is if we are closing over a variable, it cannot be reassigned.
+- **The key is if we are closing over a variable, it cannot be reassigned**.
 - We are not closed over a constant, we are closed over changing state, so we have an impure function.
 - Some examples of functional purity with closure are as follows.
 
@@ -1061,7 +1061,7 @@ A(); // AAAAAAAAAA
 - It does this work every time we call `A()`.
 - By returning the function `allTheAs` we are deferring the work until later.
 - This is called _lazy_ or _deferred_.
-- We may want to defer computationally expensive work if based on conditions the function was potentially going to be called very little.
+- We may want to defer computationally expensive work if, based on some conditions, the function was potentially going to be called very little.
 - The downside of deferral is that we have to do the work every time we call the function.
 - So we may not wish to defer if the function is likely to be called repeatedly.
 - The opposite of _lazy_ is _eager_.
@@ -1147,15 +1147,15 @@ Fundamentally `memoize` is written in the same way as the previous example where
 - We previously defined pure function calls as always producing the same output given the same input.
 - The path that led us to this point was:
 
-1. A pure function must have inputs and outputs.
-2. A pure function must have relationships between the inputs and outputs.
-3. A pure function must have direct inputs and direct outputs.
-4. A pure function can have indirect inputs; we can close over variables as long as they are not changing.
-5. The function call is what is important, and should always produce the same output given the same input.
+1. **A pure function must have inputs and outputs.**
+2. **A pure function must have relationships between the inputs and outputs.**
+3. **A pure function must have direct inputs and direct outputs.**
+4. **A pure function can have indirect inputs; we can close over variables as long as they are not changing.**
+5. **The function call is what is important, and should always produce the same output given the same input.**
 
-- But the full canonical definition of a pure function call is if we can replace the function call with its return value.
+- But the full canonical definition of a pure function call is if **we can replace the function call with its return value**.
 - If We can do that, and not affect any of the program elsewhere, then we have a pure function call.
-- There is a special term for this: Referential Transparency, as in _a function call is pure if it has referential transparency_.
+- There is a special term for this: _Referential Transparency_, as in _a function call is pure if it has referential transparency_.
 - The real benefit of referential transparency is to the reader of the code.
 - If the reader sees the same function call used with the same input, they can recall the output they computed in their brain before.
 - This frees up cognitive capacity for them to focus on other more important parts of the app.
@@ -1202,7 +1202,7 @@ getCurrentUser(renderCustomer);
 ```
 
 - `getCurrentUser` is even more semantically descriptive.
-- We haven't changed any functionality, we have just changes the stylization of the code to be more semantic.
+- We haven't changed any functionality, we have just changed the stylization of the code to be more semantic.
 - We are communicating that `getCurrentUser` is the specialization of `getCustomer`, rather than `ajax` which is a weaker relationship.
 - The downside is that we are cluttering up the code with these manual pointed definitions.
 - To arrive at the point-free solution, remember function parameter order matters.
@@ -1601,7 +1601,7 @@ p(4); // 13
 ```
 
 - We still have the same order of functions from right-to-left.
-- The definition of `f` ans `p` look different but they give the same result.
+- The definition of `f` and `p` look different but they give the same result.
 - This is useful because we can do currying and partial application on our compositions.
 - We don't need to know all of the functions upfront that will participate in a composition.
 - We can curry the compose utility and provide two or three functions now, then take that result and compose it with something else later.
@@ -1680,7 +1680,7 @@ var isOdd = composeTwo(eq(1), mod(2));
 
 - Immutability is the idea that something isn't going to change unexpectedly.
 - There are obviously a lot of state changes over time in in our programs; that is the point of them.
-- A program cannot be completely immutable because without state changing there would be no point tp the program.
+- A program cannot be completely immutable because without state changing there would be no point to the program.
 - So the point of immutability is that change that needs to occur must be intentional.
 - Immutability is the concept of controlling mutation.
 - There are two different types of mutability that we need to focus on:
@@ -1886,7 +1886,7 @@ updatedItems.size; // 3
 - `updatedItems` is now a modified version of the data structure, and `items` has retained its original state.
 - Immutable Data Structures: Data structures that **need** to be mutated.
 
-- [Immutability Exercise](exercises/immutability/ex.js)
+[Immutability Exercise](exercises/immutability/ex.js)
 
 ## 8. Recursion
 
@@ -1953,7 +1953,6 @@ countVowels("The quick brown fox jumps over the lazy dog"); // 11
 - If the first character in the string is a vowel, we assign `first` with `1` else we assign `0`.
 - Then we add `first` to the count of the vowels in the rest of the string.
 - `str.slice(1)` says slice off the first character, and give us the substring that remains: _reducing the problem set_.
-
 - Recursion can be confusing because people force themselves to think about the implementation.
 - Recursion is not designed to be an imperative approach, it was conceived to be a declarative approach.
 - Declarative is not concerned with how it happens, it is concerned with the outcome.
@@ -1996,7 +1995,7 @@ function countVowels(str) {
 - There are ways of addressing this problem.
 - _Stack frames_ are areas of reserved memory that functions use for execution.
 - When one function calls another the memory frames are added to a stack.
-- When a function has finished executing is popped off from the stack.
+- When a function has finished executing, it is popped off from the stack.
 - The stack frames contain local variables, the program counter etc: all the computer needs to track what is happening within a function.
 - Usually stacks will only contain 5, 10 or 15 stack frames.
 - But when we use recursion, the likelihood of thousands or millions of stack frames being added increases.
@@ -2004,7 +2003,7 @@ function countVowels(str) {
 
 ### 8.4. Optimization: Tail Calls
 
-- Tail calls as an optimization technique was conceived in the 60s when the issue of memory limitation became apparent.
+- Tail calls as an optimization technique that was conceived in the 60s when the issue of memory limitation became apparent.
 - To understand tail calls, we need to understand why the currently executing stack frame needs to be retained.
 
 ```js
@@ -2206,7 +2205,7 @@ countVowels = curry(2, countVowels)(0);
 - It just so happens in JavaScript that it is easy to illustrate them with lists, i.e. arrays.
 - Rather than apply operations to single discrete values, we want to apply them to collections of values.
 - In FP there is a heavily related term called a _functor_.
-- A functor is a value which contains mappable values, e.g. an array.
+- **A functor is a value which contains mappable values, e.g. an array.**
 - Any data structure for which we have identified and defined a map operation, gives it the characteristic that it behaves as a functor.
 
 ### 9.1. Map
@@ -2466,12 +2465,12 @@ list.map(compose(add1, mul2, div3));
 - We declaratively tell the reader that they don't need to track data flow.
 - Composition is much better than a chain of maps together.
 - Functional programmers don't like using methods on values, because it essentially falls into class-oriented thinking.
-- Using `map` as a method is impure, because it receives as an implicit input a `this` context that points to a particular array.
+- Using `map` as a method is impure, because it receives as an implicit input; a `this` context that points to a particular array.
 - `this` aware functions are inherently uncomposable.
 - We can't take a `map` call and easily compose it with another function because the input to the `map` call is partly indirect.
 - That's why `map` in FP libraries will take in both a mapper function and an array explicitly, rather than the array being implicit.
 - That makes them more composable, curryable, and everything else we have discussed.
-- We should always use the stand alone versions of utilities, rather than the native JS method versions.
+- **We should always use the stand alone versions of utilities, rather than the native JS method versions.**
 
 ## 10. Transduction
 
@@ -2525,7 +2524,7 @@ var transducer = compose(mapReducer(add1), filterReducer(isOdd));
 - `mapReducer` and `filterReducer` are provided by the FP utility library.
 - We pass mappers into `mapReducer` and filters into `filterReducer`.
 - Reducers don't require transduction because they are already reducers!
-- The output is a special kind if reducer thais composable.
+- The output is a special kind of reducer that is composable.
 - Specifically a _transducer_ is in a prototypal state, and will become a reducer itself once it is passed a reducer.
 - A transducer is a higher order reducer.
 - We use a `transduce` utility to complete the process.
@@ -2623,7 +2622,7 @@ list.reduce(mapReducer(add1), []).reduce(filterReducer(isOdd), []).reduce(sum);
 ```
 
 - Both `mappingFn` and `predicateFn` are hard coded into their respective `reducer` through closure.
-- We than have three separate `reduce` calls in a a chain.
+- We then have three separate `reduce` calls in a a chain.
 - Now that we have three reducers they are shaped more similarly together.
 
 ### 10.2. Deriving Transduction: Combiner & Currying
@@ -2822,7 +2821,7 @@ var obj = {
 function mapObj(mapper, o) {
   var newObj = {};
   for (let key of Object.keys(o)) {
-    newObj[key] = mapper(0[key]);
+    newObj[key] = mapper(o[key]);
   }
   return newObj;
 }
@@ -3107,7 +3106,7 @@ var b = a.map(function double(v) {
 b; // [2,4,6]
 ```
 
-- We can only get the result `[2,4,6]` because `[1, 2, 3]` were assigned to tlathe variable `a` at the time of the `.map` call.
+- We can only get the result `[2,4,6]` because `[1, 2, 3]` were assigned to the variable `a` at the time of the `.map` call.
 - It is synchronous and _eager_; it will consume everything in the array assigned to `a` immediately.
 - We would like to do the operation _lazily_ over time.
 - Consider this hypothetical data structure.
@@ -3205,7 +3204,7 @@ b.subscribe(function onValue(v) {
 - Throughout this journey we have discussed reliance on utility libraries.
 - [Lodash/FP](https://github.com/lodash/lodash/wiki/FP-Guide) is Lodash with all of the functions adapted to behave how they should in a FP library. It is the best next logical step for current users of Lodash.
 - [Ramda](https://ramdajs.com) is the recommendation for people who are not already using a library like Lodash.
-- [FPO] is Kyle's library, and was conceived as a wrapper around Ramda, but took a different direction due implementation obstacles.
+- [FPO](https://github.com/getify/fpo) is Kyle's library, and was conceived as a wrapper around Ramda, but took a different direction due implementation obstacles.
 - There is a style of programming called _named arguments_ where you name the parameter at the call site which you want ot assign an argument to. FPO exposes all of the common FP utilities in a way where you pass in an object with named properties.
 
 ## 14. Wrapping Up
