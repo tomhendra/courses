@@ -94,7 +94,6 @@
 Learn to apply functional programming concepts in JavaScript to make your programs more readable and less error-prone! Kyle Simpson will walk you through the core concepts of functional programming like function purity, point-free style, partial-application, currying, composition, immutability, recursion, and list operations like map/reduce/filter. You'll go even deeper with monads and transduction, two more techniques to add to your tool belt!
 
 - [Slides](http://static.frontendmasters.com/resources/2019-05-06-functional-light-v3/functional-light-v3.pdf)
-
 - We have to restructure our brains to think about and solve problems in a different way.
 - There is [a book](https://www.amazon.es/Functional-Light-JavaScript-Balanced-Pragmatic-FP/dp/1981672346/ref=sr_1_1?__mk_es_ES=ÅMÅŽÕÑ&dchild=1&keywords=Functional-Light+JavaScript&qid=1600366916&sr=8-1) to accompany the course.
 - The title says "light" but this is not a course for beginners.
@@ -182,7 +181,7 @@ extraNumbers(3, 8, 1); // 62
 
 - `addNumbers` takes an input and does something with it, but the bar for being a function is higher than that.
 - Just because `addNumbers` uses the `function` keyword does not make it a function.
-- `addNumbers` is a **procedure** -- a collection of operations in a program.
+- `addNumbers` is a **procedure** - a collection of operations in a program.
 - Procedures can take inputs, produce outputs, we all use them and they are very useful.
 - To understand the difference between a function and a procedure we need to first say that a function not only has to take an input, it has to _return_ an output.
 - If there is no `return` keyword it is most definitely not a function.
@@ -230,7 +229,7 @@ function f(x) {
 }
 ```
 
-- But a better name for this function would be Parabola, to describe to the reader of our code the relationship.
+- But a better name for this function would be Parabola, to describe the relationship to the reader of our code.
 - If we are making things that don't have an obvious relationship between the input and the output, we are not accomplishing the spirit of FP.
 - The goal is to create relationships that are obvious to the reader of our code.
 - **The definition of a function: the semantic relationship between input and computed output**.
@@ -292,12 +291,11 @@ rate = shippingRate(12, 4, 5); // 57
 rate = shippingRate(8, 4, 6); // 42
 ```
 
-- In JavaScript, the definition of a function isn't the important part; it is the function call.
-- Are there direct inputs and outputs from this particular function call -- that's the question.
-- Our temptation is to look at the function definition to try to answer that question, but due to the way JavaScript works it is not possible to answer the question 'is it a function?' without looking at the function call.
+- In JavaScript, the _definition_ of a function isn't the important part; it is the function _call_.
+- Are there direct inputs and outputs from this particular function call? - that's the question.
+- Our temptation is to look at the function definition to try to answer that question, but due to the way JavaScript works it is not possible to answer the question _is it a function?_ without looking at the function call.
 - **Avoid side effects with function calls... if possible**.
 - Sometimes side effects are unavoidable.
-
   - I / O (console, files, etc)
   - Database Storage
   - Network Calls
@@ -307,7 +305,6 @@ rate = shippingRate(8, 4, 6); // 42
   - _CPU Heat_
   - _CPU Time Delay_
   - etc
-
 - Any program that runs in a theoretical sense is going to generate heat from the CPU: That is a side effect; it is an observable change to the state of the system.
 - Just the observable delay in time caused by one program running before another one can, is a side effect.
 - **There is no such thing as "no side effects". Avoid them where possible, make them obvious otherwise.**
@@ -319,7 +316,7 @@ rate = shippingRate(8, 4, 6); // 42
 ### 2.4. Pure Functions & Constants
 
 - **Pure functions** have direct inputs and outputs, and have no side effects.
-- However as afore mentioned it is more the function call that should take focus.
+- However as aforementioned it is more the function call that should take focus.
 
 ```js
 // Pure
@@ -336,7 +333,7 @@ function addAnotherTwo(x, y) {
 - `addAnotherTwo` uses a `z` variable that's outside of itself: an indirect input.
 - We are supposed to be able to prove and predict the behaviour of the function, but because we are relying on a side effect, we can't prove the behaviour through the maths in the same way as `addTwo`.
 - But is more complicated than that. It is possible that we could access a variable outside of the function and not invalidate the purity.
-- But seeing a variable being accessed outside of a function should immediately trigger us to ask why.
+- But seeing a variable being accessed outside of a function should immediately trigger us to ask: _why?_
 - Is it **necessary**, is it **useful**, is it **important**?
 - What if the code looks like this?
 
@@ -359,7 +356,7 @@ addAnother(20, 21); // 42
 - A constant is supposed to be a semantic placeholder for a value; it doesn't change throughout the lifetime of the program.
 - `addAnother` doesn't cause any side effects, and only uses the side effect of the constant.
 - If we changed `const` to `var` it would still be pure, because to make a meaningful evaluation, we have to consider the program's entirety. Nowhere in the program is `z` being reassigned, it still serves the purpose of a constant, so FP principles are being adhered to.
-- There are FP programmers who use `const` everywhere, but the real question is _is the variable being reassigned_, not _can the variable be reassigned_, or in fact more importantly _is it obvious to the reader that the variable isn't reassigned_.
+- There are FP programmers who use `const` everywhere, but the real question is: _is the variable being reassigned_, not _can the variable be reassigned_, or in fact more importantly _is it obvious to the reader that the variable isn't reassigned_.
 - In this scenario the function call `addAnother(20, 21);` is still consistent with functional principles.
 - We skip over the fact that `addTwo` is no more a _constant_ than `var z` is, and yet we can see that `addTwo` is not reassigned.
 - So the behaviour of `addAnother(20, 21);` is observably a pure function call.
@@ -416,7 +413,7 @@ getId({
 - Now that more of the program is revealed our confidence plummets.
 - It is important to be able to see all relevant parts of the program.
 - The more that we use the techniques from this course to reduce the surface area where these non-functional things can occur, the easier it is to read, understand and rely upon.
-- Pure function calls act in isolation;**given the same input, they always produce the same output.**
+- Pure function calls act in isolation: **Given the same input, they always produce the same output.**
 - We want to design our programs so that as many of our function calls as possible behave as pure.
 
 ### 2.7. Level of Confidence
@@ -425,7 +422,7 @@ getId({
 - It is not a binary characteristic.
 - The point in JavaScript is how confident we are in the behaviour of the function.
 - The answer to the question _is a function pure?_ is not _yes_ or _no_.
-- The correct answer is _I have a high degree that it will / not behave pure_.
+- The correct answer is: _I have a high degree that it will / not behave pure_.
 - We want to be able to see the parts of our code where we have a high degree of confidence and the parts where we don't, and to shift that balance as much as possible to the high degree, using pure functions as much as possible.
 - What is important is if the function **call** behaves pure or not.
 
@@ -435,7 +432,7 @@ getId({
 - Leave it impure e.g. writing to a database.
 - To help with maintenance make the side effects obvious through function naming, comments, a separate file `side-effects.js`.
 - Or rearrange the way the function works to extract the impurity from it, leaving a pure function in place.
-- If we have a function which has complex computations and then writes to a database, the function programmer would separate it into two entities: A pure function for the computation, and a procedure that handles the single side effect.
+- If we have a function which has complex computations and then writes to a database, the functional programmer would separate it into two entities: A pure function for the computation, and a procedure that handles the single side effect.
 - That is one way of making it more obvious there is a side effect: Instead of hiding the procedure away inside what looks like a pure function, we bring the procedure to the surface.
 
 ```js
@@ -605,14 +602,13 @@ numbers; // [5, 4, 3, 2, 1]
 - Even though `getSortedNums` is not a pure function in itself, the _function call_ satisfies all the conditions of purity.
 - It takes direct inputs, it produces direct outputs, it doesn't change anything about the state of the program afterwards, and didn't rely on the state of the program before.
 - We have contained the observability of the side effects to the `getSortedNums` function call.
-
 - Sometimes side effects happen, but we can improve our code and reduce the surface area in five ways:
 
-**1. Write it pure from the beginning.**
-**2. Refactor it to be pure.**
-**3. Extract the impurity so it leaves a pure function.**
-**4. Make a wrapper function.**
-**5. Make an adaptor function.**
+1. **Write it pure from the beginning.**
+2. **Refactor it to be pure.**
+3. **Extract the impurity so it leaves a pure function.**
+4. **Make a wrapper function.**
+5. **Make an adaptor function.**
 
 - If we can't do any of these things and we are stuck with the side effect, at least make it obvious.
 - Contain it somewhere, make it obvious, so the future reader knows where to go looking for bugs if they occur.
@@ -621,7 +617,7 @@ numbers; // [5, 4, 3, 2, 1]
 
 ## 3. Argument Adapters
 
-- Parameter and argument are often used interchangeably.
+- The terms _parameter_ and _argument_ are often used interchangeably.
 - The generally accepted definition is that the parameter is the variable in the function definition, and the argument is the value that is assigned to the parameter, when we call the function.
 - The arguments are the inputs to the function.
 - There are special terms to describe the shape of functions.
@@ -640,8 +636,8 @@ function sum(x, y) {
 }
 ```
 
-- A function that takes in a single input and produces a single output is a unary function.
-- A function that takes in two inputs and produces a single output is a binary function.
+- A function that takes in a single input and produces a single output is a _unary_ function.
+- A function that takes in two inputs and produces a single output is a _binary_ function.
 - We are describing the shape of the input signature.
 - The functional programmer is almost obsessed with the shape of functions: It is super critical.
 - When authoring functions we should constantly be thinking: what does the shape of the function imply to the future use of it.
