@@ -1,13 +1,12 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
 <h1>Coursework</h1>
-<p>A collection of supporting files for software development courses</p>
+<p>My notes & files for courses undertaken</p>
 </div>
 
 ## Introduction
 
-My journey into software development is self-guided, with these courses being the navigation.
-Progress is tracked with [this Trello board](https://trello.com/b/R1CVyI4S).
+A self-guided journey into software development, navigated with this repo & [Trello](https://trello.com/b/R1CVyI4S).
 
 ## Index of courses
 
@@ -17,7 +16,7 @@ Progress is tracked with [this Trello board](https://trello.com/b/R1CVyI4S).
 4.  [Udemy: Advanced CSS & Sass](4-advanced-css-and-sass)
 5.  [Udemy: The Complete Junior to Senior Web Developer Roadmap](5-complete-junior-to-senior-web-developer)
 6.  [Udemy: Advanced JavaScript Concepts](6-advanced-javascript-concepts)
-7.  [Udemy: The Complete React Web Developer Course (with Redux)](7-complete-react-web-developer)
+7.  [Udemy: The Complete React Web Developer Course with Redux](7-complete-react-web-developer)
 8.  [Frontend Masters: Introduction to Gatsby](8-gatsby-intro)
 9.  [Udemy: TypeScript: The Complete Developer's Guide 2020](9-typescript-complete-developers-guide)
 10. [Udemy: Learning to Learn: Efficient Learning](10-learning-to-learn)
@@ -39,8 +38,8 @@ Progress is tracked with [this Trello board](https://trello.com/b/R1CVyI4S).
     - [CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2)
     - [Full Stack for Front-End Engineers, v2](15-fem-professional/7-full-stack-for-front-end-engineers-v2)
 16. [Frontend Masters Learning Path: Design to Code](16-fem-design-to-code)
-    - [CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)
-    - [CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2)
+    - [CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design) _(Repeat from Beginner Path)_
+    - [CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2) _(Repeat from Professional Path)_
     - [Design for Developers](16-fem-design-to-code/1-design-for-developers)
     - [Responsive Web Typography v2](16-fem-design-to-code/1-design-for-developers)
     - [SVG Essentials & Animation, v2](16-fem-design-to-code/3-svg-essentials-and-animation-v2)
@@ -67,7 +66,7 @@ Progress is tracked with [this Trello board](https://trello.com/b/R1CVyI4S).
     - [Four Semesters of Computer Science in 5 Hours, Part 2]()
     - [Tree and Graph Data Structures]()
 25. [Frontend Masters Learning Path: Full Stack]()
-    - [Full Stack for Front-End Engineers, v2]() => Repeat from professional Path
+    - [Full Stack for Front-End Engineers, v2]() _(Repeat from Professional Path)_
     - [Introduction to Node.js]()
     - [API Design in Node.js, v3]()
     - [AWS for Front-End Engineers (ft. S3, Cloudfront & Route 53)]()

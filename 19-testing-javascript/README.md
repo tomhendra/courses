@@ -6,3 +6,5 @@
 - [1. Introduction](#1-introduction)
 
 ## 1. Introduction
+
+Learn the smart, efficient way to test any JavaScript application. Your essential guide to flawless testing.
