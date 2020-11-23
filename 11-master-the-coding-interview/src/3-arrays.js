@@ -1,23 +1,23 @@
-document.getElementById('section').append('Data Structures: Arrays.');
+document.getElementById("section").append("Data Structures: Arrays.");
 
-const strings = ['a', 'b', 'c', 'd'];
+const strings = ["a", "b", "c", "d"];
 const numbers = [1, 2, 3, 4, 5];
 // Variable array is somewhere in memory and the computer knows it.
 // When I do array[2], i'm telling the computer, hey go to the array
 // and grab the 3rd item from where the array is stored.
 
 // push
-strings.push('e'); // O(1)
+strings.push("e"); // O(1)
 
 // pop
 strings.pop(); // O(1)
 strings.pop();
 
 // unshift
-strings.unshift('x'); // O(n) -- because each item needs to be re-indexed
+strings.unshift("x"); // O(n) -- because each item needs to be re-indexed
 
 // splice
-strings.splice(2, 0, 'alien'); // O(n / 2) -- O(n) worst case simplified
+strings.splice(2, 0, "alien"); // O(n / 2) -- O(n) worst case simplified
 
 console.log(strings);
 
@@ -57,38 +57,38 @@ class MyArray {
 }
 
 const myArray = new MyArray();
-myArray.push('hi');
-myArray.push('you');
-myArray.push('!');
+myArray.push("hi");
+myArray.push("you");
+myArray.push("!");
 myArray.pop();
 myArray.deleteAtIndex(0);
-myArray.push('are');
-myArray.push('nice');
+myArray.push("are");
+myArray.push("nice");
 myArray.shiftItems(0);
 console.log(myArray);
 
 // reverse a string
 function reverse(str) {
-  if (!str || typeof str != 'string' || str.length < 2) return str;
+  if (!str || typeof str != "string" || str.length < 2) return str;
 
   const backwards = [];
   const totalItems = str.length - 1;
   for (let i = totalItems; i >= 0; i--) {
     backwards.push(str[i]);
   }
-  return backwards.join('');
+  return backwards.join("");
 }
 
 function reverse2(str) {
   //check for valid input
-  return str.split('').reverse().join('');
+  return str.split("").reverse().join("");
 }
 
-const reverse3 = (str) => [...str].reverse().join('');
+const reverse3 = (str) => [...str].reverse().join("");
 
-console.log(reverse('moT si eman ym ,iH'));
-console.log(reverse('moT si eman ym ,iH'));
-console.log(reverse3('moT si eman ym ,iH'));
+console.log(reverse("moT si eman ym ,iH"));
+console.log(reverse("moT si eman ym ,iH"));
+console.log(reverse3("moT si eman ym ,iH"));
 
 // merge sorted arrays
 function mergeSortedArrays(array1, array2) {

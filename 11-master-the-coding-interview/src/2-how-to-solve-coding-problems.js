@@ -1,4 +1,4 @@
-document.getElementById('section').append('How to Solve Coding Problems.');
+document.getElementById("section").append("How to Solve Coding Problems.");
 
 // Given 2 arrays, create a function that let's a user know (true/false)
 // whether these two arrays contain any common items
@@ -15,8 +15,8 @@ document.getElementById('section').append('How to Solve Coding Problems.');
 // return true or false
 
 // Inputs - if not given by interviewer, create them for testing.
-const array1 = ['a', 'b', 'c', 'x'];
-const array2 = ['z', 'y', 'a'];
+const array1 = ["a", "b", "c", "x"];
+const array2 = ["z", "y", "a"];
 
 // Brute force solution
 // --------------------

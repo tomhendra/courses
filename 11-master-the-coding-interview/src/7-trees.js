@@ -1,4 +1,4 @@
-document.getElementById('section').append('Data structures: Trees');
+document.getElementById("section").append("Data structures: Trees");
 
 // Building our own binary search tree
 class Node {

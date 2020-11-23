@@ -1,21 +1,21 @@
 document
-  .getElementById('section')
-  .append('Algorithms: Searching by Tree Traversal');
+  .getElementById("section")
+  .append("Algorithms: Searching by Tree Traversal");
 
 // Built in searching methods all linear searches -- O(n) tome complexity
-const beasts = ['Centaur', 'Godzilla', 'Mosura', 'Minotaur', 'Hydra', 'Nessie'];
+const beasts = ["Centaur", "Godzilla", "Mosura", "Minotaur", "Hydra", "Nessie"];
 
-beasts.indexOf('Godzilla');
+beasts.indexOf("Godzilla");
 
 beasts.findIndex(function (item) {
-  return item === 'Godzilla';
+  return item === "Godzilla";
 });
 
 beasts.find(function (item) {
-  return item === 'Godzilla';
+  return item === "Godzilla";
 });
 
-beasts.includes('Godzilla');
+beasts.includes("Godzilla");
 
 // Exercise -- interview questions
 
@@ -209,7 +209,7 @@ function traverse(node) {
 }
 
 function traverseInOrder(node, list) {
-  console.log('visited: ', node.value);
+  console.log("visited: ", node.value);
   if (node.left) traverseInOrder(node.left, list);
   list.push(node.value);
   if (node.right) traverseInOrder(node.right, list);
@@ -217,7 +217,7 @@ function traverseInOrder(node, list) {
 }
 
 function traversePreOrder(node, list) {
-  console.log('visited: ', node.value);
+  console.log("visited: ", node.value);
   list.push(node.value);
   if (node.left) traversePreOrder(node.left, list);
   if (node.right) traversePreOrder(node.right, list);
@@ -225,7 +225,7 @@ function traversePreOrder(node, list) {
 }
 
 function traversePostOrder(node, list) {
-  console.log('visited: ', node.value);
+  console.log("visited: ", node.value);
   if (node.left) traversePostOrder(node.left, list);
   if (node.right) traversePostOrder(node.right, list);
   list.push(node.value);

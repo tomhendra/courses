@@ -1,16 +1,16 @@
-document.getElementById('section').append('Data Structures: Hash Tables.');
+document.getElementById("section").append("Data Structures: Hash Tables.");
 
 let user = {
   age: 54,
-  name: 'Kylie',
+  name: "Kylie",
   magic: true,
   scream: function () {
-    console.log('ahhhhhh!');
+    console.log("ahhhhhh!");
   },
 };
 
 user.age; // O(1)
-user.spell = 'abra kadabra'; // O(1)
+user.spell = "abra kadabra"; // O(1)
 user.scream(); // O(1)
 
 // Building our own hash table:
@@ -61,13 +61,13 @@ class HashTable {
 }
 
 const myHashTable = new HashTable(50);
-myHashTable.set('grapes', 10000);
-myHashTable.set('apples', 9000);
-myHashTable.set('oranges', 900);
+myHashTable.set("grapes", 10000);
+myHashTable.set("apples", 9000);
+myHashTable.set("oranges", 900);
 myHashTable.keys();
 console.log(myHashTable.data);
-console.log(myHashTable.get('grapes'));
-console.log(myHashTable.get('apples'));
+console.log(myHashTable.get("grapes"));
+console.log(myHashTable.get("apples"));
 
 // Google Question
 // Given an array = [2,5,1,2,3,5,1,2,4]:

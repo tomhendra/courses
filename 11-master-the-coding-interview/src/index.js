@@ -9,4 +9,4 @@
 // require('./9-recursion');
 // require('./10-sorting');
 // require('./11-searching');
-require('./12-dynamic-programming');
+require("./12-dynamic-programming");

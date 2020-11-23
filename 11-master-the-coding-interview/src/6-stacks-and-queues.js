@@ -1,4 +1,4 @@
-document.getElementById('section').append('Data structures: Stacks & Queues.');
+document.getElementById("section").append("Data structures: Stacks & Queues.");
 
 class Node {
   constructor(value) {
@@ -52,7 +52,7 @@ class StackArr {
     if (this.array.length) {
       return this.array[this.array.length - 1];
     } else {
-      console.error('No data in stack.');
+      console.error("No data in stack.");
     }
   }
   push(value) {
@@ -66,10 +66,10 @@ class StackArr {
 }
 
 const myStack = new StackArr();
-myStack.push('Google');
-myStack.push('Amazon');
-myStack.push('Apple');
-myStack.push('FaceBook');
+myStack.push("Google");
+myStack.push("Amazon");
+myStack.push("Apple");
+myStack.push("FaceBook");
 myStack.pop();
 console.log(myStack.peek());
 console.log(myStack);
@@ -108,7 +108,7 @@ class Queue {
 }
 
 const myQueue = new Queue();
-myQueue.enqueue('Joy');
+myQueue.enqueue("Joy");
 // myQueue.enqueue('Matt');
 // myQueue.enqueue('Pavel');
 // myQueue.enqueue('Samir');

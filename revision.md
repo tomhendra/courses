@@ -19,7 +19,7 @@
 | [Functional-Light JavaScript, v3](15-fem-professional/5-functional-light-javascript-v3)                                  | 03:30 | 11/11/20 | 05/12/20 |
 | [JavaScript30](18-javascript30)                                                                                          | --:-- | 10/11/20 | 05/12/20 |
 | **Computer Science**                                                                                                     |       |          |          |
-| [Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)                              | --:-- | --/--/-- | 06/12/20 |
+| [Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)                              | 02:00 | 23/11/20 | 06/12/20 |
 | [JavaScript Algorithms and Data Structures Masterclass](3-algorithms-and-data-structures)                                | --:-- | --/--/-- | 06/12/20 |
 | **CSS & Creative Coding**                                                                                                |       |          |          |
 | [CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)     | --:-- | --/--/-- | --/--/-- |

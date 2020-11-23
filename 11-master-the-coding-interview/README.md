@@ -142,11 +142,12 @@ How to ensure you get more interviews through using the best channels and tactic
 - If you craft things well enough, you will get lots of recruiters' contact.
 - Should be similar to your resume.
 - Recruiters usually search LinkedIn for keywords.
-  - 1. Apply for jobs through LinkedIn.
-  - 2. Update your profile every week on LinkedIn to show up in recruiter's feed, as updated profile.
-  - 3. Include keywords recruiters are looking for from the jobs you are applying for.
-  - 4. Try to get recommendations from people to rank higher in recruiters' search results.
-  - 5. LinkedIn allows us to target companies and contact people directly at a company you want to work for.
+
+1. Apply for jobs through LinkedIn.
+2. Update your profile every week on LinkedIn to show up in recruiter's feed, as updated profile.
+3. Include keywords recruiters are looking for from the jobs you are applying for.
+4. Try to get recommendations from people to rank higher in recruiters' search results.
+5. LinkedIn allows us to target companies and contact people directly at a company you want to work for.
 
 ### 2.4. Portfolio
 
@@ -180,16 +181,16 @@ I'm also a $FOO developer. I noticed that your company is hiring
 or $ROLE. I’d love to be a part of your team. Do you have a
 few minutes to chat on Thursday about what you guys are doing?
 
-Thanks,
-Yourname
-Your website or any public profile link
+Thanks,\
+$YOUR_NAME\
+$YOUR_WEBSITE or any public profile link
 
 ### 2.6. Where to finds jobs
 
 - Development is highly in demand, so there are a tonne of resources.
 - The better you get at engineering, the easier it will be to find work.
 - Resources:
-  - LinkedIn
+  - [LinkedIn](https://www.linkedin.com/jobs/search/)
   - [Hackernews who is hiring?](https://www.google.com/search?client=firefox-b-d&q=hackernews+who+is+hiring)
   - [AngelList](https://angel.co/jobs)
   - [Design Modo](https://designmodo.com/jobs/)
@@ -234,8 +235,10 @@ A paradigm to classify code according to how runtime or space requirements grow 
 - Full name is big o asymptotic analysis.
 - Big O helps us tell how well a problem is solved.
 - Two main things to define good code:
-  - 1. Readability: Clean, easy to follow.
-  - 2. Scalable: Big O allows us to measure.
+
+1. Readability: Clean, easy to follow.
+2. Scalable: Big O allows us to measure.
+
 - The "runtime" is how much time it takes to run through a function or task.
 - Big O measures the performance of code.
 - Code runs at different speeds depending on the computer it's running on.
@@ -247,34 +250,44 @@ A paradigm to classify code according to how runtime or space requirements grow 
 - O(n) is linear time, and probably the most common notation, where the number of operations increases proportionally with the number of inputs.
 - O(1) is constant time. The number of operations remains constant regardless of the input size.
 - Big O rule book:
-  - 1. Worst case
-    - when calculating big O we always calculate the worst case.
-  - 2. Remove constants
-    - we only care about input for scalability. Trim out constants.
-  - 3. Different terms for inputs.
-    - When two more than one input is given to correct notation should be applied.
-    - Easy rule of thumb is that any functions that occur in the same indentation would be O(a + b) and any nested functions would be O(a \* b) i.e. O(n^2) quadratic time.
-  - 4. Drop non-dominants
-    - The most significant term should be what defines big O e.g. O(n + n^2) would become O(n^2)
+
+1. Worst case
+   - when calculating big O we always calculate the worst case.
+2. Remove constants
+   - we only care about input for scalability. Trim out constants.
+3. Different terms for inputs.
+   - When two more than one input is given to correct notation should be applied.
+   - Easy rule of thumb is that any functions that occur in the same indentation would be O(a + b) and any nested functions would be O(a \* b) i.e. O(n^2) quadratic time.
+4. Drop non-dominants
+   - The most significant term should be what defines big O e.g. O(n + n^2) would become O(n^2)
+
 - To write scalable code means thinking long term, what could happen in the future.
 - Everything has a cost to it.
 - O(n!) is factorial time, and the most expensive. Nested loop for every input there is!
 - for scalable code there are two things we need to consider:
-  - 1. Speed: How fast is the runtime - time complexity.
-  - 2. Memory: How much RAM does the code require - space complexity.
+
+1. Speed: How fast is the runtime - time complexity.
+2. Memory: How much RAM does the code require - space complexity.
+
 - Which code is best can be answered with the three pillars of code:
-  - **1. Readable**
-  - **2. Speed**
-  - **3. Memory**
+
+1. **Readable**
+2. **Speed**
+3. **Memory**
+
 - There is usually a trade-off for any solution between speed and memory.
 - When a program executes it has two ways to remember things:
-  - 1. Heap: usually where we store variables.
-  - 2. Stack: where we keep track of function calls.
+
+1. Heap: usually where we store variables.
+2. Stack: where we keep track of function calls.
+
 - Space complexity is caused by:
-  - 1. Variables
-  - 2. Data structures
-  - 3. Function calls
-  - 4. Allocations
+
+1. Variables
+2. Data structures
+3. Function calls
+4. Allocations
+
 - One of the biggest gotchyas is that we don't count the space of inputs.
 - We only have control over what happens inside of the function, so input space is ignored.
 - We look at whether we are adding space inside the function.
@@ -288,10 +301,12 @@ How to approach problems and solve them in the optimal way for interviews.
 - It's not the smartest interviewer that gets hired, it's the one who can solve the company's problems.
 - It's not necessarily about the solution to the problem in interview, it's about the thought process.
 - Companies are looking for four things:
-  1. Analytical skills
-  2. Coding skills
-  3. Technical skills
-  4. Communication skills
+
+1. Analytical skills
+2. Coding skills
+3. Technical skills
+4. Communication skills
+
 - In order to solve coding problems in interview we need to know the following:
 - **Data structures:**
   - Arrays
@@ -307,7 +322,7 @@ How to approach problems and solve them in the optimal way for interviews.
   - Dynamic programming
   - BFS & DFS
   - Recursion
-- [Google Interview](https://www.youtube.com/watch?v=XKu_SEDAykw)
+- Check out this example [Google Interview](https://www.youtube.com/watch?v=XKu_SEDAykw) video.
 - Always think out loud and explain your approach, even if you think you know the answer, allowing the interviewer opportunity to steer you if needed to ensure you understand the problem correctly.
 - Communicating a naive / brute force solution first, often O(n^2), shows you are thinking clearly about the problem.
 - Thinking in small logical steps is much better than trying a more complicated solution straight away.
@@ -323,12 +338,14 @@ How to organize, format and store collections of data values, the relationships 
 - Values can have relationships between them and functions applied to them.
 - Each data structure is good and is specialized for its own thing.
 - Algorithms are the steps or processes that we put into place to manipulate the values in data structures
-- A person who knows how data structures & algorithms can write great programs.
+- A person who knows data structures & algorithms can write great programs.
 - Data structures & algorithms are timeless, and can be applied to any language or problem.
 - There is always a tradeoff between readability, memory and speed (3 pillars).
 - Two parts to understanding data structures:
-  - 1. How to build
-  - 2. How to use - most important!
+
+1. How to build
+2. How to use - most important!
+
 - In order to understand data structures we need to look at how computers work at the fundamental level.
 - Computer needs to be able to keep track for variables which are stored in RAM.
 - RAM is much faster than persistent storage for CPU access.
@@ -339,16 +356,16 @@ How to organize, format and store collections of data values, the relationships 
 - CPU cache optimizes further by storing recently accessed data from memory.
 - You can define the way you interact with data and how it is arranged in RAM.
 - Some data structures are organized next to each other and some are apart, and each have different pros and cons on access and write.
-- Our goal is to minimize the operation that the COP needs to do to read and write information.
+- Our goal is to minimize the operations that the CPU needs to do to read and write information.
 - That's why data structures are so powerful, because we can think on the the low level about how data structures affect the process of our computers.
 - Each data structure performs operations differently.
 - Operations on data structures:
-  - Insertion: add a new data item in a given collection of items.
-  - Deletion: remove data.
-  - Traversal: access each data item exactly once so that it can be processed.
-  - Searching; find the location of a data item if it exists in a certain collection.
-  - Sorting: sorting data.
-  - Access: how do we access data.
+  - **Insertion**: add a new data item in a given collection of items.
+  - **Deletion**: remove data.
+  - **Traversal**: access each data item exactly once so that it can be processed.
+  - **Searching**; find the location of a data item if it exists in a certain collection.
+  - **Sorting**: sorting data.
+  - **Access**: how do we access data.
 
 ### 5.1. Arrays
 
@@ -356,20 +373,18 @@ How to organize, format and store collections of data values, the relationships 
 - Organize data sequentially in memory (contiguous).
 - Probably the simplest and most widely used data structure.
 - Smallest footprint of any data structure.
-
   - search: O(n)
   - lookup: O(1)
   - append: O(1) or worst case O(n) based on reallocation of memory
   - insert: O(n)
   - delete: O(n)
-
 - Two types of arrays: Static and dynamic
 - Static arrays are fixed in size - need to specify the number of elements ahead of time.
 - Arrays are allocated in adjacent blocks of memory when created, but there is no way to guarantee that later adding to the array will use more adjacent blocks. Static arrays solve this problem.
 - Dynamic arrays allow us to copy and rebuild an array at a new location in memory, with more memory if required.
 - JavaScript arrays work like dynamic arrays and automatically allocate memory.
 - We can create our own data structures, any we want from scratch.
-- **Top tip:** Treat and string questions in interviews like array questions. Strings are simply an array of characters. Convert into array, perform operations, return as string!
+- **Top tip:** Treat any string questions in interviews like array questions. Strings are simply an array of characters. Convert into array, perform operations, return as string!
 - The good:
   - Fast lookups
   - Fast push/pop
@@ -382,7 +397,7 @@ How to organize, format and store collections of data values, the relationships 
 
 ### 5.2. Hash tables
 
-- AKA hash maps, maps, unordered maps, dictionaries, objects depending on language.
+- AKA hash maps, maps, unordered maps, dictionaries, objects... depending on language.
 - Objects in JavaScript are a type of hash table.
 - Seen a lot in databases and caches.
 - Made up of key: value pairs.
@@ -393,12 +408,10 @@ How to organize, format and store collections of data values, the relationships 
 - Some hash functions are very slow e.g. SHA-256 for encryption.
 - In hash tables, the key is passed into the hash function, then the outputted hash is mapped to a memory address where the data is stored.
 - Usually time complexity of O(1) - constant time
-
   - search: O(1)
   - lookup: O(1) - or can be O(n) due to hash collisions.
   - insert: O(1)
   - delete: O(1)
-
 - Hash collision occurs when the same address space is allocated for more than one entry based on the hash output.
 - This results in the 'bucket' which stores key / value pair having overflow entries.
 - Theoretically due to collision read / write can be O(n/k) (O(n) simplified) where k is the size of the hash table.
@@ -412,7 +425,7 @@ How to organize, format and store collections of data values, the relationships 
   - Fast insert
   - Fast delete
   - Flexible keys
-- Thee bad:
+- The bad:
   - Unordered
   - Slow key iteration
   - Collisions
@@ -420,20 +433,18 @@ How to organize, format and store collections of data values, the relationships 
 ### 5.3. Linked lists
 
 - Two types to be covered: singly and doubly linked lists
-- A singly linked list contains a set of node, each containing two elements: a value and a pointer to the next node.
+- A singly linked list contains a set of nodes, each containing two elements: a value and a pointer to the next node.
 - There is a head and tail node to indicate beginning and end of the list.
 - Linked lists are null terminated, i.e. tail node points to null.
 - In arrays each item is indexed. In linked lists you start at the head and traverse the list - O(n).
 - Memory addresses are not sequential, so unable to take advantage of caching systems for speed advantage.
 - Traversing linked lists is usually slower than iterating through array items.
 - However inserts into the middle of linked lists is faster than in an array.
-
   - Prepend: O(1)
   - Append: O(1)
   - Lookup: O(n)
   - Insert: O(n)
   - Delete: O(n)
-
 - A pointer is a reference to another place in memory.
 - Because JS is garbage collected (memory is managed automatically) pointers are deleted when data is deleted.
 - Doubly linked lists exactly the same as singly linked lists, but have additional pointer to previous node.
@@ -456,32 +467,27 @@ How to organize, format and store collections of data values, the relationships 
   - Fast delete
   - Ordered
   - Flexible size
-- Thee bad:
+- The bad:
   - Unordered
   - Slow lookup
   - More memory
 
 ### 5.4. Stacks & queues.
 
-- Both linear data structures allowing sequential traversal.
+- Both are linear data structures allowing sequential traversal.
 - No random access, usually only the first and last elements.
 - Having a limited ability on certain data structures can be an advantage.
 - By limiting what a user can do it gives control to use only efficient operations.
-
 - Stacks:
-
   - Lookup: O(n)
   - Pop: O(1)
   - Push: O(1)
   - Peek: O(1)
-
 - Queues:
-
   - Lookup: O(n)
   - Enqueue: O(1)
   - Dequeue: O(1)
   - Peek: O(1)
-
 - Stacks are LIFO (last in first out).
 - Queues are FIFO (first in first out).
 - Arrays have cache locality for technically faster access when items are next to each other, whereas linked list memory addresses are scattered. Linked lists however have more dynamic memory, whereas static arrays would need to reallocate memory when capacity is reached. Stacks could be implemented with either depending on the situation.
@@ -491,7 +497,7 @@ How to organize, format and store collections of data values, the relationships 
   - Fast operations
   - Fast peek
   - Ordered
-- Thee bad:
+- The bad:
   - Slow lookup
 
 ### 5.5. Trees
@@ -510,27 +516,26 @@ How to organize, format and store collections of data values, the relationships 
 
 - Each node can only have either 0, 1 or 2 children, and each child can only have 1 parent.
 - Each node represents a certain state.
-- A perfect binary tree node has either 0 or 2 children, and all leaf nodes full all the way to the bottom.
+- A perfect binary tree node has either 0 or 2 children, and all leaf nodes are full all the way to the bottom.
 - A full binary tree node simply has either 0 or 2 children but never 1.
 - A perfect binary tree is very efficient and desirable, and has two important properties:
 
-  - 1. Number of total nodes on each level doubles as we move down the tree.
-  - 2. Number of nodes on the last level is equal to the sum of the number of all other nodes + 1. Because of the efficiency in traversal by not visiting each node, O(log n) can be applied.
+1. Number of total nodes on each level doubles as we move down the tree.
+2. Number of nodes on the last level is equal to the sum of the number of all other nodes + 1. Because of the efficiency in traversal by not visiting each node, O(log n) can be applied.
 
+- [O(log n) explained](https://medium.com/better-programming/a-gentle-explanation-of-logarithmic-time-complexity-79842728a702).
   - lookup: O(log n)
   - insert: O(log n)
   - delete: O(log n)
-
-- [O(log n) explained](https://medium.com/better-programming/a-gentle-explanation-of-logarithmic-time-complexity-79842728a702)
 
 #### 5.5.2. Binary search trees
 
 - Great for searching and comparing things.
 - Preserves relationships between nodes.
+- Rules:
 
-  - Rules:
-  - 1. All child node values in the tree to the right of the root node must be greater than the current node value.
-  - 2. A node can only have up to 2 children.
+1. All child node values in the tree to the right of the root node must be greater than the current node value.
+2. A node can only have up to 2 children.
 
 - If binary search tree is unbalanced, lookup, insert & delete can become O(n) where every node requires traversal.
 - Ideally we want to balance our search tree to ensure optimum performance.
@@ -548,17 +553,15 @@ How to organize, format and store collections of data values, the relationships 
 
 - Type of tree where every child belongs to a parent node which has a greater priority or value.
 - Max heap is where root node is the greatest.
-- Min heap id where root node is the smallest.
+- Min heap is where root node is the smallest.
 - Every node on the top level has a greater value than every node on the next level down.
 - Good for when there is an order, particularly for priority queues.
-
   - lookup: O(n)
   - insert: O(log n)
   - delete: O(log n)
-
-- Slower lookup than BST because it's less ordered. left / right can be any value as long as it is less than the top value.
+- Slower lookup than BST because it's less ordered. Left / right can be any value as long as it is less than the top value.
 - Heaps add value on the tree in order from left to right, then bubbles up of the priority order isn't right.
-- Because value are always added LTR, binary heaps are always balanced automatically, and are very compact and memory efficient for this reason.
+- Because values are always added LTR, binary heaps are always balanced automatically, and are very compact and memory efficient for this reason.
 - Priority queues have elements which have different priorities.
 
 #### 5.5.4. Tries
@@ -596,10 +599,12 @@ How to organize, format and store collections of data values, the relationships 
 - Data structures + algorithms = computer programs.
 - Scalability of code is important as companies get larger.
 - By learning these four topics we are able to do the majority of the scaling we need to improve our programs.
-  - 1. Sorting
-  - 2. Dynamic programming
-  - 3. BFS & DFS
-  - 4. Recursion
+
+1. **Sorting**
+2. **Dynamic programming**
+3. **BFS & DFS**
+4. **Recursion**
+
 - Some algorithms allow us to simplify our big O complexity to smaller time complexity.
 - Used everywhere in large companies because they deal with large amounts of data.
 
@@ -613,8 +618,10 @@ How to organize, format and store collections of data values, the relationships 
 - If there is no way to stop a recursive call, stack overflow can happen where memory runs out.
 - Every recursive function needs a base case / stop point.
 - Recursive functions have two paths:
-  - 1. Call the function again and run it (recursive call).
-  - 2. Stop calling the function, there is nothing more to search for (base case).
+
+1. Call the function again and run it (recursive call).
+2. Stop calling the function, there is nothing more to search for (base case).
+
 - Anything that can be implemented recursively, can be implemented iteratively.
 - Recursion is not always the best approach. A good engineer uses the right solution for the particular problem.
 - The good:
@@ -625,15 +632,17 @@ How to organize, format and store collections of data values, the relationships 
 
 #### 6.1.1. When to use recursion
 
-- A good rule -- when you are working with data structures which you are not sure how deep they are.
+- A good rule is when you are working with data structures which you are not sure how deep they are.
 - Tail call optimization allows recursions to be called without increasing the call stack.
 - For traversing trees or graphs (BFS / DFS) recursion is better than iterative.
 - Recursion can be preferred for certain sorting.
 - Whenever we are using a tree or converting something into a tree, consider recursion.
 - 3 rules to follow for when a recursive problem presents itself in interview:
-  - 1. Divided into a number of subproblems that are smaller instances of the same problem.
-  - 2. Each instance of the subproblem is identical in nature.
-  - 3. The solutions of each subproblem can be combined to solve the problem at hand.
+
+1. Divided into a number of subproblems that are smaller instances of the same problem.
+2. Each instance of the subproblem is identical in nature.
+3. The solutions of each subproblem can be combined to solve the problem at hand.
+
 - Divide & conquer using recursion.
 
 ### 6.2. Sorting
@@ -646,8 +655,8 @@ How to organize, format and store collections of data values, the relationships 
 - The problem with JS sort() method is that numbers are converted to strings and sorted by unicode.
 - Also language specific characters e.g. á confuses sorting further (can use localeCompare()).
 - You don't need to write a sorting algorithm from scratch. Usually frameworks are used.
-- There is always big O tradeoffs.
-- Certain types of sorting algorithms are more efficient for certain situations: [Demo](https://www.toptal.com/developers/sorting-algorithms)
+- There are always big O tradeoffs.
+- Certain types of sorting algorithms are more efficient for certain situations: [Demo](https://www.toptal.com/developers/sorting-algorithms).
 - Elementary sorting algorithms are basic: Bubble sort, Insertion sort & Selection sort.
 - More complex sorting algorithms are usually more efficient than elementary. They include Merge sort & Quick sort.
 
@@ -766,10 +775,11 @@ How to organize, format and store collections of data values, the relationships 
 - Good practice to ensure the cache doesn't pollute the global scope, and use closure.
 - Dynamic programming can be thought of as divide & conquer + memoization.
 - Steps to follow for whether dynamic programming is suitable:
-  1. Can the problem be divided into subproblems?
-  2. Recursive solution
-  3. Are there repetitive subproblems?
-  4. Memoize subproblems
+
+1. Can the problem be divided into subproblems?
+2. Recursive solution
+3. Are there repetitive subproblems?
+4. Memoize subproblems
 
 ## 7. Non-technical interviews
 
@@ -792,20 +802,18 @@ How to organize, format and store collections of data values, the relationships 
 ### 7.2. Hero Stories
 
 - An interviewer wants to answer 3 questions:
-
   - Can you do the job? (technical)
   - Can I work with you? (behavioural)
   - Are you going to improve? (behavioural)
-
 - Before you enter interviews you need to have 2-4 stories prepared.
 - All behavioural questions in interview can be related back to these stories.
 - Should be about working on previous projects, the 1-2 big projects you have on your portfolio.
 - Stories should demonstrate the following qualities (the four heroes):
 
-  1. Challenge - going through something challenging and how you overcame it.
-  2. Technical - a difficult project fom your portfolio. You know a lot about it.
-  3. Success - if you built something, what did you do. Past promotions.
-  4. Leadership - are you the type of person who can take initiative.
+1. **Challenge** - going through something challenging and how you overcame it.
+2. **Technical** - a difficult project fom your portfolio. You know a lot about it.
+3. **Success** - if you built something, what did you do. Past promotions.
+4. **Leadership** - are you the type of person who can take initiative.
 
 #### 7.2.1. TODO ----> Exercise: Hero Stories.
 
@@ -828,10 +836,10 @@ Take 30 minutes of your time to write down 2~3 hero stories. Use these hero stor
 - What did you do that makes you stand out.
 - Cover the four heroes:
 
-  1. Challenge.
-  2. Technical.
-  3. Success.
-  4. Leadership.
+1. **Challenge**.
+2. **Technical**.
+3. **Success**.
+4. **Leadership**.
 
 #### 7.3.1. Exercise: Your pitch:
 
@@ -854,7 +862,7 @@ Through these projects and posts I'm improving my coding ability every day, and 
 - Show you wat to grow.
 - Demonstrate why you are the best.
 - Mention key words in the job description.
-- Tell them that you specifically searched companies and found this one interesting because if the type of work they do.
+- Tell them that you specifically searched companies and found this one interesting because of the type of work they do.
 - You'd be great for this job because you have worked with some of their problems in the past.
 - Always try to use the four heroes.
 
@@ -875,17 +883,17 @@ Through these projects and posts I'm improving my coding ability every day, and 
 - Scaling, performance, security - really good to talk about.
 - Ideally you have a big project you can talk about.
 - Use the SAR method:
-  - Situation: This is how the project was, this was the problem.
-  - Action: What you did to solve the problem.
-  - Result: What was the result of the action, improved performance, increased users - use metrics.
-- Expect that once you answer this question, expect more questions to follow, so know how to back up your response.
+  - **Situation**: This is how the project was, this was the problem.
+  - **Action**: What you did to solve the problem.
+  - **Result**: What was the result of the action, improved performance, increased users - use metrics.
+- Once you answer this question, expect more questions to follow, so know how to back up your response.
 - Don't be negative - never place blame on clients, co-workers or bosses.
 
 #### 7.6.1. Tell me about an interesting project.
 
 - Variation of Tell me about a problem and how you solved it.
 - Show how you are different, because you are building interesting things.
-- Relate it tp the job, you have worked with things the company works with.
+- Relate it to the job, you have worked with things the company works with.
 
 #### 7.6.2. TODO ----> Exercise: Past Projects.
 
@@ -908,9 +916,9 @@ Spend the next 30 minutes writing your own weakness. Make sure you cover the poi
 - Ask 1-3 questions.
 - Ask questions that demonstrate you are really interested in the company.
 - How you have thought well about why you want to work there.
-- Focus on them, not the company, not yourself. Use the word "YOU".
+- Focus on them, not the company, not yourself. Use the word _you_.
 - Interviewers are humans too, and like to talk about themselves too. Use this to your advantage.
-- Mention something that hey mention - shows you are paying attention.
+- Mention something that they mention - shows you are paying attention.
 - Listen to what they say about themselves during the interview, and bring it up again at the end to tailor the question to them. Use their name, and use what you know about them to ask them a specific question.
 - Examples:
   - What is greatest mistake you made in the first month of the job and what did you do?
@@ -928,11 +936,11 @@ Spend the next 30 minutes writing your own weakness. Make sure you cover the poi
 - There are ways you can increase your odds and still stand out even if didn't ace everything.
 - There are tonne of great programmers but amongst them are some common problems. If you can avoid these problems you can stand out as a developer.
 - Try and work these into conversation to stand out.
-  - Simplicity over complexity: Demonstrate that you value readability and maintainability over complex solutions that not everyone on the team may understand. Give an example where you focused on readable code rather than trying to impress with a complex solution, because you understand that code needs to be readable and maintainable by team members long after you have written it.
-  - Premature optimization is the root of all evil: You have to work within your limited time. Demonstrate you understand the value of time, resources and money, and how you are able to work on things that matter like performance without getting too obsessed about it.
-  - Focus on overall goal, not myopic: Myopic means very narrowly focused, all you care about is the specific problem you are working on. If a client needs a product out of the door in a week, the focus should be on meeting the deadline and keeping the client happy. You can always refactor code later.
-  - No complaining about the client/code/co-workers/etc: Creates a toxic environment in the workplace. Nobody wants to work with a complainer who creates negative energy.
-  - No ego: When receiving feedback take it well. Be the type of coder that likes constructive criticism, and understand there is no ego, we work as a team, and the overall goal of the project/company is what matters.
+  - **Simplicity over complexity**: Demonstrate that you value readability and maintainability over complex solutions that not everyone on the team may understand. Give an example where you focused on readable code rather than trying to impress with a complex solution, because you understand that code needs to be readable and maintainable by team members long after you have written it.
+  - **Premature optimization is the root of all evil**: You have to work within your limited time. Demonstrate you understand the value of time, resources and money, and how you are able to work on things that matter like performance without getting too obsessed about it.
+  - **Focus on overall goal, not myopic**: Myopic means very narrowly focused, all you care about is the specific problem you are working on. If a client needs a product out of the door in a week, the focus should be on meeting the deadline and keeping the client happy. You can always refactor code later.
+  - **No complaining about the client/code/co-workers/etc**: Creates a toxic environment in the workplace. Nobody wants to work with a complainer who creates negative energy.
+  - **No ego**: When receiving feedback take it well. Be the type of coder that likes constructive criticism, and understand there is no ego, we work as a team, and the overall goal of the project/company is what matters.
 
 ### 7.10. After the interview
 
@@ -998,7 +1006,7 @@ Spend the next 30 minutes writing your own strong closing statement.
 - The first thing you should do is ask for more time.
 - If you are well prepared, you should have a few more offers coming in.
 - The more time you have, the more time there is for offers from other companies so you can pick the best package for you.
-- Instead say "this sounds fantastic, I really though this was a great fit when I met you and interviewed, and I am really glad you we both agreed and you see a good fit here. Right now I am speaking to a few other companies, so I can't really speak to the full details of the offer until I am done with the interview process and am closer to making a decision. But I am sure that we can find something that works great for us because I really want to be part of your team and I had a great time interviewing and I can really see myself working there long term".
+- Instead say "this sounds fantastic, I really thought this was a great fit when I met you and interviewed, and I am really glad you we both agreed and you see a good fit here. Right now I am speaking to a few other companies, so I can't really speak to the full details of the offer until I am done with the interview process and am closer to making a decision. But I am sure that we can find something that works great for us because I really want to be part of your team and I had a great time interviewing and I can really see myself working there long term".
 - After you receive the offer, let the other companies know. You now have stakes and negotiating power.
 - Reach out to the companies who have not made an offer, and create a sense of urgency as if you have a timeline.
 - "Hello [company contact], I just wanted to give you an update on my interviewing process. I've just received another offer from [other company name] which is quite strong. With that said I am really excited to potentially work with your company and had a good time interviewing with you, and I really want to see if we can make things work. Since my timeline is now compressed with this other offer, is there anything we can do to make the process go a little bit faster?"
@@ -1007,7 +1015,6 @@ Spend the next 30 minutes writing your own strong closing statement.
 - Always know when the deadline is to respond to an offer. Be honest and tell them you are waiting on other offers and want to make the right decision.
 - Don't be rushed, they should respect your time.
 - When declining an offer, be polite and never burn your bridges. You never know if paths may cross in future.
-
 - TODO:
   - Find the exact salary you want? Average for Madrid is €35,000, you should be paid average or more!
   - What value do you provide? What type of traits do you have that would make you a valuable hire? What would you improve in the company? Think about how the company will drive value from you. Use this to negotiate.
@@ -1020,19 +1027,22 @@ Spend the next 30 minutes writing your own strong closing statement.
 - First decide which company you want.
 - Salary and benefits shouldn't be the only things to consider.
 - This should be a guideline to accepting a job in rank order:
-  1. Is there an offer that you feel you are underqualified for? - Harder is better. Go for it!
-  2. Long term growth potential - Is the company progressing? Will you be promoted?
-  3. Will you respect people around you? - You want to be the dumbest person in the room.
-  4. Salary and benefits? - Prioritise long term benefits over short term gains.
-  5. Is your decision based on desperation? - Don't accept the first option you get out of desperation, it needs to be the right company to fuel your growth. Think about the long term implications.
+
+1. Is there an offer that you feel you are underqualified for? - Harder is better. Go for it!
+2. Long term growth potential - Is the company progressing? Will you be promoted?
+3. Will you respect people around you? - You want to be the dumbest person in the room.
+4. Salary and benefits? - Prioritise long term benefits over short term gains.
+5. Is your decision based on desperation? - Don't accept the first option you get out of desperation, it needs to be the right company to fuel your growth. Think about the long term implications.
 
 ### 8.5. Getting a raise
 
 - If someone hired you that means that they find you valuable, but to get a raise you need to be a good employee.
-- Plan out your career path at the company and monitor it - 1,2,3 5 year plan.
+- Plan out your career path at the company and monitor it - 1,2,3 & 5 year plan.
 - Two steps:
-  1. Ask for a raise: You'll get one if you provide value to the company. If you don't ask, the answer is always "no". The cost to the business of hiring and training new is much greater than giving a good employee a raise.
-  2. Show. Don't tell: wHen asking for a raise, make a one page letter to your boss offering proof that you are driving metrics that matter to them. Give them a reason to give you a raise.
+
+1. Ask for a raise: You'll get one if you provide value to the company. If you don't ask, the answer is always "no". The cost to the business of hiring and training new is much greater than giving a good employee a raise.
+2. Show. Don't tell: When asking for a raise, make a one page letter to your boss offering proof that you are driving metrics that matter to them. Give them a reason to give you a raise.
+
 - Keep a record from day one: Problems you have solved, money you have saved, good feedback you have received, skills acquired and what you plan to accomplish in the next six months to improve the company.
 - A raise every six months should be attainable if you prove yourself.
 - Ask for a salary level a lot higher than you actually want. 10K more than you actually want.

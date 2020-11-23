@@ -1,4 +1,4 @@
-document.getElementById('section').append('Algorithms: Recursion');
+document.getElementById("section").append("Algorithms: Recursion");
 
 // 1. Identify the base case.
 // 2. Identify the recursive case.
@@ -7,7 +7,7 @@ let counter = 0;
 function inception() {
   // debugger;
   if (counter > 3) {
-    return 'Done!';
+    return "Done!";
   }
   counter++;
   return inception();
@@ -60,7 +60,7 @@ console.log(fibonacciIterative(6));
 
 //Implement a function that reverses a string using iteration...and then recursion!
 function reverseString(str) {
-  let arrayStr = str.split('');
+  let arrayStr = str.split("");
   let reversedArray = [];
   //We are using closure here so that we don't add the above variables to the global scope.
   function addToArray(array) {
@@ -71,14 +71,14 @@ function reverseString(str) {
     return;
   }
   addToArray(arrayStr);
-  return reversedArray.join('');
+  return reversedArray.join("");
 }
 
-reverseString('yoyo master');
+reverseString("yoyo master");
 
 function reverseStringRecursive(str) {
-  if (str === '') {
-    return '';
+  if (str === "") {
+    return "";
   } else {
     return reverseStringRecursive(str.substr(1)) + str.charAt(0);
   }
@@ -89,5 +89,5 @@ function reverseStringRecursiveAlt(str) {
   return reverseStringRecursiveAlt(str.slice(1)) + str[0];
 }
 
-console.log(reverseString('yoyo mastery'));
+console.log(reverseString("yoyo mastery"));
 //should return: 'yretsam oyoy'

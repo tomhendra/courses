@@ -1,20 +1,20 @@
-document.getElementById('section').append('Big O.');
+document.getElementById("section").append("Big O.");
 
-const nemo = ['nemo'];
+const nemo = ["nemo"];
 const everyone = [
-  'dory',
-  'bruce',
-  'marlin',
-  'nemo',
-  'gill',
-  'bloat',
-  'nigel',
-  'squirt',
-  'dala',
-  'hank',
+  "dory",
+  "bruce",
+  "marlin",
+  "nemo",
+  "gill",
+  "bloat",
+  "nigel",
+  "squirt",
+  "dala",
+  "hank",
 ];
 
-const large = new Array(10000).fill('nemo');
+const large = new Array(10000).fill("nemo");
 
 // O(n) --> Linear time
 // O(1) --> as the number of inputs increase...
@@ -22,8 +22,8 @@ const large = new Array(10000).fill('nemo');
 // O(100000) --> at the same / linear rate.
 function findNemo(array) {
   for (let i = 0; i < array.length; i++) {
-    if (array[i] === 'nemo') {
-      console.log('Found Nemo!');
+    if (array[i] === "nemo") {
+      console.log("Found Nemo!");
       break; // break out of loop once Nemo is found, but doesn't affect big O (worst case)
     }
   }
@@ -55,7 +55,7 @@ function compressBoxesTwice(boxes, boxes2) {
 }
 
 // Log all pairs of array: O(n^2) --> quadratic time
-const boxes = ['a', 'b', 'c', 'd', 'e'];
+const boxes = ["a", "b", "c", "d", "e"];
 function logAllPairsOfArray(array) {
   for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < array.length; j++) {
@@ -68,12 +68,12 @@ logAllPairsOfArray(boxes);
 
 // this would be O(n + n^2) but we drop the non-dominant terms, so it becomes O
 function printAllNumbersThenAllPairSums(numbers) {
-  console.log('these are the numbers:'); // O(n)
+  console.log("these are the numbers:"); // O(n)
   numbers.forEach(function (number) {
     console.log(number);
   });
 
-  console.log('and these are their sums:'); // O(n^2)
+  console.log("and these are their sums:"); // O(n^2)
   numbers.forEach(function (firstNumber) {
     numbers.forEach(function (secondNumber) {
       console.log(firstNumber + secondNumber);
@@ -86,7 +86,7 @@ printAllNumbersThenAllPairSums([1, 2, 3, 4, 5]);
 // #1 Space complexity O(1)
 function boooo(n) {
   for (let i = 0; i < n; i++) {
-    console.log('booooo');
+    console.log("booooo");
   }
 }
 
@@ -96,7 +96,7 @@ boooo(23);
 function arrayOfHiNTimes(n) {
   var hiArray = [];
   for (let i = 0; i < n; i++) {
-    hiArray[i] = 'hi';
+    hiArray[i] = "hi";
   }
   console.log(hiArray);
   return hiArray;

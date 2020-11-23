@@ -1,6 +1,6 @@
-document.getElementById('section').append('Data Structures: Linked Lists.');
+document.getElementById("section").append("Data Structures: Linked Lists.");
 
-const basket = ['apples', 'grapes', 'pears'];
+const basket = ["apples", "grapes", "pears"];
 
 /*
 linked list: apples --> grapes --> pears

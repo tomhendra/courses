@@ -1,4 +1,4 @@
-document.getElementById('section').append('Algorithms: Dynamic Programming');
+document.getElementById("section").append("Algorithms: Dynamic Programming");
 
 function memoizedAddTo80() {
   const cache = {};
