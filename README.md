@@ -29,6 +29,7 @@ A self-guided journey into software development, navigated with this repo & [Tre
     - [CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)
     - [JavaScript: From Fundamentals to Functional JS, v2](14-fem-beginner/4-javascript-from-fundamentals-to-functional-js-v2)
     - [Mastering Chrome Developer Tools v2](14-fem-beginner/5-mastering-chrome-developer-tools-v2)
+    - [Website Accessibility]()
 15. [Frontend Masters Learning Paths: Professional](15-fem-professional)
     - [JavaScript: The Hard Parts, v2](15-fem-professional/1-javascript-the-hard-parts-v2)
     - [Deep JavaScript Foundations, v3](15-fem-professional/2-deep-javascript-foundations-v3)
@@ -37,6 +38,7 @@ A self-guided journey into software development, navigated with this repo & [Tre
     - [Functional-Light JavaScript, v3](15-fem-professional/5-functional-light-javascript-v3)
     - [CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2)
     - [Full Stack for Front-End Engineers, v2](15-fem-professional/7-full-stack-for-front-end-engineers-v2)
+    - [TypeScript 3 Fundamentals, v2]()
 16. [Frontend Masters Learning Path: Design to Code](16-fem-design-to-code)
     - [CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design) _(Repeat from Beginner Path)_
     - [CSS In-Depth, v2](15-fem-professional/6-css-in-depth-v2) _(Repeat from Professional Path)_
@@ -57,8 +59,8 @@ A self-guided journey into software development, navigated with this repo & [Tre
     - [Webpack 4 Fundamentals]()
     - [Git In-depth]()
     - [JavaScript Performance]()
-    - [Code Transformation and Linting with ASTs]()
-    - [Advanced Asynchronous JavaScript]()
+    - [Production-Grade TypeScript]()
+    - [State Machines in JavaScript with XState]()
 24. [Frontend Masters Learning Path: Computer Science]()
     - [Four Semesters of Computer Science in 5 Hours]()
     - [A Practical Guide to Algorithms with JavaScript]()
@@ -67,6 +69,7 @@ A self-guided journey into software development, navigated with this repo & [Tre
     - [Tree and Graph Data Structures]()
 25. [Frontend Masters Learning Path: Full Stack]()
     - [Full Stack for Front-End Engineers, v2]() _(Repeat from Professional Path)_
+    - [Complete Intro to Linux and the Command-Line]()
     - [Introduction to Node.js]()
     - [API Design in Node.js, v3]()
     - [AWS for Front-End Engineers (ft. S3, Cloudfront & Route 53)]()
