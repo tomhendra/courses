@@ -21,6 +21,8 @@
   - [3.7. Use the Prettier Extension for VSCode](#37-use-the-prettier-extension-for-vscode)
   - [3.8. Disable Unnecessary ESLint Stylistic Rules with eslint-config-prettier](#38-disable-unnecessary-eslint-stylistic-rules-with-eslint-config-prettier)
   - [3.9. Validate All Files are Properly Formatted with Prettier](#39-validate-all-files-are-properly-formatted-with-prettier)
+- [4. Avoid Common Errors by Installing and Configuring TypeScript](#4-avoid-common-errors-by-installing-and-configuring-typescript)
+  - [4.1. Make ESLint Support TypeScript Files](#41-make-eslint-support-typescript-files)
 
 ## 1. Introduction
 
@@ -381,7 +383,8 @@ global.expect = expect;
 }
 ```
 
-- We can also ensure that the files have been properly formatted, for which Prettier exposes a mechanism.
+- We can’t force everyone on the project to use the prettier integration for their editor.
+- But we can ensure that the files have been properly formatted, for which Prettier exposes a mechanism: the `--list-different` flag that will throw an error when code is not up to the standard of our project.
 
 ```json
 {
@@ -413,3 +416,94 @@ global.expect = expect;
 ```
 
 - The `--` tells npm to forward all the remaining arguments to the specified script.
+
+## 4. Avoid Common Errors by Installing and Configuring TypeScript
+
+- ESLint can check for a lot of things, but it’s not a great tool for checking the types of variables that flow through our application.
+- For this we need a tool like TypeScript.
+- We use the TypeScript compiler - tsc - to verify that the types in our project are correct.
+- We want to configure TypeScript so we can be explicit about what we want it to do with a tsconfig.json file.
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "noEmit": true
+  }
+}
+```
+
+- `baseUrl` tells TypeScript where to look for files.
+- `noEmit` tells TypeScript not to compile our code as we already have Babel doing that job for us.
+- We also need to add the `ts` and `tsx` file extensions to the build & prettier scripts.
+- We can add a new script to run tsc, and add this to our validate script.
+
+```json
+{
+  // ...
+  "scripts": {
+    "build": "babel src --extensions .js,.ts,.tsx --out-dir dist",
+    // ...
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
+    "check-types": "tsc",
+    // ...
+    "validate": "npm run check-types && npm run check-format && npm run lint && npm run build"
+  }
+  // ...
+}
+```
+
+- However we'll still get an error, because Babel doesn't know how to parse TypeScript by default.
+- For this we need to run `npm install --save-dev @babel/preset-typescript` and add to our `.babelrc` presets:
+
+```json
+{
+  "presets": [
+    // ...
+    "@babel/preset-typescript"
+  ]
+}
+```
+
+### 4.1. Make ESLint Support TypeScript Files
+
+- ESLint doesn't support TypeScript out of the box, but fortunately it is easy to configure because of the [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) project.
+- There are also a lot of rules that we don’t need ESLint to bother checking because TypeScript will prevent those problems in the first place.
+- To get the two to integrate we need to run `npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser`.
+- To configure ESLint to run across TypeScript files we need to edit our lint script to include the `ts` & `tsx` file extensions by adding `--ext .js,.ts,.tsx`.
+
+```json
+{
+  "scripts": {
+    // ...
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx ."
+    // ...
+  }
+  // ...
+}
+```
+
+- To configure ESLint to parse TypeScript files, we need to edit the `.eslintrc` file.
+- Since we are running ESLint across other files apart from TypeScript, we want to keep our original config, and so we can use ESLint's overrides configuration property.
+
+```json
+{
+  // ...
+  "overrides": [
+    {
+      "files": "**/*.+(ts|tsx)",
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "plugins": ["@typescript-eslint/eslint-plugin"],
+      "extends": [
+        // pre-built plugin configurations
+        "plugin:@typescript-eslint/eslint-recommended", // disables rules from ESLint that TypeScript renders unnecessary.
+        "plugin:@typescript-eslint/recommended", // specific rules from the typescript-eslint plugin sometimes useful for TS files e.g. interfaces.
+        "eslint-config-prettier/@typescript-eslint" // disables rules from typescript-eslint that are not actually necessary.
+      ]
+    }
+  ]
+}
+```
