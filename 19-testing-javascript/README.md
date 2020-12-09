@@ -21,8 +21,11 @@
   - [3.7. Use the Prettier Extension for VSCode](#37-use-the-prettier-extension-for-vscode)
   - [3.8. Disable Unnecessary ESLint Stylistic Rules with eslint-config-prettier](#38-disable-unnecessary-eslint-stylistic-rules-with-eslint-config-prettier)
   - [3.9. Validate All Files are Properly Formatted with Prettier](#39-validate-all-files-are-properly-formatted-with-prettier)
-- [4. Avoid Common Errors by Installing and Configuring TypeScript](#4-avoid-common-errors-by-installing-and-configuring-typescript)
-  - [4.1. Make ESLint Support TypeScript Files](#41-make-eslint-support-typescript-files)
+  - [3.10. Avoid Common Errors by Installing and Configuring TypeScript](#310-avoid-common-errors-by-installing-and-configuring-typescript)
+  - [3.11. Make ESLint Support TypeScript Files](#311-make-eslint-support-typescript-files)
+  - [3.12. Validate Code in a pre-commit git Hook with husky](#312-validate-code-in-a-pre-commit-git-hook-with-husky)
+  - [3.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged](#313-auto-format-all-files-and-validate-relevant-files-in-a-pre-commit-script-with-lint-staged)
+  - [3.14. Run Multiple npm Scripts in Parallel with npm-run-all](#314-run-multiple-npm-scripts-in-parallel-with-npm-run-all)
 
 ## 1. Introduction
 
@@ -417,7 +420,7 @@ global.expect = expect;
 
 - The `--` tells npm to forward all the remaining arguments to the specified script.
 
-## 4. Avoid Common Errors by Installing and Configuring TypeScript
+### 3.10. Avoid Common Errors by Installing and Configuring TypeScript
 
 - ESLint can check for a lot of things, but it’s not a great tool for checking the types of variables that flow through our application.
 - For this we need a tool like TypeScript.
@@ -465,7 +468,7 @@ global.expect = expect;
 }
 ```
 
-### 4.1. Make ESLint Support TypeScript Files
+### 3.11. Make ESLint Support TypeScript Files
 
 - ESLint doesn't support TypeScript out of the box, but fortunately it is easy to configure because of the [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) project.
 - There are also a lot of rules that we don’t need ESLint to bother checking because TypeScript will prevent those problems in the first place.
@@ -507,3 +510,75 @@ global.expect = expect;
   ]
 }
 ```
+
+### 3.12. Validate Code in a pre-commit git Hook with husky
+
+- As handy as our validate script is it would be better if we could make sure that happens before anyone commits code.
+- Husky creates a hooks directory inside the git directory with a bunch of files to handle pre-commit checks.
+- To configure Husky we can create a `.huskyrc` file.
+
+```json
+{
+  "hooks": {
+    "pre-commit": "npm run validate"
+  }
+}
+```
+
+- Any time we commit, git will run the pre-commit script which Husky stores in the directory it created, and in turn it will run the validate script.
+- If the validate script doesn't pass, the commit won't be created.
+- We can override the pre-commit with `--no-verify`.
+- Looking at the hooks directory that Husky creates can give us an idea of what we can do with Husky.
+
+### 3.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged
+
+- We can automatically format the files on commit and only check the relevant files with ESLint.
+- We can use `lint-staged` to run scripts on the files that are going to be committed as part of our pre-commit hook.
+- Install with `npm install --save-dev lint-staged`.
+- We can create a config file `.lintstagedrc`:
+
+```json
+{
+  "*.js": ["eslint"],
+  "*.+(js|json|ts)": ["prettier --write", "git add"]
+}
+```
+
+- `lint-staged` will forward on the files specified to the scripts that we specify.
+- Husky is in charge of running scripts on commit, so rather than running the validate script we can run `lint-staged`.
+- But since lint-staged is only taking care of linting and formatting, we also need to add our type checking
+
+```json
+{
+  "hooks": {
+    "pre-commit": "npm run check-types && lint-staged && npm run build"
+  }
+}
+```
+
+- The cool thing about lint-staged is that it only runs on files that have changed.
+- And we've configured it to add files back that have been changed by prettier (git add step is [not required](https://github.com/okonet/lint-staged#v10) from v10).
+- lint-staged can even manage patched changes, so if we are only committing part of the file it will only update the part of the file that is being changed.
+- Using lint-staged improved DX for everyone working on the project, as they don't need to have prettier configured for their editor for all committed code to be formatted according to the agreed style guide.
+
+### 3.14. Run Multiple npm Scripts in Parallel with npm-run-all
+
+- Our validate script is really handy, but there is a lot going on and it takes a while.
+- It would be nice if we could run all these commands at the same time.
+- `npm-run-all` allows scripts to be run in parallel.
+- Install with `npm install --save-dev npm-run-all`.
+- We can then update teh validate script.
+
+```json
+{
+  // ...
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    // ...
+    "validate": "npm-run-all --parallel check-types check-format lint build"
+  }
+  // ...
+}
+```
+
+- Our script now runs a lot faster!
