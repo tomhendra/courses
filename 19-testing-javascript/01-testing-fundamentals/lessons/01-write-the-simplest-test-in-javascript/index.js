@@ -3,6 +3,7 @@ const { sum, subtract } = require("./math");
 let result, expected;
 
 console.log("Adjust math.js to pass the test.");
+
 result = sum(3, 7);
 expected = 10;
 if (result !== expected) {
