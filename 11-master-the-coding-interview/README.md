@@ -83,8 +83,8 @@ parcel index.html
 
 The introduction explains that the course is made up of two main parts.
 
-- 1. Non-technical aspects of interviews.
-- 2. Technical interview topics: data structures & algorithms.
+1. Non-technical aspects of interviews.
+2. Technical interview topics: data structures & algorithms.
 
 ## 2. Getting More Interviews
 
