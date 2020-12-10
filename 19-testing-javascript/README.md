@@ -29,6 +29,9 @@
 - [4. JavaScript Mocking Fundamentals](#4-javascript-mocking-fundamentals)
   - [4.1. Override Object Properties to Mock with Monkey-patching in JavaScript](#41-override-object-properties-to-mock-with-monkey-patching-in-javascript)
   - [4.2. Ensure Functions are Called Correctly with JavaScript Mocks](#42-ensure-functions-are-called-correctly-with-javascript-mocks)
+  - [4.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn](#43-restore-the-original-implementation-of-a-mocked-javascript-function-with-jestspyon)
+  - [4.4. Mock a JavaScript module in a test](#44-mock-a-javascript-module-in-a-test)
+  - [4.5. Make a shared JavaScript mock module](#45-make-a-shared-javascript-mock-module)
 
 ## 1. Introduction
 
@@ -628,3 +631,217 @@ utils.getWinner = originalGetWinner;
 See the final file: [monkey-patching.js](./03-js-mocking-fundamentals/src/no-framework/monkey-patching.js).
 
 ### 4.2. Ensure Functions are Called Correctly with JavaScript Mocks
+
+- It would be nice if we could make some more assertions about how `getWinner` is called, to ensure that it is always being called with `player1` and `player2`, because we could actually break the implementation and our tests couldn't catch it.
+- For example if we remove `player2` in the call to `getWinner` in `thumb-war.js` our test will still pass even though the implementation is definitely wrong.
+- We will leave `player2` removed and expose this bug in our tests.
+- Jest has a function built-in `jest.fn()` which we can provide with an implementation.
+- This is a _mock function_ and it keeps track of what arguments it is called with.
+- In `mock-fn.js` we can use this function and make an assertion to expose the bug.
+
+```js
+utils.getWinner = jest.fn((p1, p2) => p1);
+// ...
+expect(utils.getWinner).toHaveBeenNthCalledWith(
+  1,
+  "Kent C. Dodds",
+  "Ken Wheeler"
+);
+// Test fails!
+```
+
+- Adding `player2` back into the call to `getWinner` in `thumb-war.js` now passes the test as expected.
+- We could improve things by making assertions about how the function is called.
+
+```js
+// ...
+expect(utils.getWinner).toHaveBeenCalledTimes(2);
+expect(utils.getWinner).toHaveBeenNthCalledWith("Kent C. Dodds", "Ken Wheeler");
+expect(utils.getWinner).toHaveBeenNthCalledWith(
+  1,
+  "Kent C. Dodds",
+  "Ken Wheeler"
+);
+expect(utils.getWinner).toHaveBeenNthCalledWith(
+  2,
+  "Kent C. Dodds",
+  "Ken Wheeler"
+);
+// ...
+```
+
+- But we can improve things even further by inspecting what `utils.getWinner` actually is.
+- Using `console.log(utils.getWinner)` reveals that it is a function with a whole bunch of properties on it.
+- The `mock` property is an object that has a `calls` property which is an array that holds all the arguments that this function is called with.
+- We can inspect with `console.log(utils.getWinner.mock.calls)` property and use what it holds in our test, which covers us for all of these previous assertions.
+
+```js
+// ...
+expect(utils.getWinner.mock.calls).toEqual([
+  ["Kent C. Dodds", "Ken Wheeler"],
+  ["Kent C. Dodds", "Ken Wheeler"],
+]);
+/*
+  expect(utils.getWinner).toHaveBeenCalledTimes(2);
+  expect(utils.getWinner).toHaveBeenNthCalledWith(
+    "Kent C. Dodds",
+    "Ken Wheeler"
+  );
+  expect(utils.getWinner).toHaveBeenNthCalledWith(
+    1,
+    "Kent C. Dodds",
+    "Ken Wheeler"
+  );
+  expect(utils.getWinner).toHaveBeenNthCalledWith(
+    2,
+    "Kent C. Dodds",
+    "Ken Wheeler"
+  );
+*/
+```
+
+- We could implement the `jest.fn()` function ourselves to understand what's going on.
+
+```js
+function fn(impl) {
+  const mockFn = (...args) => {
+    mockFn.mock.calls.push(args);
+    return impl(...args);
+  };
+  mockFn.mock = { calls: [] };
+  return mockFn;
+}
+```
+
+- Our function accepts an implementation and returns that implementation with the arguments passed to the function.
+- It also keeps track of all the arguments that it is called with, so we can make an assertion about how it is called.
+
+### 4.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn
+
+- Having to keep track of the original `getWinner` and restoring it at the end of our test is annoying.
+- Jest exposes another utility to help with this called `spyOn`.
+
+```js
+// ...
+jest.spyOn(utils, "getWinner");
+// ...
+```
+
+- We pass it the utils as the object, and `getWinner` as the method.
+- We no longer need to keep an eye on `getWinner` and can use the restore method instead.
+
+```js
+// ...
+// cleanup
+// utils.getWinner = originalGetWinner;
+utils.getWinner.mockRestore();
+// ...
+```
+
+- We have a specific implementation that we want to use for our mock function.
+- Mock functions have an additional method on them called `mockImplementation` to which we can pass our mock implementation.
+
+```js
+// ...
+utils.getWinner.mockImplementation((p1, p2) => p1);
+// ...
+```
+
+- We could implement this ourselves as follows:
+
+```js
+/// ...
+function spyOn(obj, prop) {
+  const originalValue = obj[prop];
+  obj[prop] = fn();
+  obj[prop].mockRestore = () => (obj[prop] = originalValue);
+}
+spyOn(utils, "getWinner");
+utils.getWinner.mockImplementation((p1, p2) => p1);
+// ...
+// cleanup
+utils.getWinner.mockRestore();
+```
+
+### 4.4. Mock a JavaScript module in a test
+
+- What we are doing with `spyOn` is still a form of monkey patching and it works because the `thumbWar` module is using `utils.getWinner`.
+- It only works because we are using common JS, and in a ES modules situation monkey patching won't work.
+- We need to take things further so we can mock the entire module.
+- Jest allows us to do this with the `Jest.mock` API.
+- The first argument is the path to the module that we are mocking relative to where `jest.mock` is being called.
+- The second argument is a module factory function that returns the mocked version of the module.
+
+```js
+jest.mock("../utils", () => {
+  return {
+    getWinner: jest.fn((p1, p2) => p1),
+  };
+});
+```
+
+- With that we can remove the two previous lines and change the cleanup as follows.
+
+```js
+// jest.spyOn(utils, "getWinner");
+// utils.getWinner.mockImplementation((p1, p2) => p1);
+
+// cleanup
+// utils.getWinner.mockRestore();
+utils.getWinner.mockReset();
+```
+
+- `Jest.mock` works because Jest is in control of the entire module system.
+- We can simulate that same kind of control in our own implementation by using the `require.cache`.
+- If we `console.log(require.cache)` before the `require` statements we will see a big object with keys that are paths to modules, and the value is a module object.
+- We can make an entry in the require cache, so that when we require the utils module, our cached version is required rather than the file.
+
+```js
+const utilsPath = require.resolve("../utils");
+require.cache[utilsPath] = {
+  id: utilsPath,
+  filename: utilsPath,
+  loaded: true,
+  exports: {
+    getWinner: fn((p1, p2) => p1),
+  },
+};
+```
+
+- Now we can get rid of all the `spyOn` functionality and change our cleanup:
+
+```js
+// cleanup
+delete require.cache[utilsPath];
+```
+
+- Any other modules that want to use the utils can do so without having trouble with our module mocking that out.
+- This is not something that we would normally want to do but it is similar to how things are working in Jest.
+- Jest has total control over the module system, and I can do special things like this.
+- For us, we have control over the module system using the `require.cache`.
+- We can preload the `require.cache` with the mock module that we want to have loaded when thumb-war requires the utils module.
+- In Jest, we can put this `jest.mock` call anywhere, and Jest will ensure that our mock is used when the thumb-war requires the utils module.
+
+### 4.5. Make a shared JavaScript mock module
+
+- Often with modules that we want to mock in one file we'll probably want top mock in multiple files.
+- Jest enables this with a mocks directory.
+- We create a directory `__mocks__` and within it a file named as the module that we want to mock.
+
+```js
+module.exports = {
+  getWinner: jest.fn((p1, p2) => p1),
+};
+```
+
+- Then we can remove the second argument from `jest.mock` and Jest will automatically pick up the mock file we created.
+
+```js
+// ...
+jest.mock("../utils");
+// ...
+```
+
+- We could implement this ourselves as shown in [external-mock-module.js](./03-js-mocking-fundamentals/no-framework/external-mock-module.js) and [utils.js](19-testing-javascript/03-js-mocking-fundamentals/src/__no-framework-mocks__/utils.js).
+- Again this isn't exactly what Jest is doing since it has total control over the modules system.
+- So when our code requires the utils module, whether that be in our test file or our implementation file, Jest will provide the proper mock for it.
