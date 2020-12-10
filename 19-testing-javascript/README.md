@@ -34,6 +34,7 @@
   - [4.5. Make a shared JavaScript mock module](#45-make-a-shared-javascript-mock-module)
 - [5. Configure Jest for Testing JavaScript Applications](#5-configure-jest-for-testing-javascript-applications)
   - [5.1. Install and Run Jest](#51-install-and-run-jest)
+  - [5.2. Compile Modules with Babel in Jest Tests](#52-compile-modules-with-babel-in-jest-tests)
 
 ## 1. Introduction
 
@@ -886,3 +887,37 @@ test("it works", () => {});
   }
 }
 ```
+
+### 5.2. Compile Modules with Babel in Jest Tests
+
+- To test something more meaningful we can turn our attention to the [utils.js](19-testing-javascript/04-configure-jest/src/shared/utils.js) file which contains the `getFormattedValue` function.
+- We can create a `__test__` directory nearby containing a `utils.js` file to match what we want to test.
+- However the test will fail with `SyntaxError: Cannot use import statement outside a module`.
+- The issue is that Jest runs in Node but Node does not support import statements.
+- What's happening in our app is that we are compiling our import statements using Webpack.
+- Webpack understands the import statements by default.
+- We have Webpack configured further with the Babel Loader, so it'll compile everything else that isn't supported by the browsers that we don't support.
+- The trick here is that in our Babel RC, we're configuring `@babel/preset-env` to not compile the modules so that Webpack can manage those.
+- Jest is actually automatically picking up this Babel configuration and applying it to our test code. However, because we have this configured to not compile the modules, that's where we're having the problem.
+- If we remove that configuration and then try to run `npm t` again, we're actually going to get things working, but now we're not going to get the benefits of tree shaking with Webpack. We want to have our cake and eat it too here.
+- Instead, what we're going to do is `isTest`.
+- Then it'll be basically the same as the, "Is prod process ENV node ENV equals test."
+
+```js
+const isTest = String(process.env.NODE_ENV) === "test";
+```
+
+- We're in a test environment if the node `ENV` equals `test` and jest sets that for us automatically.
+- If we are in test, then we want to compile the modules to commonjs, so it works in node.
+- Otherwise, we won't compile it at all and Webpack will take over.
+
+```js
+module.exports = {
+  presets: [
+    ['@babel/preset-env', {modules: isTest ? 'commonjs' : false}],
+    '@babel/preset-react',
+    [
+    ...
+```
+
+- This is one of the really cool things about jest, that it allows you to get a really long way before you have to start worrying about configuring this framework.
