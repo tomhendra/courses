@@ -26,6 +26,9 @@
   - [3.12. Validate Code in a pre-commit git Hook with husky](#312-validate-code-in-a-pre-commit-git-hook-with-husky)
   - [3.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged](#313-auto-format-all-files-and-validate-relevant-files-in-a-pre-commit-script-with-lint-staged)
   - [3.14. Run Multiple npm Scripts in Parallel with npm-run-all](#314-run-multiple-npm-scripts-in-parallel-with-npm-run-all)
+- [4. JavaScript Mocking Fundamentals](#4-javascript-mocking-fundamentals)
+  - [4.1. Override Object Properties to Mock with Monkey-patching in JavaScript](#41-override-object-properties-to-mock-with-monkey-patching-in-javascript)
+  - [4.2. Ensure Functions are Called Correctly with JavaScript Mocks](#42-ensure-functions-are-called-correctly-with-javascript-mocks)
 
 ## 1. Introduction
 
@@ -33,7 +36,9 @@ Learn the smart, efficient way to test any JavaScript application. Your essentia
 
 ## 2. Testing Fundamentals
 
-It is really important to understand abstractions in order to use our tools effectively. So the course starts with building a miniature version of Jest.
+Do you know what a testing framework does? Do you know what makes a testing framework different from a testing or assertion library? The best way to use a tool effectively is to understand how it works. And the best way to understand how a tool works is by making it yourself!
+
+In this short course, we’ll learn how testing frameworks and assertion libraries work by building our own, simple version of each.
 
 ### 2.1. Throw an Error with a Simple Test in JavaScript
 
@@ -182,7 +187,9 @@ global.expect = expect;
 
 ## 3. Static Analysis Testing JavaScript Applications
 
-- There are static testing tools like TypeScript, ESLint & Prettier to eliminate an entire category of bugs from our projects.
+There are a tonne of ways your application can break. One of the most common sources of bugs is related to typos and incorrect types. Passing a string to a function that expects a number, or falling prey to a common typo in a logical statement are silly mistakes that should never be made, but this happens all the time.
+
+We could write a comprehensive suite of automated tests for our entire codebase to make certain mistakes like this never happen, but that would likely be too much work and slow development down to be worth the benefit. Luckily for us, there are tools like ESLint, TypeScript, Prettier, and more which we can use to satisfy a whole category of testing with a great developer experience.
 
 ### 3.1. Lint JavaScript by Configuring and Running ESLint
 
@@ -559,7 +566,7 @@ global.expect = expect;
 - The cool thing about lint-staged is that it only runs on files that have changed.
 - And we've configured it to add files back that have been changed by prettier (git add step is [not required](https://github.com/okonet/lint-staged#v10) from v10).
 - lint-staged can even manage patched changes, so if we are only committing part of the file it will only update the part of the file that is being changed.
-- Using lint-staged improved DX for everyone working on the project, as they don't need to have prettier configured for their editor for all committed code to be formatted according to the agreed style guide.
+- Using lint-staged improves DX for everyone working on the project, since they don't need to have prettier configured for their editor in order for all code committed to be formatted according to the agreed style guide.
 
 ### 3.14. Run Multiple npm Scripts in Parallel with npm-run-all
 
@@ -573,7 +580,6 @@ global.expect = expect;
 {
   // ...
   "scripts": {
-    "build": "babel src --out-dir dist",
     // ...
     "validate": "npm-run-all --parallel check-types check-format lint build"
   }
@@ -582,3 +588,43 @@ global.expect = expect;
 ```
 
 - Our script now runs a lot faster!
+
+## 4. JavaScript Mocking Fundamentals
+
+When running unit tests, you don’t want to actually make network requests or charge real credit cards. That could… get expensive… and also very, very slow. So instead of running your code exactly as it would run in production, you can modify how some of your JavaScript modules and functions work during tests to avoid test unreliability (flakiness) and improve the speed of your tests. This kind of modification can come in the form of stubs, mocks, or generally: “test doubles.”
+
+There are some great libraries and abstractions for mocking your JavaScript modules during tests. The Jest testing framework has great mocking capabilities built-in for functions as well as entire modules. To really understand how things are working though, let’s implement some of these features ourselves.
+
+### 4.1. Override Object Properties to Mock with Monkey-patching in JavaScript
+
+- We are using `getWinner` which we can imagine is a third party machine learning service that has a testing environment we don't control and is unreliable so we want to mock it out for tests.
+- We want to mock put this function so we don't have to run it in our tests.
+
+```js
+const winner = thumbWar("Kent C. Dodds", "Ken Wheeler");
+assert.strictEqual(winner, "Kent C. Dodds");
+```
+
+- If we run our test, it will sometimes fail and sometimes pass, due to the `Math.Random` being used in `getWinner`.
+- We can mock the function out so it always returns player 1.
+
+```js
+utils.getWinner = (p1, p2) => p1;
+```
+
+- This makes our test _deterministic_.
+- We know that `thumbWar` will operate normally considering our mock for `getWinner`.
+- An important part of mocking is that we clean up after ourselves so that we don't impact other tests that may not want to mock, or do so in a different way.
+
+```js
+const originalGetWinner = utils.getWinner;
+//...
+// cleanup
+utils.getWinner = originalGetWinner;
+```
+
+- This is called _monkey patching_ - we are taking the utils modules and overriding the `getWinner` property so we can make this call deterministic for our tests, and then we are cleaning up after ourselves so that other tests that may want to use this module can do so in its unmodified state.
+
+See the final file: [monkey-patching.js](./03-js-mocking-fundamentals/src/no-framework/monkey-patching.js).
+
+### 4.2. Ensure Functions are Called Correctly with JavaScript Mocks
