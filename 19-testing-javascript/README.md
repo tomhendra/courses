@@ -32,6 +32,8 @@
   - [4.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn](#43-restore-the-original-implementation-of-a-mocked-javascript-function-with-jestspyon)
   - [4.4. Mock a JavaScript module in a test](#44-mock-a-javascript-module-in-a-test)
   - [4.5. Make a shared JavaScript mock module](#45-make-a-shared-javascript-mock-module)
+- [5. Configure Jest for Testing JavaScript Applications](#5-configure-jest-for-testing-javascript-applications)
+  - [5.1. Install and Run Jest](#51-install-and-run-jest)
 
 ## 1. Introduction
 
@@ -88,7 +90,7 @@ expect(result).toBe(expected);
 
 ### 2.3. Encapsulate and Isolate Tests by building a JavaScript Testing Framework
 
-- One of the limitations of the way that [this test is written](lessons/02-build-a-javascript-assertion-library/index.js) is that as soon as an assertion experiences an error, the other tests are not run.
+- One of the limitations of the way that [this test is written](./01-testing-fundamentals/lessons/02-build-a-javascript-assertion-library/index.js) is that as soon as an assertion experiences an error, the other tests are not run.
 - And when run, the stack trace doesn't immediately indicate exactly where the error occurs: `sum` or `subtract`.
 - A testing framework's job is to help developers identify what's broken as quickly as possible.
 - It can do this by providing more helpful error messages, and running all of the tests.
@@ -270,12 +272,12 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ```json
 {
-  // ...
+  ...
   "scripts": {
     "build": "babel src --out-dir dist",
     "lint": "eslint ."
   }
-  // ...
+  ...
 }
 ```
 
@@ -285,12 +287,12 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ```json
 {
-  // ...
+  ...
   "scripts": {
     "build": "babel src --out-dir dist",
     "lint": "eslint --ignore-path. gitignore ."
   }
-  // ...
+  ...
 }
 ```
 
@@ -303,13 +305,13 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ```json
 {
-  // ...
+  ...
   "scripts": {
     "build": "babel src --out-dir dist",
     "lint": "eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json)\""
   }
-  // ...
+  ...
 }
 ```
 
@@ -349,7 +351,7 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 {
   "editor.defaultFormatter": "esbenp.pretter-vscode",
   "editor.formatOnSave": true
-  // ...
+  ...
 }
 ```
 
@@ -361,12 +363,12 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ```json
 {
-  // ...
+  ...
   "rules": {
     "strict": ["error", "never"],
     "no-extra-semi": "off"
   }
-  // ...
+  ...
 }
 ```
 
@@ -376,7 +378,7 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ```json
 {
-  // ...
+  ...
   "extends": ["eslint:recommended", "eslint-config-prettier"]
   //...
 }
@@ -388,11 +390,11 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ```json
 {
-  // ...
+  ...
   "scripts": {
     "validate": "npm run lint && npm run build"
   }
-  // ...
+  ...
 }
 ```
 
@@ -401,13 +403,13 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ```json
 {
-  // ...
+  ...
   "scripts": {
-    // ...
+    ...
     "check-format": "prettier --ignore-path .gitignore --list-different \"**/*.+(js|json)\"",
     "validate": "npm run lint && npm run build"
   }
-  // ...
+  ...
 }
 ```
 
@@ -416,7 +418,7 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ```json
 {
-  // ...
+  ...
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
@@ -424,7 +426,7 @@ We could write a comprehensive suite of automated tests for our entire codebase 
     "check-format": "npm run prettier -- --list-different",
     "validate": "npm run check-format && npm run lint && npm run build"
   }
-  // ...
+  ...
 }
 ```
 
@@ -453,16 +455,16 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ```json
 {
-  // ...
+  ...
   "scripts": {
     "build": "babel src --extensions .js,.ts,.tsx --out-dir dist",
-    // ...
+    ...
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
     "check-types": "tsc",
-    // ...
+    ...
     "validate": "npm run check-types && npm run check-format && npm run lint && npm run build"
   }
-  // ...
+  ...
 }
 ```
 
@@ -471,10 +473,7 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ```json
 {
-  "presets": [
-    // ...
-    "@babel/preset-typescript"
-  ]
+  "presets": [..."@babel/preset-typescript"]
 }
 ```
 
@@ -488,20 +487,20 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 ```json
 {
   "scripts": {
-    // ...
+    ...
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx ."
-    // ...
+    ...
   }
-  // ...
+  ...
 }
 ```
 
 - To configure ESLint to parse TypeScript files, we need to edit the `.eslintrc` file.
 - Since we are running ESLint across other files apart from TypeScript, we want to keep our original config, and so we can use ESLint's overrides configuration property.
 
-```json
+```js
 {
-  // ...
+  ...
   "overrides": [
     {
       "files": "**/*.+(ts|tsx)",
@@ -581,12 +580,12 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ```json
 {
-  // ...
+  ...
   "scripts": {
-    // ...
+    ...
     "validate": "npm-run-all --parallel check-types check-format lint build"
   }
-  // ...
+  ...
 }
 ```
 
@@ -641,7 +640,7 @@ See the final file: [monkey-patching.js](./03-js-mocking-fundamentals/src/no-fra
 
 ```js
 utils.getWinner = jest.fn((p1, p2) => p1);
-// ...
+...
 expect(utils.getWinner).toHaveBeenNthCalledWith(
   1,
   "Kent C. Dodds",
@@ -654,7 +653,7 @@ expect(utils.getWinner).toHaveBeenNthCalledWith(
 - We could improve things by making assertions about how the function is called.
 
 ```js
-// ...
+...
 expect(utils.getWinner).toHaveBeenCalledTimes(2);
 expect(utils.getWinner).toHaveBeenNthCalledWith("Kent C. Dodds", "Ken Wheeler");
 expect(utils.getWinner).toHaveBeenNthCalledWith(
@@ -667,7 +666,7 @@ expect(utils.getWinner).toHaveBeenNthCalledWith(
   "Kent C. Dodds",
   "Ken Wheeler"
 );
-// ...
+...
 ```
 
 - But we can improve things even further by inspecting what `utils.getWinner` actually is.
@@ -676,7 +675,7 @@ expect(utils.getWinner).toHaveBeenNthCalledWith(
 - We can inspect with `console.log(utils.getWinner.mock.calls)` property and use what it holds in our test, which covers us for all of these previous assertions.
 
 ```js
-// ...
+...
 expect(utils.getWinner.mock.calls).toEqual([
   ["Kent C. Dodds", "Ken Wheeler"],
   ["Kent C. Dodds", "Ken Wheeler"],
@@ -722,35 +721,35 @@ function fn(impl) {
 - Jest exposes another utility to help with this called `spyOn`.
 
 ```js
-// ...
+...
 jest.spyOn(utils, "getWinner");
-// ...
+...
 ```
 
 - We pass it the utils as the object, and `getWinner` as the method.
 - We no longer need to keep an eye on `getWinner` and can use the restore method instead.
 
 ```js
-// ...
+...
 // cleanup
 // utils.getWinner = originalGetWinner;
 utils.getWinner.mockRestore();
-// ...
+...
 ```
 
 - We have a specific implementation that we want to use for our mock function.
 - Mock functions have an additional method on them called `mockImplementation` to which we can pass our mock implementation.
 
 ```js
-// ...
+...
 utils.getWinner.mockImplementation((p1, p2) => p1);
-// ...
+...
 ```
 
 - We could implement this ourselves as follows:
 
 ```js
-/// ...
+/...
 function spyOn(obj, prop) {
   const originalValue = obj[prop];
   obj[prop] = fn();
@@ -758,7 +757,7 @@ function spyOn(obj, prop) {
 }
 spyOn(utils, "getWinner");
 utils.getWinner.mockImplementation((p1, p2) => p1);
-// ...
+...
 // cleanup
 utils.getWinner.mockRestore();
 ```
@@ -837,11 +836,53 @@ module.exports = {
 - Then we can remove the second argument from `jest.mock` and Jest will automatically pick up the mock file we created.
 
 ```js
-// ...
+...
 jest.mock("../utils");
-// ...
+...
 ```
 
 - We could implement this ourselves as shown in [external-mock-module.js](./03-js-mocking-fundamentals/no-framework/external-mock-module.js) and [utils.js](19-testing-javascript/03-js-mocking-fundamentals/src/__no-framework-mocks__/utils.js).
 - Again this isn't exactly what Jest is doing since it has total control over the modules system.
 - So when our code requires the utils module, whether that be in our test file or our implementation file, Jest will provide the proper mock for it.
+
+## 5. Configure Jest for Testing JavaScript Applications
+
+Jest is a fully featured testing framework with a developer experience that is second to none. It’s remarkably simple and flexible at the same time. For simple use cases, you often don’t need to configure anything, install and enjoy the built-in coverage and watch mode support.
+
+In a real-world application though, you’ll often have needs specific to your application, especially when testing browser-based applications. You'll need to handle Webpack loaders, dynamic imports, and custom module resolution which Node.js does not support.
+
+In this course we’ll go over ways you can optimize your Jest configuration to make testing real-world JavaScript applications a delight. We’ll cover what’s already been mentioned in addition to Babel support, code coverage, how to make watch mode even more helpful, and how to run test suites with entirely different configurations.
+
+### 5.1. Install and Run Jest
+
+- To add Jest to an existing project: `npm install --save dev jest`.
+- Now we can add a test script to our `package.json`.
+
+```json
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
+
+- We can create a directory in src `__tests__` and a `example.js` file within.
+
+```js
+test("it works", () => {});
+```
+
+- We can then run `npm run test` or `npm test` or `npm t` to run our tests.
+- There is no configuration required for this to work with Jest.
+- We can also name our files `example.test.js` which Jest will pick up automatically.
+- But Kent prefers the separation of tests using the `__tests__` directory, but he does locate the directory close to the file that's being tested.
+- Note that `travis.yml` triggers the `setup` script, which in turn runs `validate`. We want to include testing in our `validate` script.
+
+```json
+{
+  "scripts": {
+    "test": "jest",
+    "validate": "npm run lint && npm run test && npm run build"
+  }
+}
+```
