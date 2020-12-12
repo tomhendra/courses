@@ -37,6 +37,7 @@
   - [5.2. Compile Modules with Babel in Jest Tests](#52-compile-modules-with-babel-in-jest-tests)
   - [5.3. Configure Jest’s Test Environment for Testing Node or Browser Code](#53-configure-jests-test-environment-for-testing-node-or-browser-code)
   - [5.4. Support Importing CSS files with Jest’s moduleNameMapper](#54-support-importing-css-files-with-jests-modulenamemapper)
+  - [5.5. Support using Webpack CSS Modules with Jest](#55-support-using-webpack-css-modules-with-jest)
 
 ## 1. Introduction
 
@@ -982,3 +983,47 @@ module.exports = {
 - This method is fine for us as it is pretty uncommon to test CSS anyway, and if we did then visual regression testing would be a better fit.
 - The reason that this works in our application is because we have webpack configured to handle CSS files with the CSS-loader and the style-loader.
 - Webpack is managing this for our application and we simply needed to make Jest manage the same thing for our test.
+
+### 5.5. Support using Webpack CSS Modules with Jest
+
+- To take things a step further we can get the `debug` method from the `render` call in `auto-scaling-text.js`.
+
+```js
+test("renders", () => {
+  const { debug } = render(<AutoScalingText />);
+  debug();
+});
+```
+
+- When we run `npm t` this will output the rendered DOM nodes to the terminal.
+
+```html
+<body>
+  <div>
+    <div data-testid="total" style="transform: scale(1,1);" />
+  </div>
+</body>
+```
+
+- Comparing the output to the the actual component, `ref={nodeRef}` is expectedly missing since it would not get output to the DOM.
+- But there is one thing missing that is expected and that is `className={styles.autoScalingText}`.
+- This is not being output because `styles` is getting mapped to `style-mock.js` which is an empty object.
+- If we had some logic in the className being applied it would be nice to have this available to be tested.
+- It would be nice if we could see the className output even though Webpack will replace it with a generated className at build time.
+- We can install a util to handle this: `npm i --save-dev identity-obj-proxy` - and add to our `jest.config.js`:
+
+```js
+module.exports = {
+  testEnvironment: "jest-environment-jsdom",
+  moduleNameMapper: {
+    "\\.module\\.css$": "identity-obj-proxy",
+    "\\.css$": require.resolve("./test/style-mock.js"),
+  },
+};
+```
+
+- This tells Jest when we find modules that end in `.module.css` to use `identity-obj-proxy` as the mock module for that particular dependency.
+- `identity-obj-proxy` will return a string for the path of the particular module that was accessed.
+- If we run `npm t` again we will see the output contains `class="autoScalingText"`.
+- Even if we are not loading the styles into JS DOM we cna at least make assertions on the className that's being applied for our CSS modules.
+- Note that order does matter, in that the `.module.css` files would match first with regular `.css` files using our empty object file mock.
