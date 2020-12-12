@@ -35,6 +35,8 @@
 - [5. Configure Jest for Testing JavaScript Applications](#5-configure-jest-for-testing-javascript-applications)
   - [5.1. Install and Run Jest](#51-install-and-run-jest)
   - [5.2. Compile Modules with Babel in Jest Tests](#52-compile-modules-with-babel-in-jest-tests)
+  - [5.3. Configure Jest’s Test Environment for Testing Node or Browser Code](#53-configure-jests-test-environment-for-testing-node-or-browser-code)
+  - [5.4. Support Importing CSS files with Jest’s moduleNameMapper](#54-support-importing-css-files-with-jests-modulenamemapper)
 
 ## 1. Introduction
 
@@ -921,3 +923,24 @@ module.exports = {
 ```
 
 - This is one of the really cool things about jest, that it allows you to get a really long way before you have to start worrying about configuring this framework.
+
+### 5.3. Configure Jest’s Test Environment for Testing Node or Browser Code
+
+- Jest simulates the browser in Node using something called JS DOM for free.
+- We can prove this with `console.log(window)` and running `npm t`.
+- The utils that we are testing can run in Node or browser because there is nothing that relies specifically on the browser.
+- So we can perform our tests in the Node environment to save ourselves a little time in the process because there's a little performance hit to set up JS DOM.
+- If we run `npm t -- --env=node` than our tests will run in the Node env and we'll get an error on `console.log(window)` becuase `window` doesn't exist.
+- To Configure this so we don't have to pass the flag every time we can create a `jest.config.js` file:
+
+```js
+module.exports = {
+  testEnvironment: "jest-environment-node",
+};
+```
+
+- Now, if we run `npm t`, that configuration will be read automatically, and jest doesn't bother setting up jsdom for our test.
+- If we want to be explicit about including `jsdom`, then we can replace node with `jsdom`.
+- Kent likes to be explicit in particular for this project since it relies on browser APIs, and it is good to make sure that our tests are as close to reality as possible by simulating a global browser environment.
+
+### 5.4. Support Importing CSS files with Jest’s moduleNameMapper
