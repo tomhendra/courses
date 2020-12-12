@@ -892,25 +892,25 @@ test("it works", () => {});
 
 ### 5.2. Compile Modules with Babel in Jest Tests
 
-- To test something more meaningful we can turn our attention to the [utils.js](19-testing-javascript/04-configure-jest/src/shared/utils.js) file which contains the `getFormattedValue` function.
+- To test something more meaningful we can look at the [utils.js](19-testing-javascript/04-configure-jest/src/shared/utils.js) file which contains the `getFormattedValue` function.
 - We can create a `__test__` directory nearby containing a `utils.js` file to match what we want to test.
-- However the test will fail with `SyntaxError: Cannot use import statement outside a module`.
+- But the test will fail with `SyntaxError: Cannot use import statement outside a module`.
 - The issue is that Jest runs in Node but Node does not support import statements.
-- What's happening in our app is that we are compiling our import statements using Webpack.
-- Webpack understands the import statements by default.
-- We have Webpack configured further with the Babel Loader, so it'll compile everything else that isn't supported by the browsers that we don't support.
-- The trick here is that in our Babel RC, we're configuring `@babel/preset-env` to not compile the modules so that Webpack can manage those.
-- Jest is actually automatically picking up this Babel configuration and applying it to our test code. However, because we have this configured to not compile the modules, that's where we're having the problem.
-- If we remove that configuration and then try to run `npm t` again, we're actually going to get things working, but now we're not going to get the benefits of tree shaking with Webpack. We want to have our cake and eat it too here.
-- Instead, what we're going to do is `isTest`.
-- Then it'll be basically the same as the, "Is prod process ENV node ENV equals test."
+- In our app we are compiling import statements using Webpack, which Webpack understands by default.
+- We have configured Webpack further with Babel Loader, so it'll compile everything else that isn't supported by the browsers that we don't support.
+- The trick here is that in our Babel RC, we've configured `@babel/preset-env` to not compile modules so that Webpack can manage them.
+- Jest is automatically picking up this Babel configuration and applying it to our test code.
+- However, because we have Babel configured to not compile modules, it is causing our problem.
+- If we remove that configuration and then try to run `npm t` again, it wil work, but we're not going to get the benefits of tree shaking with Webpack.
+- We want to have our cake and eat it too.
+- Instead we're going to use `isTest` to check the environment for `test`.
 
 ```js
 const isTest = String(process.env.NODE_ENV) === "test";
 ```
 
-- We're in a test environment if the node `ENV` equals `test` and jest sets that for us automatically.
-- If we are in test, then we want to compile the modules to commonjs, so it works in node.
+- We're in a test environment if the node `ENV` equals `test` which Jest sets for us automatically.
+- If we are in `test`, then we want to compile the modules to commonjs, so it works in node.
 - Otherwise, we won't compile it at all and Webpack will take over.
 
 ```js
@@ -944,3 +944,37 @@ module.exports = {
 - Kent likes to be explicit in particular for this project since it relies on browser APIs, and it is good to make sure that our tests are as close to reality as possible by simulating a global browser environment.
 
 ### 5.4. Support Importing CSS files with Jest’s moduleNameMapper
+
+- We can create a new test file `auto-scaling0text.js`:
+
+```js
+import React from "react";
+import { render } from "@testing-library/react";
+import AutoScalingText from "../auto-scaling-text";
+
+test("renders", () => {
+  render(<AutoScalingText />);
+});
+```
+
+- We need to `npm i @testing-library/react` as a dev dependency.
+- When we run `npm t` however the test fails.
+- Jest tells us there is an unexpected `.` and points to `import styles from './auto-scaling-text.module.css'` and specifically the CSS class `.auto-scaling-text`.
+- What's causing the syntax error is that Jest is trying to require this file like it is a commonJS module, but it is a CSS file.
+- To solve this we will use Jest’s moduleNameMapper, so that we can map modules that end with `.css` to a different mocked version of the module so it can be stubbed out and we can require the file in our tests.
+- We will create a new file `style-mock.js` in a `test` directory in the root which exports an empty object.
+
+```js
+module.exports = {};
+```
+
+- And in our `jest.config.js` file we can configure moduleNameMapper.
+
+```js
+module.exports = {
+  testEnvironment: "jest-environment-jsdom",
+  moduleNameMapper: {
+    "\\.css$": require.resolve("./test/style-mock.js"),
+  },
+};
+```
