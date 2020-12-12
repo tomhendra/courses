@@ -978,3 +978,7 @@ module.exports = {
   },
 };
 ```
+
+- This method is fine for us as it is pretty uncommon to test CSS anyway, and if we did then visual regression testing would be a better fit.
+- The reason that this works in our application is because we have webpack configured to handle CSS files with the CSS-loader and the style-loader.
+- Webpack is managing this for our application and we simply needed to make Jest manage the same thing for our test.
