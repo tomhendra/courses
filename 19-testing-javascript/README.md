@@ -38,6 +38,7 @@
   - [5.3. Configure Jest’s Test Environment for Testing Node or Browser Code](#53-configure-jests-test-environment-for-testing-node-or-browser-code)
   - [5.4. Support Importing CSS files with Jest’s moduleNameMapper](#54-support-importing-css-files-with-jests-modulenamemapper)
   - [5.5. Support using Webpack CSS Modules with Jest](#55-support-using-webpack-css-modules-with-jest)
+  - [5.6. Generate a Serializable Value with Jest Snapshots](#56-generate-a-serializable-value-with-jest-snapshots)
 
 ## 1. Introduction
 
@@ -1027,3 +1028,5 @@ module.exports = {
 - If we run `npm t` again we will see the output contains `class="autoScalingText"`.
 - Even if we are not loading the styles into JS DOM we cna at least make assertions on the className that's being applied for our CSS modules.
 - Note that order does matter, in that the `.module.css` files would match first with regular `.css` files using our empty object file mock.
+
+### 5.6. Generate a Serializable Value with Jest Snapshots

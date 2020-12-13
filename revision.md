@@ -18,6 +18,7 @@
 | [JavaScript: The Recent Parts](15-fem-professional/3-javascript-the-recent-parts)                                        | --:-- | 02/11/20 | 07/01/21 |
 | [Functional-Light JavaScript, v3](15-fem-professional/5-functional-light-javascript-v3)                                  | 03:30 | 11/11/20 | 11/01/21 |
 | [JavaScript30](18-javascript30)                                                                                          | --:-- | 10/11/20 | 12/01/21 |
+| [Testing JavaScript](19-testing-javascript)                                                                              | --:-- | --/--/-- | --/--/-- |
 | **Computer Science**                                                                                                     |       |          |          |
 | [Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)                              | 02:00 | 23/11/20 | 15/12/20 |
 | [JavaScript Algorithms and Data Structures Masterclass](3-algorithms-and-data-structures)                                | --:-- | --/--/-- | 17/12/20 |
@@ -29,6 +30,7 @@
 | [SVG Essentials & Animation, v2](16-fem-design-to-code/3-svg-essentials-and-animation-v2)                                | --:-- | --/--/-- | --/--/-- |
 | [Creative Coding Club: GSAP 3: Express](17-ccc-gsap-3/1-express)                                                         | --:-- | --/--/-- | --/--/-- |
 | **React**                                                                                                                |       |          |          |
-| [Complete Intro to React, v5](15-fem-professional/)                                                                      | --:-- | --/--/-- | --/--/-- |
+| [Complete Intro to React, v5](15-fem-professional)                                                                       | --:-- | --/--/-- | --/--/-- |
+| [Epic React](20-epic-react)                                                                                              | --:-- | --/--/-- | --/--/-- |
 | **Full Stack**                                                                                                           |       |          |          |
 | [Full Stack for Frontend v2](15-fem-professional/7-full-stack-for-front-end-engineers-v2)                                | --:-- | --/--/-- | --/--/-- |
