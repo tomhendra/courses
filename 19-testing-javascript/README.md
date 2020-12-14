@@ -40,6 +40,7 @@
   - [5.5. Support using Webpack CSS Modules with Jest](#55-support-using-webpack-css-modules-with-jest)
   - [5.6. Generate a Serializable Value with Jest Snapshots](#56-generate-a-serializable-value-with-jest-snapshots)
   - [5.7. Test an Emotion Styled UI with Custom Jest Snapshot Serializers](#57-test-an-emotion-styled-ui-with-custom-jest-snapshot-serializers)
+  - [5.8. Support Custom Module Resolution with Jest moduleDirectories](#58-support-custom-module-resolution-with-jest-moduledirectories)
 
 ## 1. Introduction
 
@@ -1246,3 +1247,46 @@ module.exports = {
 - Instead of the generated class name we have `.emotion-0` which indicates the first emotion class name in our snapshot.
 - We can run `npm t -- -u` to update our snapshot.
 - Now if we make a change to the emotion CSS we will see exactly what impact our change had on the snapshot.
+
+### 5.8. Support Custom Module Resolution with Jest moduleDirectories
+
+Webpack’s `resolve.modules` configuration is a great way to make common application utilities easily accessible throughout your application. We can emulate this same behaviour in Jest using the `moduleDirectories` configuration option.
+
+- Add a new test file for `__tests__/calculator.js`.
+
+```js
+import React from "react";
+import { render } from "@testing-library/react";
+import Calculator from "../calculator";
+
+test("renders", () => {
+  render(<Calculator />);
+});
+```
+
+- When we run `npm t` we get an error: ` Cannot find module 'calculator-display' from 'calculator.js'`.
+- The problem is that we have Webpack configured so that we can import anything that is in a `shared` directory as if it were a node module.
+
+```js
+// webpack.config.js
+...
+  resolve: {
+    modules: ['node_modules', path.join(__dirname, 'src'), 'shared'],
+  },
+...
+```
+
+- However this doesn't work in Node and Jest is basing its resolve algorithm based on how Node resolves modules.
+- We need to tell Jest how we want modules to be resolved.
+
+```js
+// jest.config.js
+const path = require('path');
+
+module.exports = {
+  testEnvironment: 'jest-environment-jsdom',
+  moduleDirectories: ['node_modules', path.join(__dirname, 'src'), 'shared'],
+  moduleNameMapper: { ... },
+  ...
+}
+```
