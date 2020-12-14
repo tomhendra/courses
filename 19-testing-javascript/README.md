@@ -41,6 +41,7 @@
   - [5.6. Generate a Serializable Value with Jest Snapshots](#56-generate-a-serializable-value-with-jest-snapshots)
   - [5.7. Test an Emotion Styled UI with Custom Jest Snapshot Serializers](#57-test-an-emotion-styled-ui-with-custom-jest-snapshot-serializers)
   - [5.8. Support Custom Module Resolution with Jest moduleDirectories](#58-support-custom-module-resolution-with-jest-moduledirectories)
+  - [5.9. Configure Jest to Run Setup for All Tests with Jest setupFilesAfterEnv](#59-configure-jest-to-run-setup-for-all-tests-with-jest-setupfilesafterenv)
 
 ## 1. Introduction
 
@@ -1290,3 +1291,73 @@ module.exports = {
   ...
 }
 ```
+
+### 5.9. Configure Jest to Run Setup for All Tests with Jest setupFilesAfterEnv
+
+Often you’ll have some setup that you want to run before your tests start. Let’s see how we can use the setupFilesAfterEnv configuration in Jest to take care of test boilerplate and establish a good testing environment for our tests.
+
+- We have updated the `calculator.js` test file to do something more useful.
+
+```js
+test("the clear button switches from AC to C when there is an entry", () => {
+  const { getByText } = render(<Calculator />);
+  const clearButton = getByText("AC");
+
+  fireEvent.click(getByText(/3/));
+  expect(clearButton.textContent).toBe("C");
+
+  fireEvent.click(clearButton);
+  expect(clearButton.textContent).toBe("AC");
+});
+```
+
+- If we break something in the source code our test will fail but the error message won't be very clear as to what is going on.
+- There is a code frame which explains a bit more, but it would be nice if we could make assert an assertion to say we want clearButton's text content to be some value.
+- Then our error message could be more explicit and say _you expected this button to have a textContent of..._
+- To accomplish this we can install an assertion library: `npm i --save-dev @testing-library/jest-dom`.
+- Now we can import to use in our test.
+
+```js
+import * as jestDOM from "@testing-library/jest-dom";
+```
+
+- This `jestDOM` object is just a bunch of `expect` extensions.
+- We can add these new assertions by using the `extend` utility.
+
+```js
+expect.extend(jestDOM);
+```
+
+- Now we can rewrite our test.
+
+```js
+test("the clear button switches from AC to C when there is an entry", () => {
+  const { getByText } = render(<Calculator />);
+  const clearButton = getByText("AC");
+
+  fireEvent.click(getByText(/3/));
+  expect(clearButton).toHaveTextContent("C");
+
+  fireEvent.click(clearButton);
+  expect(clearButton).toHaveTextContent("AC");
+});
+```
+
+- Now our test assertion is cleaner and the error message if we break the source code os clearer.
+- This is great but we don't want to repeat this boilerplate for every test.
+- So `jest-dome` exposes a module that we can import called `extend-expect` which will do `expect.extend(jestDOM);` for us so we can remove it.
+
+```js
+import * as jestDOM from "@testing-library/jest-dom/extend-expect";
+```
+
+- But it would be even better if we didn't need the import every time, but rather have it run before any of the test files are run.
+- We can do this with our `jest.config.js` file:
+
+```js
+setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+```
+
+- These are the files that Jest will run after it sets up the testing environment.
+- We can now remove the import `import * as jestDOM from '@testing-library/jest-dom/extend-expect` and our tests will continue to pass.
+- Now Jest will automatically import that file into all of our test files.
