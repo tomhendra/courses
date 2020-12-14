@@ -39,6 +39,7 @@
   - [5.4. Support Importing CSS files with Jest’s moduleNameMapper](#54-support-importing-css-files-with-jests-modulenamemapper)
   - [5.5. Support using Webpack CSS Modules with Jest](#55-support-using-webpack-css-modules-with-jest)
   - [5.6. Generate a Serializable Value with Jest Snapshots](#56-generate-a-serializable-value-with-jest-snapshots)
+  - [5.7. Test an Emotion Styled UI with Custom Jest Snapshot Serializers](#57-test-an-emotion-styled-ui-with-custom-jest-snapshot-serializers)
 
 ## 1. Introduction
 
@@ -1197,3 +1198,51 @@ test("renders", () => {
 
 - Jest will take a snapshot of the DOM node and serialize it into well formatted HTML.
 - Note that using inline snapshots requires prettier to be installed in the project because Jest is updating the code in the test file and it wants to make sure not to change more than it has to with regard to formatting.
+
+### 5.7. Test an Emotion Styled UI with Custom Jest Snapshot Serializers
+
+Part of the power of snapshots is the ability to provide custom serializers. Let’s check out how to use `@emotion/jest` to include our emotion CSS styles in our React component snapshots so we can be made aware of the impact of our CSS changes on our components.
+
+- Our inline snapshot currently has a generated class name: `css-lq9ahq-calculator-display--CalculatorDisplay`.
+
+```js
+test("renders", () => {
+  const { container } = render(<CalculatorDisplay value="0" />);
+  expect(container.firstChild).toMatchInlineSnapshot(`
+    <div
+      class="css-lq9ahq-calculator-display--CalculatorDisplay"
+    >
+      <div
+        class="autoScalingText"
+        data-testid="total"
+        style="transform: scale(1,1);"
+      >
+        0
+      </div>
+    </div>
+  `);
+});
+```
+
+- In our source code we are using the css prop from Emotion.
+- If we change anything in our source code the test would fail and the error would be unhelpful.
+- It would be nice if we could see that value in our snapshot rather than the generated class name, and get a more helpful snapshot error.
+- To assist we can `npm i --save-dev @emotion/jest` which is a snapshot serializer.
+- Now we need to configure Jest to use it.
+
+```js
+// jest.config.js
+module.exports = {
+  testEnvironment: "jest-environment-jsdom",
+  moduleNameMapper: {
+    "\\.module\\.css$": "identity-obj-proxy",
+    "\\.css$": require.resolve("./test/style-mock.js"),
+  },
+  snapshotSerializers: ["@emotion/jest/serializer"],
+};
+```
+
+- When we run `npm t` our test will fail as our snapshot is wildly different.
+- Instead of the generated class name we have `.emotion-0` which indicates the first emotion class name in our snapshot.
+- We can run `npm t -- -u` to update our snapshot.
+- Now if we make a change to the emotion CSS we will see exactly what impact our change had on the snapshot.
