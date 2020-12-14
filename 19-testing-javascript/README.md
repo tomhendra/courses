@@ -42,6 +42,7 @@
   - [5.7. Test an Emotion Styled UI with Custom Jest Snapshot Serializers](#57-test-an-emotion-styled-ui-with-custom-jest-snapshot-serializers)
   - [5.8. Support Custom Module Resolution with Jest moduleDirectories](#58-support-custom-module-resolution-with-jest-moduledirectories)
   - [5.9. Configure Jest to Run Setup for All Tests with Jest setupFilesAfterEnv](#59-configure-jest-to-run-setup-for-all-tests-with-jest-setupfilesafterenv)
+  - [5.10. Support a Test Utilities File with Jest moduleDirectories](#510-support-a-test-utilities-file-with-jest-moduledirectories)
 
 ## 1. Introduction
 
@@ -1361,3 +1362,213 @@ setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
 - These are the files that Jest will run after it sets up the testing environment.
 - We can now remove the import `import * as jestDOM from '@testing-library/jest-dom/extend-expect` and our tests will continue to pass.
 - Now Jest will automatically import that file into all of our test files.
+
+### 5.10. Support a Test Utilities File with Jest moduleDirectories
+
+Every large testbase has common utilities that make testing easier to accomplish. Whether that be a custom render function or a way to generate random data. Let’s see how we can make accessing these custom utilities throughout the tests easier using Jest’s moduleDirectories feature.
+
+- We now have a `ThemeProvider` in `app.js` and `calculator-display.js` now uses a styled div where the user can switch between light and dark modes.
+- However we need to adapt our tests as `calculator-display.js` is being rendered in isolation from the required `ThemeProvider`.
+- Our test is unaware of the theme, therefore the properties in it will be undefined and our snapshot will fail.
+- In the real world the component will be rendered within the `ThemeProvider` so our test needs to do the same.
+- We can import `ThemeProvider` and theme in our test and nest our component within the `ThemeProvider`.
+
+```js
+import {ThemeProvider} from 'emotion-theming'
+import {dark} from '../../themes'
+
+test('renders', () => {
+  const {container} = render(
+    <ThemeProvider theme={dark}>
+      <CalculatorDisplay value="0" />
+    </ThemeProvider>,
+  )
+  expect(container.firstChild).toMatchInlineSnapshot(
+    ...
+    )
+})
+```
+
+- This is great but if we wanted to use the `rerender` method to test with a different value, we'd have to render within the `ThemeProvider` again.
+- So what we can do instead is make a wrapper and pass it into the options object to the render method.
+
+```js
+test('renders', () => {
+  const {container} = render(<CalculatorDisplay value="0" />, {
+    wrapper: Wrapper,
+  })
+  expect(container.firstChild).toMatchInlineSnapshot(
+    ...
+    )
+})
+```
+
+- This abstraction is nice, but we don't want to have to write it for every test that uses `ThemeProvider`.
+- We don't want to think about `ThemeProvider` at all, and the same applies for a router or redux provider or and context provider.
+- We would like to be able to say to render component in the test environment how it is in the app and the `Wrapper` ca be responsible for rendering the component with whatever provider is required.
+- We could make our own customer render function which behaves pretty much the same as the Testing Library render function.
+
+```js
+function renderWithProviders(ui, options) {
+  return render(ui, {wrapper: Wrapper, ...options})
+}
+
+test('renders', () => {
+  const {container} = renderWithProviders(<CalculatorDisplay value="0" />)
+  expect(container.firstChild).toMatchInlineSnapshot(
+    ...
+    )
+})
+```
+
+- And what would be better still is if we could just change the `render` import to a custom one and use regular `render`.
+
+```js
+import {render as rtlRender} from '@testing-library/react'
+
+...
+
+function render(ui, options) {
+  return rtlRender(ui, {wrapper: Wrapper, ...options})
+}
+
+test('renders', () => {
+  const {container} = render(<CalculatorDisplay value="0" />)
+  expect(container.firstChild).toMatchInlineSnapshot(
+    ...
+    )
+})
+```
+
+- Now as for as the test is concerned this is just a regular render, and the function manages wrapping the providers for all of the app.
+- We can extract this somewhere else to make it reusable by creating a new file `test/calculator-test-utils.js`:
+
+```js
+import React from "react";
+import { render as rtlRender } from "@testing-library/react";
+import { ThemeProvider } from "emotion-theming";
+import { dark } from "../src/themes";
+import propTypes from "prop-types";
+
+function Wrapper({ children }) {
+  return <ThemeProvider theme={dark}>{children}</ThemeProvider>;
+}
+
+Wrapper.propTypes = {
+  children: propTypes.node,
+};
+
+function render(ui, options) {
+  return rtlRender(ui, { wrapper: Wrapper, ...options });
+}
+
+export { render };
+export * from "@testing-library/react";
+```
+
+- Now everyone can use `test/calculator-test-utils.js` just like they would use `@testing-library/react` except with a render function that automatically wraps all of the providers that our app requires.
+- We can now import our custom `render` function and remove unused imports so our test file now looks like this:
+
+```js
+import React from 'react'
+import {render} from '../../../test/calculator-test-utils'
+import CalculatorDisplay from '../calculator-display'
+
+test('renders', () => {
+  const {container} = render(<CalculatorDisplay value="0" />)
+  expect(container.firstChild).toMatchInlineSnapshot(...)
+})
+```
+
+- And all of our test pass!
+- We can now use our utils in place of `@testing-library/react` except... we don't want all those `../../../`.
+- We want to be able to import our custom function as if it were a Node module.
+- We can make a change in `jest.config.js` `moduleDirectories` to facilitate this:
+
+```js
+const path = require("path");
+
+module.exports = {
+  ...
+  moduleDirectories: [
+    "node_modules",
+    path.join(__dirname, "src"),
+    "shared",
+    path.join(__dirname, "test"),
+  ],
+  ...
+};
+```
+
+- We can now replace all instances in the codebase of `@testing-library/react` with `calculator-test-utils` and all works as expected.
+- To handle the ESLint warning about no unresolved imports from `eslint-plugin-import` there is a resolver specifically for Jest: `npm i --save-dev eslint-import-resolver-jest`.
+- And we can amend our `eslintrc.js` overrides to include the `__tests__` directories:
+
+```js
+const path = require('path')
+
+module.exports = {
+  ...
+  overrides: [
+    {
+      files: ['**/src/**'],
+      settings: {'import/resolver': 'webpack'},
+    },
+    {
+      files: ['**/__test__/**'],
+      settings: {
+        'import/resolver': {
+          jest: {
+            jestConfigFile: path.join(__dirname, './jest.config.js'),
+          },
+        },
+      },
+    },
+  ],
+}
+```
+
+- The import resolver for ESLint will now look up that configuration file, and see there is a config for moduleDirectories, and modules will be resolved the way that Jest resolves modules.
+- Another thing to do is to specify the test dir in paths & include in our `jsconfig.json` file.
+
+```json
+{s
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "*": ["src/*", "src/shared/*", "test/*"]
+    }
+  },
+  "include": ["src", "test/*"]
+}
+```
+
+- That will allow us to hit F12 to go right to the relative file in VSCode.
+- One last thing we can do is customize the render method further.
+- We are currently rendering the `ThemeProvider` and don't get to choose the theme to display.
+- We want to expose a nice API that we can pass options to.
+- We can move our Wrapper inside the custom render function, spread the rest of the options, and pluck off the theme.
+
+```js
+function render(ui, { theme = themes.dark, ...options }) {
+  function Wrapper({ children }) {
+    return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  }
+
+  Wrapper.propTypes = {
+    children: propTypes.node,
+  };
+  return rtlRender(ui, { wrapper: Wrapper, ...options });
+}
+```
+
+- In our test we can pass in the light theme as an option.
+
+```js
+test('renders', () => {
+  const {container} = render(<CalculatorDisplay value="0" />, {theme: light})
+  expect(container.firstChild).toMatchInlineSnapshot(...)
+})
+```
+
+- Now if we run `npm t` our snapshot fails as expected as we are now using the light theme.
