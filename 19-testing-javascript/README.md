@@ -52,6 +52,10 @@ In this short course, we’ll learn how testing frameworks and assertion librari
 
 ### 2.1. Throw an Error with a Simple Test in JavaScript
 
+In this lesson, we’ll get the most fundamental understanding of what an automated test is in JavaScript. A test is code that throws an error when the actual result of something does not match the expected output.
+
+Tests can get more complicated when you’re dealing with code that depends on some state to be set up first (like a component needs to be rendered to the document before you can fire browser events, or there needs to be users in the database). However, it is relatively easy to test pure functions (functions which will always return the same output for a given input and not change the state of the world around them).
+
 - An automated test in JavaScript is code that throws an error when things are unexpected.
 - The most fundamental test in JS looks like this.
 
@@ -72,6 +76,8 @@ if (result !== expected) {
 ```
 
 ### 2.2. Abstract Assertions into a JavaScript Assertion Library
+
+Let’s add a simple layer of abstraction in our simple test to make writing tests easier. The assertion library will help our test assertions read more like a phrase you might say which will help people understand our intentions better. It will also help us avoid unnecessary duplication.
 
 - The job of a testing framework is to make the error message as useful as possible so we can quickly identify what the problem is and fix it.
 - We can create a function to behave like an assertion library.
@@ -95,8 +101,11 @@ expect(result).toBe(expected);
 
 ### 2.3. Encapsulate and Isolate Tests by building a JavaScript Testing Framework
 
-- One of the limitations of the way that [this test is written](./01-testing-fundamentals/lessons/02-build-a-javascript-assertion-library/index.js) is that as soon as an assertion experiences an error, the other tests are not run.
-- And when run, the stack trace doesn't immediately indicate exactly where the error occurs: `sum` or `subtract`.
+One of the limitations of the way that [this test is written](./01-testing-fundamentals/lessons/02-build-a-javascript-assertion-library/index.js) is that as soon as one of these assertions experiences an error, the other tests are not run. It can really help developers identify what the problem is if they can see the results of all of the tests.
+
+Let’s create our own test function to allow us to encapsulate our automated tests, isolate them from other tests in the file, and ensure we run all the tests in the file with more helpful error messages.
+
+- When the test is run, the stack trace doesn't immediately indicate exactly where the error occurs: `sum` or `subtract`.
 - A testing framework's job is to help developers identify what's broken as quickly as possible.
 - It can do this by providing more helpful error messages, and running all of the tests.
 - We can write a function to handle this.
@@ -124,6 +133,10 @@ test("sum adds numbers", () => {
 ```
 
 ### 2.4. Support Async Tests with JavaScripts Promises through async await
+
+Our testing framework works great for our synchronous test. What if we had some asynchronous functions that we wanted to test? We could make our callback functions async, and then use the await keyword to wait for that to resolve, then we can make our assertion on the result and the expected.
+
+Let’s make our testing framework support promises so users can use async/await.
 
 - We can make our callback functions async and use the await keyword to handle asynchronous function tests.
 
@@ -157,8 +170,9 @@ If no error is thrown, then we'll continue on inside the try block. This will wo
 
 ### 2.5. Provide Testing Helper Functions as Globals in JavaScript
 
-- These testing utilities are pretty useful and we want to be able to use them throughout our application.
-- Most testing libraries make the utilities available globally for this purpose.
+These testing utilities that we built are pretty useful. We want to be able to use them throughout our application in every single one of our test files.
+
+Some testing frameworks provide their helpers as global variables. Let’s implement this functionality to make it easier to use our testing framework and assertion library. We can do this by exposing our test and expect functions on the global object available throughout the application.
 
 ```js
 // setup-globals.js
@@ -190,18 +204,21 @@ global.expect = expect;
 
 ### 2.6. Verify Custom JavaScript Tests with Jest
 
-- The testing framework we've written so far looks remarkably like Jest.
+Up to this point we’ve created all our own utilities. As it turns out, the utilities we’ve created mirror the utilities provided by Jest perfectly! Let’s install Jest and use it to run our test!
+
 - Rather than run `node --require ./setup-globals.js ./index.js` we can run `npx jest` and Jest will pick up the `jest.test.js` file and run the tests.
 - Jest shows us really helpful error messages and even a code frame for exactly where the error originates.
 - This is one of the things that makes Jest such an awesome tool, as the error messages are so clear.
 
 ## 3. Static Analysis Testing JavaScript Applications
 
-There are a tonne of ways your application can break. One of the most common sources of bugs is related to typos and incorrect types. Passing a string to a function that expects a number, or falling prey to a common typo in a logical statement are silly mistakes that should never be made, but this happens all the time.
+There are a ton of ways your application can break. One of the most common sources of bugs is related to typos and incorrect types. Passing a string to a function that expects a number, or falling prey to a common typo in a logical statement are silly mistakes that should never be made, but this happens all the time.
 
 We could write a comprehensive suite of automated tests for our entire codebase to make certain mistakes like this never happen, but that would likely be too much work and slow development down to be worth the benefit. Luckily for us, there are tools like ESLint, TypeScript, Prettier, and more which we can use to satisfy a whole category of testing with a great developer experience.
 
 ### 3.1. Lint JavaScript by Configuring and Running ESLint
+
+The static code analysis and linting tool ESLint is the de-facto standard for linting JavaScript projects. In this lesson we’ll see how to install, run, and configure it for your preferences.
 
 - To install ESLint run `npm install --dev-dependency eslint`.
 - If we run `npx eslint .` we will see an error stating that no eslint config has been found.
@@ -240,6 +257,8 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ### 3.2. Use the ESLint Extension for VSCode
 
+Whatever editor you use, chances are there’s probably some plugin or extension you can use to integrate ESLint and your editor to get a nice in-editor experience using ESLint so you don’t have to run the ESLint script to check your code and instead can identify issues as you’re writing and editing your code. Let’s take a look at what you can do with the ESLint Extension for VSCode.
+
 - The plugin improves our experience using ESLint.
 - We will see red underlines in our editor for all the places in which we are breaking our rules.
 - Warnings are highlighted with yellow underlines.
@@ -248,7 +267,8 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ### 3.3. Use pre-built ESLint Configuration using extends
 
-- ESLint has a lot of rules, and even some available from third party packages.
+ESLint has a TON of rules you can configure for your project. But who has time to do all that? This is why ESLint has an extends configuration which you can use to base your own configuration off of other configurations. Let’s add all of ESLint’s built-in recommended rules to our project and override just the ones we want to change.
+
 - There are recommended configurations which are a collection of predefined rules.
 - In order to use these rulesets we use the `extends` configuration.
 - ESLint ships with a default ruleset `eslint:recommended`.
@@ -272,6 +292,8 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 - We can also specify multiple rulesets, with the ones specified later overriding the previous.
 
 ### 3.4. Run ESLint with npm Scripts
+
+Let’s add an npm script called lint so we can run ESLint whenever we want with the proper command line flags.
 
 - We can add a lint script to our package.json so that we can run ESLint.
 
@@ -303,7 +325,8 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ### 3.5. Format Code by Installing and Running Prettier
 
-- Prettier is a tool that automatically formats our code.
+The code formatting tool prettier can help you avoid a lot of useless time spent formatting code and arguing about code formatting with your co-workers. It can also help you catch subtle issues with your code that you may not notice otherwise. In this lesson we’ll learn how to install and run prettier.
+
 - Running `npx prettier src/example.js` will output the formatted code to the console.
 - To update the file with the formatted changes we add the `write` flag: `npx prettier src/example.js --write`.
 - We can add a script to our package.json file with a glob to specify which files to format.
@@ -323,6 +346,9 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 - Note we also used the `--ignore-path` flag which is supported by Prettier too.
 
 ### 3.6. Configure Prettier
+
+1. Prettier is a pretty opinionated tool, but it does allow for some customization. In this lesson we’ll check out the prettier playground and see what options we want to enable in our project’s `.prettierrc` file.
+2. After adding in our custom configuration, we’ll create a `.prettierignore` file so that you can avoid formatting any files generated within the project such as node_modules or a build folder.
 
 - Prettier has a [playground](https://prettier.io/playground/) where we can play around with a bunch of settings.
 - We can copy the JSON config and paste into a `.prettierrc` file, for example:
@@ -349,7 +375,9 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ### 3.7. Use the Prettier Extension for VSCode
 
-- VSCode has a plugin for prettier but it needs to be configured within the VSCode settings.
+Running prettier manually is great, but it’d be even better if we could just run prettier anytime we save our file. Whatever editor you use, there’s likely a plugin or extension for it to integrate with prettier. Let’s try out the Prettier Extension for VSCode.
+
+- The plugin for prettier needs to be configured within the VSCode settings.
 - We need to specify the default formatter, and optionally configure to format on save.
 
 ```json
@@ -361,6 +389,8 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 ```
 
 ### 3.8. Disable Unnecessary ESLint Stylistic Rules with eslint-config-prettier
+
+Because prettier can automatically fix a lot of stylistic issues in our codebase, it’s not necessary to have eslint check for those and it can actually be kind of annoying if it does. So let’s see how we can use eslint-config-prettier to disable all rules that are made irrelevant thanks to prettier.
 
 - ESLint and Prettier are both great tools, but there is one situation when they can clash.
 - That is if there's an ESLint rule that prevents something like having an extra semicolon, but Prettier would automatically fix that for us anyway.
@@ -390,6 +420,8 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 ```
 
 ### 3.9. Validate All Files are Properly Formatted with Prettier
+
+You can’t force everyone on your project to use the prettier integration for their editor, so let’s add a validation script to verify that prettier has been run on all project files.
 
 - A helpful thing to have in projects is to have a script that validates that the project is in a good state.
 
@@ -439,8 +471,8 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ### 3.10. Avoid Common Errors by Installing and Configuring TypeScript
 
-- ESLint can check for a lot of things, but it’s not a great tool for checking the types of variables that flow through our application.
-- For this we need a tool like TypeScript.
+ESLint can check for a lot of things, but it’s not a great tool for checking the types of variables that flow through your application. For this you’ll need a type-checking tool like Flow or TypeScript. Let’s see how we can configure our project to work with TypeScript.
+
 - We use the TypeScript compiler - tsc - to verify that the types in our project are correct.
 - We want to configure TypeScript so we can be explicit about what we want it to do with a tsconfig.json file.
 
@@ -484,8 +516,8 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ### 3.11. Make ESLint Support TypeScript Files
 
-- ESLint doesn't support TypeScript out of the box, but fortunately it is easy to configure because of the [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) project.
-- There are also a lot of rules that we don’t need ESLint to bother checking because TypeScript will prevent those problems in the first place.
+ESLint does not have support for TypeScript out of the box, but luckily adding support for TypeScript is straightforward thanks to the [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) project. And now that we have TypeScript, there are a lot of rules that we don’t need ESLint to bother checking because TypeScript will prevent those problems in the first place! Let’s get these two tools integrated.
+
 - To get the two to integrate we need to run `npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser`.
 - To configure ESLint to run across TypeScript files we need to edit our lint script to include the `ts` & `tsx` file extensions by adding `--ext .js,.ts,.tsx`.
 
@@ -527,6 +559,8 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ### 3.12. Validate Code in a pre-commit git Hook with husky
 
+We have a few checks we’ll run in continuous integration when someone opens a pull request, but it’d be even better if we could run some of those checks before they even commit their code so they can fix it right away rather than waiting for CI to run. Let’s use husky’s precommit script to run our validation.
+
 - As handy as our validate script is it would be better if we could make sure that happens before anyone commits code.
 - Husky creates a hooks directory inside the git directory with a bunch of files to handle pre-commit checks.
 - To configure Husky we can create a `.huskyrc` file.
@@ -546,8 +580,8 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ### 3.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged
 
-- We can automatically format the files on commit and only check the relevant files with ESLint.
-- We can use `lint-staged` to run scripts on the files that are going to be committed as part of our pre-commit hook.
+Rather than failing when a developer has failed to format their files or run linting on all the files in the project on every commit, it would be even better to just automatically format the files on commit and only check the relevant files with eslint. Let’s use `lint-staged` to run scripts on the files that are going to be committed as part of our precommit hook.
+
 - Install with `npm install --save-dev lint-staged`.
 - We can create a config file `.lintstagedrc`:
 
@@ -577,6 +611,8 @@ We could write a comprehensive suite of automated tests for our entire codebase 
 
 ### 3.14. Run Multiple npm Scripts in Parallel with npm-run-all
 
+We use npm scripts a lot, and that validate script is a great way to bring everything together. But with the way these tools work, we can run them all at the same time and things will work just as well. This will speed up our script runtime a lot, so let’s use `npm-run-all` to make that happen.
+
 - Our validate script is really handy, but there is a lot going on and it takes a while.
 - It would be nice if we could run all these commands at the same time.
 - `npm-run-all` allows scripts to be run in parallel.
@@ -603,6 +639,10 @@ When running unit tests, you don’t want to actually make network requests or c
 There are some great libraries and abstractions for mocking your JavaScript modules during tests. The Jest testing framework has great mocking capabilities built-in for functions as well as entire modules. To really understand how things are working though, let’s implement some of these features ourselves.
 
 ### 4.1. Override Object Properties to Mock with Monkey-patching in JavaScript
+
+Mocking allows our tests to be deterministic and ensure that we will get the expected result every time.
+
+The most naïve approach to mocking in JavaScript is to override an object’s properties in the test. This is pretty simple and straightforward, but also fairly limited. In this lesson, we’ll monkey patch our `getWinner` function to always return the same winner every time the function is called. After the test is run, we’ll clean up the mock and assign the original function implementation back to `getWinner`.
 
 - We are using `getWinner` which we can imagine is a third party machine learning service that has a testing environment we don't control and is unreliable so we want to mock it out for tests.
 - We want to mock put this function so we don't have to run it in our tests.
@@ -635,6 +675,8 @@ utils.getWinner = originalGetWinner;
 See the final file: [monkey-patching.js](./03-js-mocking-fundamentals/src/no-framework/monkey-patching.js).
 
 ### 4.2. Ensure Functions are Called Correctly with JavaScript Mocks
+
+Often when writing JavaScript tests and mocking dependencies, you’ll want to verify that the function was called correctly. That requires keeping track of how often the function was called and what arguments it was called with. That way we can make assertions on how many times it was called and ensure it was called with the right arguments.
 
 - It would be nice if we could make some more assertions about how `getWinner` is called, to ensure that it is always being called with `player1` and `player2`, because we could actually break the implementation and our tests couldn't catch it.
 - For example if we remove `player2` in the call to `getWinner` in `thumb-war.js` our test will still pass even though the implementation is definitely wrong.
@@ -722,6 +764,8 @@ function fn(impl) {
 
 ### 4.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn
 
+With our current usage of the mock function, we have to manually keep track of the original implementation so we can clean up after ourselves to keep our tests idempotent. Let’s see how `jest.spyOn` can help us avoid the bookkeeping and simplify our situation.
+
 - Having to keep track of the original `getWinner` and restoring it at the end of our test is annoying.
 - Jest exposes another utility to help with this called `spyOn`.
 
@@ -768,6 +812,8 @@ utils.getWinner.mockRestore();
 ```
 
 ### 4.4. Mock a JavaScript module in a test
+
+So far we’re still basically monkey-patching the utils module which is fine, but could lead to problems in the future, especially if we want to mock a ESModule export which doesn’t allow this kind of monkey-patching on exports. Instead, let’s mock the entire module so when our test subject requires the file they get our mocked version instead.
 
 - What we are doing with `spyOn` is still a form of monkey patching and it works because the `thumbWar` module is using `utils.getWinner`.
 - It only works because we are using common JS, and in a ES modules situation monkey patching won't work.
@@ -828,7 +874,8 @@ delete require.cache[utilsPath];
 
 ### 4.5. Make a shared JavaScript mock module
 
-- Often with modules that we want to mock in one file we'll probably want top mock in multiple files.
+Often you’ll want to mock the same file throughout all the tests in your codebase. So let’s make a shared mock file in Jest's `__mocks__` directory which Jest can load for us automatically.
+
 - Jest enables this with a mocks directory.
 - We create a directory `__mocks__` and within it a file named as the module that we want to mock.
 
@@ -859,6 +906,8 @@ In a real-world application though, you’ll often have needs specific to your a
 In this course we’ll go over ways you can optimize your Jest configuration to make testing real-world JavaScript applications a delight. We’ll cover what’s already been mentioned in addition to Babel support, code coverage, how to make watch mode even more helpful, and how to run test suites with entirely different configurations.
 
 ### 5.1. Install and Run Jest
+
+We start in a small, but real-world application that’s built with webpack and React. We’ll go over installing the Jest testing framework locally to our project, adding an npm script to make it easy to run, and adding an example test file.
 
 - To add Jest to an existing project: `npm install --save dev jest`.
 - Now we can add a test script to our `package.json`.
@@ -894,6 +943,8 @@ test("it works", () => {});
 
 ### 5.2. Compile Modules with Babel in Jest Tests
 
+Jest automatically loads and applies our babel configuration. However, because our project takes advantage of tree shaking with Webpack, our Babel configuration disables compiling modules. For Jest to work on our code, we need to make sure that our Babel configuration compiles modules during our tests. We’ll use the `NODE_ENV` environment variable to generate the proper configuration.
+
 - To test something more meaningful we can look at the [utils.js](19-testing-javascript/04-configure-jest/src/shared/utils.js) file which contains the `getFormattedValue` function.
 - We can create a `__test__` directory nearby containing a `utils.js` file to match what we want to test.
 - But the test will fail with `SyntaxError: Cannot use import statement outside a module`.
@@ -928,6 +979,8 @@ module.exports = {
 
 ### 5.3. Configure Jest’s Test Environment for Testing Node or Browser Code
 
+In our application we’re testing code that should run in the browser, but Jest is intended to test JavaScript that runs in the browser or in node. Let’s create a custom Jest config file so we can customize the test environment.
+
 - Jest simulates the browser in Node using something called JS DOM for free.
 - We can prove this with `console.log(window)` and running `npm t`.
 - The utils that we are testing can run in Node or browser because there is nothing that relies specifically on the browser.
@@ -946,6 +999,8 @@ module.exports = {
 - Kent likes to be explicit in particular for this project since it relies on browser APIs, and it is good to make sure that our tests are as close to reality as possible by simulating a global browser environment.
 
 ### 5.4. Support Importing CSS files with Jest’s moduleNameMapper
+
+In most real-world applications using webpack, you’re likely using a few loaders. In this lesson we’ll see how to make Jest load our modules properly with a moduleNameMapper so we can test our code that makes use of these loaders.
 
 - We can create a new test file `auto-scaling0text.js`:
 
@@ -986,6 +1041,8 @@ module.exports = {
 - Webpack is managing this for our application and we simply needed to make Jest manage the same thing for our test.
 
 ### 5.5. Support using Webpack CSS Modules with Jest
+
+If you’re using CSS modules with Webpack, then we can improve our moduleNameMapper to improve our experience and capabilities testing our components by including the css module property name in our tests using `identity-obj-proxy`.
 
 - To take things a step further we can get the `debug` method from the `render` call in `auto-scaling-text.js`.
 
