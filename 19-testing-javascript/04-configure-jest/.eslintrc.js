@@ -11,7 +11,12 @@ module.exports = {
     // https://github.com/benmosher/eslint-plugin-import/issues/1446
     'import/named': 'off',
   },
-  settings: {'import/resolver': 'node'},
+  settings: {
+    'import/resolver': 'node',
+    jest: {
+      version: 26,
+    },
+  },
   overrides: [
     {
       files: ['**/src/**'],
