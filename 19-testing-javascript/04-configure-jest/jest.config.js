@@ -8,4 +8,5 @@ module.exports = {
     '\\.css$': require.resolve('./test/style-mock.js'),
   },
   snapshotSerializers: ['@emotion/jest/serializer'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
 }
