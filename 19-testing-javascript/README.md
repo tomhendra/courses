@@ -1087,3 +1087,113 @@ module.exports = {
 - Note that order does matter, in that the `.module.css` files would match first with regular `.css` files using our empty object file mock.
 
 ### 5.6. Generate a Serializable Value with Jest Snapshots
+
+Snapshot testing is a way to simplify writing and maintaining assertions. As noted in the Jest documentation: “The snapshot artifact should be committed alongside code changes, and reviewed as part of your code review process. Jest uses pretty-format to make snapshots human-readable during code review. On subsequent test runs Jest will simply compare the rendered output with the previous snapshot. If they match, the test will pass. If they don't match, either the test runner found a bug in your code that should be fixed, or the implementation has changed and the snapshot needs to be updated.” Let’s see how these work and in what situations we can and should use them.
+
+This lesson uses a simple demo before hopping into the application code testing DOM nodes. This example code isn't available.
+
+- The example uses an array of Superheroes with a function that filters them based on whether they have the ability to fly.
+
+```js
+const superheroes = [
+  { name: "Dynaguy", powers: ["disintegration ray", "fly"] },
+  { name: "Apogee", powers: ["gravity control", "fly"] },
+  { name: "Blazestone", powers: ["fire control", "pyrotechnic discharges"] },
+  { name: "Frozone", powers: ["freeze water"] },
+  { name: "Mr. Incredible", powers: ["physical strength"] },
+  { name: "Elastic Girl", powers: ["physical strength"] },
+  { name: "Violet", powers: ["invisibility", "force fields"] },
+  { name: "Dash", powers: ["speed"] },
+  // { name: "Jack-Jack", powers: ["shapeshifting", "fly"] },
+];
+
+export function getFlyingSuperheroes() {
+  return superheroes.filter((hero) => {
+    return hero.powers.includes("fly");
+  });
+}
+```
+
+- If we want to test this function we'd write something like this:
+
+```js
+import { getFlyingSuperheroes } from "../superheroes";
+
+test("returns superheroes that can fly", () => {
+  const flyingHeroes = getFlyingSuperheroes();
+  expect(flyingHeroes).toEqual([
+    { name: "Dynaguy", powers: ["disintegration ray", "fly"] },
+    { name: "Apogee", powers: ["gravity control", "fly"] },
+  ]);
+});
+```
+
+- To get the expected output, we could either manually check or `console.log(flyingHeroes)` and run our test.
+- But later if Jack-Jack is added to our list then the test would fail.
+- So we would need to repeat the `console.log(flyingHeroes)` and add Jack-Jack to our test.
+- But this manual process of console.logging and copying the output to make the assertion is arduous.
+- Snapshots do all of this work for us.
+
+```js
+test("returns superheroes that can fly", () => {
+  const flyingHeroes = getFlyingSuperheroes();
+  expect(flyingHeroes).toMatchSnapshot();
+});
+```
+
+- When we run our test, Jest will create a snapshot file ending in `.snap` in a `__snapshots__` directory.
+- Jest takes the object that we pass to the assertion, and serializes it into a string which it saves into the file.
+- The string output is basically the same as our copy / paste from the console.log except we didn't have to do this manually.
+- When we add Jack-Jack and rerun our test, the fail message states that the snapshot doesn't match.
+- We can update our snapshots with `npm test -- -u` which runs `jest -u`.
+- A snapshot lives in two locations: the assertion and the value that Jest creates in the file. So we want to commit the snapshot file too.
+- One of the problems with snapshots is that they can get very long, and also being in a separate file is harder to review.
+- If we change `toMatchSnapshot` to `toMatchInlineSnapshot` Jest will insert the snapshot inside our test code when we run our test.
+
+```js
+test("returns superheroes that can fly", () => {
+  const flyingHeroes = getFlyingSuperheroes();
+  expect(flyingHeroes).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        name: "Dynaguy",
+        powers: Array [
+          "disintegration ray",
+          "fly"
+        ]
+      },
+      Object {
+        name: "Apogee",
+        powers: Array [
+          "gravity control",
+          "fly"
+        ],
+      },
+    ],
+  }`
+);
+```
+
+- The other good thing about the snapshot inline is that we don't forget about it, and we are naturally encourages to keep it smaller.
+- The test will fail because of the obsolete snapshot, which Jest will clean up automatically for us when we run `npm t -- -u`.
+
+Let's see snapshots apply to DOM nodes in our app.
+
+- We can create a `calculator-display.js` file in our `__test__` directory for our test.
+- `container` is a DOM node, and we can look at `console.log(container.innerHTML)`.
+- We could take a snapshot of this but the output is a single line, so a change to anything on the DOM node would invalidate the entire snapshot.
+- Jest has built-in capability to snapshot and serialize DOM nodes.
+
+```js
+import React from "react";
+import { render } from "@testing-library/react";
+import CalculatorDisplay from "../calculator-display";
+
+test("renders", () => {
+  const { container } = render(<CalculatorDisplay value="0" />);
+  expect(container.firstChild).toMatchInlineSnapshot();
+});
+```
+
+- Jest will take a snapshot of the DOM node and serialize it into well formatted HTML.
+- Note that using inline snapshots requires prettier to be installed in the project because Jest is updating the code in the test file and it wants to make sure not to change more than it has to with regard to formatting.
