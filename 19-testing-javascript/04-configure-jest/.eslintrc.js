@@ -25,7 +25,7 @@ module.exports = {
       settings: {
         'import/resolver': {
           jest: {
-            jestConfigFile: path.join(__dirname, './jest.config.js'),
+            jestConfigFile: path.join(__dirname, './test/jest-common.js'),
           },
         },
       },

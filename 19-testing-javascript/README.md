@@ -50,6 +50,7 @@
   - [5.15. Set a Code Coverage Threshold in Jest to Maintain Code Coverage Levels](#515-set-a-code-coverage-threshold-in-jest-to-maintain-code-coverage-levels)
   - [5.16. Report Jest Test Coverage to Codecov through TravisCI](#516-report-jest-test-coverage-to-codecov-through-travisci)
   - [5.17. Run Jest Watch Mode by Default Locally with is-ci-cli](#517-run-jest-watch-mode-by-default-locally-with-is-ci-cli)
+  - [5.18. Run Tests with a Different Configuration using Jest’s --config Flag and testMatch Option](#518-run-tests-with-a-different-configuration-using-jests---config-flag-and-testmatch-option)
 
 ## 1. Introduction
 
@@ -1736,3 +1737,137 @@ In CI, we don’t want to start the tests in watch mode, but locally we normally
 - We can verify this is working by manually setting the CI environment variable to 1: `CI=1 npm t` and see the coverage output.
 - If we want to run `test:coverage` explicitly we can.
 - It is a lot nicer to be able to run `npm t` and the script that is relevant to the environment we are running in.
+
+### 5.18. Run Tests with a Different Configuration using Jest’s --config Flag and testMatch Option
+
+Sometimes you may have situations where configuration needs to be different for certain tests. In this lesson we’ll take a look at how we could create a custom configuration for tests that are intended to run in a node environment.
+
+- If we want to run some of our code on the server-side we would want a test that only runs on the server-side with no JS DOM setup.
+- So we could create a `__server_tests__` directory and add a test for `auto-scaling-text.js` where we use ReactDOMServer to render it to a string.
+- And we'd only want to run this file in the Node environment rather than the JS DOM environment.
+- To make this work we need to do a few things.
+- Move the `jest.config.js` file to our `test` directory and rename it to `jest-common.js`. This will be the common config between server and client side.
+- Create `jest.client.js` and `jest.common.js` files in the `test` directory.
+- For `jest.server.js` we want to override the `coverageDirectory` because we don't want these coverage directories writing over each other, specify the test environment and the directory for our server tests.
+
+```js
+// jest.server.js
+const path = require("path");
+
+module.exports = {
+  ...require("./jest-common"),
+  testEnvironment: "jest-environment-node",
+  coverageDirectory: path.join(__dirname, "../coverage/server"),
+  testMatch: ["**/__server_tests__/**/*.js"],
+};
+```
+
+- For `jest.client.js` we want to move the following configurations from `jest-common.js`.
+
+```js
+// jest.client.js
+module.exports = {
+  ...require("./jest-common"),
+  testEnvironment: "jest-environment-jsdom",
+  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+  snapshotSerializers: ["@jest/emotion/serializer"],
+  coverageThreshold: {
+    global: {
+      statements: 15,
+      branches: 10,
+      functions: 15,
+      lines: 15,
+    },
+    "./src/shared/utils.js": {
+      statements: 100,
+      branches: 80,
+      functions: 100,
+      lines: 100,
+    },
+  },
+};
+```
+
+- And for `jest-common.js` we need to update the paths.
+
+```js
+const path = require("path");
+
+module.exports = {
+  moduleDirectories: [
+    "node_modules",
+    path.join(__dirname, "..src"), // path to src is one dir up so ..src
+    "shared",
+    path.join(__dirname), // the config is now in the test directory so we only need __dirname
+  ],
+  moduleNameMapper: {
+    "\\.module\\.css$": "identity-obj-proxy",
+    "\\.css$": require.resolve("./style-mock.js"), // style-mock is relative to this file so we don't need to specify the test dir
+  },
+  collectCoverageFrom: ["**/src/**/*.js"],
+};
+```
+
+- Now we can tell Jest to use these different configurations on the command line.
+- But if we run our client tests with `npx jest --config test/jest.client.js` we will get `No tests found, exiting with code 1`.
+- This is because Jest will look for all files that match the `testMatch` in the same directory as the Jest config.
+- We therefore need to specify the path to root in `jest-common.js`.
+
+```js
+module.exports = {
+  rootDir: path.join(__dirname, '..'),
+  ...
+}
+```
+
+- Now all of our tests are found and run as expected if we run `npx jest --config test/jest.client.js` or `npx jest --config test/jest.server.js`.
+- And we can verify that our server tests are indeed running in a totally browser free environment by running `console.log(window)` in our test file and seeing the expected error as window is undefined.
+- Now we have verified that our tests are able to run independently in two separate environments.
+- We just have to write a tonne of npm scripts to get this to work.
+- So replace this...
+
+```js
+scripts: {
+  ...
+  "test": "is-ci \"test:coverage\" \"test:watch\"",
+  "test:coverage": "jest --coverage",
+  "test:watch": "jest --watch",
+  "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
+  ...
+}
+```
+
+- With this...
+
+```js
+scripts: {
+  ...
+  "test": "is-ci \"test:coverage\" \"test:watch:client\"",
+  "test:coverage": "npm run test:coverage:client && npm run test:coverage:server",
+  "test:coverage:client": "jest --config test/jest.client.js --coverage",
+  "test:coverage:server": "jest --config test/jest.server.js --coverage",
+  "test:watch:client": "jest --config test/jest.client.js --watch",
+  "test:watch:server": "jest --config test/jest.server.js --watch",
+  "test:debug:client": "node --inspect-brk ./node_modules/jest/bin/jest.js --config test/jest.client.js --runInBand --watch",
+  "test:debug:server": "node --inspect-brk ./node_modules/jest/bin/jest.js --config test/jest.server.js --runInBand --watch",
+  ...
+}
+```
+
+- The one last thing we need to do is update our `.eslintrc.js` file so that it points to `jest-common.js` in the `test` directory.
+
+```js
+module.exports = {
+  ...
+  settings: {
+    'import/resolver': {
+      jest: {
+        jestConfigFile: path.join(__dirname, './test/jest-common.js'),
+      },
+    },
+  },
+  ...
+}
+```
+
+- Now if we run `npm t` Jest will start our client-side tests in watch mode, and if we run `CI=1 npm t` Jest will run both client and server-side tests with coverage turned on.
