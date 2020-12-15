@@ -1597,7 +1597,7 @@ As the codebase grows it makes our test runs take longer and longer. Naturally p
 Sometimes it can be a real challenge to determine what’s going on when testing your code. It can be really helpful to step through your code in a debugger. In this lesson we’ll see how to use Jest’s `--runInBand` flag with node’s `--inspect-brk` to debug our tests in Chrome’s debugger.
 
 - Although Jest will output the result of `console.log` statements when we rin our tests, it would be nice if we could step through our code like we can in the browser.
-- What we really want to do is have a `debugger` statement and have our browser dev tools stop there.
+- What we really want to do is to be able to add a `debugger` statement in our test and have our browser DevTools stop there.
 - Node has a special flag built-in to it `--inspect-brk` which means will Node will start up a process and before running any of the code it will add a breakpoint.
 - We can then hook up Chrome debugger to debug that Node process.
 - The process we want to debug is `jest` but we can't just pass that to Node because Node wouldn't know what to do with it, so we need to pass a path to the Jest binary.
@@ -1609,7 +1609,7 @@ Sometimes it can be a real challenge to determine what’s going on when testing
 ```
 
 - Jest actually runs all tests in parallel, which won't work well with what we are truing to do because it spawns new Node processes.
-- So we add the `--runInBand` to our script to ensure that all tests are run within the same Node process so we can debug that process with our Chrome dev tools.
+- So we add the `--runInBand` to our script to ensure that all tests are run within the same Node process so we can debug that process with our Chrome DevTools.
 - And adding the `--watch` flag makes the development experience much easier.
 
 ```js
@@ -1626,4 +1626,4 @@ For help, see: https://nodejs.org/en/docs/inspector
 
 - If we go to Chrome and type `chrome://inspect` we will be presented with a special page that show available debugger sessions, one of which being Node.
 - Clicking on `inspect` opens the Chrome debugger.
-- We can also right click and inspect to open the dev tools and click on the Node icon to open the dedicated dev tools for Node.
+- We can alternatively open DevTools & click on the Node icon to open the dedicated DevTools for Node.
