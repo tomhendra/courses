@@ -3,5 +3,6 @@ import {render} from 'calculator-test-utils'
 import AutoScalingText from '../auto-scaling-text'
 
 test('renders', () => {
+  debugger
   render(<AutoScalingText />)
 })
