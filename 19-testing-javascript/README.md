@@ -46,6 +46,8 @@
   - [5.11. Use Jest Watch Mode to Speed Up Development](#511-use-jest-watch-mode-to-speed-up-development)
   - [5.12. Step through Code in Jest using the Node.js Debugger and Chrome DevTools](#512-step-through-code-in-jest-using-the-nodejs-debugger-and-chrome-devtools)
   - [5.13. Configure Jest to Report Code Coverage on Project Files](#513-configure-jest-to-report-code-coverage-on-project-files)
+  - [5.14. Analyze Jest Code Coverage Reports](#514-analyze-jest-code-coverage-reports)
+  - [5.15. Set a Code Coverage Threshold in Jest to Maintain Code Coverage Levels](#515-set-a-code-coverage-threshold-in-jest-to-maintain-code-coverage-levels)
 
 ## 1. Introduction
 
@@ -1654,3 +1656,57 @@ module.exports = {
 - Now we have an accurate report and have a much better idea of how well tested our application is.
 - On a large application the difference will be stark.
 - One more thing to do is to add the `coverage` directory to our `.gitignore` file because they are not useful to be committed to source control.
+
+### 5.14. Analyze Jest Code Coverage Reports
+
+You may have an idea of what Code Coverage is, but let’s take a quick look at how it’s recorded so we can understand how to analyze code coverage reports.
+
+- The way that Jest knows how parts of the codebase is not covered by tests is with a plugin called `babel-plugin-istanbul`.
+- Jest uses Babel transform our code under coverage to instrument the code and keep track of what is going on.
+- Understanding how the code is instrumented can help us better interpret the coverage reports.
+- Rewatch the [video](https://testingjavascript.com/lessons/jest-analyze-jest-code-coverage-reports) for Kent's explanation.
+
+### 5.15. Set a Code Coverage Threshold in Jest to Maintain Code Coverage Levels
+
+Wherever you are at with code coverage you generally don’t want that level to go down. Let’s add coverage thresholds globally as well as in specific files to ensure we never drop below a certain level of coverage.
+
+- It would be nice if we could stop people from adding untested code that reduces our coverage, especially for important parts of the codebase.
+- We can do this by adding to our Jest config file.
+- The four elements of code coverage are statements, branches, functions & lines.
+
+```js
+// jest.config.js
+module.exports = {
+  ...
+    coverageThreshold: {
+    global: {
+      statements: 31,
+      branches: 18,
+      functions: 29,
+      lines: 29,
+    },
+  },
+}
+```
+
+- If we run `npm t` and the thresholds are not met, Jest will throw errors.
+- Kent likes to specify 2% below the current level to allow for some flexibility.
+- As people add new lines to our codebase they need to make sure they add some tests so they don't break the threshold and ultimately break the build.
+- One very important thing to note is that it is not a perfect metric for confidence.
+- Not all lines in our codebase are equal. There could be one file that gets used all over the codebase and is super important.
+- We can add another property to the `coverageThreshold` object which allows us to specify thresholds for a particular file.
+
+```js
+// jest.config.js
+module.exports = {
+  ...
+    coverageThreshold: {
+    './src/shared/utils.js': {
+      statements: 100,
+      branches: 80,
+      functions: 100,
+      lines: 100,
+    },
+  },
+}
+```
