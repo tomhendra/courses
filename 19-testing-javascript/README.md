@@ -45,6 +45,7 @@
   - [5.10. Support a Test Utilities File with Jest moduleDirectories](#510-support-a-test-utilities-file-with-jest-moduledirectories)
   - [5.11. Use Jest Watch Mode to Speed Up Development](#511-use-jest-watch-mode-to-speed-up-development)
   - [5.12. Step through Code in Jest using the Node.js Debugger and Chrome DevTools](#512-step-through-code-in-jest-using-the-nodejs-debugger-and-chrome-devtools)
+  - [5.13. Configure Jest to Report Code Coverage on Project Files](#513-configure-jest-to-report-code-coverage-on-project-files)
 
 ## 1. Introduction
 
@@ -1627,3 +1628,29 @@ For help, see: https://nodejs.org/en/docs/inspector
 - If we go to Chrome and type `chrome://inspect` we will be presented with a special page that show available debugger sessions, one of which being Node.
 - Clicking on `inspect` opens the Chrome debugger.
 - We can alternatively open DevTools & click on the Node icon to open the dedicated DevTools for Node.
+
+### 5.13. Configure Jest to Report Code Coverage on Project Files
+
+Jest comes with code coverage reporting built-into the framework, let’s see how quick and easy it is to add code coverage reporting to our project and take a look at the generated report.
+
+- As we write more tests it is useful to be able to know how much of the project is tested and which areas could use some more tests.
+- If we add the `--coverage` flag to our test script and run `npm t` Jest will automatically generate a coverage report.
+- Part of what this does is create a coverage directory with all the coverage info.
+- We can open this in a browser: `open coverage/lcov-report/index.html` and browse the codebase to see what test cases are missing.
+- The only problem is that the test directory containing our utils is being included, which will skew the coverage numbers for our app.
+- We don't need to know how well our test utilities are covered!
+- Also the `app.js` and `index.js` are not being included in the report.
+- We can solve this by adding `collectCoverageFrom` to our Jest configuration file.
+
+```js
+// jest.config.js
+module.exports = {
+  ...
+  collectCoverageFrom: ['**/src/**/*.js'],
+}
+```
+
+- This will now collect coverage from the `src` directory and excludes tests by default.
+- Now we have an accurate report and have a much better idea of how well tested our application is.
+- On a large application the difference will be stark.
+- One more thing to do is to add the `coverage` directory to our `.gitignore` file because they are not useful to be committed to source control.
