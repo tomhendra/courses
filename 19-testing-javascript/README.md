@@ -44,6 +44,7 @@
   - [5.9. Configure Jest to Run Setup for All Tests with Jest setupFilesAfterEnv](#59-configure-jest-to-run-setup-for-all-tests-with-jest-setupfilesafterenv)
   - [5.10. Support a Test Utilities File with Jest moduleDirectories](#510-support-a-test-utilities-file-with-jest-moduledirectories)
   - [5.11. Use Jest Watch Mode to Speed Up Development](#511-use-jest-watch-mode-to-speed-up-development)
+  - [5.12. Step through Code in Jest using the Node.js Debugger and Chrome DevTools](#512-step-through-code-in-jest-using-the-nodejs-debugger-and-chrome-devtools)
 
 ## 1. Introduction
 
@@ -1590,3 +1591,39 @@ As the codebase grows it makes our test runs take longer and longer. Naturally p
 - Jest will look up in git which files have changed since the last commit, and based on the changes it will run the tests that are relevant to those changes files.
 - A handy option to use is `i` to update snapshots interactively. It can sometimes be handy to review a bunch of snapshot changes and this interactive mode helps.
 - Also `f` to only run failed tests makes it much easier to focus in on tests that are failing and reduce the output as we debug and add console.log statements.
+
+### 5.12. Step through Code in Jest using the Node.js Debugger and Chrome DevTools
+
+Sometimes it can be a real challenge to determine what’s going on when testing your code. It can be really helpful to step through your code in a debugger. In this lesson we’ll see how to use Jest’s `--runInBand` flag with node’s `--inspect-brk` to debug our tests in Chrome’s debugger.
+
+- Although Jest will output the result of `console.log` statements when we rin our tests, it would be nice if we could step through our code like we can in the browser.
+- What we really want to do is have a `debugger` statement and have our browser dev tools stop there.
+- Node has a special flag built-in to it `--inspect-brk` which means will Node will start up a process and before running any of the code it will add a breakpoint.
+- We can then hook up Chrome debugger to debug that Node process.
+- The process we want to debug is `jest` but we can't just pass that to Node because Node wouldn't know what to do with it, so we need to pass a path to the Jest binary.
+- So our script looks like this.
+
+```js
+// package.json
+"test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js"
+```
+
+- Jest actually runs all tests in parallel, which won't work well with what we are truing to do because it spawns new Node processes.
+- So we add the `--runInBand` to our script to ensure that all tests are run within the same Node process so we can debug that process with our Chrome dev tools.
+- And adding the `--watch` flag makes the development experience much easier.
+
+```js
+// package.json
+"test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch"
+```
+
+- Now if we run `npm run test:debug` we see the following output:
+
+```bash
+Debugger listening on ws://127.0.0.1:9229/7a7aa030-59b3-4ff8-844d-956408af19fb
+For help, see: https://nodejs.org/en/docs/inspector
+```
+
+- If we go to Chrome and type `chrome://inspect` we will be presented with a special page that show available debugger sessions, one of which being Node.
+- Clicking on `inspect` opens the Chrome debugger.
+- We can also right click and inspect to open the dev tools and click on the Node icon to open the dedicated dev tools for Node.
