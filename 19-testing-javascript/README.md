@@ -43,6 +43,7 @@
   - [5.8. Support Custom Module Resolution with Jest moduleDirectories](#58-support-custom-module-resolution-with-jest-moduledirectories)
   - [5.9. Configure Jest to Run Setup for All Tests with Jest setupFilesAfterEnv](#59-configure-jest-to-run-setup-for-all-tests-with-jest-setupfilesafterenv)
   - [5.10. Support a Test Utilities File with Jest moduleDirectories](#510-support-a-test-utilities-file-with-jest-moduledirectories)
+  - [5.11. Use Jest Watch Mode to Speed Up Development](#511-use-jest-watch-mode-to-speed-up-development)
 
 ## 1. Introduction
 
@@ -1572,3 +1573,20 @@ test('renders', () => {
 ```
 
 - Now if we run `npm t` our snapshot fails as expected as we are now using the light theme.
+
+### 5.11. Use Jest Watch Mode to Speed Up Development
+
+As the codebase grows it makes our test runs take longer and longer. Naturally people will run the tests less frequently to avoid waiting. With Jest’s powerful and interactive watch mode we can easily run the tests that we want to focus on without having to run all the tests in the codebase.
+
+- It would be nice if we didn't have to run our test script every time we make a change ot the code.
+- That's exactly what the `watch` flag does for us.
+- We can add a script for this.
+
+```js
+// package.json
+"test:watch": "jest --watch",
+```
+
+- Jest will look up in git which files have changed since the last commit, and based on the changes it will run the tests that are relevant to those changes files.
+- A handy option to use is `i` to update snapshots interactively. It can sometimes be handy to review a bunch of snapshot changes and this interactive mode helps.
+- Also `f` to only run failed tests makes it much easier to focus in on tests that are failing and reduce the output as we debug and add console.log statements.
