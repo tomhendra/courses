@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "dev": "webpack serve",
+    "dev": "webpack serve --mode=development",
     "build": "webpack --mode=production",
     "postbuild": "cp ./public/index.html ./dist/index.html",
     "start": "serve --no-clipboard --single --listen 8080 dist",
@@ -46,7 +46,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.1.2",
     "@emotion/styled": "^11.0.0",
     "react": "^17.0.1",

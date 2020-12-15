@@ -5,7 +5,9 @@ module.exports = {
   output: {
     path: path.resolve('dist'),
     filename: 'bundle.js',
+    sourceMapFilename: 'bundle.js.map',
   },
+  devtool: 'source-map',
   resolve: {
     modules: ['node_modules', path.join(__dirname, 'src'), 'shared'],
   },
@@ -40,6 +42,7 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
+    historyApiFallback: true,
+    contentBase: path.join(__dirname, './public'),
   },
 }

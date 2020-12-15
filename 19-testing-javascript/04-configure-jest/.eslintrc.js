@@ -13,9 +13,7 @@ module.exports = {
   },
   settings: {
     'import/resolver': 'node',
-    jest: {
-      version: 26,
-    },
+    jest: {version: 26},
   },
   overrides: [
     {
