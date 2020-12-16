@@ -51,6 +51,7 @@
   - [5.16. Report Jest Test Coverage to Codecov through TravisCI](#516-report-jest-test-coverage-to-codecov-through-travisci)
   - [5.17. Run Jest Watch Mode by Default Locally with is-ci-cli](#517-run-jest-watch-mode-by-default-locally-with-is-ci-cli)
   - [5.18. Run Tests with a Different Configuration using Jest’s --config Flag and testMatch Option](#518-run-tests-with-a-different-configuration-using-jests---config-flag-and-testmatch-option)
+  - [5.19. Support Running Multiple Configurations with Jest’s Projects Feature](#519-support-running-multiple-configurations-with-jests-projects-feature)
 
 ## 1. Introduction
 
@@ -1854,7 +1855,7 @@ scripts: {
 }
 ```
 
-- The one last thing we need to do is update our `.eslintrc.js` file so that it points to `jest-common.js` in the `test` directory.
+- The one last thing we need to do is update our `.eslintrc.js` for `jestConfigFile` to point to `jest-common.js` in the `test` directory so ESLint can resolve our modules properly.
 
 ```js
 module.exports = {
@@ -1871,3 +1872,70 @@ module.exports = {
 ```
 
 - Now if we run `npm t` Jest will start our client-side tests in watch mode, and if we run `CI=1 npm t` Jest will run both client and server-side tests with coverage turned on.
+
+### 5.19. Support Running Multiple Configurations with Jest’s Projects Feature
+
+Sometimes you may find it useful to have more than one configuration in a project (for example, running some tests in a node environment and others in the jsdom environment). In this lesson we’ll learn about Jest’s projects feature to have Jest run both of these configurations at once.
+
+- Having all of those scripts is madness! Adding all of this complexity just to run a test in a different environment is crazy.
+- Jest supports running multiple configurations in a single test run.
+- So we can revert to how our scripts were previously setup and make Jest support this.
+
+```js
+scripts: {
+  ...
+  "test": "is-ci \"test:coverage\" \"test:watch\"",
+  "test:coverage": "jest --coverage",
+  "test:watch": "jest --watch",
+  "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
+  ...
+}
+```
+
+- We will add a `jest.config.js` at the root of our app again. That means we can update our `eslintrc.js` to how it was before.
+
+```js
+module.exports = {
+  ...
+  settings: {
+    'import/resolver': {
+      jest: {
+        jestConfigFile: path.join(__dirname, './jest.config.js'),
+      },
+    },
+  },
+  ...
+}
+```
+
+- In our `jest.config.js` we require `jest-common.js`, move `collectCoverageFrom` from `jest-common.js` and `coverageThreshold` from `jest.client.js`.
+- The combining of these two configurations has the effect of combining the coverage report.
+- To make this all work together we add the `projects` configuration object so our `jest.config.js` is now as follows.
+
+```js
+// jest.config.js
+module.exports = {
+  ...require("./test/jest-common"),
+  collectCoverageFrom: ["**/src/**/*.js"],
+  coverageThreshold: {
+    global: {
+      statements: 15,
+      branches: 10,
+      functions: 15,
+      lines: 15,
+    },
+    "./src/shared/utils.js": {
+      statements: 100,
+      branches: 80,
+      functions: 100,
+      lines: 100,
+    },
+  },
+  projects: ["./test/jest.client.js", "./test/jest.server.js"],
+};
+```
+
+- Now `npm t` runs all of our tests, including our server test, so our tests are being run in two totally separate environments.
+- And if we run `CI=1 npm t` coverage will be collected from all of our test runs and the coverage report will be unified across all of the tests for both configurations.
+- If we have a lot of tests it is difficult to see quickly which tests come from which configuration.
+- So we can add `displayName: 'client'` / `displayName: 'server'` to the respective config files to add nice labels.
