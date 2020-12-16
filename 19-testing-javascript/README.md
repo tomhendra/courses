@@ -53,6 +53,7 @@
   - [5.18. Run Tests with a Different Configuration using Jest’s --config Flag and testMatch Option](#518-run-tests-with-a-different-configuration-using-jests---config-flag-and-testmatch-option)
   - [5.19. Support Running Multiple Configurations with Jest’s Projects Feature](#519-support-running-multiple-configurations-with-jests-projects-feature)
   - [5.20. Run ESLint with Jest using jest-runner-eslint](#520-run-eslint-with-jest-using-jest-runner-eslint)
+  - [5.21. Test Specific Projects in Jest Watch Mode with jest-watch-select-projects](#521-test-specific-projects-in-jest-watch-mode-with-jest-watch-select-projects)
 
 ## 1. Introduction
 
@@ -1994,4 +1995,21 @@ module.exports = {
 - And we can remove `npm run lint` from the `validate` script because it will happen naturally through the `test` script.
 - Now get the Jest benefits of watch mode and to only lint changes since the last commit.
 - This can be really handy in large projects where a tonne of linting is being done, to scope linting down to only files with changes.
--
+
+### 5.21. Test Specific Projects in Jest Watch Mode with jest-watch-select-projects
+
+It’s great that we can run multiple projects in our watch mode and that we can scope the tests down to specific tests, but sometimes it’s nice to be able to quickly switch between projects in watch mode. Let’s see how this works with jest-watch-select-projects.
+
+- As good as it is to run all of our linting and tests together, it could get noisy as our codebase grows.
+- It would be great if we could specify which configuration we want tested while in watch node.
+- The good thing about watch mode is that it is pluggable. We can run `npm i --save-dev jest-watch-select-projects`.
+- Now we can edit our `jest-common.js` config as follows.
+
+```js
+module.exports = {
+  ...
+  watchPlugins: ['jest-watch-select-projects'],
+}
+```
+
+- Now when we run `npm t` we get a new option capital `P` and we can select which project we want to run tests for.
