@@ -3,71 +3,66 @@
 <h1>Testing JavaScript</h1>
 </div>
 
-- [1. Introduction](#1-introduction)
-- [2. Testing Fundamentals](#2-testing-fundamentals)
-  - [2.1. Throw an Error with a Simple Test in JavaScript](#21-throw-an-error-with-a-simple-test-in-javascript)
-  - [2.2. Abstract Assertions into a JavaScript Assertion Library](#22-abstract-assertions-into-a-javascript-assertion-library)
-  - [2.3. Encapsulate and Isolate Tests by building a JavaScript Testing Framework](#23-encapsulate-and-isolate-tests-by-building-a-javascript-testing-framework)
-  - [2.4. Support Async Tests with JavaScripts Promises through async await](#24-support-async-tests-with-javascripts-promises-through-async-await)
-  - [2.5. Provide Testing Helper Functions as Globals in JavaScript](#25-provide-testing-helper-functions-as-globals-in-javascript)
-  - [2.6. Verify Custom JavaScript Tests with Jest](#26-verify-custom-javascript-tests-with-jest)
-- [3. Static Analysis Testing JavaScript Applications](#3-static-analysis-testing-javascript-applications)
-  - [3.1. Lint JavaScript by Configuring and Running ESLint](#31-lint-javascript-by-configuring-and-running-eslint)
-  - [3.2. Use the ESLint Extension for VSCode](#32-use-the-eslint-extension-for-vscode)
-  - [3.3. Use pre-built ESLint Configuration using extends](#33-use-pre-built-eslint-configuration-using-extends)
-  - [3.4. Run ESLint with npm Scripts](#34-run-eslint-with-npm-scripts)
-  - [3.5. Format Code by Installing and Running Prettier](#35-format-code-by-installing-and-running-prettier)
-  - [3.6. Configure Prettier](#36-configure-prettier)
-  - [3.7. Use the Prettier Extension for VSCode](#37-use-the-prettier-extension-for-vscode)
-  - [3.8. Disable Unnecessary ESLint Stylistic Rules with eslint-config-prettier](#38-disable-unnecessary-eslint-stylistic-rules-with-eslint-config-prettier)
-  - [3.9. Validate All Files are Properly Formatted with Prettier](#39-validate-all-files-are-properly-formatted-with-prettier)
-  - [3.10. Avoid Common Errors by Installing and Configuring TypeScript](#310-avoid-common-errors-by-installing-and-configuring-typescript)
-  - [3.11. Make ESLint Support TypeScript Files](#311-make-eslint-support-typescript-files)
-  - [3.12. Validate Code in a pre-commit git Hook with husky](#312-validate-code-in-a-pre-commit-git-hook-with-husky)
-  - [3.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged](#313-auto-format-all-files-and-validate-relevant-files-in-a-pre-commit-script-with-lint-staged)
-  - [3.14. Run Multiple npm Scripts in Parallel with npm-run-all](#314-run-multiple-npm-scripts-in-parallel-with-npm-run-all)
-- [4. JavaScript Mocking Fundamentals](#4-javascript-mocking-fundamentals)
-  - [4.1. Override Object Properties to Mock with Monkey-patching in JavaScript](#41-override-object-properties-to-mock-with-monkey-patching-in-javascript)
-  - [4.2. Ensure Functions are Called Correctly with JavaScript Mocks](#42-ensure-functions-are-called-correctly-with-javascript-mocks)
-  - [4.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn](#43-restore-the-original-implementation-of-a-mocked-javascript-function-with-jestspyon)
-  - [4.4. Mock a JavaScript module in a test](#44-mock-a-javascript-module-in-a-test)
-  - [4.5. Make a shared JavaScript mock module](#45-make-a-shared-javascript-mock-module)
-- [5. Configure Jest for Testing JavaScript Applications](#5-configure-jest-for-testing-javascript-applications)
-  - [5.1. Install and Run Jest](#51-install-and-run-jest)
-  - [5.2. Compile Modules with Babel in Jest Tests](#52-compile-modules-with-babel-in-jest-tests)
-  - [5.3. Configure Jest’s Test Environment for Testing Node or Browser Code](#53-configure-jests-test-environment-for-testing-node-or-browser-code)
-  - [5.4. Support Importing CSS files with Jest’s moduleNameMapper](#54-support-importing-css-files-with-jests-modulenamemapper)
-  - [5.5. Support using Webpack CSS Modules with Jest](#55-support-using-webpack-css-modules-with-jest)
-  - [5.6. Generate a Serializable Value with Jest Snapshots](#56-generate-a-serializable-value-with-jest-snapshots)
-  - [5.7. Test an Emotion Styled UI with Custom Jest Snapshot Serializers](#57-test-an-emotion-styled-ui-with-custom-jest-snapshot-serializers)
-  - [5.8. Support Custom Module Resolution with Jest moduleDirectories](#58-support-custom-module-resolution-with-jest-moduledirectories)
-  - [5.9. Configure Jest to Run Setup for All Tests with Jest setupFilesAfterEnv](#59-configure-jest-to-run-setup-for-all-tests-with-jest-setupfilesafterenv)
-  - [5.10. Support a Test Utilities File with Jest moduleDirectories](#510-support-a-test-utilities-file-with-jest-moduledirectories)
-  - [5.11. Use Jest Watch Mode to Speed Up Development](#511-use-jest-watch-mode-to-speed-up-development)
-  - [5.12. Step through Code in Jest using the Node.js Debugger and Chrome DevTools](#512-step-through-code-in-jest-using-the-nodejs-debugger-and-chrome-devtools)
-  - [5.13. Configure Jest to Report Code Coverage on Project Files](#513-configure-jest-to-report-code-coverage-on-project-files)
-  - [5.14. Analyze Jest Code Coverage Reports](#514-analyze-jest-code-coverage-reports)
-  - [5.15. Set a Code Coverage Threshold in Jest to Maintain Code Coverage Levels](#515-set-a-code-coverage-threshold-in-jest-to-maintain-code-coverage-levels)
-  - [5.16. Report Jest Test Coverage to Codecov through TravisCI](#516-report-jest-test-coverage-to-codecov-through-travisci)
-  - [5.17. Run Jest Watch Mode by Default Locally with is-ci-cli](#517-run-jest-watch-mode-by-default-locally-with-is-ci-cli)
-  - [5.18. Run Tests with a Different Configuration using Jest’s --config Flag and testMatch Option](#518-run-tests-with-a-different-configuration-using-jests---config-flag-and-testmatch-option)
-  - [5.19. Support Running Multiple Configurations with Jest’s Projects Feature](#519-support-running-multiple-configurations-with-jests-projects-feature)
-  - [5.20. Run ESLint with Jest using jest-runner-eslint](#520-run-eslint-with-jest-using-jest-runner-eslint)
-  - [5.21. Test Specific Projects in Jest Watch Mode with jest-watch-select-projects](#521-test-specific-projects-in-jest-watch-mode-with-jest-watch-select-projects)
-  - [5.22. Filter which Tests are Run with Typeahead Support in Jest Watch Mode](#522-filter-which-tests-are-run-with-typeahead-support-in-jest-watch-mode)
-  - [5.23. Run Only Relevant Jest Tests on Git Commit to Avoid Breakages](#523-run-only-relevant-jest-tests-on-git-commit-to-avoid-breakages)
+- [1. Testing Fundamentals](#1-testing-fundamentals)
+  - [1.1. Throw an Error with a Simple Test in JavaScript](#11-throw-an-error-with-a-simple-test-in-javascript)
+  - [1.2. Abstract Assertions into a JavaScript Assertion Library](#12-abstract-assertions-into-a-javascript-assertion-library)
+  - [1.3. Encapsulate and Isolate Tests by building a JavaScript Testing Framework](#13-encapsulate-and-isolate-tests-by-building-a-javascript-testing-framework)
+  - [1.4. Support Async Tests with JavaScripts Promises through async await](#14-support-async-tests-with-javascripts-promises-through-async-await)
+  - [1.5. Provide Testing Helper Functions as Globals in JavaScript](#15-provide-testing-helper-functions-as-globals-in-javascript)
+  - [1.6. Verify Custom JavaScript Tests with Jest](#16-verify-custom-javascript-tests-with-jest)
+- [2. Static Analysis Testing JavaScript Applications](#2-static-analysis-testing-javascript-applications)
+  - [2.1. Lint JavaScript by Configuring and Running ESLint](#21-lint-javascript-by-configuring-and-running-eslint)
+  - [2.2. Use the ESLint Extension for VSCode](#22-use-the-eslint-extension-for-vscode)
+  - [2.3. Use pre-built ESLint Configuration using extends](#23-use-pre-built-eslint-configuration-using-extends)
+  - [2.4. Run ESLint with npm Scripts](#24-run-eslint-with-npm-scripts)
+  - [2.5. Format Code by Installing and Running Prettier](#25-format-code-by-installing-and-running-prettier)
+  - [2.6. Configure Prettier](#26-configure-prettier)
+  - [2.7. Use the Prettier Extension for VSCode](#27-use-the-prettier-extension-for-vscode)
+  - [2.8. Disable Unnecessary ESLint Stylistic Rules with eslint-config-prettier](#28-disable-unnecessary-eslint-stylistic-rules-with-eslint-config-prettier)
+  - [2.9. Validate All Files are Properly Formatted with Prettier](#29-validate-all-files-are-properly-formatted-with-prettier)
+  - [2.10. Avoid Common Errors by Installing and Configuring TypeScript](#210-avoid-common-errors-by-installing-and-configuring-typescript)
+  - [2.11. Make ESLint Support TypeScript Files](#211-make-eslint-support-typescript-files)
+  - [2.12. Validate Code in a pre-commit git Hook with husky](#212-validate-code-in-a-pre-commit-git-hook-with-husky)
+  - [2.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged](#213-auto-format-all-files-and-validate-relevant-files-in-a-pre-commit-script-with-lint-staged)
+  - [2.14. Run Multiple npm Scripts in Parallel with npm-run-all](#214-run-multiple-npm-scripts-in-parallel-with-npm-run-all)
+- [3. JavaScript Mocking Fundamentals](#3-javascript-mocking-fundamentals)
+  - [3.1. Override Object Properties to Mock with Monkey-patching in JavaScript](#31-override-object-properties-to-mock-with-monkey-patching-in-javascript)
+  - [3.2. Ensure Functions are Called Correctly with JavaScript Mocks](#32-ensure-functions-are-called-correctly-with-javascript-mocks)
+  - [3.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn](#33-restore-the-original-implementation-of-a-mocked-javascript-function-with-jestspyon)
+  - [3.4. Mock a JavaScript module in a test](#34-mock-a-javascript-module-in-a-test)
+  - [3.5. Make a shared JavaScript mock module](#35-make-a-shared-javascript-mock-module)
+- [4. Configure Jest for Testing JavaScript Applications](#4-configure-jest-for-testing-javascript-applications)
+  - [4.1. Install and Run Jest](#41-install-and-run-jest)
+  - [4.2. Compile Modules with Babel in Jest Tests](#42-compile-modules-with-babel-in-jest-tests)
+  - [4.3. Configure Jest’s Test Environment for Testing Node or Browser Code](#43-configure-jests-test-environment-for-testing-node-or-browser-code)
+  - [4.4. Support Importing CSS files with Jest’s moduleNameMapper](#44-support-importing-css-files-with-jests-modulenamemapper)
+  - [4.5. Support using Webpack CSS Modules with Jest](#45-support-using-webpack-css-modules-with-jest)
+  - [4.6. Generate a Serializable Value with Jest Snapshots](#46-generate-a-serializable-value-with-jest-snapshots)
+  - [4.7. Test an Emotion Styled UI with Custom Jest Snapshot Serializers](#47-test-an-emotion-styled-ui-with-custom-jest-snapshot-serializers)
+  - [4.8. Support Custom Module Resolution with Jest moduleDirectories](#48-support-custom-module-resolution-with-jest-moduledirectories)
+  - [4.9. Configure Jest to Run Setup for All Tests with Jest setupFilesAfterEnv](#49-configure-jest-to-run-setup-for-all-tests-with-jest-setupfilesafterenv)
+  - [4.10. Support a Test Utilities File with Jest moduleDirectories](#410-support-a-test-utilities-file-with-jest-moduledirectories)
+  - [4.11. Use Jest Watch Mode to Speed Up Development](#411-use-jest-watch-mode-to-speed-up-development)
+  - [4.12. Step through Code in Jest using the Node.js Debugger and Chrome DevTools](#412-step-through-code-in-jest-using-the-nodejs-debugger-and-chrome-devtools)
+  - [4.13. Configure Jest to Report Code Coverage on Project Files](#413-configure-jest-to-report-code-coverage-on-project-files)
+  - [4.14. Analyze Jest Code Coverage Reports](#414-analyze-jest-code-coverage-reports)
+  - [4.15. Set a Code Coverage Threshold in Jest to Maintain Code Coverage Levels](#415-set-a-code-coverage-threshold-in-jest-to-maintain-code-coverage-levels)
+  - [4.16. Report Jest Test Coverage to Codecov through TravisCI](#416-report-jest-test-coverage-to-codecov-through-travisci)
+  - [4.17. Run Jest Watch Mode by Default Locally with is-ci-cli](#417-run-jest-watch-mode-by-default-locally-with-is-ci-cli)
+  - [4.18. Run Tests with a Different Configuration using Jest’s --config Flag and testMatch Option](#418-run-tests-with-a-different-configuration-using-jests---config-flag-and-testmatch-option)
+  - [4.19. Support Running Multiple Configurations with Jest’s Projects Feature](#419-support-running-multiple-configurations-with-jests-projects-feature)
+  - [4.20. Run ESLint with Jest using jest-runner-eslint](#420-run-eslint-with-jest-using-jest-runner-eslint)
+  - [4.21. Test Specific Projects in Jest Watch Mode with jest-watch-select-projects](#421-test-specific-projects-in-jest-watch-mode-with-jest-watch-select-projects)
+  - [4.22. Filter which Tests are Run with Typeahead Support in Jest Watch Mode](#422-filter-which-tests-are-run-with-typeahead-support-in-jest-watch-mode)
+  - [4.23. Run Only Relevant Jest Tests on Git Commit to Avoid Breakages](#423-run-only-relevant-jest-tests-on-git-commit-to-avoid-breakages)
 
-## 1. Introduction
-
-Learn the smart, efficient way to test any JavaScript application. Your essential guide to flawless testing.
-
-## 2. Testing Fundamentals
+## 1. Testing Fundamentals
 
 Do you know what a testing framework does? Do you know what makes a testing framework different from a testing or assertion library? The best way to use a tool effectively is to understand how it works. And the best way to understand how a tool works is by making it yourself!
 
 In this short course, we’ll learn how testing frameworks and assertion libraries work by building our own, simple version of each.
 
-### 2.1. Throw an Error with a Simple Test in JavaScript
+### 1.1. Throw an Error with a Simple Test in JavaScript
 
 In this lesson, we’ll get the most fundamental understanding of what an automated test is in JavaScript. A test is code that throws an error when the actual result of something does not match the expected output.
 
@@ -92,7 +87,7 @@ if (result !== expected) {
 }
 ```
 
-### 2.2. Abstract Assertions into a JavaScript Assertion Library
+### 1.2. Abstract Assertions into a JavaScript Assertion Library
 
 Let’s add a simple layer of abstraction in our simple test to make writing tests easier. The assertion library will help our test assertions read more like a phrase you might say which will help people understand our intentions better. It will also help us avoid unnecessary duplication.
 
@@ -116,7 +111,7 @@ expect(result).toBe(expected);
 
 - The function returns an object which has functions for different assertions we can make on the `actual` input.
 
-### 2.3. Encapsulate and Isolate Tests by building a JavaScript Testing Framework
+### 1.3. Encapsulate and Isolate Tests by building a JavaScript Testing Framework
 
 One of the limitations of the way that [this test is written](./01-testing-fundamentals/lessons/02-build-a-javascript-assertion-library/index.js) is that as soon as one of these assertions experiences an error, the other tests are not run. It can really help developers identify what the problem is if they can see the results of all of the tests.
 
@@ -149,7 +144,7 @@ test("sum adds numbers", () => {
 });
 ```
 
-### 2.4. Support Async Tests with JavaScripts Promises through async await
+### 1.4. Support Async Tests with JavaScripts Promises through async await
 
 Our testing framework works great for our synchronous test. What if we had some asynchronous functions that we wanted to test? We could make our callback functions async, and then use the await keyword to wait for that to resolve, then we can make our assertion on the result and the expected.
 
@@ -185,7 +180,7 @@ async function test(title, callback) {
 
 If no error is thrown, then we'll continue on inside the try block. This will work for both our synchronous and our asynchronous tests.
 
-### 2.5. Provide Testing Helper Functions as Globals in JavaScript
+### 1.5. Provide Testing Helper Functions as Globals in JavaScript
 
 These testing utilities that we built are pretty useful. We want to be able to use them throughout our application in every single one of our test files.
 
@@ -219,7 +214,7 @@ global.expect = expect;
 
 - We can run `node --require ./setup-globals.js ./index.js` to verify all is working and run our tests.
 
-### 2.6. Verify Custom JavaScript Tests with Jest
+### 1.6. Verify Custom JavaScript Tests with Jest
 
 Up to this point we’ve created all our own utilities. As it turns out, the utilities we’ve created mirror the utilities provided by Jest perfectly! Let’s install Jest and use it to run our test!
 
@@ -227,13 +222,13 @@ Up to this point we’ve created all our own utilities. As it turns out, the uti
 - Jest shows us really helpful error messages and even a code frame for exactly where the error originates.
 - This is one of the things that makes Jest such an awesome tool, as the error messages are so clear.
 
-## 3. Static Analysis Testing JavaScript Applications
+## 2. Static Analysis Testing JavaScript Applications
 
 There are a ton of ways your application can break. One of the most common sources of bugs is related to typos and incorrect types. Passing a string to a function that expects a number, or falling prey to a common typo in a logical statement are silly mistakes that should never be made, but this happens all the time.
 
 We could write a comprehensive suite of automated tests for our entire codebase to make certain mistakes like this never happen, but that would likely be too much work and slow development down to be worth the benefit. Luckily for us, there are tools like ESLint, TypeScript, Prettier, and more which we can use to satisfy a whole category of testing with a great developer experience.
 
-### 3.1. Lint JavaScript by Configuring and Running ESLint
+### 2.1. Lint JavaScript by Configuring and Running ESLint
 
 The static code analysis and linting tool ESLint is the de-facto standard for linting JavaScript projects. In this lesson we’ll see how to install, run, and configure it for your preferences.
 
@@ -272,7 +267,7 @@ The static code analysis and linting tool ESLint is the de-facto standard for li
 - We can add `"strict": ["error", "never"]` if we are using Babel to compile our JS and do not need the `use strict` pragma in our files.
 - The `"env": { "browser": true }` tells ESLint which environment we are running in.
 
-### 3.2. Use the ESLint Extension for VSCode
+### 2.2. Use the ESLint Extension for VSCode
 
 Whatever editor you use, chances are there’s probably some plugin or extension you can use to integrate ESLint and your editor to get a nice in-editor experience using ESLint so you don’t have to run the ESLint script to check your code and instead can identify issues as you’re writing and editing your code. Let’s take a look at what you can do with the ESLint Extension for VSCode.
 
@@ -282,7 +277,7 @@ Whatever editor you use, chances are there’s probably some plugin or extension
 - We can hit CMD . to reveal a popup menu to assist with fixing the problems inline.
 - Running `npx eslint --fix` will run ESLint across the entire project and fix as much as possible for us.
 
-### 3.3. Use pre-built ESLint Configuration using extends
+### 2.3. Use pre-built ESLint Configuration using extends
 
 ESLint has a TON of rules you can configure for your project. But who has time to do all that? This is why ESLint has an extends configuration which you can use to base your own configuration off of other configurations. Let’s add all of ESLint’s built-in recommended rules to our project and override just the ones we want to change.
 
@@ -308,7 +303,7 @@ ESLint has a TON of rules you can configure for your project. But who has time t
 - Any rules that we do specify will override the ruleset.
 - We can also specify multiple rulesets, with the ones specified later overriding the previous.
 
-### 3.4. Run ESLint with npm Scripts
+### 2.4. Run ESLint with npm Scripts
 
 Let’s add an npm script called lint so we can run ESLint whenever we want with the proper command line flags.
 
@@ -340,7 +335,7 @@ Let’s add an npm script called lint so we can run ESLint whenever we want with
 }
 ```
 
-### 3.5. Format Code by Installing and Running Prettier
+### 2.5. Format Code by Installing and Running Prettier
 
 The code formatting tool prettier can help you avoid a lot of useless time spent formatting code and arguing about code formatting with your co-workers. It can also help you catch subtle issues with your code that you may not notice otherwise. In this lesson we’ll learn how to install and run prettier.
 
@@ -362,7 +357,7 @@ The code formatting tool prettier can help you avoid a lot of useless time spent
 
 - Note we also used the `--ignore-path` flag which is supported by Prettier too.
 
-### 3.6. Configure Prettier
+### 2.6. Configure Prettier
 
 1. Prettier is a pretty opinionated tool, but it does allow for some customization. In this lesson we’ll check out the prettier playground and see what options we want to enable in our project’s `.prettierrc` file.
 2. After adding in our custom configuration, we’ll create a `.prettierignore` file so that you can avoid formatting any files generated within the project such as node_modules or a build folder.
@@ -390,7 +385,7 @@ The code formatting tool prettier can help you avoid a lot of useless time spent
 }
 ```
 
-### 3.7. Use the Prettier Extension for VSCode
+### 2.7. Use the Prettier Extension for VSCode
 
 Running prettier manually is great, but it’d be even better if we could just run prettier anytime we save our file. Whatever editor you use, there’s likely a plugin or extension for it to integrate with prettier. Let’s try out the Prettier Extension for VSCode.
 
@@ -405,7 +400,7 @@ Running prettier manually is great, but it’d be even better if we could just r
 }
 ```
 
-### 3.8. Disable Unnecessary ESLint Stylistic Rules with eslint-config-prettier
+### 2.8. Disable Unnecessary ESLint Stylistic Rules with eslint-config-prettier
 
 Because prettier can automatically fix a lot of stylistic issues in our codebase, it’s not necessary to have eslint check for those and it can actually be kind of annoying if it does. So let’s see how we can use eslint-config-prettier to disable all rules that are made irrelevant thanks to prettier.
 
@@ -436,7 +431,7 @@ Because prettier can automatically fix a lot of stylistic issues in our codebase
 }
 ```
 
-### 3.9. Validate All Files are Properly Formatted with Prettier
+### 2.9. Validate All Files are Properly Formatted with Prettier
 
 You can’t force everyone on your project to use the prettier integration for their editor, so let’s add a validation script to verify that prettier has been run on all project files.
 
@@ -486,7 +481,7 @@ You can’t force everyone on your project to use the prettier integration for t
 
 - The `--` tells npm to forward all the remaining arguments to the specified script.
 
-### 3.10. Avoid Common Errors by Installing and Configuring TypeScript
+### 2.10. Avoid Common Errors by Installing and Configuring TypeScript
 
 ESLint can check for a lot of things, but it’s not a great tool for checking the types of variables that flow through your application. For this you’ll need a type-checking tool like Flow or TypeScript. Let’s see how we can configure our project to work with TypeScript.
 
@@ -531,7 +526,7 @@ ESLint can check for a lot of things, but it’s not a great tool for checking t
 }
 ```
 
-### 3.11. Make ESLint Support TypeScript Files
+### 2.11. Make ESLint Support TypeScript Files
 
 ESLint does not have support for TypeScript out of the box, but luckily adding support for TypeScript is straightforward thanks to the [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) project. And now that we have TypeScript, there are a lot of rules that we don’t need ESLint to bother checking because TypeScript will prevent those problems in the first place! Let’s get these two tools integrated.
 
@@ -574,7 +569,7 @@ ESLint does not have support for TypeScript out of the box, but luckily adding s
 }
 ```
 
-### 3.12. Validate Code in a pre-commit git Hook with husky
+### 2.12. Validate Code in a pre-commit git Hook with husky
 
 We have a few checks we’ll run in continuous integration when someone opens a pull request, but it’d be even better if we could run some of those checks before they even commit their code so they can fix it right away rather than waiting for CI to run. Let’s use husky’s precommit script to run our validation.
 
@@ -595,7 +590,7 @@ We have a few checks we’ll run in continuous integration when someone opens a 
 - We can override the pre-commit with `--no-verify`.
 - Looking at the hooks directory that Husky creates can give us an idea of what we can do with Husky.
 
-### 3.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged
+### 2.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged
 
 Rather than failing when a developer has failed to format their files or run linting on all the files in the project on every commit, it would be even better to just automatically format the files on commit and only check the relevant files with eslint. Let’s use `lint-staged` to run scripts on the files that are going to be committed as part of our precommit hook.
 
@@ -626,7 +621,7 @@ Rather than failing when a developer has failed to format their files or run lin
 - lint-staged can even manage patched changes, so if we are only committing part of the file it will only update the part of the file that is being changed.
 - Using lint-staged improves DX for everyone working on the project, since they don't need to have prettier configured for their editor in order for all code committed to be formatted according to the agreed style guide.
 
-### 3.14. Run Multiple npm Scripts in Parallel with npm-run-all
+### 2.14. Run Multiple npm Scripts in Parallel with npm-run-all
 
 We use npm scripts a lot, and that validate script is a great way to bring everything together. But with the way these tools work, we can run them all at the same time and things will work just as well. This will speed up our script runtime a lot, so let’s use `npm-run-all` to make that happen.
 
@@ -649,13 +644,13 @@ We use npm scripts a lot, and that validate script is a great way to bring every
 
 - Our script now runs a lot faster!
 
-## 4. JavaScript Mocking Fundamentals
+## 3. JavaScript Mocking Fundamentals
 
 When running unit tests, you don’t want to actually make network requests or charge real credit cards. That could… get expensive… and also very, very slow. So instead of running your code exactly as it would run in production, you can modify how some of your JavaScript modules and functions work during tests to avoid test unreliability (flakiness) and improve the speed of your tests. This kind of modification can come in the form of stubs, mocks, or generally: “test doubles.”
 
 There are some great libraries and abstractions for mocking your JavaScript modules during tests. The Jest testing framework has great mocking capabilities built-in for functions as well as entire modules. To really understand how things are working though, let’s implement some of these features ourselves.
 
-### 4.1. Override Object Properties to Mock with Monkey-patching in JavaScript
+### 3.1. Override Object Properties to Mock with Monkey-patching in JavaScript
 
 Mocking allows our tests to be deterministic and ensure that we will get the expected result every time.
 
@@ -691,7 +686,7 @@ utils.getWinner = originalGetWinner;
 
 See the final file: [monkey-patching.js](./03-js-mocking-fundamentals/src/no-framework/monkey-patching.js).
 
-### 4.2. Ensure Functions are Called Correctly with JavaScript Mocks
+### 3.2. Ensure Functions are Called Correctly with JavaScript Mocks
 
 Often when writing JavaScript tests and mocking dependencies, you’ll want to verify that the function was called correctly. That requires keeping track of how often the function was called and what arguments it was called with. That way we can make assertions on how many times it was called and ensure it was called with the right arguments.
 
@@ -779,7 +774,7 @@ function fn(impl) {
 - Our function accepts an implementation and returns that implementation with the arguments passed to the function.
 - It also keeps track of all the arguments that it is called with, so we can make an assertion about how it is called.
 
-### 4.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn
+### 3.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn
 
 With our current usage of the mock function, we have to manually keep track of the original implementation so we can clean up after ourselves to keep our tests idempotent. Let’s see how `jest.spyOn` can help us avoid the bookkeeping and simplify our situation.
 
@@ -828,7 +823,7 @@ utils.getWinner.mockImplementation((p1, p2) => p1);
 utils.getWinner.mockRestore();
 ```
 
-### 4.4. Mock a JavaScript module in a test
+### 3.4. Mock a JavaScript module in a test
 
 So far we’re still basically monkey-patching the utils module which is fine, but could lead to problems in the future, especially if we want to mock a ESModule export which doesn’t allow this kind of monkey-patching on exports. Instead, let’s mock the entire module so when our test subject requires the file they get our mocked version instead.
 
@@ -889,7 +884,7 @@ delete require.cache[utilsPath];
 - We can preload the `require.cache` with the mock module that we want to have loaded when thumb-war requires the utils module.
 - In Jest, we can put this `jest.mock` call anywhere, and Jest will ensure that our mock is used when the thumb-war requires the utils module.
 
-### 4.5. Make a shared JavaScript mock module
+### 3.5. Make a shared JavaScript mock module
 
 Often you’ll want to mock the same file throughout all the tests in your codebase. So let’s make a shared mock file in Jest's `__mocks__` directory which Jest can load for us automatically.
 
@@ -914,7 +909,7 @@ jest.mock("../utils");
 - Again this isn't exactly what Jest is doing since it has total control over the modules system.
 - So when our code requires the utils module, whether that be in our test file or our implementation file, Jest will provide the proper mock for it.
 
-## 5. Configure Jest for Testing JavaScript Applications
+## 4. Configure Jest for Testing JavaScript Applications
 
 Jest is a fully featured testing framework with a developer experience that is second to none. It’s remarkably simple and flexible at the same time. For simple use cases, you often don’t need to configure anything, install and enjoy the built-in coverage and watch mode support.
 
@@ -922,7 +917,7 @@ In a real-world application though, you’ll often have needs specific to your a
 
 In this course we’ll go over ways you can optimize your Jest configuration to make testing real-world JavaScript applications a delight. We’ll cover what’s already been mentioned in addition to Babel support, code coverage, how to make watch mode even more helpful, and how to run test suites with entirely different configurations.
 
-### 5.1. Install and Run Jest
+### 4.1. Install and Run Jest
 
 We start in a small, but real-world application that’s built with webpack and React. We’ll go over installing the Jest testing framework locally to our project, adding an npm script to make it easy to run, and adding an example test file.
 
@@ -958,7 +953,7 @@ test("it works", () => {});
 }
 ```
 
-### 5.2. Compile Modules with Babel in Jest Tests
+### 4.2. Compile Modules with Babel in Jest Tests
 
 Jest automatically loads and applies our babel configuration. However, because our project takes advantage of tree shaking with Webpack, our Babel configuration disables compiling modules. For Jest to work on our code, we need to make sure that our Babel configuration compiles modules during our tests. We’ll use the `NODE_ENV` environment variable to generate the proper configuration.
 
@@ -994,7 +989,7 @@ module.exports = {
 
 - This is one of the really cool things about jest, that it allows you to get a really long way before you have to start worrying about configuring this framework.
 
-### 5.3. Configure Jest’s Test Environment for Testing Node or Browser Code
+### 4.3. Configure Jest’s Test Environment for Testing Node or Browser Code
 
 In our application we’re testing code that should run in the browser, but Jest is intended to test JavaScript that runs in the browser or in node. Let’s create a custom Jest config file so we can customize the test environment.
 
@@ -1015,7 +1010,7 @@ module.exports = {
 - If we want to be explicit about including `jsdom`, then we can replace node with `jsdom`.
 - Kent likes to be explicit in particular for this project since it relies on browser APIs, and it is good to make sure that our tests are as close to reality as possible by simulating a global browser environment.
 
-### 5.4. Support Importing CSS files with Jest’s moduleNameMapper
+### 4.4. Support Importing CSS files with Jest’s moduleNameMapper
 
 In most real-world applications using webpack, you’re likely using a few loaders. In this lesson we’ll see how to make Jest load our modules properly with a moduleNameMapper so we can test our code that makes use of these loaders.
 
@@ -1057,7 +1052,7 @@ module.exports = {
 - The reason that this works in our application is because we have webpack configured to handle CSS files with the CSS-loader and the style-loader.
 - Webpack is managing this for our application and we simply needed to make Jest manage the same thing for our test.
 
-### 5.5. Support using Webpack CSS Modules with Jest
+### 4.5. Support using Webpack CSS Modules with Jest
 
 If you’re using CSS modules with Webpack, then we can improve our moduleNameMapper to improve our experience and capabilities testing our components by including the css module property name in our tests using `identity-obj-proxy`.
 
@@ -1103,7 +1098,7 @@ module.exports = {
 - Even if we are not loading the styles into JS DOM we cna at least make assertions on the className that's being applied for our CSS modules.
 - Note that order does matter, in that the `.module.css` files would match first with regular `.css` files using our empty object file mock.
 
-### 5.6. Generate a Serializable Value with Jest Snapshots
+### 4.6. Generate a Serializable Value with Jest Snapshots
 
 Snapshot testing is a way to simplify writing and maintaining assertions. As noted in the Jest documentation: “The snapshot artifact should be committed alongside code changes, and reviewed as part of your code review process. Jest uses pretty-format to make snapshots human-readable during code review. On subsequent test runs Jest will simply compare the rendered output with the previous snapshot. If they match, the test will pass. If they don't match, either the test runner found a bug in your code that should be fixed, or the implementation has changed and the snapshot needs to be updated.” Let’s see how these work and in what situations we can and should use them.
 
@@ -1215,7 +1210,7 @@ test("renders", () => {
 - Jest will take a snapshot of the DOM node and serialize it into well formatted HTML.
 - Note that using inline snapshots requires prettier to be installed in the project because Jest is updating the code in the test file and it wants to make sure not to change more than it has to with regard to formatting.
 
-### 5.7. Test an Emotion Styled UI with Custom Jest Snapshot Serializers
+### 4.7. Test an Emotion Styled UI with Custom Jest Snapshot Serializers
 
 Part of the power of snapshots is the ability to provide custom serializers. Let’s check out how to use `@emotion/jest` to include our emotion CSS styles in our React component snapshots so we can be made aware of the impact of our CSS changes on our components.
 
@@ -1263,7 +1258,7 @@ module.exports = {
 - We can run `npm t -- -u` to update our snapshot.
 - Now if we make a change to the emotion CSS we will see exactly what impact our change had on the snapshot.
 
-### 5.8. Support Custom Module Resolution with Jest moduleDirectories
+### 4.8. Support Custom Module Resolution with Jest moduleDirectories
 
 Webpack’s `resolve.modules` configuration is a great way to make common application utilities easily accessible throughout your application. We can emulate this same behaviour in Jest using the `moduleDirectories` configuration option.
 
@@ -1306,7 +1301,7 @@ module.exports = {
 }
 ```
 
-### 5.9. Configure Jest to Run Setup for All Tests with Jest setupFilesAfterEnv
+### 4.9. Configure Jest to Run Setup for All Tests with Jest setupFilesAfterEnv
 
 Often you’ll have some setup that you want to run before your tests start. Let’s see how we can use the setupFilesAfterEnv configuration in Jest to take care of test boilerplate and establish a good testing environment for our tests.
 
@@ -1376,7 +1371,7 @@ setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
 - We can now remove the import `import * as jestDOM from '@testing-library/jest-dom/extend-expect` and our tests will continue to pass.
 - Now Jest will automatically import that file into all of our test files.
 
-### 5.10. Support a Test Utilities File with Jest moduleDirectories
+### 4.10. Support a Test Utilities File with Jest moduleDirectories
 
 Every large testbase has common utilities that make testing easier to accomplish. Whether that be a custom render function or a way to generate random data. Let’s see how we can make accessing these custom utilities throughout the tests easier using Jest’s moduleDirectories feature.
 
@@ -1586,7 +1581,7 @@ test('renders', () => {
 
 - Now if we run `npm t` our snapshot fails as expected as we are now using the light theme.
 
-### 5.11. Use Jest Watch Mode to Speed Up Development
+### 4.11. Use Jest Watch Mode to Speed Up Development
 
 As the codebase grows it makes our test runs take longer and longer. Naturally people will run the tests less frequently to avoid waiting. With Jest’s powerful and interactive watch mode we can easily run the tests that we want to focus on without having to run all the tests in the codebase.
 
@@ -1603,7 +1598,7 @@ As the codebase grows it makes our test runs take longer and longer. Naturally p
 - A handy option to use is `i` to update snapshots interactively. It can sometimes be handy to review a bunch of snapshot changes and this interactive mode helps.
 - Also `f` to only run failed tests makes it much easier to focus in on tests that are failing and reduce the output as we debug and add console.log statements.
 
-### 5.12. Step through Code in Jest using the Node.js Debugger and Chrome DevTools
+### 4.12. Step through Code in Jest using the Node.js Debugger and Chrome DevTools
 
 Sometimes it can be a real challenge to determine what’s going on when testing your code. It can be really helpful to step through your code in a debugger. In this lesson we’ll see how to use Jest’s `--runInBand` flag with node’s `--inspect-brk` to debug our tests in Chrome’s debugger.
 
@@ -1639,7 +1634,7 @@ For help, see: https://nodejs.org/en/docs/inspector
 - Clicking on `inspect` opens the Chrome debugger.
 - We can alternatively open DevTools & click on the Node icon to open the dedicated DevTools for Node.
 
-### 5.13. Configure Jest to Report Code Coverage on Project Files
+### 4.13. Configure Jest to Report Code Coverage on Project Files
 
 Jest comes with code coverage reporting built-into the framework, let’s see how quick and easy it is to add code coverage reporting to our project and take a look at the generated report.
 
@@ -1665,7 +1660,7 @@ module.exports = {
 - On a large application the difference will be stark.
 - One more thing to do is to add the `coverage` directory to our `.gitignore` file because they are not useful to be committed to source control.
 
-### 5.14. Analyze Jest Code Coverage Reports
+### 4.14. Analyze Jest Code Coverage Reports
 
 You may have an idea of what Code Coverage is, but let’s take a quick look at how it’s recorded so we can understand how to analyze code coverage reports.
 
@@ -1674,7 +1669,7 @@ You may have an idea of what Code Coverage is, but let’s take a quick look at 
 - Understanding how the code is instrumented can help us better interpret the coverage reports.
 - Rewatch the [video](https://testingjavascript.com/lessons/jest-analyze-jest-code-coverage-reports) for Kent's explanation.
 
-### 5.15. Set a Code Coverage Threshold in Jest to Maintain Code Coverage Levels
+### 4.15. Set a Code Coverage Threshold in Jest to Maintain Code Coverage Levels
 
 Wherever you are at with code coverage you generally don’t want that level to go down. Let’s add coverage thresholds globally as well as in specific files to ensure we never drop below a certain level of coverage.
 
@@ -1719,7 +1714,7 @@ module.exports = {
 }
 ```
 
-### 5.16. Report Jest Test Coverage to Codecov through TravisCI
+### 4.16. Report Jest Test Coverage to Codecov through TravisCI
 
 The coverage report generated by Jest is fantastic, but it’d be great to track that coverage over time and be able to review that coverage at a glance, maybe even put it up on a display in the office! Codecov.io is a fantastic service that can consume our code coverage report and it integrates great with GitHub. Let’s see how we can extend our existing Travis build configuration to send the coverage report to Codecov.io.
 
@@ -1729,7 +1724,7 @@ The coverage report generated by Jest is fantastic, but it’d be great to track
 - Of course we'll need to sign up with Codecov.
 - Now we can access the Codecov dashboard and get insights into test coverage over time, and we can inspect the coverage reports right from the dashboard.
 
-### 5.17. Run Jest Watch Mode by Default Locally with is-ci-cli
+### 4.17. Run Jest Watch Mode by Default Locally with is-ci-cli
 
 In CI, we don’t want to start the tests in watch mode, but locally we normally want to run the tests in watch mode. We can have separate scripts, but it’d be great to not have to remember which script to run locally. Let’s use `is-ci-cli` to run the right script in the right environment when running the test script.
 
@@ -1743,7 +1738,7 @@ In CI, we don’t want to start the tests in watch mode, but locally we normally
 - If we want to run `test:coverage` explicitly we can.
 - It is a lot nicer to be able to run `npm t` and the script that is relevant to the environment we are running in.
 
-### 5.18. Run Tests with a Different Configuration using Jest’s --config Flag and testMatch Option
+### 4.18. Run Tests with a Different Configuration using Jest’s --config Flag and testMatch Option
 
 Sometimes you may have situations where configuration needs to be different for certain tests. In this lesson we’ll take a look at how we could create a custom configuration for tests that are intended to run in a node environment.
 
@@ -1877,7 +1872,7 @@ module.exports = {
 
 - Now if we run `npm t` Jest will start our client-side tests in watch mode, and if we run `CI=1 npm t` Jest will run both client and server-side tests with coverage turned on.
 
-### 5.19. Support Running Multiple Configurations with Jest’s Projects Feature
+### 4.19. Support Running Multiple Configurations with Jest’s Projects Feature
 
 Sometimes you may find it useful to have more than one configuration in a project (for example, running some tests in a node environment and others in the jsdom environment). In this lesson we’ll learn about Jest’s projects feature to have Jest run both of these configurations at once.
 
@@ -1944,7 +1939,7 @@ module.exports = {
 - If we have a lot of tests it is difficult to see quickly which tests come from which configuration.
 - So we can add `displayName: 'client'` / `displayName: 'server'` to the respective config files to add nice labels.
 
-### 5.20. Run ESLint with Jest using jest-runner-eslint
+### 4.20. Run ESLint with Jest using jest-runner-eslint
 
 Jest is more than a testing framework. It’s a highly optimized, blazing fast platform with incredible parallelization for running tasks across many files in our project. It has a capability to run more than just tests. We can bring these features to our linting as well. Let’s see how we can bring our favourite Jest features (like watch mode) to ESLint with jest-runner-eslint.
 
@@ -1998,7 +1993,7 @@ module.exports = {
 - Now get the Jest benefits of watch mode and to only lint changes since the last commit.
 - This can be really handy in large projects where a tonne of linting is being done, to scope linting down to only files with changes.
 
-### 5.21. Test Specific Projects in Jest Watch Mode with jest-watch-select-projects
+### 4.21. Test Specific Projects in Jest Watch Mode with jest-watch-select-projects
 
 It’s great that we can run multiple projects in our watch mode and that we can scope the tests down to specific tests, but sometimes it’s nice to be able to quickly switch between projects in watch mode. Let’s see how this works with jest-watch-select-projects.
 
@@ -2016,7 +2011,7 @@ module.exports = {
 
 - Now when we run `npm t` we get a new option capital `P` and we can select which project we want to run tests for.
 
-### 5.22. Filter which Tests are Run with Typeahead Support in Jest Watch Mode
+### 4.22. Filter which Tests are Run with Typeahead Support in Jest Watch Mode
 
 Jest’s watch mode is pluggable and `jest-watch-typeahead` is one plugin that you definitely don’t want to live without. It enhances the watch mode experience to help you know which tests will be run based on your filter. Making it even easier to run only the tests you’re concerned with running as you develop your codebase.
 
@@ -2037,7 +2032,7 @@ module.exports = {
 
 - Now when we type `p` in watch mode and filter we get nice feedback while we type a pattern to filter by.
 
-### 5.23. Run Only Relevant Jest Tests on Git Commit to Avoid Breakages
+### 4.23. Run Only Relevant Jest Tests on Git Commit to Avoid Breakages
 
 Running the project tests on commit is a great way to avoid breaking the application accidentally and leverage the mechanism for confidence you have from your testbase. However, as the testbase grows this can take a very long time and slow productivity down. Let’s see how Jest is capable of running only the tests and linting only the files that are affected by the files we’re committing with `husky` and `lint-staged` to speed up our local test runs as well as help us avoid accidentally committing code that breaks our application.
 
