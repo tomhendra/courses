@@ -52,6 +52,7 @@
   - [5.17. Run Jest Watch Mode by Default Locally with is-ci-cli](#517-run-jest-watch-mode-by-default-locally-with-is-ci-cli)
   - [5.18. Run Tests with a Different Configuration using Jest’s --config Flag and testMatch Option](#518-run-tests-with-a-different-configuration-using-jests---config-flag-and-testmatch-option)
   - [5.19. Support Running Multiple Configurations with Jest’s Projects Feature](#519-support-running-multiple-configurations-with-jests-projects-feature)
+  - [5.20. Run ESLint with Jest using jest-runner-eslint](#520-run-eslint-with-jest-using-jest-runner-eslint)
 
 ## 1. Introduction
 
@@ -1939,3 +1940,58 @@ module.exports = {
 - And if we run `CI=1 npm t` coverage will be collected from all of our test runs and the coverage report will be unified across all of the tests for both configurations.
 - If we have a lot of tests it is difficult to see quickly which tests come from which configuration.
 - So we can add `displayName: 'client'` / `displayName: 'server'` to the respective config files to add nice labels.
+
+### 5.20. Run ESLint with Jest using jest-runner-eslint
+
+Jest is more than a testing framework. It’s a highly optimized, blazing fast platform with incredible parallelization for running tasks across many files in our project. It has a capability to run more than just tests. We can bring these features to our linting as well. Let’s see how we can bring our favourite Jest features (like watch mode) to ESLint with jest-runner-eslint.
+
+- One of the awesome features of Jest is to specify a custom runner.
+- Run `npm i --save-dev jest-runner-eslint`.
+- With that installed create a new file in the `test` directory `jest.lint.js`.
+
+```js
+const path = require("path");
+
+module.exports = {
+  rootDir: path.join(__dirname, ".."),
+  displayName: "lint",
+  runner: "jest-runner-eslint",
+  testMatch: ["<rootDir>/**/*.js"],
+};
+```
+
+- But we don't want to include the JavaScript files in coverage and dist directories.
+- So we want to use the `--ignore-path` flag for cli as with our `lint` script.
+- We can configure this inside `package.json` underneath our scripts.
+
+```js
+{
+  ...
+  "jest-runner-eslint": {
+    "cliOptions": {
+      "ignorePath": "./.gitignore"
+    }
+  },
+  ...
+}
+```
+
+- Now if we run `npx jest --config ./test/jest.lint.js` it will run linting across all of the files in our project.
+- The cool thing about having all of this configured is that we can add it to our `projects` config in `jest.config.js`.
+
+```js
+module.exports = {
+  ...
+  projects: [
+    './test/jest.lint.js',
+    './test/jest.client.js',
+    './test/jest.server.js',
+  ],
+}
+```
+
+- Now we can update our `lint` script to `jest --config test/jest.lint.js`.
+- And we can remove `npm run lint` from the `validate` script because it will happen naturally through the `test` script.
+- Now get the Jest benefits of watch mode and to only lint changes since the last commit.
+- This can be really handy in large projects where a tonne of linting is being done, to scope linting down to only files with changes.
+-
