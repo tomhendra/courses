@@ -55,6 +55,7 @@
   - [5.20. Run ESLint with Jest using jest-runner-eslint](#520-run-eslint-with-jest-using-jest-runner-eslint)
   - [5.21. Test Specific Projects in Jest Watch Mode with jest-watch-select-projects](#521-test-specific-projects-in-jest-watch-mode-with-jest-watch-select-projects)
   - [5.22. Filter which Tests are Run with Typeahead Support in Jest Watch Mode](#522-filter-which-tests-are-run-with-typeahead-support-in-jest-watch-mode)
+  - [5.23. Run Only Relevant Jest Tests on Git Commit to Avoid Breakages](#523-run-only-relevant-jest-tests-on-git-commit-to-avoid-breakages)
 
 ## 1. Introduction
 
@@ -2035,3 +2036,33 @@ module.exports = {
 ```
 
 - Now when we type `p` in watch mode and filter we get nice feedback while we type a pattern to filter by.
+
+### 5.23. Run Only Relevant Jest Tests on Git Commit to Avoid Breakages
+
+Running the project tests on commit is a great way to avoid breaking the application accidentally and leverage the mechanism for confidence you have from your testbase. However, as the testbase grows this can take a very long time and slow productivity down. Let’s see how Jest is capable of running only the tests and linting only the files that are affected by the files we’re committing with `husky` and `lint-staged` to speed up our local test runs as well as help us avoid accidentally committing code that breaks our application.
+
+- Install dependencies with `npm i --save-dev husky lint-staged`.
+- We can configure both of these in our `package.json`.
+
+```js
+{
+  ...
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run build"
+    }
+  },
+  "lint-staged": {
+    "**/*.+(js|json|css|html|md)": [
+      "prettier",
+      "jest --findRelatedTests",
+    ]
+  },
+  ...
+}
+```
+
+- We want `npm run build` to run on all files not just changed ones so this is separated form `lint-staged`. Depending in build time this may be handled by CI.
+- `jest --findRelatedTests` will run all of the tests that are related to the files that are being changed at the time of the commit.
+- Now when we commit our tests will be run on files that have been changed to stop anything broken reaching production.
+- This gives us a tonne of confidence that the code we push is formatted, linted & tested.
