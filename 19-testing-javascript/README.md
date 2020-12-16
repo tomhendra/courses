@@ -54,6 +54,7 @@
   - [5.19. Support Running Multiple Configurations with Jest’s Projects Feature](#519-support-running-multiple-configurations-with-jests-projects-feature)
   - [5.20. Run ESLint with Jest using jest-runner-eslint](#520-run-eslint-with-jest-using-jest-runner-eslint)
   - [5.21. Test Specific Projects in Jest Watch Mode with jest-watch-select-projects](#521-test-specific-projects-in-jest-watch-mode-with-jest-watch-select-projects)
+  - [5.22. Filter which Tests are Run with Typeahead Support in Jest Watch Mode](#522-filter-which-tests-are-run-with-typeahead-support-in-jest-watch-mode)
 
 ## 1. Introduction
 
@@ -2013,3 +2014,24 @@ module.exports = {
 ```
 
 - Now when we run `npm t` we get a new option capital `P` and we can select which project we want to run tests for.
+
+### 5.22. Filter which Tests are Run with Typeahead Support in Jest Watch Mode
+
+Jest’s watch mode is pluggable and `jest-watch-typeahead` is one plugin that you definitely don’t want to live without. It enhances the watch mode experience to help you know which tests will be run based on your filter. Making it even easier to run only the tests you’re concerned with running as you develop your codebase.
+
+- It would be nice if we could get some sort of feedback when typing out the filter pattern in watch mode.
+- We can run `npm i --save-dev jest-watch-typeahead` to assist with this.
+- This comes with two watch plugins that we can add to our `jest-common.js` config.
+
+```js
+module.exports = {
+  ...
+  watchPlugins: [
+    ...
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
+  ],
+}
+```
+
+- Now when we type `p` in watch mode and filter we get nice feedback while we type a pattern to filter by.
