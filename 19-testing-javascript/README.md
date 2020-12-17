@@ -224,7 +224,7 @@ Up to this point we’ve created all our own utilities. As it turns out, the uti
 
 ## 2. Static Analysis Testing JavaScript Applications
 
-There are a ton of ways your application can break. One of the most common sources of bugs is related to typos and incorrect types. Passing a string to a function that expects a number, or falling prey to a common typo in a logical statement are silly mistakes that should never be made, but this happens all the time.
+There are a tonne of ways your application can break. One of the most common sources of bugs is related to typos and incorrect types. Passing a string to a function that expects a number, or falling prey to a common typo in a logical statement are silly mistakes that should never be made, but this happens all the time.
 
 We could write a comprehensive suite of automated tests for our entire codebase to make certain mistakes like this never happen, but that would likely be too much work and slow development down to be worth the benefit. Luckily for us, there are tools like ESLint, TypeScript, Prettier, and more which we can use to satisfy a whole category of testing with a great developer experience.
 
@@ -279,7 +279,7 @@ Whatever editor you use, chances are there’s probably some plugin or extension
 
 ### 2.3. Use pre-built ESLint Configuration using extends
 
-ESLint has a TON of rules you can configure for your project. But who has time to do all that? This is why ESLint has an extends configuration which you can use to base your own configuration off of other configurations. Let’s add all of ESLint’s built-in recommended rules to our project and override just the ones we want to change.
+ESLint has a tonne of rules you can configure for your project. But who has time to do all that? This is why ESLint has an extends configuration which you can use to base your own configuration off of other configurations. Let’s add all of ESLint’s built-in recommended rules to our project and override just the ones we want to change.
 
 - There are recommended configurations which are a collection of predefined rules.
 - In order to use these rulesets we use the `extends` configuration.
@@ -359,8 +359,7 @@ The code formatting tool prettier can help you avoid a lot of useless time spent
 
 ### 2.6. Configure Prettier
 
-1. Prettier is a pretty opinionated tool, but it does allow for some customization. In this lesson we’ll check out the prettier playground and see what options we want to enable in our project’s `.prettierrc` file.
-2. After adding in our custom configuration, we’ll create a `.prettierignore` file so that you can avoid formatting any files generated within the project such as node_modules or a build folder.
+Prettier is a pretty opinionated tool, but it does allow for some customization. In this lesson we’ll check out the prettier playground and see what options we want to enable in our project’s `.prettierrc` file.
 
 - Prettier has a [playground](https://prettier.io/playground/) where we can play around with a bunch of settings.
 - We can copy the JSON config and paste into a `.prettierrc` file, for example:
