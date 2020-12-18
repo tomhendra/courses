@@ -10,27 +10,27 @@
   - [1.4. Support Async Tests with JavaScripts Promises through async await](#14-support-async-tests-with-javascripts-promises-through-async-await)
   - [1.5. Provide Testing Helper Functions as Globals in JavaScript](#15-provide-testing-helper-functions-as-globals-in-javascript)
   - [1.6. Verify Custom JavaScript Tests with Jest](#16-verify-custom-javascript-tests-with-jest)
-- [2. Static Analysis Testing JavaScript Applications](#2-static-analysis-testing-javascript-applications)
-  - [2.1. Lint JavaScript by Configuring and Running ESLint](#21-lint-javascript-by-configuring-and-running-eslint)
-  - [2.2. Use the ESLint Extension for VSCode](#22-use-the-eslint-extension-for-vscode)
-  - [2.3. Use pre-built ESLint Configuration using extends](#23-use-pre-built-eslint-configuration-using-extends)
-  - [2.4. Run ESLint with npm Scripts](#24-run-eslint-with-npm-scripts)
-  - [2.5. Format Code by Installing and Running Prettier](#25-format-code-by-installing-and-running-prettier)
-  - [2.6. Configure Prettier](#26-configure-prettier)
-  - [2.7. Use the Prettier Extension for VSCode](#27-use-the-prettier-extension-for-vscode)
-  - [2.8. Disable Unnecessary ESLint Stylistic Rules with eslint-config-prettier](#28-disable-unnecessary-eslint-stylistic-rules-with-eslint-config-prettier)
-  - [2.9. Validate All Files are Properly Formatted with Prettier](#29-validate-all-files-are-properly-formatted-with-prettier)
-  - [2.10. Avoid Common Errors by Installing and Configuring TypeScript](#210-avoid-common-errors-by-installing-and-configuring-typescript)
-  - [2.11. Make ESLint Support TypeScript Files](#211-make-eslint-support-typescript-files)
-  - [2.12. Validate Code in a pre-commit git Hook with husky](#212-validate-code-in-a-pre-commit-git-hook-with-husky)
-  - [2.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged](#213-auto-format-all-files-and-validate-relevant-files-in-a-pre-commit-script-with-lint-staged)
-  - [2.14. Run Multiple npm Scripts in Parallel with npm-run-all](#214-run-multiple-npm-scripts-in-parallel-with-npm-run-all)
-- [3. JavaScript Mocking Fundamentals](#3-javascript-mocking-fundamentals)
-  - [3.1. Override Object Properties to Mock with Monkey-patching in JavaScript](#31-override-object-properties-to-mock-with-monkey-patching-in-javascript)
-  - [3.2. Ensure Functions are Called Correctly with JavaScript Mocks](#32-ensure-functions-are-called-correctly-with-javascript-mocks)
-  - [3.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn](#33-restore-the-original-implementation-of-a-mocked-javascript-function-with-jestspyon)
-  - [3.4. Mock a JavaScript module in a test](#34-mock-a-javascript-module-in-a-test)
-  - [3.5. Make a shared JavaScript mock module](#35-make-a-shared-javascript-mock-module)
+- [2. JavaScript Mocking Fundamentals](#2-javascript-mocking-fundamentals)
+  - [2.1. Override Object Properties to Mock with Monkey-patching in JavaScript](#21-override-object-properties-to-mock-with-monkey-patching-in-javascript)
+  - [2.2. Ensure Functions are Called Correctly with JavaScript Mocks](#22-ensure-functions-are-called-correctly-with-javascript-mocks)
+  - [2.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn](#23-restore-the-original-implementation-of-a-mocked-javascript-function-with-jestspyon)
+  - [2.4. Mock a JavaScript module in a test](#24-mock-a-javascript-module-in-a-test)
+  - [2.5. Make a shared JavaScript mock module](#25-make-a-shared-javascript-mock-module)
+- [3. Static Analysis Testing JavaScript Applications](#3-static-analysis-testing-javascript-applications)
+  - [3.1. Lint JavaScript by Configuring and Running ESLint](#31-lint-javascript-by-configuring-and-running-eslint)
+  - [3.2. Use the ESLint Extension for VSCode](#32-use-the-eslint-extension-for-vscode)
+  - [3.3. Use pre-built ESLint Configuration using extends](#33-use-pre-built-eslint-configuration-using-extends)
+  - [3.4. Run ESLint with npm Scripts](#34-run-eslint-with-npm-scripts)
+  - [3.5. Format Code by Installing and Running Prettier](#35-format-code-by-installing-and-running-prettier)
+  - [3.6. Configure Prettier](#36-configure-prettier)
+  - [3.7. Use the Prettier Extension for VSCode](#37-use-the-prettier-extension-for-vscode)
+  - [3.8. Disable Unnecessary ESLint Stylistic Rules with eslint-config-prettier](#38-disable-unnecessary-eslint-stylistic-rules-with-eslint-config-prettier)
+  - [3.9. Validate All Files are Properly Formatted with Prettier](#39-validate-all-files-are-properly-formatted-with-prettier)
+  - [3.10. Avoid Common Errors by Installing and Configuring TypeScript](#310-avoid-common-errors-by-installing-and-configuring-typescript)
+  - [3.11. Make ESLint Support TypeScript Files](#311-make-eslint-support-typescript-files)
+  - [3.12. Validate Code in a pre-commit git Hook with husky](#312-validate-code-in-a-pre-commit-git-hook-with-husky)
+  - [3.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged](#313-auto-format-all-files-and-validate-relevant-files-in-a-pre-commit-script-with-lint-staged)
+  - [3.14. Run Multiple npm Scripts in Parallel with npm-run-all](#314-run-multiple-npm-scripts-in-parallel-with-npm-run-all)
 - [4. Configure Jest for Testing JavaScript Applications](#4-configure-jest-for-testing-javascript-applications)
   - [4.1. Install and Run Jest](#41-install-and-run-jest)
   - [4.2. Compile Modules with Babel in Jest Tests](#42-compile-modules-with-babel-in-jest-tests)
@@ -222,434 +222,13 @@ Up to this point we’ve created all our own utilities. As it turns out, the uti
 - Jest shows us really helpful error messages and even a code frame for exactly where the error originates.
 - This is one of the things that makes Jest such an awesome tool, as the error messages are so clear.
 
-## 2. Static Analysis Testing JavaScript Applications
-
-There are a tonne of ways your application can break. One of the most common sources of bugs is related to typos and incorrect types. Passing a string to a function that expects a number, or falling prey to a common typo in a logical statement are silly mistakes that should never be made, but this happens all the time.
-
-We could write a comprehensive suite of automated tests for our entire codebase to make certain mistakes like this never happen, but that would likely be too much work and slow development down to be worth the benefit. Luckily for us, there are tools like ESLint, TypeScript, Prettier, and more which we can use to satisfy a whole category of testing with a great developer experience.
-
-### 2.1. Lint JavaScript by Configuring and Running ESLint
-
-The static code analysis and linting tool ESLint is the de-facto standard for linting JavaScript projects. In this lesson we’ll see how to install, run, and configure it for your preferences.
-
-- To install ESLint run `npm install --dev-dependency eslint`.
-- If we run `npx eslint .` we will see an error stating that no eslint config has been found.
-- Creating a `.eslintrc` file is required to configure ESLint.
-- By default ESLint will parse files as if they were ECMA 5 files.
-- We can set some basic configuration options.
-
-```json
-{
-  "parserOptions": {
-    "ecmaVersion": 2019,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "rules": {
-    "strict": ["error", "never"],
-    "valid-typeof": "error",
-    "no-unsafe-negation": "error",
-    "no-unused-vars": "error",
-    "no-unexpected-multiline": "error",
-    "no-undef": "error"
-  },
-  "env": {
-    "browser": true
-  }
-}
-```
-
-- By setting rules to error, the script will actually fail so will stop the build process from completing in CI.
-- We can use `warn` instead if migrating a codebase which will stop the script from failing.
-- The strict rule is a configurable rule.
-- We can add `"strict": ["error", "never"]` if we are using Babel to compile our JS and do not need the `use strict` pragma in our files.
-- The `"env": { "browser": true }` tells ESLint which environment we are running in.
-
-### 2.2. Use the ESLint Extension for VSCode
-
-Whatever editor you use, chances are there’s probably some plugin or extension you can use to integrate ESLint and your editor to get a nice in-editor experience using ESLint so you don’t have to run the ESLint script to check your code and instead can identify issues as you’re writing and editing your code. Let’s take a look at what you can do with the ESLint Extension for VSCode.
-
-- The plugin improves our experience using ESLint.
-- We will see red underlines in our editor for all the places in which we are breaking our rules.
-- Warnings are highlighted with yellow underlines.
-- We can hit CMD . to reveal a popup menu to assist with fixing the problems inline.
-- Running `npx eslint --fix` will run ESLint across the entire project and fix as much as possible for us.
-
-### 2.3. Use pre-built ESLint Configuration using extends
-
-ESLint has a tonne of rules you can configure for your project. But who has time to do all that? This is why ESLint has an extends configuration which you can use to base your own configuration off of other configurations. Let’s add all of ESLint’s built-in recommended rules to our project and override just the ones we want to change.
-
-- There are recommended configurations which are a collection of predefined rules.
-- In order to use these rulesets we use the `extends` configuration.
-- ESLint ships with a default ruleset `eslint:recommended`.
-
-```json
-{
-  "parserOptions": {
-    "ecmaVersion": "2018"
-  },
-  "extends": ["eslint:recommended"],
-  "rules": {
-    "strict": ["error", "never"]
-  },
-  "env": {
-    "browser": true
-  }
-}
-```
-
-- Any rules that we do specify will override the ruleset.
-- We can also specify multiple rulesets, with the ones specified later overriding the previous.
-
-### 2.4. Run ESLint with npm Scripts
-
-Let’s add an npm script called lint so we can run ESLint whenever we want with the proper command line flags.
-
-- We can add a lint script to our package.json so that we can run ESLint.
-
-```json
-{
-  ...
-  "scripts": {
-    "build": "babel src --out-dir dist",
-    "lint": "eslint ."
-  }
-  ...
-}
-```
-
-- But there is a problem here in that if we run `build` our deployable code will be output to the dist directory, and ESLint will throw a bunch of errors on the compiled code.
-- To fix this we can specify either which directories to ignore with a `.eslintignore` file.
-- However it is often the case that the `gitignore` file lists the same directories, so we can provide a `--ignore-path` flag to tell ESLint use the same file.
-
-```json
-{
-  ...
-  "scripts": {
-    "build": "babel src --out-dir dist",
-    "lint": "eslint --ignore-path. gitignore ."
-  }
-  ...
-}
-```
-
-### 2.5. Format Code by Installing and Running Prettier
-
-The code formatting tool prettier can help you avoid a lot of useless time spent formatting code and arguing about code formatting with your co-workers. It can also help you catch subtle issues with your code that you may not notice otherwise. In this lesson we’ll learn how to install and run prettier.
-
-- Running `npx prettier src/example.js` will output the formatted code to the console.
-- To update the file with the formatted changes we add the `write` flag: `npx prettier src/example.js --write`.
-- We can add a script to our package.json file with a glob to specify which files to format.
-
-```json
-{
-  ...
-  "scripts": {
-    "build": "babel src --out-dir dist",
-    "lint": "eslint --ignore-path .gitignore .",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json)\""
-  }
-  ...
-}
-```
-
-- Note we also used the `--ignore-path` flag which is supported by Prettier too.
-
-### 2.6. Configure Prettier
-
-Prettier is a pretty opinionated tool, but it does allow for some customization. In this lesson we’ll check out the prettier playground and see what options we want to enable in our project’s `.prettierrc` file.
-
-- Prettier has a [playground](https://prettier.io/playground/) where we can play around with a bunch of settings.
-- We can copy the JSON config and paste into a `.prettierrc` file, for example:
-
-```json
-{
-  "arrowParens": "avoid",
-  "bracketSpacing": false,
-  "htmlWhitespaceSensitivity": "css",
-  "insertPragma": false,
-  "jsxBracketSameLine": false,
-  "jsxSingleQuote": false,
-  "printWidth": 80,
-  "proseWrap": "always",
-  "quoteProps": "as-needed",
-  "requirePragma": false,
-  "semi": false,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "useTabs": false
-}
-```
-
-### 2.7. Use the Prettier Extension for VSCode
-
-Running prettier manually is great, but it’d be even better if we could just run prettier anytime we save our file. Whatever editor you use, there’s likely a plugin or extension for it to integrate with prettier. Let’s try out the Prettier Extension for VSCode.
-
-- The plugin for prettier needs to be configured within the VSCode settings.
-- We need to specify the default formatter, and optionally configure to format on save.
-
-```json
-{
-  "editor.defaultFormatter": "esbenp.pretter-vscode",
-  "editor.formatOnSave": true
-  ...
-}
-```
-
-### 2.8. Disable Unnecessary ESLint Stylistic Rules with eslint-config-prettier
-
-Because prettier can automatically fix a lot of stylistic issues in our codebase, it’s not necessary to have eslint check for those and it can actually be kind of annoying if it does. So let’s see how we can use eslint-config-prettier to disable all rules that are made irrelevant thanks to prettier.
-
-- ESLint and Prettier are both great tools, but there is one situation when they can clash.
-- That is if there's an ESLint rule that prevents something like having an extra semicolon, but Prettier would automatically fix that for us anyway.
-- To prevent this behaviour we can turn off specific rules .
-
-```json
-{
-  ...
-  "rules": {
-    "strict": ["error", "never"],
-    "no-extra-semi": "off"
-  }
-  ...
-}
-```
-
-- But there is already a package that handles this for us, by disabling any rules in ESLint that Prettier handles.
-- We install it by running `npm install --save-dev eslint-config-prettier`.
-- We add this to the `extends` array and we no longer have to be concerned about turning off rules.
-
-```json
-{
-  ...
-  "extends": ["eslint:recommended", "eslint-config-prettier"]
-  //...
-}
-```
-
-### 2.9. Validate All Files are Properly Formatted with Prettier
-
-You can’t force everyone on your project to use the prettier integration for their editor, so let’s add a validation script to verify that prettier has been run on all project files.
-
-- A helpful thing to have in projects is to have a script that validates that the project is in a good state.
-
-```json
-{
-  ...
-  "scripts": {
-    "validate": "npm run lint && npm run build"
-  }
-  ...
-}
-```
-
-- We can’t force everyone on the project to use the prettier integration for their editor.
-- But we can ensure that the files have been properly formatted, for which Prettier exposes a mechanism: the `--list-different` flag that will throw an error when code is not up to the standard of our project.
-
-```json
-{
-  ...
-  "scripts": {
-    ...
-    "check-format": "prettier --ignore-path .gitignore --list-different \"**/*.+(js|json)\"",
-    "validate": "npm run lint && npm run build"
-  }
-  ...
-}
-```
-
-- We can add this to our validate script too.
-- And because there is duplication between scripts we can clean things up and adda common prettier script.
-
-```json
-{
-  ...
-  "scripts": {
-    "lint": "eslint --ignore-path .gitignore .",
-    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
-    "format": "npm run prettier -- --write",
-    "check-format": "npm run prettier -- --list-different",
-    "validate": "npm run check-format && npm run lint && npm run build"
-  }
-  ...
-}
-```
-
-- The `--` tells npm to forward all the remaining arguments to the specified script.
-
-### 2.10. Avoid Common Errors by Installing and Configuring TypeScript
-
-ESLint can check for a lot of things, but it’s not a great tool for checking the types of variables that flow through your application. For this you’ll need a type-checking tool like Flow or TypeScript. Let’s see how we can configure our project to work with TypeScript.
-
-- We use the TypeScript compiler - tsc - to verify that the types in our project are correct.
-- We want to configure TypeScript so we can be explicit about what we want it to do with a tsconfig.json file.
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "noEmit": true
-  }
-}
-```
-
-- `baseUrl` tells TypeScript where to look for files.
-- `noEmit` tells TypeScript not to compile our code as we already have Babel doing that job for us.
-- We also need to add the `ts` and `tsx` file extensions to the build & prettier scripts.
-- We can add a new script to run tsc, and add this to our validate script.
-
-```json
-{
-  ...
-  "scripts": {
-    "build": "babel src --extensions .js,.ts,.tsx --out-dir dist",
-    ...
-    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
-    "check-types": "tsc",
-    ...
-    "validate": "npm run check-types && npm run check-format && npm run lint && npm run build"
-  }
-  ...
-}
-```
-
-- However we'll still get an error, because Babel doesn't know how to parse TypeScript by default.
-- For this we need to run `npm install --save-dev @babel/preset-typescript` and add to our `.babelrc` presets:
-
-```json
-{
-  "presets": [..."@babel/preset-typescript"]
-}
-```
-
-### 2.11. Make ESLint Support TypeScript Files
-
-ESLint does not have support for TypeScript out of the box, but luckily adding support for TypeScript is straightforward thanks to the [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) project. And now that we have TypeScript, there are a lot of rules that we don’t need ESLint to bother checking because TypeScript will prevent those problems in the first place! Let’s get these two tools integrated.
-
-- To get the two to integrate we need to run `npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser`.
-- To configure ESLint to run across TypeScript files we need to edit our lint script to include the `ts` & `tsx` file extensions by adding `--ext .js,.ts,.tsx`.
-
-```json
-{
-  "scripts": {
-    ...
-    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx ."
-    ...
-  }
-  ...
-}
-```
-
-- To configure ESLint to parse TypeScript files, we need to edit the `.eslintrc` file.
-- Since we are running ESLint across other files apart from TypeScript, we want to keep our original config, and so we can use ESLint's overrides configuration property.
-
-```js
-{
-  ...
-  "overrides": [
-    {
-      "files": "**/*.+(ts|tsx)",
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "project": "./tsconfig.json"
-      },
-      "plugins": ["@typescript-eslint/eslint-plugin"],
-      "extends": [
-        // pre-built plugin configurations
-        "plugin:@typescript-eslint/eslint-recommended", // disables rules from ESLint that TypeScript renders unnecessary.
-        "plugin:@typescript-eslint/recommended", // specific rules from the typescript-eslint plugin sometimes useful for TS files e.g. interfaces.
-        "eslint-config-prettier/@typescript-eslint" // disables rules from typescript-eslint that are not actually necessary.
-      ]
-    }
-  ]
-}
-```
-
-### 2.12. Validate Code in a pre-commit git Hook with husky
-
-We have a few checks we’ll run in continuous integration when someone opens a pull request, but it’d be even better if we could run some of those checks before they even commit their code so they can fix it right away rather than waiting for CI to run. Let’s use husky’s precommit script to run our validation.
-
-- As handy as our validate script is it would be better if we could make sure that happens before anyone commits code.
-- Husky creates a hooks directory inside the git directory with a bunch of files to handle pre-commit checks.
-- To configure Husky we can create a `.huskyrc` file.
-
-```json
-{
-  "hooks": {
-    "pre-commit": "npm run validate"
-  }
-}
-```
-
-- Any time we commit, git will run the pre-commit script which Husky stores in the directory it created, and in turn it will run the validate script.
-- If the validate script doesn't pass, the commit won't be created.
-- We can override the pre-commit with `--no-verify`.
-- Looking at the hooks directory that Husky creates can give us an idea of what we can do with Husky.
-
-### 2.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged
-
-Rather than failing when a developer has failed to format their files or run linting on all the files in the project on every commit, it would be even better to just automatically format the files on commit and only check the relevant files with eslint. Let’s use `lint-staged` to run scripts on the files that are going to be committed as part of our precommit hook.
-
-- Install with `npm install --save-dev lint-staged`.
-- We can create a config file `.lintstagedrc`:
-
-```json
-{
-  "*.js": ["eslint"],
-  "*.+(js|json|ts)": ["prettier --write", "git add"]
-}
-```
-
-- `lint-staged` will forward on the files specified to the scripts that we specify.
-- Husky is in charge of running scripts on commit, so rather than running the validate script we can run `lint-staged`.
-- But since lint-staged is only taking care of linting and formatting, we also need to add our type checking
-
-```json
-{
-  "hooks": {
-    "pre-commit": "npm run check-types && lint-staged && npm run build"
-  }
-}
-```
-
-- The cool thing about lint-staged is that it only runs on files that have changed.
-- And we've configured it to add files back that have been changed by prettier (git add step is [not required](https://github.com/okonet/lint-staged#v10) from v10).
-- lint-staged can even manage patched changes, so if we are only committing part of the file it will only update the part of the file that is being changed.
-- Using lint-staged improves DX for everyone working on the project, since they don't need to have prettier configured for their editor in order for all code committed to be formatted according to the agreed style guide.
-
-### 2.14. Run Multiple npm Scripts in Parallel with npm-run-all
-
-We use npm scripts a lot, and that validate script is a great way to bring everything together. But with the way these tools work, we can run them all at the same time and things will work just as well. This will speed up our script runtime a lot, so let’s use `npm-run-all` to make that happen.
-
-- Our validate script is really handy, but there is a lot going on and it takes a while.
-- It would be nice if we could run all these commands at the same time.
-- `npm-run-all` allows scripts to be run in parallel.
-- Install with `npm install --save-dev npm-run-all`.
-- We can then update teh validate script.
-
-```json
-{
-  ...
-  "scripts": {
-    ...
-    "validate": "npm-run-all --parallel check-types check-format lint build"
-  }
-  ...
-}
-```
-
-- Our script now runs a lot faster!
-
-## 3. JavaScript Mocking Fundamentals
+## 2. JavaScript Mocking Fundamentals
 
 When running unit tests, you don’t want to actually make network requests or charge real credit cards. That could… get expensive… and also very, very slow. So instead of running your code exactly as it would run in production, you can modify how some of your JavaScript modules and functions work during tests to avoid test unreliability (flakiness) and improve the speed of your tests. This kind of modification can come in the form of stubs, mocks, or generally: “test doubles.”
 
 There are some great libraries and abstractions for mocking your JavaScript modules during tests. The Jest testing framework has great mocking capabilities built-in for functions as well as entire modules. To really understand how things are working though, let’s implement some of these features ourselves.
 
-### 3.1. Override Object Properties to Mock with Monkey-patching in JavaScript
+### 2.1. Override Object Properties to Mock with Monkey-patching in JavaScript
 
 Mocking allows our tests to be deterministic and ensure that we will get the expected result every time.
 
@@ -685,7 +264,7 @@ utils.getWinner = originalGetWinner;
 
 See the final file: [monkey-patching.js](./03-js-mocking-fundamentals/src/no-framework/monkey-patching.js).
 
-### 3.2. Ensure Functions are Called Correctly with JavaScript Mocks
+### 2.2. Ensure Functions are Called Correctly with JavaScript Mocks
 
 Often when writing JavaScript tests and mocking dependencies, you’ll want to verify that the function was called correctly. That requires keeping track of how often the function was called and what arguments it was called with. That way we can make assertions on how many times it was called and ensure it was called with the right arguments.
 
@@ -773,7 +352,7 @@ function fn(impl) {
 - Our function accepts an implementation and returns that implementation with the arguments passed to the function.
 - It also keeps track of all the arguments that it is called with, so we can make an assertion about how it is called.
 
-### 3.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn
+### 2.3. Restore the Original Implementation of a Mocked JavaScript Function with jest.spyOn
 
 With our current usage of the mock function, we have to manually keep track of the original implementation so we can clean up after ourselves to keep our tests idempotent. Let’s see how `jest.spyOn` can help us avoid the bookkeeping and simplify our situation.
 
@@ -822,7 +401,7 @@ utils.getWinner.mockImplementation((p1, p2) => p1);
 utils.getWinner.mockRestore();
 ```
 
-### 3.4. Mock a JavaScript module in a test
+### 2.4. Mock a JavaScript module in a test
 
 So far we’re still basically monkey-patching the utils module which is fine, but could lead to problems in the future, especially if we want to mock a ESModule export which doesn’t allow this kind of monkey-patching on exports. Instead, let’s mock the entire module so when our test subject requires the file they get our mocked version instead.
 
@@ -883,7 +462,7 @@ delete require.cache[utilsPath];
 - We can preload the `require.cache` with the mock module that we want to have loaded when thumb-war requires the utils module.
 - In Jest, we can put this `jest.mock` call anywhere, and Jest will ensure that our mock is used when the thumb-war requires the utils module.
 
-### 3.5. Make a shared JavaScript mock module
+### 2.5. Make a shared JavaScript mock module
 
 Often you’ll want to mock the same file throughout all the tests in your codebase. So let’s make a shared mock file in Jest's `__mocks__` directory which Jest can load for us automatically.
 
@@ -907,6 +486,427 @@ jest.mock("../utils");
 - We could implement this ourselves as shown in [external-mock-module.js](./03-js-mocking-fundamentals/no-framework/external-mock-module.js) and [utils.js](19-testing-javascript/03-js-mocking-fundamentals/src/__no-framework-mocks__/utils.js).
 - Again this isn't exactly what Jest is doing since it has total control over the modules system.
 - So when our code requires the utils module, whether that be in our test file or our implementation file, Jest will provide the proper mock for it.
+
+## 3. Static Analysis Testing JavaScript Applications
+
+There are a tonne of ways your application can break. One of the most common sources of bugs is related to typos and incorrect types. Passing a string to a function that expects a number, or falling prey to a common typo in a logical statement are silly mistakes that should never be made, but this happens all the time.
+
+We could write a comprehensive suite of automated tests for our entire codebase to make certain mistakes like this never happen, but that would likely be too much work and slow development down to be worth the benefit. Luckily for us, there are tools like ESLint, TypeScript, Prettier, and more which we can use to satisfy a whole category of testing with a great developer experience.
+
+### 3.1. Lint JavaScript by Configuring and Running ESLint
+
+The static code analysis and linting tool ESLint is the de-facto standard for linting JavaScript projects. In this lesson we’ll see how to install, run, and configure it for your preferences.
+
+- To install ESLint run `npm install --dev-dependency eslint`.
+- If we run `npx eslint .` we will see an error stating that no eslint config has been found.
+- Creating a `.eslintrc` file is required to configure ESLint.
+- By default ESLint will parse files as if they were ECMA 5 files.
+- We can set some basic configuration options.
+
+```json
+{
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "strict": ["error", "never"],
+    "valid-typeof": "error",
+    "no-unsafe-negation": "error",
+    "no-unused-vars": "error",
+    "no-unexpected-multiline": "error",
+    "no-undef": "error"
+  },
+  "env": {
+    "browser": true
+  }
+}
+```
+
+- By setting rules to error, the script will actually fail so will stop the build process from completing in CI.
+- We can use `warn` instead if migrating a codebase which will stop the script from failing.
+- The strict rule is a configurable rule.
+- We can add `"strict": ["error", "never"]` if we are using Babel to compile our JS and do not need the `use strict` pragma in our files.
+- The `"env": { "browser": true }` tells ESLint which environment we are running in.
+
+### 3.2. Use the ESLint Extension for VSCode
+
+Whatever editor you use, chances are there’s probably some plugin or extension you can use to integrate ESLint and your editor to get a nice in-editor experience using ESLint so you don’t have to run the ESLint script to check your code and instead can identify issues as you’re writing and editing your code. Let’s take a look at what you can do with the ESLint Extension for VSCode.
+
+- The plugin improves our experience using ESLint.
+- We will see red underlines in our editor for all the places in which we are breaking our rules.
+- Warnings are highlighted with yellow underlines.
+- We can hit CMD . to reveal a popup menu to assist with fixing the problems inline.
+- Running `npx eslint --fix` will run ESLint across the entire project and fix as much as possible for us.
+
+### 3.3. Use pre-built ESLint Configuration using extends
+
+ESLint has a tonne of rules you can configure for your project. But who has time to do all that? This is why ESLint has an extends configuration which you can use to base your own configuration off of other configurations. Let’s add all of ESLint’s built-in recommended rules to our project and override just the ones we want to change.
+
+- There are recommended configurations which are a collection of predefined rules.
+- In order to use these rulesets we use the `extends` configuration.
+- ESLint ships with a default ruleset `eslint:recommended`.
+
+```json
+{
+  "parserOptions": {
+    "ecmaVersion": "2018"
+  },
+  "extends": ["eslint:recommended"],
+  "rules": {
+    "strict": ["error", "never"]
+  },
+  "env": {
+    "browser": true
+  }
+}
+```
+
+- Any rules that we do specify will override the ruleset.
+- We can also specify multiple rulesets, with the ones specified later overriding the previous.
+
+### 3.4. Run ESLint with npm Scripts
+
+Let’s add an npm script called lint so we can run ESLint whenever we want with the proper command line flags.
+
+- We can add a lint script to our package.json so that we can run ESLint.
+
+```json
+{
+  ...
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "lint": "eslint ."
+  }
+  ...
+}
+```
+
+- But there is a problem here in that if we run `build` our deployable code will be output to the dist directory, and ESLint will throw a bunch of errors on the compiled code.
+- To fix this we can specify either which directories to ignore with a `.eslintignore` file.
+- However it is often the case that the `gitignore` file lists the same directories, so we can provide a `--ignore-path` flag to tell ESLint use the same file.
+
+```json
+{
+  ...
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "lint": "eslint --ignore-path. gitignore ."
+  }
+  ...
+}
+```
+
+### 3.5. Format Code by Installing and Running Prettier
+
+The code formatting tool prettier can help you avoid a lot of useless time spent formatting code and arguing about code formatting with your co-workers. It can also help you catch subtle issues with your code that you may not notice otherwise. In this lesson we’ll learn how to install and run prettier.
+
+- Running `npx prettier src/example.js` will output the formatted code to the console.
+- To update the file with the formatted changes we add the `write` flag: `npx prettier src/example.js --write`.
+- We can add a script to our package.json file with a glob to specify which files to format.
+
+```json
+{
+  ...
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "lint": "eslint --ignore-path .gitignore .",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json)\""
+  }
+  ...
+}
+```
+
+- Note we also used the `--ignore-path` flag which is supported by Prettier too.
+
+### 3.6. Configure Prettier
+
+Prettier is a pretty opinionated tool, but it does allow for some customization. In this lesson we’ll check out the prettier playground and see what options we want to enable in our project’s `.prettierrc` file.
+
+- Prettier has a [playground](https://prettier.io/playground/) where we can play around with a bunch of settings.
+- We can copy the JSON config and paste into a `.prettierrc` file, for example:
+
+```json
+{
+  "arrowParens": "avoid",
+  "bracketSpacing": false,
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false,
+  "printWidth": 80,
+  "proseWrap": "always",
+  "quoteProps": "as-needed",
+  "requirePragma": false,
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "useTabs": false
+}
+```
+
+### 3.7. Use the Prettier Extension for VSCode
+
+Running prettier manually is great, but it’d be even better if we could just run prettier anytime we save our file. Whatever editor you use, there’s likely a plugin or extension for it to integrate with prettier. Let’s try out the Prettier Extension for VSCode.
+
+- The plugin for prettier needs to be configured within the VSCode settings.
+- We need to specify the default formatter, and optionally configure to format on save.
+
+```json
+{
+  "editor.defaultFormatter": "esbenp.pretter-vscode",
+  "editor.formatOnSave": true
+  ...
+}
+```
+
+### 3.8. Disable Unnecessary ESLint Stylistic Rules with eslint-config-prettier
+
+Because prettier can automatically fix a lot of stylistic issues in our codebase, it’s not necessary to have eslint check for those and it can actually be kind of annoying if it does. So let’s see how we can use eslint-config-prettier to disable all rules that are made irrelevant thanks to prettier.
+
+- ESLint and Prettier are both great tools, but there is one situation when they can clash.
+- That is if there's an ESLint rule that prevents something like having an extra semicolon, but Prettier would automatically fix that for us anyway.
+- To prevent this behaviour we can turn off specific rules .
+
+```json
+{
+  ...
+  "rules": {
+    "strict": ["error", "never"],
+    "no-extra-semi": "off"
+  }
+  ...
+}
+```
+
+- But there is already a package that handles this for us, by disabling any rules in ESLint that Prettier handles.
+- We install it by running `npm install --save-dev eslint-config-prettier`.
+- We add this to the `extends` array and we no longer have to be concerned about turning off rules.
+
+```json
+{
+  ...
+  "extends": ["eslint:recommended", "eslint-config-prettier"]
+  //...
+}
+```
+
+### 3.9. Validate All Files are Properly Formatted with Prettier
+
+You can’t force everyone on your project to use the prettier integration for their editor, so let’s add a validation script to verify that prettier has been run on all project files.
+
+- A helpful thing to have in projects is to have a script that validates that the project is in a good state.
+
+```json
+{
+  ...
+  "scripts": {
+    "validate": "npm run lint && npm run build"
+  }
+  ...
+}
+```
+
+- We can’t force everyone on the project to use the prettier integration for their editor.
+- But we can ensure that the files have been properly formatted, for which Prettier exposes a mechanism: the `--list-different` flag that will throw an error when code is not up to the standard of our project.
+
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "check-format": "prettier --ignore-path .gitignore --list-different \"**/*.+(js|json)\"",
+    "validate": "npm run lint && npm run build"
+  }
+  ...
+}
+```
+
+- We can add this to our validate script too.
+- And because there is duplication between scripts we can clean things up and adda common prettier script.
+
+```json
+{
+  ...
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore .",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
+    "format": "npm run prettier -- --write",
+    "check-format": "npm run prettier -- --list-different",
+    "validate": "npm run check-format && npm run lint && npm run build"
+  }
+  ...
+}
+```
+
+- The `--` tells npm to forward all the remaining arguments to the specified script.
+
+### 3.10. Avoid Common Errors by Installing and Configuring TypeScript
+
+ESLint can check for a lot of things, but it’s not a great tool for checking the types of variables that flow through your application. For this you’ll need a type-checking tool like Flow or TypeScript. Let’s see how we can configure our project to work with TypeScript.
+
+- We use the TypeScript compiler - tsc - to verify that the types in our project are correct.
+- We want to configure TypeScript so we can be explicit about what we want it to do with a tsconfig.json file.
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "noEmit": true
+  }
+}
+```
+
+- `baseUrl` tells TypeScript where to look for files.
+- `noEmit` tells TypeScript not to compile our code as we already have Babel doing that job for us.
+- We also need to add the `ts` and `tsx` file extensions to the build & prettier scripts.
+- We can add a new script to run tsc, and add this to our validate script.
+
+```json
+{
+  ...
+  "scripts": {
+    "build": "babel src --extensions .js,.ts,.tsx --out-dir dist",
+    ...
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
+    "check-types": "tsc",
+    ...
+    "validate": "npm run check-types && npm run check-format && npm run lint && npm run build"
+  }
+  ...
+}
+```
+
+- However we'll still get an error, because Babel doesn't know how to parse TypeScript by default.
+- For this we need to run `npm install --save-dev @babel/preset-typescript` and add to our `.babelrc` presets:
+
+```json
+{
+  "presets": [..."@babel/preset-typescript"]
+}
+```
+
+### 3.11. Make ESLint Support TypeScript Files
+
+ESLint does not have support for TypeScript out of the box, but luckily adding support for TypeScript is straightforward thanks to the [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) project. And now that we have TypeScript, there are a lot of rules that we don’t need ESLint to bother checking because TypeScript will prevent those problems in the first place! Let’s get these two tools integrated.
+
+- To get the two to integrate we need to run `npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser`.
+- To configure ESLint to run across TypeScript files we need to edit our lint script to include the `ts` & `tsx` file extensions by adding `--ext .js,.ts,.tsx`.
+
+```json
+{
+  "scripts": {
+    ...
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx ."
+    ...
+  }
+  ...
+}
+```
+
+- To configure ESLint to parse TypeScript files, we need to edit the `.eslintrc` file.
+- Since we are running ESLint across other files apart from TypeScript, we want to keep our original config, and so we can use ESLint's overrides configuration property.
+
+```js
+{
+  ...
+  "overrides": [
+    {
+      "files": "**/*.+(ts|tsx)",
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "plugins": ["@typescript-eslint/eslint-plugin"],
+      "extends": [
+        // pre-built plugin configurations
+        "plugin:@typescript-eslint/eslint-recommended", // disables rules from ESLint that TypeScript renders unnecessary.
+        "plugin:@typescript-eslint/recommended", // specific rules from the typescript-eslint plugin sometimes useful for TS files e.g. interfaces.
+        "eslint-config-prettier/@typescript-eslint" // disables rules from typescript-eslint that are not actually necessary.
+      ]
+    }
+  ]
+}
+```
+
+### 3.12. Validate Code in a pre-commit git Hook with husky
+
+We have a few checks we’ll run in continuous integration when someone opens a pull request, but it’d be even better if we could run some of those checks before they even commit their code so they can fix it right away rather than waiting for CI to run. Let’s use husky’s precommit script to run our validation.
+
+- As handy as our validate script is it would be better if we could make sure that happens before anyone commits code.
+- Husky creates a hooks directory inside the git directory with a bunch of files to handle pre-commit checks.
+- To configure Husky we can create a `.huskyrc` file.
+
+```json
+{
+  "hooks": {
+    "pre-commit": "npm run validate"
+  }
+}
+```
+
+- Any time we commit, git will run the pre-commit script which Husky stores in the directory it created, and in turn it will run the validate script.
+- If the validate script doesn't pass, the commit won't be created.
+- We can override the pre-commit with `--no-verify`.
+- Looking at the hooks directory that Husky creates can give us an idea of what we can do with Husky.
+
+### 3.13. Auto-format All Files and Validate Relevant Files in a pre-commit Script with lint-staged
+
+Rather than failing when a developer has failed to format their files or run linting on all the files in the project on every commit, it would be even better to just automatically format the files on commit and only check the relevant files with eslint. Let’s use `lint-staged` to run scripts on the files that are going to be committed as part of our precommit hook.
+
+- Install with `npm install --save-dev lint-staged`.
+- We can create a config file `.lintstagedrc`:
+
+```json
+{
+  "*.js": ["eslint"],
+  "*.+(js|json|ts)": ["prettier --write", "git add"]
+}
+```
+
+- `lint-staged` will forward on the files specified to the scripts that we specify.
+- Husky is in charge of running scripts on commit, so rather than running the validate script we can run `lint-staged`.
+- But since lint-staged is only taking care of linting and formatting, we also need to add our type checking
+
+```json
+{
+  "hooks": {
+    "pre-commit": "npm run check-types && lint-staged && npm run build"
+  }
+}
+```
+
+- The cool thing about lint-staged is that it only runs on files that have changed.
+- And we've configured it to add files back that have been changed by prettier (git add step is [not required](https://github.com/okonet/lint-staged#v10) from v10).
+- lint-staged can even manage patched changes, so if we are only committing part of the file it will only update the part of the file that is being changed.
+- Using lint-staged improves DX for everyone working on the project, since they don't need to have prettier configured for their editor in order for all code committed to be formatted according to the agreed style guide.
+
+### 3.14. Run Multiple npm Scripts in Parallel with npm-run-all
+
+We use npm scripts a lot, and that validate script is a great way to bring everything together. But with the way these tools work, we can run them all at the same time and things will work just as well. This will speed up our script runtime a lot, so let’s use `npm-run-all` to make that happen.
+
+- Our validate script is really handy, but there is a lot going on and it takes a while.
+- It would be nice if we could run all these commands at the same time.
+- `npm-run-all` allows scripts to be run in parallel.
+- Install with `npm install --save-dev npm-run-all`.
+- We can then update teh validate script.
+
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "validate": "npm-run-all --parallel check-types check-format lint build"
+  }
+  ...
+}
+```
+
+- Our script now runs a lot faster!
 
 ## 4. Configure Jest for Testing JavaScript Applications
 
