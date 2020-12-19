@@ -1351,9 +1351,9 @@ test("the clear button switches from AC to C when there is an entry", () => {
 });
 ```
 
-- Now our test assertion is cleaner and the error message if we break the source code os clearer.
+- Now our test assertion is cleaner and the error message if we break the source code is clearer.
 - This is great but we don't want to repeat this boilerplate for every test.
-- So `jest-dome` exposes a module that we can import called `extend-expect` which will do `expect.extend(jestDOM);` for us so we can remove it.
+- So `jest-dom` exposes a module that we can import called `extend-expect` which will do `expect.extend(jestDOM);` for us so we can remove it.
 
 ```js
 import * as jestDOM from "@testing-library/jest-dom/extend-expect";
@@ -1411,8 +1411,8 @@ test('renders', () => {
 ```
 
 - This abstraction is nice, but we don't want to have to write it for every test that uses `ThemeProvider`.
-- We don't want to think about `ThemeProvider` at all, and the same applies for a router or redux provider or and context provider.
-- We would like to be able to say to render component in the test environment how it is in the app and the `Wrapper` ca be responsible for rendering the component with whatever provider is required.
+- We don't want to think about `ThemeProvider` at all, and the same applies for a router or redux provider or any context provider.
+- We would like to be able to say to render component in the test environment how it is in the app and the `Wrapper` can be responsible for rendering the component with whatever provider is required.
 - We could make our own customer render function which behaves pretty much the same as the Testing Library render function.
 
 ```js
