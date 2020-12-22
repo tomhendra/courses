@@ -9,6 +9,7 @@
   - [1.3. Tips](#13-tips)
   - [1.4. Tests](#14-tests)
   - [1.5. Approach](#15-approach)
+- [2. React Fundamentals](#2-react-fundamentals)
 
 ## 1. Introduction
 
@@ -105,3 +106,5 @@ Workshop Dev Tools Features
 Make sure to take breaks as you work through Epic React. Each one of these workshops is at least four hours of just workshop time.
 
 Kent recommends https://icanhazdadjoke.com in between breaks!
+
+## 2. React Fundamentals
