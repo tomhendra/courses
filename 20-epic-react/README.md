@@ -108,3 +108,11 @@ Make sure to take breaks as you work through Epic React. Each one of these works
 Kent recommends https://icanhazdadjoke.com in between breaks!
 
 ## 2. React Fundamentals
+
+It is really important to get an understanding of what an abstraction does. The fundamentals section gets us comfortable with what React does behind the scenes.
+
+- Read through [JavaScript to Know for React](https://kentcdodds.com/blog/javascript-to-know-for-react).
+- [Readme 01](react-fundamentals/src/exercise/01.md)
+- [Exercise 01](react-fundamentals/src/exercise/01.html)
+- [Readme 02](react-fundamentals/src/exercise/02.md)
+- [Exercise 02](react-fundamentals/src/exercise/02.html)
