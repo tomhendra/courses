@@ -10,6 +10,9 @@
   - [1.4. Tests](#14-tests)
   - [1.5. Approach](#15-approach)
 - [2. React Fundamentals](#2-react-fundamentals)
+  - [2.1. Hello World](#21-hello-world)
+  - [2.2. Intro to Raw React APIs](#22-intro-to-raw-react-apis)
+  - [2.3. Using JSX](#23-using-jsx)
 
 ## 1. Introduction
 
@@ -111,8 +114,21 @@ Kent recommends https://icanhazdadjoke.com in between breaks!
 
 It is really important to get an understanding of what an abstraction does. The fundamentals section gets us comfortable with what React does behind the scenes.
 
+**Perquisites**
+
 - Read through [JavaScript to Know for React](https://kentcdodds.com/blog/javascript-to-know-for-react).
+
+### 2.1. Hello World
+
 - [Readme 01](react-fundamentals/src/exercise/01.md)
 - [Exercise 01](react-fundamentals/src/exercise/01.html)
+
+### 2.2. Intro to Raw React APIs
+
 - [Readme 02](react-fundamentals/src/exercise/02.md)
 - [Exercise 02](react-fundamentals/src/exercise/02.html)
+
+### 2.3. Using JSX
+
+- [Readme 03](react-fundamentals/src/exercise/03.md)
+- [Exercise 03](react-fundamentals/src/exercise/03.html)
