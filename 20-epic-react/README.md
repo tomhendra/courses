@@ -13,6 +13,7 @@
   - [2.1. Hello World](#21-hello-world)
   - [2.2. Intro to Raw React APIs](#22-intro-to-raw-react-apis)
   - [2.3. Using JSX](#23-using-jsx)
+  - [2.4. Creating Custom Components](#24-creating-custom-components)
 
 ## 1. Introduction
 
@@ -121,14 +122,28 @@ It is really important to get an understanding of what an abstraction does. The 
 ### 2.1. Hello World
 
 - [Readme 01](react-fundamentals/src/exercise/01.md)
-- [Exercise 01](react-fundamentals/src/exercise/01.html)
+- [Exercise 01](react-fundamentals/src/final/01.html)
+- [Exercise 01: Extra-1](react-fundamentals/src/final/01.extra-1.html)
 
 ### 2.2. Intro to Raw React APIs
 
 - [Readme 02](react-fundamentals/src/exercise/02.md)
-- [Exercise 02](react-fundamentals/src/exercise/02.html)
+- [Exercise 02](react-fundamentals/src/final/02.html)
+- [Exercise 02: Extra-1](react-fundamentals/src/final/02.extra-1.html)
 
 ### 2.3. Using JSX
 
 - [Readme 03](react-fundamentals/src/exercise/03.md)
-- [Exercise 03](react-fundamentals/src/exercise/03.html)
+- [Exercise 03](react-fundamentals/src/final/03.html)
+- [Exercise 03: Extra-1](react-fundamentals/src/final/03.extra-1.html)
+- [Exercise 03: Extra-2](react-fundamentals/src/final/03.extra-2.html)
+
+### 2.4. Creating Custom Components
+
+- [Readme 04](react-fundamentals/src/exercise/04.md)
+- [Exercise 04](react-fundamentals/src/final/04.html)
+- [Exercise 04: Extra-1](react-fundamentals/src/final/04.extra-1.html)
+- [Exercise 04: Extra-2](react-fundamentals/src/final/04.extra-2.html)
+- [Exercise 04: Extra-3](react-fundamentals/src/final/04.extra-3.html)
+- [Exercise 04: Extra-4](react-fundamentals/src/final/04.extra-4.html)
+- [Exercise 04: Extra-5](react-fundamentals/src/final/04.extra-5.html)
