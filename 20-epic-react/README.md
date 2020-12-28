@@ -14,6 +14,7 @@
   - [2.2. Intro to Raw React APIs](#22-intro-to-raw-react-apis)
   - [2.3. Using JSX](#23-using-jsx)
   - [2.4. Creating Custom Components](#24-creating-custom-components)
+  - [2.5. Styling](#25-styling)
 
 ## 1. Introduction
 
@@ -147,3 +148,10 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 04: Extra-3](react-fundamentals/src/final/04.extra-3.html)
 - [Exercise 04: Extra-4](react-fundamentals/src/final/04.extra-4.html)
 - [Exercise 04: Extra-5](react-fundamentals/src/final/04.extra-5.html)
+
+### 2.5. Styling
+
+- [Readme 05](react-fundamentals/src/exercise/05.md)
+- [Exercise 05](react-fundamentals/src/final/05.js)
+- [Exercise 05: Extra-1](react-fundamentals/src/final/05.extra-1.js)
+- [Exercise 05: Extra-2](react-fundamentals/src/final/05.extra-2.js)
