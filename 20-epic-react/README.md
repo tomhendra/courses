@@ -16,6 +16,7 @@
   - [2.4. Creating Custom Components](#24-creating-custom-components)
   - [2.5. Styling](#25-styling)
   - [2.6. Forms](#26-forms)
+  - [2.7. Rendering Arrays](#27-rendering-arrays)
 
 ## 1. Introduction
 
@@ -164,3 +165,9 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 06: Extra-1](react-fundamentals/src/final/06.extra-1.js)
 - [Exercise 06: Extra-2](react-fundamentals/src/final/06.extra-2.js)
 - [Exercise 06: Extra-3](react-fundamentals/src/final/06.extra-3.js)
+
+### 2.7. Rendering Arrays
+
+- [Readme 07](react-fundamentals/src/exercise/07.md)
+- [Exercise 07](react-fundamentals/src/final/07.js)
+- [Exercise 07: Extra-1](react-fundamentals/src/final/07-extra-1.js)
