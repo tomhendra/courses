@@ -17,6 +17,7 @@
   - [2.5. Styling](#25-styling)
   - [2.6. Forms](#26-forms)
   - [2.7. Rendering Arrays](#27-rendering-arrays)
+- [3. React Hooks](#3-react-hooks)
 
 ## 1. Introduction
 
@@ -171,3 +172,9 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Readme 07](react-fundamentals/src/exercise/07.md)
 - [Exercise 07](react-fundamentals/src/final/07.js)
 - [Exercise 07: Extra-1](react-fundamentals/src/final/07-extra-1.js)
+
+## 3. React Hooks
+
+**Perquisites**
+
+- Watch Kent's [Why React Hooks Video](https://youtu.be/zWsZcBiwgVE).
