@@ -18,7 +18,8 @@
   - [2.6. Forms](#26-forms)
   - [2.7. Rendering Arrays](#27-rendering-arrays)
 - [3. React Hooks](#3-react-hooks)
-  - [3.1. useState: greeting](#31-usestate-greeting)
+  - [3.1. useState: Greeting](#31-usestate-greeting)
+  - [3.2. useEffect: Persistent State](#32-useeffect-persistent-state)
 
 ## 1. Introduction
 
@@ -180,8 +181,17 @@ It is really important to get an understanding of what an abstraction does. The 
 
 - Watch Kent's [Why React Hooks Video](https://youtu.be/zWsZcBiwgVE).
 
-### 3.1. useState: greeting
+### 3.1. useState: Greeting
 
 - [Readme 01](react-fundamentals/src/exercise/01.md)
 - [Exercise 01](react-hooks/src/final/01.js)
 - [Exercise 01: Extra-1](react-hooks/src/final/01.extra-1.js)
+
+### 3.2. useEffect: Persistent State
+
+- [Readme 02](react-hooks/src/exercise/02.md)
+- [Exercise 02](react-hooks/src/final/02.js)
+- [Exercise 02: Extra-1](react-hooks/src/final/02.extra-1.js)
+- [Exercise 02: Extra-2](react-hooks/src/final/02.extra-2.js)
+- [Exercise 02: Extra-3](react-hooks/src/final/02.extra-3.js)
+- [Exercise 02: Extra-4](react-hooks/src/final/02.extra-4.js)
