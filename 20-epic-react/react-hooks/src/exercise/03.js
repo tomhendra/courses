@@ -11,7 +11,6 @@ function Name({name, onNameChange}) {
     </div>
   )
 }
-
 // 🐨 accept `animal` and `onAnimalChange` props to this component
 function FavoriteAnimal() {
   // 💣 delete this, it's now managed by the App

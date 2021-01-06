@@ -20,6 +20,7 @@
 - [3. React Hooks](#3-react-hooks)
   - [3.1. useState: Greeting](#31-usestate-greeting)
   - [3.2. useEffect: Persistent State](#32-useeffect-persistent-state)
+  - [3.3. Lifting State](#33-lifting-state)
 
 ## 1. Introduction
 
@@ -183,7 +184,7 @@ It is really important to get an understanding of what an abstraction does. The 
 
 ### 3.1. useState: Greeting
 
-- [Readme 01](react-fundamentals/src/exercise/01.md)
+- [Readme 01](react-hooks/src/exercise/01.md)
 - [Exercise 01](react-hooks/src/final/01.js)
 - [Exercise 01: Extra-1](react-hooks/src/final/01.extra-1.js)
 
@@ -195,3 +196,11 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 02: Extra-2](react-hooks/src/final/02.extra-2.js)
 - [Exercise 02: Extra-3](react-hooks/src/final/02.extra-3.js)
 - [Exercise 02: Extra-4](react-hooks/src/final/02.extra-4.js)
+- [Hook Flow Diagram](react-hooks/src/examples/hook-flow.png)
+- [Hook Flow Demo](react-hooks/src/examples/hook-flow.js)
+
+### 3.3. Lifting State
+
+- [Readme 03](react-hooks/src/exercise/03.md)
+- [Exercise 01](react-hooks/src/final/01.js)
+- [Exercise 01: Extra-1](react-hooks/src/final/01.extra-1.js)

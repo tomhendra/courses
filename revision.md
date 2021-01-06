@@ -20,7 +20,7 @@
 | [JavaScript30](18-javascript30)                                                                                          | --:-- | 10/11/20 | 28/01/21 |
 | [Testing JavaScript](19-testing-javascript)                                                                              | --:-- | 21/12/20 | 31/01/21 |
 | **Computer Science**                                                                                                     |       |          |          |
-| [Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)                              | 02:00 | 23/11/20 | 05/01/21 |
+| [Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)                              | 02:00 | 23/11/20 | 07/01/21 |
 | [JavaScript Algorithms and Data Structures Masterclass](3-algorithms-and-data-structures)                                | --:-- | --/--/-- | 08/01/21 |
 | **CSS & Creative Coding**                                                                                                |       |          |          |
 | [CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/3-css-grids-and-flexbox-for-responsive-web-design)     | --:-- | --/--/-- | --/--/-- |
