@@ -21,6 +21,7 @@
   - [3.1. useState: Greeting](#31-usestate-greeting)
   - [3.2. useEffect: Persistent State](#32-useeffect-persistent-state)
   - [3.3. Lifting State](#33-lifting-state)
+  - [3.4. useState: Tic Tac Toe](#34-usestate-tic-tac-toe)
 
 ## 1. Introduction
 
@@ -202,5 +203,13 @@ It is really important to get an understanding of what an abstraction does. The 
 ### 3.3. Lifting State
 
 - [Readme 03](react-hooks/src/exercise/03.md)
-- [Exercise 01](react-hooks/src/final/01.js)
-- [Exercise 01: Extra-1](react-hooks/src/final/01.extra-1.js)
+- [Exercise 03](react-hooks/src/final/03.js)
+- [Exercise 03: Extra-1](react-hooks/src/final/03.extra-1.js)
+
+### 3.4. useState: Tic Tac Toe
+
+- [Readme 04](react-hooks/src/exercise/04.md)
+- [Exercise 04](react-hooks/src/exercise/04.js)
+- [Exercise 04: Extra-1](react-hooks/src/final/04.extra-1.js)
+- [Exercise 04: Extra-2](react-hooks/src/final/04.extra-2.js)
+- [Exercise 04: Extra-3](react-hooks/src/final/04.extra-3.js)
