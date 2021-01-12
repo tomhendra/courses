@@ -22,6 +22,7 @@
   - [3.2. useEffect: Persistent State](#32-useeffect-persistent-state)
   - [3.3. Lifting State](#33-lifting-state)
   - [3.4. useState: Tic Tac Toe](#34-usestate-tic-tac-toe)
+  - [3.5. useRef and useEffect: DOM interaction](#35-useref-and-useeffect-dom-interaction)
 
 ## 1. Introduction
 
@@ -213,3 +214,8 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 04: Extra-1](react-hooks/src/final/04.extra-1.js)
 - [Exercise 04: Extra-2](react-hooks/src/final/04.extra-2.js)
 - [Exercise 04: Extra-3](react-hooks/src/final/04.extra-3.js)
+
+### 3.5. useRef and useEffect: DOM interaction
+
+- [Readme 05](react-hooks/src/exercise/05.md)
+- [Exercise 05](react-hooks/src/exercise/05.js)
