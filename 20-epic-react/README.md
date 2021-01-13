@@ -24,6 +24,7 @@
   - [3.4. useState: Tic Tac Toe](#34-usestate-tic-tac-toe)
   - [3.5. useRef and useEffect: DOM interaction](#35-useref-and-useeffect-dom-interaction)
   - [3.6. useEffect: HTTP requests](#36-useeffect-http-requests)
+- [4. Advanced React Hooks](#4-advanced-react-hooks)
 
 ## 1. Introduction
 
@@ -233,3 +234,12 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 06: Extra-6](react-hooks/src/final/06.extra-6.js)
 - [Exercise 06: Extra-7](react-hooks/src/final/06.extra-7.js)
 - [Exercise 06: Extra-8](react-hooks/src/final/06.extra-8.js)
+
+## 4. Advanced React Hooks
+
+- [Readme 01](advanced-react-hooks/src/exercise/01.md)
+- [Exercise 01](advanced-react-hooks/src/exercise/01.js)
+- [Exercise 01: Extra-1](advanced-react-hooks/src/final/01.extra-1.js)
+- [Exercise 01: Extra-1](advanced-react-hooks/src/final/01.extra-2.js)
+- [Exercise 01: Extra-1](advanced-react-hooks/src/final/01.extra-3.js)
+- [Exercise 01: Extra-1](advanced-react-hooks/src/final/01.extra-4.js)
