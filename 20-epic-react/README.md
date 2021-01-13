@@ -23,6 +23,7 @@
   - [3.3. Lifting State](#33-lifting-state)
   - [3.4. useState: Tic Tac Toe](#34-usestate-tic-tac-toe)
   - [3.5. useRef and useEffect: DOM interaction](#35-useref-and-useeffect-dom-interaction)
+  - [3.6. useEffect: HTTP requests](#36-useeffect-http-requests)
 
 ## 1. Introduction
 
@@ -219,3 +220,16 @@ It is really important to get an understanding of what an abstraction does. The 
 
 - [Readme 05](react-hooks/src/exercise/05.md)
 - [Exercise 05](react-hooks/src/exercise/05.js)
+
+### 3.6. useEffect: HTTP requests
+
+- [Readme 06](react-hooks/src/exercise/06.md)
+- [Exercise 06](react-hooks/src/exercise/06.js)
+- [Exercise 06: Extra-1](react-hooks/src/final/06.extra-1.js)
+- [Exercise 06: Extra-2](react-hooks/src/final/06.extra-2.js)
+- [Exercise 06: Extra-3](react-hooks/src/final/06.extra-3.js)
+- [Exercise 06: Extra-4](react-hooks/src/final/06.extra-4.js)
+- [Exercise 06: Extra-5](react-hooks/src/final/06.extra-5.js)
+- [Exercise 06: Extra-6](react-hooks/src/final/06.extra-6.js)
+- [Exercise 06: Extra-7](react-hooks/src/final/06.extra-7.js)
+- [Exercise 06: Extra-8](react-hooks/src/final/06.extra-8.js)
