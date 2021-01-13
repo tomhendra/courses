@@ -25,6 +25,7 @@
   - [3.5. useRef and useEffect: DOM interaction](#35-useref-and-useeffect-dom-interaction)
   - [3.6. useEffect: HTTP requests](#36-useeffect-http-requests)
 - [4. Advanced React Hooks](#4-advanced-react-hooks)
+  - [4.1. useReducer: simple Counter](#41-usereducer-simple-counter)
 
 ## 1. Introduction
 
@@ -236,6 +237,8 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 06: Extra-8](react-hooks/src/final/06.extra-8.js)
 
 ## 4. Advanced React Hooks
+
+### 4.1. useReducer: simple Counter
 
 - [Readme 01](advanced-react-hooks/src/exercise/01.md)
 - [Exercise 01](advanced-react-hooks/src/exercise/01.js)
