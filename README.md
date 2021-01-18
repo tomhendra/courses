@@ -6,7 +6,7 @@
 
 ## Introduction
 
-A self-guided journey into software development, navigated with this repo & [Trello](https://trello.com/b/R1CVyI4S).
+A self-guided journey into software development, navigated with this repo & [Notion](https://www.notion.so/tomhendra/aee55240fda84fb3a0508cf3f7f49cf1?v=8c5ca7124255468ca320027f057e700d).
 
 ## Index of courses
 

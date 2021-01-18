@@ -27,6 +27,7 @@
 - [4. Advanced React Hooks](#4-advanced-react-hooks)
   - [4.1. useReducer: simple Counter](#41-usereducer-simple-counter)
   - [4.2. useCallback: custom hooks](#42-usecallback-custom-hooks)
+  - [4.3. useContext: simple Counter](#43-usecontext-simple-counter)
 
 ## 1. Introduction
 
@@ -255,3 +256,10 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 02: Extra-1](advanced-react-hooks/src/final/02.extra-1.js)
 - [Exercise 02: Extra-2](advanced-react-hooks/src/final/02.extra-2.js)
 - [Exercise 02: Extra-3](advanced-react-hooks/src/final/02.extra-3.js)
+
+### 4.3. useContext: simple Counter
+
+- [Readme 03](advanced-react-hooks/src/exercise/03.md)
+- [Exercise 03](advanced-react-hooks/src/exercise/03.js)
+- [Exercise 03: Extra-1](advanced-react-hooks/src/final/03.extra-1.js)
+- [Exercise 03: Extra-2](advanced-react-hooks/src/final/03.extra-2.js)
