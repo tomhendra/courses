@@ -28,6 +28,7 @@
   - [4.1. useReducer: simple Counter](#41-usereducer-simple-counter)
   - [4.2. useCallback: custom hooks](#42-usecallback-custom-hooks)
   - [4.3. useContext: simple Counter](#43-usecontext-simple-counter)
+  - [4.4. useLayoutEffect: auto-scrolling textarea](#44-uselayouteffect-auto-scrolling-textarea)
 
 ## 1. Introduction
 
@@ -263,3 +264,8 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 03](advanced-react-hooks/src/exercise/03.js)
 - [Exercise 03: Extra-1](advanced-react-hooks/src/final/03.extra-1.js)
 - [Exercise 03: Extra-2](advanced-react-hooks/src/final/03.extra-2.js)
+
+### 4.4. useLayoutEffect: auto-scrolling textarea
+
+- [Readme 04](advanced-react-hooks/src/exercise/04.md)
+- [Exercise 04](advanced-react-hooks/src/exercise/04.js)
