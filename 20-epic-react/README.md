@@ -31,6 +31,7 @@
   - [4.4. useLayoutEffect: auto-scrolling textarea](#44-uselayouteffect-auto-scrolling-textarea)
   - [4.5. useImperativeHandle: scroll to top/bottom](#45-useimperativehandle-scroll-to-topbottom)
   - [4.6. useDebugValue: useMedia](#46-usedebugvalue-usemedia)
+- [5. Advanced React Patterns](#5-advanced-react-patterns)
 
 ## 1. Introduction
 
@@ -282,3 +283,10 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Readme 06](advanced-react-hooks/src/exercise/06.md)
 - [Exercise 06](advanced-react-hooks/src/exercise/06.js)
 - [Exercise 06: Extra-1](advanced-react-hooks/src/final/06.extra-1.js)
+
+## 5. Advanced React Patterns
+
+**Perquisites**
+
+- Read Kent's [blog post](https://kentcdodds.com/blog/inversion-of-control) on inversion of control.
+- Watch Kent's [video](https://egghead.io/lessons/javascript-implement-inversion-of-control).
