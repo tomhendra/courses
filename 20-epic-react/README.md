@@ -290,3 +290,4 @@ It is really important to get an understanding of what an abstraction does. The 
 
 - Read Kent's [blog post](https://kentcdodds.com/blog/inversion-of-control) on inversion of control.
 - Watch Kent's [video](https://egghead.io/lessons/javascript-implement-inversion-of-control).
+- The more experience you have with building React abstractions, the more helpful this workshop will be for you.
