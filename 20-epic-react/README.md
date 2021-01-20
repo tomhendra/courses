@@ -32,6 +32,7 @@
   - [4.5. useImperativeHandle: scroll to top/bottom](#45-useimperativehandle-scroll-to-topbottom)
   - [4.6. useDebugValue: useMedia](#46-usedebugvalue-usemedia)
 - [5. Advanced React Patterns](#5-advanced-react-patterns)
+  - [5.1. Context Module Functions](#51-context-module-functions)
 
 ## 1. Introduction
 
@@ -288,6 +289,11 @@ It is really important to get an understanding of what an abstraction does. The 
 
 **Perquisites**
 
-- Read Kent's [blog post](https://kentcdodds.com/blog/inversion-of-control) on inversion of control.
 - Watch Kent's [video](https://egghead.io/lessons/javascript-implement-inversion-of-control).
+- Read Kent's [blog post](https://kentcdodds.com/blog/inversion-of-control) on inversion of control.
 - The more experience you have with building React abstractions, the more helpful this workshop will be for you.
+
+### 5.1. Context Module Functions
+
+- [Readme 01](advanced-react-patterns/src/exercise/01.md)
+- [Exercise 01](advanced-react-patterns/src/exercise/01.js)
