@@ -34,6 +34,7 @@
 - [5. Advanced React Patterns](#5-advanced-react-patterns)
   - [5.1. Context Module Functions](#51-context-module-functions)
   - [5.2. Compound Components](#52-compound-components)
+  - [5.3. Flexible Compound Components](#53-flexible-compound-components)
 
 ## 1. Introduction
 
@@ -288,7 +289,7 @@ It is really important to get an understanding of what an abstraction does. The 
 
 ## 5. Advanced React Patterns
 
-**Perquisites**
+**prerequisites**
 
 - Watch Kent's [video](https://egghead.io/lessons/javascript-implement-inversion-of-control).
 - Read Kent's [blog post](https://kentcdodds.com/blog/inversion-of-control) on inversion of control.
@@ -304,3 +305,9 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Readme 02](advanced-react-patterns/src/exercise/02.md)
 - [Exercise 02](advanced-react-patterns/src/exercise/02.js)
 - [Exercise 02: Extra-1](advanced-react-patterns/src/final/02.extra-1.js)
+
+### 5.3. Flexible Compound Components
+
+- [Readme 03](advanced-react-patterns/src/exercise/03.md)
+- [Exercise 03](advanced-react-patterns/src/exercise/03.js)
+- [Exercise 03: Extra-1](advanced-react-patterns/src/final/03.extra-1.js)
