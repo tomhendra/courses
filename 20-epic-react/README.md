@@ -33,6 +33,7 @@
   - [4.6. useDebugValue: useMedia](#46-usedebugvalue-usemedia)
 - [5. Advanced React Patterns](#5-advanced-react-patterns)
   - [5.1. Context Module Functions](#51-context-module-functions)
+  - [5.2. Compound Components](#52-compound-components)
 
 ## 1. Introduction
 
@@ -297,3 +298,9 @@ It is really important to get an understanding of what an abstraction does. The 
 
 - [Readme 01](advanced-react-patterns/src/exercise/01.md)
 - [Exercise 01](advanced-react-patterns/src/exercise/01.js)
+
+### 5.2. Compound Components
+
+- [Readme 02](advanced-react-patterns/src/exercise/02.md)
+- [Exercise 02](advanced-react-patterns/src/exercise/02.js)
+- [Exercise 02: Extra-1](advanced-react-patterns/src/final/02.extra-1.js)
