@@ -37,6 +37,7 @@
   - [5.3. Flexible Compound Components](#53-flexible-compound-components)
   - [5.4. Prop Collections & Getters](#54-prop-collections--getters)
   - [5.5. State Reducer](#55-state-reducer)
+  - [5.6. Control Props](#56-control-props)
 
 ## 1. Introduction
 
@@ -326,3 +327,12 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 05](advanced-react-patterns/src/final/05.js)
 - [Exercise 05: Extra-1](advanced-react-patterns/src/final/05.extra-1.js)
 - [Exercise 05: Extra-2](advanced-react-patterns/src/final/05.extra-2.js)
+
+### 5.6. Control Props
+
+- [Readme 06](advanced-react-patterns/src/exercise/06.md)
+- [Exercise 06](advanced-react-patterns/src/final/06.js)
+- [Exercise 06: Extra-1](advanced-react-patterns/src/final/06.extra-1.js)
+- [Exercise 06: Extra-2](advanced-react-patterns/src/final/06.extra-2.js)
+- [Exercise 06: Extra-3](advanced-react-patterns/src/final/06.extra-3.js)
+- [Exercise 06: Extra-4](advanced-react-patterns/src/final/06.extra-4.js)
