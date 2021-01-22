@@ -36,6 +36,7 @@
   - [5.2. Compound Components](#52-compound-components)
   - [5.3. Flexible Compound Components](#53-flexible-compound-components)
   - [5.4. Prop Collections & Getters](#54-prop-collections--getters)
+  - [5.5. State Reducer](#55-state-reducer)
 
 ## 1. Introduction
 
@@ -268,24 +269,24 @@ It is really important to get an understanding of what an abstraction does. The 
 ### 4.3. useContext: simple Counter
 
 - [Readme 03](advanced-react-hooks/src/exercise/03.md)
-- [Exercise 03](advanced-react-hooks/src/exercise/03.js)
+- [Exercise 03](advanced-react-hooks/src/final/03.js)
 - [Exercise 03: Extra-1](advanced-react-hooks/src/final/03.extra-1.js)
 - [Exercise 03: Extra-2](advanced-react-hooks/src/final/03.extra-2.js)
 
 ### 4.4. useLayoutEffect: auto-scrolling textarea
 
 - [Readme 04](advanced-react-hooks/src/exercise/04.md)
-- [Exercise 04](advanced-react-hooks/src/exercise/04.js)
+- [Exercise 04](advanced-react-hooks/src/final/04.js)
 
 ### 4.5. useImperativeHandle: scroll to top/bottom
 
 - [Readme 05](advanced-react-hooks/src/exercise/05.md)
-- [Exercise 05](advanced-react-hooks/src/exercise/05.js)
+- [Exercise 05](advanced-react-hooks/src/final/05.js)
 
 ### 4.6. useDebugValue: useMedia
 
 - [Readme 06](advanced-react-hooks/src/exercise/06.md)
-- [Exercise 06](advanced-react-hooks/src/exercise/06.js)
+- [Exercise 06](advanced-react-hooks/src/final/06.js)
 - [Exercise 06: Extra-1](advanced-react-hooks/src/final/06.extra-1.js)
 
 ## 5. Advanced React Patterns
@@ -299,22 +300,29 @@ It is really important to get an understanding of what an abstraction does. The 
 ### 5.1. Context Module Functions
 
 - [Readme 01](advanced-react-patterns/src/exercise/01.md)
-- [Exercise 01](advanced-react-patterns/src/exercise/01.js)
+- [Exercise 01](advanced-react-patterns/src/final/01.js)
 
 ### 5.2. Compound Components
 
 - [Readme 02](advanced-react-patterns/src/exercise/02.md)
-- [Exercise 02](advanced-react-patterns/src/exercise/02.js)
+- [Exercise 02](advanced-react-patterns/src/final/02.js)
 - [Exercise 02: Extra-1](advanced-react-patterns/src/final/02.extra-1.js)
 
 ### 5.3. Flexible Compound Components
 
 - [Readme 03](advanced-react-patterns/src/exercise/03.md)
-- [Exercise 03](advanced-react-patterns/src/exercise/03.js)
+- [Exercise 03](advanced-react-patterns/src/final/03.js)
 - [Exercise 03: Extra-1](advanced-react-patterns/src/final/03.extra-1.js)
 
 ### 5.4. Prop Collections & Getters
 
 - [Readme 04](advanced-react-patterns/src/exercise/04.md)
-- [Exercise 04](advanced-react-patterns/src/exercise/04.js)
+- [Exercise 04](advanced-react-patterns/src/final/04.js)
 - [Exercise 04: Extra-1](advanced-react-patterns/src/final/04.extra-1.js)
+
+### 5.5. State Reducer
+
+- [Readme 05](advanced-react-patterns/src/exercise/05.md)
+- [Exercise 05](advanced-react-patterns/src/final/05.js)
+- [Exercise 05: Extra-1](advanced-react-patterns/src/final/05.extra-1.js)
+- [Exercise 05: Extra-2](advanced-react-patterns/src/final/05.extra-2.js)
