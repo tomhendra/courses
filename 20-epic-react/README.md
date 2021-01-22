@@ -35,6 +35,7 @@
   - [5.1. Context Module Functions](#51-context-module-functions)
   - [5.2. Compound Components](#52-compound-components)
   - [5.3. Flexible Compound Components](#53-flexible-compound-components)
+  - [5.4. Prop Collections & Getters](#54-prop-collections--getters)
 
 ## 1. Introduction
 
@@ -311,3 +312,9 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Readme 03](advanced-react-patterns/src/exercise/03.md)
 - [Exercise 03](advanced-react-patterns/src/exercise/03.js)
 - [Exercise 03: Extra-1](advanced-react-patterns/src/final/03.extra-1.js)
+
+### 5.4. Prop Collections & Getters
+
+- [Readme 04](advanced-react-patterns/src/exercise/04.md)
+- [Exercise 04](advanced-react-patterns/src/exercise/04.js)
+- [Exercise 04: Extra-1](advanced-react-patterns/src/final/04.extra-1.js)
