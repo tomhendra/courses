@@ -41,6 +41,7 @@
 - [6. React Performance](#6-react-performance)
   - [6.1. Code splitting](#61-code-splitting)
   - [6.2. useMemo for Expensive Calculations](#62-usememo-for-expensive-calculations)
+  - [6.3. React.memo for reducing unnecessary re-renders](#63-reactmemo-for-reducing-unnecessary-re-renders)
 
 ## 1. Introduction
 
@@ -355,3 +356,10 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 02](react-performance/src/final/02.js)
 - [Exercise 02: Extra-1](react-performance/src/final/02.extra-1.js)
 - [Exercise 02: Extra-2](react-performance/src/final/02.extra-2.js)
+
+### 6.3. React.memo for reducing unnecessary re-renders
+
+- [Readme 03](react-performance/src/exercise/03.md)
+- [Exercise 03](react-performance/src/final/03.js)
+- [Exercise 03: Extra-1](react-performance/src/final/03.extra-1.js)
+- [Exercise 03: Extra-2](react-performance/src/final/03.extra-2.js)
