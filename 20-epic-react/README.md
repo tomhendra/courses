@@ -40,6 +40,7 @@
   - [5.6. Control Props](#56-control-props)
 - [6. React Performance](#6-react-performance)
   - [6.1. Code splitting](#61-code-splitting)
+  - [6.2. useMemo for Expensive Calculations](#62-usememo-for-expensive-calculations)
 
 ## 1. Introduction
 
@@ -347,3 +348,10 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 01](react-performance/src/final/01.js)
 - [Exercise 01: Extra-1](react-performance/src/final/01.extra-1.js)
 - [Exercise 01: Extra-2](react-performance/src/final/01.extra-2.js)
+
+### 6.2. useMemo for Expensive Calculations
+
+- [Readme 02](react-performance/src/exercise/02.md)
+- [Exercise 02](react-performance/src/final/02.js)
+- [Exercise 02: Extra-1](react-performance/src/final/02.extra-1.js)
+- [Exercise 02: Extra-2](react-performance/src/final/02.extra-2.js)
