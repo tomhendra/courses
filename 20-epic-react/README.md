@@ -38,6 +38,7 @@
   - [5.4. Prop Collections & Getters](#54-prop-collections--getters)
   - [5.5. State Reducer](#55-state-reducer)
   - [5.6. Control Props](#56-control-props)
+- [6. React Performance](#6-react-performance)
 
 ## 1. Introduction
 
@@ -225,7 +226,7 @@ It is really important to get an understanding of what an abstraction does. The 
 ### 3.4. useState: Tic Tac Toe
 
 - [Readme 04](react-hooks/src/exercise/04.md)
-- [Exercise 04](react-hooks/src/exercise/04.js)
+- [Exercise 04](react-hooks/src/final/04.js)
 - [Exercise 04: Extra-1](react-hooks/src/final/04.extra-1.js)
 - [Exercise 04: Extra-2](react-hooks/src/final/04.extra-2.js)
 - [Exercise 04: Extra-3](react-hooks/src/final/04.extra-3.js)
@@ -233,12 +234,12 @@ It is really important to get an understanding of what an abstraction does. The 
 ### 3.5. useRef and useEffect: DOM interaction
 
 - [Readme 05](react-hooks/src/exercise/05.md)
-- [Exercise 05](react-hooks/src/exercise/05.js)
+- [Exercise 05](react-hooks/src/final/05.js)
 
 ### 3.6. useEffect: HTTP requests
 
 - [Readme 06](react-hooks/src/exercise/06.md)
-- [Exercise 06](react-hooks/src/exercise/06.js)
+- [Exercise 06](react-hooks/src/final/06.js)
 - [Exercise 06: Extra-1](react-hooks/src/final/06.extra-1.js)
 - [Exercise 06: Extra-2](react-hooks/src/final/06.extra-2.js)
 - [Exercise 06: Extra-3](react-hooks/src/final/06.extra-3.js)
@@ -253,7 +254,7 @@ It is really important to get an understanding of what an abstraction does. The 
 ### 4.1. useReducer: simple Counter
 
 - [Readme 01](advanced-react-hooks/src/exercise/01.md)
-- [Exercise 01](advanced-react-hooks/src/exercise/01.js)
+- [Exercise 01](advanced-react-hooks/src/final/01.js)
 - [Exercise 01: Extra-1](advanced-react-hooks/src/final/01.extra-1.js)
 - [Exercise 01: Extra-1](advanced-react-hooks/src/final/01.extra-2.js)
 - [Exercise 01: Extra-1](advanced-react-hooks/src/final/01.extra-3.js)
@@ -336,3 +337,5 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 06: Extra-2](advanced-react-patterns/src/final/06.extra-2.js)
 - [Exercise 06: Extra-3](advanced-react-patterns/src/final/06.extra-3.js)
 - [Exercise 06: Extra-4](advanced-react-patterns/src/final/06.extra-4.js)
+
+## 6. React Performance
