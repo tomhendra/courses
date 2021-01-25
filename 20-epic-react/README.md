@@ -39,6 +39,7 @@
   - [5.5. State Reducer](#55-state-reducer)
   - [5.6. Control Props](#56-control-props)
 - [6. React Performance](#6-react-performance)
+  - [6.1. Code splitting](#61-code-splitting)
 
 ## 1. Introduction
 
@@ -339,3 +340,10 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 06: Extra-4](advanced-react-patterns/src/final/06.extra-4.js)
 
 ## 6. React Performance
+
+### 6.1. Code splitting
+
+- [Readme 01](react-performance/src/exercise/01.md)
+- [Exercise 01](react-performance/src/final/01.js)
+- [Exercise 01: Extra-1](react-performance/src/final/01.extra-1.js)
+- [Exercise 01: Extra-2](react-performance/src/final/01.extra-2.js)
