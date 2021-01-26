@@ -42,6 +42,7 @@
   - [6.1. Code splitting](#61-code-splitting)
   - [6.2. useMemo for Expensive Calculations](#62-usememo-for-expensive-calculations)
   - [6.3. React.memo for reducing unnecessary re-renders](#63-reactmemo-for-reducing-unnecessary-re-renders)
+  - [6.4. Window large lists with react-virtual](#64-window-large-lists-with-react-virtual)
 
 ## 1. Introduction
 
@@ -363,3 +364,8 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 03](react-performance/src/final/03.js)
 - [Exercise 03: Extra-1](react-performance/src/final/03.extra-1.js)
 - [Exercise 03: Extra-2](react-performance/src/final/03.extra-2.js)
+
+### 6.4. Window large lists with react-virtual
+
+- [Readme 04](react-performance/src/exercise/04.md)
+- [Exercise 04](react-performance/src/final/04.js)
