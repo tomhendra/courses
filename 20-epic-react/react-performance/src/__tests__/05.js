@@ -1,8 +1,8 @@
 import * as React from 'react'
 import chalk from 'chalk'
 import {render} from '@testing-library/react'
-import App from '../final/05'
-// import App from '../exercise/05'
+// import App from '../final/05'
+import App from '../exercise/05'
 
 beforeEach(() => {
   jest.spyOn(React, 'useMemo')

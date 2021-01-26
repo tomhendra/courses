@@ -43,6 +43,7 @@
   - [6.2. useMemo for Expensive Calculations](#62-usememo-for-expensive-calculations)
   - [6.3. React.memo for reducing unnecessary re-renders](#63-reactmemo-for-reducing-unnecessary-re-renders)
   - [6.4. Window large lists with react-virtual](#64-window-large-lists-with-react-virtual)
+  - [6.5. Optimize context value](#65-optimize-context-value)
 
 ## 1. Introduction
 
@@ -369,3 +370,9 @@ It is really important to get an understanding of what an abstraction does. The 
 
 - [Readme 04](react-performance/src/exercise/04.md)
 - [Exercise 04](react-performance/src/final/04.js)
+
+### 6.5. Optimize context value
+
+- [Readme 05](react-performance/src/exercise/05.md)
+- [Exercise 05](react-performance/src/final/05.js)
+- [Exercise 05: Extra-1](react-performance/src/final/05.extra-1.js)
