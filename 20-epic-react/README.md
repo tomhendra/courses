@@ -46,6 +46,7 @@
   - [6.5. Optimize context value](#65-optimize-context-value)
   - [6.6. Fix “perf death by a thousand cuts”](#66-fix-perf-death-by-a-thousand-cuts)
   - [6.7. Production performance monitoring](#67-production-performance-monitoring)
+- [7. Testing React Apps](#7-testing-react-apps)
 
 ## 1. Introduction
 
@@ -393,3 +394,10 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Readme 07](react-performance/src/exercise/07.md)
 - [Exercise 07](react-performance/src/final/07.js)
 - [Exercise 07](react-performance/src/final/07.extra-1.js)
+
+## 7. Testing React Apps
+
+**prerequisites**
+
+- Read Kent's blog post: [But really, what is a JavaScript test?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-test)
+- Read Kent's other blog post: [But really, what is a JavaScript mock?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock)
