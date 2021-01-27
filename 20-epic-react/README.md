@@ -45,6 +45,7 @@
   - [6.4. Window large lists with react-virtual](#64-window-large-lists-with-react-virtual)
   - [6.5. Optimize context value](#65-optimize-context-value)
   - [6.6. Fix “perf death by a thousand cuts”](#66-fix-perf-death-by-a-thousand-cuts)
+  - [6.7. Production performance monitoring](#67-production-performance-monitoring)
 
 ## 1. Introduction
 
@@ -386,3 +387,9 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 06: Extra-2](react-performance/src/final/06.extra-2.js)
 - [Exercise 06: Extra-3](react-performance/src/final/06.extra-3.js)
 - [Exercise 06: Extra-4](react-performance/src/final/06.extra-4.js)
+
+### 6.7. Production performance monitoring
+
+- [Readme 07](react-performance/src/exercise/07.md)
+- [Exercise 07](react-performance/src/final/07.js)
+- [Exercise 07](react-performance/src/final/07.extra-1.js)
