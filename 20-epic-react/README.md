@@ -44,6 +44,7 @@
   - [6.3. React.memo for reducing unnecessary re-renders](#63-reactmemo-for-reducing-unnecessary-re-renders)
   - [6.4. Window large lists with react-virtual](#64-window-large-lists-with-react-virtual)
   - [6.5. Optimize context value](#65-optimize-context-value)
+  - [6.6. Fix “perf death by a thousand cuts”](#66-fix-perf-death-by-a-thousand-cuts)
 
 ## 1. Introduction
 
@@ -376,3 +377,12 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Readme 05](react-performance/src/exercise/05.md)
 - [Exercise 05](react-performance/src/final/05.js)
 - [Exercise 05: Extra-1](react-performance/src/final/05.extra-1.js)
+
+### 6.6. Fix “perf death by a thousand cuts”
+
+- [Readme 06](react-performance/src/exercise/06.md)
+- [Exercise 06](react-performance/src/final/06.js)
+- [Exercise 06: Extra-1](react-performance/src/final/06.extra-1.js)
+- [Exercise 06: Extra-2](react-performance/src/final/06.extra-2.js)
+- [Exercise 06: Extra-3](react-performance/src/final/06.extra-3.js)
+- [Exercise 06: Extra-4](react-performance/src/final/06.extra-4.js)
