@@ -47,6 +47,7 @@
   - [6.6. Fix “perf death by a thousand cuts”](#66-fix-perf-death-by-a-thousand-cuts)
   - [6.7. Production performance monitoring](#67-production-performance-monitoring)
 - [7. Testing React Apps](#7-testing-react-apps)
+  - [7.1. Simple Test with ReactDOM](#71-simple-test-with-reactdom)
 
 ## 1. Introduction
 
@@ -401,3 +402,8 @@ It is really important to get an understanding of what an abstraction does. The 
 
 - Read Kent's blog post: [But really, what is a JavaScript test?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-test)
 - Read Kent's other blog post: [But really, what is a JavaScript mock?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock)
+
+### 7.1. Simple Test with ReactDOM
+
+- [Readme 01](testing-react-apps/src/__tests__/exercise/01.md)
+- [Exercise 01](testing-react-apps/src/__tests__/exercise/01.js)
