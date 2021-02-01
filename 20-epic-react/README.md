@@ -48,6 +48,7 @@
   - [6.7. Production performance monitoring](#67-production-performance-monitoring)
 - [7. Testing React Apps](#7-testing-react-apps)
   - [7.1. Simple Test with ReactDOM](#71-simple-test-with-reactdom)
+  - [7.2. Simple Test with React Testing Library](#72-simple-test-with-react-testing-library)
 
 ## 1. Introduction
 
@@ -406,4 +407,11 @@ It is really important to get an understanding of what an abstraction does. The 
 ### 7.1. Simple Test with ReactDOM
 
 - [Readme 01](testing-react-apps/src/__tests__/exercise/01.md)
-- [Exercise 01](testing-react-apps/src/__tests__/exercise/01.js)
+- [Exercise 01](testing-react-apps/src/__tests__/final/01.js)
+- [Exercise 01: Extra-1](testing-react-apps/src/__tests__/final/01.extra-1.js)
+
+### 7.2. Simple Test with React Testing Library
+
+- [Readme 02](testing-react-apps/src/__tests__/exercise/02.md)
+- [Exercise 02](testing-react-apps/src/__tests__/final/02.js)
+- [Exercise 02: Extra-1](testing-react-apps/src/__tests__/final/02.extra-1.js)
