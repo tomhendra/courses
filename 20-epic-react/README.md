@@ -49,6 +49,7 @@
 - [7. Testing React Apps](#7-testing-react-apps)
   - [7.1. Simple Test with ReactDOM](#71-simple-test-with-reactdom)
   - [7.2. Simple Test with React Testing Library](#72-simple-test-with-react-testing-library)
+  - [7.3. Avoid Implementation Details](#73-avoid-implementation-details)
 
 ## 1. Introduction
 
@@ -415,3 +416,9 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Readme 02](testing-react-apps/src/__tests__/exercise/02.md)
 - [Exercise 02](testing-react-apps/src/__tests__/final/02.js)
 - [Exercise 02: Extra-1](testing-react-apps/src/__tests__/final/02.extra-1.js)
+
+### 7.3. Avoid Implementation Details
+
+- [Readme 03](testing-react-apps/src/__tests__/exercise/03.md)
+- [Exercise 03](testing-react-apps/src/__tests__/final/03.js)
+- [Exercise 03: Extra-1](testing-react-apps/src/__tests__/final/03.extra-1.js)
