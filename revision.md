@@ -7,7 +7,6 @@
 | Course                                                                                                                   | Time  | Previous |
 | ------------------------------------------------------------------------------------------------------------------------ | ----- | -------- |
 | **Fundamentals**                                                                                                         |       |          |
-| [Learning to Learn: Efficient Learning](10-learning-to-learn)                                                            | 00:15 | 14/01/21 |
 | [Complete Intro to Web Development, v2](14-fem-beginner/01-complete-intro-to-web-development-v2)                         | 00:15 | 14/01/21 |
 | [Mastering Chrome Developer Tools v2](14-fem-beginner/05-mastering-chrome-developer-tools-v2)                            | --:-- | 27/10/20 |
 | [Getting Started with JavaScript, v2](14-fem-beginner/02-getting-started-with-javascript-v2)                             | --:-- | 27/10/20 |
