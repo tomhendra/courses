@@ -6,13 +6,6 @@
 
 | Course                                                                                                                | Time  | Previous |
 | --------------------------------------------------------------------------------------------------------------------- | ----- | -------- |
-| **JavaScript**                                                                                                        |       |          |
-| [JavaScript: The Hard Parts, v2](15-fem-professional/01-javascript-the-hard-parts-v2)                                 | --:-- | 29/10/20 |
-| [Deep JavaScript Foundations, v3](15-fem-professional/02-deep-javascript-foundations-v3)                              | --:-- | 01/11/20 |
-| [JavaScript: The Recent Parts](15-fem-professional/03-javascript-the-recent-parts)                                    | --:-- | 02/11/20 |
-| [Functional-Light JavaScript, v3](15-fem-professional/05-functional-light-javascript-v3)                              | 03:30 | 11/11/20 |
-| [JavaScript30](18-javascript30)                                                                                       | --:-- | 10/11/20 |
-| [Testing JavaScript](19-testing-javascript)                                                                           | --:-- | 21/12/20 |
 | **Computer Science**                                                                                                  |       |          |
 | [Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)                           | 02:00 | 23/11/20 |
 | [JavaScript Algorithms and Data Structures Masterclass](03-algorithms-and-data-structures)                            | --:-- | --/--/-- |
