@@ -7,7 +7,6 @@
 | Course                                                                                                                | Time  | Previous |
 | --------------------------------------------------------------------------------------------------------------------- | ----- | -------- |
 | **Computer Science**                                                                                                  |       |          |
-| [Master the Coding Interview: Data Structures & Algorithms](11-master-the-coding-interview)                           | 02:00 | 23/11/20 |
 | [JavaScript Algorithms and Data Structures Masterclass](03-algorithms-and-data-structures)                            | --:-- | --/--/-- |
 | **CSS & Creative Coding**                                                                                             |       |          |
 | [CSS Grids and Flexbox for Responsive Web Design](14-fem-beginner/03-css-grids-and-flexbox-for-responsive-web-design) | --:-- | --/--/-- |
