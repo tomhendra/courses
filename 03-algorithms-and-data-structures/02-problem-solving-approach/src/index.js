@@ -3,12 +3,12 @@
 // How to solve a problem in 5 steps:
 // 1. understand the problem
 // 2. explore concrete examples
-// 3. break it down 
+// 3. break it down
 // 4. solve/simplify
 // 5. look back & refactor
 
 // ===========================
-// [1] UNDERSTAND THE PROBLEM 
+// [1] UNDERSTAND THE PROBLEM
 // ===========================
 // 1. can I restate the problem in my own words?
 // 2. what are the inputs that go into the problem?
@@ -21,7 +21,7 @@
 // ==============================
 // - coming up with examples can help you understand the problem better
 // - examples provide sanity checks that the eventual solution works how it should
-// - user stories! 
+// - user stories!
 // - unit tests!
 // 1. start with simple examples
 // 2. progress to more complex examples
@@ -136,49 +136,52 @@ const charCount = (str) => {
 // =========================
 // in an interview setting, it's important to ask these questions, often out loud:
 // 1. can you check the result?
-// 2. can you derive the result differently? 
-// 3. can you understand it at a glance? 
-// 4. can you use the result or method for some other problem? 
-// 5. can you improve the performance of your solution? 
-// 6. can you think of other ways to refactor? 
-// 7. how have other people solved this problem? 
+// 2. can you derive the result differently?
+// 3. can you understand it at a glance?
+// 4. can you use the result or method for some other problem?
+// 5. can you improve the performance of your solution?
+// 6. can you think of other ways to refactor?
+// 7. how have other people solved this problem?
 // example:
-/*
+
 const charCount = (str) => {
-    const obj = {}
-    for (let i = 0; i < str.length; i++) {
-        const char = str[i].toLowerCase()
-        if (/[a-z0-9]/.test(char)) {
-            if (obj[char] > 0) {
-                obj[char]++
-            } else {
-            obj[char] = 1
-        }
+  const obj = {};
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i].toLowerCase();
+    if (/[a-z0-9]/.test(char)) {
+      if (obj[char] > 0) {
+        obj[char]++;
+      } else {
+        obj[char] = 1;
+      }
     }
-    return obj
-}
-*/
+    return obj;
+  }
+};
 
 // using charCodeAt & simple booleans is more efficient than regex
 const isAlphaNumeric = (char) => {
-    const code = char.charCodeAt(0)
-    if (!(code > 47 && code < 58) && // numeric (0-9)
-        !(code > 64 && code < 91) && // upper alpha (A-Z)
-        !(code > 96 && code < 123)) { // lower alpha (a-z)
-        return false
-    }
-    return true
-}
+  const code = char.charCodeAt(0);
+  if (
+    !(code > 47 && code < 58) && // numeric (0-9)
+    !(code > 64 && code < 91) && // upper alpha (A-Z)
+    !(code > 96 && code < 123)
+  ) {
+    // lower alpha (a-z)
+    return false;
+  }
+  return true;
+};
 
 const charCount = (str) => {
-    const obj = {}
-    for (let char of str) {
-        if (isAlphaNumeric(char)) {
-            char = char.toLowerCase()
-            obj[char] = ++obj[char] || 1
-        }
+  const obj = {};
+  for (let char of str) {
+    if (isAlphaNumeric(char)) {
+      char = char.toLowerCase();
+      obj[char] = ++obj[char] || 1;
     }
-    return obj
-}
-console.log(charCount('Hello hi!!'))
-console.log(charCount('Your PIN number is 1234'))
+  }
+  return obj;
+};
+console.log(charCount("Hello hi!!"));
+console.log(charCount("Your PIN number is 1234"));

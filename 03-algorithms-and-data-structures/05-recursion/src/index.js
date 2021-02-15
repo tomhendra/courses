@@ -7,26 +7,26 @@
 // - when JavaScript sees the return keyword or when the function ends, the compiler will remove (pop)
 
 // demonstration of call stack being used: inspect with dev tool debugger
-function takeShower(){
-    return "Showering!"
+function takeShower() {
+  return "Showering!";
 }
 
-function eatBreakfast(){
-    let meal = cookFood()
-    return `Eating ${meal}`
+function eatBreakfast() {
+  let meal = cookFood();
+  return `Eating ${meal}`;
 }
 
-function cookFood(){
-    let items = ["Oatmeal", "Eggs", "Protein Shake"]
-    return items[Math.floor(Math.random()*items.length)];
+function cookFood() {
+  let items = ["Oatmeal", "Eggs", "Protein Shake"];
+  return items[Math.floor(Math.random() * items.length)];
 }
 function wakeUp() {
-    takeShower()
-    eatBreakfast()
-    console.log("Ok ready to go to work!")
+  takeShower();
+  eatBreakfast();
+  console.log("Ok ready to go to work!");
 }
-console.log('Wake up example')
-wakeUp()
+console.log("Wake up example");
+wakeUp();
 
 // - when writing recursive functions, we keep pushing new functions onto the call stack
 // - how recursive functions work: invoke the same function with a different input until you reach your base case
@@ -40,54 +40,54 @@ wakeUp()
 // ----------------------------------------------------------------------------------------------------------
 // iterative version
 function countDownIterative(num) {
-    for (var i = num; i > 0; i--) {
-        console.log(i)
-    }
-    console.log("All done!")
+  for (var i = num; i > 0; i--) {
+    console.log(i);
+  }
+  console.log("All done!");
 }
 
 // recursive version
 function countDown(num) {
-    if (num <= 0) {
-        console.log("All done!")
-        return
-    }
-    console.log(num)
-    num--
-    countDown(num)
+  if (num <= 0) {
+    console.log("All done!");
+    return;
+  }
+  console.log(num);
+  num--;
+  countDown(num);
 }
-console.log('Countdown example')
-countDown(3)
+console.log("Countdown example");
+countDown(3);
 
 // ----------------------------------------------------------------------------------------------------------
 // example 2
 // ----------------------------------------------------------------------------------------------------------
 function sumRange(num) {
-    if (num === 1) return 1
-    return num + sumRange(num-1)
- }
- console.log('sumRange example')
- console.log(sumRange(4))
+  if (num === 1) return 1;
+  return num + sumRange(num - 1);
+}
+console.log("sumRange example");
+console.log(sumRange(4));
 
 // ----------------------------------------------------------------------------------------------------------
 // example 3
 // ----------------------------------------------------------------------------------------------------------
 // iterative version
-function factorialIterative (num) {
-    let total = 1
-    for (let i = num; i > 1; i--) {
-        total *= i
-    }
-    return total;
+function factorialIterative(num) {
+  let total = 1;
+  for (let i = num; i > 1; i--) {
+    total *= i;
+  }
+  return total;
 }
 
 // recursive version
-function factorial(num){
-    if (num === 1) return 1
-    return num * factorial(num-1)
+function factorial(num) {
+  if (num === 1) return 1;
+  return num * factorial(num - 1);
 }
-console.log('Factorial example')
-console.log(factorial(5))
+console.log("Factorial example");
+console.log(factorial(5));
 
 // ----------------------------------------------------------------------------------------------------------
 // where things go wrong!
@@ -101,30 +101,29 @@ console.log(factorial(5))
 // ========================
 // - common design pattern with 2 functions
 // - outer function which is not recursive & an inner function which is recursive
-// - useful when compiling an array 
+// - useful when compiling an array
 
-function collectOddValues(arr){
-    
-    let result = [];
+function collectOddValues(arr) {
+  let result = [];
 
-    function helper(helperInput) {
-        if(helperInput.length === 0) {
-            return;
-        }
-        
-        if(helperInput[0] % 2 !== 0) {
-            result.push(helperInput[0])
-        }
-        
-        helper(helperInput.slice(1))
+  function helper(helperInput) {
+    if (helperInput.length === 0) {
+      return;
     }
-    
-    helper(arr)
 
-    return result;
+    if (helperInput[0] % 2 !== 0) {
+      result.push(helperInput[0]);
+    }
+
+    helper(helperInput.slice(1));
+  }
+
+  helper(arr);
+
+  return result;
 }
-console.log('Helper method recursion')
-console.log(collectOddValues([1,2,3,4,5,6,7,8,9]))
+console.log("Helper method recursion");
+console.log(collectOddValues([1, 2, 3, 4, 5, 6, 7, 8, 9]));
 
 // ================
 // PURE RECURSION
@@ -135,21 +134,21 @@ console.log(collectOddValues([1,2,3,4,5,6,7,8,9]))
 // - to make copies of objects use Object.assign or the spread operator
 
 function collectOddValuesPure(arr) {
-    let newArr = []
-    
-    if(arr.length === 0) {
-        return newArr;
-    }
-        
-    if(arr[0] % 2 !== 0) {
-        newArr.push(arr[0])
-    }
-        
-    newArr = newArr.concat(collectOddValues(arr.slice(1)))
-    return newArr
+  let newArr = [];
+
+  if (arr.length === 0) {
+    return newArr;
+  }
+
+  if (arr[0] % 2 !== 0) {
+    newArr.push(arr[0]);
+  }
+
+  newArr = newArr.concat(collectOddValues(arr.slice(1)));
+  return newArr;
 }
-console.log('Pure recursion')
-console.log(collectOddValuesPure([1,2,3,4,5]))
+console.log("Pure recursion");
+console.log(collectOddValuesPure([1, 2, 3, 4, 5]));
 // newArr = [1].concat(collectOddValues([2,3,4,5])) // waiting for return value
 //     newArr = [].concat(collectOddValues([3,4,5])) // waiting for return value
 //     |    newArr = [3].concat(collectOddValues([4,5])) // waiting for return value
