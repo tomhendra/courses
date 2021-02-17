@@ -1,11 +1,10 @@
 // mocking Browser APIs and modules
 // http://localhost:3000/location
 
-import * as React from 'react'
+import React from 'react'
 import {render, screen, act} from '@testing-library/react'
 import Location from '../../examples/location'
 
-// 🐨 set window.navigator.geolocation to an object that has a getCurrentPosition mock function
 beforeAll(() => {
   window.navigator.geolocation = {
     getCurrentPosition: jest.fn(),
@@ -24,18 +23,17 @@ function deferred() {
 test('displays the users current location', async () => {
   const fakePosition = {
     coords: {
-      latitude: 41,
-      longitude: -6,
+      latitude: 35,
+      longitude: 139,
     },
   }
-
-  const {promise, resolve, reject} = deferred()
-
+  const {promise, resolve} = deferred()
   window.navigator.geolocation.getCurrentPosition.mockImplementation(
     callback => {
       promise.then(() => callback(fakePosition))
     },
   )
+
   render(<Location />)
 
   expect(screen.getByLabelText(/loading/i)).toBeInTheDocument()
@@ -55,7 +53,27 @@ test('displays the users current location', async () => {
   )
 })
 
-/*
-eslint
-  no-unused-vars: "off",
-*/
+test('displays error message when geolocation is not supported', async () => {
+  const fakeError = new Error(
+    'Geolocation is not supported or permission denied',
+  )
+  const {promise, reject} = deferred()
+
+  window.navigator.geolocation.getCurrentPosition.mockImplementation(
+    (successCallback, errorCallback) => {
+      promise.catch(() => errorCallback(fakeError))
+    },
+  )
+
+  render(<Location />)
+
+  expect(screen.getByLabelText(/loading/i)).toBeInTheDocument()
+
+  await act(async () => {
+    reject()
+  })
+
+  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
+
+  expect(screen.getByRole('alert')).toHaveTextContent(fakeError.message)
+})
