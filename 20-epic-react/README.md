@@ -51,6 +51,8 @@
   - [7.2. Simple Test with React Testing Library](#72-simple-test-with-react-testing-library)
   - [7.3. Avoid Implementation Details](#73-avoid-implementation-details)
   - [7.4. Form Testing](#74-form-testing)
+  - [7.5. Mocking HTTP Requests](#75-mocking-http-requests)
+  - [7.6. Mocking Browser API & Modules](#76-mocking-browser-api--modules)
 
 ## 1. Introduction
 
@@ -432,3 +434,19 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 04: Extra-2](testing-react-apps/src/__tests__/final/04.extra-2.js)
 - [Exercise 04: Extra-3](testing-react-apps/src/__tests__/final/04.extra-3.js)
 - [Exercise 04: Extra-4](testing-react-apps/src/__tests__/final/04.extra-4.js)
+
+### 7.5. Mocking HTTP Requests
+
+- [Readme 05](testing-react-apps/src/__tests__/exercise/05.md)
+- [Exercise 05](testing-react-apps/src/__tests__/final/05.js)
+- [Exercise 05: Extra-1](testing-react-apps/src/__tests__/final/05.extra-1.js)
+- [Exercise 05: Extra-2](testing-react-apps/src/__tests__/final/05.extra-2.js)
+- [Exercise 05: Extra-3](testing-react-apps/src/__tests__/final/05.extra-3.js)
+- [Exercise 05: Extra-4](testing-react-apps/src/__tests__/final/05.extra-4.js)
+
+### 7.6. Mocking Browser API & Modules
+
+- [Readme 06](testing-react-apps/src/__tests__/exercise/06.md)
+- [Exercise 06](testing-react-apps/src/__tests__/final/06.js)
+- [Exercise 06: Extra-1](testing-react-apps/src/__tests__/final/06.extra-1.js)
+- [Exercise 06: Extra-2](testing-react-apps/src/__tests__/final/06.extra-2.js)
