@@ -53,6 +53,7 @@
   - [7.4. Form Testing](#74-form-testing)
   - [7.5. Mocking HTTP Requests](#75-mocking-http-requests)
   - [7.6. Mocking Browser API & Modules](#76-mocking-browser-api--modules)
+  - [7.7. Testing with Context and a Custom Render Method](#77-testing-with-context-and-a-custom-render-method)
 
 ## 1. Introduction
 
@@ -450,3 +451,11 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 06](testing-react-apps/src/__tests__/final/06.js)
 - [Exercise 06: Extra-1](testing-react-apps/src/__tests__/final/06.extra-1.js)
 - [Exercise 06: Extra-2](testing-react-apps/src/__tests__/final/06.extra-2.js)
+
+### 7.7. Testing with Context and a Custom Render Method
+
+- [Readme 07](testing-react-apps/src/__tests__/exercise/07.md)
+- [Exercise 07](testing-react-apps/src/__tests__/final/07.js)
+- [Exercise 07: Extra-1](testing-react-apps/src/__tests__/final/07.extra-1.js)
+- [Exercise 07: Extra-2](testing-react-apps/src/__tests__/final/07.extra-2.js)
+- [Exercise 07: Extra-3](testing-react-apps/src/__tests__/final/07.extra-3.js)
