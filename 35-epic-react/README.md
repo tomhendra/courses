@@ -54,6 +54,7 @@
   - [7.5. Mocking HTTP Requests](#75-mocking-http-requests)
   - [7.6. Mocking Browser API & Modules](#76-mocking-browser-api--modules)
   - [7.7. Testing with Context and a Custom Render Method](#77-testing-with-context-and-a-custom-render-method)
+  - [7.8. Testing Custom Hooks](#78-testing-custom-hooks)
 
 ## 1. Introduction
 
@@ -459,3 +460,11 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 07: Extra-1](testing-react-apps/src/__tests__/final/07.extra-1.js)
 - [Exercise 07: Extra-2](testing-react-apps/src/__tests__/final/07.extra-2.js)
 - [Exercise 07: Extra-3](testing-react-apps/src/__tests__/final/07.extra-3.js)
+
+### 7.8. Testing Custom Hooks
+
+- [Readme 08](testing-react-apps/src/__tests__/exercise/08.md)
+- [Exercise 08](testing-react-apps/src/__tests__/final/08.js)
+- [Exercise 08: Extra-1](testing-react-apps/src/__tests__/final/08.extra-1.js)
+- [Exercise 08: Extra-2](testing-react-apps/src/__tests__/final/08.extra-2.js)
+- [Exercise 08: Extra-3](testing-react-apps/src/__tests__/final/08.extra-3.js)
