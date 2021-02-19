@@ -55,6 +55,7 @@
   - [7.6. Mocking Browser API & Modules](#76-mocking-browser-api--modules)
   - [7.7. Testing with Context and a Custom Render Method](#77-testing-with-context-and-a-custom-render-method)
   - [7.8. Testing Custom Hooks](#78-testing-custom-hooks)
+- [8. React Suspense](#8-react-suspense)
 
 ## 1. Introduction
 
@@ -156,7 +157,7 @@ Kent recommends https://icanhazdadjoke.com in between breaks!
 
 It is really important to get an understanding of what an abstraction does. The fundamentals section gets us comfortable with what React does behind the scenes.
 
-**Perquisites**
+**Prerequisites**
 
 - Read through [JavaScript to Know for React](https://kentcdodds.com/blog/javascript-to-know-for-react).
 
@@ -212,7 +213,7 @@ It is really important to get an understanding of what an abstraction does. The 
 
 ## 3. React Hooks
 
-**Perquisites**
+**Prerequisites**
 
 - Watch Kent's [Why React Hooks Video](https://youtu.be/zWsZcBiwgVE).
 
@@ -309,7 +310,7 @@ It is really important to get an understanding of what an abstraction does. The 
 
 ## 5. Advanced React Patterns
 
-**prerequisites**
+**Prerequisites**
 
 - Watch Kent's [video](https://egghead.io/lessons/javascript-implement-inversion-of-control).
 - Read Kent's [blog post](https://kentcdodds.com/blog/inversion-of-control) on inversion of control.
@@ -405,7 +406,7 @@ It is really important to get an understanding of what an abstraction does. The 
 
 ## 7. Testing React Apps
 
-**prerequisites**
+**Prerequisites**
 
 - Read Kent's blog post: [But really, what is a JavaScript test?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-test)
 - Read Kent's other blog post: [But really, what is a JavaScript mock?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock)
@@ -468,3 +469,9 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Exercise 08: Extra-1](testing-react-apps/src/__tests__/final/08.extra-1.js)
 - [Exercise 08: Extra-2](testing-react-apps/src/__tests__/final/08.extra-2.js)
 - [Exercise 08: Extra-3](testing-react-apps/src/__tests__/final/08.extra-3.js)
+
+## 8. React Suspense
+
+**Prerequisites**
+
+- Watch Dan Abramov's talk [Beyond React 16 | JSConf Iceland 2018](https://www.youtube.com/watch?v=nLF0n9SACd4) (33 minutes)
