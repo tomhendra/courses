@@ -2,7 +2,7 @@ document
   .getElementById("section")
   .append("Algorithms: Searching by Tree Traversal");
 
-// Built in searching methods all linear searches -- O(n) tome complexity
+// Built-in searching methods all linear searches -- O(n) time complexity
 const beasts = ["Centaur", "Godzilla", "Mosura", "Minotaur", "Hydra", "Nessie"];
 
 beasts.indexOf("Godzilla");

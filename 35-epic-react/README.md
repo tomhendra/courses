@@ -56,6 +56,7 @@
   - [7.7. Testing with Context and a Custom Render Method](#77-testing-with-context-and-a-custom-render-method)
   - [7.8. Testing Custom Hooks](#78-testing-custom-hooks)
 - [8. React Suspense](#8-react-suspense)
+  - [8.1. Simple Data-fetching](#81-simple-data-fetching)
 
 ## 1. Introduction
 
@@ -273,9 +274,9 @@ It is really important to get an understanding of what an abstraction does. The 
 - [Readme 01](advanced-react-hooks/src/exercise/01.md)
 - [Exercise 01](advanced-react-hooks/src/final/01.js)
 - [Exercise 01: Extra-1](advanced-react-hooks/src/final/01.extra-1.js)
-- [Exercise 01: Extra-1](advanced-react-hooks/src/final/01.extra-2.js)
-- [Exercise 01: Extra-1](advanced-react-hooks/src/final/01.extra-3.js)
-- [Exercise 01: Extra-1](advanced-react-hooks/src/final/01.extra-4.js)
+- [Exercise 01: Extra-2](advanced-react-hooks/src/final/01.extra-2.js)
+- [Exercise 01: Extra-3](advanced-react-hooks/src/final/01.extra-3.js)
+- [Exercise 01: Extra-4](advanced-react-hooks/src/final/01.extra-4.js)
 
 ### 4.2. useCallback: custom hooks
 
@@ -402,7 +403,7 @@ It is really important to get an understanding of what an abstraction does. The 
 
 - [Readme 07](react-performance/src/exercise/07.md)
 - [Exercise 07](react-performance/src/final/07.js)
-- [Exercise 07](react-performance/src/final/07.extra-1.js)
+- [Exercise 07: Extra-1](react-performance/src/final/07.extra-1.js)
 
 ## 7. Testing React Apps
 
@@ -475,3 +476,5 @@ It is really important to get an understanding of what an abstraction does. The 
 **Prerequisites**
 
 - Watch Dan Abramov's talk [Beyond React 16 | JSConf Iceland 2018](https://www.youtube.com/watch?v=nLF0n9SACd4) (33 minutes)
+
+### 8.1. Simple Data-fetching
