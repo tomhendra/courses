@@ -1,12 +1,8 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
 <h1>Coursework</h1>
-<p>My notes & files for courses undertaken</p>
+<p>Supporting files for courses.</p>
 </div>
-
-## Introduction
-
-A self-guided journey into software development.
 
 ## Index of courses
 
