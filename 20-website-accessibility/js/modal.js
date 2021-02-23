@@ -4,6 +4,7 @@ var modalOverlay = document.querySelector(".focus-modal-overlay");
 var cancelButton = document.querySelector(".focus-modal-cancel");
 
 modalButton.addEventListener("click", open);
+cancelButton.addEventListener("click", close);
 modalOverlay.addEventListener("click", close);
 
 // Get a list of tabbable elements here:
@@ -42,6 +43,7 @@ function open() {
       }
     } else if (event.keyCode === 27) {
       close();
+      previouslyFocused.focus();
     }
   }
 }

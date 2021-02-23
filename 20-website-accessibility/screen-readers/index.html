@@ -33,19 +33,19 @@
       <div class="col-md-10 col-md-offset-1">
         <h1>Screen Reader Example</h1>
 
-        <img src="../images/pic.jpg" />
+        <img alt="cats" src="../images/pic.jpg" />
 
         <h2>Sign up for our mailing list!</h2>
 
         <form style="margin-bottom: 150px;">
-          <p>Email Address:</p>
-          <input class="form-control" type="text" />
+          <label for="email">Email Address:</p>
+          <input id="email" class="form-control" type="text" />
 
-          <p>First and Last name:</p>
-          <input class="form-control" type="text" />
+          <label for="name">First and Last name:</label>
+          <input id="name" class="form-control" type="text" />
 
-          <p>How often would you like to recieve email from us?</p>
-          <select class="form-control">
+          <label for="frequency">How often would you like to recieve email from us?</label>
+          <select id="frequency" class="form-control">
             <option>Daily</option>
             <option>Weekly</option>
             <option>Monthly</option>
