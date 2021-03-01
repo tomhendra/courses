@@ -5,7 +5,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "strictBindCallApply": true,
-    "strictPropertyInitialization": true
+    "strictPropertyInitialization": true,
+    "target": "es2018"
   },
   "include": ["**/*.ts"]
 }
