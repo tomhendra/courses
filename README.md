@@ -43,3 +43,4 @@
 33. [Wes Bos: JavaScript 30](18-javascript30)
 34. [Kent C. Dodds: Testing JavaScript](19-testing-javascript)
 35. [Kent C. Dodds: Epic React](20-epic-react)
+36. [FEM: Introduction to Next.js](36-introduction-to-nextjs)
