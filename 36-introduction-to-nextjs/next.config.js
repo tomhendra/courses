@@ -1,7 +1,7 @@
-const nextEnv = require("next-env");
-const dotenvLoad = require("dotenv-load");
+const nextEnv = require('next-env')
+const dotenvLoad = require('dotenv-load')
 
-dotenvLoad();
+dotenvLoad()
 
-const withNextEnv = nextEnv();
-module.exports = withNextEnv();
+const withNextEnv = nextEnv()
+module.exports = withNextEnv()
