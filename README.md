@@ -44,3 +44,5 @@
 34. [Kent C. Dodds: Testing JavaScript](19-testing-javascript)
 35. [Kent C. Dodds: Epic React](20-epic-react)
 36. [FEM: Introduction to Next.js](36-introduction-to-nextjs)
+37. [FEM: Getting a Front-end Developer Job](37-getting-a-frontend-developer-job)
+38. [FEM: Interviewing for Front-end Engineers](38-interviewing-for-front-end-engineers)
