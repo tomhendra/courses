@@ -34,8 +34,6 @@
 26. [FEM Professional: CSS In-Depth, v2](26-css-in-depth-v2)
 27. [FEM Professional: Full Stack for Front-End Engineers, v2](27-full-stack-for-front-end-engineers-v2)
 28. [FEM Professional: TypeScript 3 Fundamentals, v2](28-typescript-3-fundamentals-v2)
-    [FEM Design to Code: CSS Grid and Flexbox for Responsive Web Design](17-css-grid-and-flexbox-for-responsive-web-design) _(Repeat from Beginner Path)_
-    [FEM Design to Code: CSS In-Depth, v2](26-css-in-depth-v2) _(Repeat from Professional Path)_
 29. [FEM Design to Code: Design for Developers](29-design-for-developers)
 30. [FEM Design to Code: Responsive Web Typography v2](30-design-for-developers)
 31. [FEM Design to Code: SVG Essentials & Animation, v2](31-svg-essentials-and-animation-v2)
