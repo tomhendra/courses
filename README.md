@@ -44,3 +44,5 @@
 36. [FEM: Introduction to Next.js](36-introduction-to-nextjs)
 37. [FEM: Getting a Front-end Developer Job](37-getting-a-frontend-developer-job)
 38. [FEM: Interviewing for Front-end Engineers](38-interviewing-for-front-end-engineers)
+39. [Rust: The Book](40-the-rust-programming-language)
+40. [Josh Comeau: CSS for Js Developers](40-css-for-js-developers)
