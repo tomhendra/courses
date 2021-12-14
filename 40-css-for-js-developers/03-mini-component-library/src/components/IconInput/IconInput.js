@@ -8,81 +8,74 @@ import VisuallyHidden from '../VisuallyHidden';
 
 const STYLES = {
   small: {
-    height: 24,
-    iconSize: 16,
-    iconStrokeWidth: 1,
-    borderWidth: 1,
-    paddingLeft: 24,
     fontSize: 14,
+    iconSize: 16,
+    borderThickness: 1,
+    height: 24,
   },
   large: {
-    height: 36,
-    iconSize: 24,
-    iconStrokeWidth: 2,
-    borderWidth: 2,
-    paddingLeft: 36,
     fontSize: 18,
+    iconSize: 24,
+    borderThickness: 2,
+    height: 36,
   },
 };
 
-const IconInput = ({
-  label,
-  icon,
-  width = 250,
-  size,
-  placeholder,
-  children,
-}) => {
+const IconInput = ({ label, icon, width = 250, size, ...delegated }) => {
   const styles = STYLES[size];
+
+  // TODO: validate size
+
   return (
-    <Wrapper style={{ '--width': width }}>
-      <IconWrapper style={{ '--iconSize': styles.iconSize }}>
-        <Icon
-          id={icon}
-          size={styles.iconSize}
-          strokeWidth={styles.iconStrokeWidth}
-        />
+    <Wrapper>
+      <VisuallyHidden>{label}</VisuallyHidden>
+      <IconWrapper style={{ '--size': styles.iconSize + 'px' }}>
+        <Icon id={icon} size={styles.iconSize} />
       </IconWrapper>
-      <VisuallyHidden>
-        <label htmlFor="input">{label}</label>
-      </VisuallyHidden>
-      <NativeInput
-        id="input"
-        placeholder={placeholder}
+      <TextInput
+        {...delegated}
         style={{
-          '--height': styles.height,
-          '--borderWidth': styles.borderWidth,
-          '--paddingLeft': styles.paddingLeft,
-          '--fontSize': styles.fontSize,
+          '--width': width + 'px',
+          '--height': styles.height / 16 + 'rem',
+          '--border-thickness': styles.borderThickness + 'px',
+          '--font-size': styles.fontSize / 16 + 'rem',
         }}
       />
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
-  width: calc(var(--width) * 1px);
+const Wrapper = styled.label`
+  display: block;
   position: relative;
+  color: ${COLORS.gray700};
+  &:hover {
+    color: ${COLORS.black};
+  }
 `;
 
 const IconWrapper = styled.div`
   position: absolute;
-  top: 4px;
-  left: 0px;
-  height: calc(var(--iconSize) * 1px);
-  width: calc(var(--iconSize) * 1px);
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  height: var(--size);
 `;
 
-const NativeInput = styled.input`
+const TextInput = styled.input`
+  width: var(--width);
+  height: var(--height);
+  font-size: var(--font-size);
   border: none;
-  box-shadow: none;
-  width: 100%;
-  height: calc(var(--height) * 1px);
-  color: ${COLORS.black};
-  font-size: calc(var(--fontSize) / 16 * 1rem);
-  border-bottom: ${COLORS.black} solid;
-  border-width: calc(var(--borderWidth) * 1px);
-  padding-left: calc(var(--paddingLeft) * 1px);
+  border-bottom: var(--border-thickness) solid ${COLORS.black};
+  padding-left: var(--height);
+  color: inherit;
+  font-weight: 700;
+  outline-offset: 2px;
+  &::placeholder {
+    font-weight: 400;
+    color: ${COLORS.gray500};
+  }
 `;
 
 export default IconInput;
