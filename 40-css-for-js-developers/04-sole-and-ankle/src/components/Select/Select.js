@@ -61,7 +61,6 @@ const DisplayedBit = styled.span`
   padding: 12px 42px 12px 16px;
   border-radius: 8px;
   pointer-events: none;
-
   ${NativeSelect}:focus ~ & {
     outline: 1px dotted #212121;
     outline: 5px auto -webkit-focus-ring-color;

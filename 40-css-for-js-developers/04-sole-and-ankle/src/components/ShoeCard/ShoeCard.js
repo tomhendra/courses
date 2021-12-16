@@ -35,20 +35,28 @@ const ShoeCard = ({
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
-          {variant === 'on-sale' && <Badge sale>Sale</Badge>}
-          {variant === 'new-release' && <Badge>Just Released!</Badge>}
           <Image alt="" src={imageSrc} />
+          {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
+          {variant === 'new-release' && <NewFlag>Just released!</NewFlag>}
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price sale={variant === 'on-sale'}>{formatPrice(price)}</Price>
+          <Price
+            style={{
+              '--color': variant === 'on-sale' ? COLORS.gray[700] : undefined,
+              '--text-decoration':
+                variant === 'on-sale' ? 'line-through' : undefined,
+            }}
+          >
+            {formatPrice(price)}
+          </Price>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
-          {variant === 'on-sale' && (
+          {variant === 'on-sale' ? (
             <SalePrice>{formatPrice(salePrice)}</SalePrice>
-          )}
+          ) : undefined}
         </Row>
       </Wrapper>
     </Link>
@@ -60,11 +68,7 @@ const Link = styled.a`
   color: inherit;
 `;
 
-const Wrapper = styled.article`
-  display: flex;
-  flex-direction: column;
-  max-width: 344px;
-`;
+const Wrapper = styled.article``;
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -77,7 +81,6 @@ const Image = styled.img`
 const Row = styled.div`
   font-size: 1rem;
   display: flex;
-  align-items: baseline;
   justify-content: space-between;
 `;
 
@@ -87,7 +90,8 @@ const Name = styled.h3`
 `;
 
 const Price = styled.span`
-  text-decoration: ${p => (p.sale ? 'line-through' : 'none')};
+  color: var(--color);
+  text-decoration: var(--text-decoration);
 `;
 
 const ColorInfo = styled.p`
@@ -99,15 +103,25 @@ const SalePrice = styled.span`
   color: ${COLORS.primary};
 `;
 
-const Badge = styled.span`
+const Flag = styled.div`
   position: absolute;
-  top: 19px;
+  top: 12px;
   right: -4px;
-  font-weight: ${WEIGHTS.medium};
-  padding: 7px 9px 9px 10px;
-  border-radius: 2px;
+  background: red;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+  font-size: ${14 / 18}rem;
+  font-weight: ${WEIGHTS.bold};
   color: ${COLORS.white};
-  background-color: ${p => (p.sale ? COLORS.primary : COLORS.secondary)};
+  border-radius: 2px;
+`;
+
+const SaleFlag = styled(Flag)`
+  background-color: ${COLORS.primary};
+`;
+const NewFlag = styled(Flag)`
+  background-color: ${COLORS.secondary};
 `;
 
 export default ShoeCard;
