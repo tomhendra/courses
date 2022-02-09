@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components/macro';
-import { COLORS, WEIGHTS } from '../../constants';
+import { COLORS } from '../../constants';
 
 const GlobalStyles = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -68,6 +68,17 @@ table {
 }
 
 html {
+  --color-white: hsl(${COLORS.white});
+  --color-primary: hsl(${COLORS.primary});
+  --color-secondary: hsl(${COLORS.secondary});
+  --color-gray-100: hsl(${COLORS.gray[100]});
+  --color-gray-300: hsl(${COLORS.gray[300]});
+  --color-gray-500: hsl(${COLORS.gray[500]});
+  --color-gray-700: hsl(${COLORS.gray[700]});
+  --color-gray-900: hsl(${COLORS.gray[900]});
+
+  --color-backdrop: hsl(${COLORS.gray[700]} / 0.8);
+
   /*
     Silence the warning about missing Reach Dialog styles
   */
@@ -76,22 +87,6 @@ html {
 
 html, body, #root {
   height: 100%;
-}
-
-:root {
-  --white: ${COLORS.white};
-  --gray-100: ${COLORS.gray[100]};
-  --gray-300: ${COLORS.gray[300]};
-  --gray-500: ${COLORS.gray[500]};
-  --gray-700: ${COLORS.gray[700]};
-  --gray-900: ${COLORS.gray[900]};
-
-  --primary: ${COLORS.primary};
-  --secondary: ${COLORS.secondary};
-
-  --weight-normal: ${WEIGHTS.normal};
-  --weight-medium: ${WEIGHTS.medium};
-  --weight-bold: ${WEIGHTS.bold};
 }
 `;
 
