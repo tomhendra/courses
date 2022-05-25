@@ -20,12 +20,30 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink href="/sale">
+            <NavText>Sale</NavText>
+            <NavTextBold>Sale</NavTextBold>
+          </NavLink>
+          <NavLink href="/new">
+            <NavText>New&nbsp;Releases</NavText>
+            <NavTextBold>New&nbsp;Releases</NavTextBold>
+          </NavLink>
+          <NavLink href="/men">
+            <NavText>Men</NavText>
+            <NavTextBold>Men</NavTextBold>
+          </NavLink>
+          <NavLink href="/women">
+            <NavText>Women</NavText>
+            <NavTextBold>Women</NavTextBold>
+          </NavLink>
+          <NavLink href="/kids">
+            <NavText>Kids</NavText>
+            <NavTextBold>Kids</NavTextBold>
+          </NavLink>
+          <NavLink href="/collections">
+            <NavText>Collections</NavText>
+            <NavTextBold>Collections</NavTextBold>
+          </NavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -114,15 +132,38 @@ const Filler = styled.div`
   }
 `;
 
+const NavText = styled.span`
+  transition: transform 250ms;
+`;
+
+const NavTextBold = styled.span`
+  font-weight: ${WEIGHTS.bold};
+  transition: transform 250ms;
+  aria-hidden: true;
+`;
+
 const NavLink = styled.a`
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
+  height: 27px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
   &:first-of-type {
     color: var(--color-secondary);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      ${NavText},
+      ${NavTextBold} {
+        transform: translateY(-100%);
+      }
+    }
   }
 `;
 
