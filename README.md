@@ -1,5 +1,5 @@
 <div align=center>
-<img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
+<img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="80" />
 <h1>Coursework</h1>
 <p>Supporting files for courses.</p>
 </div>
@@ -37,12 +37,11 @@
 29. [FEM Design to Code: Design for Developers](29-design-for-developers)
 30. [FEM Design to Code: Responsive Web Typography v2](30-design-for-developers)
 31. [FEM Design to Code: SVG Essentials & Animation, v2](31-svg-essentials-and-animation-v2)
-32. [Creative Coding Club: GSAP 3](32-ccc-gsap-3)
-33. [Wes Bos: JavaScript 30](18-javascript30)
-34. [Kent C. Dodds: Testing JavaScript](19-testing-javascript)
-35. [Kent C. Dodds: Epic React](20-epic-react)
-36. [FEM: Introduction to Next.js](36-introduction-to-nextjs)
-37. [FEM: Getting a Front-end Developer Job](37-getting-a-frontend-developer-job)
-38. [FEM: Interviewing for Front-end Engineers](38-interviewing-for-front-end-engineers)
-39. [Rust: The Book](40-the-rust-programming-language)
-40. [Josh Comeau: CSS for Js Developers](40-css-for-js-developers)
+32. [Wes Bos: JavaScript 30](32-javascript30)
+33. [Kent C. Dodds: Testing JavaScript](33-testing-javascript)
+34. [Kent C. Dodds: Epic React](34-epic-react)
+35. [FEM: Introduction to Next.js](35-introduction-to-nextjs)
+36. [FEM: Getting a Front-end Developer Job](36-getting-a-frontend-developer-job)
+37. [FEM: Interviewing for Front-end Engineers](37-interviewing-for-front-end-engineers)
+38. [Josh Comeau: CSS for Js Developers](38-css-for-js-developers)
+39. [Bruno Simon: Three.js Journey](39-three-js-journey)
