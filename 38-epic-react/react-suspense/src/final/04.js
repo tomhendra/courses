@@ -41,8 +41,6 @@ function getPokemonResource(name) {
   return resource
 }
 
-React.createContext(getPokemonResource)
-
 function createPokemonResource(pokemonName) {
   return createResource(fetchPokemon(pokemonName))
 }
@@ -50,7 +48,7 @@ function createPokemonResource(pokemonName) {
 function App() {
   const [pokemonName, setPokemonName] = React.useState('')
   const [startTransition, isPending] = React.useTransition(SUSPENSE_CONFIG)
-  const [pokemonResource, setPokemonResource] = React.useContext(null)
+  const [pokemonResource, setPokemonResource] = React.useState(null)
 
   React.useEffect(() => {
     if (!pokemonName) {

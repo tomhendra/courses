@@ -5,9 +5,11 @@
 &nbsp;
 
 <h1>Coursework</h1>
-<p>Supporting files & notes</p>
 
-This is a complete list of all the courses I have taken on front-end development. Each directory contains either exercises, notes or both.
+This is a complete list of all the courses I have taken on front-end development.
+Each directory contains either exercises, notes or both.
+
+Some of the completion dates are out of order because some courses were completed, then later rearranged to fit in with the Frontend Masters learning path order.
 
 ## Index of courses
 

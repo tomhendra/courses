@@ -13,7 +13,7 @@ certificate:: No certificate provided
 </div>
 &nbsp;
 
-<h1>Template</h1>
+<h1>Jira and Confluence Together</h1>
 
 - [1. Introduction](#1-introduction)
 - [2. Course Overview](#2-course-overview)
