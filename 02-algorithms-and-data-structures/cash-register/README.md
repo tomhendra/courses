@@ -6,9 +6,13 @@ completed:: 07/02/19
 url:: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/
 certificate:: https://www.freecodecamp.org/certification/tomhendra/javascript-algorithms-and-data-structures
 ---
+
+&nbsp;
 <div align=center>
-<img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
-<h1>FreeCodeCamp: JavaScript Algorithms & Data Structures</h1>
+  <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
 </div>
+&nbsp;
+
+<h1>FreeCodeCamp: JavaScript Algorithms & Data Structures</h1>
 
 My first problem solving exercises, and the start of my programming journey.
