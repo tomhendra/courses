@@ -196,7 +196,7 @@ zz = "abc"; // 🚨 ERROR Type '"abc"' is not assignable to type 'number'.
 ```
 
 
-ℹ️ **If we have declarations where we don't initialize the variable, we should always provide a type annotation.**
+> ℹ️ If we have declarations where we don't initialize the variable, we should always provide a type annotation.
 
 
 ### 1.3. Arrays & Tuples
@@ -463,7 +463,7 @@ function invokeSoon(cb: () => any, timeout: number) {
 }
 ```
 
-If we omit the object which `this` refers to and the function expects, we get a type error beacase the `this` constraint is not satisfied. 
+If we omit the object which `this` refers to and the function expects, we get a type error because the `this` constraint is not satisfied. 
 
 ```tsx
 // 🚨 this is not satisfied
@@ -489,7 +489,7 @@ invokeSoon(() => bound(), 500);
 invokeSoon(() => sendMessage.apply(c, ["phone"]), 500);
 ```
 
-ℹ️ **Note that although this appears like an additional argument, it is not. The function accepts one parameter still.**
+> ℹ️ Note that although this appears like an additional argument, it is not. The function accepts one parameter still.
 
 ## 2. Interfaces & Type Aliases
 
@@ -637,7 +637,7 @@ TS understands that `undefined` can never be a truthy value, so there is no way 
 
 And this is the proper use that we would want anyway. If we are handed something and told it is a certain type, we don't really know what's there. 
 
-**So conditions can be used to narrow types.** 
+> So conditions can be used to narrow types.
 
 Note we can only at most have one string index signature and one number index signature. 
 
@@ -923,7 +923,7 @@ There is a 3 step process for converting from JS to TS which will get us where w
 - Start with tests passing
 - Rename all `.js` to `.ts`, allowing implicit `any`
 - Fix only things that are not type-checking, or causing compile errors
-- Be careful to avoid changing behavior
+- Be careful to avoid changing behaviour
 - Get tests passing again
 - This should be an independent pull request.
 
@@ -1170,7 +1170,7 @@ We are using (Kyle Simpson's technique) zero point programming, as we are return
 
 Generics are a very powerful pattern, but people run into trouble with types that explode in complexity that comes from overzealous use of generics. 
 
-⚠️ **Question resources online about this because it is one thing a lot of content creators get very wrong.**
+> ⚠️ Question resources online about this because it is one thing a lot of content creators get very wrong.
 
 Generics are great for relating two things. We take in an array it `T`, we get back a dictionary of `T`. The generic type parameter is what ties them together.
 
@@ -1207,7 +1207,7 @@ Constraints on type parameters are equivalent to specifying the type on an argum
 In both cases we have `.draw()`. In the 1st example it comes from `extends Shape` and in the second from `Shape`. 
 
 
-🦉 **Tip: Ask for everything that we need, and return everything we can.**
+> 🦉 Tip: Ask for everything that we need, and return everything we can.
 
 Here we are asking for `Shape` because it is the minimum requirement, in that we only need the `draw` function and nothing further. 
 
@@ -1406,7 +1406,7 @@ let revealedB = unbrandB(secretB);
 We are hiding the original value types, and making it so the values are not interchangeable. 
 
 
-💡 **Always brand/unbrand casting in exactly one place in the code.**
+> 💡 Always brand/unbrand casting in exactly one place in the code.
 
 This can be useful for ID generation to make sure IDs are coming from our generator, not just any string. We can then be certain that the ID is from the correct origin, as our generator is the only function in the whole app that returns a type with this structure.
 
@@ -1749,13 +1749,11 @@ format.currency; // $
 ```
 
 
-💡 
-
-Knowing what is a type and what is a value will take us a long way. 
-
-It allows us to verify what can be augmented (**interfaces**) vs what we have to leave alone when they are defined in types (**values**). 
-
-Once we have a value, we can't override it, because it would conflict with the way JavaScript behaves. But interfaces are fair game.
+> 💡 Knowing what is a type and what is a value will take us a long way. 
+> 
+> It allows us to verify what can be augmented (**interfaces**) vs what we have to leave alone when they are defined in types (**values**). 
+> 
+> Once we have a value, we can't override it, because it would conflict with the way JavaScript behaves. But interfaces are fair game.
 
 ## 9. Compiler API
 

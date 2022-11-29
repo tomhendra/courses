@@ -13,7 +13,8 @@ certificate:: No certificate provided
 </div>
 &nbsp;
 
-<h1>Template</h1>
+<h1>Epic React</h1>
+
 - [1. Introduction](#1-introduction)
   - [1.1. Steps](#11-steps)
   - [1.2. Setup](#12-setup)
@@ -46,7 +47,7 @@ certificate:: No certificate provided
   - [5.1. Context Module Functions](#51-context-module-functions)
   - [5.2. Compound Components](#52-compound-components)
   - [5.3. Flexible Compound Components](#53-flexible-compound-components)
-  - [5.4. Prop Collections & Getters](#54-prop-collections--getters)
+  - [5.4. Prop Collections \& Getters](#54-prop-collections--getters)
   - [5.5. State Reducer](#55-state-reducer)
   - [5.6. Control Props](#56-control-props)
 - [6. React Performance](#6-react-performance)
@@ -63,7 +64,7 @@ certificate:: No certificate provided
   - [7.3. Avoid Implementation Details](#73-avoid-implementation-details)
   - [7.4. Form Testing](#74-form-testing)
   - [7.5. Mocking HTTP Requests](#75-mocking-http-requests)
-  - [7.6. Mocking Browser API & Modules](#76-mocking-browser-api--modules)
+  - [7.6. Mocking Browser API \& Modules](#76-mocking-browser-api--modules)
   - [7.7. Testing with Context and a Custom Render Method](#77-testing-with-context-and-a-custom-render-method)
   - [7.8. Testing Custom Hooks](#78-testing-custom-hooks)
 - [8. React Suspense](#8-react-suspense)

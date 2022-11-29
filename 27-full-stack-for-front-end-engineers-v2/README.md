@@ -13,7 +13,7 @@ certificate:: No certificate provided
 </div>
 &nbsp;
 
-<h1>Template</h1>
+<h1>Full Stack for Front-End Engineers, v2</h1>
 
 - [1. Introduction](#1-introduction)
   - [1.1. Why Full Stack?](#11-why-full-stack)
