@@ -23,7 +23,7 @@ certificate:: No certificate provided
   - [1.5. What if I Have No Experience?](#15-what-if-i-have-no-experience)
 - [2. Initial Call](#2-initial-call)
   - [2.1. Preparing Interview Questions](#21-preparing-interview-questions)
-- [3. **Pre-screen JavaScript Questions**](#3-pre-screen-javascript-questions)
+- [3. Pre-screen JavaScript Questions](#3-pre-screen-javascript-questions)
 - [4. Code Test](#4-code-test)
   - [4.1. Big-O](#41-big-o)
 - [5. Phone Screen](#5-phone-screen)
@@ -147,23 +147,30 @@ Jem would literally send out something like the below.
 **No mater what company we apply to it is guaranteed they will ask the following questions. We should be prepared to answer these right off the bat.** 
 
 1. **What do you do currently?**
+  
     Here they are looking to see what you are up to. 
     
 2. **What are some projects you’ve worked on recently?**
-    Here they are looking to find out whether you lean towards frontend or backend.
-    Have the projects ready, what challenges we faced and how we overcame them. 
+   
+   Here they are looking to find out whether you lean towards frontend or backend. 
+   
+   Have the projects ready, what challenges we faced and how we overcame them. 
     
 3. **What are you looking for in your next role?**
-    Say something about working with people who are smarter than us so we can grow. 
-    Or I want to solve hard problems. 
-    Or I want to make an impact, and not be another cog on the wheel. 
+   
+   Say something about working with people who are smarter than us so we can grow. 
+   
+   Or I want to solve hard problems.
+
+   Or I want to make an impact, and not be another cog on the wheel. 
     
 4. **Why do you want to work for ______?**
+    
     Look at the hiring company's website, understand what they do & what they are working on, and give a good reason. 
     
 5. **What is your availability for the next steps?**
-    If they ask this then they like you, and want to move you onto the next round. 
-    Have the calendar open and advise a regular time when we are free. 
+   
+   If they ask this then they like you, and want to move you onto the next round. Have the calendar open and advise a regular time when we are free. 
     
 ### 2.1. Preparing Interview Questions
 
@@ -176,41 +183,50 @@ Jem would literally send out something like the below.
 5. **Who are you competitors?**
 6. **What sort of projects would I work on?**
 
-## 3. **Pre-screen JavaScript Questions**
+## 3. Pre-screen JavaScript Questions
 
 It is possible that we may get a set of questions on the initial call. Usually this is for the larger companies that want to vet us before they spend any more resources on us.
 
 The company is not looking for precise answers, just that we have a broad knowledge.
 
 - **What is the difference between const, let, and var?**
-    You can't point a const to a different pointer. You can modify objects, properties on objects, array items. With let we can change the pointer, but it is only scoped to whatever the closure is. var is hoisted, so with let and const if you try to access them before they will throw a reference error, var will return undefined. 
+
+  You can't point a const to a different pointer. You can modify objects, properties on objects, array items. With let we can change the pointer, but it is only scoped to whatever the closure is. var is hoisted, so with let and const if you try to access them before they will throw a reference error, var will return undefined. 
     
 - **Explain prototypical inheritance**
+
     Everything in JS has a prototype, a baseline object that it inherits from, and when we create a new object based on the prototype we can either inherit all the properties as default, or we can overwrite them with our own.
     
 - **What is 'this' mean in JavaScript?**
-    It is the global context of everything that is available to access, so all the objects and functions that are available that are not locally defined. 
-    The scope that we are currently in, or the global window object.
+  
+    It is the execution context of everything that is available to access, so all the objects and functions that are available that are not locally defined. The scope that we are currently in, or the global window object.
     
 - **What is the data structure of the DOM?**
+   
     A tree.
     
 - **What is a Stack and a Queue?**
+    
     Data structures. a stack is LIFO, a queue is FIFO.
     
 - **How would you create those data structures in JavaScript?**
+    
     With an array. Pop, push & shift. 
     
 - **How can you tell if an image element is loaded on a page?**
+    
     Use the onLoad GlobalEventHandler.
     
 - **What is call() and apply()?**
+    
     Ways of changing the scope of the calling function. call is a series of arguments and apply is an array of arguments. 
     
 - **What is event delegation and what are the performance tradeoffs?**
+    
     Where we have one event listener on an ancestor which catches an event triggered on a descendant DOM node, and the event bubbles up to the listener. 
     
 - **What is a Worker? When would you use one?**
+    
     Something you would use in a browser to offload computationally expensive work to a different thread. Because JS is single threaded and we don't want to block the UI.
 
 ## 4. Code Test
