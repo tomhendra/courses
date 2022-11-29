@@ -4,7 +4,7 @@ type:: Course
 author:: 
 completed:: 
 url:: 
-certificate:: 
+certificate:: No certificate provided
 ---
 
 &nbsp;

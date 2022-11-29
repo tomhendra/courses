@@ -7,14 +7,14 @@
 <h1>Coursework</h1>
 <p>Supporting files & notes</p>
 
-This is a complete list of all the courses I have taken in my journey to become a frontend developer. Each directory contains either exercises, notes or both.
+This is a complete list of all the courses I have taken on front-end development. Each directory contains either exercises, notes or both.
 
 ## Index of courses
 
 1.  [FreeCodeCamp: Responsive Web Design](01-responsive-web-design)
 2.  [FreeCodeCamp: Algorithms & Data Structures](02-algorithms-and-data-structures)
 3.  [Udemy: The Modern JavaScript Bootcamp](03-modern-javascript-bootcamp)
-4.  [Udemy: JavaScript Algorithms and Data Structures Masterclass](04-algorithms-and-data-structures)
+4.  [Udemy: JavaScript Algorithms and Data Structures Masterclass](04-algorithms-and-data-structures-masterclass)
 5.  [Udemy: Advanced CSS & Sass](05-advanced-css-and-sass)
 6.  [Udemy: The Complete Junior to Senior Web Developer Roadmap](06-complete-junior-to-senior-web-developer)
 7.  [Udemy: Advanced JavaScript Concepts](07-advanced-javascript-concepts)
@@ -40,12 +40,12 @@ This is a complete list of all the courses I have taken in my journey to become 
 27. [FEM Professional: Full Stack for Front-End Engineers, v2](27-full-stack-for-front-end-engineers-v2)
 28. [FEM Professional: TypeScript 3 Fundamentals, v2](28-typescript-3-fundamentals-v2)
 29. [FEM Design to Code: Design for Developers](29-design-for-developers)
-30. [FEM Design to Code: Responsive Web Typography v2](30-design-for-developers)
+30. [FEM Design to Code: Responsive Web Typography v2](30-responsive-web-typography-v2)
 31. [FEM Design to Code: SVG Essentials & Animation, v2](31-svg-essentials-and-animation-v2)
 32. [Wes Bos: JavaScript 30](32-javascript30)
-33. [Kent C. Dodds: Testing JavaScript](33-testing-javascript)
-34. [Kent C. Dodds: Epic React](34-epic-react)
-35. [FEM: Introduction to Next.js](35-introduction-to-nextjs)
-36. [FEM: Getting a Front-end Developer Job](36-getting-a-frontend-developer-job)
-37. [FEM: Interviewing for Front-end Engineers](37-interviewing-for-front-end-engineers)
-38. [Josh Comeau: CSS for Js Developers](38-css-for-js-developers)
+33. [FEM: Introduction to Next.js](33-introduction-to-nextjs)
+34. [FEM: Getting a Front-end Developer Job](34-getting-a-front-end-developer-job)
+35. [FEM: Interviewing for Front-end Engineers](35-interviewing-for-front-end-engineers)
+36. [Josh Comeau: CSS for Js Developers](36-css-for-js-developers)
+37. [Kent C. Dodds: Testing JavaScript](37-testing-javascript)
+38. [Kent C. Dodds: Epic React](38-epic-react)

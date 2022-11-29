@@ -4,7 +4,7 @@ type:: Course
 author:: Atlassian
 completed:: 09/07/20
 url:: https://training.atlassian.com/jira-confluence-together
-certificate:: no certificate
+certificate:: No certificate provided
 ---
 
 &nbsp;
