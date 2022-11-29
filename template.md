@@ -3,8 +3,8 @@ title::
 type:: Course
 author:: 
 completed:: 
-url:: [url]('')
-certificate:: [certificate]('')
+url:: 
+certificate:: 
 ---
 
 &nbsp;

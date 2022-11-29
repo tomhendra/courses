@@ -1,10 +1,10 @@
 ---
-title:: The Modern JavaScript Bootcamp
-type:: Course
-author:: Andrew Mead
+title:: 'The Modern JavaScript Bootcamp'
+type:: 'Course'
+author:: 'Andrew Mead'
 completed:: 06/02/19
-url:: https://www.udemy.com/course/modern-javascript/
-certificate:: https://www.udemy.com/certificate/UC-JVF67F6V/
+url:: 'https://www.udemy.com/course/modern-javascript/'
+certificate:: 'https://www.udemy.com/certificate/UC-JVF67F6V/'
 ---
 
 &nbsp;
