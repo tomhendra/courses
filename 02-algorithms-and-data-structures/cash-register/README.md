@@ -1,10 +1,10 @@
 ---
-title:: 'Responsive Web Design'
-type:: 'Course'
-author:: 'FreeCodeCamp'
+title:: Responsive Web Design
+type:: Course
+author:: FreeCodeCamp
 completed:: 07/02/19
-url:: 'https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/'
-certificate:: 'https://www.freecodecamp.org/certification/tomhendra/javascript-algorithms-and-data-structures'
+url:: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/
+certificate:: https://www.freecodecamp.org/certification/tomhendra/javascript-algorithms-and-data-structures
 ---
 
 &nbsp;
@@ -13,6 +13,4 @@ certificate:: 'https://www.freecodecamp.org/certification/tomhendra/javascript-a
 </div>
 &nbsp;
 
-<h1>FreeCodeCamp: JavaScript Algorithms & Data Structures</h1>
-
-My first problem solving exercises, and the start of my programming journey.
+<h1>JavaScript Algorithms & Data Structures</h1>

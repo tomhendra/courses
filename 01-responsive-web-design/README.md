@@ -1,10 +1,10 @@
 ---
-title:: 'Responsive Web Design'
-type:: 'Course'
-author:: 'FreeCodeCamp'
+title:: Responsive Web Design
+type:: Course
+author:: FreeCodeCamp
 completed:: 30/09/18
-url:: 'https://www.freecodecamp.org/learn/responsive-web-design/'
-certificate:: 'https://www.freecodecamp.org/certification/tomhendra/responsive-web-design'
+url:: https://www.freecodecamp.org/learn/responsive-web-design/
+certificate:: https://www.freecodecamp.org/certification/tomhendra/responsive-web-design
 ---
 
 &nbsp;
@@ -13,6 +13,4 @@ certificate:: 'https://www.freecodecamp.org/certification/tomhendra/responsive-w
 </div>
 &nbsp;
 
-<h1>FreeCodeCamp: Responsive Web Design</h1>
-
-My first taste of the modern web through building five projects.
+<h1>Responsive Web Design</h1>

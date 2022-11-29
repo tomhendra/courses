@@ -49,4 +49,3 @@ This is a complete list of all the courses I have taken in my journey to become 
 36. [FEM: Getting a Front-end Developer Job](36-getting-a-frontend-developer-job)
 37. [FEM: Interviewing for Front-end Engineers](37-interviewing-for-front-end-engineers)
 38. [Josh Comeau: CSS for Js Developers](38-css-for-js-developers)
-39. [Bruno Simon: Three.js Journey](39-three-js-journey)
