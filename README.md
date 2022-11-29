@@ -1,8 +1,10 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="80" />
 <h1>Coursework</h1>
-<p>Supporting files for courses.</p>
+<p>Supporting files & notes</p>
 </div>
+
+This is a complete list of all the courses I have taken in my journey to become a frontend developer. Each directory contains either exercises, notes or both.
 
 ## Index of courses
 
