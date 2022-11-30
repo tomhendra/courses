@@ -5,7 +5,7 @@ author:: Kyle Simpson (You Don't Know JS)
 completed:: 20/07/20
 url:: https://frontendmasters.com/courses/getting-started-javascript-v2/
 certificate:: No certificate provided
-logseq:: false
+logseq:: true
 ---
 
 &nbsp;
@@ -16,46 +16,34 @@ logseq:: false
 
 <h1>Getting Started with JavaScript, v2</h1>
 
-- [1. Introduction](#1-introduction)
-  - [1.1. Course Overview](#11-course-overview)
-  - [1.2. Code is for Humans](#12-code-is-for-humans)
-- [2. Programming Primer](#2-programming-primer)
-  - [2.1. Values](#21-values)
-  - [2.2. Operations](#22-operations)
-  - [2.3. Types](#23-types)
-  - [2.4. Variables](#24-variables)
-  - [2.5. Expressions \& Statements](#25-expressions--statements)
-  - [2.6. Decisions: If \& Else](#26-decisions-if--else)
-  - [2.7. Loops](#27-loops)
-  - [2.8. Functions](#28-functions)
 - [3. Types / Coercion](#3-types--coercion)
-  - [3.1. Primitive Types](#31-primitive-types)
-  - [3.2. NaN](#32-nan)
-  - [3.3. new](#33-new)
-  - [3.4. Coercion](#34-coercion)
-  - [3.5. Booleans](#35-booleans)
-  - [3.6. Coercion Best Practices](#36-coercion-best-practices)
-  - [3.7. Equality](#37-equality)
-- [4. Scope / Closures](#4-scope--closures)
-  - [4.1. Scope](#41-scope)
-  - [4.2. Undefined va Undeclared](#42-undefined-va-undeclared)
-  - [4.3. Function Expressions](#43-function-expressions)
-  - [4.4. IIFEs](#44-iifes)
-  - [4.5. Block Scoping with let](#45-block-scoping-with-let)
-  - [4.6. Closure](#46-closure)
-- [5. this \& Prototypes](#5-this--prototypes)
-  - [5.1. this](#51-this)
-  - [5.2. Prototypes](#52-prototypes)
-  - [5.3. class {}](#53-class-)
+    - [3.1. Primitive Types](#31-primitive-types)
+    - [3.2. NaN](#32-nan)
+    - [3.3. new](#33-new)
+    - [3.4. Coercion](#34-coercion)
+    - [3.5. Booleans](#35-booleans)
+    - [3.6. Coercion Best Practices](#36-coercion-best-practices)
+    - [3.7. Equality](#37-equality)
+  - [4. Scope / Closures](#4-scope--closures)
+    - [4.1. Scope](#41-scope)
+    - [4.2. Undefined va Undeclared](#42-undefined-va-undeclared)
+    - [4.3. Function Expressions](#43-function-expressions)
+    - [4.4. IIFEs](#44-iifes)
+    - [4.5. Block Scoping with let](#45-block-scoping-with-let)
+    - [4.6. Closure](#46-closure)
+  - [5. this \& Prototypes](#5-this--prototypes)
+    - [5.1. this](#51-this)
+    - [5.2. Prototypes](#52-prototypes)
+    - [5.3. class {}](#53-class-)
 
-## 1. Introduction
+### 1. Introduction
 
 This is part of the Frontend Masters Beginner Track.
 
 An introduction to JavaScript with Kyle Simpson, of YDKJS.
 [Course Link](https://frontendmasters.com/courses/getting-started-javascript-v2/).
 
-### 1.1. Course Overview
+#### 1.1. Course Overview
 
 Three pillars of JS:
 
@@ -63,7 +51,7 @@ Three pillars of JS:
 2. Scope / Closures
 3. This / Prototypes
 
-### 1.2. Code is for Humans
+#### 1.2. Code is for Humans
 
 - [Video link](https://frontendmasters.com/teachers/kyle-simpson/code-is-for-humans/).
 - We write code so that it is readable to human beings.
@@ -91,7 +79,7 @@ Three pillars of JS:
 - The one thing we will always be better at than the computer: Empathetic communication with other people (Getify's Law #1).
 - Understanding your tools is how you communicate your ideas more effectively through code.
 
-## 2. Programming Primer
+### 2. Programming Primer
 
 The blocks that make up our programs:
 
@@ -103,7 +91,7 @@ The blocks that make up our programs:
 6. Loops
 7. Functions
 
-### 2.1. Values
+#### 2.1. Values
 
 - **Number**: In JavaScript there is no distinction between numbers that have decimals and ones that don't.
 - **String**: a collection of characters that make up something that we could pronounce. A word or a sentence.
@@ -112,7 +100,7 @@ The blocks that make up our programs:
 - **Array**: An ordered set of values.
 - **Object**: A set of values with named positions. The key AKA property is a named specific location. Strings are used for the keys.
 
-### 2.2. Operations
+#### 2.2. Operations
 
 - All basic arithmetic: `+`, `-`, `*` and `/`.
 - `+` has dual purpose depending on the values; addition for numbers or concatenation for strings.
@@ -127,14 +115,14 @@ The blocks that make up our programs:
   - The `||` is the OR logical operator: if one or the other results in true, return boolean true.
   - The `&&` is the AND logical operator: If both result in true, return boolean true.
 
-### 2.3. Types
+#### 2.3. Types
 
 - The term in programming speak for a kind of value is a type.
 - `typeof` is a unary operator which which returns the type of a value.
 - `typeof null` returns `object` which is a 20 year old bug. We can't always fix bugs in languages becuase it may break other things.
 - `typeof [1,2,3]` returns `object` which is a less specific answer than perhaps we'd like. Arrays are subtypes of the `object` type.
 
-### 2.4. Variables
+#### 2.4. Variables
 
 - A variable is a representation of a place in memory which is used to store values.
 - e.g. `var name = "Tom"` - The variable `name` is assigned the string `"Tom"` with the assignment operator `=` which tells the computer to store it in a place in memory.
@@ -151,7 +139,7 @@ The blocks that make up our programs:
   age; // 42
   ```
 
-### 2.5. Expressions & Statements
+#### 2.5. Expressions & Statements
 
 - An expression is like a phrase in english, whereas a statement is like a sentence.
 - A statement will nearly always end with a `;`
@@ -165,7 +153,7 @@ The blocks that make up our programs:
   - `1 + (age * 2)` is a fifth expression.
   - `age = 1 + (age * 2)` is the sixth expression.
 
-### 2.6. Decisions: If & Else
+#### 2.6. Decisions: If & Else
 
 - To do something useful with our programs we need to make decisions.
 - One of the primary ways to make a decision is with the `if` statement.
@@ -194,7 +182,7 @@ if (isEnrolled()) {
 - The "else clause" only executes if the test clause evaluates to `false`.
 - These statements can be chained and nested to create more complex structures to build your application.
 
-### 2.7. Loops
+#### 2.7. Loops
 
 - It is often the case that you will need to perform several operations multiple times.
 - Loops are the way that we repeat something over and over again.
@@ -225,7 +213,7 @@ while (students.length > 0) {
 }
 ```
 
-### 2.8. Functions
+#### 2.8. Functions
 
 - There are times when we have a collection of statements that we want to execute multiple times in different places.
 - Technically the computer science term for a function is a **procedure**: a collection of things that we want to do.
@@ -259,7 +247,7 @@ left; // 198
   - Converting types.
   - Checking equality.
 
-### 3.1. Primitive Types
+#### 3.1. Primitive Types
 
 - "In JavaScript, everything is an object." - Thrown around as a fact and is **100% false!**
 - We have primitive types in JavaScript.
@@ -310,7 +298,7 @@ v = [1, 2, 3];
 typeof v; // object - huh? JS cannot distinguish array from object. Historical reasons...
 ```
 
-### 3.2. NaN
+#### 3.2. NaN
 
 - There are values that have special behaviours, such as NaN.
 - NaN is a special value that indicates we've had an invalid numeric operation.
@@ -335,7 +323,7 @@ Number.isNaN(greeting); // false - although greeting is not a number, it isn't t
 
 - It's good practice to test the results of mathematical operations to ensure you don't have any NaNs.
 
-### 3.3. new
+#### 3.3. new
 
 - There are built-in fundamental objects, many of which were copied from a language like Java and so start with capital letters.
 
@@ -366,7 +354,7 @@ var myGPA = String(transcript.gpa);
 // "3.54"
 ```
 
-### 3.4. Coercion
+#### 3.4. Coercion
 
 - The way to convert from one type to another.
 - All programs, all languages, need to convert types. You can't do anything useful without it.
@@ -410,7 +398,7 @@ addABeer(
 )
 ```
 
-### 3.5. Booleans
+#### 3.5. Booleans
 
 - **Truthy**: Which values would become `true` if we try to coerce them.
 - **Falsy**: Which values would become `false` if we try to coerce them.
@@ -443,7 +431,7 @@ while (students.length > 0) {
 }
 ```
 
-### 3.6. Coercion Best Practices
+#### 3.6. Coercion Best Practices
 
 - A quality JS program embraces coercions, making sure the types involved in every operation are clear.
 - If you make your types obvious in your program, the vast majority of the quirky corner cases that people complain about go away.
@@ -454,7 +442,7 @@ while (students.length > 0) {
   - _Dangerous_: when the reader can't tell what will happen.
   - _Better_: when the reader understands the code.
 
-### 3.7. Equality
+#### 3.7. Equality
 
 - Many people say to always avoid `==` and use `===` all the time base on:
   - `==` checks value (loose)
@@ -495,11 +483,11 @@ if (
 - You simply cannot write quality JS programs without knowing the types involved in your operations.
 - Make it obvious in the code what types are involved in operations.
 
-## 4. Scope / Closures
+### 4. Scope / Closures
 
 - The second pillar of JavaScript.
 
-### 4.1. Scope
+#### 4.1. Scope
 
 - Scope: where the JavaScript engine looks for things.
 - The things JS is looking for are variables.
@@ -520,7 +508,7 @@ teacher; // Suzy - because JS will find teacher from the outer scope.
 topic; // React - because in non-strict mode the variable is created in the global scope without declaration.
 ```
 
-### 4.2. Undefined va Undeclared
+#### 4.2. Undefined va Undeclared
 
 - Concepts around emptiness come into play heavily when dealing with scope.
 - When a variable is undeclared, it is in the state of undeclared.
@@ -528,7 +516,7 @@ topic; // React - because in non-strict mode the variable is created in the glob
 - Something that is `undefined` is a variable that has been declared, but it doesn't have a value.
 - A variable that is undeclared has never been declared anywhere. It doesn't exist.
 
-### 4.3. Function Expressions
+#### 4.3. Function Expressions
 
 - A function that is assigned as a value somewhere.
 - Functions are actually values that can be assigned to variables, or passed as arguments to other functions, or can be returned from other functions.
@@ -572,7 +560,7 @@ getPerson()
   .then(renderData);
 ```
 
-### 4.4. IIFEs
+#### 4.4. IIFEs
 
 - **I**mmediately **I**nvoked **F**unction **E**xpression.
 - A very common pattern.
@@ -591,7 +579,7 @@ var teacher = "Kyle";
 - The main end result of an IIFE is that e get a new block of scope.
 - Typically used when we need to collect a set of variables and protect them from encroaching upon an outer scope.
 
-### 4.5. Block Scoping with let
+#### 4.5. Block Scoping with let
 
 - The more common way these days to organize a set of variables instead of having them pollute the enclosing scope is to use `let`.
 - Instead of using the IIFE to protect variables, we can use **block scoping**.
@@ -658,7 +646,7 @@ function formatStr(str) {
 }
 ```
 
-### 4.6. Closure
+#### 4.6. Closure
 
 - Closure is when a function "remembers" the variables outside of it, even if you pass that function elsewhere.
 - Two parts of this definition that are key:
@@ -708,12 +696,12 @@ myQuestion(); // What is a closure?
 - Closure is prevalent in almost every programming language you will ever encounter.
 - It is an incredibly powerful tool to have, and therefore you must understand it well.
 
-## 5. this & Prototypes
+### 5. this & Prototypes
 
 - The third and final pillar, `this` and the prototype system are intrinsically linked.
 - Often in modern JS code the prototype system is what the `class` system is built on top of.
 
-### 5.1. this
+#### 5.1. this
 
 - A function's `this` references the execution context for that call, determined entirely by **how the function as called**.
 - It's not about the definition of the function.
@@ -757,7 +745,7 @@ function otherClass() {
 otherClass();
 ```
 
-### 5.2. Prototypes
+#### 5.2. Prototypes
 
 - The following example is of prototypal classes code, which is less common these days since the introduction of the `class` keyword to JS.
 - Prototype means that it is an object where any instances are going to be linked to or delegated to.
@@ -790,7 +778,7 @@ reactJS.ask("Isn't 'prototype' ugly?");
 // Suzy Isn't 'prototype' ugly?
 ```
 
-### 5.3. class {}
+#### 5.3. class {}
 
 - The `class` keyword is built on top of the prototype system.
 - Gives us syntax more similar to true class types from other languages such as C++ and Java.
