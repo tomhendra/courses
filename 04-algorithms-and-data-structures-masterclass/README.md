@@ -5,6 +5,7 @@ author::
 completed:: 04/04/2019
 url:: https://www.udemy.com/course/js-algorithms-and-data-structures-masterclass
 certificate:: https://www.udemy.com/certificate/UC-IRNCPIG9/
+logseq:: false
 ---
 
 &nbsp;

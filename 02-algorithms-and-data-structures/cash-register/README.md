@@ -5,6 +5,7 @@ author:: FreeCodeCamp
 completed:: 07/02/19
 url:: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/
 certificate:: https://www.freecodecamp.org/certification/tomhendra/javascript-algorithms-and-data-structures
+logseq:: false
 ---
 
 &nbsp;

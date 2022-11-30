@@ -5,6 +5,7 @@ author:: Jem Young (Netflix)
 completed:: 11/03/21
 url:: https://frontendmasters.com/courses/interviewing-frontend/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

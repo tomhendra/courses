@@ -5,6 +5,7 @@ author:: Kyle Simpson (You Don't Know JS)
 completed:: 14/09/20
 url:: https://frontendmasters.com/courses/js-recent-parts/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

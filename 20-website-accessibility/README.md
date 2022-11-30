@@ -5,6 +5,7 @@ author:: Jon Kuperman (Cloudflare)
 completed:: 23/02/21
 url:: https://frontendmasters.com/courses/accessibility-v2/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

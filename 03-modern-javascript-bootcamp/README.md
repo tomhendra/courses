@@ -5,6 +5,7 @@ author:: Andrew Mead
 completed:: 06/02/19
 url:: https://www.udemy.com/course/modern-javascript/
 certificate:: https://www.udemy.com/certificate/UC-JVF67F6V/
+logseq:: false
 ---
 
 &nbsp;

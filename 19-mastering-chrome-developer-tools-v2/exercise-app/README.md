@@ -5,6 +5,7 @@ author:: Jon Kuperman (Cloudflare)
 completed:: 10/08/20
 url:: https://frontendmasters.com/courses/chrome-dev-tools-v2/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

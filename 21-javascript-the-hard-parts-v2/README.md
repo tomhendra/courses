@@ -5,6 +5,7 @@ author:: Will Sentance (Codesmith)
 completed:: 20/08/20
 url:: https://frontendmasters.com/courses/javascript-hard-parts-v2/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

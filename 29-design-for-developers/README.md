@@ -5,6 +5,7 @@ author:: Sara Drasner (Google)
 completed:: 14/10/20
 url:: https://frontendmasters.com/courses/design-for-developers/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

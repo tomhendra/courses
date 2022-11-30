@@ -5,6 +5,7 @@ author:: Brian Holt (Stripe)
 completed:: 14/07/20
 url:: https://frontendmasters.com/courses/web-development-v2/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

@@ -5,6 +5,7 @@ author:: Andrei Neagoie
 completed:: 02/05/19
 url:: https://www.udemy.com/course/advanced-javascript-concepts/
 certificate:: https://www.udemy.com/certificate/UC-41PJPRCD/
+logseq:: false
 ---
 
 &nbsp;

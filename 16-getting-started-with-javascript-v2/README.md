@@ -5,6 +5,7 @@ author:: Kyle Simpson (You Don't Know JS)
 completed:: 20/07/20
 url:: https://frontendmasters.com/courses/getting-started-javascript-v2/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

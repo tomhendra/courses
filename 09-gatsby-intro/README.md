@@ -5,6 +5,7 @@ author:: Jason Lengstorf (Netlify)
 completed:: 31/07/19
 url:: https://frontendmasters.com/courses/gatsby-v2/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

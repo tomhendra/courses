@@ -5,6 +5,7 @@ author:: Brian Holt (Stripe)
 completed:: 17/09/20
 url:: https://frontendmasters.com/courses/complete-react-v5/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

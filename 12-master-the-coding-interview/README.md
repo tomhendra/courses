@@ -5,6 +5,7 @@ author:: Andrei Neagoie
 completed:: 05/06/20
 url:: https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms
 certificate:: https://www.udemy.com/certificate/UC-f30d49c0-9364-4831-8c54-f11729147418/
+logseq:: false
 ---
 
 &nbsp;

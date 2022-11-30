@@ -5,6 +5,7 @@ author:: Kyle Simpson (You Don't Know JS)
 completed:: 01/09/20
 url:: https://frontendmasters.com/courses/deep-javascript-v3/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

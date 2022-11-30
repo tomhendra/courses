@@ -5,6 +5,7 @@ author:: Atlassian
 completed:: 09/07/20
 url:: https://training.atlassian.com/jira-confluence-together
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

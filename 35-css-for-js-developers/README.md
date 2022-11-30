@@ -5,6 +5,7 @@ author:: Josh Comeau
 completed:: 24/06/22
 url:: https://css-for-js.dev/
 certificate:: https://courses.joshwcomeau.com/certificate/62b603328677061bf769e2bf
+logseq:: false
 ---
 
 &nbsp;

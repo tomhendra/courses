@@ -5,6 +5,7 @@ author:: Andrei Neagoie
 completed:: 12/04/20
 url:: https://www.udemy.com/course/learning-to-learn-efficient-learning-zero-to-mastery
 certificate:: https://www.udemy.com/certificate/UC-f2a9a46b-419b-485c-8f7b-a9aae220a883/
+logseq:: true
 ---
 
 &nbsp;

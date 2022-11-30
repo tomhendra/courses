@@ -5,6 +5,7 @@ author:: FreeCodeCamp
 completed:: 30/09/18
 url:: https://www.freecodecamp.org/learn/responsive-web-design/
 certificate:: https://www.freecodecamp.org/certification/tomhendra/responsive-web-design
+logseq:: false
 ---
 
 &nbsp;

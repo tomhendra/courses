@@ -5,6 +5,7 @@ author:: Mike North (LinkedIn)
 completed:: 01/03/21
 url:: https://frontendmasters.com/courses/typescript-v2/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

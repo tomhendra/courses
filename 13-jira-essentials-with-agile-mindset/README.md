@@ -5,6 +5,7 @@ author:: Atlassian
 completed:: 07/07/20
 url:: https://training.atlassian.com/jira-essentials-agile-mindset
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

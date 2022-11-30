@@ -5,6 +5,7 @@ author:: Bianca Gandolfo (Thumbtack)
 completed:: 04/08/20
 url:: https://frontendmasters.com/courses/js-fundamentals-functional-v2/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

@@ -5,6 +5,7 @@ author:: Wes Bos
 completed:: 10/11/20
 url:: https://javascript30.com/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

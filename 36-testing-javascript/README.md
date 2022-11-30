@@ -5,6 +5,7 @@ author:: Kent C. Dodds
 completed:: In progress
 url:: https://testingjavascript.com/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

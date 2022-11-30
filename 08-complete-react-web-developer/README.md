@@ -5,6 +5,7 @@ author:: Andrew Mead
 completed:: 25/06/19
 url:: https://www.udemy.com/course/react-2nd-edition/
 certificate:: https://www.udemy.com/certificate/UC-C38MFSU7/
+logseq:: false
 ---
 
 &nbsp;

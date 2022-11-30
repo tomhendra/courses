@@ -5,6 +5,7 @@ author:: Kyle Simpson (You Don't Know JS)
 completed:: 29/09/20
 url:: https://frontendmasters.com/courses/functional-javascript-v3/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

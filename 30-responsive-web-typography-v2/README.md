@@ -5,6 +5,7 @@ author:: Jason Pamental (Isovera)
 completed:: 15/10/20
 url:: https://frontendmasters.com/courses/responsive-typography-v2/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

@@ -6,6 +6,7 @@ author:: Stephen Grider
 completed:: 05/03/20
 url:: https://www.udemy.com/course/typescript-the-complete-developers-guide
 certificate:: https://www.udemy.com/certificate/UC-b5c8b050-b91b-41b5-8154-9b81522ceb89/
+logseq:: false
 ---
 
 &nbsp;

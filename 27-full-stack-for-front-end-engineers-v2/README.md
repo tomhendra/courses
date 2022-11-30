@@ -5,6 +5,7 @@ author:: Jem Young (Netflix)
 completed:: 13/10/20
 url:: https://frontendmasters.com/courses/fullstack-v2/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

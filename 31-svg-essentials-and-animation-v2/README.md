@@ -5,6 +5,7 @@ author:: Sarah Drasner (Google)
 completed:: 15/10/20
 url:: https://frontendmasters.com/courses/svg-essentials-animation/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

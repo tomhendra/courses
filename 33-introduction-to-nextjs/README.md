@@ -5,6 +5,7 @@ author:: Scott Moss (Netflix)
 completed:: 03/03/21
 url:: https://frontendmasters.com/courses/next-js/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

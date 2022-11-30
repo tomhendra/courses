@@ -5,6 +5,7 @@ author:: Estelle Weyl
 completed:: 05/10/20
 url:: https://frontendmasters.com/courses/css-in-depth-v2/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

@@ -5,6 +5,7 @@ author:: Jen Kramer
 completed:: 22/07/20
 url:: https://frontendmasters.com/courses/css-grids-flexbox/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;

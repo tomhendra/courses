@@ -5,6 +5,7 @@ author:: Jonas Schmedtmann
 completed:: 03/04/2019
 url:: https://www.udemy.com/course/advanced-css-and-sass/
 certificate:: https://www.udemy.com/certificate/UC-9QV5QKER/
+logseq:: false
 ---
 
 &nbsp;

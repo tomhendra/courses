@@ -5,6 +5,7 @@ author:: Kent C. Dodds
 completed:: In progress
 url:: https://epicreact.dev/
 certificate:: No certificate provided
+logseq:: false
 ---
 
 &nbsp;
