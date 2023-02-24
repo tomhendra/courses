@@ -4,6 +4,8 @@
 </div>
 &nbsp;
 
+# This repo is in archive mode and will disappear eventually: content is being moved to Loqseq gradually.
+
 <h1>Coursework</h1>
 
 This is a complete list of all the courses I have taken on front-end development.
