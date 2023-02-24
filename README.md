@@ -4,7 +4,7 @@
 </div>
 &nbsp;
 
-### ⚠️ This repo is in the process of the notes being moved to Loqseq gradually. Exercise files may remain, but the course notes within the READMEs will not.
+### ⚠️ This repo is in the process of moving notes to Loqseq. Exercise files may remain, but the course notes within the READMEs will not.
 
 <h1>Coursework</h1>
 
