@@ -4,7 +4,7 @@
 </div>
 &nbsp;
 
-### This repo is in archive mode and will disappear eventually: content is being moved to Loqseq gradually.
+### ⚠️ This repo is in archive mode and will disappear eventually: content is being moved to Loqseq gradually.
 
 <h1>Coursework</h1>
 
