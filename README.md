@@ -52,3 +52,4 @@ Some of the completion dates are out of order because some courses were complete
 35. [Josh Comeau: CSS for Js Developers](35-css-for-js-developers)
 36. [Kent C. Dodds: Testing JavaScript](36-testing-javascript)
 37. [Kent C. Dodds: Epic React](37-epic-react)
+38. [FEM: Build a fullstack app with Next.js v1](38-fem-next-fs-v1-fullstack-music)
