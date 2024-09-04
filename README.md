@@ -1,14 +1,8 @@
-&nbsp;
-<div align=center>
-  <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1696166377/tomhendra-logo/tomhendra-avatar.png" width="100" />
-</div>
-&nbsp;
-
-### ⚠️ This repo is in the process of moving notes to Loqseq. Exercise files may remain, but the course notes within the READMEs will not.
-
 <h1>Coursework</h1>
 
-This is a complete list of all the courses I have taken on front-end development.
+### ⚠️ This repo is in the process of moving notes to Loqseq / Obsidian. Exercise files may remain, but the course notes within the READMEs will not.
+
+This is a list of all the courses I have taken to learn development.
 Each directory contains either exercises, notes or both.
 
 Some of the completion dates are out of order because some courses were completed, then later rearranged to fit in with the Frontend Masters learning path order.
@@ -49,7 +43,7 @@ Some of the completion dates are out of order because some courses were complete
 32. [Wes Bos: JavaScript 30](32-javascript30)
 33. [FEM: Introduction to Next.js](33-introduction-to-nextjs)
 34. [FEM: Interviewing for Front-end Engineers](34-interviewing-for-front-end-engineers)
-35. [Josh Comeau: CSS for Js Developers](35-css-for-js-developers)
+35. [Josh Comeau: CSS for JS Developers](35-css-for-js-developers)
 36. [Kent C. Dodds: Testing JavaScript](36-testing-javascript)
 37. [Kent C. Dodds: Epic React](37-epic-react)
 38. [FEM: Build a fullstack app with Next.js v1](38-fem-next-fs-v1-fullstack-music)
