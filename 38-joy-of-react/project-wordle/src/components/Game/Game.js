@@ -2,34 +2,43 @@ import * as React from 'react';
 
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
+import GuessInput from '../GuessInput';
+import GuessResults from '../GuessResults';
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+import Banner from '../Banner';
+import WonBanner from '../WonBanner/WonBanner';
+import LostBanner from '../LostBanner/LostBanner';
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
+console.log({ answer });
 
 function Game() {
-  const [guess, setGuess] = React.useState('');
+  const [history, setHistory] = React.useState([]);
+  const [status, setStatus] = React.useState('running');
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(guess);
-    setGuess('');
-  };
+  function handleSubmitGuess(guess) {
+    const nextGuesses = [...history, guess];
+
+    if (guess === answer) {
+      setStatus('won');
+    } else if (nextGuesses.length === NUM_OF_GUESSES_ALLOWED) {
+      setStatus('lost');
+    }
+    setHistory([...history, guess]);
+  }
 
   return (
-    <form className="guess-input-wrapper" onSubmit={handleSubmit}>
-      <label htmlFor="guess-input">Enter guess:</label>
-      <input
-        id="guess-input"
-        pattern=".{5,5}"
-        type="text"
-        value={guess}
-        onChange={e => setGuess(e.target.value.toUpperCase())}
-        required
+    <div>
+      <GuessResults history={history} answer={answer} />
+      <GuessInput
+        handleSubmitGuess={handleSubmitGuess}
+        disabled={status !== 'running'}
       />
-      <button type="submit">Submit</button>
-    </form>
+      {status === 'won' && <WonBanner numberOfGuesses={history.length} />}
+      {status === 'lost' && <LostBanner answer={answer} />}
+    </div>
   );
 }
 
