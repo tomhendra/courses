@@ -5,7 +5,6 @@ import { WORDS } from '../../data';
 import GuessInput from '../GuessInput';
 import GuessResults from '../GuessResults';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
-import Banner from '../Banner';
 import WonBanner from '../WonBanner/WonBanner';
 import LostBanner from '../LostBanner/LostBanner';
 
