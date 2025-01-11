@@ -34,7 +34,7 @@ const doorNormalTexture = textureLoader.load('/textures/door/normal.jpg')
 const doorAlphaTexture = textureLoader.load('/textures/door/alpha.jpg')
 
 const matcapTexture = textureLoader.load('textures/matcaps/3.png')
-const gradientTexture = textureLoader.load('textures/gradients/3.jpg')
+// const gradientTexture = textureLoader.load('textures/gradients/3.jpg')
 
 // Textures used as map and matcap are supposed to be encoded in sRGB
 doorColorTexture.colorSpace = THREE.SRGBColorSpace

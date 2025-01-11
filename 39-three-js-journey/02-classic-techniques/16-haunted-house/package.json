@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "clean:node_modules": "rm -rf node_modules"
   },
   "devDependencies": {
     "@types/three": "^0.161.1",
