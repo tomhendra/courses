@@ -58,6 +58,15 @@ export default function RootLayout() {
         <Drawer>
           <Drawer.Screen name="index" redirect />
           <Drawer.Screen
+            name="pan-gesture"
+            options={{
+              drawerItemStyle: styles.drawerItemStyle,
+              drawerLabel: 'Pan Gesture',
+              title: 'Pan Gesture',
+              headerRight: () => <ThemeToggle />,
+            }}
+          />
+          <Drawer.Screen
             name="bouncing-square"
             options={{
               drawerItemStyle: styles.drawerItemStyle,
